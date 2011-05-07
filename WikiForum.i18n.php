@@ -29,6 +29,7 @@ $messages['en'] = array(
 Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-forum-name' => 'Forum $1', // $1 is the name of a forum
 	'wikiforum-name' => 'Name:',
+	'wikiforum-button-preview' => 'Preview', // button text in the reply form
 	'wikiforum-preview' => 'Preview',
 	'wikiforum-preview-with-title' => 'Preview: $1',
 	'wikiforum-save' => 'Save', // button text
@@ -134,6 +135,7 @@ $messages['fi'] = array(
 Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja foorumeja lisätyksi.',
 	'wikiforum-forum-name' => 'Foorumi $1',
 	'wikiforum-name' => 'Nimi:',
+	'wikiforum-button-preview' => 'Esikatsele',
 	'wikiforum-preview' => 'Esikatselu',
 	'wikiforum-preview-with-title' => 'Esikatselu: $1',
 	'wikiforum-save' => 'Tallenna',
@@ -171,9 +173,9 @@ Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja fooru
 	'wikiforum-close' => 'sulje',
 	'wikiforum-delete' => 'poista',
 	'wikiforum-reopen' => 'avaa',
-	'wikiforum-posted' => 'Kirjoittanut $2 kello $1',
-	'wikiforum-edited' => 'Muokannut $2 kello $1',
-	'wikiforum-closed-text' => 'Aiheen sulki $2 kello $1',
+	'wikiforum-posted' => 'Kirjoittanut $2 $1',
+	'wikiforum-edited' => 'Muokannut $2 $1',
+	'wikiforum-closed-text' => 'Aiheen sulki $2 $1',
 	'wikiforum-cat-not-found' => 'Luokkaa ei löydy',
 	'wikiforum-cat-not-found-text' => 'Luokkaa ei ole olemassa - mene takaisin sivulle $1',
 	'wikiforum-forum-not-found' => 'Foorumia ei löydy',
@@ -239,6 +241,7 @@ $messages['nl'] = array(
 Neem a.u.b. contact op met een forum administrator on categorieën en forums to te voegen.',
 	'wikiforum-forum-name' => 'Forum $1',
 	'wikiforum-name' => 'Naam:',
+	'wikiforum-button-preview' => 'Preview',
 	'wikiforum-preview' => 'Preview',
 	'wikiforum-preview-with-title' => 'Preview: $1',
 	'wikiforum-save' => 'opslaan',

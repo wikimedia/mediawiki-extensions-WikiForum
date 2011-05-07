@@ -270,7 +270,7 @@ class WikiForumGui {
 				<tr>
 					<td>
 						<input name="butSave" type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />
-						<input name="butPreview" type="submit" value="' . wfMsg( 'preview' ) . '" accesskey="p" title="' . wfMsg( 'preview' ) . ' [p]" />';
+						<input name="butPreview" type="submit" value="' . wfMsg( 'wikiforum-button-preview' ) . '" accesskey="p" title="' . wfMsg( 'wikiforum-button-preview' ) . ' [p]" />';
 			if( $type == 'addthread' ) {
 				$output .= ' <input name="butCancel" type="button" value="' . wfMsg( 'cancel' ) . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />';
 			}
