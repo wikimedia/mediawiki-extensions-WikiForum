@@ -58,6 +58,9 @@ $wgAvailableRights[] = 'wikiforum-moderator';
 $wgGroupPermissions['forumadmin']['wikiforum-admin'] = true;
 $wgGroupPermissions['forumadmin']['wikiforum-moderator'] = true;
 
+// Allow bureaucrats to assign users to the forum administrator group
+$wgAddGroups['bureaucrat'][] = 'forumadmin';
+
 // Allow sysops to act as forum administrators, too
 $wgGroupPermissions['sysop']['wikiforum-admin'] = true;
 $wgGroupPermissions['sysop']['wikiforum-moderator'] = true;
