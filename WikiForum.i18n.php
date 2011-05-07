@@ -112,8 +112,8 @@ Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-quote' => 'Quote',
 
 	// For Special:ListGroupRights
-	'right-wikiforum-admin' => 'Add, edit and delete categories and forums on [[Special:WikiForum|the discusion board]]',
-	'right-wikiforum-moderator' => 'Edit and delete threads and replies on [[Special:WikiForum|the discusion board]]',
+	'right-wikiforum-admin' => 'Add, edit and delete categories and forums on [[Special:WikiForum|the discussion board]]',
+	'right-wikiforum-moderator' => 'Edit and delete threads and replies on [[Special:WikiForum|the discussion board]]',
 
 	// Forum admin group, as per discussion with Jedimca0 on 30 December 2010
 	'group-forumadmin' => 'Forum administrators',
