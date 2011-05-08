@@ -1672,7 +1672,8 @@ class WikiForumClass {
 					$limit_page,
 					$countReplies->count,
 					$limit_count,
-					$data_overview->wff_forum
+					$data_overview->wff_forum,
+					intval( $threadId )
 				);
 			}
 

@@ -78,9 +78,10 @@ class WikiForumGui {
 	 * @param $limit Integer: limit; this is also used for the SQL query
 	 * @param $forumId Integer: forum ID number, so that the pagination code
 	 *                          knows where it's going...
+	 * @param $threadId Integer: thread ID number, if we're paginating a thread
 	 * @return HTML
 	 */
-	public static function getFooterRow( $page, $maxissues, $limit, $forumId ) {
+	public static function getFooterRow( $page, $maxissues, $limit, $forumId, $threadId = 0 ) {
 		$output = '';
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
@@ -88,8 +89,20 @@ class WikiForumGui {
 			$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
 				wfMsg( 'wikiforum-pages' ) . wfMsg( 'word-separator' );
 			for( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
+				// URL query parameters
+				$urlParams = array(
+					'lp' => $i
+				);
+				// Thread ID is optional, but if it was given, we need to get
+				// rid of the forum parameter for the thread parameter to take
+				// precedence. Stupid, I know.
+				if( $threadId ) {
+					$urlParams['thread'] = $threadId;
+				} else {
+					$urlParams['forum'] = $forumId;
+				}
 				if( $i != $page + 1 ) {
-					$output .= '<a href="' . $specialPage->escapeFullURL( array( 'lp' => $i, 'forum' => $forumId ) ) . '">';
+					$output .= '<a href="' . $specialPage->escapeFullURL( $urlParams ) . '">';
 				} else {
 					$output .= '[';
 				}
