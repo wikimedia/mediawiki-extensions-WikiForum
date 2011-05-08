@@ -17,22 +17,22 @@ $messages['en'] = array(
 	'wikiforum' => 'Discussion board',
 
 	// Configuration variables -- do not translate!
-	'wikiforum-day-definition-new' => '3', // a thread is considered new for this many days
-	'wikiforum-max-threads-per-page' => '20', // number of threads which shall be shown per page on a forum
-	'wikiforum-max-replies-per-page' => '10', // number of replies which shall be shown per page on a thread
+	'wikiforum-day-definition-new' => '3',
+	'wikiforum-max-threads-per-page' => '20',
+	'wikiforum-max-replies-per-page' => '10',
 
 	'wikiforum-anonymous' => 'Anonymous',
 	'wikiforum-announcement-only-description' => 'Announcement forum (only moderators can add threads)',
-	'wikiforum-by' => '$1<br />by $2', // $1 is a timestamp (time and date), $2 is a username
+	'wikiforum-by' => '$1<br />by $2',
 	'wikiforum-description' => 'Description:',
 	'wikiforum-forum-is-empty' => 'This forum is currently empty.
 Please contact a forum administrator to have some categories and forums added.',
-	'wikiforum-forum-name' => 'Forum $1', // $1 is the name of a forum
+	'wikiforum-forum-name' => 'Forum $1',
 	'wikiforum-name' => 'Name:',
-	'wikiforum-button-preview' => 'Preview', // button text in the reply form
+	'wikiforum-button-preview' => 'Preview',
 	'wikiforum-preview' => 'Preview',
 	'wikiforum-preview-with-title' => 'Preview: $1',
-	'wikiforum-save' => 'Save', // button text
+	'wikiforum-save' => 'Save',
 	'wikiforum-error-search' => 'Search error',
 	'wikiforum-error-search-missing-query' => 'You must supply a term to search for!',
 	'wikiforum-search-hits' => 'Found {{PLURAL:$1|one hit|$1 hits}}',
@@ -50,7 +50,7 @@ Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-latest-thread' => 'Latest thread',
 	'wikiforum-forum' => 'Forum: $1 > $2',
 	'wikiforum-overview' => 'Overview',
-	'wikiforum-pages' => 'Pages:', // followed by pagination links, like [01] [02] etc.
+	'wikiforum-pages' => 'Pages:',
 	'wikiforum-thread-closed' => 'Thread closed',
 	'wikiforum-new-thread' => 'New thread',
 	'wikiforum-edit-thread' => 'Edit thread',
@@ -118,7 +118,15 @@ Please contact a forum administrator to have some categories and forums added.',
 	// Forum admin group, as per discussion with Jedimca0 on 30 December 2010
 	'group-forumadmin' => 'Forum administrators',
 	'group-forumadmin-member' => 'Forum administrator',
-	'grouppage-forumadmin' => 'Project:Forum administrators',
+	'grouppage-forumadmin' => '{{ns:project}}:Forum administrators',
+);
+
+$messages['qqq'] = array(
+	'wikiforum-by' => '$1 is a timestamp (time and date), $2 is a username',
+	'wikiforum-forum-name' => '$1 is the name of a forum',
+	'wikiforum-button-preview' => 'Button text in the reply form',
+	'wikiforum-save' => 'Button text',
+	'wikiforum-pages' => 'followed by pagination links, like [01] [02] etc.',
 );
 
 /** Finnish (Suomi)
@@ -213,7 +221,7 @@ Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja fooru
 	'right-wikiforum-moderator' => 'Muokata ja poistaa aiheita ja vastauksia [[Special:WikiForum|keskustelupalstalla]]',
 	'group-forumadmin' => 'Foorumin ylläpitäjät',
 	'group-forumadmin-member' => 'Foorumin ylläpitäjä',
-	'grouppage-forumadmin' => 'Project:Foorumin ylläpitäjät',
+	'grouppage-forumadmin' => '{{ns:project}}:Foorumin ylläpitäjät',
 );
 
 /** French (Français)
@@ -224,7 +232,7 @@ $messages['fr'] = array(
 	'wikiforum-anonymous' => 'Anonyme',
 	'group-forumadmin' => 'Administrateurs du forum',
 	'group-forumadmin-member' => 'Administrateur du forum',
-	'grouppage-forumadmin' => 'Project:Administrateurs du forum',	
+	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',	
 );
 
 /** Dutch (Nederlands)
@@ -319,7 +327,7 @@ Neem a.u.b. contact op met een forum administrator on categorieën en forums to 
 	'right-wikiforum-moderator' => 'Threads en reacties bewerken en verwijderen op [[Special:WikiForum|het forum]]',
 	'group-forumadmin' => 'Forum administratoren',
 	'group-forumadmin-member' => 'Forum administrator',
-	'grouppage-forumadmin' => 'Project:Forum administratoren',
+	'grouppage-forumadmin' => '{{ns:project}}:Forum administratoren',
 );
 
 /** Polish (Polski)
