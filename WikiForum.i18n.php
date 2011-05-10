@@ -818,10 +818,13 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
  * @author Veeven
  */
 $messages['te'] = array(
+	'wikiforum-anonymous' => 'అజ్ఞాత',
 	'wikiforum-description' => 'వివరణ:',
 	'wikiforum-name' => 'పేరు:',
 	'wikiforum-save' => 'భద్రపరచు',
+	'wikiforum-replies' => 'స్పందనలు',
 	'wikiforum-views' => 'వీక్షణలు',
+	'wikiforum-overview' => 'అవలోకనం',
 	'wikiforum-pages' => 'పుటలు:',
 	'wikiforum-edit' => 'మార్చు',
 	'wikiforum-close' => 'మూసివేయి',
