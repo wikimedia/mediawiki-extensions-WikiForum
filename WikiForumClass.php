@@ -106,7 +106,7 @@ class WikiForumClass {
 
 		$thread = $dbr->fetchObject( $dbr->select(
 			'wikiforum_threads',
-			array( 'wft_thread', 'wft_user' ),
+			array( 'wft_thread', 'wft_user', 'wft_forum' ),
 			array( 'wft_deleted' => 0, 'wft_thread' => intval( $threadId ) ),
 			__METHOD__
 		));
@@ -126,6 +126,28 @@ class WikiForumClass {
 				),
 				array(
 					'wft_thread' => $thread->wft_thread
+				),
+				__METHOD__
+			);
+			// Update threads/replies counters
+			$replyCount = $dbw->selectField(
+				'wikiforum_threads',
+				'wft_reply_count',
+				array( 'wft_thread' => intval( $thread->wft_thread ) ),
+				__METHOD__
+			);
+			$dbw->update(
+				'wikiforum_forums',
+				array(
+					"wff_reply_count = wff_reply_count - $replyCount",
+					'wff_thread_count = wff_thread_count - 1'
+					// @todo FIXME: update wff_last_post_user and
+					// wff_last_post_timestamp, too...but how?
+					//'wff_last_post_user' =>
+					//'wff_last_post_timestamp' =>
+				),
+				array(
+					'wff_forum' => intval( $thread->wft_forum )
 				),
 				__METHOD__
 			);
