@@ -136,15 +136,30 @@ class WikiForumClass {
 				array( 'wft_thread' => intval( $thread->wft_thread ) ),
 				__METHOD__
 			);
+			// When the thread we're about to delete is deleted, we also need
+			// to update the information about the latest post & its author
+			$new = $dbw->select(
+				'wikiforum_threads',
+				array(
+					'wft_last_post_user', 'wft_last_post_timestamp',
+				),
+				array(
+					'wft_forum' => intval( $thread->wft_forum ),
+					'wft_deleted' => 0 // 0 means not deleted
+				),
+				__METHOD__,
+				array( 'LIMIT' => 1 )
+			);
+			$row = $dbw->fetchRow( $new );
+			// Update the forum table so that the data shown on
+			// Special:WikiForum is up to date
 			$dbw->update(
 				'wikiforum_forums',
 				array(
 					"wff_reply_count = wff_reply_count - $replyCount",
-					'wff_thread_count = wff_thread_count - 1'
-					// @todo FIXME: update wff_last_post_user and
-					// wff_last_post_timestamp, too...but how?
-					//'wff_last_post_user' =>
-					//'wff_last_post_timestamp' =>
+					'wff_thread_count = wff_thread_count - 1',
+					'wff_last_post_user' => intval( $row['wft_last_post_user'] ),
+					'wff_last_post_timestamp' => intval( $row['wft_last_post_timestamp'] )
 				),
 				array(
 					'wff_forum' => intval( $thread->wft_forum )
