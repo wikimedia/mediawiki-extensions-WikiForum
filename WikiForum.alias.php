@@ -6,14 +6,19 @@
  * @ingroup Extensions
  */
 
-$aliases = array();
+$specialPageAliases = array();
 
 /** English */
-$aliases['en'] = array(
+$specialPageAliases['en'] = array(
 	'WikiForum' => array( 'WikiForum', 'Forum' ),
 );
 
 /** Finnish (Suomi) */
-$aliases['fi'] = array(
+$specialPageAliases['fi'] = array(
 	'WikiForum' => array( 'WikiFoorumi', 'Foorumi' ),
 );
+
+/**
+ * For backwards compatibility with MediaWiki 1.15 and earlier.
+ */
+$aliases =& $specialPageAliases;
