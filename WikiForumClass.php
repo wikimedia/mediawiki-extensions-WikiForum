@@ -2248,18 +2248,10 @@ class WikiForumClass {
 
 			// For grep: wikiforum-edit-forum, wikiforum-edit-category,
 			// wikiforum-delete-forum, wikiforum-delete-category
-			//if( $wikiconf['icon_' . $type . '_edit'] ) {
 			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/' . $iconName . '_edit.png" title="' . wfMsg( 'wikiforum-edit-' . $type ) . '" />';
-			//} else {
-			//	$icon = '<span class="small">' . wfMsg( 'wikiforum-edit' ) . '</span>';
-			//}
 			$link = ' <a href="' . $specialPage->escapeFullURL( array( 'edit' . $type => $id ) ) . '">' . $icon . '</a>';
 
-			//if( $wikiconf['icon_' . $type . '_delete'] ) {
 			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/' . $iconName . '_delete.png" title="' . wfMsg( 'wikiforum-delete-' . $type ) . '" />';
-			//} else {
-			//	$icon = '<span class="small">' . wfMsg( 'wikiforum-delete' ) . '</span>';
-			//}
 			$link .= ' <a href="' . $specialPage->escapeFullURL( array( 'delete' . $type => $id ) ) . '">' . $icon . '</a>';
 
 			if( $sortup == true ) {

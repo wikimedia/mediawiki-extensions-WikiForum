@@ -65,11 +65,6 @@ Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-thread-title' => 'Title of your thread',
 	'wikiforum-no-threads' => 'No threads are available at the moment.',
 
-	'wikiforum-edit' => 'edit',
-	'wikiforum-close' => 'close',
-	'wikiforum-delete' => 'delete',
-	'wikiforum-reopen' => 'reopen',
-
 	'wikiforum-posted' => 'Posted at $1 by $2',
 	'wikiforum-edited' => 'Edited at $1 by $2',
 	'wikiforum-closed-text' => 'Thread was closed at $1 by $2',
