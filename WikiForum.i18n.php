@@ -1235,3 +1235,26 @@ Mangyaring makipag-ugnayan sa isang tagapangasiwa ng poro upang maidagdag ang il
 	'grouppage-forumadmin' => '{{ns:project}}:Mga tagapangasiwa ng poro',
 );
 
+/** Turkish (Türkçe)
+ * @author Emperyan
+ */
+$messages['tr'] = array(
+	'wikiforum' => 'Tartışma sayfası',
+	'wikiforum-name' => 'Ad:',
+	'wikiforum-button-preview' => 'Ön izleme',
+	'wikiforum-preview' => 'Ön izleme',
+	'wikiforum-preview-with-title' => 'Ön izleme: $1',
+	'wikiforum-save' => 'Kaydet',
+	'wikiforum-error-search' => 'Arama hatası',
+	'wikiforum-search-thread' => 'Konu: $1',
+	'wikiforum-write-thread' => 'Yeni konu',
+	'wikiforum-replies' => 'Yanıtlar',
+	'wikiforum-views' => 'Görüntüle',
+	'wikiforum-latest-reply' => '',
+	'wikiforum-pages' => 'Sayfalar:',
+	'wikiforum-quote' => 'Alıntı',
+	'group-forumadmin' => 'Forum hizmetlileri',
+	'group-forumadmin-member' => 'Forum hizmetlisi',
+	'grouppage-forumadmin' => '{{ns:project}}:Forum hizmetlileri',
+);
+
