@@ -1,4 +1,4 @@
-﻿-- SQL schema for WikiForum extension
+-- SQL schema for WikiForum extension
 -- Rewritten by Jack Phoenix <jack@countervandalism> in December 2010
 -- the "formerly" comments refer to the names that Michael Chlebek, the
 -- original author of WikiForum, called those columns
