@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_category (
 	`wfc_edited_user` int(10) NOT NULL DEFAULT '0', -- formerly: EditedBy
 	`wfc_deleted` int(10) NOT NULL DEFAULT '0', -- formerly: Deleted
 	`wfc_deleted_user` int(10) NOT NULL DEFAULT '0' -- formerly: DeletedBy
-);
+)/*$wgDBTableOptions*/;
 
 CREATE TABLE IF NOT EXISTS /*_*/wikiforum_forums (
 	`wff_forum` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT, -- formerly: pkForum
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_forums (
 	`wff_deleted` int(10) NOT NULL DEFAULT '0', -- formerly: Deleted
 	`wff_deleted_user` int(10) NOT NULL DEFAULT '0', -- formerly: DeletedBy
 	`wff_announcement` tinyint(2) NOT NULL DEFAULT '0' -- new in version 1.2; previously called "Announcement"
-);
+)/*$wgDBTableOptions*/;
 
 CREATE TABLE IF NOT EXISTS /*_*/wikiforum_threads (
 	`wft_thread` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT, -- formerly: pkThread
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_threads (
 	`wft_view_count` int(10) NOT NULL DEFAULT '0', -- formerly: num_calls
 	`wft_last_post_user` int(10) NOT NULL DEFAULT '0', -- formerly: lastpost_user
 	`wft_last_post_timestamp` binary(14) NOT NULL DEFAULT '' -- formerly: lastpost_time
-);
+)/*$wgDBTableOptions*/;
 
 -- formerly: wikiforum_comments
 CREATE TABLE IF NOT EXISTS /*_*/wikiforum_replies (
@@ -72,4 +72,4 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_replies (
 	`wfr_edit_timestamp` binary(14) NOT NULL DEFAULT '', -- formerly: Edit
 	`wfr_edit_user` int(10) NOT NULL DEFAULT '0', -- formerly: EditBy
 	`wfr_thread` int(10) NOT NULL -- formerly: fkThread
-);
+)/*$wgDBTableOptions*/;
