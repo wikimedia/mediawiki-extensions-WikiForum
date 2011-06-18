@@ -132,12 +132,14 @@ $messages['qqq'] = array(
  * @author DCLXVI
  */
 $messages['bg'] = array(
+	'wikiforum-desc' => '[[Special:WikiForum|Разширение за форум]] за МедияУики',
 	'wikiforum-description' => 'Описание:',
+	'wikiforum-forum-name' => 'Форум $1',
 	'wikiforum-name' => 'Име:',
+	'wikiforum-save' => 'Съхраняване',
+	'wikiforum-thread' => 'Нишка',
+	'wikiforum-threads' => 'Нишки',
 	'wikiforum-pages' => 'Страници:',
-	'wikiforum-edit' => 'редактиране',
-	'wikiforum-close' => 'затваряне',
-	'wikiforum-delete' => 'изтриване',
 	'wikiforum-add-forum' => 'Добавяне на форум',
 	'wikiforum-edit-forum' => 'Редактиране на форум',
 	'wikiforum-delete-forum' => 'Изтриване на форум',
