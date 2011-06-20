@@ -1036,6 +1036,23 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'group-forumadmin-member' => 'administrator forum',
 );
 
+/** Pashto (پښتو)
+ * @author Ahmed-Najib-Biabani-Ibrahimkhel
+ */
+$messages['ps'] = array(
+	'wikiforum-name' => 'نوم:',
+	'wikiforum-save' => 'خوندي کول',
+	'wikiforum-replies' => 'ځوابونه',
+	'wikiforum-pages' => 'مخونه:',
+	'wikiforum-write-reply' => 'يو ځواب ليکل',
+	'wikiforum-edit-reply' => 'ځواب سمول',
+	'wikiforum-delete-reply' => 'ځواب ړنګول',
+	'wikiforum-save-reply' => 'ځواب خوندي کول',
+	'wikiforum-add-category' => 'وېشنيزه ورګډول',
+	'wikiforum-edit-category' => 'وېشنيزه سمول',
+	'wikiforum-delete-category' => 'وېشنيزه ړنګول',
+);
+
 /** Portuguese (Português)
  * @author Hamilton Abreu
  */
