@@ -2341,8 +2341,8 @@ class WikiForumClass {
 
 		if( $username ) {
 			$sk = $wgUser->getSkin();
-			$retVal = $sk->makeLink(
-				$wgContLang->getNsText( NS_USER ) . ':' . $username,
+			$retVal = $sk->makeLinkObj(
+				Title::newFromText( $wgContLang->getNsText( NS_USER ) . ':' . $username ),
 				htmlspecialchars( $username )
 			);
 
