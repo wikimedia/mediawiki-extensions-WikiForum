@@ -128,6 +128,14 @@ $messages['qqq'] = array(
 	'wikiforum-pages' => 'followed by pagination links, like [01] [02] etc.',
 );
 
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+ * @author Jim-by
+ */
+$messages['be-tarask'] = array(
+	'group-forumadmin-member' => 'Адміністратар форуму',
+	'grouppage-forumadmin' => '{{ns:project}}:Адміністратары форуму',
+);
+
 /** Bulgarian (Български)
  * @author DCLXVI
  */
