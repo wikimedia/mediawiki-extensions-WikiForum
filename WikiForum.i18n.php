@@ -201,10 +201,6 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'wikiforum-save-reply' => 'Antwort speichern',
 	'wikiforum-thread-title' => 'Titel deines Themas',
 	'wikiforum-no-threads' => 'Derzeit gibt es keine Themen.',
-	'wikiforum-edit' => 'bearbeiten',
-	'wikiforum-close' => 'schließen',
-	'wikiforum-delete' => 'löschen',
-	'wikiforum-reopen' => 'wiedereröffnen',
 	'wikiforum-posted' => 'Verfasst am $1 von $2',
 	'wikiforum-edited' => 'Bearbeitet am $1 von $2',
 	'wikiforum-closed-text' => 'Das Thema wurde am $1 von $2 geschlossen.',
@@ -246,6 +242,14 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'group-forumadmin' => 'Forumsadministratoren',
 	'group-forumadmin-member' => 'Forumsadministrator',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumsadministratoren',
+);
+
+/** German (formal address) (‪Deutsch (Sie-Form)‬)
+ * @author Kghbln
+ */
+$messages['de-formal'] = array(
+	'wikiforum-thread-title' => 'Title Ihres Themas',
+	'wikiforum-error-no-rights' => 'Sie haben nicht die Berechtigung diese Aktion auszuführen.',
 );
 
 /** Finnish (Suomi)
@@ -296,10 +300,6 @@ Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja fooru
 	'wikiforum-save-reply' => 'Tallenna vastaus',
 	'wikiforum-thread-title' => 'Aiheesi otsikko',
 	'wikiforum-no-threads' => 'Tällä hetkellä aiheita ei ole saatavilla.',
-	'wikiforum-edit' => 'muokkaa',
-	'wikiforum-close' => 'sulje',
-	'wikiforum-delete' => 'poista',
-	'wikiforum-reopen' => 'avaa',
 	'wikiforum-posted' => 'Kirjoittanut $2 $1',
 	'wikiforum-edited' => 'Muokannut $2 $1',
 	'wikiforum-closed-text' => 'Aiheen sulki $2 $1',
@@ -385,10 +385,6 @@ $messages['fr'] = array(
 	'wikiforum-save-reply' => 'Enregistrer la réponse',
 	'wikiforum-thread-title' => 'Titre de votre fil de discussion',
 	'wikiforum-no-threads' => "Aucun fil de discussion n'est disponible à cet instant.",
-	'wikiforum-edit' => 'modifier',
-	'wikiforum-close' => 'fermer',
-	'wikiforum-delete' => 'supprimer',
-	'wikiforum-reopen' => 'réouvrir',
 	'wikiforum-posted' => 'Posté à $1 par $2',
 	'wikiforum-edited' => 'Modifié à $1 par $2',
 	'wikiforum-closed-text' => 'Le fil de discussion a été fermé à $1 par $2',
@@ -562,10 +558,6 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'wikiforum-save-reply' => 'Gardar a resposta',
 	'wikiforum-thread-title' => 'Título do seu fío',
 	'wikiforum-no-threads' => 'Non hai fíos dispoñibles nestes intres.',
-	'wikiforum-edit' => 'editar',
-	'wikiforum-close' => 'pechar',
-	'wikiforum-delete' => 'borrar',
-	'wikiforum-reopen' => 'reabrir',
 	'wikiforum-posted' => 'Publicado o $1 por $2',
 	'wikiforum-edited' => 'Editado o $1 por $2',
 	'wikiforum-closed-text' => 'O fío foi pechado o $1 por $2',
@@ -898,10 +890,6 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'wikiforum-save-reply' => 'Reactie opslaan',
 	'wikiforum-thread-title' => 'Onderwerp van uw bericht',
 	'wikiforum-no-threads' => 'Er zijn op het moment geen onderwerpen beschikbaar.',
-	'wikiforum-edit' => 'bewerken',
-	'wikiforum-close' => 'sluiten',
-	'wikiforum-delete' => 'verwijderen',
-	'wikiforum-reopen' => 'heropenen',
 	'wikiforum-posted' => 'Geplaatst op $1 door $2',
 	'wikiforum-edited' => 'Bewerkt op $1 door $2',
 	'wikiforum-closed-text' => 'Onderwerp is gesloten op $1 door $2',
@@ -947,6 +935,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 
 /** Polish (Polski)
  * @author Misiek95
+ * @author Woytecr
  */
 $messages['pl'] = array(
 	'wikiforum-desc' => 'Rozszerzenie [[Special:WikiForum|forum]] dla MediaWiki',
@@ -959,6 +948,7 @@ $messages['pl'] = array(
 Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'wikiforum-forum-name' => 'Forum $1',
 	'wikiforum-name' => 'Nazwa:',
+	'wikiforum-button-preview' => 'Podgląd',
 	'wikiforum-preview' => 'Podgląd',
 	'wikiforum-preview-with-title' => 'Podgląd: $1',
 	'wikiforum-save' => 'Zapisz',
@@ -992,10 +982,6 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'wikiforum-save-reply' => 'Zapisz odpowiedź',
 	'wikiforum-thread-title' => 'Tytuł wątku',
 	'wikiforum-no-threads' => 'W tej chwili nie ma dostępnych wątków.',
-	'wikiforum-edit' => 'edytuj',
-	'wikiforum-close' => 'zamknij',
-	'wikiforum-delete' => 'usuń',
-	'wikiforum-reopen' => 'otwórz',
 	'wikiforum-posted' => 'Napisane $1 przez $2',
 	'wikiforum-edited' => 'Edytowane $1 przez $2',
 	'wikiforum-closed-text' => 'Wątek został zamknięty $1 przez $2',
@@ -1247,9 +1233,6 @@ $messages['te'] = array(
 	'wikiforum-views' => 'వీక్షణలు',
 	'wikiforum-overview' => 'అవలోకనం',
 	'wikiforum-pages' => 'పుటలు:',
-	'wikiforum-edit' => 'మార్చు',
-	'wikiforum-close' => 'మూసివేయి',
-	'wikiforum-delete' => 'తొలగించు',
 );
 
 /** Tagalog (Tagalog)
@@ -1300,10 +1283,6 @@ Mangyaring makipag-ugnayan sa isang tagapangasiwa ng poro upang maidagdag ang il
 	'wikiforum-save-reply' => 'Sagipin ang tugon',
 	'wikiforum-thread-title' => 'Pamagat ng sinulid mo',
 	'wikiforum-no-threads' => 'Walang makuhang mga sinulid sa ngayon.',
-	'wikiforum-edit' => 'baguhin',
-	'wikiforum-close' => 'isara',
-	'wikiforum-delete' => 'burahin',
-	'wikiforum-reopen' => 'buksang muli',
 	'wikiforum-posted' => 'Ipinaskil doon sa $1 ni $2',
 	'wikiforum-edited' => 'Binago doon sa $1 ni $2',
 	'wikiforum-closed-text' => 'Isanara ang sinulid doon sa $1 ni $2',
