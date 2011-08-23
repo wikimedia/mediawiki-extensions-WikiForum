@@ -722,6 +722,7 @@ $messages['lb'] = array(
 	'wikiforum-threads' => 'Rubriken',
 	'wikiforum-latest-reply' => 'Lescht Äntwert',
 	'wikiforum-latest-thread' => 'Lescht Rubrik',
+	'wikiforum-forum' => 'Forum: $1 > $2',
 	'wikiforum-overview' => 'Iwwersiicht',
 	'wikiforum-pages' => 'Säiten:',
 	'wikiforum-thread-closed' => 'Rubrik zougemaach',
