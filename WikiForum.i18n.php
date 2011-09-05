@@ -117,29 +117,38 @@ Please contact a forum administrator to have some categories and forums added.',
 );
 
 /** Message documentation (Message documentation)
+ * @author EugeneZelenko
  * @author Purodha
  */
 $messages['qqq'] = array(
 	'wikiforum-desc' => '{{desc}}',
+	'wikiforum-anonymous' => '{{Identical|Anonymous}}',
 	'wikiforum-by' => '$1 is a timestamp (time and date), $2 is a username',
+	'wikiforum-description' => '{{Identical|Description}}',
 	'wikiforum-forum-name' => '$1 is the name of a forum',
-	'wikiforum-button-preview' => 'Button text in the reply form',
-	'wikiforum-save' => 'Button text',
+	'wikiforum-name' => '{{Identical|Name}}',
+	'wikiforum-button-preview' => 'Button text in the reply form
+{{Identical|Preview}}',
+	'wikiforum-preview' => '{{Identical|Preview}}',
+	'wikiforum-preview-with-title' => '{{Identical|Preview}}',
+	'wikiforum-save' => 'Button text
+{{Identical|Save}}',
 	'wikiforum-pages' => 'followed by pagination links, like [01] [02] etc.',
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+ * @author EugeneZelenko
  * @author Jim-by
  * @author Renessaince
  */
 $messages['be-tarask'] = array(
-	'wikiforum-desc' => 'Пашырэньне [[Special:WikiForum|Форум]] для МэдыяВікі',
+	'wikiforum-desc' => 'Пашырэньне [[Special:WikiForum|форуму]] для MediaWiki',
 	'wikiforum' => 'Дошка абмеркаваньняў',
 	'wikiforum-anonymous' => 'Ананім',
 	'wikiforum-announcement-only-description' => 'Форум аб’яваў (толькі мадэратары могуць дадаваць галіны)',
 	'wikiforum-by' => '$1<br />ад $2',
 	'wikiforum-description' => 'Апісаньне:',
-	'wikiforum-forum-is-empty' => 'Гэты форум у дадзены момант пусты.
+	'wikiforum-forum-is-empty' => 'Гэты форум у цяперашні момант часу пусты.
 Калі ласка, скантактуйцеся з адміністратарам форуму, каб дадаць катэгорыі і форумы.',
 	'wikiforum-forum-name' => 'Форум $1',
 	'wikiforum-name' => 'Назва:',
