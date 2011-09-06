@@ -119,11 +119,15 @@ Please contact a forum administrator to have some categories and forums added.',
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
  * @author Purodha
+ * @author Siebrand
  */
 $messages['qqq'] = array(
 	'wikiforum-desc' => '{{desc}}',
+	'wikiforum' => 'Special page title, special page name in Special:SpecialPages and link in toolbox portlet.',
 	'wikiforum-anonymous' => '{{Identical|Anonymous}}',
-	'wikiforum-by' => '$1 is a timestamp (time and date), $2 is a username',
+	'wikiforum-by' => 'Forum post properties. Parameters:
+* $1 is a timestamp (time and date)
+* $2 is a username',
 	'wikiforum-description' => '{{Identical|Description}}',
 	'wikiforum-forum-name' => '$1 is the name of a forum',
 	'wikiforum-name' => '{{Identical|Name}}',
@@ -133,7 +137,51 @@ $messages['qqq'] = array(
 	'wikiforum-preview-with-title' => '{{Identical|Preview}}',
 	'wikiforum-save' => 'Button text
 {{Identical|Save}}',
-	'wikiforum-pages' => 'followed by pagination links, like [01] [02] etc.',
+	'wikiforum-search-hits' => 'Search result header. Parameters:
+* $1 is the number of search results.',
+	'wikiforum-search-thread' => '{{Identical|Thread}}',
+	'wikiforum-topic-name' => 'Page title. Parameters:
+* $1 is a thread name.',
+	'wikiforum-updates' => 'Navigation item leading to updated forums.',
+	'wikiforum-replies' => 'Navigation item leading to replies.
+{{Identical|Reply}}',
+	'wikiforum-views' => 'Navigation item leading to views.
+{{Identical|View}}',
+	'wikiforum-thread' => '{{Identical|Thread}}',
+	'wikiforum-threads' => '{{Identical|Thread}}',
+	'wikiforum-latest-reply' => 'Navigation item leading to latest reply.',
+	'wikiforum-forum' => 'Parameters:
+* $1 is a reply count
+* $2 is a view count.',
+	'wikiforum-overview' => 'Link text to forum overview.
+{{Identical|Overview}}',
+	'wikiforum-pages' => 'Followed by pagination links, like [01] [02] etc.
+{{Identical|Page}}',
+	'wikiforum-posted' => 'Thread header. Parameters:
+* $1 is a timestamp
+* $2 is a username.',
+	'wikiforum-edited' => 'Indicates a thread element has been edited. Parameters:
+* $1 is a timestamp
+* $2 is a username.',
+	'wikiforum-closed-text' => 'Indicates a thread was closed. Parameters:
+* $1 is a timestamp
+* $2 is a username.',
+	'wikiforum-cat-not-found-text' => 'Error text requesting a non-existing category. Parameters:
+* $1 is {{msg-mw|wikiforum-overview}} (linked).',
+	'wikiforum-forum-not-found-text' => 'Error text requesting a non-existing forum. Parameters:
+* $1 is {{msg-mw|wikiforum-overview}} (linked).',
+	'wikiforum-thread-not-found-text' => 'Error text requesting a non-existing category. Parameters:
+* $1 is {{msg-mw|wikiforum-overview}} (linked).',
+	'group-forumadmin' => 'Group name',
+	'group-forumadmin-member' => 'Group member name.',
+	'grouppage-forumadmin' => 'Link to page where group is explained.',
+);
+
+/** Afrikaans (Afrikaans)
+ * @author Naudefj
+ */
+$messages['af'] = array(
+	'wikiforum-replies' => 'Antwoorde',
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
@@ -157,8 +205,8 @@ $messages['be-tarask'] = array(
 	'wikiforum-preview-with-title' => 'Папярэдні прагляд: $1',
 	'wikiforum-save' => 'Захаваць',
 	'wikiforum-error-search' => 'Памылка пошуку',
-	'wikiforum-error-search-missing-query' => 'Неабходна задаць выраз для пошуку!',
-	'wikiforum-search-hits' => 'Знойдзена {{PLURAL:$1|адна адпаведнасьць|$1 адпаведнасьці|$1 адпаведнасьцяў}}',
+	'wikiforum-error-search-missing-query' => 'Неабходна падаць выраз для пошуку!',
+	'wikiforum-search-hits' => '{{PLURAL:$1|Знойдзеная $1 адпаведнасьць|Знойдзеныя $1 адпаведнасьці|Знойдзеныя $1 адпаведнасьцяў}}',
 	'wikiforum-search-thread' => 'Галіна: $1',
 	'wikiforum-thread-deleted' => 'галіна выдаленая',
 	'wikiforum-topic-name' => 'Форум — $1',
@@ -172,8 +220,8 @@ $messages['be-tarask'] = array(
 	'wikiforum-latest-thread' => 'Апошняя галіна',
 	'wikiforum-forum' => 'Форум: $1 > $2',
 	'wikiforum-overview' => 'Агляд',
-	'wikiforum-pages' => 'Старонак:',
-	'wikiforum-thread-closed' => 'Галіна зачыненая',
+	'wikiforum-pages' => 'Старонкі:',
+	'wikiforum-thread-closed' => 'Галіна закрытая',
 	'wikiforum-new-thread' => 'Новая галіна',
 	'wikiforum-edit-thread' => 'Рэдагаваць галіну',
 	'wikiforum-delete-thread' => 'Выдаліць галіну',
@@ -184,19 +232,19 @@ $messages['be-tarask'] = array(
 	'wikiforum-delete-reply' => 'Выдаліць адказ',
 	'wikiforum-save-thread' => 'Захаваць галіну',
 	'wikiforum-save-reply' => 'Захаваць адказ',
-	'wikiforum-thread-title' => 'Назва вашай галіны',
-	'wikiforum-no-threads' => 'У дадзены момант няма даступных галінаў.',
-	'wikiforum-posted' => 'Зьмешчана а $1 удзельнікам $2',
-	'wikiforum-edited' => 'Адрэдагавана а $1 удзельнікам $2',
-	'wikiforum-closed-text' => 'Галіна была закрытая а $1 удзельнікам $2',
+	'wikiforum-thread-title' => 'Назва Вашай галіны',
+	'wikiforum-no-threads' => 'У цяперашні момант часу няма даступных галінаў.',
+	'wikiforum-posted' => 'Зьмешчана ў $1 {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+	'wikiforum-edited' => 'Адрэдагаваная ў $1 {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+	'wikiforum-closed-text' => 'Галіна была закрытая ў $1 {{GENDER:$2|удзельнікам|удзельніцай}} $2',
 	'wikiforum-cat-not-found' => 'Катэгорыя ня знойдзеная',
 	'wikiforum-cat-not-found-text' => 'Катэгорыя не існуе — вярнуцца да $1',
 	'wikiforum-forum-not-found' => 'Форум ня знойдзены',
 	'wikiforum-forum-not-found-text' => 'Форум не існуе — вярнуцца да $1',
 	'wikiforum-thread-not-found' => 'Галіна ня знойдзеная',
-	'wikiforum-thread-not-found-text' => 'Галіна не існуе або ўжо выдаленая — вярнуцца да $1.',
-	'wikiforum-error-thread-reopen' => 'Памылка пры спробе адчыніць галіну наноў',
-	'wikiforum-error-thread-close' => 'Памылка пры спробе зачыніць галіну',
+	'wikiforum-thread-not-found-text' => 'Галіна не існуе ці ўжо выдаленая — вярнуцца да $1.',
+	'wikiforum-error-thread-reopen' => 'Памылка падчас спробы адкрыць галіну зноў',
+	'wikiforum-error-thread-close' => 'Памылка падчас спробы закрыць галіну',
 	'group-forumadmin-member' => 'Адміністратар форуму',
 	'grouppage-forumadmin' => '{{ns:project}}:Адміністратары форуму',
 );
