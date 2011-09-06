@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if( !defined( 'MEDIAWIKI' ) ) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This is an extension to the MediaWiki package and cannot be run standalone.\n" );
 }
 
@@ -37,7 +37,6 @@ $wgExtensionCredits['other'][] = array(
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
 	'version' => '1.2-SW',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:WikiForum',
-	'description' => '[[Special:WikiForum|Forum]] extension for MediaWiki',
 	'descriptionmsg' => 'wikiforum-desc'
 );
 
@@ -86,6 +85,8 @@ $wgHooks['ParserFirstCallInit'][] = 'wfWikiForumTags';
 $wgHooks['SkinTemplateBuildNavUrlsNav_urlsAfterPermalink'][] = 'wfSpecialWikiForumNav';
 $wgHooks['SkinTemplateToolboxEnd'][] = 'wfSpecialWikiForumToolbox';
 
+// @todo FIXME: Move hook methods to a hook class.
+
 /**
  * Set up the two new parser hooks: <WikiForumList> and <WikiForumThread>
  *
@@ -126,8 +127,8 @@ function wfSpecialWikiForumNav( &$skinTemplate, &$nav_urls, &$oldid, &$revid ) {
  * @return Boolean: true
  */
 function wfSpecialWikiForumToolbox( &$skinTemplate ) {
-	if( isset( $skinTemplate->data['nav_urls']['wikiforum'] ) ) {
-		if( $skinTemplate->data['nav_urls']['wikiforum']['href'] == '' ) {
+	if ( isset( $skinTemplate->data['nav_urls']['wikiforum'] ) ) {
+		if ( $skinTemplate->data['nav_urls']['wikiforum']['href'] == '' ) {
 			echo '<li id="t-iswikiforum">' . wfMsg( 'wikiforum' ) . '</li>';
 		} else {
 			$url = $skinTemplate->data['nav_urls']['wikiforum']['href'];
@@ -146,7 +147,7 @@ function wfSpecialWikiForumToolbox( &$skinTemplate ) {
 function renderWikiForumList( $input, $args, $parser, $frame ) {
 	global $wgUser, $wgLang, $wgScriptPath;
 
-	if( !isset( $args['num'] ) ) {
+	if ( !isset( $args['num'] ) ) {
 		$args['num'] = 5;
 	}
 
@@ -184,7 +185,7 @@ function renderWikiForumList( $input, $args, $parser, $frame ) {
 		wfMsg( 'wikiforum-latest-reply' )
 	);
 
-	foreach( $sqlThreads as $thread ) {
+	foreach ( $sqlThreads as $thread ) {
 		$icon = WikiForumClass::getThreadIcon(
 			$thread->wft_posted_timestamp,
 			$thread->wft_closed,
@@ -194,7 +195,7 @@ function renderWikiForumList( $input, $args, $parser, $frame ) {
 		$lastpost = '';
 		// If there are some replies, then we can obviously figure out who was
 		// the last user who posted something on the topic...
-		if( $thread->wft_reply_count > 0 ) {
+		if ( $thread->wft_reply_count > 0 ) {
 			$lastpost = wfMsg(
 				'wikiforum-by',
 				$wgLang->timeanddate( $thread->wft_last_post_timestamp ),
@@ -213,7 +214,7 @@ function renderWikiForumList( $input, $args, $parser, $frame ) {
 		);
 		$forumLink = $sk->link(
 			$specialPageObj,
-			$thread->wff_forum_name, 
+			$thread->wff_forum_name,
 			array(),
 			array( 'forum' => $thread->wff_forum )
 		);
@@ -254,7 +255,7 @@ function renderWikiForumList( $input, $args, $parser, $frame ) {
 function renderWikiForumThread( $input, $args, $parser, $frame ) {
 	global $wgOut, $wgLang, $wgScriptPath;
 
-	if( isset( $args['id'] ) && $args['id'] > 0 ) {
+	if ( isset( $args['id'] ) && $args['id'] > 0 ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$sqlThreads = $dbr->select(
 			array( 'wikiforum_forums', 'wikiforum_category', 'wikiforum_threads', 'user' ),
@@ -279,13 +280,13 @@ function renderWikiForumThread( $input, $args, $parser, $frame ) {
 		);
 		$overview = $dbr->fetchObject( $sqlThreads );
 
-		if( $overview ) {
+		if ( $overview ) {
 			$posted = wfMsg(
 				'wikiforum-posted',
 				$wgLang->timeanddate( $overview->wft_posted_timestamp ),
 				WikiForumClass::getUserLink( $overview->user_name )
 			);
-			if( $overview->wft_edit_timestamp > 0 ) {
+			if ( $overview->wft_edit_timestamp > 0 ) {
 				$posted .= '<br /><i>' .
 					wfMsg(
 						'wikiforum-edited',
@@ -324,13 +325,13 @@ function renderWikiForumThread( $input, $args, $parser, $frame ) {
 					array( 'user' => array( 'LEFT JOIN', 'user_id = wfr_user' ) )
 				);
 
-				foreach( $replies as $reply ) {
+				foreach ( $replies as $reply ) {
 					$posted = wfMsg(
 						'wikiforum-posted',
 						$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
 						WikiForumClass::getUserLink( $reply->user_name )
 					);
-					if( $reply->wfr_edit > 0 ) {
+					if ( $reply->wfr_edit > 0 ) {
 						$posted .= '<br /><i>' .
 							wfMsg(
 								'wikiforum-edited',
