@@ -863,6 +863,47 @@ $messages['lb'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
 );
 
+/** Lithuanian (Lietuvių)
+ * @author Eitvys200
+ */
+$messages['lt'] = array(
+	'wikiforum' => 'Diskusijų lenta',
+	'wikiforum-anonymous' => 'Anonimas',
+	'wikiforum-forum-name' => 'Forumas $1',
+	'wikiforum-name' => 'Pavadinimas:',
+	'wikiforum-button-preview' => 'Peržiūra',
+	'wikiforum-preview' => 'Peržiūra',
+	'wikiforum-preview-with-title' => 'Peržiūra: $1',
+	'wikiforum-save' => 'Išsaugoti',
+	'wikiforum-error-search' => 'Paieškos klaida',
+	'wikiforum-search-thread' => 'Tema: $1',
+	'wikiforum-thread-deleted' => 'Tema ištrinta',
+	'wikiforum-topic-name' => 'Forumas - $1',
+	'wikiforum-write-thread' => 'Nauja tema',
+	'wikiforum-replies' => 'Atsakymai',
+	'wikiforum-views' => 'Peržiūros',
+	'wikiforum-thread' => 'Tema',
+	'wikiforum-threads' => 'Temos',
+	'wikiforum-latest-reply' => 'Paskutinis atsakymas',
+	'wikiforum-latest-thread' => 'Paskutinė tema',
+	'wikiforum-pages' => 'Puslapiai:',
+	'wikiforum-thread-closed' => 'Tema uždaryta',
+	'wikiforum-new-thread' => 'Nauja tema',
+	'wikiforum-edit-thread' => 'Redaguoti temą',
+	'wikiforum-delete-thread' => 'Ištrinti temą',
+	'wikiforum-close-thread' => 'Uždaryti temą',
+	'wikiforum-reopen-thread' => 'Atidaryti temą',
+	'wikiforum-write-reply' => 'Rašyti atsakymą',
+	'wikiforum-edit-reply' => 'Redaguoti atsakymą',
+	'wikiforum-delete-reply' => 'Ištrinti atsakymą',
+	'wikiforum-save-thread' => 'Išsaugoti temą',
+	'wikiforum-save-reply' => 'Išsaugoti atsakymą',
+	'wikiforum-thread-title' => 'Jūsų temos pavadinimas',
+	'wikiforum-cat-not-found' => 'Kategorija nerasta',
+	'wikiforum-forum-not-found' => 'Forumas nerastas',
+	'wikiforum-thread-not-found' => 'Tema nerasta',
+);
+
 /** Macedonian (Македонски)
  * @author Bjankuloski06
  */
