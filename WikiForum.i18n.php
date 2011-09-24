@@ -266,6 +266,24 @@ $messages['bg'] = array(
 	'wikiforum-delete-forum' => 'Изтриване на форум',
 );
 
+/** Breton (Brezhoneg)
+ * @author Y-M D
+ */
+$messages['br'] = array(
+	'wikiforum-anonymous' => 'Dizanv',
+	'wikiforum-by' => '$1<br />gant $2',
+	'wikiforum-description' => 'Deskrivadur :',
+	'wikiforum-name' => 'Anv :',
+	'wikiforum-button-preview' => 'Rakwelet',
+	'wikiforum-preview' => 'Rakwelet',
+	'wikiforum-save' => 'Enrollañ',
+	'wikiforum-thread' => 'Neudennad',
+	'wikiforum-threads' => 'Neudennadoù',
+	'wikiforum-add-category' => 'Ouzhpennañ ur rummad',
+	'wikiforum-edit-category' => 'Kemmañ ar rummad',
+	'wikiforum-delete-category' => 'Dilemel ar rummad',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
