@@ -120,6 +120,7 @@ Please contact a forum administrator to have some categories and forums added.',
  * @author EugeneZelenko
  * @author Purodha
  * @author Siebrand
+ * @author Umherirrender
  */
 $messages['qqq'] = array(
 	'wikiforum-desc' => '{{desc}}',
@@ -172,6 +173,8 @@ $messages['qqq'] = array(
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
 	'wikiforum-thread-not-found-text' => 'Error text requesting a non-existing category. Parameters:
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
+	'right-wikiforum-admin' => '{{doc-right|wikiforum-admin}}',
+	'right-wikiforum-moderator' => '{{doc-right|wikiforum-moderator}}',
 	'group-forumadmin' => 'Group name',
 	'group-forumadmin-member' => 'Group member name.',
 	'grouppage-forumadmin' => 'Link to page where group is explained.',
