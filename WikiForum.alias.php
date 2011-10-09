@@ -17,8 +17,3 @@ $specialPageAliases['en'] = array(
 $specialPageAliases['fi'] = array(
 	'WikiForum' => array( 'WikiFoorumi', 'Foorumi' ),
 );
-
-/**
- * For backwards compatibility with MediaWiki 1.15 and earlier.
- */
-$aliases =& $specialPageAliases;

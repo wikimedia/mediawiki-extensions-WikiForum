@@ -64,7 +64,7 @@ class WikiForumHooks {
 	 * Takes only the following argument: num (used as the LIMIT for the SQL query)
 	 */
 	public static function renderWikiForumList( $input, $args, $parser, $frame ) {
-		global $wgUser, $wgLang, $wgScriptPath;
+		global $wgLang;
 
 		if ( !isset( $args['num'] ) ) {
 			$args['num'] = 5;
@@ -123,21 +123,20 @@ class WikiForumHooks {
 			}
 
 			$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
-			$sk = $wgUser->getSkin();
 			// Build the links to the category and forum pages by using Linker
-			$categoryLink = $sk->link(
+			$categoryLink = Linker::link(
 				$specialPageObj,
 				$thread->wfc_category_name,
 				array(),
 				array( 'category' => $thread->wfc_category )
 			);
-			$forumLink = $sk->link(
+			$forumLink = Linker::link(
 				$specialPageObj,
 				$thread->wff_forum_name,
 				array(),
 				array( 'forum' => $thread->wff_forum )
 			);
-			$threadLink = $sk->link(
+			$threadLink = Linker::link(
 				$specialPageObj,
 				$thread->wft_thread_name,
 				array(),
@@ -172,7 +171,7 @@ class WikiForumHooks {
 	 * query), replies (whether to display replies)
 	 */
 	public static function renderWikiForumThread( $input, $args, $parser, $frame ) {
-		global $wgOut, $wgLang, $wgScriptPath;
+		global $wgOut, $wgLang;
 
 		if ( isset( $args['id'] ) && $args['id'] > 0 ) {
 			$dbr = wfGetDB( DB_SLAVE );
@@ -284,11 +283,34 @@ class WikiForumHooks {
 	public static function addStyles( &$out, &$sk ) {
 		static $cssDone = false;
 		if ( !$cssDone ) {
-			global $wgScriptPath;
-			$out->addExtensionStyle( $wgScriptPath . '/extensions/WikiForum/styles.css' );
+			$out->addModuleStyles( 'ext.wikiForum' );
 			$cssDone = true;
 		}
 		return true;
 	}
 
+	/**
+	 * Adds the four new tables to the database when the user runs
+	 * maintenance/update.php.
+	 *
+	 * @param $updater Object: instance of DatabaseUpdater
+	 * @return Boolean: true
+	 */
+	public static function addTables( $updater = null ) {
+		$dir = dirname( __FILE__ );
+		$file = "$dir/wikiforum.sql";
+		if ( $updater === null ) {
+			global $wgExtNewTables;
+			$wgExtNewTables[] = array( 'wikiforum_category', $file );
+			$wgExtNewTables[] = array( 'wikiforum_forums', $file );
+			$wgExtNewTables[] = array( 'wikiforum_threads', $file );
+			$wgExtNewTables[] = array( 'wikiforum_replies', $file );
+		} else {
+			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_category', $file, true ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_forums', $file, true ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_threads', $file, true ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_replies', $file, true ) );
+		}
+		return true;
+	}
 }

@@ -3,6 +3,9 @@
  * Main class for WikiForum extension, contains all the logic to manage forums,
  * categories, individual topics, etc.
  *
+ * @todo FIXME: if this class isn't split into multiple classes soon, it'll be
+ * OVER 9000 lines long in no time...
+ *
  * @file
  * @ingroup Extensions
  */
@@ -22,6 +25,9 @@ class WikiForumClass {
 	public static function findThreadIDByTitle( $titleText ) {
 		// Titles are stored with spaces in the DB but the query will otherwise
 		// use friggin' underscores...
+		// @todo FIXME: come to think of it, this *is* awfully hacky...
+		// Maybe construct a Title object out of $titleText and use its
+		// getDBkey() method here instead?
 		$titleText = str_replace( '_', ' ', $titleText );
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -2340,10 +2346,9 @@ class WikiForumClass {
 		global $wgContLang, $wgUser;
 
 		if ( $username ) {
-			$sk = $wgUser->getSkin();
-			$retVal = $sk->makeLinkObj(
+			$retVal = Linker::link(
 				Title::newFromText( $wgContLang->getNsText( NS_USER ) . ':' . $username ),
-				htmlspecialchars( $username )
+				htmlspecialchars( $username ) // @todo FIXME/CHECKME: double-escaping or not?
 			);
 
 			$groups = User::newFromName( $username )->getEffectiveGroups();

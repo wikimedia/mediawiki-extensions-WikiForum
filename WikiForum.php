@@ -7,7 +7,7 @@
  * @author Michael Chlebek
  * @author Jack Phoenix <jack@countervandalism.net>
  * @date 6 October 2011
- * @version 1.2-SW
+ * @version 1.2.1-SW
  * @copyright Copyright © 2010 Unidentify Studios
  * @copyright Copyright © 2010-2011 Jack Phoenix <jack@countervandalism.net>
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 3.0 or later
@@ -35,7 +35,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
-	'version' => '1.2-SW',
+	'version' => '1.2.1-SW',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
@@ -81,8 +81,16 @@ $wgWikiForumSmilies = array(
 	*/
 );
 
+// ResourceLoader support for MediaWiki 1.17+
+$wgResourceModules['ext.wikiForum'] = array(
+	'styles' => 'styles.css',
+	'localBasePath' => dirname( __FILE__ ),
+	'remoteExtPath' => 'WikiForum',
+);
+
 // Hooked functions
 $wgHooks['ParserFirstCallInit'][] = 'WikiForumHooks::registerParserHooks';
 $wgHooks['SkinTemplateBuildNavUrlsNav_urlsAfterPermalink'][] = 'WikiForumHooks::addNavigationLink';
 $wgHooks['SkinTemplateToolboxEnd'][] = 'WikiForumHooks::addNavigationLinkToToolbox';
 $wgHooks['BeforePageDisplay'][] = 'WikiForumHooks::addStyles';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'WikiForumHooks::addTables';

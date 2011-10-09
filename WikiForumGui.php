@@ -261,14 +261,27 @@ class WikiForumGui {
 			$message . '</td></tr>';
 	}
 
+	/**
+	 * Get the editor form for writing a new thread, a reply, etc.
+	 *
+	 * @param $type String: either 'addthread' or 'editthread', depending on
+	 * what we are doing to a thread.
+	 * @param $action Array: action parameter(s) to be passed to the WikiForum
+	 * special page call (i.e. array( 'thread' => $threadId ))
+	 * @param $input String: usually whatever WikiForumGui::getInput() returns
+	 * @param $height String: height of the textarea, i.e. '10em'
+	 * @param $text_prev
+	 * @param $saveButton String: save button text
+	 * @return String: HTML
+	 */
 	public static function getWriteForm( $type, $action, $input, $height, $text_prev, $saveButton ) {
-		global $wgOut, $wgUser, $wgScriptPath, $wgWikiForumAllowAnonymous;
+		global $wgOut, $wgUser, $wgWikiForumAllowAnonymous;
 
 		$output = '';
 
 		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
 			// Required for the edit buttons to display
-			$wgOut->addScriptFile( 'edit.js' );
+			$wgOut->addModules( 'mediawiki.action.edit' );
 			$toolbar = EditPage::getEditToolbar();
 			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
@@ -278,7 +291,7 @@ class WikiForumGui {
 					<td>' . $toolbar . '</td>
 				</tr>
 				<tr>
-					<td><textarea name="frmText" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
+					<td><textarea name="frmText" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>
 				<tr>
 					<td>

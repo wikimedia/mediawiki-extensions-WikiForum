@@ -38,7 +38,7 @@ class WikiForum extends SpecialPage {
 		$values = array();
 
 		// Add CSS
-		$wgOut->addExtensionStyle( $wgScriptPath . '/extensions/WikiForum/styles.css' );
+		$wgOut->addModuleStyles( 'ext.wikiForum' );
 
 		// If a parameter to the special page is specified, check its type
 		// and either display a forum (if parameter is a number) or a thread
