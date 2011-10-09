@@ -175,9 +175,9 @@ $messages['qqq'] = array(
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
 	'right-wikiforum-admin' => '{{doc-right|wikiforum-admin}}',
 	'right-wikiforum-moderator' => '{{doc-right|wikiforum-moderator}}',
-	'group-forumadmin' => 'Group name',
-	'group-forumadmin-member' => 'Group member name.',
-	'grouppage-forumadmin' => 'Link to page where group is explained.',
+	'group-forumadmin' => '{{doc-group|forumadmin}}',
+	'group-forumadmin-member' => '{{doc-group|forumadmin|member}}',
+	'grouppage-forumadmin' => '{{doc-group|forumadmin|page}}',
 );
 
 /** Afrikaans (Afrikaans)
