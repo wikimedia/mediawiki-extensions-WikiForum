@@ -112,7 +112,7 @@ Please contact a forum administrator to have some categories and forums added.',
 
 	// Forum admin group, as per discussion with Jedimca0 on 30 December 2010
 	'group-forumadmin' => 'Forum administrators',
-	'group-forumadmin-member' => 'forum administrator',
+	'group-forumadmin-member' => '{{GENDER:$1|forum administrator}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forum administrators',
 );
 
