@@ -374,7 +374,7 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'right-wikiforum-admin' => 'Foren und Kategorien auf der Spezialseite [[Special:WikiForum|Forum]] hinzufügen, bearbeiten und löschen',
 	'right-wikiforum-moderator' => 'Themen und Beiträge auf der Spezialseite [[Special:WikiForum|Forum]] bearbeiten und löschen',
 	'group-forumadmin' => 'Forumsadministratoren',
-	'group-forumadmin-member' => 'Forumsadministrator',
+	'group-forumadmin-member' => '{{GENDER:$1|Forumsadministrator|Forumsadministratorin}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumsadministratoren',
 );
 
@@ -731,7 +731,7 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'right-wikiforum-admin' => 'Engadir, editar e borrar categorías e foros no [[Special:WikiForum|foro de conversa]]',
 	'right-wikiforum-moderator' => 'Editar e borrar fíos e respostas no [[Special:WikiForum|foro de conversa]]',
 	'group-forumadmin' => 'Administradores do foro',
-	'group-forumadmin-member' => 'Administrador do foro',
+	'group-forumadmin-member' => '{{GENDER:$1|administrador|administradora}} do foro',
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do foro',
 );
 
