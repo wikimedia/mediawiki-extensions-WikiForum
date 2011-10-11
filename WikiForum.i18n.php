@@ -640,7 +640,7 @@ $messages['frp'] = array(
 	'wikiforum-paste-thread' => 'Côlar lo fil de discussion',
 	'wikiforum-quote' => 'Citar',
 	'group-forumadmin' => 'Administrators du barjacâjo',
-	'group-forumadmin-member' => 'Administrator du barjacâjo',
+	'group-forumadmin-member' => 'administrat{{GENDER:$1|or|rice}} du barjacâjo',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrators du barjacâjo',
 );
 
@@ -1015,7 +1015,7 @@ $messages['mk'] = array(
 	'right-wikiforum-admin' => 'Додавање, уредување и бришење на категории и форуми на [[Special:WikiForum|форумот]]',
 	'right-wikiforum-moderator' => 'Уредување и бришење на теми и одговори на [[Special:WikiForum|форумот]]',
 	'group-forumadmin' => 'Администратори на форумот',
-	'group-forumadmin-member' => 'Администратор на форумот',
+	'group-forumadmin-member' => '{{GENDER:$1|администратор на форумот}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Администратори на форумот',
 );
 
