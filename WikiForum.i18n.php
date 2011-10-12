@@ -473,6 +473,7 @@ Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja fooru
 
 /** French (Français)
  * @author Balzac 40
+ * @author Gomoko
  * @author Jack Phoenix <jack@countervandalism.net>
  */
 $messages['fr'] = array(
@@ -558,7 +559,7 @@ $messages['fr'] = array(
 	'right-wikiforum-admin' => 'Ajouter, modifier et supprimer catégories et forums sur [[Special:WikiForum|the discussion board]]',
 	'right-wikiforum-moderator' => 'Modifier et supprimer fils de discussion et réponses sur [[Special:WikiForum|the discussion board]]',
 	'group-forumadmin' => 'Administrateurs du forum',
-	'group-forumadmin-member' => 'Administrateur du forum',
+	'group-forumadmin-member' => '{{GENDER:$1|administrateur du forum}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',
 );
 
@@ -822,7 +823,7 @@ Per favor contacta un administrator del foro pro facer adder categorias e foros.
 	'right-wikiforum-admin' => 'Adder, modificar e deler categorias e foros in [[Special:WikiForum|le foro de discussion]]',
 	'right-wikiforum-moderator' => 'Modificar e deler filos e responsas in [[Special:WikiForum|le foro de discussion]]',
 	'group-forumadmin' => 'Administratores de foro',
-	'group-forumadmin-member' => 'Administrator de foro',
+	'group-forumadmin-member' => '{{GENDER:$1|administrator|administratrice}} de foro',
 	'grouppage-forumadmin' => '{{ns:project}}:Administratores de foro',
 );
 
@@ -1022,6 +1023,7 @@ $messages['mk'] = array(
 /** Dutch (Nederlands)
  * @author Jedimca0
  * @author McDutchie
+ * @author SPQRobin
  * @author Siebrand
  */
 $messages['nl'] = array(
@@ -1108,7 +1110,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'right-wikiforum-admin' => 'Forums en categorieën toevoegen, bewerken en verwijderen op [[Special:WikiForum|het forum]]',
 	'right-wikiforum-moderator' => 'Ondewerpen en reacties bewerken en verwijderen op [[Special:WikiForum|het forum]]',
 	'group-forumadmin' => 'Forumbeheerders',
-	'group-forumadmin-member' => 'Forumbeheerder',
+	'group-forumadmin-member' => '{{GENDER:$1|Forumbeheerder}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumbeheerders',
 );
 
