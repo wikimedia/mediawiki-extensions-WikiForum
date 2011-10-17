@@ -2380,14 +2380,14 @@ class WikiForumClass {
 				$retVal = $retVal . wfMsg( 'word-separator' ) .
 					wfMsg(
 						'parentheses',
-						User::makeGroupLinkHTML( 'sysop', User::getGroupMember( 'sysop' ) )
+						User::makeGroupLinkHTML( 'sysop', User::getGroupMember( 'sysop', $username ) )
 					);
 			} elseif ( in_array( 'forumadmin', $groups ) && !$isStaff ) {
 				// this madness has to stop...really...
 				$retVal = $retVal . wfMsg( 'word-separator' ) .
 					wfMsg(
 						'parentheses',
-						User::makeGroupLinkHTML( 'forumadmin', User::getGroupMember( 'forumadmin' ) )
+						User::makeGroupLinkHTML( 'forumadmin', User::getGroupMember( 'forumadmin', $username ) )
 					);
 			}
 			return $retVal;
