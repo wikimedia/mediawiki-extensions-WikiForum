@@ -736,6 +736,50 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do foro',
 );
 
+/** Swiss German (Alemannisch)
+ * @author Als-Chlämens
+ */
+$messages['gsw'] = array(
+	'wikiforum-desc' => 'Ermöglicht e [[Special:WikiForum|Forum]]',
+	'wikiforum' => 'Forum',
+	'wikiforum-anonymous' => 'Anonymer',
+	'wikiforum-by' => '$1<br />vo $2',
+	'wikiforum-description' => 'Bschryybig:',
+	'wikiforum-forum-name' => 'Forum $1',
+	'wikiforum-name' => 'Name:',
+	'wikiforum-button-preview' => 'Vorschou',
+	'wikiforum-preview' => 'Vorschou',
+	'wikiforum-preview-with-title' => 'Vorschou: $1',
+	'wikiforum-save' => 'Spychere',
+	'wikiforum-error-search' => 'Fääler bi de Suech',
+	'wikiforum-error-search-missing-query' => 'Du muesch en Suechbegriff yygee!',
+	'wikiforum-search-hits' => '{{PLURAL:$1|En Ergebniss|$1 Ergebniss}} sin gfunde worde',
+	'wikiforum-search-thread' => 'Thema: $1',
+	'wikiforum-thread-deleted' => 'Thema glöscht',
+	'wikiforum-topic-name' => 'Forum - $1',
+	'wikiforum-write-thread' => 'Nej Thema',
+	'wikiforum-replies' => 'Antworte',
+	'wikiforum-views' => 'Uffruef',
+	'wikiforum-thread' => 'Diskussionsstrang',
+	'wikiforum-threads' => 'Diskussionssträng',
+	'wikiforum-latest-reply' => 'Nöischti Antworte',
+	'wikiforum-latest-thread' => 'Nöischter Diskussionsstrang',
+	'wikiforum-forum' => 'Forum: $1 > $2',
+	'wikiforum-overview' => 'Übersicht',
+	'wikiforum-pages' => 'Syte:',
+	'wikiforum-thread-closed' => 'Thema abgschlosse',
+	'wikiforum-new-thread' => 'Nöier Diskussionsstrang',
+	'wikiforum-edit-thread' => 'Diskussionsstrang bearbeite',
+	'wikiforum-delete-thread' => 'Diskussionsstrang lösche',
+	'wikiforum-close-thread' => 'Diskussionsstrang schliesse',
+	'wikiforum-reopen-thread' => 'Diskussionsstrang wiider uffmache',
+	'wikiforum-write-reply' => 'E Antwort schrybe',
+	'wikiforum-edit-reply' => 'Antwort bearbeite',
+	'wikiforum-delete-reply' => 'Antwort lösche',
+	'wikiforum-save-thread' => 'Diskussionsstrang spyychere',
+	'wikiforum-save-reply' => 'Antwort spyychere',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
