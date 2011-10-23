@@ -270,6 +270,7 @@ $messages['bg'] = array(
 );
 
 /** Breton (Brezhoneg)
+ * @author Fulup
  * @author Y-M D
  */
 $messages['br'] = array(
@@ -280,11 +281,19 @@ $messages['br'] = array(
 	'wikiforum-button-preview' => 'Rakwelet',
 	'wikiforum-preview' => 'Rakwelet',
 	'wikiforum-save' => 'Enrollañ',
+	'wikiforum-write-thread' => 'Danvezioù nevez',
+	'wikiforum-replies' => 'Respontoù',
 	'wikiforum-thread' => 'Neudennad',
 	'wikiforum-threads' => 'Neudennadoù',
+	'wikiforum-pages' => 'Pajennoù :',
+	'wikiforum-save-reply' => 'Enrollañ ar respont',
+	'wikiforum-forum-not-found' => "N'eo ket bet kavet ar foroù",
 	'wikiforum-add-category' => 'Ouzhpennañ ur rummad',
 	'wikiforum-edit-category' => 'Kemmañ ar rummad',
 	'wikiforum-delete-category' => 'Dilemel ar rummad',
+	'wikiforum-add-forum' => 'Ouzhpennañ ur forom',
+	'wikiforum-edit-forum' => 'Kemmañ ar forom',
+	'wikiforum-delete-forum' => 'Diverkañ ar forom',
 );
 
 /** German (Deutsch)
@@ -387,17 +396,18 @@ $messages['de-formal'] = array(
 );
 
 /** Finnish (Suomi)
+ * @author Crt
  * @author Jack Phoenix <jack@countervandalism.net>
  */
 $messages['fi'] = array(
-	'wikiforum-desc' => '[[Special:WikiForum|Foorumilisäosa]] MediaWikille',
+	'wikiforum-desc' => '[[Special:WikiForum|Foorumilaajennus]] MediaWikille.',
 	'wikiforum' => 'Keskustelupalsta',
 	'wikiforum-anonymous' => 'Anonyymi',
 	'wikiforum-announcement-only-description' => 'Ilmoitusfoorumi (vain moderaattorit voivat lisätä aiheita)',
 	'wikiforum-by' => '$1;<br />kirjoittanut $2',
 	'wikiforum-description' => 'Kuvaus:',
 	'wikiforum-forum-is-empty' => 'Tämä foorumi on tällä hetkellä tyhjä.
-Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja foorumeja lisätyksi.',
+Ota yhteyttä foorumin ylläpitäjään saadaksesi lisätyksi luokkia ja foorumeja.',
 	'wikiforum-forum-name' => 'Foorumi $1',
 	'wikiforum-name' => 'Nimi:',
 	'wikiforum-button-preview' => 'Esikatsele',
@@ -405,11 +415,11 @@ Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja fooru
 	'wikiforum-preview-with-title' => 'Esikatselu: $1',
 	'wikiforum-save' => 'Tallenna',
 	'wikiforum-error-search' => 'Hakuvirhe',
-	'wikiforum-error-search-missing-query' => 'Sinun tulee antaa hakusana, jolla haetaan!',
-	'wikiforum-search-hits' => 'Löydettiin {{PLURAL:$1|yksi tulos|$1 tulosta}}',
+	'wikiforum-error-search-missing-query' => 'Sinun täytyy antaa hakusana, jolla haetaan!',
+	'wikiforum-search-hits' => 'Löytyi {{PLURAL:$1|yksi tulos|$1 tulosta}}',
 	'wikiforum-search-thread' => 'Aihe: $1',
 	'wikiforum-thread-deleted' => 'aihe on poistettu',
-	'wikiforum-topic-name' => 'Foorumi - $1',
+	'wikiforum-topic-name' => 'Foorumi – $1',
 	'wikiforum-updates' => 'Äskettäin päivitetyt foorumit',
 	'wikiforum-write-thread' => 'Uusi aihe',
 	'wikiforum-replies' => 'Vastauksia',
@@ -467,7 +477,7 @@ Otathan yhteyttä foorumin ylläpitäjään saadaksesi joitakin luokkia ja fooru
 	'right-wikiforum-admin' => 'Lisätä, muokata ja poistaa luokkia ja foorumeja [[Special:WikiForum|keskustelupalstalla]]',
 	'right-wikiforum-moderator' => 'Muokata ja poistaa aiheita ja vastauksia [[Special:WikiForum|keskustelupalstalla]]',
 	'group-forumadmin' => 'Foorumin ylläpitäjät',
-	'group-forumadmin-member' => 'Foorumin ylläpitäjä',
+	'group-forumadmin-member' => '{{GENDER:$1|foorumin ylläpitäjä}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Foorumin ylläpitäjät',
 );
 
