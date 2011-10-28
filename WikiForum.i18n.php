@@ -1253,8 +1253,11 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'wikiforum-move-thread' => 'Przenieś wątek',
 	'wikiforum-paste-thread' => 'Doklej wątek',
 	'wikiforum-quote' => 'Cytuj',
+	'right-wikiforum-admin' => 'Dodawanie, edycja i usuwanie kategorii i forów na [[Special:WikiForum|forum dyskusyjnym]]',
+	'right-wikiforum-moderator' => 'Edycja i usuwanie wątków oraz odpowiedzi na [[Special:WikiForum|forum dysusyjnym]]',
 	'group-forumadmin' => 'Administratorzy forum',
-	'group-forumadmin-member' => 'administrator forum',
+	'group-forumadmin-member' => '{{GENDER:$1|administrator|administratorka}} forum',
+	'grouppage-forumadmin' => '{{ns:project}}:Administratorzy forum',
 );
 
 /** Pashto (پښتو)
