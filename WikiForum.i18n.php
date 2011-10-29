@@ -790,6 +790,18 @@ $messages['gsw'] = array(
 	'wikiforum-save-reply' => 'Antwort spyychere',
 );
 
+/** Upper Sorbian (Hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'wikiforum-description' => 'Wopisanje:',
+	'wikiforum-forum-name' => 'Forum $1',
+	'wikiforum-name' => 'Mjeno:',
+	'wikiforum-save' => 'Składować',
+	'wikiforum-topic-name' => 'Forum - $1',
+	'wikiforum-pages' => 'Strony:',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
@@ -1170,6 +1182,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 
 /** Polish (Polski)
  * @author Misiek95
+ * @author Sp5uhe
  * @author Woytecr
  */
 $messages['pl'] = array(
@@ -1253,8 +1266,8 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'wikiforum-move-thread' => 'Przenieś wątek',
 	'wikiforum-paste-thread' => 'Doklej wątek',
 	'wikiforum-quote' => 'Cytuj',
-	'right-wikiforum-admin' => 'Dodawanie, edycja i usuwanie kategorii i forów na [[Special:WikiForum|forum dyskusyjnym]]',
-	'right-wikiforum-moderator' => 'Edycja i usuwanie wątków oraz odpowiedzi na [[Special:WikiForum|forum dysusyjnym]]',
+	'right-wikiforum-admin' => 'Dodawanie, edycja i usuwanie kategorii oraz forów na [[Special:WikiForum|forum dyskusyjnym]]',
+	'right-wikiforum-moderator' => 'Edycja i usuwanie wątków oraz odpowiedzi na [[Special:WikiForum|forum dyskusyjnym]]',
 	'group-forumadmin' => 'Administratorzy forum',
 	'group-forumadmin-member' => '{{GENDER:$1|administrator|administratorka}} forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administratorzy forum',
