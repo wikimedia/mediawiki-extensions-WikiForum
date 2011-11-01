@@ -950,7 +950,7 @@ $messages['lb'] = array(
 	'wikiforum-move-thread' => 'Rubrik réckelen',
 	'wikiforum-quote' => 'Zitat',
 	'group-forumadmin' => 'Administrateure vum Forum',
-	'group-forumadmin-member' => 'Administrateur vum Forum',
+	'group-forumadmin-member' => '{{GENDER:$1|Administrateur|Administratrice}} vum Forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
 );
 
