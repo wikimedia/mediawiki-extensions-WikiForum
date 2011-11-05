@@ -187,6 +187,20 @@ $messages['af'] = array(
 	'wikiforum-replies' => 'Antwoorde',
 );
 
+/** Arabic (العربية)
+ * @author روخو
+ */
+$messages['ar'] = array(
+	'wikiforum-anonymous' => 'مجهول',
+	'wikiforum-button-preview' => 'عرض',
+	'wikiforum-preview' => 'عرض',
+	'wikiforum-save' => 'حفظ',
+	'wikiforum-views' => 'وجهات نظر',
+	'wikiforum-add-category' => 'أضف تصنيفا',
+	'wikiforum-edit-category' => 'عدل التصنيف',
+	'wikiforum-quote' => 'اقتباس',
+);
+
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
