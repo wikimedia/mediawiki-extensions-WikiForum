@@ -311,6 +311,7 @@ $messages['bg'] = array(
  * @author Y-M D
  */
 $messages['br'] = array(
+	'wikiforum' => 'Form kaozeal',
 	'wikiforum-anonymous' => 'Dizanv',
 	'wikiforum-by' => '$1<br />gant $2',
 	'wikiforum-description' => 'Deskrivadur :',
@@ -318,15 +319,24 @@ $messages['br'] = array(
 	'wikiforum-name' => 'Anv :',
 	'wikiforum-button-preview' => 'Rakwelet',
 	'wikiforum-preview' => 'Rakwelet',
+	'wikiforum-preview-with-title' => 'Rakwelet : $1',
 	'wikiforum-save' => 'Enrollañ',
+	'wikiforum-error-search' => 'Fazi klask',
+	'wikiforum-topic-name' => 'Forom - $1',
 	'wikiforum-write-thread' => 'Danvezioù nevez',
 	'wikiforum-replies' => 'Respontoù',
 	'wikiforum-views' => 'Gweladennoù',
 	'wikiforum-thread' => 'Neudennad',
 	'wikiforum-threads' => 'Neudennadoù',
+	'wikiforum-latest-reply' => 'Respont diwezhañ',
+	'wikiforum-forum' => 'Forom: $1 > $2',
 	'wikiforum-pages' => 'Pajennoù :',
 	'wikiforum-write-reply' => 'Skrivañ ur respont',
+	'wikiforum-edit-reply' => 'Cheñch ar respont',
+	'wikiforum-delete-reply' => 'Diverkañ ar respont',
 	'wikiforum-save-reply' => 'Enrollañ ar respont',
+	'wikiforum-edited' => 'Kemmet da $1 gant $2',
+	'wikiforum-cat-not-found' => "N'eo ket bet kavet ar rummad",
 	'wikiforum-forum-not-found' => "N'eo ket bet kavet ar foroù",
 	'wikiforum-add-category' => 'Ouzhpennañ ur rummad',
 	'wikiforum-edit-category' => 'Kemmañ ar rummad',
@@ -334,6 +344,8 @@ $messages['br'] = array(
 	'wikiforum-add-forum' => 'Ouzhpennañ ur forom',
 	'wikiforum-edit-forum' => 'Kemmañ ar forom',
 	'wikiforum-delete-forum' => 'Diverkañ ar forom',
+	'wikiforum-sort-up' => 'Urzhiañ war gresk',
+	'wikiforum-sort-down' => 'Urzhiañ war zigresk',
 );
 
 /** German (Deutsch)
