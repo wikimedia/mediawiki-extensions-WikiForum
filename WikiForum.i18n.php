@@ -1435,6 +1435,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 
 /** Russian (Русский)
  * @author Artyom Bondartsov <erithion@gmail.com>
+ * @author Ole Yves
  */
 $messages['ru'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Форум]] расширение MediaWiki',
@@ -1520,7 +1521,7 @@ $messages['ru'] = array(
 	'right-wikiforum-admin' => 'Добавляить, редактировать и удалять категории и форумы на [[Special:WikiForum|доске обсуждений]]',
 	'right-wikiforum-moderator' => 'Редактироваь и удалять ветки и сообщения на [[Special:WikiForum|доске обсуждений]]',
 	'group-forumadmin' => 'Администраторы форума',
-	'group-forumadmin-member' => 'Администратор форума',
+	'group-forumadmin-member' => '{{GENDER:$1|Администратор форума}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Администраторы форума',
 );
 
