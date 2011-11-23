@@ -1138,6 +1138,13 @@ $messages['mk'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Администратори на форумот',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'wikiforum-pages' => 'Laman:',
+);
+
 /** Dutch (Nederlands)
  * @author Jedimca0
  * @author McDutchie
