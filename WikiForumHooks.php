@@ -88,10 +88,8 @@ class WikiForumHooks {
 				'wff_forum = wft_forum'
 			),
 			__METHOD__,
-			// it's either wff or wft, I'm not 100% sure which one so I just
-			// picked one of them...
 			array(
-				'ORDER BY' => 'wff_last_post_timestamp DESC',
+				'ORDER BY' => 'wft_last_post_timestamp DESC',
 				'LIMIT' => intval( $args['num'] )
 			),
 			array( 'user' => array( 'LEFT JOIN', 'user_id = wft_user' ) )
