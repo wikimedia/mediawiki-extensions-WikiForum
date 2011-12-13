@@ -36,7 +36,7 @@ $wgExtensionCredits['other'][] = array(
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
 	'version' => '1.2.1-SW',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:WikiForum',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
 
