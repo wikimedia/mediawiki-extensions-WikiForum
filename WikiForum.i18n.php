@@ -330,11 +330,13 @@ $messages['br'] = array(
 	'wikiforum-threads' => 'Neudennadoù',
 	'wikiforum-latest-reply' => 'Respont diwezhañ',
 	'wikiforum-forum' => 'Forom: $1 > $2',
+	'wikiforum-overview' => 'Brassell',
 	'wikiforum-pages' => 'Pajennoù :',
 	'wikiforum-write-reply' => 'Skrivañ ur respont',
 	'wikiforum-edit-reply' => 'Cheñch ar respont',
 	'wikiforum-delete-reply' => 'Diverkañ ar respont',
 	'wikiforum-save-reply' => 'Enrollañ ar respont',
+	'wikiforum-posted' => "Postet d'an $1 gant $2",
 	'wikiforum-edited' => 'Kemmet da $1 gant $2',
 	'wikiforum-cat-not-found' => "N'eo ket bet kavet ar rummad",
 	'wikiforum-forum-not-found' => "N'eo ket bet kavet ar foroù",
@@ -346,6 +348,7 @@ $messages['br'] = array(
 	'wikiforum-delete-forum' => 'Diverkañ ar forom',
 	'wikiforum-sort-up' => 'Urzhiañ war gresk',
 	'wikiforum-sort-down' => 'Urzhiañ war zigresk',
+	'wikiforum-quote' => 'Menegiñ',
 );
 
 /** German (Deutsch)
