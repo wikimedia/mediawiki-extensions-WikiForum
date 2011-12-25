@@ -43,7 +43,7 @@ $wgExtensionCredits['other'][] = array(
 // Set up i18n, the new special page etc.
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['WikiForum'] = $dir . 'WikiForum.i18n.php';
-$wgExtensionAliasesFiles['WikiForum'] = $dir . 'WikiForum.alias.php';
+$wgExtensionMessagesFiles['WikiForumAlias'] = $dir . 'WikiForum.alias.php';
 $wgAutoloadClasses['WikiForumHooks'] = $dir . 'WikiForumHooks.php';
 $wgAutoloadClasses['WikiForumGui'] = $dir . 'WikiForumGui.php';
 $wgAutoloadClasses['WikiForumClass'] = $dir . 'WikiForumClass.php';
