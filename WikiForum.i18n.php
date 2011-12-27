@@ -1751,3 +1751,12 @@ $messages['tr'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Forum hizmetlileri',
 );
 
+/** Ukrainian (Українська)
+ * @author Тест
+ */
+$messages['uk'] = array(
+	'wikiforum-search-thread' => 'Тема: $1',
+	'wikiforum-thread' => 'Тема',
+	'wikiforum-threads' => 'Теми',
+);
+
