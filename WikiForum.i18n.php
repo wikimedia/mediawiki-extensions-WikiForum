@@ -228,6 +228,7 @@ $messages['ar'] = array(
  * @author EugeneZelenko
  * @author Jim-by
  * @author Renessaince
+ * @author Wizardist
  */
 $messages['be-tarask'] = array(
 	'wikiforum-desc' => 'Пашырэньне [[Special:WikiForum|форуму]] для MediaWiki',
@@ -285,7 +286,7 @@ $messages['be-tarask'] = array(
 	'wikiforum-thread-not-found-text' => 'Галіна не існуе ці ўжо выдаленая — вярнуцца да $1.',
 	'wikiforum-error-thread-reopen' => 'Памылка падчас спробы адкрыць галіну зноў',
 	'wikiforum-error-thread-close' => 'Памылка падчас спробы закрыць галіну',
-	'group-forumadmin-member' => 'Адміністратар форуму',
+	'group-forumadmin-member' => '{{GENDER:$1|адміністратар|адміністратарка}} форуму',
 	'grouppage-forumadmin' => '{{ns:project}}:Адміністратары форуму',
 );
 
