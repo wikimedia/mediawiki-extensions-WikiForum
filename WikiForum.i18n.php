@@ -1705,6 +1705,7 @@ Vă rugăm să contactați un administrator al forumului pentru a adăuga câtev
 
 /** Russian (Русский)
  * @author Artyom Bondartsov <erithion@gmail.com>
+ * @author Kaganer
  * @author Ole Yves
  */
 $messages['ru'] = array(
@@ -1764,7 +1765,7 @@ $messages['ru'] = array(
 	'wikiforum-error-thread-reopen' => 'Ошибка при открытии ветки заново',
 	'wikiforum-error-thread-close' => 'Ошибка при закрытии ветки',
 	'wikiforum-error-general' => 'Объект не найден либо для выполнения операции не достаточно прав.',
-	'wikiforum-error-no-rights' => 'У Вас не хватает прав для выполнения данной операции.',
+	'wikiforum-error-no-rights' => 'У вас не хватает прав для выполнения данной операции.',
 	'wikiforum-error-not-found' => 'Объект не найден.',
 	'wikiforum-error-no-text-or-title' => 'Текст либо заглавие заполнены не верно.',
 	'wikiforum-error-no-reply' => 'Ответ заполнен не верно.',
