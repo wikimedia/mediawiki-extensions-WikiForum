@@ -1410,6 +1410,13 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'grouppage-forumadmin' => '{{ns:project}}:Forumbeheerders',
 );
 
+/** Deitsch (Deitsch)
+ * @author Xqt
+ */
+$messages['pdc'] = array(
+	'wikiforum-save' => 'Beilege',
+);
+
 /** Polish (Polski)
  * @author Misiek95
  * @author Sp5uhe
