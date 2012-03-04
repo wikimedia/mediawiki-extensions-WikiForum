@@ -349,6 +349,8 @@ $messages['br'] = array(
 	'wikiforum-delete-forum' => 'Diverkañ ar forom',
 	'wikiforum-sort-up' => 'Urzhiañ war gresk',
 	'wikiforum-sort-down' => 'Urzhiañ war zigresk',
+	'wikiforum-move-thread' => "Cheñch plas d'an neudennad",
+	'wikiforum-paste-thread' => 'Pegañ an neudennad',
 	'wikiforum-quote' => 'Menegiñ',
 );
 
