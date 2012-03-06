@@ -224,6 +224,29 @@ $messages['ar'] = array(
 	'wikiforum-quote' => 'اقتباس',
 );
 
+/** Azerbaijani (Azərbaycanca)
+ * @author Vugar 1981
+ */
+$messages['az'] = array(
+	'wikiforum-anonymous' => 'Anonim',
+	'wikiforum-description' => 'İzah:',
+	'wikiforum-forum-name' => 'Forum $1',
+	'wikiforum-name' => 'Ad:',
+	'wikiforum-button-preview' => 'Sınaq göstərişi',
+	'wikiforum-preview' => 'Sınaq göstərişi',
+	'wikiforum-save' => 'Saxla',
+	'wikiforum-views' => 'Görünüş',
+	'wikiforum-pages' => 'Səhifələr:',
+	'wikiforum-cat-not-found' => 'Kateqoriya tapılmadı',
+	'wikiforum-add-category' => 'Kateqoriya əlavə et',
+	'wikiforum-edit-category' => 'Kateqoriyanı redaktə et',
+	'wikiforum-delete-category' => 'Kateqoriyanı sil',
+	'wikiforum-quote' => 'Sitat',
+	'group-forumadmin' => 'Forum idarəçiləri',
+	'group-forumadmin-member' => '{{GENDER:$1|Forum idarəçisi}}',
+	'grouppage-forumadmin' => '{{ns:project}}:Forum idarəçiləri',
+);
+
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
