@@ -114,6 +114,9 @@ Please contact a forum administrator to have some categories and forums added.',
 	'group-forumadmin' => 'Forum administrators',
 	'group-forumadmin-member' => '{{GENDER:$1|forum administrator}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forum administrators',
+
+	'group-forumadmin.css' => '/* CSS placed here will affect forum administrators only */', # only translate this message to other languages if you have to change it
+	'group-forumadmin.js'  => '/* JS placed here will affect forum administrators only */', # only translate this message to other languages if you have to change it
 );
 
 /** Message documentation (Message documentation)
