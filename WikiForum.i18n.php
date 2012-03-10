@@ -479,6 +479,60 @@ $messages['de-formal'] = array(
 	'wikiforum-error-no-rights' => 'Sie haben nicht die Berechtigung diese Aktion auszuführen.',
 );
 
+/** Spanish (Español)
+ * @author Bea.miau
+ */
+$messages['es'] = array(
+	'wikiforum-desc' => '[[Special:WikiForum|Forum]], extensión para MediaWiki',
+	'wikiforum' => 'Panel de discusión',
+	'wikiforum-anonymous' => 'Anónimo',
+	'wikiforum-announcement-only-description' => 'Foro de anuncios (sólo los moderadores pueden añadir hilos)',
+	'wikiforum-by' => '$1<br />por $2',
+	'wikiforum-description' => 'Descripción:',
+	'wikiforum-forum-is-empty' => 'Este foro está actualmente vacío.
+Póngase en contacto con un administrador de foro para añadir algunas categorías y foros.',
+	'wikiforum-forum-name' => 'Foro $1',
+	'wikiforum-name' => 'Nombre:',
+	'wikiforum-button-preview' => 'Vista previa',
+	'wikiforum-preview' => 'Vista previa',
+	'wikiforum-preview-with-title' => 'Vista previa: $1',
+	'wikiforum-save' => 'Guardar',
+	'wikiforum-error-search' => 'Error de búsqueda',
+	'wikiforum-error-search-missing-query' => '¡Debe suministrar un término para buscar!',
+	'wikiforum-search-hits' => 'Encontrado {{PLURAL:$1|one hit|$1 hits}}',
+	'wikiforum-search-thread' => 'Hilo: $1',
+	'wikiforum-thread-deleted' => 'Hilo eliminado',
+	'wikiforum-topic-name' => 'Foro - $1',
+	'wikiforum-updates' => 'Foros recién actualizados',
+	'wikiforum-write-thread' => 'Nuevo tema',
+	'wikiforum-replies' => 'Respuestas',
+	'wikiforum-views' => 'Vistas',
+	'wikiforum-thread' => 'Hilo',
+	'wikiforum-threads' => 'Hilos',
+	'wikiforum-latest-reply' => 'Última respuesta',
+	'wikiforum-latest-thread' => 'Último tema',
+	'wikiforum-forum' => 'Foro: $1 > $2',
+	'wikiforum-overview' => 'Vista general',
+	'wikiforum-pages' => 'Páginas:',
+	'wikiforum-thread-closed' => 'Hilo cerrado',
+	'wikiforum-new-thread' => 'Nuevo hilo',
+	'wikiforum-edit-thread' => 'Editar hilo',
+	'wikiforum-delete-thread' => 'Eliminar hilo',
+	'wikiforum-close-thread' => 'Hilo cerrado',
+	'wikiforum-reopen-thread' => 'Reanudar el hilo',
+	'wikiforum-write-reply' => 'Escribir una respuesta',
+	'wikiforum-edit-reply' => 'Editar respuesta',
+	'wikiforum-delete-reply' => 'Eliminar respuesta',
+	'wikiforum-save-thread' => 'Guardar hilo',
+	'wikiforum-save-reply' => 'Guardar respuesta',
+	'wikiforum-thread-title' => 'Título de tu hilo',
+	'wikiforum-no-threads' => 'No hay hilos disponibles en este momento.',
+	'wikiforum-posted' => 'Publicado en $1  por $2',
+	'wikiforum-edited' => 'Editado en  $1 por $2',
+	'wikiforum-closed-text' => 'El hilo se cerró a  $1 por $2',
+	'wikiforum-cat-not-found' => 'Categoría no encontrada',
+);
+
 /** Finnish (Suomi)
  * @author Crt
  * @author Jack Phoenix <jack@countervandalism.net>
