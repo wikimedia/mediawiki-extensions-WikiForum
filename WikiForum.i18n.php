@@ -480,6 +480,7 @@ $messages['de-formal'] = array(
 );
 
 /** Spanish (Español)
+ * @author Armando-Martin
  * @author Bea.miau
  */
 $messages['es'] = array(
@@ -531,6 +532,43 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'wikiforum-edited' => 'Editado en  $1 por $2',
 	'wikiforum-closed-text' => 'El hilo se cerró a  $1 por $2',
 	'wikiforum-cat-not-found' => 'Categoría no encontrada',
+	'wikiforum-cat-not-found-text' => 'No existe la categoría - vuelva a $1',
+	'wikiforum-forum-not-found' => 'Foro no encontrado',
+	'wikiforum-forum-not-found-text' => 'No existe el foro - volver a $1',
+	'wikiforum-thread-not-found' => 'Hilo no encontrado',
+	'wikiforum-thread-not-found-text' => 'El hilo no existe o ya se ha eliminado - vuelva a  $1 .',
+	'wikiforum-error-thread-reopen' => 'Error al reabrir el hilo',
+	'wikiforum-error-thread-close' => 'Error al cerrar el hilo',
+	'wikiforum-error-general' => 'Objeto no encontrado o no tiene los derechos para realizar esta acción.',
+	'wikiforum-error-no-rights' => 'No tiene los derechos para realizar esta acción.',
+	'wikiforum-error-not-found' => 'Objeto no encontrado.',
+	'wikiforum-error-no-text-or-title' => 'El título o texto no se completó correctamente.',
+	'wikiforum-error-no-reply' => 'La respuesta no se completó correctamente.',
+	'wikiforum-error-double-post' => 'Error de doble publicación: El hilo ya fue añadido.',
+	'wikiforum-error-thread-closed' => 'El hilo está actualmente cerrado. No es posible añadir una nueva respuesta aquí.',
+	'wikiforum-error-delete' => 'Error al eliminar',
+	'wikiforum-error-sticky' => 'Error al cambiar el atributo de fijación',
+	'wikiforum-error-move-thread' => 'Error al mover el hilo',
+	'wikiforum-error-add' => 'Error al agregar',
+	'wikiforum-error-edit' => 'Error al editar',
+	'wikiforum-add-category' => 'Agregar categoría',
+	'wikiforum-edit-category' => 'Editar categoría',
+	'wikiforum-delete-category' => 'Eliminar categoría',
+	'wikiforum-add-forum' => 'Agregar foro',
+	'wikiforum-edit-forum' => 'Editar el foro',
+	'wikiforum-delete-forum' => 'Eliminar el foro',
+	'wikiforum-sort-up' => 'orden ascendente',
+	'wikiforum-sort-down' => 'orden descendente',
+	'wikiforum-remove-sticky' => 'Eliminar un post-it',
+	'wikiforum-make-sticky' => 'Crear un post-it',
+	'wikiforum-move-thread' => 'Mover el hilo',
+	'wikiforum-paste-thread' => 'Pegar el hilo',
+	'wikiforum-quote' => 'Citar',
+	'right-wikiforum-admin' => 'Agregar, editar y eliminar categorías y foros en [[Special:WikiForum|el tablón de discusión]]',
+	'right-wikiforum-moderator' => 'Editar y eliminar hilos y respuestas en [[Special:WikiForum|el tablón de discusión]]',
+	'group-forumadmin' => 'Administradores del foro',
+	'group-forumadmin-member' => '{{GENDER:$1|administrador|administradora}} del foro',
+	'grouppage-forumadmin' => '{{ns:project}}:Administradores del foro',
 );
 
 /** Finnish (Suomi)
@@ -1108,6 +1146,47 @@ Per favor contacta un administrator del foro pro facer adder categorias e foros.
 	'group-forumadmin' => 'Administratores de foro',
 	'group-forumadmin-member' => '{{GENDER:$1|administrator|administratrice}} de foro',
 	'grouppage-forumadmin' => '{{ns:project}}:Administratores de foro',
+);
+
+/** Georgian (ქართული)
+ * @author David1010
+ */
+$messages['ka'] = array(
+	'wikiforum-anonymous' => 'ანონიმი',
+	'wikiforum-by' => '$1<br />$2-სგან',
+	'wikiforum-description' => 'აღწერა:',
+	'wikiforum-forum-name' => 'ფორუმი $1',
+	'wikiforum-name' => 'დასახელება:',
+	'wikiforum-button-preview' => 'წინასწარი გადახედვა',
+	'wikiforum-preview' => 'წინასწარი გადახედვა',
+	'wikiforum-preview-with-title' => 'წინასწარ გადახედვა: $1',
+	'wikiforum-save' => 'შენახვა',
+	'wikiforum-error-search' => 'ძიების შეცდომა',
+	'wikiforum-search-hits' => 'ნაპოვნია {{PLURAL:$1|ერთი შესაბამისობა|$1 შესაბამისობა}}',
+	'wikiforum-search-thread' => 'ტოტი: $1',
+	'wikiforum-topic-name' => 'ფორუმი - $1',
+	'wikiforum-write-thread' => 'ახალი თემა',
+	'wikiforum-views' => 'ნახვა',
+	'wikiforum-forum' => 'ფორუმი: $1 > $2',
+	'wikiforum-overview' => 'გადახედვა',
+	'wikiforum-pages' => 'გვერდები:',
+	'wikiforum-edited' => '$1 რედაქტირებული მომხმარებელ $2 მიერ',
+	'wikiforum-cat-not-found' => 'კატეგორია ვერ მოიძებნა',
+	'wikiforum-forum-not-found' => 'ფორუმი არ მოიძებნა',
+	'wikiforum-thread-not-found' => 'ტოტი ვერ მოიძებნა',
+	'wikiforum-error-not-found' => 'ობიექტი ვერ მოიძებნა',
+	'wikiforum-add-category' => 'კატეგორიის დამატება',
+	'wikiforum-edit-category' => 'კატეგორიის რედაქტირება',
+	'wikiforum-delete-category' => 'კატეგორიის წაშლა',
+	'wikiforum-add-forum' => 'ფორუმის დამატება',
+	'wikiforum-edit-forum' => 'ფორუმის რედაქტირება',
+	'wikiforum-delete-forum' => 'ფორუმის წაშლა',
+	'wikiforum-sort-up' => 'სორტირება ზევით',
+	'wikiforum-sort-down' => 'სორტირება ქვევით',
+	'wikiforum-quote' => 'ციტირება',
+	'group-forumadmin' => 'ფორუმის ადმინისტრატორები',
+	'group-forumadmin-member' => '{{GENDER:$1|ფორუმის ადმინისტრატორი}}',
+	'grouppage-forumadmin' => '{{ns:project}}:ფორუმის ადმინისტრატორები',
 );
 
 /** Colognian (Ripoarisch)
