@@ -1877,7 +1877,7 @@ Vă rugăm să contactați un administrator al forumului pentru a adăuga câtev
  * @author Ole Yves
  */
 $messages['ru'] = array(
-	'wikiforum-desc' => '[[Special:WikiForum|Форум]] расширение MediaWiki',
+	'wikiforum-desc' => '[[Special:WikiForum|Форумное]] расширение для MediaWiki',
 	'wikiforum' => 'Доска обсуждений',
 	'wikiforum-anonymous' => 'Аноним',
 	'wikiforum-announcement-only-description' => 'Доска объявлений (только модераторы могут добавлять ветки)',
@@ -1886,13 +1886,13 @@ $messages['ru'] = array(
 	'wikiforum-forum-is-empty' => 'В настоящее время этот форум пуст.
 Пожалуйста, обратитесь к администратору форума с просьбой добавить нужные категории и форумы.',
 	'wikiforum-forum-name' => 'Форум $1',
-	'wikiforum-name' => 'Название:',
+	'wikiforum-name' => 'Имя:',
 	'wikiforum-button-preview' => 'Предварительный просмотр',
 	'wikiforum-preview' => 'Предварительный просмотр',
 	'wikiforum-preview-with-title' => 'Предварительный просмотр: $1',
 	'wikiforum-save' => 'Сохранить',
 	'wikiforum-error-search' => 'Ошибка поиска',
-	'wikiforum-error-search-missing-query' => 'Необходимо выражение для поиска!',
+	'wikiforum-error-search-missing-query' => 'Для поиска вы должны указать выражение.',
 	'wikiforum-search-hits' => 'Найдено {{PLURAL:$1|одно соответствие|$1 соответствий}}',
 	'wikiforum-search-thread' => 'Ветка: $1',
 	'wikiforum-thread-deleted' => 'ветка удалена',
