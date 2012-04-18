@@ -1148,6 +1148,26 @@ Per favor contacta un administrator del foro pro facer adder categorias e foros.
 	'grouppage-forumadmin' => '{{ns:project}}:Administratores de foro',
 );
 
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'wikiforum-thread' => 'スレッド',
+	'wikiforum-threads' => 'スレッド',
+	'wikiforum-pages' => 'ページ:',
+	'wikiforum-write-reply' => '返信を書く',
+	'wikiforum-edit-reply' => '返信を編集',
+	'wikiforum-delete-reply' => '返信を削除',
+	'wikiforum-save-thread' => 'スレッドを保存',
+	'wikiforum-save-reply' => '返信を保存',
+	'wikiforum-add-forum' => 'フォーラムを追加',
+	'wikiforum-edit-forum' => 'フォーラムを削除',
+	'wikiforum-quote' => '引用',
+	'group-forumadmin' => 'フォーラム管理者',
+	'group-forumadmin.css' => '/* フォーラム管理者のみに影響する CSS をここに記述 */',
+	'group-forumadmin.js' => '/* フォーラム管理者のみに影響する JS をここに記述 */',
+);
+
 /** Georgian (ქართული)
  * @author David1010
  */
