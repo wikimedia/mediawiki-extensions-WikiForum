@@ -22,10 +22,10 @@ class WikiForumGui {
 
 		$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/zoom.png" id="searchbox_picture" title="' . wfMsg( 'search' ) . '" />';
+		$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMsg( 'search' ) . '" />';
 
-		$output = '<div id="searchbox"><form method="post" action="' . $specialPageObj->escapeFullURL() . '">' .
-			'<div id="searchbox_border">' . $icon .
+		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $specialPageObj->escapeFullURL() . '">' .
+			'<div id="mw-wikiforum-searchbox-border">' . $icon .
 			'<input type="text" value="" name="txtSearch" id="txtSearch" /></div>
 		</form></div>';
 

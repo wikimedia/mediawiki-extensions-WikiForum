@@ -6,8 +6,8 @@
  * @ingroup Extensions
  * @author Michael Chlebek
  * @author Jack Phoenix <jack@countervandalism.net>
- * @date 6 October 2011
- * @version 1.2.1-SW
+ * @date 4 May 2012
+ * @version 1.2.2-SW
  * @copyright Copyright © 2010 Unidentify Studios
  * @copyright Copyright © 2010-2011 Jack Phoenix <jack@countervandalism.net>
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 3.0 or later
@@ -35,7 +35,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
-	'version' => '1.2.1-SW',
+	'version' => '1.2.2-SW',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );

@@ -162,19 +162,19 @@ td.mw-wikiforum-thread-sub {
 }
 
 /* Search box */
-#searchbox {
+#mw-wikiforum-searchbox {
 	float: right;
 	margin-bottom: 8px;
 }
 
-#searchbox_border {
+#mw-wikiforum-searchbox-border {
 	border: 1px dotted #ccc;
 	width: 200px;
 	text-align: left;
 	background: #f6f6f6;
 }
 
-#searchbox_picture {
+#mw-wikiforum-searchbox-picture {
 	margin-left: 5px;
 	margin-right: 5px;
 }
