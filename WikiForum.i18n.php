@@ -678,7 +678,7 @@ $messages['fr'] = array(
 	'wikiforum-save' => 'Enregistrer',
 	'wikiforum-error-search' => 'Erreur de recherche',
 	'wikiforum-error-search-missing-query' => 'Vous devez fournir un terme à rechercher !',
-	'wikiforum-search-hits' => 'Trouvé {{PLURAL:$1|une occurrence|$1 occurrences}}',
+	'wikiforum-search-hits' => 'Trouvé {{PLURAL:$1|une occurence|$1 occurences}}',
 	'wikiforum-search-thread' => 'Fil de discussion : $1',
 	'wikiforum-thread-deleted' => 'fil de discussion supprimé',
 	'wikiforum-topic-name' => 'Forum - $1',
@@ -1441,6 +1441,8 @@ $messages['mk'] = array(
 	'group-forumadmin' => 'Администратори на форумот',
 	'group-forumadmin-member' => '{{GENDER:$1|администратор на форумот}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Администратори на форумот',
+	'group-forumadmin.css' => '/* Тука поставениот CSS ќе се применува само врз форумските администратори */',
+	'group-forumadmin.js' => '/* Тука поставениот JS ќе се применува само врз форумските администратори */',
 );
 
 /** Malay (Bahasa Melayu)
@@ -1633,6 +1635,13 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
  */
 $messages['pdc'] = array(
 	'wikiforum-save' => 'Beilege',
+);
+
+/** Pälzisch (Pälzisch)
+ * @author Manuae
+ */
+$messages['pfl'] = array(
+	'wikiforum-pages' => 'Saide:',
 );
 
 /** Polish (Polski)
