@@ -479,6 +479,19 @@ $messages['de-formal'] = array(
 	'wikiforum-error-no-rights' => 'Sie haben nicht die Berechtigung diese Aktion auszuführen.',
 );
 
+/** Zazaki (Zazaki)
+ * @author Erdemaslancan
+ */
+$messages['diq'] = array(
+	'wikiforum-anonymous' => 'Anonim',
+	'wikiforum-by' => '$1<br />by $2',
+	'wikiforum-description' => 'Şınasiyen:',
+	'wikiforum-name' => 'Name:',
+	'wikiforum-save' => 'Star ke',
+	'wikiforum-forum' => 'Forum: $1 > $2',
+	'wikiforum-pages' => 'Peley:',
+);
+
 /** Spanish (Español)
  * @author Armando-Martin
  * @author Bea.miau
