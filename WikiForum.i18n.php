@@ -124,6 +124,7 @@ Please contact a forum administrator to have some categories and forums added.',
  * @author Purodha
  * @author Siebrand
  * @author Umherirrender
+ * @author 아라
  */
 $messages['qqq'] = array(
 	'wikiforum-desc' => '{{desc}}',
@@ -181,6 +182,8 @@ $messages['qqq'] = array(
 	'group-forumadmin' => '{{doc-group|forumadmin}}',
 	'group-forumadmin-member' => '{{doc-group|forumadmin|member}}',
 	'grouppage-forumadmin' => '{{doc-group|forumadmin|page}}',
+	'group-forumadmin.css' => '{{doc-group|forumadmin}}',
+	'group-forumadmin.js' => '{{doc-group|forumadmin}}',
 );
 
 /** Afrikaans (Afrikaans)
@@ -1257,6 +1260,14 @@ $messages['ka'] = array(
 	'group-forumadmin' => 'ფორუმის ადმინისტრატორები',
 	'group-forumadmin-member' => '{{GENDER:$1|ფორუმის ადმინისტრატორი}}',
 	'grouppage-forumadmin' => '{{ns:project}}:ფორუმის ადმინისტრატორები',
+);
+
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'group-forumadmin.css' => '/* 이 CSS 설정은 포럼 관리자에만 적용됩니다 */',
+	'group-forumadmin.js' => '/* 이 자바스크립트 설정은 포럼 관리자에만 적용됩니다 */',
 );
 
 /** Colognian (Ripoarisch)
