@@ -1266,6 +1266,8 @@ $messages['ka'] = array(
  * @author 아라
  */
 $messages['ko'] = array(
+	'group-forumadmin-member' => '{{GENDER:$1|포럼 관리자}}',
+	'grouppage-forumadmin' => '{{ns:project}}:포럼 관리자',
 	'group-forumadmin.css' => '/* 이 CSS 설정은 포럼 관리자에만 적용됩니다 */',
 	'group-forumadmin.js' => '/* 이 자바스크립트 설정은 포럼 관리자에만 적용됩니다 */',
 );
