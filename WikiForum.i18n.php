@@ -408,6 +408,7 @@ $messages['br'] = array(
 	'wikiforum-move-thread' => "Cheñch plas d'an neudennad",
 	'wikiforum-paste-thread' => 'Pegañ an neudennad',
 	'wikiforum-quote' => 'Menegiñ',
+	'group-forumadmin' => 'Merourien ar forom',
 	'group-forumadmin-member' => '{{GENDER:$1|merour|merourez}} ar forom',
 	'grouppage-forumadmin' => '{{ns:project}}:Merourien ar forom',
 );
