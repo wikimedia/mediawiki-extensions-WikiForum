@@ -1309,6 +1309,16 @@ $messages['ksh'] = array(
 	'wikiforum-desc' => 'Määd_e [[Special:WikiForum|Forum]] em Wiki müjjelesch.',
 );
 
+/** Kurdish (Latin script) (‪Kurdî (latînî)‬)
+ * @author George Animal
+ */
+$messages['ku-latn'] = array(
+	'wikiforum-description' => 'Danasîn:',
+	'wikiforum-name' => 'Nav',
+	'wikiforum-cat-not-found' => 'Kategorî nehate dîtin',
+	'wikiforum-edit-category' => 'Kategoriyê biguherîne',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
