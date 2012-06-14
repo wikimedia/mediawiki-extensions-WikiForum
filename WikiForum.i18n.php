@@ -230,7 +230,7 @@ $messages['ar'] = array(
 	'wikiforum-quote' => 'اقتباس',
 );
 
-/** Azerbaijani (Azərbaycanca)
+/** Azerbaijani (azərbaycanca)
  * @author Vugar 1981
  */
 $messages['az'] = array(
@@ -319,7 +319,7 @@ $messages['be-tarask'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Адміністратары форуму',
 );
 
-/** Bulgarian (Български)
+/** Bulgarian (български)
  * @author DCLXVI
  */
 $messages['bg'] = array(
@@ -525,7 +525,7 @@ $messages['diq'] = array(
 	'wikiforum-pages' => 'Peley:',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Armando-Martin
  * @author Bea.miau
  */
@@ -617,7 +617,7 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores del foro',
 );
 
-/** Finnish (Suomi)
+/** Finnish (suomi)
  * @author Crt
  * @author Jack Phoenix <jack@countervandalism.net>
  */
@@ -703,7 +703,7 @@ Ota yhteyttä foorumin ylläpitäjään saadaksesi lisätyksi luokkia ja foorume
 	'grouppage-forumadmin' => '{{ns:project}}:Foorumin ylläpitäjät',
 );
 
-/** French (Français)
+/** French (français)
  * @author Balzac 40
  * @author Gomoko
  * @author Jack Phoenix <jack@countervandalism.net>
@@ -795,7 +795,7 @@ $messages['fr'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',
 );
 
-/** Franco-Provençal (Arpetan)
+/** Franco-Provençal (arpetan)
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
@@ -1103,7 +1103,7 @@ Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre katego
 	'grouppage-forumadmin' => '{{ns:project}}:Forumowi administratorojo',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
@@ -1377,7 +1377,7 @@ $messages['lb'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
 );
 
-/** Lithuanian (Lietuvių)
+/** Lithuanian (lietuvių)
  * @author Eitvys200
  */
 $messages['lt'] = array(
@@ -1418,7 +1418,7 @@ $messages['lt'] = array(
 	'wikiforum-thread-not-found' => 'Tema nerasta',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
@@ -1710,7 +1710,7 @@ $messages['pfl'] = array(
 	'wikiforum-pages' => 'Saide:',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author Misiek95
  * @author Sp5uhe
  * @author Woytecr
@@ -1820,7 +1820,7 @@ $messages['ps'] = array(
 	'wikiforum-delete-category' => 'وېشنيزه ړنګول',
 );
 
-/** Portuguese (Português)
+/** Portuguese (português)
  * @author Hamilton Abreu
  */
 $messages['pt'] = array(
@@ -1911,7 +1911,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do fórum',
 );
 
-/** Romanian (Română)
+/** Romanian (română)
  * @author Minisarm
  * @author Saturnian
  */
@@ -2003,7 +2003,7 @@ Vă rugăm să contactați un administrator al forumului pentru a adăuga câtev
 	'grouppage-forumadmin' => '{{ns:project}}:administratori de forum',
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Artyom Bondartsov <erithion@gmail.com>
  * @author Kaganer
  * @author Ole Yves
@@ -2224,7 +2224,7 @@ $messages['tr'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Forum hizmetlileri',
 );
 
-/** Ukrainian (Українська)
+/** Ukrainian (українська)
  * @author Тест
  */
 $messages['uk'] = array(
@@ -2233,7 +2233,7 @@ $messages['uk'] = array(
 	'wikiforum-threads' => 'Теми',
 );
 
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文（简体）‬)
  * @author Hzy980512
  */
 $messages['zh-hans'] = array(
