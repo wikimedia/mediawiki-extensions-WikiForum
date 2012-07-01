@@ -253,7 +253,7 @@ $messages['az'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Forum idarəçiləri',
 );
 
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Renessaince
@@ -877,7 +877,7 @@ $messages['frp'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrators du barjacâjo',
 );
 
-/** Galician (Galego)
+/** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -1012,7 +1012,7 @@ $messages['gsw'] = array(
 	'wikiforum-save-reply' => 'Antwort spyychere',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
@@ -1377,6 +1377,7 @@ $messages['ka'] = array(
  * @author 아라
  */
 $messages['ko'] = array(
+	'wikiforum-save' => '저장',
 	'group-forumadmin-member' => '{{GENDER:$1|포럼 관리자}}',
 	'grouppage-forumadmin' => '{{ns:project}}:포럼 관리자',
 	'group-forumadmin.css' => '/* 이 CSS 설정은 포럼 관리자에만 적용됩니다 */',
