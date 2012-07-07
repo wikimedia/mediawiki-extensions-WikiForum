@@ -2279,7 +2279,7 @@ Mangyaring makipag-ugnayan sa isang tagapangasiwa ng poro upang maidagdag ang il
 	'right-wikiforum-admin' => 'Magdagdag, magbago at magbura ng mga kategorya at mga poro sa [[Special:WikiForum|pisara ng talakayan]]',
 	'right-wikiforum-moderator' => 'Magbago at magbura ng mga sinulid at mga tugon sa [[Special:WikiForum|pisara ng talakayan]]',
 	'group-forumadmin' => 'Mga tagapangasiwa ng poro',
-	'group-forumadmin-member' => '{{GENDER:$1|tagapangsiwa ng poro}}',
+	'group-forumadmin-member' => '{{GENDER:$1|tagapangasiwa ng poro}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Mga tagapangasiwa ng poro',
 );
 
