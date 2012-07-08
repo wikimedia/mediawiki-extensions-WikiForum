@@ -705,6 +705,7 @@ Ota yhteyttä foorumin ylläpitäjään saadaksesi lisätyksi luokkia ja foorume
 
 /** French (français)
  * @author Balzac 40
+ * @author Crochet.david
  * @author Gomoko
  * @author Jack Phoenix <jack@countervandalism.net>
  */
@@ -764,7 +765,7 @@ $messages['fr'] = array(
 	'wikiforum-error-thread-reopen' => 'Erreur pendant la réouverture du fil de discussion',
 	'wikiforum-error-thread-close' => 'Erreur pendant la fermeture du fil de discussion',
 	'wikiforum-error-general' => 'Objet non trouvé ou pas de droits pour effectuer cette action.',
-	'wikiforum-error-no-rights' => "Vous n'avez pas les droits pour effectuer cette action.",
+	'wikiforum-error-no-rights' => 'Vous n’avez pas les droits pour effectuer cette action.',
 	'wikiforum-error-not-found' => 'Objet non trouvé.',
 	'wikiforum-error-no-text-or-title' => 'Titre ou texte pas correctement rempli.',
 	'wikiforum-error-no-reply' => "La réponse n'est pas correctement remplie.",
