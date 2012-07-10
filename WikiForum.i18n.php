@@ -1466,6 +1466,7 @@ $messages['lb'] = array(
 $messages['lt'] = array(
 	'wikiforum' => 'Diskusijų lenta',
 	'wikiforum-anonymous' => 'Anonimas',
+	'wikiforum-description' => 'Aprašymas:',
 	'wikiforum-forum-name' => 'Forumas $1',
 	'wikiforum-name' => 'Pavadinimas:',
 	'wikiforum-button-preview' => 'Peržiūra',
@@ -1499,6 +1500,17 @@ $messages['lt'] = array(
 	'wikiforum-cat-not-found' => 'Kategorija nerasta',
 	'wikiforum-forum-not-found' => 'Forumas nerastas',
 	'wikiforum-thread-not-found' => 'Tema nerasta',
+	'wikiforum-error-not-found' => 'Objektas nerastas.',
+	'wikiforum-error-delete' => 'Klaida trinant',
+	'wikiforum-error-move-thread' => 'Klaida perkeliant temą',
+	'wikiforum-error-add' => 'Klaida pridedant',
+	'wikiforum-error-edit' => 'Klaida redaguojant',
+	'wikiforum-add-category' => 'Pridėti kategoriją',
+	'wikiforum-edit-category' => 'Redaguoti kategoriją',
+	'wikiforum-delete-category' => 'Ištrinti kategoriją',
+	'wikiforum-add-forum' => 'Pridėti forumą',
+	'wikiforum-edit-forum' => 'Redaguoti forumą',
+	'wikiforum-quote' => 'Citata',
 );
 
 /** Macedonian (македонски)
