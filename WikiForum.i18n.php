@@ -520,7 +520,11 @@ $messages['diq'] = array(
 	'wikiforum-by' => '$1<br />by $2',
 	'wikiforum-description' => 'Şınasiyen:',
 	'wikiforum-name' => 'Name:',
+	'wikiforum-button-preview' => 'Verqayt',
+	'wikiforum-preview' => 'Verqayt',
+	'wikiforum-preview-with-title' => 'Verqayt: $1',
 	'wikiforum-save' => 'Star ke',
+	'wikiforum-thread' => 'Pine',
 	'wikiforum-forum' => 'Forum: $1 > $2',
 	'wikiforum-pages' => 'Peley:',
 );
