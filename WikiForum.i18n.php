@@ -2298,6 +2298,8 @@ Mangyaring makipag-ugnayan sa isang tagapangasiwa ng poro upang maidagdag ang il
 	'group-forumadmin' => 'Mga tagapangasiwa ng poro',
 	'group-forumadmin-member' => '{{GENDER:$1|tagapangasiwa ng poro}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Mga tagapangasiwa ng poro',
+	'group-forumadmin.css' => '/* Ang Mga Pilas ng Estilong Lumalagaslas (Cascading Style Sheets o CSS) na inilagay dito ay makakaapekto lamang sa mga tagapangasiwa ng poro */',
+	'group-forumadmin.js' => '/* Ang JavaScript o JS na inilagay dito ay makakaapekto lamang sa mga tagapangasiwa ng poro */',
 );
 
 /** Turkish (Türkçe)
