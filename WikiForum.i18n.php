@@ -621,6 +621,15 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores del foro',
 );
 
+/** Persian (فارسی)
+ * @author Mjbmr
+ */
+$messages['fa'] = array(
+	'wikiforum-error-delete' => 'خطا در حین حذف',
+	'wikiforum-add-category' => 'افزودن رده',
+	'wikiforum-edit-category' => 'ویرایش رده',
+);
+
 /** Finnish (suomi)
  * @author Crt
  * @author Jack Phoenix <jack@countervandalism.net>
@@ -1921,6 +1930,7 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Hamilton Abreu
+ * @author SandroHc
  */
 $messages['pt'] = array(
 	'wikiforum-desc' => 'Extensão para criar [[Special:WikiForum|fóruns]] no MediaWiki',
@@ -2006,7 +2016,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'right-wikiforum-admin' => 'Adicione, edite e apague categorias e fóruns no [[Special:WikiForum|fórum de conversação]]',
 	'right-wikiforum-moderator' => 'Edite e apague tópicos e respostas no [[Special:WikiForum|fórum de conversação]]',
 	'group-forumadmin' => 'Administradores do fórum',
-	'group-forumadmin-member' => 'Administrador do fórum',
+	'group-forumadmin-member' => '{{GENDER:$1|administrador|administradora}} do fórum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do fórum',
 );
 
