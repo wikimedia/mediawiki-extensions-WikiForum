@@ -625,6 +625,10 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
  * @author Mjbmr
  */
 $messages['fa'] = array(
+	'wikiforum-name' => 'نام:',
+	'wikiforum-write-reply' => 'نوشتن یک پاسخ',
+	'wikiforum-edit-reply' => 'ویرایش پاسخ',
+	'wikiforum-delete-reply' => 'حذف پاسخ',
 	'wikiforum-error-delete' => 'خطا در حین حذف',
 	'wikiforum-add-category' => 'افزودن رده',
 	'wikiforum-edit-category' => 'ویرایش رده',
