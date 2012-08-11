@@ -194,6 +194,7 @@ $messages['af'] = array(
 );
 
 /** Arabic (العربية)
+ * @author Meno25
  * @author روخو
  */
 $messages['ar'] = array(
@@ -202,8 +203,8 @@ $messages['ar'] = array(
 	'wikiforum-description' => 'الوصف:',
 	'wikiforum-forum-name' => 'منتدى $1',
 	'wikiforum-name' => 'الاسم:',
-	'wikiforum-button-preview' => 'عرض',
-	'wikiforum-preview' => 'عرض',
+	'wikiforum-button-preview' => 'عرض مسبق',
+	'wikiforum-preview' => 'عرض مسبق',
 	'wikiforum-save' => 'حفظ',
 	'wikiforum-write-thread' => 'موضوع جديد',
 	'wikiforum-replies' => 'الردود',
@@ -1399,6 +1400,11 @@ $messages['ka'] = array(
 	'wikiforum-forum' => 'ფორუმი: $1 > $2',
 	'wikiforum-overview' => 'გადახედვა',
 	'wikiforum-pages' => 'გვერდები:',
+	'wikiforum-write-reply' => 'პასუხის მიწერა',
+	'wikiforum-edit-reply' => 'შეტყობინების რედაქტირება',
+	'wikiforum-delete-reply' => 'შეტყობინების წაშლა',
+	'wikiforum-save-thread' => 'ტოტის შენახვა',
+	'wikiforum-save-reply' => 'შეტყობინების შენახვა',
 	'wikiforum-edited' => '$1 რედაქტირებული მომხმარებელ $2 მიერ',
 	'wikiforum-cat-not-found' => 'კატეგორია ვერ მოიძებნა',
 	'wikiforum-forum-not-found' => 'ფორუმი არ მოიძებნა',
@@ -2234,6 +2240,34 @@ $messages['ru'] = array(
 	'group-forumadmin' => 'Администраторы форума',
 	'group-forumadmin-member' => '{{GENDER:$1|Администратор форума}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Администраторы форума',
+);
+
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'wikiforum' => 'සාකච්ඡා මණ්ඩලය',
+	'wikiforum-anonymous' => 'නිර්නාමික',
+	'wikiforum-by' => '$1<br />විසින් $2',
+	'wikiforum-description' => 'විස්තරය:',
+	'wikiforum-forum-name' => '$1 ෆෝරමය',
+	'wikiforum-name' => 'නම:',
+	'wikiforum-button-preview' => 'පෙරදසුන',
+	'wikiforum-preview' => 'පෙරදසුන',
+	'wikiforum-preview-with-title' => 'පෙරදසුන: $1',
+	'wikiforum-save' => 'සුරකින්න',
+	'wikiforum-error-search' => 'සෙවුම් දෝෂය',
+	'wikiforum-views' => 'නැරඹුම්',
+	'wikiforum-thread' => 'සම්බන්ධය',
+	'wikiforum-overview' => 'දළ විශ්ලේෂණය',
+	'wikiforum-pages' => 'පිටු:',
+	'wikiforum-cat-not-found' => 'ප්‍රවර්ගය හමු නොවුණි',
+	'wikiforum-forum-not-found' => 'ෆෝරමය හමු නොවුණි',
+	'wikiforum-error-not-found' => 'වස්තුව හමු නොවුණි.',
+	'wikiforum-add-category' => 'ප්‍රවර්ගය එක් කරන්න',
+	'wikiforum-delete-category' => 'ප්‍රවර්ගය මකන්න',
+	'wikiforum-delete-forum' => 'ෆෝරමය මකන්න',
+	'wikiforum-quote' => 'උද්ධරණය',
 );
 
 /** Telugu (తెలుగు)
