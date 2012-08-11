@@ -621,6 +621,33 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores del foro',
 );
 
+/** Estonian (eesti)
+ * @author Avjoska
+ */
+$messages['et'] = array(
+	'wikiforum-name' => 'Nimi:',
+	'wikiforum-button-preview' => 'Eelvaade',
+	'wikiforum-preview' => 'Eelvaade',
+	'wikiforum-save' => 'Salvesta',
+	'wikiforum-replies' => 'Vastused',
+	'wikiforum-views' => 'Vaatamisi',
+	'wikiforum-latest-reply' => 'Viimane vastus',
+	'wikiforum-overview' => 'Ülevaade',
+	'wikiforum-pages' => 'Lehekülgi:',
+	'wikiforum-write-reply' => 'Kirjuta vastus',
+	'wikiforum-edit-reply' => 'Muuda vastust',
+	'wikiforum-delete-reply' => 'Kustuta vastus',
+	'wikiforum-add-category' => 'Lisa kategooria',
+	'wikiforum-edit-category' => 'Muuda kategooriat',
+	'wikiforum-delete-category' => 'Kustuta kategooria',
+	'wikiforum-add-forum' => 'Lisa foorum',
+	'wikiforum-edit-forum' => 'Muuda foorumit',
+	'wikiforum-delete-forum' => 'Kustuta foorum',
+	'wikiforum-sort-up' => 'sorteeri üles',
+	'wikiforum-sort-down' => 'sorteeri alla',
+	'wikiforum-quote' => 'Tsiteeri',
+);
+
 /** Persian (فارسی)
  * @author Mjbmr
  */
