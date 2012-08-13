@@ -414,6 +414,16 @@ $messages['br'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Merourien ar forom',
 );
 
+/** Catalan (català)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['ca'] = array(
+	'wikiforum-anonymous' => 'Anònim',
+	'wikiforum-description' => 'Descripció:',
+	'wikiforum-name' => 'Nom:',
+	'wikiforum-save' => 'Desa',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
@@ -2287,20 +2297,27 @@ $messages['si'] = array(
 	'wikiforum-forum-not-found' => 'ෆෝරමය හමු නොවුණි',
 	'wikiforum-thread-not-found' => 'සම්බන්ධය හමු නොවුණි',
 	'wikiforum-error-not-found' => 'වස්තුව හමු නොවුණි.',
+	'wikiforum-error-delete' => 'මැකීමේදී දෝෂයකි',
+	'wikiforum-error-add' => 'එක් කිරීමේදී දෝෂයකි',
 	'wikiforum-add-category' => 'ප්‍රවර්ගය එක් කරන්න',
 	'wikiforum-edit-category' => 'ප්‍රවර්ගය සංස්කරණය කරන්න',
 	'wikiforum-delete-category' => 'ප්‍රවර්ගය මකන්න',
+	'wikiforum-add-forum' => 'ෆෝරමය එක් කරන්න',
+	'wikiforum-edit-forum' => 'ෆෝරමය සංස්කරණය කරන්න',
 	'wikiforum-delete-forum' => 'ෆෝරමය මකන්න',
 	'wikiforum-quote' => 'උද්ධරණය',
 );
 
 /** Tamil (தமிழ்)
  * @author Karthi.dr
+ * @author Shanmugamp7
  */
 $messages['ta'] = array(
+	'wikiforum-description' => 'விளக்கம்:',
 	'wikiforum-name' => 'பெயர்:',
 	'wikiforum-button-preview' => 'முன்தோற்றம்',
 	'wikiforum-preview' => 'முன்தோற்றம்',
+	'wikiforum-preview-with-title' => 'முன்தோற்றம்: $1',
 	'wikiforum-save' => 'சேமி',
 	'wikiforum-error-search' => 'தேடல் பிழை',
 	'wikiforum-write-reply' => 'மறுமொழி எழுது',
