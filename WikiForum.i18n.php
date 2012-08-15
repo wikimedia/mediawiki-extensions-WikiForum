@@ -205,16 +205,30 @@ $messages['ar'] = array(
 	'wikiforum-name' => 'الاسم:',
 	'wikiforum-button-preview' => 'عرض مسبق',
 	'wikiforum-preview' => 'عرض مسبق',
+	'wikiforum-preview-with-title' => 'عرض مسبق: $1',
 	'wikiforum-save' => 'حفظ',
+	'wikiforum-error-search' => 'بحث الخطأ',
 	'wikiforum-write-thread' => 'موضوع جديد',
 	'wikiforum-replies' => 'الردود',
 	'wikiforum-views' => 'وجهات نظر',
+	'wikiforum-thread' => 'خيط',
+	'wikiforum-threads' => 'خيوط',
+	'wikiforum-latest-reply' => 'آخر رد',
+	'wikiforum-latest-thread' => 'آخر خيط',
 	'wikiforum-overview' => 'نظرة عامة',
 	'wikiforum-pages' => 'الصفحات:',
+	'wikiforum-thread-closed' => 'الخيط تم غلقه',
+	'wikiforum-new-thread' => 'خيط جديد',
+	'wikiforum-edit-thread' => 'تعديل الخيط',
+	'wikiforum-delete-thread' => 'حذف الخيط',
 	'wikiforum-close-thread' => 'إغلاق النقاش',
+	'wikiforum-reopen-thread' => 'إعادة فتح الخيط',
 	'wikiforum-write-reply' => 'اكتب ردًا...',
+	'wikiforum-edit-reply' => 'تعديل الرد',
 	'wikiforum-delete-reply' => 'حذف الرد',
+	'wikiforum-save-thread' => 'حفظ الخيط',
 	'wikiforum-save-reply' => 'حفظ الرد',
+	'wikiforum-thread-title' => 'عنوان خيطك',
 	'wikiforum-cat-not-found-text' => 'تصنيف غير موجود -- العودة إلى $1',
 	'wikiforum-thread-not-found' => 'لم يتم العثور على النقاش',
 	'wikiforum-error-no-rights' => 'ليس لديك الحق في تنفيذ هذا الإجراء.',
@@ -658,6 +672,21 @@ $messages['et'] = array(
 	'wikiforum-sort-up' => 'sorteeri üles',
 	'wikiforum-sort-down' => 'sorteeri alla',
 	'wikiforum-quote' => 'Tsiteeri',
+);
+
+/** Basque (euskara)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['eu'] = array(
+	'wikiforum-anonymous' => 'Anonimoa',
+	'wikiforum-description' => 'Deskribapena:',
+	'wikiforum-name' => 'Izena:',
+	'wikiforum-button-preview' => 'Aurrebista',
+	'wikiforum-preview' => 'Aurrebista',
+	'wikiforum-save' => 'Gorde',
+	'wikiforum-overview' => 'Ikuspegi orokorra',
+	'wikiforum-pages' => 'Orrialdeak:',
+	'wikiforum-quote' => 'Aipu',
 );
 
 /** Persian (فارسی)
