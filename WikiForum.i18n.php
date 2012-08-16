@@ -963,6 +963,16 @@ $messages['frp'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrators du barjacâjo',
 );
 
+/** Irish (Gaeilge)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['ga'] = array(
+	'wikiforum-name' => 'Ainm:',
+	'wikiforum-button-preview' => 'Réamhamharc',
+	'wikiforum-preview' => 'Réamhamharc',
+	'wikiforum-save' => 'Sábháil',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
@@ -2527,6 +2537,31 @@ $messages['uk'] = array(
 	'wikiforum-search-thread' => 'Тема: $1',
 	'wikiforum-thread' => 'Тема',
 	'wikiforum-threads' => 'Теми',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['vi'] = array(
+	'wikiforum-anonymous' => 'Vô danh',
+	'wikiforum-description' => 'Miêu tả:',
+	'wikiforum-name' => 'Tên:',
+	'wikiforum-button-preview' => 'Xem trước',
+	'wikiforum-preview' => 'Xem trước',
+	'wikiforum-save' => 'Lưu',
+	'wikiforum-overview' => 'Tổng quan',
+	'wikiforum-pages' => 'Các trang:',
+	'wikiforum-add-category' => 'Chèn thể loại',
+	'wikiforum-edit-category' => 'Sửa thể loại',
+);
+
+/** Yiddish (ייִדיש)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['yi'] = array(
+	'wikiforum-anonymous' => 'אַנאנים',
+	'wikiforum-name' => 'נאָמען:',
+	'wikiforum-save' => 'אויפֿהיטן',
 );
 
 /** Simplified Chinese (‪中文（简体）‬)
