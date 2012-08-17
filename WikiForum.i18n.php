@@ -245,6 +245,97 @@ $messages['ar'] = array(
 	'wikiforum-quote' => 'اقتباس',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'wikiforum-desc' => 'Estensión de [[Special:WikiForum|foru]] pa MediaWiki',
+	'wikiforum' => "Tableru d'alderique",
+	'wikiforum-anonymous' => 'Anónimu',
+	'wikiforum-announcement-only-description' => "Foro d'anuncios (sólo los moderadores pueden amestar filos)",
+	'wikiforum-by' => '$1<br />por $2',
+	'wikiforum-description' => 'Descripción:',
+	'wikiforum-forum-is-empty' => "Esti foru anguaño ta baleru.
+Comunicate con un alministrador del foru p'amestar delles categoríes y foros.",
+	'wikiforum-forum-name' => 'Foru $1',
+	'wikiforum-name' => 'Nome:',
+	'wikiforum-button-preview' => 'Vista previa',
+	'wikiforum-preview' => 'Vista previa',
+	'wikiforum-preview-with-title' => 'Vista previa: $1',
+	'wikiforum-save' => 'Guardar',
+	'wikiforum-error-search' => 'Error de gueta',
+	'wikiforum-error-search-missing-query' => '¡Debes dar un términu pa guetar!',
+	'wikiforum-search-hits' => "{{PLURAL:$1|S'alcontró una coincidencia|S'alcontraron $1 coincidencies}}",
+	'wikiforum-search-thread' => 'Filu: $1',
+	'wikiforum-thread-deleted' => 'filu desaniciáu',
+	'wikiforum-topic-name' => 'Foru - $1',
+	'wikiforum-updates' => 'Foros recién anovaos',
+	'wikiforum-write-thread' => 'Nuevu tema',
+	'wikiforum-replies' => 'Respuestes',
+	'wikiforum-views' => 'Vistes',
+	'wikiforum-thread' => 'Filu',
+	'wikiforum-threads' => 'Filos',
+	'wikiforum-latest-reply' => 'Cabera respuesta',
+	'wikiforum-latest-thread' => 'Caberu filu',
+	'wikiforum-forum' => 'Foru: $1 > $2',
+	'wikiforum-overview' => 'Resume',
+	'wikiforum-pages' => 'Páxines:',
+	'wikiforum-thread-closed' => 'Filu zarráu',
+	'wikiforum-new-thread' => 'Filu nuevu',
+	'wikiforum-edit-thread' => 'Editar filu',
+	'wikiforum-delete-thread' => 'Desaniciar filu',
+	'wikiforum-close-thread' => 'Zarrar filu',
+	'wikiforum-reopen-thread' => 'Volver a abrir filu',
+	'wikiforum-write-reply' => 'Escribir una respuesta',
+	'wikiforum-edit-reply' => 'Editar respuesta',
+	'wikiforum-delete-reply' => 'Desaniciar respuesta',
+	'wikiforum-save-thread' => 'Guardar filu',
+	'wikiforum-save-reply' => 'Guardar respuesta',
+	'wikiforum-thread-title' => 'Títulu del to filu',
+	'wikiforum-no-threads' => 'Nun hai filos disponibles nesti momentu.',
+	'wikiforum-posted' => 'Publicáu el $1 por $2',
+	'wikiforum-edited' => 'Editáu el $1 por $2',
+	'wikiforum-closed-text' => 'El filu zarróse el $1 por $2',
+	'wikiforum-cat-not-found' => "Nun s'alcontró la categoría",
+	'wikiforum-cat-not-found-text' => 'La categoría nun esiste - volver a $1',
+	'wikiforum-forum-not-found' => "Nun s'alcontró'l foru",
+	'wikiforum-forum-not-found-text' => 'El foru nun esiste - volver a $1',
+	'wikiforum-thread-not-found' => "Nun s'alcontró el filu",
+	'wikiforum-thread-not-found-text' => 'El filu nun esiste o yá se desanició - volver a  $1.',
+	'wikiforum-error-thread-reopen' => 'Error al reabrir el filu',
+	'wikiforum-error-thread-close' => 'Error al zarrar el filu',
+	'wikiforum-error-general' => "Nun s'alcontró l'oxetu o nun tienes permisos pa facer esta aición.",
+	'wikiforum-error-no-rights' => 'Nun tienes permisos pa facer esta aición.',
+	'wikiforum-error-not-found' => "Nun s'alcontró l'oxetu.",
+	'wikiforum-error-no-text-or-title' => "El títulu o'l testu nun se completó correutamente.",
+	'wikiforum-error-no-reply' => 'La respuesta nun se completó correutamente.',
+	'wikiforum-error-double-post' => "Proteición escontra doble clic: el filu yá s'amestó.",
+	'wikiforum-error-thread-closed' => 'El filu anguaño ta zarráu. Nun ye posible amestar una nueva respuesta equí.',
+	'wikiforum-error-delete' => 'Error al desaniciar',
+	'wikiforum-error-sticky' => "Error al cambiar l'atributu de fixación",
+	'wikiforum-error-move-thread' => 'Error al mover el filu',
+	'wikiforum-error-add' => 'Error al amestar',
+	'wikiforum-error-edit' => 'Error al editar',
+	'wikiforum-add-category' => 'Amestar categoría',
+	'wikiforum-edit-category' => 'Editar categoría',
+	'wikiforum-delete-category' => 'Desaniciar categoría',
+	'wikiforum-add-forum' => 'Amestar foru',
+	'wikiforum-edit-forum' => 'Editar el foru',
+	'wikiforum-delete-forum' => 'Desaniciar el foru',
+	'wikiforum-sort-up' => 'orde ascendiente',
+	'wikiforum-sort-down' => 'orde descendiente',
+	'wikiforum-remove-sticky' => 'Desaniciar fixación',
+	'wikiforum-make-sticky' => 'Fixar',
+	'wikiforum-move-thread' => 'Mover filu',
+	'wikiforum-paste-thread' => 'Apegar filu',
+	'wikiforum-quote' => 'Citar',
+	'right-wikiforum-admin' => "Amestar, editar y desaniciar categoríes y foros [[Special:WikiForum|del tableru d'alderique]]",
+	'right-wikiforum-moderator' => "Editar y desaniciar filos y respuestes del [[Special:WikiForum|tableru d'alderique]]",
+	'group-forumadmin' => 'Alministradores del foru',
+	'group-forumadmin-member' => '{{GENDER:$1|alministrador|alministradora}} del foru',
+	'grouppage-forumadmin' => '{{ns:project}}: Alministradores del foru',
+);
+
 /** Azerbaijani (azərbaycanca)
  * @author Vugar 1981
  */
@@ -544,6 +635,7 @@ $messages['diq'] = array(
 	'wikiforum-anonymous' => 'Anonim',
 	'wikiforum-by' => '$1<br />by $2',
 	'wikiforum-description' => 'Şınasiyen:',
+	'wikiforum-forum-name' => 'Forum $1',
 	'wikiforum-name' => 'Name:',
 	'wikiforum-button-preview' => 'Verqayt',
 	'wikiforum-preview' => 'Verqayt',
@@ -552,6 +644,8 @@ $messages['diq'] = array(
 	'wikiforum-thread' => 'Pine',
 	'wikiforum-forum' => 'Forum: $1 > $2',
 	'wikiforum-pages' => 'Peley:',
+	'group-forumadmin-member' => '{{GENDER:$1|adminê forumi}}',
+	'grouppage-forumadmin' => '{{ns:project}}:Admine forumi',
 );
 
 /** Spanish (español)
@@ -2537,6 +2631,21 @@ $messages['uk'] = array(
 	'wikiforum-search-thread' => 'Тема: $1',
 	'wikiforum-thread' => 'Тема',
 	'wikiforum-threads' => 'Теми',
+);
+
+/** Urdu (اردو)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['ur'] = array(
+	'wikiforum-error-search' => 'تلاش کی غلطی',
+	'wikiforum-replies' => 'جواب دیتا ہے',
+	'wikiforum-views' => 'خیالات',
+	'wikiforum-thread' => 'دھاگے',
+	'wikiforum-overview' => 'برجوں کا جائزہ:',
+	'wikiforum-pages' => 'صفحات:',
+	'wikiforum-close-thread' => 'قریب دھاگے',
+	'wikiforum-edit-reply' => 'جواب میں ترمیم کریں',
+	'wikiforum-delete-reply' => 'جواب کو خارج',
 );
 
 /** Vietnamese (Tiếng Việt)
