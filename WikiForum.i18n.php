@@ -1521,8 +1521,8 @@ $messages['ja'] = array(
 	'group-forumadmin' => 'フォーラム管理者',
 	'group-forumadmin-member' => 'フォーラム管理者',
 	'grouppage-forumadmin' => '{{ns:project}}:フォーラム管理者',
-	'group-forumadmin.css' => '/* フォーラム管理者のみに影響する CSS をここに記述 */',
-	'group-forumadmin.js' => '/* フォーラム管理者のみに影響する JS をここに記述 */',
+	'group-forumadmin.css' => '/* ここに記述したCSSはフォーラム管理者のみに影響します */',
+	'group-forumadmin.js' => '/* ここに記述したJSはフォーラム管理者のみに影響します */',
 );
 
 /** Georgian (ქართული)
