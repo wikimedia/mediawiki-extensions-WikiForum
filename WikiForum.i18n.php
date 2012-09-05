@@ -657,7 +657,7 @@ $messages['diq'] = array(
 	'wikiforum-save' => 'Star ke',
 	'wikiforum-thread' => 'Pine',
 	'wikiforum-forum' => 'Forum: $1 > $2',
-	'wikiforum-pages' => 'Peley:',
+	'wikiforum-pages' => 'Peri:',
 	'group-forumadmin-member' => '{{GENDER:$1|adminê forumi}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Admine forumi',
 );
