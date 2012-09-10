@@ -2255,6 +2255,19 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do fórum',
 );
 
+/** Brazilian Portuguese (português do Brasil)
+ * @author Luckas Blade
+ */
+$messages['pt-br'] = array(
+	'wikiforum-error-not-found' => 'Objeto não encontrado.',
+	'wikiforum-add-category' => 'Adicionar categoria',
+	'wikiforum-edit-category' => 'Editar categoria',
+	'wikiforum-delete-category' => 'Apagar categoria',
+	'wikiforum-add-forum' => 'Adicionar fórum',
+	'wikiforum-edit-forum' => 'Editar fórum',
+	'wikiforum-delete-forum' => 'Apagar fórum',
+);
+
 /** Romanian (română)
  * @author Minisarm
  * @author Saturnian
