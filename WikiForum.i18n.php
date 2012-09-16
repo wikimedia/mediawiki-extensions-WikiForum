@@ -658,6 +658,7 @@ $messages['diq'] = array(
 	'wikiforum-thread' => 'Pine',
 	'wikiforum-forum' => 'Forum: $1 > $2',
 	'wikiforum-pages' => 'Peri:',
+	'wikiforum-quote' => 'Groteko',
 	'group-forumadmin-member' => '{{GENDER:$1|adminê forumi}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Admine forumi',
 );
