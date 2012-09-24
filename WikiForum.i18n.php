@@ -2686,6 +2686,13 @@ $messages['ur'] = array(
 	'wikiforum-delete-reply' => 'جواب کو خارج',
 );
 
+/** Uzbek (oʻzbekcha)
+ * @author CoderSI
+ */
+$messages['uz'] = array(
+	'wikiforum-new-thread' => 'Yangi tarmoq',
+);
+
 /** Vietnamese (Tiếng Việt)
  * @author පසිඳු කාවින්ද
  */
