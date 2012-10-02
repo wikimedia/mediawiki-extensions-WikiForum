@@ -359,7 +359,7 @@ $messages['az'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Forum idarəçiləri',
 );
 
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Renessaince
@@ -634,7 +634,7 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'grouppage-forumadmin' => '{{ns:project}}:Forumsadministratoren',
 );
 
-/** German (formal address) (‪Deutsch (Sie-Form)‬)
+/** German (formal address) (Deutsch (Sie-Form)‎)
  * @author Kghbln
  */
 $messages['de-formal'] = array(
@@ -1638,7 +1638,7 @@ $messages['ksh'] = array(
 	'wikiforum-desc' => 'Määd_e [[Special:WikiForum|Forum]] em Wiki müjjelesch.',
 );
 
-/** Kurdish (Latin script) (‪Kurdî (latînî)‬)
+/** Kurdish (Latin script) (Kurdî (latînî)‎)
  * @author George Animal
  */
 $messages['ku-latn'] = array(
@@ -2718,7 +2718,7 @@ $messages['yi'] = array(
 	'wikiforum-save' => 'אויפֿהיטן',
 );
 
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
  */
 $messages['zh-hans'] = array(
