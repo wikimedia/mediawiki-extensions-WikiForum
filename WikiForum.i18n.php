@@ -2149,8 +2149,13 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
  */
 $messages['ps'] = array(
 	'wikiforum-description' => 'څرګندونه:',
+	'wikiforum-forum-name' => '$1 فورم',
 	'wikiforum-name' => 'نوم:',
+	'wikiforum-button-preview' => 'مخليدنه',
+	'wikiforum-preview' => 'مخليدنه',
+	'wikiforum-preview-with-title' => 'مخليدنه: $1',
 	'wikiforum-save' => 'خوندي کول',
+	'wikiforum-error-search' => 'د پلټنې تېروتنه',
 	'wikiforum-write-thread' => 'نوی سرليک',
 	'wikiforum-replies' => 'ځوابونه',
 	'wikiforum-views' => 'کتنې',
@@ -2162,6 +2167,9 @@ $messages['ps'] = array(
 	'wikiforum-add-category' => 'وېشنيزه ورګډول',
 	'wikiforum-edit-category' => 'وېشنيزه سمول',
 	'wikiforum-delete-category' => 'وېشنيزه ړنګول',
+	'wikiforum-add-forum' => 'فورم ورګډول',
+	'wikiforum-edit-forum' => 'فورم سمول',
+	'wikiforum-delete-forum' => 'فورم ړنګول',
 );
 
 /** Portuguese (português)
