@@ -129,6 +129,9 @@ Please contact a forum administrator to have some categories and forums added.',
 $messages['qqq'] = array(
 	'wikiforum-desc' => '{{desc}}',
 	'wikiforum' => 'Special page title, special page name in Special:SpecialPages and link in toolbox portlet.',
+	'wikiforum-day-definition-new' => '{{notranslate}}',
+	'wikiforum-max-threads-per-page' => '{{notranslate}}',
+	'wikiforum-max-replies-per-page' => '{{notranslate}}',
 	'wikiforum-anonymous' => '{{Identical|Anonymous}}',
 	'wikiforum-by' => 'Forum post properties. Parameters:
 * $1 is a timestamp (time and date)
@@ -646,7 +649,7 @@ $messages['de-formal'] = array(
  * @author Erdemaslancan
  */
 $messages['diq'] = array(
-	'wikiforum-anonymous' => 'Anonim',
+	'wikiforum-anonymous' => 'Bêname',
 	'wikiforum-by' => '$1<br />by $2',
 	'wikiforum-description' => 'Şınasiyen:',
 	'wikiforum-forum-name' => 'Forum $1',
@@ -2666,7 +2669,7 @@ $messages['tr'] = array(
 	'wikiforum-pages' => 'Sayfalar:',
 	'wikiforum-quote' => 'Alıntı',
 	'group-forumadmin' => 'Forum hizmetlileri',
-	'group-forumadmin-member' => 'Forum hizmetlisi',
+	'group-forumadmin-member' => 'Forum hizmetlisi', # Fuzzy
 	'grouppage-forumadmin' => '{{ns:project}}:Forum hizmetlileri',
 );
 
@@ -2814,7 +2817,8 @@ $messages['zh-hans'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:论坛管理员',
 );
 
-/** Traditional Chinese (中文（繁體）‎) */
+/** Traditional Chinese (中文（繁體）‎)
+ */
 $messages['zh-hant'] = array(
 	'wikiforum-desc' => 'MediaWiki的[[Special:WikiForum|論壇]]擴展',
 	'wikiforum' => '討論面板',
@@ -2899,4 +2903,3 @@ $messages['zh-hant'] = array(
 	'group-forumadmin-member' => '{{GENDER:$1|論壇管理員}}',
 	'grouppage-forumadmin' => '{{ns:project}}:論壇管理員',
 );
-
