@@ -647,6 +647,7 @@ $messages['de-formal'] = array(
 
 /** Zazaki (Zazaki)
  * @author Erdemaslancan
+ * @author Mirzali
  */
 $messages['diq'] = array(
 	'wikiforum-anonymous' => 'Bêname',
@@ -660,7 +661,7 @@ $messages['diq'] = array(
 	'wikiforum-save' => 'Star ke',
 	'wikiforum-thread' => 'Pine',
 	'wikiforum-forum' => 'Forum: $1 > $2',
-	'wikiforum-pages' => 'Peri:',
+	'wikiforum-pages' => 'Peli:',
 	'wikiforum-quote' => 'Groteko',
 	'group-forumadmin-member' => '{{GENDER:$1|adminê forumi}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Admine forumi',
@@ -1508,6 +1509,8 @@ $messages['ja'] = array(
 	'wikiforum-replies' => '返信',
 	'wikiforum-thread' => 'スレッド',
 	'wikiforum-threads' => 'スレッド',
+	'wikiforum-latest-reply' => '最新の返信',
+	'wikiforum-latest-thread' => '最新のスレッド',
 	'wikiforum-forum' => 'フォーラム: $1 > $2',
 	'wikiforum-overview' => '概要',
 	'wikiforum-pages' => 'ページ:',
