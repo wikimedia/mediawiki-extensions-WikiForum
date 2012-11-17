@@ -670,6 +670,7 @@ $messages['diq'] = array(
 /** Spanish (español)
  * @author Armando-Martin
  * @author Bea.miau
+ * @author Dalton2
  */
 $messages['es'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Forum]], extensión para MediaWiki',
@@ -736,7 +737,7 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'wikiforum-error-thread-closed' => 'El hilo está actualmente cerrado. No es posible añadir una nueva respuesta aquí.',
 	'wikiforum-error-delete' => 'Error al eliminar',
 	'wikiforum-error-sticky' => 'Error al cambiar el atributo de fijación',
-	'wikiforum-error-move-thread' => 'Error al mover el hilo',
+	'wikiforum-error-move-thread' => 'Error al trasladar el hilo',
 	'wikiforum-error-add' => 'Error al agregar',
 	'wikiforum-error-edit' => 'Error al editar',
 	'wikiforum-add-category' => 'Agregar categoría',
@@ -749,7 +750,7 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'wikiforum-sort-down' => 'orden descendente',
 	'wikiforum-remove-sticky' => 'Eliminar un post-it',
 	'wikiforum-make-sticky' => 'Crear un post-it',
-	'wikiforum-move-thread' => 'Mover el hilo',
+	'wikiforum-move-thread' => 'Trasladar el hilo',
 	'wikiforum-paste-thread' => 'Pegar el hilo',
 	'wikiforum-quote' => 'Citar',
 	'right-wikiforum-admin' => 'Agregar, editar y eliminar categorías y foros en [[Special:WikiForum|el tablón de discusión]]',
