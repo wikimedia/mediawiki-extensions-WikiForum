@@ -248,6 +248,13 @@ $messages['ar'] = array(
 	'wikiforum-quote' => 'اقتباس',
 );
 
+/** Aramaic (ܐܪܡܝܐ)
+ * @author Basharh
+ */
+$messages['arc'] = array(
+	'wikiforum-thread' => 'ܓܕܕܐ',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */
