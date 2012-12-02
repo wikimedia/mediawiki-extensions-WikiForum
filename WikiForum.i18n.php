@@ -1671,6 +1671,8 @@ $messages['lb'] = array(
 	'wikiforum-anonymous' => 'Anonym',
 	'wikiforum-by' => '$1<br />vum $2',
 	'wikiforum-description' => 'Beschreiwung:',
+	'wikiforum-forum-is-empty' => 'Dëse Forum ass elo eidel.
+Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbäigesat ze kréien.',
 	'wikiforum-forum-name' => '$1-Forum',
 	'wikiforum-name' => 'Numm:',
 	'wikiforum-button-preview' => 'Kucken ouni ofzespäicheren',
