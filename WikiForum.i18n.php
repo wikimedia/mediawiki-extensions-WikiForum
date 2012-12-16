@@ -122,6 +122,7 @@ Please contact a forum administrator to have some categories and forums added.',
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
  * @author Purodha
+ * @author Shirayuki
  * @author Siebrand
  * @author Umherirrender
  * @author 아라
@@ -185,8 +186,8 @@ $messages['qqq'] = array(
 	'group-forumadmin' => '{{doc-group|forumadmin}}',
 	'group-forumadmin-member' => '{{doc-group|forumadmin|member}}',
 	'grouppage-forumadmin' => '{{doc-group|forumadmin|page}}',
-	'group-forumadmin.css' => '{{doc-group|forumadmin}}',
-	'group-forumadmin.js' => '{{doc-group|forumadmin}}',
+	'group-forumadmin.css' => '{{doc-group|forumadmin|css}}',
+	'group-forumadmin.js' => '{{doc-group|forumadmin|js}}',
 );
 
 /** Afrikaans (Afrikaans)
