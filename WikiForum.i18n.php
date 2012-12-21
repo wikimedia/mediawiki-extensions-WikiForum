@@ -1184,6 +1184,8 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'group-forumadmin' => 'Administradores do foro',
 	'group-forumadmin-member' => '{{GENDER:$1|administrador|administradora}} do foro',
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do foro',
+	'group-forumadmin.css' => '/* O CSS que se coloque aquí afectará soamente aos administradores do foro */',
+	'group-forumadmin.js' => '/* O JS que se coloque aquí afectará soamente aos administradores do foro */',
 );
 
 /** Swiss German (Alemannisch)
