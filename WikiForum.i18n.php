@@ -815,13 +815,29 @@ $messages['eu'] = array(
  * @author Mjbmr
  */
 $messages['fa'] = array(
+	'wikiforum-description' => 'شرح:',
 	'wikiforum-name' => 'نام:',
+	'wikiforum-button-preview' => 'پیش نمایش',
+	'wikiforum-preview' => 'پیش نمایش',
+	'wikiforum-save' => 'ذخیره',
+	'wikiforum-error-search' => 'خطای جستجو',
+	'wikiforum-replies' => 'پاسخ‌ها',
+	'wikiforum-views' => 'مشاهده‌ها',
+	'wikiforum-overview' => 'چشم‌انداز',
+	'wikiforum-pages' => 'صفحه‌ها:',
 	'wikiforum-write-reply' => 'نوشتن یک پاسخ',
 	'wikiforum-edit-reply' => 'ویرایش پاسخ',
 	'wikiforum-delete-reply' => 'حذف پاسخ',
+	'wikiforum-save-reply' => 'ذخیره سازی پاسخ',
+	'wikiforum-cat-not-found' => 'رده یافت نشد',
+	'wikiforum-cat-not-found-text' => 'رده وجود ندارد - بازگشت به $1',
+	'wikiforum-error-not-found' => 'شیء یافت نشد.',
 	'wikiforum-error-delete' => 'خطا در حین حذف',
 	'wikiforum-add-category' => 'افزودن رده',
 	'wikiforum-edit-category' => 'ویرایش رده',
+	'wikiforum-add-forum' => 'افزودن انجمن',
+	'wikiforum-edit-forum' => 'ویرایش انجمن',
+	'wikiforum-delete-forum' => 'حذف کردن انجمن',
 );
 
 /** Finnish (suomi)
@@ -2057,7 +2073,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'right-wikiforum-admin' => 'Forums en categorieën toevoegen, bewerken en verwijderen op [[Special:WikiForum|het forum]]',
 	'right-wikiforum-moderator' => 'Ondewerpen en reacties bewerken en verwijderen op [[Special:WikiForum|het forum]]',
 	'group-forumadmin' => 'Forumbeheerders',
-	'group-forumadmin-member' => '{{GENDER:$1|Forumbeheerder}}',
+	'group-forumadmin-member' => '{{GENDER:$1|forumbeheerder}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumbeheerders',
 );
 
