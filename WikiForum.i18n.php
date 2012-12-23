@@ -452,12 +452,17 @@ $messages['be-tarask'] = array(
 
 /** Bulgarian (български)
  * @author DCLXVI
+ * @author පසිඳු කාවින්ද
  */
 $messages['bg'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Разширение за форум]] за МедияУики',
+	'wikiforum-anonymous' => 'Анонимен',
 	'wikiforum-description' => 'Описание:',
 	'wikiforum-forum-name' => 'Форум $1',
 	'wikiforum-name' => 'Име:',
+	'wikiforum-button-preview' => 'Предварителен преглед',
+	'wikiforum-preview' => 'Предварителен преглед',
+	'wikiforum-preview-with-title' => 'Предварителен преглед: $1',
 	'wikiforum-save' => 'Съхраняване',
 	'wikiforum-thread' => 'Нишка',
 	'wikiforum-threads' => 'Нишки',
@@ -1428,6 +1433,18 @@ Per favor contacta un administrator del foro pro facer adder categorias e foros.
 	'group-forumadmin' => 'Administratores de foro',
 	'group-forumadmin-member' => '{{GENDER:$1|administrator|administratrice}} de foro',
 	'grouppage-forumadmin' => '{{ns:project}}:Administratores de foro',
+);
+
+/** Indonesian (Bahasa Indonesia)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['id'] = array(
+	'wikiforum-anonymous' => 'Anonim',
+	'wikiforum-description' => 'Deskripsi:',
+	'wikiforum-name' => 'Nama:',
+	'wikiforum-button-preview' => 'Pratayang',
+	'wikiforum-preview' => 'Pratayang',
+	'wikiforum-save' => 'Simpan',
 );
 
 /** Italian (italiano)
@@ -2554,6 +2571,99 @@ $messages['si'] = array(
 	'wikiforum-edit-forum' => 'ෆෝරමය සංස්කරණය කරන්න',
 	'wikiforum-delete-forum' => 'ෆෝරමය මකන්න',
 	'wikiforum-quote' => 'උද්ධරණය',
+);
+
+/** Swedish (svenska)
+ * @author WikiPhoenix
+ */
+$messages['sv'] = array(
+	'wikiforum-desc' => '[[Special:WikiForum|Forum]]tillägg för MediaWiki',
+	'wikiforum' => 'Diskussionstavla',
+	'wikiforum-anonymous' => 'Anonym',
+	'wikiforum-announcement-only-description' => 'Meddelandeforum (endast moderatorer kan lägga till trådar)',
+	'wikiforum-by' => '$1<br />av $2',
+	'wikiforum-description' => 'Beskrivning:',
+	'wikiforum-forum-is-empty' => 'Detta forum är för tillfället tomt.
+Var god kontakta en forumadministratör för att få några kategorier och forum tillagda.',
+	'wikiforum-forum-name' => 'Forum $1',
+	'wikiforum-name' => 'Namn:',
+	'wikiforum-button-preview' => 'Förhandsgranska',
+	'wikiforum-preview' => 'Förhandsgranska',
+	'wikiforum-preview-with-title' => 'Förhandsgranska: $1',
+	'wikiforum-save' => 'Spara',
+	'wikiforum-error-search' => 'Sökfel',
+	'wikiforum-error-search-missing-query' => 'Du måste ange en term att söka efter!',
+	'wikiforum-search-hits' => 'Hittade {{PLURAL:$1|en träff|$1 träffar}}',
+	'wikiforum-search-thread' => 'Tråd: $1',
+	'wikiforum-thread-deleted' => 'tråden raderad',
+	'wikiforum-topic-name' => 'Forum - $1',
+	'wikiforum-updates' => 'Nyligen uppdaterade forum',
+	'wikiforum-write-thread' => 'Nytt ämne',
+	'wikiforum-replies' => 'Svar',
+	'wikiforum-views' => 'Visningar',
+	'wikiforum-thread' => 'Tråd',
+	'wikiforum-threads' => 'Trådar',
+	'wikiforum-latest-reply' => 'Senaste svar',
+	'wikiforum-latest-thread' => 'Senaste tråden',
+	'wikiforum-forum' => 'Forum: $1 > $2',
+	'wikiforum-overview' => 'Översikt',
+	'wikiforum-pages' => 'Sidor:',
+	'wikiforum-thread-closed' => 'Tråden är stängd',
+	'wikiforum-new-thread' => 'Ny tråd',
+	'wikiforum-edit-thread' => 'Redigera tråd',
+	'wikiforum-delete-thread' => 'Radera tråd',
+	'wikiforum-close-thread' => 'Stäng tråd',
+	'wikiforum-reopen-thread' => 'Återöppna tråd',
+	'wikiforum-write-reply' => 'Skriv ett svar',
+	'wikiforum-edit-reply' => 'Redigera svar',
+	'wikiforum-delete-reply' => 'Radera svar',
+	'wikiforum-save-thread' => 'Spara tråd',
+	'wikiforum-save-reply' => 'Spara svar',
+	'wikiforum-thread-title' => 'Titel på din tråd',
+	'wikiforum-no-threads' => 'Inga trådar finns tillgängliga just nu.',
+	'wikiforum-posted' => 'Skrivet kl $1 av $2',
+	'wikiforum-edited' => 'Redigerades kl $1 av $2',
+	'wikiforum-closed-text' => 'Tråden stängdes kl $1 av $2',
+	'wikiforum-cat-not-found' => 'Kategorin finns inte',
+	'wikiforum-cat-not-found-text' => 'Kategorin finns inte - gå tillbaka till $1',
+	'wikiforum-forum-not-found' => 'Forum hittades inte',
+	'wikiforum-forum-not-found-text' => 'Forum finns inte - gå tillbaka till $1',
+	'wikiforum-thread-not-found' => 'Tråden hittades inte',
+	'wikiforum-thread-not-found-text' => 'Tråden finns inte eller har redan tagits bort - gå tillbaka till $1.',
+	'wikiforum-error-thread-reopen' => 'Ett fel uppstod när tråden skulle återöppnas',
+	'wikiforum-error-thread-close' => 'Ett fel uppstod när trådens skulle stängas',
+	'wikiforum-error-general' => 'Objekt hittades inte eller inga rättigheter att utföra denna åtgärd.',
+	'wikiforum-error-no-rights' => 'Du har inte rättigheterna att utföra denna åtgärd.',
+	'wikiforum-error-not-found' => 'Objektet hittades inte.',
+	'wikiforum-error-no-text-or-title' => 'Titel eller text är inte korrekt ifyllda.',
+	'wikiforum-error-no-reply' => 'Svaret inte korrekt ifyllt.',
+	'wikiforum-error-double-post' => 'Skydd från dubbelklick: tråden har redan lagts till.',
+	'wikiforum-error-thread-closed' => 'Tråden är för tillfället stängd. Det är inte möjligt att lägga till ett nytt svar här.',
+	'wikiforum-error-delete' => 'Ett fel uppstod under borttagningen',
+	'wikiforum-error-sticky' => 'Ett fel uppstod klistringsattributen skulle ändras',
+	'wikiforum-error-move-thread' => 'Ett fel uppstod när tråden skulle flyttas',
+	'wikiforum-error-add' => 'Ett fel uppstod när det skulle läggas till',
+	'wikiforum-error-edit' => 'Ett fel uppstod under redigering',
+	'wikiforum-add-category' => 'Lägg till kategori',
+	'wikiforum-edit-category' => 'Redigera kategori',
+	'wikiforum-delete-category' => 'Radera kategori',
+	'wikiforum-add-forum' => 'Lägg till forum',
+	'wikiforum-edit-forum' => 'Redigera forum',
+	'wikiforum-delete-forum' => 'Radera forum',
+	'wikiforum-sort-up' => 'sortera upp',
+	'wikiforum-sort-down' => 'sortera ner',
+	'wikiforum-remove-sticky' => 'Ta bort klistring',
+	'wikiforum-make-sticky' => 'Gör den klistrig',
+	'wikiforum-move-thread' => 'Flytta tråden',
+	'wikiforum-paste-thread' => 'Klistra in tråden',
+	'wikiforum-quote' => 'Citat',
+	'right-wikiforum-admin' => 'Lägg till, redigera och ta bort kategorier och forum på [[Special:WikiForum|diskussionstavlan]]',
+	'right-wikiforum-moderator' => 'Redigera och ta bort trådar och svar på [[Special:WikiForum|diskussionstavlan]]',
+	'group-forumadmin' => 'Forumadministratörer',
+	'group-forumadmin-member' => '{{GENDER:$1|forumadministratör}}',
+	'grouppage-forumadmin' => '{{ns:project}}:Forumadministratörer',
+	'group-forumadmin.css' => '/* CSS som placeras här kommer endast att påverka forumadministratörer */',
+	'group-forumadmin.js' => '/* JS som placeras här kommer endast att påverka forumadministratörer */',
 );
 
 /** Tamil (தமிழ்)
