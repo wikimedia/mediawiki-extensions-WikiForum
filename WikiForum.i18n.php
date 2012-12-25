@@ -128,37 +128,48 @@ Please contact a forum administrator to have some categories and forums added.',
  * @author 아라
  */
 $messages['qqq'] = array(
-	'wikiforum-desc' => '{{desc}}',
+	'wikiforum-desc' => '{{desc|name=Wiki Forum|url=http://www.mediawiki.org/wiki/Extension:WikiForum}}',
 	'wikiforum' => 'Special page title, special page name in Special:SpecialPages and link in toolbox portlet.',
 	'wikiforum-day-definition-new' => '{{notranslate}}',
 	'wikiforum-max-threads-per-page' => '{{notranslate}}',
 	'wikiforum-max-replies-per-page' => '{{notranslate}}',
 	'wikiforum-anonymous' => '{{Identical|Anonymous}}',
+	'wikiforum-announcement-only-description' => 'Used as label for checkbox in adding forum page.',
 	'wikiforum-by' => 'Forum post properties. Parameters:
 * $1 is a timestamp (time and date)
 * $2 is a username',
-	'wikiforum-description' => '{{Identical|Description}}',
+	'wikiforum-description' => 'Used as label for "forum description" input box.
+{{Identical|Description}}',
+	'wikiforum-forum-is-empty' => 'Used in [[Special:WikiForum]] when there are no categories/forums/threads.
+
+The former "This forum" stands for overall WikiForum feature, the latter "forums" stands for the forum in the category.',
 	'wikiforum-forum-name' => '$1 is the name of a forum',
-	'wikiforum-name' => '{{Identical|Name}}',
-	'wikiforum-button-preview' => 'Button text in the reply form
+	'wikiforum-name' => 'Used as label for "category name" and "forum name" input box.
+{{Identical|Name}}',
+	'wikiforum-button-preview' => 'Button text (and its tooltip) in the reply form
 {{Identical|Preview}}',
 	'wikiforum-preview' => '{{Identical|Preview}}',
 	'wikiforum-preview-with-title' => '{{Identical|Preview}}',
 	'wikiforum-save' => 'Button text
 {{Identical|Save}}',
+	'wikiforum-error-search' => 'Used as heading of error message',
+	'wikiforum-error-search-missing-query' => 'Used as error message in search result page.',
 	'wikiforum-search-hits' => 'Search result header. Parameters:
 * $1 is the number of search results.',
 	'wikiforum-search-thread' => '{{Identical|Thread}}',
 	'wikiforum-topic-name' => 'Page title. Parameters:
 * $1 is a thread name.',
 	'wikiforum-updates' => 'Navigation item leading to updated forums.',
-	'wikiforum-replies' => 'Navigation item leading to replies.
+	'wikiforum-write-thread' => 'Used as link text. This link is used to create a new thread (≒topic).',
+	'wikiforum-replies' => 'Used as column header of threads list. This column indicates number of replies.
 {{Identical|Reply}}',
-	'wikiforum-views' => 'Navigation item leading to views.
+	'wikiforum-views' => 'Used as column header of threads list. This column indicates the number of page views of the thread.
 {{Identical|View}}',
 	'wikiforum-thread' => '{{Identical|Thread}}',
-	'wikiforum-threads' => '{{Identical|Thread}}',
-	'wikiforum-latest-reply' => 'Navigation item leading to latest reply.',
+	'wikiforum-threads' => "Used as column header of forums list. This column indicates the '''number of threads''' in the forum.
+{{Identical|Thread}}",
+	'wikiforum-latest-reply' => 'Used as column header of threads list. This column indicates who/when did the latest reply. See {{msg-mw|Wikiforum-by}}.',
+	'wikiforum-latest-thread' => 'Used as column header of forums list. This column indicates who/when created/edited the latest thread. See {{msg-mw|Wikiforum-by}}.',
 	'wikiforum-forum' => 'Parameters:
 * $1 is a reply count
 * $2 is a view count.',
@@ -166,21 +177,79 @@ $messages['qqq'] = array(
 {{Identical|Overview}}',
 	'wikiforum-pages' => 'Followed by pagination links, like [01] [02] etc.
 {{Identical|Page}}',
+	'wikiforum-thread-closed' => 'Used in closed thread which was closed by {{msg-mw|Wikiforum-close-thread}} feature.',
+	'wikiforum-new-thread' => 'Used as tooltip for "NEW" icon which indicates the thread is new.',
+	'wikiforum-edit-thread' => 'Used as tooltip for button.',
+	'wikiforum-delete-thread' => 'Used as tooltip for button.',
+	'wikiforum-close-thread' => 'Used as tooltip for button.
+* {{msg-mw|Wikiforum-close-thread}}
+* {{msg-mw|Wikiforum-reopen-thread}}',
+	'wikiforum-reopen-thread' => 'Used as tooltip for button.
+* {{msg-mw|Wikiforum-close-thread}}
+* {{msg-mw|Wikiforum-reopen-thread}}',
+	'wikiforum-write-reply' => 'Used as link title.',
+	'wikiforum-edit-reply' => 'Used as tooltip for button',
+	'wikiforum-delete-reply' => 'Used as tooltip for button',
+	'wikiforum-save-thread' => 'Used as Save button text and as its tooltip, in creating thread page.',
+	'wikiforum-save-reply' => 'Used as button text (and its tooltip)',
+	'wikiforum-thread-title' => 'Default title of thread; used in creating new thread page.',
+	'wikiforum-no-threads' => 'Used in threads list when the forum has no available thread.',
 	'wikiforum-posted' => 'Thread header. Parameters:
 * $1 is a timestamp
 * $2 is a username.',
-	'wikiforum-edited' => 'Indicates a thread element has been edited. Parameters:
+	'wikiforum-edited' => 'Indicates a thread (or a reply) has been edited. Parameters:
 * $1 is a timestamp
 * $2 is a username.',
 	'wikiforum-closed-text' => 'Indicates a thread was closed. Parameters:
 * $1 is a timestamp
 * $2 is a username.',
+	'wikiforum-cat-not-found' => 'Used as heading of error message',
 	'wikiforum-cat-not-found-text' => 'Error text requesting a non-existing category. Parameters:
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
+	'wikiforum-forum-not-found' => 'Used as heading of error message',
 	'wikiforum-forum-not-found-text' => 'Error text requesting a non-existing forum. Parameters:
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
-	'wikiforum-thread-not-found-text' => 'Error text requesting a non-existing category. Parameters:
+	'wikiforum-thread-not-found' => 'Used as heading of error message',
+	'wikiforum-thread-not-found-text' => 'Error text requesting a non-existing thread. Parameters:
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
+	'wikiforum-error-thread-reopen' => 'Used as heading of error message',
+	'wikiforum-error-thread-close' => 'Used as heading of error message',
+	'wikiforum-error-general' => 'Used as error message.
+
+For example this error occurs when the user double-clicked "Delete thread" button.',
+	'wikiforum-error-no-rights' => 'Used as error message.',
+	'wikiforum-error-not-found' => 'Used as error message.',
+	'wikiforum-error-no-text-or-title' => 'Used as error message in "creating new thread" page, when title or text is empty.
+
+Note: "Category" version and "Forum" version of this message is missing at this time: [[MediaWiki:Wikiforum-no-text-or-title]].',
+	'wikiforum-error-no-reply' => 'Used as error message in creating a reply, when reply text is empty.',
+	'wikiforum-error-double-post' => 'Used as error message when the user double-clicked "Create thread" button.',
+	'wikiforum-error-thread-closed' => 'Used in closed thread and in threads list, to indicate it was closed by {{msg-mw|Wikiforum-close-thread}} feature.',
+	'wikiforum-error-delete' => 'Used as heading of error message',
+	'wikiforum-error-sticky' => 'Used as heading of error message',
+	'wikiforum-error-move-thread' => 'Used as heading of error message',
+	'wikiforum-error-add' => 'Used as heading of error message',
+	'wikiforum-error-edit' => 'Used as heading of error message',
+	'wikiforum-add-category' => 'Used as link text in categories list page.',
+	'wikiforum-edit-category' => 'Used as tooltip for edit link, and as page heading on edit page',
+	'wikiforum-delete-category' => 'Used as tooltip for button',
+	'wikiforum-add-forum' => 'Used as link text in categories list page and in forums list page.',
+	'wikiforum-edit-forum' => 'Used as tooltip for edit button, and as page heading',
+	'wikiforum-delete-forum' => 'Used as tooltip for button',
+	'wikiforum-sort-up' => 'Used as tooltip for button in categories list and forums list.
+
+This button is used to move a category/forum up.',
+	'wikiforum-sort-down' => 'Used as tooltip for button in categories list and forums list.
+
+This button is used to move a category/forum down.',
+	'wikiforum-remove-sticky' => '* {{msg-mw|Wikiforum-remove-sticky}}
+* {{msg-mw|Wikiforum-make-sticky}}
+See also [[Template:Identical/Sticky]].',
+	'wikiforum-make-sticky' => '* {{msg-mw|Wikiforum-remove-sticky}}
+* {{msg-mw|Wikiforum-make-sticky}}
+See also [[Template:Identical/Sticky]].',
+	'wikiforum-move-thread' => 'Used as link text in reply page.',
+	'wikiforum-quote' => 'Used as tooltip for button',
 	'right-wikiforum-admin' => '{{doc-right|wikiforum-admin}}',
 	'right-wikiforum-moderator' => '{{doc-right|wikiforum-moderator}}',
 	'group-forumadmin' => '{{doc-group|forumadmin}}',
@@ -368,6 +437,139 @@ $messages['az'] = array(
 	'group-forumadmin' => 'Forum idarəçiləri',
 	'group-forumadmin-member' => '{{GENDER:$1|Forum idarəçisi}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forum idarəçiləri',
+);
+
+/** South Azerbaijani (تورکجه)
+ * @author Ebrahimi-amir
+ * @author Mousa
+ */
+$messages['azb'] = array(
+	'wikiforum-desc' => 'مئدیاویکی اوچون اؤزل [[Special:WikiForum|فوروم]] اوزانتی‌سی',
+	'wikiforum' => 'دانیشیق صحیفه‌سی',
+	'wikiforum-anonymous' => 'تانیلمایان',
+	'wikiforum-announcement-only-description' => 'بیلدیریلر فورومو (یالنیز ایداره‌چیلر قونو آرتیرا بیلرلر)',
+	'wikiforum-by' => '$1<br />بونونلا $2',
+	'wikiforum-description' => 'آچیقلاما:',
+	'wikiforum-forum-is-empty' => 'بو فوروم ایندی بوشدور.
+بیر نئچه بؤلمه و فوروم آرتیرماق اوچون لوطفاً بیر فورم ایداره‌چیسی ایله ایلگی قورون.',
+	'wikiforum-forum-name' => '$1 فورومو',
+	'wikiforum-name' => 'آد:',
+	'wikiforum-button-preview' => 'سیناق‌گؤستریش',
+	'wikiforum-preview' => 'سیناق‌گؤستریش',
+	'wikiforum-preview-with-title' => 'سیناق‌‌گؤستریش: $1',
+	'wikiforum-save' => 'قئید ائت',
+	'wikiforum-error-search' => 'آختاریش خطاسی',
+	'wikiforum-error-search-missing-query' => 'آختارماغا گرک بیر یازی وئره‌سینیز!',
+	'wikiforum-search-hits' => '{{PLURAL:$1|بیر|$1}} ووروش تاپیلدی',
+	'wikiforum-search-thread' => 'قونو: $1',
+	'wikiforum-thread-deleted' => 'قونو سیلیندی',
+	'wikiforum-topic-name' => 'فوروم - $1',
+	'wikiforum-updates' => 'یئنی گونجل‌لنمیش فوروملار',
+	'wikiforum-write-thread' => 'یئنی مؤوضو',
+	'wikiforum-replies' => 'جاوابلار',
+	'wikiforum-views' => 'گؤرونوشلر',
+	'wikiforum-thread' => 'قونو',
+	'wikiforum-threads' => 'قونولار',
+	'wikiforum-latest-reply' => 'سون جاواب',
+	'wikiforum-latest-thread' => 'سون قونو',
+	'wikiforum-forum' => 'فوروم: $1 > $2',
+	'wikiforum-overview' => 'گنل باخیش',
+	'wikiforum-pages' => 'صحیفه‌لر:',
+	'wikiforum-thread-closed' => 'قونو باغلانیب‌دیر',
+	'wikiforum-new-thread' => 'یئنی قونو',
+	'wikiforum-edit-thread' => 'قونونو دَییشدیر',
+	'wikiforum-delete-thread' => 'قونونو سیل',
+	'wikiforum-close-thread' => 'قونونو باغلا',
+	'wikiforum-reopen-thread' => 'قونونو یئنی‌دن آچ',
+	'wikiforum-write-reply' => 'بیر جاواب یاز',
+	'wikiforum-edit-reply' => 'جاوابی دَییشدیر',
+	'wikiforum-delete-reply' => 'جاوابی سیل',
+	'wikiforum-save-thread' => 'قونونو قئید ائت',
+	'wikiforum-save-reply' => 'جاوابی قئید ائت',
+	'wikiforum-thread-title' => 'قونونوزون باشلیغی',
+	'wikiforum-no-threads' => 'بو آن‌دا هئچ بیر قونو یوخدور.',
+	'wikiforum-posted' => '$2 ایله $1-ده یول‌لانیب‌دیر',
+	'wikiforum-edited' => '$2 ایله $1-ده دَییشدیریلیب‌دیر',
+	'wikiforum-closed-text' => 'قونو $2 ایله $1-ده باغلانیب‌دیر',
+	'wikiforum-cat-not-found' => 'بؤلمه تاپیلانمادی',
+	'wikiforum-cat-not-found-text' => 'بؤلمه یوخدور - $1-ه قاییت',
+	'wikiforum-forum-not-found' => 'فوروم تاپیلانمادی',
+	'wikiforum-forum-not-found-text' => 'فوروم یوخدور - $1-ه قاییت',
+	'wikiforum-thread-not-found' => 'قونو تاپیلانمادی',
+	'wikiforum-thread-not-found-text' => 'قونو یوخدور یادا قاباقجادان سیلینیب‌دیر - $1-ه قاییت.',
+	'wikiforum-error-thread-reopen' => 'قونونو یئنی‌دن آشماقدا خطا',
+	'wikiforum-error-thread-close' => 'قونونو باغلاماقدا خطا',
+	'wikiforum-error-general' => 'شئی تاپیلانمادی یادا بو ایشی گؤرمگه ایجازه یوخدور.',
+	'wikiforum-error-no-rights' => 'سیزین بو ایشی گؤرمگه ایجازه‌نیز یوخدور.',
+	'wikiforum-error-not-found' => 'شئی تاپیلانمادی.',
+	'wikiforum-error-no-text-or-title' => 'باشلیق یا یازی دوزگون دولدورولمویوب‌دور.',
+	'wikiforum-error-no-reply' => 'جاواب دوزگون دولدورولمویوب‌دور.',
+	'wikiforum-error-double-post' => 'ایکیلی-تیکلاماق قوروماغی: قونو قاباقجادان آرتیریلیب‌دیر.',
+	'wikiforum-error-thread-closed' => 'قونو ایندی باغلانیب‌دیر. اونو یئنی جاواب آرتیرماق ایمکانی یوخدور.',
+	'wikiforum-error-delete' => 'سیلنده خطا',
+	'wikiforum-error-sticky' => 'یاپیشان اؤزل‌لیکلری دَییشدیرنده خطا',
+	'wikiforum-error-move-thread' => 'قونونو آپاراندا خطا',
+	'wikiforum-error-add' => 'آرتیراندا خطا',
+	'wikiforum-error-edit' => 'دَییشدیرنده خطا',
+	'wikiforum-add-category' => 'بؤلمه آرتیر',
+	'wikiforum-edit-category' => 'بؤلمه‌نی دَییشدیر',
+	'wikiforum-delete-category' => 'بؤلمه‌نی سیل',
+	'wikiforum-add-forum' => 'فوروم آرتیر',
+	'wikiforum-edit-forum' => 'فورومو دَییشدیر',
+	'wikiforum-delete-forum' => 'فورومو سیل',
+	'wikiforum-sort-up' => 'یوخاری سیرالا',
+	'wikiforum-sort-down' => 'آشاغی سیرالا',
+	'wikiforum-remove-sticky' => 'یاپیشانی سیل',
+	'wikiforum-make-sticky' => 'یاپیشان دوزلت',
+	'wikiforum-move-thread' => 'قونونو آپار',
+	'wikiforum-paste-thread' => 'قونونو یاپیشتیر',
+	'wikiforum-quote' => 'آلینتی',
+	'right-wikiforum-admin' => '[[Special:WikiForum|دانیشیق صحیفه‌سی]]نده فوروملار و بؤلمه‌لری آرتیر، دَییشدیر ویا سیل',
+	'right-wikiforum-moderator' => '[[Special:WikiForum|دانیشیق صحیفه‌سی]]نده قونولار و جاوابلاری دَییشدیر ویا سیل',
+	'group-forumadmin' => 'فوروم ایداره‌چیلری',
+	'group-forumadmin-member' => '{{GENDER:$1|فوروم ایداره‌چیسی}}',
+	'grouppage-forumadmin' => '{{ns:project}}:فوروم ایداره‌چیلری',
+);
+
+/** Bashkir (башҡортса)
+ * @author Haqmar
+ */
+$messages['ba'] = array(
+	'wikiforum-by' => '$1<br />от $2',
+	'wikiforum-description' => 'Тасуирлама:',
+	'wikiforum-forum-name' => 'Форум $1',
+	'wikiforum-name' => 'Исем:',
+	'wikiforum-button-preview' => 'Алдан байҡау',
+	'wikiforum-preview' => 'Алдан байҡау',
+	'wikiforum-preview-with-title' => 'Алдан байҡау: $1',
+	'wikiforum-save' => 'Һаҡларға',
+	'wikiforum-error-search' => 'Эҙләү хатаһы',
+	'wikiforum-search-thread' => 'Тармаҡ: $1',
+	'wikiforum-thread-deleted' => 'тармаҡ юйылды',
+	'wikiforum-topic-name' => 'Форум - $1',
+	'wikiforum-write-thread' => 'Яңы тема',
+	'wikiforum-replies' => 'Яуаптар',
+	'wikiforum-views' => 'Ҡарауҙар',
+	'wikiforum-thread' => 'Тармаҡ',
+	'wikiforum-threads' => 'Тармаҡтар',
+	'wikiforum-latest-reply' => 'Һуңғы яуап',
+	'wikiforum-latest-thread' => 'Һуңғы тармаҡ',
+	'wikiforum-forum' => 'Форум: $1 > $2',
+	'wikiforum-overview' => 'Байҡау',
+	'wikiforum-pages' => 'Биттәр:',
+	'wikiforum-thread-closed' => 'Тармаҡ ябыҡ',
+	'wikiforum-new-thread' => 'Яңы тармаҡ',
+	'wikiforum-edit-thread' => 'Тармаҡты мөхәррирләргә',
+	'wikiforum-delete-thread' => 'Тармаҡты юйырға',
+	'wikiforum-close-thread' => 'Тармаҡты ябырға',
+	'wikiforum-reopen-thread' => 'Тармаҡты яңынана асырға',
+	'wikiforum-write-reply' => 'Яуапларға',
+	'wikiforum-edit-reply' => 'Яуапты мөхәррирләргә',
+	'wikiforum-delete-reply' => 'Яуапты юйырға',
+	'wikiforum-save-thread' => 'Тармаҡты һаҡларға',
+	'wikiforum-save-reply' => 'Яуапты һаҡларға',
+	'wikiforum-thread-title' => 'Һеҙҙең тармаҡ исеме',
+	'wikiforum-posted' => '$1 - $2 ҡатнашыусыһы ҡүйҙы',
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -1535,6 +1737,7 @@ $messages['ja'] = array(
 	'wikiforum-desc' => 'MediaWiki 用[[Special:WikiForum|フォーラム]]の拡張機能',
 	'wikiforum' => '議論ボード',
 	'wikiforum-anonymous' => '匿名',
+	'wikiforum-by' => '$1<br />投稿者 $2',
 	'wikiforum-description' => '説明:',
 	'wikiforum-forum-is-empty' => '現在、このフォーラムは空です。
 フォーラム管理者に連絡して、カテゴリやフォーラムを追加してもらってください。',
@@ -1545,46 +1748,64 @@ $messages['ja'] = array(
 	'wikiforum-preview-with-title' => 'プレビュー: $1',
 	'wikiforum-save' => '保存',
 	'wikiforum-error-search' => '検索エラー',
-	'wikiforum-error-search-missing-query' => '検索語を指定する必要があります！',
+	'wikiforum-error-search-missing-query' => '検索語を指定してください!',
 	'wikiforum-search-hits' => '{{PLURAL:$1|$1 件}}見つかりました',
 	'wikiforum-search-thread' => 'スレッド: $1',
 	'wikiforum-topic-name' => 'フォーラム - $1',
 	'wikiforum-updates' => '最近更新されたフォーラム',
-	'wikiforum-replies' => '返信',
+	'wikiforum-write-thread' => '新規スレッド',
+	'wikiforum-replies' => '返信数',
+	'wikiforum-views' => '閲覧回数',
 	'wikiforum-thread' => 'スレッド',
-	'wikiforum-threads' => 'スレッド',
+	'wikiforum-threads' => 'スレッド数',
 	'wikiforum-latest-reply' => '最新の返信',
 	'wikiforum-latest-thread' => '最新のスレッド',
 	'wikiforum-forum' => 'フォーラム: $1 > $2',
 	'wikiforum-overview' => '概要',
 	'wikiforum-pages' => 'ページ:',
+	'wikiforum-thread-closed' => '閉じられたスレッド',
 	'wikiforum-new-thread' => '新しいスレッド',
 	'wikiforum-edit-thread' => 'スレッドを編集',
 	'wikiforum-delete-thread' => 'スレッドを削除',
 	'wikiforum-close-thread' => 'スレッドを閉じる',
+	'wikiforum-reopen-thread' => 'スレッドを再開する',
 	'wikiforum-write-reply' => '返信を書く',
 	'wikiforum-edit-reply' => '返信を編集',
 	'wikiforum-delete-reply' => '返信を削除',
 	'wikiforum-save-thread' => 'スレッドを保存',
 	'wikiforum-save-reply' => '返信を保存',
+	'wikiforum-no-threads' => '利用できるスレッドは現在ありません。',
 	'wikiforum-posted' => '$2 が $1 に投稿',
 	'wikiforum-edited' => '$2 が $1 に編集',
+	'wikiforum-closed-text' => 'スレッドは $1 に $2 によって閉じられました。',
 	'wikiforum-cat-not-found' => 'カテゴリが見つかりません',
 	'wikiforum-cat-not-found-text' => 'カテゴリは存在しません。$1に戻ってください。',
 	'wikiforum-forum-not-found' => 'フォーラムが見つかりません',
 	'wikiforum-forum-not-found-text' => 'フォーラムは存在しません。$1に戻ってください。',
 	'wikiforum-thread-not-found' => 'スレッドが見つかりません',
+	'wikiforum-thread-not-found-text' => 'スレッドは存在しない、または既に削除されました。$1に戻ります。',
+	'wikiforum-error-thread-reopen' => 'スレッドを再開する際のエラー',
+	'wikiforum-error-thread-close' => 'スレッドを閉じる際のエラー',
+	'wikiforum-error-general' => 'オブジェクトが見つからない、またはこの操作を実行する権限がありません。',
+	'wikiforum-error-no-rights' => 'あなたにはこの操作を実行する権限がありません。',
 	'wikiforum-error-not-found' => 'オブジェクトが見つかりません。',
-	'wikiforum-error-delete' => '削除中にエラーが発生しました',
-	'wikiforum-error-move-thread' => 'スレッドの移動中にエラーが発生しました',
-	'wikiforum-error-add' => '追加中にエラーが発生しました',
-	'wikiforum-error-edit' => '編集中にエラーが発生しました',
+	'wikiforum-error-double-post' => 'ダブルクリック対策機能: スレッドは追加済みです。',
+	'wikiforum-error-thread-closed' => '現在閉じられているスレッドです。ここでは新たな返信はできません。',
+	'wikiforum-error-delete' => '削除する際のエラー',
+	'wikiforum-error-sticky' => '先頭表示の属性を変更する際のエラー',
+	'wikiforum-error-move-thread' => 'スレッドを移動する際のエラー',
+	'wikiforum-error-add' => '追加する際のエラー',
+	'wikiforum-error-edit' => '編集する際のエラー',
 	'wikiforum-add-category' => 'カテゴリを追加',
 	'wikiforum-edit-category' => 'カテゴリを編集',
 	'wikiforum-delete-category' => 'カテゴリを削除',
 	'wikiforum-add-forum' => 'フォーラムを追加',
 	'wikiforum-edit-forum' => 'フォーラムを編集',
 	'wikiforum-delete-forum' => 'フォーラムを削除',
+	'wikiforum-sort-up' => '上に移動',
+	'wikiforum-sort-down' => '下に移動',
+	'wikiforum-remove-sticky' => '先頭表示を解除',
+	'wikiforum-make-sticky' => '常に先頭に表示',
 	'wikiforum-move-thread' => 'スレッドを移動',
 	'wikiforum-paste-thread' => 'スレッドを貼り付け',
 	'wikiforum-quote' => '引用',
