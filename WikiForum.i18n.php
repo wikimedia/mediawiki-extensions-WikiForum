@@ -1907,6 +1907,19 @@ $messages['ko'] = array(
  */
 $messages['ksh'] = array(
 	'wikiforum-desc' => 'Määd_e [[Special:WikiForum|Forum]] em Wiki müjjelesch.',
+	'wikiforum-name' => 'Der Naame:',
+	'wikiforum-thread' => 'Jeschprääschßfäddem',
+	'wikiforum-threads' => '{{int:Wikiforum-thread}}e',
+	'wikiforum-pages' => 'Sigge:',
+	'wikiforum-thread-closed' => 'Dä {{int:Wikiforum-thread}} es zohjemaat',
+	'wikiforum-new-thread' => 'Ene neue {{int:Wikiforum-thread}}',
+	'wikiforum-edit-thread' => 'Dä {{int:Wikiforum-thread}} ändere',
+	'wikiforum-delete-thread' => 'Dä {{int:Wikiforum-thread}} fottschmiiße',
+	'wikiforum-close-thread' => 'Dä {{int:Wikiforum-thread}} zohmaache',
+	'wikiforum-reopen-thread' => 'Dä {{int:Wikiforum-thread}} wider op maache',
+	'wikiforum-save-thread' => 'Dä {{int:Wikiforum-thread}} faßhallde',
+	'wikiforum-thread-title' => 'Dä Tittel för Dinge {{int:Wikiforum-thread}}',
+	'wikiforum-no-threads' => 'Mer han kein {{int:Wikiforum-threads}} em Momang',
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
