@@ -67,7 +67,6 @@ Please contact a forum administrator to have some categories and forums added.',
 
 	'wikiforum-posted' => 'Posted at $1 by {{GENDER:$3|$2}}',
 	'wikiforum-edited' => 'Edited at $1 by {{GENDER:$3|$2}}',
-	'wikiforum-closed-text' => 'Thread was closed at $1 by $2',
 
 	'wikiforum-cat-not-found' => 'Category not found',
 	'wikiforum-cat-not-found-text' => 'Category does not exist - go back to $1',
