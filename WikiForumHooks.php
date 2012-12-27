@@ -204,11 +204,12 @@ class WikiForumHooks {
 				);
 				if ( $overview->wft_edit_timestamp > 0 ) {
 					$posted .= '<br /><i>' .
-						wfMsg(
+						wfMessage(
 							'wikiforum-edited',
 							$wgLang->timeanddate( $overview->wft_edit_timestamp ),
-							WikiForumClass::getUserLinkById( $overview->wft_edit_user )
-						) . '</i>';
+							WikiForumClass::getUserLinkById( $overview->wft_edit_user ),
+							User::newFromId( $overview->wft_edit_user )->getName()
+						)->text() . '</i>';
 				}
 
 				$output = WikiForumGui::getHeaderRow(
@@ -249,11 +250,12 @@ class WikiForumHooks {
 						);
 						if ( $reply->wfr_edit > 0 ) {
 							$posted .= '<br /><i>' .
-								wfMsg(
+								wfMessage(
 									'wikiforum-edited',
 									$wgLang->timeanddate( $reply->wfr_edit ),
-									WikiForumClass::getUserLinkById( $reply->wfr_edit_user )
-								) . '</i>';
+									WikiForumClass::getUserLinkById( $reply->wfr_edit_user ),
+									User::newFromId( $reply->wfr_edit_user )->getName()
+								)->text() . '</i>';
 						}
 						$output .= WikiForumGui::getReply(
 							$wgOut->parse( WikiForum::deleteTags( $reply->wfr_reply_text ) ),

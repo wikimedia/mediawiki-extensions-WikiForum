@@ -1639,11 +1639,12 @@ class WikiForumClass {
 			);
 			if ( $data_overview->wft_edit_timestamp > 0 ) {
 				$posted .= '<br /><i>' .
-					wfMsg(
+					wfMessage(
 						'wikiforum-edited',
 						$wgLang->timeanddate( $data_overview->wft_edit_timestamp ),
-						WikiForumClass::getUserLinkById( $data_overview->wft_edit_user )
-					) . '</i>';
+						WikiForumClass::getUserLinkById( $data_overview->wft_edit_user ),
+						User::newFromId( $data_overview->wft_edit_user )->getName()
+					)->text() . '</i>';
 			}
 
 			$output .= WikiForumGui::getSearchbox();
@@ -1683,11 +1684,12 @@ class WikiForumClass {
 				);
 				if ( $reply->wfr_edit_timestamp > 0 ) {
 					$posted .= '<br /><i>' .
-						wfMsg(
+						wfMessage(
 							'wikiforum-edited',
 							$wgLang->timeanddate( $reply->wfr_edit_timestamp ),
-							WikiForumClass::getUserLinkById( $reply->wfr_edit_user )
-						) . '</i>';
+							WikiForumClass::getUserLinkById( $reply->wfr_edit_user ),
+							User::newFromId( $reply->wfr_edit_user )->getName()
+						)->text() . '</i>';
 				}
 
 				$output .= WikiForumGui::getReply(
