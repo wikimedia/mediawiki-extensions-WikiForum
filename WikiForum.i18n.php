@@ -23,7 +23,7 @@ $messages['en'] = array(
 
 	'wikiforum-anonymous' => 'Anonymous',
 	'wikiforum-announcement-only-description' => 'Announcement forum (only moderators can add threads)',
-	'wikiforum-by' => '$1<br />by $2',
+	'wikiforum-by' => '$1<br />by {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Description:',
 	'wikiforum-forum-is-empty' => 'This forum is currently empty.
 Please contact a forum administrator to have some categories and forums added.',
@@ -65,7 +65,7 @@ Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-thread-title' => 'Title of your thread',
 	'wikiforum-no-threads' => 'No threads are available at the moment.',
 
-	'wikiforum-posted' => 'Posted at $1 by $2',
+	'wikiforum-posted' => 'Posted at $1 by {{GENDER:$3|$2}}',
 	'wikiforum-edited' => 'Edited at $1 by {{GENDER:$3|$2}}',
 	'wikiforum-closed-text' => 'Thread was closed at $1 by $2',
 

@@ -113,11 +113,12 @@ class WikiForumHooks {
 			// If there are some replies, then we can obviously figure out who was
 			// the last user who posted something on the topic...
 			if ( $thread->wft_reply_count > 0 ) {
-				$lastpost = wfMsg(
+				$lastpost = wfMessage(
 					'wikiforum-by',
 					$wgLang->timeanddate( $thread->wft_last_post_timestamp ),
-					WikiForumClass::getUserLinkById( $thread->wft_last_post_user )
-				);
+					WikiForumClass::getUserLinkById( $thread->wft_last_post_user ),
+					User::newFromId( $thread->wft_last_post_user )->getName()
+				)->text();
 			}
 
 			$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
@@ -144,11 +145,12 @@ class WikiForumHooks {
 			$output .= WikiForumGui::getMainBody(
 				'<p class="mw-wikiforum-thread">' . $icon . $threadLink .
 				'<p class="mw-wikiforum-descr" style="border-top: 0;">' .
-				wfMsg(
+				wfMessage(
 					'wikiforum-posted',
 					$wgLang->timeanddate( $thread->wft_posted_timestamp ),
-					WikiForumClass::getUserLink( $thread->user_name )
-				) . '<br />' .
+					WikiForumClass::getUserLink( $thread->user_name ),
+					$thread->user_name
+				)->text() . '<br />' .
 				wfMsgHtml( 'wikiforum-forum', $categoryLink, $forumLink ) .
 				'</p></p>',
 				$thread->wft_reply_count,
@@ -197,11 +199,12 @@ class WikiForumHooks {
 			$overview = $dbr->fetchObject( $sqlThreads );
 
 			if ( $overview ) {
-				$posted = wfMsg(
+				$posted = wfMessage(
 					'wikiforum-posted',
 					$wgLang->timeanddate( $overview->wft_posted_timestamp ),
-					WikiForumClass::getUserLink( $overview->user_name )
-				);
+					WikiForumClass::getUserLink( $overview->user_name ),
+					$overview->user_name
+				)->text();
 				if ( $overview->wft_edit_timestamp > 0 ) {
 					$posted .= '<br /><i>' .
 						wfMessage(
@@ -243,11 +246,12 @@ class WikiForumHooks {
 					);
 
 					foreach ( $replies as $reply ) {
-						$posted = wfMsg(
+						$posted = wfMessage(
 							'wikiforum-posted',
 							$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
-							WikiForumClass::getUserLink( $reply->user_name )
-						);
+							WikiForumClass::getUserLink( $reply->user_name ),
+							$reply->user_name
+						)->text();
 						if ( $reply->wfr_edit > 0 ) {
 							$posted .= '<br /><i>' .
 								wfMessage(

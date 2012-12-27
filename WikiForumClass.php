@@ -1188,11 +1188,12 @@ class WikiForumClass {
 
 				$last_post = '';
 				if ( $forum->wff_last_post_timestamp > 0 ) {
-					$last_post = wfMsg(
+					$last_post = wfMessage(
 						'wikiforum-by',
 						$wgLang->timeanddate( $forum->wff_last_post_timestamp ),
-						WikiForumClass::getUserLink( $forum->user_name )
-					);
+						WikiForumClass::getUserLink( $forum->user_name ),
+						$forum->user_name
+					)->text();
 				}
 
 				$output .= WikiForumGui::getMainBody(
@@ -1291,11 +1292,12 @@ class WikiForumClass {
 				// This message will be shown only when there is one reply or
 				// more
 				if ( $forum->wff_last_post_timestamp > 0 ) {
-					$last_post = wfMsg(
+					$last_post = wfMessage(
 						'wikiforum-by',
 						$wgLang->timeanddate( $forum->wff_last_post_timestamp ),
-						WikiForumClass::getUserLink( $forum->user_name )
-					);
+						WikiForumClass::getUserLink( $forum->user_name ),
+						$forum->user_name
+					)->text();
 				}
 
 				$output .= WikiForumGui::getMainBody(
@@ -1453,11 +1455,12 @@ class WikiForumClass {
 
 				$last_post = '';
 				if ( $thread->wft_reply_count > 0 ) {
-					$last_post = wfMsg(
+					$last_post = wfMessage(
 						'wikiforum-by',
 						$wgLang->timeanddate( $thread->wft_last_post_timestamp ),
-						WikiForumClass::getUserLinkById( $thread->wft_last_post_user )
-					);
+						WikiForumClass::getUserLinkById( $thread->wft_last_post_user ),
+						User::newFromId( $thread->wft_last_post_user )->getName()
+					)->text();
 				}
 
 				if ( $thread->wft_sticky == true ) {
@@ -1471,11 +1474,12 @@ class WikiForumClass {
 						'<a href="' . $specialPage->escapeFullURL( array( 'thread' => $thread->wft_thread ) ) . '">' .
 							htmlspecialchars( $thread->wft_thread_name ) . '</a>
 					<p class="mw-wikiforum-descr">' .
-						wfMsg(
+						wfMessage(
 							'wikiforum-posted',
 							$wgLang->timeanddate( $thread->wft_posted_timestamp ),
-							WikiForumClass::getUserLink( $thread->user_name )
-						) . '</p></p>',
+							WikiForumClass::getUserLink( $thread->user_name ),
+							$thread->user_name
+						)->text() . '</p></p>',
 					$thread->wft_reply_count,
 					$thread->wft_view_count,
 					$last_post,
@@ -1632,11 +1636,12 @@ class WikiForumClass {
 					wfMsg( 'wikiforum-write-reply' ) . '</a>';
 			}
 
-			$posted = wfMsg(
+			$posted = wfMessage(
 				'wikiforum-posted',
 				$wgLang->timeanddate( $data_overview->wft_posted_timestamp ),
-				WikiForumClass::getUserLink( $data_overview->user_name )
-			);
+				WikiForumClass::getUserLink( $data_overview->user_name ),
+				$data_overview->user_name
+			)->text();
 			if ( $data_overview->wft_edit_timestamp > 0 ) {
 				$posted .= '<br /><i>' .
 					wfMessage(
@@ -1677,11 +1682,12 @@ class WikiForumClass {
 					$data_overview->wft_closed
 				);
 
-				$posted = wfMsg(
+				$posted = wfMessage(
 					'wikiforum-posted',
 					$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
-					WikiForumClass::getUserLink( $reply->user_name )
-				);
+					WikiForumClass::getUserLink( $reply->user_name ),
+					$reply->user_name
+				)->text();
 				if ( $reply->wfr_edit_timestamp > 0 ) {
 					$posted .= '<br /><i>' .
 						wfMessage(
@@ -1808,11 +1814,12 @@ class WikiForumClass {
 
 				$url = $specialPage->escapeFullURL( array( 'thread' => $result->wft_thread ) );
 
-				$posted = wfMsg(
+				$posted = wfMessage(
 					'wikiforum-posted',
 					$wgLang->timeanddate( $result->wfr_posted_timestamp ),
-					$this->getUserLinkById( $result->wfr_user )
-				) . '<br />' . wfMsg(
+					$this->getUserLinkById( $result->wfr_user ),
+					User::newFromId( $result->wfr_user )->getName()
+				)->text() . '<br />' . wfMsg(
 						'wikiforum-search-thread',
 						'<a href="' . $url . $anchor . '">' .
 							$result->wft_thread_name .
@@ -1853,11 +1860,12 @@ class WikiForumClass {
 		if ( $previewTitle ) {
 			$title = wfMsg( 'wikiforum-preview-with-title', $previewTitle );
 		}
-		$posted = wfMsg(
+		$posted = wfMessage(
 			'wikiforum-posted',
 			$wgLang->timeanddate( wfTimestampNow() ),
-			$this->getUserLinkById( $wgUser->getId() )
-		);
+			$this->getUserLinkById( $wgUser->getId() ),
+			$wgUser->getName()
+		)->text();
 		if ( $type == 'addcomment' || $type == 'editcomment' ) {
 			$output .= WikiForumGui::getReplyHeader( $title );
 			$output .= WikiForumGui::getReply(
@@ -2075,7 +2083,7 @@ class WikiForumClass {
 					array( 'user' => array( 'LEFT JOIN', 'user_id = wfr_user' ) )
 				) );
 				if ( $reply ) {
-					$posted = wfMsg(
+					$posted = wfMessage(
 						'wikiforum-posted',
 						$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
 						// Jack: removed this here to make quoting work
@@ -2084,8 +2092,9 @@ class WikiForumClass {
 						// <a href="/wiki/User:Bar" title="Bar">Bar</a> (
 						// <a href="/wiki/Project:Administrators">administrator</a>)
 						// which is *not* what we want
-						/*$this->getUserLink(*/ $reply->user_name /*)*/
-					);
+						/*$this->getUserLink(*/ $reply->user_name, /*)*/
+						$reply->user_name
+					)->text();
 					$text_prev = '[quote=' . $posted . ']' .
 						$reply->wfr_reply_text . '[/quote]';
 				}
@@ -2099,12 +2108,13 @@ class WikiForumClass {
 					array( 'user' => array( 'LEFT JOIN', 'user_id = wft_user' ) )
 				);
 				if ( $thread ) {
-					$posted = wfMsg(
+					$posted = wfMessage(
 						'wikiforum-posted',
 						$wgLang->timeanddate( $thread->wft_posted_timestamp ),
 						// see the explanation above
-						/*$this->getUserLink(*/ $thread->user_name /*)*/
-					);
+						/*$this->getUserLink(*/ $thread->user_name, /*)*/
+						$thread->user_name
+					)->text();
 					$text_prev = '[quote=' . $posted . ']' .
 						$thread->wft_text . '[/quote]';
 				}
