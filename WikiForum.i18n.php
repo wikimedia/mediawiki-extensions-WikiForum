@@ -136,7 +136,8 @@ $messages['qqq'] = array(
 	'wikiforum-announcement-only-description' => 'Used as label for checkbox in adding forum page.',
 	'wikiforum-by' => 'Forum post properties. Parameters:
 * $1 is a timestamp (time and date)
-* $2 is a username',
+* $2 is a link to a user page with username as link description.
+* $3 is a plain text username used for GENDER.',
 	'wikiforum-description' => 'Used as label for "forum description" input box.
 {{Identical|Description}}',
 	'wikiforum-forum-is-empty' => 'Used in [[Special:WikiForum]] when there are no categories/forums/threads.
@@ -195,13 +196,12 @@ The former "This forum" stands for overall WikiForum feature, the latter "forums
 	'wikiforum-no-threads' => 'Used in threads list when the forum has no available thread.',
 	'wikiforum-posted' => 'Thread header. Parameters:
 * $1 is a timestamp
-* $2 is a username.',
+* $2 is a link to a user page with username as link description.
+* $3 is a plain text username used for GENDER.',
 	'wikiforum-edited' => 'Indicates a thread (or a reply) has been edited. Parameters:
 * $1 is a timestamp
-* $2 is a username.',
-	'wikiforum-closed-text' => 'Indicates a thread was closed. Parameters:
-* $1 is a timestamp
-* $2 is a username.',
+* $2 is a link to a user page with username as link description.
+* $3 is a plain text username used for GENDER.',
 	'wikiforum-cat-not-found' => 'Used as heading of error message',
 	'wikiforum-cat-not-found-text' => 'Error text requesting a non-existing category. Parameters:
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
@@ -447,7 +447,7 @@ $messages['azb'] = array(
 	'wikiforum' => 'دانیشیق صحیفه‌سی',
 	'wikiforum-anonymous' => 'تانیلمایان',
 	'wikiforum-announcement-only-description' => 'بیلدیریلر فورومو (یالنیز ایداره‌چیلر قونو آرتیرا بیلرلر)',
-	'wikiforum-by' => '$1<br />بونونلا $2',
+	'wikiforum-by' => '$1<br />بونونلا $2', # Fuzzy
 	'wikiforum-description' => 'آچیقلاما:',
 	'wikiforum-forum-is-empty' => 'بو فوروم ایندی بوشدور.
 بیر نئچه بؤلمه و فوروم آرتیرماق اوچون لوطفاً بیر فورم ایداره‌چیسی ایله ایلگی قورون.',
@@ -487,9 +487,8 @@ $messages['azb'] = array(
 	'wikiforum-save-reply' => 'جاوابی قئید ائت',
 	'wikiforum-thread-title' => 'قونونوزون باشلیغی',
 	'wikiforum-no-threads' => 'بو آن‌دا هئچ بیر قونو یوخدور.',
-	'wikiforum-posted' => '$2 ایله $1-ده یول‌لانیب‌دیر',
-	'wikiforum-edited' => '$2 ایله $1-ده دَییشدیریلیب‌دیر',
-	'wikiforum-closed-text' => 'قونو $2 ایله $1-ده باغلانیب‌دیر',
+	'wikiforum-posted' => '$2 ایله $1-ده یول‌لانیب‌دیر', # Fuzzy
+	'wikiforum-edited' => '$2 ایله $1-ده دَییشدیریلیب‌دیر', # Fuzzy
 	'wikiforum-cat-not-found' => 'بؤلمه تاپیلانمادی',
 	'wikiforum-cat-not-found-text' => 'بؤلمه یوخدور - $1-ه قاییت',
 	'wikiforum-forum-not-found' => 'فوروم تاپیلانمادی',
@@ -534,7 +533,7 @@ $messages['azb'] = array(
  * @author Haqmar
  */
 $messages['ba'] = array(
-	'wikiforum-by' => '$1<br />от $2',
+	'wikiforum-by' => '$1<br />от $2', # Fuzzy
 	'wikiforum-description' => 'Тасуирлама:',
 	'wikiforum-forum-name' => 'Форум $1',
 	'wikiforum-name' => 'Исем:',
@@ -568,7 +567,7 @@ $messages['ba'] = array(
 	'wikiforum-save-thread' => 'Тармаҡты һаҡларға',
 	'wikiforum-save-reply' => 'Яуапты һаҡларға',
 	'wikiforum-thread-title' => 'Һеҙҙең тармаҡ исеме',
-	'wikiforum-posted' => '$1 - $2 ҡатнашыусыһы ҡүйҙы',
+	'wikiforum-posted' => '$1 - $2 ҡатнашыусыһы ҡүйҙы', # Fuzzy
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -762,13 +761,14 @@ $messages['ca'] = array(
 
 /** German (Deutsch)
  * @author Kghbln
+ * @author Metalhead64
  */
 $messages['de'] = array(
 	'wikiforum-desc' => 'Ermöglicht ein [[Special:WikiForum|Forum]]',
 	'wikiforum' => 'Forum',
 	'wikiforum-anonymous' => 'Anonymer',
 	'wikiforum-announcement-only-description' => 'Forumsankündigungen (nur Moderatoren können Themen hinzufügen)',
-	'wikiforum-by' => '$1<br />von $2',
+	'wikiforum-by' => '$1<br />von {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beschreibung:',
 	'wikiforum-forum-is-empty' => 'Dieses Forum ist derzeit leer.
 Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontaktieren.',
@@ -808,9 +808,8 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'wikiforum-save-reply' => 'Antwort speichern',
 	'wikiforum-thread-title' => 'Titel deines Themas',
 	'wikiforum-no-threads' => 'Derzeit gibt es keine Themen.',
-	'wikiforum-posted' => 'Verfasst am $1 von $2',
-	'wikiforum-edited' => 'Bearbeitet am $1 von $2',
-	'wikiforum-closed-text' => 'Das Thema wurde am $1 von $2 geschlossen.',
+	'wikiforum-posted' => 'Verfasst am $1 von {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Bearbeitet am $1 von {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Die Kategorie wurde nicht gefunden.',
 	'wikiforum-cat-not-found-text' => 'Die Kategorie ist nicht vorhanden - bitte zu $1 zurückkehren.',
 	'wikiforum-forum-not-found' => 'Das Forum wurde nicht gefunden.',
@@ -1143,7 +1142,7 @@ $messages['fr'] = array(
 	'wikiforum' => 'Forum de discussion',
 	'wikiforum-anonymous' => 'Anonyme',
 	'wikiforum-announcement-only-description' => 'Annonce du forum (seuls les modérateurs peuvent ajouter des fils de discussion)',
-	'wikiforum-by' => '$1<br />par $2',
+	'wikiforum-by' => '$1<br />par {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Description :',
 	'wikiforum-forum-is-empty' => "Ce forum est actuellement vide.<br />Veuillez contacter un administrateur du forum pour qu'il ajoute certaines catégories et forums.",
 	'wikiforum-forum-name' => 'Forum $1',
@@ -1182,9 +1181,8 @@ $messages['fr'] = array(
 	'wikiforum-save-reply' => 'Enregistrer la réponse',
 	'wikiforum-thread-title' => 'Titre de votre fil de discussion',
 	'wikiforum-no-threads' => "Aucun fil de discussion n'est disponible à cet instant.",
-	'wikiforum-posted' => 'Posté à $1 par $2',
-	'wikiforum-edited' => 'Modifié à $1 par $2',
-	'wikiforum-closed-text' => 'Le fil de discussion a été fermé à $1 par $2',
+	'wikiforum-posted' => 'Posté à $1 par {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Modifié à $1 par {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Catégorie non trouvée',
 	'wikiforum-cat-not-found-text' => "La catégorie n'existe pas - revenir à $1",
 	'wikiforum-forum-not-found' => 'Forum introuvable',
@@ -1325,7 +1323,7 @@ $messages['gl'] = array(
 	'wikiforum' => 'Foro de conversa',
 	'wikiforum-anonymous' => 'Anónimo',
 	'wikiforum-announcement-only-description' => 'Foro de anuncios (só os moderadores poden engadir fíos)',
-	'wikiforum-by' => '$1<br />por $2',
+	'wikiforum-by' => '$1<br />por {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrición:',
 	'wikiforum-forum-is-empty' => 'Este foro está baleiro.
 Póñase en contacto cun dos administradores do foro para engadir algunhas categorías e foros.',
@@ -1365,9 +1363,8 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'wikiforum-save-reply' => 'Gardar a resposta',
 	'wikiforum-thread-title' => 'Título do seu fío',
 	'wikiforum-no-threads' => 'Non hai fíos dispoñibles nestes intres.',
-	'wikiforum-posted' => 'Publicado o $1 por $2',
-	'wikiforum-edited' => 'Editado o $1 por $2',
-	'wikiforum-closed-text' => 'O fío foi pechado o $1 por $2',
+	'wikiforum-posted' => 'Publicado o $1 por {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Editado o $1 por {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Non se atopou a categoría',
 	'wikiforum-cat-not-found-text' => 'A categoría non existe; volver a $1',
 	'wikiforum-forum-not-found' => 'Non se atopou o foro',
@@ -1736,7 +1733,7 @@ $messages['ja'] = array(
 	'wikiforum-desc' => 'MediaWiki 用[[Special:WikiForum|フォーラム]]の拡張機能',
 	'wikiforum' => '議論ボード',
 	'wikiforum-anonymous' => '匿名',
-	'wikiforum-by' => '$1<br />投稿者 $2',
+	'wikiforum-by' => '$1<br />投稿者 {{GENDER:$3|$2}}',
 	'wikiforum-description' => '説明:',
 	'wikiforum-forum-is-empty' => '現在、このフォーラムは空です。
 フォーラム管理者に連絡して、カテゴリやフォーラムを追加してもらってください。',
@@ -1774,9 +1771,8 @@ $messages['ja'] = array(
 	'wikiforum-save-thread' => 'スレッドを保存',
 	'wikiforum-save-reply' => '返信を保存',
 	'wikiforum-no-threads' => '利用できるスレッドは現在ありません。',
-	'wikiforum-posted' => '$2 が $1 に投稿',
-	'wikiforum-edited' => '$2 が $1 に編集',
-	'wikiforum-closed-text' => 'スレッドは $1 に $2 によって閉じられました。',
+	'wikiforum-posted' => '{{GENDER:$3|$2}} が $1 に投稿',
+	'wikiforum-edited' => '{{GENDER:$3|$2}} が $1 に編集',
 	'wikiforum-cat-not-found' => 'カテゴリが見つかりません',
 	'wikiforum-cat-not-found-text' => 'カテゴリは存在しません。$1に戻ってください。',
 	'wikiforum-forum-not-found' => 'フォーラムが見つかりません',
@@ -2062,7 +2058,7 @@ $messages['mk'] = array(
 	'wikiforum' => 'Форум',
 	'wikiforum-anonymous' => 'Анонимно',
 	'wikiforum-announcement-only-description' => 'Форум за известувања (теми можат да додаваат само модераторите)',
-	'wikiforum-by' => '$1<br />од $2',
+	'wikiforum-by' => '$1<br />од {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Опис:',
 	'wikiforum-forum-is-empty' => 'Форумов е моментално празен.
 Побарајте од администраторот да додаде категории.',
@@ -2102,9 +2098,8 @@ $messages['mk'] = array(
 	'wikiforum-save-reply' => 'Зачувај одговор',
 	'wikiforum-thread-title' => 'Наслов на темата',
 	'wikiforum-no-threads' => 'Моментално нема расположиви теми.',
-	'wikiforum-posted' => 'Објавено во $1 од $2',
-	'wikiforum-edited' => 'Уредено во $1 од $2',
-	'wikiforum-closed-text' => 'Темата е затворена во $1 од $2',
+	'wikiforum-posted' => 'Објавено во $1 од {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Уредено во $1 од {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Категоријата не е пронајдена.',
 	'wikiforum-cat-not-found-text' => 'Категоријата не постои - назад на $1',
 	'wikiforum-forum-not-found' => 'Форумот не е пронајден',
@@ -2249,7 +2244,7 @@ $messages['nl'] = array(
 	'wikiforum' => 'Overlegplaats',
 	'wikiforum-anonymous' => 'Anoniem',
 	'wikiforum-announcement-only-description' => 'Aankondigingenforum (alleen forummoderatoren kunnen nieuwe berichten plaatsen)',
-	'wikiforum-by' => '$1<br />door $2',
+	'wikiforum-by' => '$1<br />door {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beschrijving:',
 	'wikiforum-forum-is-empty' => 'Dit forum is op het moment leeg. 
 Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.',
@@ -2289,9 +2284,8 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'wikiforum-save-reply' => 'Reactie opslaan',
 	'wikiforum-thread-title' => 'Onderwerp van uw bericht',
 	'wikiforum-no-threads' => 'Er zijn op het moment geen onderwerpen beschikbaar.',
-	'wikiforum-posted' => 'Geplaatst op $1 door $2',
-	'wikiforum-edited' => 'Bewerkt op $1 door $2',
-	'wikiforum-closed-text' => 'Onderwerp is gesloten op $1 door $2',
+	'wikiforum-posted' => 'Geplaatst op $1 door {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Bewerkt op $1 door {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Categorie niet gevonden',
 	'wikiforum-cat-not-found-text' => 'Categorie bestaat niet - terug naar $1',
 	'wikiforum-forum-not-found' => 'Forum niet gevonden',
@@ -2447,7 +2441,7 @@ $messages['pms'] = array(
 	'wikiforum' => 'Tàula ëd discussion',
 	'wikiforum-anonymous' => 'Anònim',
 	'wikiforum-announcement-only-description' => 'Forum ëd neuve (mach ij moderator a peulo gionté discussion)',
-	'wikiforum-by' => '$1<br />da $2',
+	'wikiforum-by' => '$1<br />da {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrission:',
 	'wikiforum-forum-is-empty' => "Sto forum a l'é al moment veuid.
 Për piasì contata n'aministrador dël forum për avèj giontà quaich categorìe e forum.",
@@ -2487,9 +2481,8 @@ Për piasì contata n'aministrador dël forum për avèj giontà quaich categor�
 	'wikiforum-save-reply' => 'Salva arspòsta',
 	'wikiforum-thread-title' => 'Tìtol ëd toa discussion',
 	'wikiforum-no-threads' => 'Gnun-a discussion a son disponible al moment.',
-	'wikiforum-posted' => 'Spedì ël $1 da $2',
-	'wikiforum-edited' => 'Modificà ël $1 da $2',
-	'wikiforum-closed-text' => "Discussion a l'é stàita sarà ël $1 da $2",
+	'wikiforum-posted' => 'Spedì ël $1 da {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Modificà ël $1 da {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Categorìa pa trovà',
 	'wikiforum-cat-not-found-text' => 'Categorìa a esist pa - và andré a $1',
 	'wikiforum-forum-not-found' => 'Forum pa trovà',
@@ -2534,6 +2527,7 @@ Për piasì contata n'aministrador dël forum për avèj giontà quaich categor�
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 $messages['ps'] = array(
+	'wikiforum-anonymous' => 'ورکنومی',
 	'wikiforum-description' => 'څرګندونه:',
 	'wikiforum-forum-name' => '$1 فورم',
 	'wikiforum-name' => 'نوم:',
@@ -2910,7 +2904,7 @@ $messages['sv'] = array(
 	'wikiforum' => 'Diskussionstavla',
 	'wikiforum-anonymous' => 'Anonym',
 	'wikiforum-announcement-only-description' => 'Meddelandeforum (endast moderatorer kan lägga till trådar)',
-	'wikiforum-by' => '$1<br />av $2',
+	'wikiforum-by' => '$1<br />av $2', # Fuzzy
 	'wikiforum-description' => 'Beskrivning:',
 	'wikiforum-forum-is-empty' => 'Detta forum är för tillfället tomt.
 Var god kontakta en forumadministratör för att få några kategorier och forum tillagda.',
@@ -2950,9 +2944,8 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'wikiforum-save-reply' => 'Spara svar',
 	'wikiforum-thread-title' => 'Titel på din tråd',
 	'wikiforum-no-threads' => 'Inga trådar finns tillgängliga just nu.',
-	'wikiforum-posted' => 'Skrivet kl $1 av $2',
-	'wikiforum-edited' => 'Redigerades kl $1 av $2',
-	'wikiforum-closed-text' => 'Tråden stängdes kl $1 av $2',
+	'wikiforum-posted' => 'Skrivet kl $1 av $2', # Fuzzy
+	'wikiforum-edited' => 'Redigerades kl $1 av $2', # Fuzzy
 	'wikiforum-cat-not-found' => 'Kategorin finns inte',
 	'wikiforum-cat-not-found-text' => 'Kategorin finns inte - gå tillbaka till $1',
 	'wikiforum-forum-not-found' => 'Forum hittades inte',
