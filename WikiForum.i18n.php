@@ -1908,6 +1908,7 @@ $messages['ksh'] = array(
 	'wikiforum-preview' => '{{int:preview}}',
 	'wikiforum-preview-with-title' => '{{int:preview}}: $1',
 	'wikiforum-save' => 'Faßhalde',
+	'wikiforum-replies' => 'Antwoote',
 	'wikiforum-thread' => 'Jeschprääschßfäddem',
 	'wikiforum-threads' => '{{int:Wikiforum-thread}}e',
 	'wikiforum-pages' => 'Sigge:',
@@ -1917,9 +1918,16 @@ $messages['ksh'] = array(
 	'wikiforum-delete-thread' => 'Dä {{int:Wikiforum-thread}} fottschmiiße',
 	'wikiforum-close-thread' => 'Dä {{int:Wikiforum-thread}} zohmaache',
 	'wikiforum-reopen-thread' => 'Dä {{int:Wikiforum-thread}} wider op maache',
+	'wikiforum-write-reply' => 'Schriiv en Antwoot',
+	'wikiforum-edit-reply' => 'Änder di Antwoot',
+	'wikiforum-delete-reply' => 'Schmiiß di Antwoot fott',
 	'wikiforum-save-thread' => 'Dä {{int:Wikiforum-thread}} faßhallde',
+	'wikiforum-save-reply' => 'Haal di Antwoot faß',
 	'wikiforum-thread-title' => 'Dä Tittel för Dinge {{int:Wikiforum-thread}}',
 	'wikiforum-no-threads' => 'Mer han kein {{int:Wikiforum-threads}} em Momang',
+	'wikiforum-delete-category' => 'Donn di Saachjrupp fottnämme',
+	'wikiforum-sort-up' => 'Zoteer vun onge noh bovve',
+	'wikiforum-sort-down' => 'Zoteer vun bovve noh onge',
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
@@ -2847,9 +2855,10 @@ $messages['ru'] = array(
  * @author පසිඳු කාවින්ද
  */
 $messages['si'] = array(
+	'wikiforum-desc' => 'මාධ්‍යවිකි සඳහා [[Special:WikiForum|විනිශ්චයශාලා]] විස්තීරණය',
 	'wikiforum' => 'සාකච්ඡා මණ්ඩලය',
 	'wikiforum-anonymous' => 'නිර්නාමික',
-	'wikiforum-by' => '$1<br />විසින් $2',
+	'wikiforum-by' => '$1<br />විසින් $2', # Fuzzy
 	'wikiforum-description' => 'විස්තරය:',
 	'wikiforum-forum-name' => '$1 ෆෝරමය',
 	'wikiforum-name' => 'නම:',
@@ -2859,7 +2868,9 @@ $messages['si'] = array(
 	'wikiforum-save' => 'සුරකින්න',
 	'wikiforum-error-search' => 'සෙවුම් දෝෂය',
 	'wikiforum-search-thread' => 'සම්බන්ධය: $1',
+	'wikiforum-thread-deleted' => 'සම්බන්ධය මකා දමන ලදී',
 	'wikiforum-topic-name' => 'ෆෝරමය - $1',
+	'wikiforum-updates' => 'අලුතින්ම යාවත්කාලීන වූ විනිශ්චයශාලා',
 	'wikiforum-write-thread' => 'නව මාතෘකාව',
 	'wikiforum-replies' => 'පිළිතුරු',
 	'wikiforum-views' => 'නැරඹුම්',
@@ -2875,25 +2886,38 @@ $messages['si'] = array(
 	'wikiforum-edit-thread' => 'සම්බන්ධය සංස්කරණය කරන්න',
 	'wikiforum-delete-thread' => 'සම්බන්ධය මකන්න',
 	'wikiforum-close-thread' => 'සම්බන්ධය වසන්න',
+	'wikiforum-reopen-thread' => 'සම්බන්ධය නැවත විවෘත කරන්න',
 	'wikiforum-write-reply' => 'පිළිතුරක් ලියන්න',
 	'wikiforum-edit-reply' => 'පිළිතුර සංස්කරණය කරන්න',
 	'wikiforum-delete-reply' => 'පිළිතුර මකන්න',
 	'wikiforum-save-thread' => 'සම්බන්ධය සුරකින්න',
 	'wikiforum-save-reply' => 'පිළිතුර සුරකින්න',
 	'wikiforum-thread-title' => 'ඔබේ සම්බන්ධයේ මාතෘකාව',
+	'wikiforum-no-threads' => 'මෙම අවස්ථාවේ සම්බන්ධ කිසිවක් ලබා ගත නොහැක.',
 	'wikiforum-cat-not-found' => 'ප්‍රවර්ගය හමු නොවුණි',
 	'wikiforum-forum-not-found' => 'ෆෝරමය හමු නොවුණි',
 	'wikiforum-thread-not-found' => 'සම්බන්ධය හමු නොවුණි',
 	'wikiforum-error-not-found' => 'වස්තුව හමු නොවුණි.',
 	'wikiforum-error-delete' => 'මැකීමේදී දෝෂයකි',
+	'wikiforum-error-move-thread' => 'සම්බන්ධය ගෙනයාමේදී දෝෂයකි',
 	'wikiforum-error-add' => 'එක් කිරීමේදී දෝෂයකි',
+	'wikiforum-error-edit' => 'සංස්කරණය කිරීමේදී දෝෂයකි',
 	'wikiforum-add-category' => 'ප්‍රවර්ගය එක් කරන්න',
 	'wikiforum-edit-category' => 'ප්‍රවර්ගය සංස්කරණය කරන්න',
 	'wikiforum-delete-category' => 'ප්‍රවර්ගය මකන්න',
 	'wikiforum-add-forum' => 'ෆෝරමය එක් කරන්න',
 	'wikiforum-edit-forum' => 'ෆෝරමය සංස්කරණය කරන්න',
 	'wikiforum-delete-forum' => 'ෆෝරමය මකන්න',
+	'wikiforum-sort-up' => 'උඩට තෝරන්න',
+	'wikiforum-sort-down' => 'යටට තෝරන්න',
+	'wikiforum-remove-sticky' => 'ඇළීම ඉවත් කරන්න',
+	'wikiforum-make-sticky' => 'ඇළීමක් සිදු කරන්න',
+	'wikiforum-move-thread' => 'සම්බන්ධය ගෙනයන්න',
+	'wikiforum-paste-thread' => 'සම්බන්ධය අලවන්න',
 	'wikiforum-quote' => 'උද්ධරණය',
+	'group-forumadmin' => 'විනිශ්චයශාලා පරිපාලකවරු',
+	'group-forumadmin-member' => '{{GENDER:$1|විනිශ්චයශාලා පරිපාලක}}',
+	'grouppage-forumadmin' => '{{ns:project}}:විනිශ්චයශාලා පරිපාලකවරු',
 );
 
 /** Swedish (svenska)
@@ -3144,6 +3168,7 @@ $messages['tr'] = array(
 );
 
 /** Ukrainian (українська)
+ * @author AS
  * @author Base
  * @author Тест
  */
@@ -3152,7 +3177,7 @@ $messages['uk'] = array(
 	'wikiforum' => 'Дошка обговорень',
 	'wikiforum-anonymous' => 'Анонім',
 	'wikiforum-announcement-only-description' => 'Дошка оголошень (лише модератори можуть додавати гілки)',
-	'wikiforum-by' => '$1<br />від $2',
+	'wikiforum-by' => '$1<br />від $2', # Fuzzy
 	'wikiforum-description' => 'Опис:',
 	'wikiforum-forum-is-empty' => "Цей форум наразі порожній.
 Будь ласка, зв'яжіться з адміністратором форуму з проханням додати необхідні категорії та форуми.",
@@ -3192,9 +3217,8 @@ $messages['uk'] = array(
 	'wikiforum-save-reply' => 'Зберегти відповідь',
 	'wikiforum-thread-title' => 'Заголовок Вашої гілки',
 	'wikiforum-no-threads' => 'Наразі немає доступних гілок.',
-	'wikiforum-posted' => 'Створено в $1 {{GENDER:$2|користувачем|користувачкою}} $2',
-	'wikiforum-edited' => 'Редаговано в $1 {{GENDER:$2|користувачем|користувачкою}} $2',
-	'wikiforum-closed-text' => 'Гілку було закрито в $1 {{GENDER:$2|користувачем|користувачкою}} $2',
+	'wikiforum-posted' => 'Створено в $1 {{GENDER:$2|користувачем|користувачкою}} $2', # Fuzzy
+	'wikiforum-edited' => 'Редаговано $1 {{GENDER:$3|користувачем $2|користувачкою $2}}',
 	'wikiforum-cat-not-found' => 'Категорію не знайдено',
 	'wikiforum-cat-not-found-text' => 'Категорія не існує — назад до $1',
 	'wikiforum-forum-not-found' => 'Форум не знайдено',
@@ -3284,18 +3308,19 @@ $messages['yi'] = array(
 
 /** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
+ * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
 	'wikiforum-desc' => 'MediaWiki的[[Special:WikiForum|论坛]]扩展',
-	'wikiforum' => '讨论面板',
+	'wikiforum' => '讨论板',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版块（只有版主可以发帖）',
-	'wikiforum-by' => '$1<br />由$2发起',
+	'wikiforum-by' => '$1<br />由$2发起', # Fuzzy
 	'wikiforum-description' => '描述：',
 	'wikiforum-forum-is-empty' => '此论坛现在没有内容。请联系论坛管理员来添加分类和版块。',
-	'wikiforum-forum-name' => '版块$1',
+	'wikiforum-forum-name' => '版块 $1',
 	'wikiforum-name' => '名称：',
-	'wikiforum-button-preview' => '预览：',
+	'wikiforum-button-preview' => '预览',
 	'wikiforum-preview' => '预览',
 	'wikiforum-preview-with-title' => '预览：$1',
 	'wikiforum-save' => '保存',
@@ -3304,7 +3329,7 @@ $messages['zh-hans'] = array(
 	'wikiforum-search-hits' => '找到{{PLURAL:$1|一个结果|$1个结果}}',
 	'wikiforum-search-thread' => '帖子：$1',
 	'wikiforum-thread-deleted' => '帖子已删除',
-	'wikiforum-topic-name' => '版块-$1',
+	'wikiforum-topic-name' => '版块 - $1',
 	'wikiforum-updates' => '有更新的论坛',
 	'wikiforum-write-thread' => '新帖子',
 	'wikiforum-replies' => '回复',
@@ -3321,7 +3346,7 @@ $messages['zh-hans'] = array(
 	'wikiforum-edit-thread' => '编辑帖子',
 	'wikiforum-delete-thread' => '删除帖子',
 	'wikiforum-close-thread' => '关闭帖子',
-	'wikiforum-reopen-thread' => '开放帖子',
+	'wikiforum-reopen-thread' => '重开帖子',
 	'wikiforum-write-reply' => '写回复',
 	'wikiforum-edit-reply' => '编辑回复',
 	'wikiforum-delete-reply' => '删除回复',
@@ -3329,9 +3354,8 @@ $messages['zh-hans'] = array(
 	'wikiforum-save-reply' => '保存回复',
 	'wikiforum-thread-title' => '您帖子的标题',
 	'wikiforum-no-threads' => '目前没有帖子可用。',
-	'wikiforum-posted' => '$2发布于$1',
-	'wikiforum-edited' => '$2编辑于$1',
-	'wikiforum-closed-text' => '帖子在$1被$2关闭',
+	'wikiforum-posted' => '$2发布于$1', # Fuzzy
+	'wikiforum-edited' => '$2编辑于$1', # Fuzzy
 	'wikiforum-cat-not-found' => '分类未找到',
 	'wikiforum-cat-not-found-text' => '分类不存在 - 回到$1',
 	'wikiforum-forum-not-found' => '版块未找到',
@@ -3358,6 +3382,8 @@ $messages['zh-hans'] = array(
 	'wikiforum-add-forum' => '添加版块',
 	'wikiforum-edit-forum' => '编辑版块',
 	'wikiforum-delete-forum' => '删除版块',
+	'wikiforum-sort-up' => '升序',
+	'wikiforum-sort-down' => '降序',
 	'wikiforum-remove-sticky' => '取消置顶',
 	'wikiforum-make-sticky' => '置顶帖子',
 	'wikiforum-move-thread' => '移动帖子',
@@ -3371,18 +3397,19 @@ $messages['zh-hans'] = array(
 );
 
 /** Traditional Chinese (中文（繁體）‎)
+ * @author Yfdyh000
  */
 $messages['zh-hant'] = array(
 	'wikiforum-desc' => 'MediaWiki的[[Special:WikiForum|論壇]]擴展',
 	'wikiforum' => '討論面板',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版塊（只有版主可以發帖）',
-	'wikiforum-by' => '$1<br />由$2發起',
+	'wikiforum-by' => '$1<br />由$2發起', # Fuzzy
 	'wikiforum-description' => '描述：',
 	'wikiforum-forum-is-empty' => '此論壇現在沒有內容。請聯繫論壇管理員來添加分類和版塊。',
 	'wikiforum-forum-name' => '版塊$1',
 	'wikiforum-name' => '名稱：',
-	'wikiforum-button-preview' => '預覽：',
+	'wikiforum-button-preview' => '預覽',
 	'wikiforum-preview' => '預覽',
 	'wikiforum-preview-with-title' => '預覽：$1',
 	'wikiforum-save' => '保存',
@@ -3391,7 +3418,7 @@ $messages['zh-hant'] = array(
 	'wikiforum-search-hits' => '找到{{PLURAL:$1|一個結果|$1個結果}}',
 	'wikiforum-search-thread' => '帖子：$1',
 	'wikiforum-thread-deleted' => '帖子已刪除',
-	'wikiforum-topic-name' => '版塊-$1',
+	'wikiforum-topic-name' => '版塊 - $1',
 	'wikiforum-updates' => '有更新的論壇',
 	'wikiforum-write-thread' => '新帖子',
 	'wikiforum-replies' => '回復',
@@ -3416,9 +3443,8 @@ $messages['zh-hant'] = array(
 	'wikiforum-save-reply' => '保存回復',
 	'wikiforum-thread-title' => '您帖子的標題',
 	'wikiforum-no-threads' => '目前沒有帖子可用。',
-	'wikiforum-posted' => '$2發佈於$1',
-	'wikiforum-edited' => '$2編輯於$1',
-	'wikiforum-closed-text' => '帖子在$1被$2關閉',
+	'wikiforum-posted' => '$2發佈於$1', # Fuzzy
+	'wikiforum-edited' => '$2編輯於$1', # Fuzzy
 	'wikiforum-cat-not-found' => '分類未找到',
 	'wikiforum-cat-not-found-text' => '分類不存在 - 回到$1',
 	'wikiforum-forum-not-found' => '版塊未找到',
