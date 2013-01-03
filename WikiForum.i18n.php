@@ -2937,7 +2937,7 @@ $messages['sv'] = array(
 	'wikiforum' => 'Diskussionstavla',
 	'wikiforum-anonymous' => 'Anonym',
 	'wikiforum-announcement-only-description' => 'Meddelandeforum (endast moderatorer kan lägga till trådar)',
-	'wikiforum-by' => '$1<br />av $2', # Fuzzy
+	'wikiforum-by' => '$1<br />av {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beskrivning:',
 	'wikiforum-forum-is-empty' => 'Detta forum är för tillfället tomt.
 Var god kontakta en forumadministratör för att få några kategorier och forum tillagda.',
@@ -2977,8 +2977,8 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'wikiforum-save-reply' => 'Spara svar',
 	'wikiforum-thread-title' => 'Titel på din tråd',
 	'wikiforum-no-threads' => 'Inga trådar finns tillgängliga just nu.',
-	'wikiforum-posted' => 'Skrivet kl $1 av $2', # Fuzzy
-	'wikiforum-edited' => 'Redigerades kl $1 av $2', # Fuzzy
+	'wikiforum-posted' => 'Skrivet kl $1 av {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Redigerades kl $1 av {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Kategorin finns inte',
 	'wikiforum-cat-not-found-text' => 'Kategorin finns inte - gå tillbaka till $1',
 	'wikiforum-forum-not-found' => 'Forum hittades inte',
