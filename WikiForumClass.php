@@ -2552,7 +2552,10 @@ class WikiForumClass {
 				return '<i><a href="' . $specialPage->escapeFullURL( array( 'thread' => $id[1] ) ) . '">' .
 					$overview->wft_thread_name . '</a></i>';
 			} else {
-				return '[' . wfMsg( 'wikiforum-thread-deleted' ) . ']';
+				return wfMessage(
+					'brackets',
+					wfMessage( 'wikiforum-thread-deleted' )->text()
+				)->text();
 			}
 		}
 		return $id[0];
