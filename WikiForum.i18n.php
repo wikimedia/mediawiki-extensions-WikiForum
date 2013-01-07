@@ -1891,10 +1891,39 @@ $messages['ka'] = array(
 );
 
 /** Korean (한국어)
+ * @author LFM
  * @author 아라
  */
 $messages['ko'] = array(
 	'wikiforum-save' => '저장',
+	'wikiforum-thread-not-found-text' => '글타래가 존재하지 않거나 이미 삭제되었습니다. $1로 돌아갑니다.',
+	'wikiforum-error-thread-reopen' => '글타래를 다시 여는 중 오류가 발생했습니다.',
+	'wikiforum-error-thread-close' => '글타래를 닫는 중 오류가 발생했습니다.',
+	'wikiforum-error-general' => '개체를 찾을 수 없거나 이 작업을 수행할 권한이 없습니다.',
+	'wikiforum-error-no-rights' => '이 작업을 수행할 권한이 없습니다.',
+	'wikiforum-error-not-found' => '개체를 찾을 수 없습니다.',
+	'wikiforum-error-no-text-or-title' => '제목이나 본문이 제대로 기입되지 않았습니다.',
+	'wikiforum-error-no-reply' => '답글의 내용이 제대로 기입되지 않았습니다.',
+	'wikiforum-error-double-post' => '이중 클릭 방지 : 글타래가 이미 추가되었습니다.',
+	'wikiforum-error-thread-closed' => '글타래가 닫혀있습니다. 이곳에 새 답글을 달 수 없습니다.',
+	'wikiforum-error-delete' => '삭제하는 도중에 오류가 발생했습니다.',
+	'wikiforum-error-sticky' => '끈적이 속성을 바꾸는 도중에 오류가 발생했습니다.',
+	'wikiforum-error-move-thread' => '글타래를 이동하는 도중에 오류가 발생했습니다.',
+	'wikiforum-error-add' => '추가하는 도중에 오류가 발생했습니다.',
+	'wikiforum-error-edit' => '편집하는 도중에 오류가 발생했습니다.',
+	'wikiforum-add-category' => '분류 추가',
+	'wikiforum-edit-category' => '분류 편집',
+	'wikiforum-delete-category' => '분류 삭제',
+	'wikiforum-add-forum' => '포럼 추가',
+	'wikiforum-edit-forum' => '포럼 편집',
+	'wikiforum-delete-forum' => '포럼 삭제',
+	'wikiforum-sort-up' => '위로 이동',
+	'wikiforum-sort-down' => '아래로 이동',
+	'wikiforum-remove-sticky' => '끈적이 제거',
+	'wikiforum-make-sticky' => '끈적이 만들기',
+	'wikiforum-move-thread' => '글타래 이동',
+	'wikiforum-paste-thread' => '글타래 붙여넣기',
+	'wikiforum-quote' => '인용',
 	'group-forumadmin-member' => '{{GENDER:$1|포럼 관리자}}',
 	'grouppage-forumadmin' => '{{ns:project}}:포럼 관리자',
 	'group-forumadmin.css' => '/* 이 CSS 설정은 포럼 관리자에만 적용됩니다 */',
