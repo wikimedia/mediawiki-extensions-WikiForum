@@ -3212,6 +3212,7 @@ $messages['tr'] = array(
 /** Ukrainian (українська)
  * @author AS
  * @author Base
+ * @author Olvin
  * @author Тест
  */
 $messages['uk'] = array(
@@ -3260,7 +3261,7 @@ $messages['uk'] = array(
 	'wikiforum-thread-title' => 'Заголовок Вашої гілки',
 	'wikiforum-no-threads' => 'Наразі немає доступних гілок.',
 	'wikiforum-posted' => 'Створено в $1 {{GENDER:$2|користувачем|користувачкою}} $2', # Fuzzy
-	'wikiforum-edited' => 'Редаговано $1 {{GENDER:$3|користувачем $2|користувачкою $2}}',
+	'wikiforum-edited' => 'Редаговано $1 {{GENDER:$3|користувачем|користувачкою}} $2',
 	'wikiforum-cat-not-found' => 'Категорію не знайдено',
 	'wikiforum-cat-not-found-text' => 'Категорія не існує — назад до $1',
 	'wikiforum-forum-not-found' => 'Форум не знайдено',
