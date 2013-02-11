@@ -2854,6 +2854,20 @@ Vă rugăm să contactați un administrator al forumului pentru a adăuga câtev
 	'grouppage-forumadmin' => '{{ns:project}}:administratori de forum',
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'wikiforum-forum-name' => 'Forum $1',
+	'wikiforum-name' => 'Nome:',
+	'wikiforum-button-preview' => 'Andeprime',
+	'wikiforum-preview' => 'Andeprime',
+	'wikiforum-preview-with-title' => 'Andeprime: $1',
+	'wikiforum-save' => 'Reggìstre',
+	'wikiforum-search-thread' => 'Argomende: $1',
+	'wikiforum-topic-name' => 'Forum $1',
+);
+
 /** Russian (русский)
  * @author Artyom Bondartsov <erithion@gmail.com>
  * @author Base
