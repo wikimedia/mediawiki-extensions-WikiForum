@@ -234,7 +234,8 @@ Note: "Category" version and "Forum" version of this message is missing at this 
 	'wikiforum-edit-category' => 'Used as tooltip for edit link, and as page heading on edit page',
 	'wikiforum-delete-category' => 'Used as tooltip for button',
 	'wikiforum-add-forum' => 'Used as link text in categories list page and in forums list page.',
-	'wikiforum-edit-forum' => 'Used as tooltip for edit button, and as page heading',
+	'wikiforum-edit-forum' => 'Used as tooltip for edit button, and as page heading.
+{{Identical|Edit forum}}',
 	'wikiforum-delete-forum' => 'Used as tooltip for button',
 	'wikiforum-sort-up' => 'Used as tooltip for button in categories list and forums list.
 
