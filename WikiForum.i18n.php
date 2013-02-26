@@ -1339,7 +1339,7 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'wikiforum-updates' => 'Foros actualizados recentemente',
 	'wikiforum-write-thread' => 'Novo fío',
 	'wikiforum-replies' => 'Respostas',
-	'wikiforum-views' => 'Vistas',
+	'wikiforum-views' => 'Visitas',
 	'wikiforum-thread' => 'Fío',
 	'wikiforum-threads' => 'Fíos',
 	'wikiforum-latest-reply' => 'Última resposta',
