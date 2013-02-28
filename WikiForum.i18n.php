@@ -3293,6 +3293,7 @@ $messages['tr'] = array(
  * @author AS
  * @author Base
  * @author Olvin
+ * @author Ата
  * @author Тест
  */
 $messages['uk'] = array(
@@ -3300,7 +3301,7 @@ $messages['uk'] = array(
 	'wikiforum' => 'Дошка обговорень',
 	'wikiforum-anonymous' => 'Анонім',
 	'wikiforum-announcement-only-description' => 'Дошка оголошень (лише модератори можуть додавати гілки)',
-	'wikiforum-by' => '$1<br />від $2', # Fuzzy
+	'wikiforum-by' => '$1<br />від {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Опис:',
 	'wikiforum-forum-is-empty' => "Цей форум наразі порожній.
 Будь ласка, зв'яжіться з адміністратором форуму з проханням додати необхідні категорії та форуми.",
@@ -3340,7 +3341,7 @@ $messages['uk'] = array(
 	'wikiforum-save-reply' => 'Зберегти відповідь',
 	'wikiforum-thread-title' => 'Заголовок Вашої гілки',
 	'wikiforum-no-threads' => 'Наразі немає доступних гілок.',
-	'wikiforum-posted' => 'Створено в $1 {{GENDER:$2|користувачем|користувачкою}} $2', # Fuzzy
+	'wikiforum-posted' => 'Створено о $1 {{GENDER:$3|користувачем|користувачкою}} $2',
 	'wikiforum-edited' => 'Редаговано $1 {{GENDER:$3|користувачем|користувачкою}} $2',
 	'wikiforum-cat-not-found' => 'Категорію не знайдено',
 	'wikiforum-cat-not-found-text' => 'Категорія не існує — назад до $1',
@@ -3380,6 +3381,8 @@ $messages['uk'] = array(
 	'group-forumadmin' => 'Адміністратори форуму',
 	'group-forumadmin-member' => '{{GENDER:$1|адміністратор|адміністраторка}} форуму',
 	'grouppage-forumadmin' => '{{ns:project}}:Адміністратори форуму',
+	'group-forumadmin.css' => '/* CSS, прописані тут, вплинуть лише на адміністраторів */',
+	'group-forumadmin.js' => '/* JS, прописана тут, вплине лише на адміністраторів */',
 );
 
 /** Urdu (اردو)
