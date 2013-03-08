@@ -1539,6 +1539,15 @@ Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre katego
 	'grouppage-forumadmin' => '{{ns:project}}:Forumowi administratorojo',
 );
 
+/** Armenian (Հայերեն)
+ * @author Vadgt
+ */
+$messages['hy'] = array(
+	'wikiforum-search-thread' => 'Դերձան՝ $1',
+	'wikiforum-thread' => 'Դերձան',
+	'wikiforum-threads' => 'Դերձաններ',
+);
+
 /** Interlingua (interlingua)
  * @author McDutchie
  */
