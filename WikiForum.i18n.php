@@ -128,7 +128,8 @@ Please contact a forum administrator to have some categories and forums added.',
  */
 $messages['qqq'] = array(
 	'wikiforum-desc' => '{{desc|name=Wiki Forum|url=http://www.mediawiki.org/wiki/Extension:WikiForum}}',
-	'wikiforum' => 'Special page title, special page name in [[Special:SpecialPages]] and link in toolbox portlet.',
+	'wikiforum' => '{{doc-special|WikiForum}}
+Also used as link in toolbox portlet.',
 	'wikiforum-day-definition-new' => '{{notranslate}}',
 	'wikiforum-max-threads-per-page' => '{{notranslate}}',
 	'wikiforum-max-replies-per-page' => '{{notranslate}}',
