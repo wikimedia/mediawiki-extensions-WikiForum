@@ -271,6 +271,7 @@ $messages['af'] = array(
 
 /** Arabic (العربية)
  * @author Meno25
+ * @author ترجمان05
  * @author روخو
  */
 $messages['ar'] = array(
@@ -284,6 +285,7 @@ $messages['ar'] = array(
 	'wikiforum-preview-with-title' => 'عرض مسبق: $1',
 	'wikiforum-save' => 'حفظ',
 	'wikiforum-error-search' => 'بحث الخطأ',
+	'wikiforum-topic-name' => 'منتدى - $1',
 	'wikiforum-write-thread' => 'موضوع جديد',
 	'wikiforum-replies' => 'الردود',
 	'wikiforum-views' => 'وجهات نظر',
@@ -291,6 +293,7 @@ $messages['ar'] = array(
 	'wikiforum-threads' => 'خيوط',
 	'wikiforum-latest-reply' => 'آخر رد',
 	'wikiforum-latest-thread' => 'آخر خيط',
+	'wikiforum-forum' => 'منتدى: $1 > $2',
 	'wikiforum-overview' => 'نظرة عامة',
 	'wikiforum-pages' => 'الصفحات:',
 	'wikiforum-thread-closed' => 'الخيط تم غلقه',
