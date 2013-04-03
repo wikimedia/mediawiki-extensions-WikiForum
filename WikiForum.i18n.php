@@ -252,6 +252,7 @@ See also [[Template:Identical/Sticky]].',
 * {{msg-mw|Wikiforum-make-sticky}}
 See also [[Template:Identical/Sticky]].',
 	'wikiforum-move-thread' => 'Used as link text in reply page.',
+	'wikiforum-paste-thread' => 'Used as link text (and as tooltip for image).',
 	'wikiforum-quote' => 'Used as tooltip for button',
 	'right-wikiforum-admin' => '{{doc-right|wikiforum-admin}}',
 	'right-wikiforum-moderator' => '{{doc-right|wikiforum-moderator}}',
