@@ -118,7 +118,10 @@ Please contact a forum administrator to have some categories and forums added.',
 	'group-forumadmin.js'  => '/* JS placed here will affect forum administrators only */', # only translate this message to other languages if you have to change it
 );
 
-/** Message documentation (Message documentation)
+/** Message documentation (This is the name of the message documentation language code (qqq). Follow the rules of your languages and use small first letter if it doesn't capitalize language names always.
+
+It might be easier to translate it as "translation guidelines" or "translation help".
+{{Identical|Message documentation}})
  * @author EugeneZelenko
  * @author Purodha
  * @author Shirayuki
@@ -3563,6 +3566,7 @@ $messages['zh-hans'] = array(
 );
 
 /** Traditional Chinese (中文（繁體）‎)
+ * @author Tntchn
  * @author Yfdyh000
  */
 $messages['zh-hant'] = array(
@@ -3570,7 +3574,7 @@ $messages['zh-hant'] = array(
 	'wikiforum' => '討論面板',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版塊（只有版主可以發帖）',
-	'wikiforum-by' => '$1<br />由$2發起', # Fuzzy
+	'wikiforum-by' => '$1<br />由{{GENDER:$3|$2}}',
 	'wikiforum-description' => '描述：',
 	'wikiforum-forum-is-empty' => '此論壇現在沒有內容。請聯繫論壇管理員來添加分類和版塊。',
 	'wikiforum-forum-name' => '版塊$1',
@@ -3609,8 +3613,8 @@ $messages['zh-hant'] = array(
 	'wikiforum-save-reply' => '保存回復',
 	'wikiforum-thread-title' => '您帖子的標題',
 	'wikiforum-no-threads' => '目前沒有帖子可用。',
-	'wikiforum-posted' => '$2發佈於$1', # Fuzzy
-	'wikiforum-edited' => '$2編輯於$1', # Fuzzy
+	'wikiforum-posted' => '{{GENDER:$3|$2}}發佈於$1',
+	'wikiforum-edited' => '{{GENDER:$3|$2}}編輯於$1',
 	'wikiforum-cat-not-found' => '分類未找到',
 	'wikiforum-cat-not-found-text' => '分類不存在 - 回到$1',
 	'wikiforum-forum-not-found' => '版塊未找到',
