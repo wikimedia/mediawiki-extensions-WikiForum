@@ -764,7 +764,7 @@ $messages['ca'] = array(
 	'wikiforum' => 'Tauler de discussió',
 	'wikiforum-anonymous' => 'Anònim',
 	'wikiforum-announcement-only-description' => 'Anunci de fòrum (només moderadors poden afegir temes)',
-	'wikiforum-by' => '$1 <br /> per $2', # Fuzzy
+	'wikiforum-by' => '$1 <br /> per {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descripció:',
 	'wikiforum-forum-is-empty' => "Aquest fòrum està buida.
 Si us plau contacta amb l'administrador del fòrum per tenir algunes categories i els fòrums afegits.",
@@ -804,8 +804,8 @@ Si us plau contacta amb l'administrador del fòrum per tenir algunes categories 
 	'wikiforum-save-reply' => 'Guardar resposta',
 	'wikiforum-thread-title' => 'Títol del tema',
 	'wikiforum-no-threads' => 'No hi ha temes disponibles de moment',
-	'wikiforum-posted' => 'Publicat en $1 per $2', # Fuzzy
-	'wikiforum-edited' => 'Editat en $1 per $2', # Fuzzy
+	'wikiforum-posted' => 'Publicat en $1 per {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Editat en $1 per {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Categoria no trobada',
 	'wikiforum-cat-not-found-text' => 'Categoria inexistent - torna a $1',
 	'wikiforum-forum-not-found' => 'Fòrum no trobat',
