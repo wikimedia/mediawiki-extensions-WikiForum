@@ -2873,9 +2873,11 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 );
 
 /** Brazilian Portuguese (português do Brasil)
+ * @author Luckas
  * @author Luckas Blade
  */
 $messages['pt-br'] = array(
+	'wikiforum-description' => 'Descrição:',
 	'wikiforum-error-not-found' => 'Objeto não encontrado.',
 	'wikiforum-add-category' => 'Adicionar categoria',
 	'wikiforum-edit-category' => 'Editar categoria',
