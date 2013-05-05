@@ -967,6 +967,13 @@ $messages['diq'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Admine forumi',
 );
 
+/** Esperanto (Esperanto)
+ * @author Luckas
+ */
+$messages['eo'] = array(
+	'wikiforum-description' => 'Priskribo:',
+);
+
 /** Spanish (español)
  * @author Armando-Martin
  * @author Bea.miau
@@ -1061,8 +1068,10 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 
 /** Estonian (eesti)
  * @author Avjoska
+ * @author Luckas
  */
 $messages['et'] = array(
+	'wikiforum-description' => 'Kirjeldus:',
 	'wikiforum-name' => 'Nimi:',
 	'wikiforum-button-preview' => 'Eelvaade',
 	'wikiforum-preview' => 'Eelvaade',
