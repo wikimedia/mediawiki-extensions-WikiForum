@@ -231,7 +231,8 @@ Note: "Category" version and "Forum" version of this message is missing at this 
 	'wikiforum-error-move-thread' => 'Used as heading of error message',
 	'wikiforum-error-add' => 'Used as heading of error message',
 	'wikiforum-error-edit' => 'Used as heading of error message',
-	'wikiforum-add-category' => 'Used as link text in categories list page.',
+	'wikiforum-add-category' => 'Used as link text in categories list page.
+{{Identical|Add category}}',
 	'wikiforum-edit-category' => 'Used as tooltip for edit link, and as page heading on edit page',
 	'wikiforum-delete-category' => 'Used as tooltip for button.
 {{Identical|Delete category}}',
