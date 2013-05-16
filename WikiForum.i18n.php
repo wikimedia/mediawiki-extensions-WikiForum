@@ -2580,6 +2580,7 @@ $messages['pfl'] = array(
 );
 
 /** Polish (polski)
+ * @author Chrumps
  * @author Misiek95
  * @author Sp5uhe
  * @author Woytecr
@@ -2589,7 +2590,7 @@ $messages['pl'] = array(
 	'wikiforum' => 'Forum',
 	'wikiforum-anonymous' => 'Anonimowy użytkownik',
 	'wikiforum-announcement-only-description' => 'Tablica ogłoszeń (tylko moderatorzy mogą dodawać wątki)',
-	'wikiforum-by' => '$1<br />przez $2', # Fuzzy
+	'wikiforum-by' => '$1<br />przez {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Opis:',
 	'wikiforum-forum-is-empty' => 'To forum jest aktualnie puste.
 Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
