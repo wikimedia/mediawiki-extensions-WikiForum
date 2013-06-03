@@ -2152,6 +2152,8 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'wikiforum-error-not-found' => 'Objet net fonnt.',
 	'wikiforum-error-no-reply' => 'Äntwert net korrekt ausgefëllt!',
 	'wikiforum-error-delete' => 'Feeler beim Läschen',
+	'wikiforum-error-add' => 'Feeler beim Derbäisetzen',
+	'wikiforum-error-edit' => 'Feeler beim Änneren',
 	'wikiforum-add-category' => 'Kategorie derbäisetzen',
 	'wikiforum-edit-category' => 'Kategorie änneren',
 	'wikiforum-delete-category' => 'Kategorie läschen',
@@ -2993,14 +2995,25 @@ Vă rugăm să contactați un administrator al forumului pentru a adăuga câtev
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
+	'wikiforum-anonymous' => 'Anonime',
+	'wikiforum-description' => 'Descrizione:',
 	'wikiforum-forum-name' => 'Forum $1',
 	'wikiforum-name' => 'Nome:',
 	'wikiforum-button-preview' => 'Andeprime',
 	'wikiforum-preview' => 'Andeprime',
 	'wikiforum-preview-with-title' => 'Andeprime: $1',
 	'wikiforum-save' => 'Reggìstre',
+	'wikiforum-error-search' => 'Errore de ricerche',
 	'wikiforum-search-thread' => 'Argomende: $1',
 	'wikiforum-topic-name' => 'Forum $1',
+	'wikiforum-views' => 'Visite',
+	'wikiforum-thread' => 'Argomende',
+	'wikiforum-threads' => 'Argomende',
+	'wikiforum-latest-reply' => "L'urtema resposte",
+	'wikiforum-latest-thread' => "L'urteme argomende",
+	'wikiforum-forum' => 'Forum: $1 > $2',
+	'wikiforum-overview' => 'Panorameche',
+	'wikiforum-pages' => 'Pàggene:',
 );
 
 /** Russian (русский)
