@@ -847,6 +847,13 @@ Si us plau contacta amb l'administrador del fòrum per tenir algunes categories 
 	'grouppage-forumadmin' => '{{ns:project}}:Administradors del fòrum',
 );
 
+/** Chechen (нохчийн)
+ * @author Умар
+ */
+$messages['ce'] = array(
+	'wikiforum-description' => 'Цуьнах лаьцна',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
