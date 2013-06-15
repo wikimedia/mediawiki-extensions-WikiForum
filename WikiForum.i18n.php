@@ -852,6 +852,9 @@ Si us plau contacta amb l'administrador del fòrum per tenir algunes categories 
  */
 $messages['ce'] = array(
 	'wikiforum-description' => 'Цуьнах лаьцна',
+	'wikiforum-button-preview' => 'Хьалха муха ю хьажа',
+	'wikiforum-preview' => 'Хьалха муха ю хьажа',
+	'wikiforum-preview-with-title' => 'Хьалха муха ю хьажар: $1',
 );
 
 /** German (Deutsch)
@@ -3556,9 +3559,12 @@ $messages['ur'] = array(
 
 /** Uzbek (oʻzbekcha)
  * @author CoderSI
+ * @author Sociologist
  */
 $messages['uz'] = array(
 	'wikiforum-new-thread' => 'Yangi tarmoq',
+	'wikiforum-add-category' => 'Turkum qoʻshish',
+	'wikiforum-delete-category' => 'Turkumni oʻchirish',
 );
 
 /** Vietnamese (Tiếng Việt)
