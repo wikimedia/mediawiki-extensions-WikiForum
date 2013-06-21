@@ -855,6 +855,7 @@ $messages['ce'] = array(
 	'wikiforum-button-preview' => 'Хьалха муха ю хьажа',
 	'wikiforum-preview' => 'Хьалха муха ю хьажа',
 	'wikiforum-preview-with-title' => 'Хьалха муха ю хьажар: $1',
+	'wikiforum-overview' => 'Гар',
 );
 
 /** German (Deutsch)
