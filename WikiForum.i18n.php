@@ -2807,6 +2807,7 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Hamilton Abreu
+ * @author Malafaya
  * @author SandroHc
  */
 $messages['pt'] = array(
@@ -2814,7 +2815,7 @@ $messages['pt'] = array(
 	'wikiforum' => 'Fórum de conversação',
 	'wikiforum-anonymous' => 'Anónimo',
 	'wikiforum-announcement-only-description' => 'Fórum de anúncios (só os moderadores podem adicionar tópicos)',
-	'wikiforum-by' => '$1<br />de $2', # Fuzzy
+	'wikiforum-by' => '$1<br />de {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrição:',
 	'wikiforum-forum-is-empty' => 'Este fórum está vazio.
 Contacte um administrador para adicionar fóruns ou categorias.',
@@ -2854,8 +2855,8 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-save-reply' => 'Gravar resposta',
 	'wikiforum-thread-title' => 'Título do tópico',
 	'wikiforum-no-threads' => 'Não existem tópicos disponíveis.',
-	'wikiforum-posted' => 'Publicado a $1 por $2', # Fuzzy
-	'wikiforum-edited' => 'Editado a $1 por $2', # Fuzzy
+	'wikiforum-posted' => 'Publicado em $1 por {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Editado em $1 por {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'A categoria não foi encontrada',
 	'wikiforum-cat-not-found-text' => 'A categoria não existe - voltar para $1',
 	'wikiforum-forum-not-found' => 'O fórum não foi encontrado',
