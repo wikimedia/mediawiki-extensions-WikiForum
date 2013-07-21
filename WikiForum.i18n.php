@@ -862,6 +862,13 @@ $messages['ce'] = array(
 	'wikiforum-delete-forum' => 'ДӀаяккха форум',
 );
 
+/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+ * @author ОйЛ
+ */
+$messages['cu'] = array(
+	'wikiforum-name' => 'имѧ :',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
