@@ -2818,6 +2818,7 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Hamilton Abreu
+ * @author Luckas
  * @author Malafaya
  * @author SandroHc
  */
@@ -2842,7 +2843,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-search-thread' => 'Tópico: $1',
 	'wikiforum-thread-deleted' => 'tópico apagado',
 	'wikiforum-topic-name' => 'Fórum - $1',
-	'wikiforum-updates' => 'Fóruns actualizados recentemente',
+	'wikiforum-updates' => 'Fóruns atualizados recentemente',
 	'wikiforum-write-thread' => 'Tópico novo',
 	'wikiforum-replies' => 'Respostas',
 	'wikiforum-views' => 'Vistas',
@@ -2881,7 +2882,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-error-not-found' => 'O objecto não foi encontrado.',
 	'wikiforum-error-no-text-or-title' => 'O título ou o texto não foram devidamente preenchidos.',
 	'wikiforum-error-no-reply' => 'A resposta não foi devidamente preenchida.',
-	'wikiforum-error-double-post' => 'Protecção contra cliques repetidos: o tópico já foi adicionado.',
+	'wikiforum-error-double-post' => 'Proteção contra cliques repetidos: o tópico já foi adicionado.',
 	'wikiforum-error-thread-closed' => 'O tópico está fechado. Não é possível acrescentar uma resposta.',
 	'wikiforum-error-delete' => 'Ocorreu um erro ao apagar',
 	'wikiforum-error-sticky' => 'Ocorreu um erro ao alterar o atributo de tópico inamovível',
