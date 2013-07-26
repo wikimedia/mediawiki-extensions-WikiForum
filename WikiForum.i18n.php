@@ -856,6 +856,7 @@ $messages['ce'] = array(
 	'wikiforum-preview' => 'Хьалха муха ю хьажа',
 	'wikiforum-preview-with-title' => 'Хьалха муха ю хьажар: $1',
 	'wikiforum-overview' => 'Гар',
+	'wikiforum-close-thread' => 'ДӀачӀагӀа га',
 	'wikiforum-delete-reply' => 'ДӀабаккха хаам',
 	'wikiforum-add-category' => 'ТIетоха категори',
 	'wikiforum-delete-category' => 'ДӀаяккха категори',
