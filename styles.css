@@ -1,5 +1,6 @@
 /* CSS styles for WikiForum extension */
 table.mw-wikiforum-frame {
+	clear: both; /* @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=190 */
 	width: 100%;
 	background: #f6f6f6;
 	border: 1px dotted #ccc;
@@ -10,6 +11,7 @@ td.mw-wikiforum-innerframe {
 }
 
 table.mw-wikiforum-headerrow {
+	clear: both; /* @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=190 */
 	width: 100%;
 	font-size: 10px;
 	font-family: Verdana, Arial, sans-serif;
@@ -215,4 +217,17 @@ blockquote span {
 .wikiforum-avatar-image {
 	float: right;
 	padding-bottom: 5px;
+}
+
+/**
+ * Fix for http://bugzilla.shoutwiki.com/show_bug.cgi?id=191 (long words do not wrap)
+ *
+ * @see http://stackoverflow.com/questions/7284990/css-how-to-break-long-words-in-a-table-td/11423675#11423675
+ * @see http://webdesignerwall.com/tutorials/word-wrap-force-text-to-wrap
+ */
+td.mw-wikiforum-thread-main,
+td.mw-wikiforum-thread-sub {
+	word-wrap: break-word;
+	word-break: break-all;
+	table-layout: fixed;
 }

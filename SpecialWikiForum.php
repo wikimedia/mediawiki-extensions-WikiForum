@@ -20,11 +20,13 @@ class WikiForum extends SpecialPage {
 	 * @param $par Mixed: parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
+		$out = $this->getOutput();
+		$request = $this->getRequest();
+		$user = $this->getUser();
 
 		// If user is blocked, s/he doesn't need to access this page
-		if ( $wgUser->isBlocked() ) {
-			$wgOut->blockedPage();
+		if ( $user->isBlocked() ) {
+			$out->blockedPage();
 			return;
 		}
 
@@ -38,50 +40,50 @@ class WikiForum extends SpecialPage {
 		$values = array();
 
 		// Add CSS
-		$wgOut->addModuleStyles( 'ext.wikiForum' );
+		$out->addModuleStyles( 'ext.wikiForum' );
 
 		// If a parameter to the special page is specified, check its type
 		// and either display a forum (if parameter is a number) or a thread
 		// (if it's the title of a topic)
 		if ( $par ) {
 			// Let search spiders index our content
-			$wgOut->setRobotPolicy( 'index,follow' );
+			$out->setRobotPolicy( 'index,follow' );
 
 			if ( is_numeric( $par ) ) {
-				$wgOut->addHTML( $forum->showForum( $par ) );
+				$out->addHTML( $forum->showForum( $par ) );
 			} else {
 				$threadId = WikiForumClass::findThreadIDByTitle( $par );
-				$wgOut->addHTML( $forum->showThread( $threadId ) );
+				$out->addHTML( $forum->showThread( $threadId ) );
 			}
 		} else {
 			// That's...a lot of variables. No kidding.
-			$mod_category		= $wgRequest->getInt( 'category' );
-			$mod_forum			= $wgRequest->getInt( 'forum' );
-			$mod_thread		= $wgRequest->getInt( 'thread' );
-			$mod_writethread	= $wgRequest->getInt( 'writethread' );
-			$mod_addcomment	= $wgRequest->getInt( 'addcomment' );
-			$mod_addthread		= $wgRequest->getInt( 'addthread' );
-			$mod_editcomment	= $wgRequest->getInt( 'editcomment' );
-			$mod_editthread	= $wgRequest->getInt( 'editthread' );
-			$mod_deletecomment	= $wgRequest->getInt( 'deletecomment' );
-			$mod_deletethread	= $wgRequest->getInt( 'deletethread' );
-			$mod_closethread	= $wgRequest->getInt( 'closethread' );
-			$mod_reopenthread	= $wgRequest->getInt( 'reopenthread' );
-			$mod_addcategory	= $wgRequest->getBool( 'addcategory' );
-			$mod_addforum		= $wgRequest->getInt( 'addforum' );
-			$mod_editcategory	= $wgRequest->getInt( 'editcategory' );
-			$mod_editforum		= $wgRequest->getInt( 'editforum' );
-			$mod_deletecategory	= $wgRequest->getInt( 'deletecategory' );
-			$mod_deleteforum	= $wgRequest->getInt( 'deleteforum' );
-			$mod_makesticky		= $wgRequest->getInt( 'makesticky' );
-			$mod_removesticky	= $wgRequest->getInt( 'removesticky' );
-			$mod_categoryup		= $wgRequest->getInt( 'categoryup' );
-			$mod_categorydown	= $wgRequest->getInt( 'categorydown' );
-			$mod_forumup		= $wgRequest->getInt( 'forumup' );
-			$mod_forumdown		= $wgRequest->getInt( 'forumdown' );
-			$mod_search			= $wgRequest->getVal( 'txtSearch' );
-			$mod_submit			= $wgRequest->getBool( 'butSubmit' );
-			$mod_pastethread	= $wgRequest->getInt( 'pastethread' );
+			$mod_category		= $request->getInt( 'category' );
+			$mod_forum			= $request->getInt( 'forum' );
+			$mod_thread		= $request->getInt( 'thread' );
+			$mod_writethread	= $request->getInt( 'writethread' );
+			$mod_addcomment	= $request->getInt( 'addcomment' );
+			$mod_addthread		= $request->getInt( 'addthread' );
+			$mod_editcomment	= $request->getInt( 'editcomment' );
+			$mod_editthread	= $request->getInt( 'editthread' );
+			$mod_deletecomment	= $request->getInt( 'deletecomment' );
+			$mod_deletethread	= $request->getInt( 'deletethread' );
+			$mod_closethread	= $request->getInt( 'closethread' );
+			$mod_reopenthread	= $request->getInt( 'reopenthread' );
+			$mod_addcategory	= $request->getBool( 'addcategory' );
+			$mod_addforum		= $request->getInt( 'addforum' );
+			$mod_editcategory	= $request->getInt( 'editcategory' );
+			$mod_editforum		= $request->getInt( 'editforum' );
+			$mod_deletecategory	= $request->getInt( 'deletecategory' );
+			$mod_deleteforum	= $request->getInt( 'deleteforum' );
+			$mod_makesticky		= $request->getInt( 'makesticky' );
+			$mod_removesticky	= $request->getInt( 'removesticky' );
+			$mod_categoryup		= $request->getInt( 'categoryup' );
+			$mod_categorydown	= $request->getInt( 'categorydown' );
+			$mod_forumup		= $request->getInt( 'forumup' );
+			$mod_forumdown		= $request->getInt( 'forumdown' );
+			$mod_search			= $request->getVal( 'txtSearch' );
+			$mod_submit			= $request->getBool( 'butSubmit' );
+			$mod_pastethread	= $request->getInt( 'pastethread' );
 
 			// Define this variable to prevent E_NOTICEs about undefined variable
 			$mod_none = false;
@@ -89,14 +91,14 @@ class WikiForum extends SpecialPage {
 			// Figure out what we're going to do here...post a reply, a new thread,
 			// edit a reply, edit a thread...and so on.
 			if ( isset( $mod_addcomment ) && $mod_addcomment > 0 ) {
-				$data_text = $wgRequest->getVal( 'frmText' );
-				$data_preview = $wgRequest->getBool( 'butPreview' );
-				$data_save = $wgRequest->getBool( 'butSave' );
+				$data_text = $request->getVal( 'frmText' );
+				$data_preview = $request->getBool( 'butPreview' );
+				$data_save = $request->getBool( 'butSave' );
 				if ( $data_save == true ) {
 					$result = $forum->addReply( $mod_addcomment, $data_text );
 					$mod_thread = $mod_addcomment;
 				} elseif ( $data_preview == true ) {
-					$result = $wgOut->addHTML(
+					$result = $out->addHTML(
 						$forum->previewIssue(
 							'addcomment',
 							$mod_addcomment,
@@ -107,10 +109,10 @@ class WikiForum extends SpecialPage {
 					$mod_none = true;
 				}
 			} elseif ( isset( $mod_addthread ) && $mod_addthread > 0 ) {
-				$data_title = $wgRequest->getVal( 'frmTitle' );
-				$data_text = $wgRequest->getVal( 'frmText' );
-				$data_preview = $wgRequest->getBool( 'butPreview' );
-				$data_save = $wgRequest->getBool( 'butSave' );
+				$data_title = $request->getVal( 'frmTitle' );
+				$data_text = $request->getVal( 'frmText' );
+				$data_preview = $request->getBool( 'butPreview' );
+				$data_save = $request->getBool( 'butSave' );
 
 				if ( $data_save == true ) {
 					$result = $forum->addThread(
@@ -120,7 +122,7 @@ class WikiForum extends SpecialPage {
 					);
 					$mod_forum = $mod_addthread;
 				} elseif ( $data_preview == true ) {
-					$result = $wgOut->addHTML(
+					$result = $out->addHTML(
 						$forum->previewIssue(
 							'addthread',
 							$mod_addthread,
@@ -133,9 +135,9 @@ class WikiForum extends SpecialPage {
 					$mod_writethread = $mod_addthread;
 				}
 			} elseif ( isset( $mod_editcomment ) && $mod_editcomment > 0 ) {
-				$data_text = $wgRequest->getVal( 'frmText' );
-				$data_preview = $wgRequest->getBool( 'butPreview' );
-				$data_save = $wgRequest->getBool( 'butSave' );
+				$data_text = $request->getVal( 'frmText' );
+				$data_preview = $request->getBool( 'butPreview' );
+				$data_save = $request->getBool( 'butSave' );
 
 				if ( $data_save == true ) {
 					$result = $forum->editReply(
@@ -144,7 +146,7 @@ class WikiForum extends SpecialPage {
 					);
 					$mod_thread = $mod_thread;
 				} elseif ( $data_preview == true ) {
-					$result = $wgOut->addHTML(
+					$result = $out->addHTML(
 						$forum->previewIssue(
 							'editcomment',
 							$mod_editcomment,
@@ -155,10 +157,10 @@ class WikiForum extends SpecialPage {
 					$mod_none = true;
 				}
 			} elseif ( isset( $mod_editthread ) && $mod_editthread > 0 ) {
-				$data_title = $wgRequest->getVal( 'frmTitle' );
-				$data_text = $wgRequest->getVal( 'frmText' );
-				$data_preview = $wgRequest->getBool( 'butPreview' );
-				$data_save = $wgRequest->getBool( 'butSave' );
+				$data_title = $request->getVal( 'frmTitle' );
+				$data_text = $request->getVal( 'frmText' );
+				$data_preview = $request->getBool( 'butPreview' );
+				$data_save = $request->getBool( 'butSave' );
 
 				if ( $data_save == true ) {
 					$result = $forum->editThread(
@@ -168,7 +170,7 @@ class WikiForum extends SpecialPage {
 					);
 					$mod_thread = $mod_editthread;
 				} elseif ( $data_preview == true ) {
-					$result = $wgOut->addHTML(
+					$result = $out->addHTML(
 						$forum->previewIssue(
 							'editthread',
 							$mod_editthread,
@@ -212,10 +214,10 @@ class WikiForum extends SpecialPage {
 				$result = $forum->pasteThread( $mod_pastethread, $mod_forum );
 			} elseif (
 				isset( $mod_addcategory ) && $mod_addcategory == true &&
-				$wgUser->isAllowed( 'wikiforum-admin' )
+				$user->isAllowed( 'wikiforum-admin' )
 			) {
 				if ( $mod_submit == true ) {
-					$values['title'] = $wgRequest->getVal( 'frmTitle' );
+					$values['title'] = $request->getVal( 'frmTitle' );
 					$mod_submit = $forum->addCategory( $values['title'] );
 				}
 
@@ -226,13 +228,13 @@ class WikiForum extends SpecialPage {
 				}
 			} elseif (
 				isset( $mod_addforum ) && $mod_addforum > 0 &&
-				$wgUser->isAllowed( 'wikiforum-admin' )
+				$user->isAllowed( 'wikiforum-admin' )
 			) {
 				if ( $mod_submit == true ) {
-					$values['title'] = $wgRequest->getVal( 'frmTitle' );
-					$values['text'] = $wgRequest->getVal( 'frmText' );
+					$values['title'] = $request->getVal( 'frmTitle' );
+					$values['text'] = $request->getVal( 'frmText' );
 
-					if ( $wgRequest->getBool( 'chkAnnouncement' ) == true ) {
+					if ( $request->getBool( 'chkAnnouncement' ) == true ) {
 						$values['announce'] = '1';
 					} else {
 						$values['announce'] = '0';
@@ -252,10 +254,10 @@ class WikiForum extends SpecialPage {
 				}
 			} elseif (
 				isset( $mod_editcategory ) && $mod_editcategory > 0 &&
-				$wgUser->isAllowed( 'wikiforum-admin' )
+				$user->isAllowed( 'wikiforum-admin' )
 			) {
 				if ( $mod_submit == true ) {
-					$values['title'] = $wgRequest->getVal( 'frmTitle' );
+					$values['title'] = $request->getVal( 'frmTitle' );
 					$mod_submit = $forum->editCategory(
 						$mod_editcategory,
 						$values['title']
@@ -269,13 +271,13 @@ class WikiForum extends SpecialPage {
 				}
 			} elseif (
 				isset( $mod_editforum ) && $mod_editforum > 0 &&
-				$wgUser->isAllowed( 'wikiforum-admin' )
+				$user->isAllowed( 'wikiforum-admin' )
 			) {
 				if ( $mod_submit == true ) {
-					$values['title'] = $wgRequest->getVal( 'frmTitle' );
-					$values['text'] = $wgRequest->getVal( 'frmText' );
+					$values['title'] = $request->getVal( 'frmTitle' );
+					$values['text'] = $request->getVal( 'frmText' );
 
-					if ( $wgRequest->getBool( 'chkAnnouncement' ) == true ) {
+					if ( $request->getBool( 'chkAnnouncement' ) == true ) {
 						$values['announce'] = '1';
 					} else {
 						$values['announce'] = '0';
@@ -299,31 +301,31 @@ class WikiForum extends SpecialPage {
 			// and follow links. These are overview (Special:WikiForum), individual
 			// threads, forums and categories.
 			if ( isset( $mod_search ) && $mod_search == true ) {
-				$wgOut->addHTML( $forum->showSearchResults( $mod_search ) );
+				$out->addHTML( $forum->showSearchResults( $mod_search ) );
 			} elseif ( $mod_none == true ) {
 				// no data
 			} elseif ( isset( $mod_category ) && $mod_category > 0 ) {
 				// Let search spiders index our content
-				$wgOut->setRobotPolicy( 'index,follow' );
-				$wgOut->addHTML( $forum->showCategory( $mod_category ) );
+				$out->setRobotPolicy( 'index,follow' );
+				$out->addHTML( $forum->showCategory( $mod_category ) );
 			} elseif ( isset( $mod_forum ) && $mod_forum > 0 ) {
 				// Let search spiders index our content
-				$wgOut->setRobotPolicy( 'index,follow' );
-				$wgOut->addHTML( $forum->showForum( $mod_forum ) );
+				$out->setRobotPolicy( 'index,follow' );
+				$out->addHTML( $forum->showForum( $mod_forum ) );
 			} elseif ( isset( $mod_thread ) && $mod_thread > 0 ) {
 				// Let search spiders index our content
-				$wgOut->setRobotPolicy( 'index,follow' );
-				$wgOut->addHTML( $forum->showThread( $mod_thread ) );
+				$out->setRobotPolicy( 'index,follow' );
+				$out->addHTML( $forum->showThread( $mod_thread ) );
 			} elseif ( isset( $mod_writethread ) && $mod_writethread > 0 ) {
-				$wgOut->addHTML( $forum->writeThread( $mod_writethread ) );
+				$out->addHTML( $forum->writeThread( $mod_writethread ) );
 			} elseif ( isset( $mod_showform ) && $mod_showform ) {
-				$wgOut->addHTML(
+				$out->addHTML(
 					$forum->showEditorCatForum( $id, $type, $values )
 				);
 			} else {
 				// Let search spiders index our content
-				$wgOut->setRobotPolicy( 'index,follow' );
-				$wgOut->addHTML( $forum->showOverview() );
+				$out->setRobotPolicy( 'index,follow' );
+				$out->addHTML( $forum->showOverview() );
 			}
 		} // else from line 55 (the if $par is not specified one)
 	} // execute()

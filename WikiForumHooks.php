@@ -31,7 +31,7 @@ class WikiForumHooks {
 	 */
 	public static function addNavigationLink( &$skinTemplate, &$nav_urls, &$oldid, &$revid ) {
 		$nav_urls['wikiforum'] = array(
-			'text' => wfMsg( 'wikiforum' ),
+			'text' => wfMessage( 'wikiforum' )->text(),
 			'href' => $skinTemplate->makeSpecialUrl( 'WikiForum' )
 		);
 		return true;
@@ -48,11 +48,11 @@ class WikiForumHooks {
 	public static function addNavigationLinkToToolbox( &$skinTemplate ) {
 		if ( isset( $skinTemplate->data['nav_urls']['wikiforum'] ) ) {
 			if ( $skinTemplate->data['nav_urls']['wikiforum']['href'] == '' ) {
-				echo '<li id="t-iswikiforum">' . wfMsg( 'wikiforum' ) . '</li>';
+				echo '<li id="t-iswikiforum">' . wfMessage( 'wikiforum' )->text() . '</li>';
 			} else {
 				$url = $skinTemplate->data['nav_urls']['wikiforum']['href'];
 				echo '<li id="t-wikiforum"><a href="' . htmlspecialchars( $url ) . '">';
-				echo wfMsg( 'wikiforum' );
+				echo wfMessage( 'wikiforum' )->text();
 				echo '</a></li>';
 			}
 		}
@@ -96,10 +96,10 @@ class WikiForumHooks {
 		);
 
 		$output = WikiForumGui::getMainPageHeader(
-			wfMsg( 'wikiforum-updates' ),
-			wfMsg( 'wikiforum-replies' ),
-			wfMsg( 'wikiforum-views' ),
-			wfMsg( 'wikiforum-latest-reply' )
+			wfMessage( 'wikiforum-updates' )->text(),
+			wfMessage( 'wikiforum-replies' )->text(),
+			wfMessage( 'wikiforum-views' )->text(),
+			wfMessage( 'wikiforum-latest-reply' )->text()
 		);
 
 		foreach ( $sqlThreads as $thread ) {
@@ -136,10 +136,8 @@ class WikiForumHooks {
 				array( 'forum' => $thread->wff_forum )
 			);
 			$threadLink = Linker::link(
-				$specialPageObj,
-				$thread->wft_thread_name,
-				array(),
-				array( 'thread' => $thread->wft_thread )
+				SpecialPage::getTitleFor( 'WikiForum', $thread->wft_thread_name ),
+				$thread->wft_thread_name
 			);
 
 			$output .= WikiForumGui::getMainBody(
@@ -151,7 +149,7 @@ class WikiForumHooks {
 					WikiForumClass::getUserLink( $thread->user_name ),
 					$thread->user_name
 				)->text() . '<br />' .
-				wfMsgHtml( 'wikiforum-forum', $categoryLink, $forumLink ) .
+				wfMessage( 'wikiforum-forum', $categoryLink, $forumLink )->text() .
 				'</p></p>',
 				$thread->wft_reply_count,
 				$thread->wft_view_count,
@@ -181,8 +179,8 @@ class WikiForumHooks {
 					'wft_thread', 'wft_thread_name', 'wft_text', 'wff_forum',
 					'wff_forum_name', 'wfc_category', 'wfc_category_name',
 					'user_name', 'user_id', 'wft_edit_timestamp', 'wft_edit_user',
-					'wft_posted_timestamp', 'wft_user', 'wft_closed',
-					'wft_closed_user'
+					'wft_edit_user_text', 'wft_posted_timestamp', 'wft_user',
+					'wft_closed', 'wft_closed_user'
 				),
 				array(
 					'wff_deleted' => 0,
@@ -211,7 +209,7 @@ class WikiForumHooks {
 							'wikiforum-edited',
 							$wgLang->timeanddate( $overview->wft_edit_timestamp ),
 							WikiForumClass::getUserLinkById( $overview->wft_edit_user ),
-							User::newFromId( $overview->wft_edit_user )->getName()
+							$overview->wft_edit_user_text
 						)->text() . '</i>';
 				}
 
@@ -223,11 +221,11 @@ class WikiForumHooks {
 					false
 				);
 
-				$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
-				$link = $specialPageObj->escapeFullURL( 'thread=' . $overview->wft_thread );
-
 				$output .= WikiForumGui::getThreadHeader(
-					'<a href="' . $link . '">' . $overview->wft_thread_name . '</a>',
+					Linker::link(
+						SpecialPage::getTitleFor( 'WikiForum', $overview->wft_thread_name ),
+						$overview->wft_thread_name
+					),
 					$parser->recursiveTagParse( $overview->wft_text, $frame ),
 					$posted,
 					'',
@@ -258,7 +256,7 @@ class WikiForumHooks {
 									'wikiforum-edited',
 									$wgLang->timeanddate( $reply->wfr_edit ),
 									WikiForumClass::getUserLinkById( $reply->wfr_edit_user ),
-									User::newFromId( $reply->wfr_edit_user )->getName()
+									$reply->wfr_edit_user_text
 								)->text() . '</i>';
 						}
 						$output .= WikiForumGui::getReply(
@@ -297,24 +295,26 @@ class WikiForumHooks {
 	 * Adds the four new tables to the database when the user runs
 	 * maintenance/update.php.
 	 *
-	 * @param $updater Object: instance of DatabaseUpdater
+	 * @param $updater DatabaseUpdater
 	 * @return Boolean: true
 	 */
 	public static function addTables( $updater = null ) {
 		$dir = dirname( __FILE__ );
 		$file = "$dir/wikiforum.sql";
-		if ( $updater === null ) {
-			global $wgExtNewTables;
-			$wgExtNewTables[] = array( 'wikiforum_category', $file );
-			$wgExtNewTables[] = array( 'wikiforum_forums', $file );
-			$wgExtNewTables[] = array( 'wikiforum_threads', $file );
-			$wgExtNewTables[] = array( 'wikiforum_replies', $file );
-		} else {
-			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_category', $file, true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_forums', $file, true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_threads', $file, true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_replies', $file, true ) );
+
+		$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_category', $file, true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_forums', $file, true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_threads', $file, true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_replies', $file, true ) );
+
+		// Add new *_user_text and *_user_ip columns introduced in 1.3.0-SW
+		if ( !$updater->getDB()->fieldExists( 'wikiforum_category', 'wfc_added_user_text' ) ) {
+			$updater->addExtensionUpdate( array(
+				'addField', $tableName, $columnName,
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
 		}
+
 		return true;
 	}
 }

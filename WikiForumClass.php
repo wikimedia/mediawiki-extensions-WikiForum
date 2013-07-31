@@ -46,6 +46,7 @@ class WikiForumClass {
 			// Something went wrong...
 			$threadId = 0;
 		}
+
 		return $threadId;
 	}
 
@@ -56,7 +57,7 @@ class WikiForumClass {
 	 * @return Boolean: was reply deletion successful or not?
 	 */
 	function deleteReply( $replyId ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -82,6 +83,8 @@ class WikiForumClass {
 				array(
 					'wfr_deleted' => wfTimestampNow(),
 					'wfr_deleted_user' => $wgUser->getId(),
+					'wfr_deleted_user_text' => $wgUser->getName(),
+					'wfr_deleted_user_ip' => $wgRequest->getIP(),
 				),
 				array(
 					'wfr_reply_id' => $reply->wfr_reply_id
@@ -93,8 +96,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-delete' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-delete' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -106,14 +109,14 @@ class WikiForumClass {
 	 * @return Boolean: was thread deletion successful or not?
 	 */
 	function deleteThread( $threadId ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$thread = $dbr->fetchObject( $dbr->select(
 			'wikiforum_threads',
 			array( 'wft_thread', 'wft_user', 'wft_forum' ),
-			array( 'wft_deleted' => 0, 'wft_thread' => intval( $threadId ) ),
+			array( 'wft_deleted' => 0, 'wft_thread' => $threadId ),
 			__METHOD__
 		) );
 
@@ -129,6 +132,8 @@ class WikiForumClass {
 				array(
 					'wft_deleted' => wfTimestampNow(),
 					'wft_deleted_user' => $wgUser->getId(),
+					'wft_deleted_user_text' => $wgUser->getName(),
+					'wft_deleted_user_ip' => $wgRequest->getIP(),
 				),
 				array(
 					'wft_thread' => $thread->wft_thread
@@ -139,7 +144,7 @@ class WikiForumClass {
 			$replyCount = $dbw->selectField(
 				'wikiforum_threads',
 				'wft_reply_count',
-				array( 'wft_thread' => intval( $thread->wft_thread ) ),
+				array( 'wft_thread' => $thread->wft_thread ),
 				__METHOD__
 			);
 			// When the thread we're about to delete is deleted, we also need
@@ -147,10 +152,13 @@ class WikiForumClass {
 			$new = $dbw->select(
 				'wikiforum_threads',
 				array(
-					'wft_last_post_user', 'wft_last_post_timestamp',
+					'wft_last_post_user',
+					'wft_last_post_user_text',
+					'wft_last_post_user_ip',
+					'wft_last_post_timestamp',
 				),
 				array(
-					'wft_forum' => intval( $thread->wft_forum ),
+					'wft_forum' => $thread->wft_forum,
 					'wft_deleted' => 0 // 0 means not deleted
 				),
 				__METHOD__,
@@ -164,12 +172,12 @@ class WikiForumClass {
 				array(
 					"wff_reply_count = wff_reply_count - $replyCount",
 					'wff_thread_count = wff_thread_count - 1',
-					'wff_last_post_user' => intval( $row['wft_last_post_user'] ),
-					'wff_last_post_timestamp' => intval( $row['wft_last_post_timestamp'] )
+					'wff_last_post_user' => $row['wft_last_post_user'],
+					'wff_last_post_user_text' => $row['wft_last_post_user_text'],
+					'wff_last_post_user_ip' => $row['wft_last_post_user_ip'],
+					'wff_last_post_timestamp' => $row['wft_last_post_timestamp']
 				),
-				array(
-					'wff_forum' => intval( $thread->wft_forum )
-				),
+				array( 'wff_forum' => $thread->wft_forum ),
 				__METHOD__
 			);
 		} else {
@@ -177,8 +185,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-delete' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-delete' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -190,7 +198,7 @@ class WikiForumClass {
 	 * @return Boolean: was category deletion successful or not?
 	 */
 	function deleteCategory( $categoryId ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		if (
 			$wgUser->isAllowed( 'wikiforum-admin' ) &&
@@ -203,10 +211,10 @@ class WikiForumClass {
 				array(
 					'wfc_deleted' => wfTimestampNow(),
 					'wfc_deleted_user' => $wgUser->getId(),
+					'wfc_deleted_user_text' => $wgUser->getName(),
+					'wfc_deleted_user' => $wgRequest->getIP(),
 				),
-				array(
-					'wfc_category' => intval( $categoryId )
-				),
+				array( 'wfc_category' => $categoryId ),
 				__METHOD__
 			);
 		} else {
@@ -214,8 +222,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-delete' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-delete' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -227,7 +235,7 @@ class WikiForumClass {
 	 * @return Boolean: was forum deletion successful or not?
 	 */
 	function deleteForum( $forumId ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		if (
 			$wgUser->isAllowed( 'wikiforum-admin' ) &&
@@ -240,10 +248,10 @@ class WikiForumClass {
 				array(
 					'wff_deleted' => wfTimestampNow(),
 					'wff_deleted_user' => $wgUser->getId(),
+					'wff_deleted_user_name' => $wgUser->getName(),
+					'wff_deleted_user_ip' => $wgRequest->getIP(),
 				),
-				array(
-					'wff_forum' => intval( $forumId )
-				),
+				array( 'wff_forum' => $forumId ),
 				__METHOD__
 			);
 		} else {
@@ -251,8 +259,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-delete' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-delete' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -274,7 +282,7 @@ class WikiForumClass {
 			array(
 				'wft_closed > 0',
 				'wft_deleted' => 0,
-				'wft_thread' => intval( $threadId )
+				'wft_thread' => $threadId
 			),
 			__METHOD__
 		);
@@ -300,8 +308,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-thread-reopen' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-thread-reopen' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -313,7 +321,7 @@ class WikiForumClass {
 	 * @return Boolean: was thread closed successfully or not?
 	 */
 	function closeThread( $threadId ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -323,7 +331,7 @@ class WikiForumClass {
 			array(
 				'wft_closed' => 0,
 				'wft_deleted' => 0,
-				'wft_thread' => intval( $threadId )
+				'wft_thread' => $threadId
 			),
 			__METHOD__
 		);
@@ -339,9 +347,11 @@ class WikiForumClass {
 				'wikiforum_threads',
 				array(
 					'wft_closed' => wfTimestampNow(),
-					'wft_closed_user' => $wgUser->getId()
+					'wft_closed_user' => $wgUser->getId(),
+					'wft_closed_user_text' => $wgUser->getName(),
+					'wft_closed_user_ip' => $wgRequest->getIP()
 				),
-				array( 'wft_thread' => intval( $thread->wft_thread ) ),
+				array( 'wft_thread' => $thread->wft_thread ),
 				__METHOD__
 			);
 		} else {
@@ -349,8 +359,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-thread-close' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-thread-close' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -395,8 +405,8 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-sticky' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-sticky' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
@@ -409,13 +419,13 @@ class WikiForumClass {
 		$thread = $dbr->select(
 			'wikiforum_threads',
 			'wft_thread',
-			array( 'wft_deleted' => 0, 'wft_thread' => intval( $threadId ) ),
+			array( 'wft_deleted' => 0, 'wft_thread' => $threadId ),
 			__METHOD__
 		);
 		$forum = $dbr->select(
 			'wikiforum_forums',
 			'wff_forum',
-			array( 'wff_deleted' => 0, 'wff_forum' => intval( $forumId ) ),
+			array( 'wff_deleted' => 0, 'wff_forum' => $forumId ),
 			__METHOD__
 		);
 
@@ -436,14 +446,14 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-move-thread' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-move-thread' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 		}
 		return $result;
 	}
 
 	function editThread( $threadId, $title, $text ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		if (
 			$text && $title && strlen( $text ) > 1 &&
@@ -481,27 +491,29 @@ class WikiForumClass {
 								'wft_thread_name' => $title,
 								'wft_text' => $text,
 								'wft_edit_timestamp' => wfTimestampNow(),
-								'wft_edit_user' => $wgUser->getId()
+								'wft_edit_user' => $wgUser->getId(),
+								'wft_edit_user_text' => $wgUser->getName(),
+								'wft_edit_user_ip' => $wgRequest->getIP(),
 							),
 							array( 'wft_thread' => $thread->wft_thread ),
 							__METHOD__
 						);
 					} else {
-						$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+						$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 						$result = false;
 					}
 				} else {
 					$result = true; // no changes
 				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-error-not-found' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-not-found' )->text();
 				$result = false;
 			}
 
 			if ( $result == false ) {
-				$this->errorTitle = wfMsg( 'wikiforum-error-edit' );
+				$this->errorTitle = wfMessage( 'wikiforum-error-edit' )->text();
 				if ( $this->errorMessage == '' ) {
-					$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+					$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 				}
 			}
 		} else {
@@ -520,13 +532,16 @@ class WikiForumClass {
 	}
 
 	function addThread( $forumId, $title, $text ) {
-		global $wgUser, $wgWikiForumAllowAnonymous;
+		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous;
 
 		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
 			if (
 				$forumId > 0 && strlen( $text ) > 1 &&
-				// @todo FIXME/CHECKME: use wfMsgForContent()?
-				strlen( $title ) > 1 && $title != wfMsg( 'wikiforum-thread-title' )
+				strlen( $title ) > 1 &&
+				$title != wfMessage( 'wikiforum-thread-title' )->inContentLanguage()->plain() &&
+				// We can't add a thread that has the same title as a pre-existing
+				// thread, obviously
+				!$this->doesThreadExist( $title )
 			)
 			{
 				$dbr = wfGetDB( DB_SLAVE );
@@ -538,7 +553,7 @@ class WikiForumClass {
 						'wfc_deleted' => 0,
 						'wff_deleted' => 0,
 						'wfc_category = wff_category',
-						'wff_forum' => intval( $forumId )
+						'wff_forum' => $forumId
 					),
 					__METHOD__
 				) );
@@ -568,7 +583,9 @@ class WikiForumClass {
 									'wft_thread_name' => $title,
 									'wft_text' => $text,
 									'wft_posted_timestamp' => $timestamp,
-									'wft_user' => intval( $wgUser->getId() ),
+									'wft_user' => $wgUser->getId(),
+									'wft_user_text' => $wgUser->getName(),
+									'wft_user_ip' => $wgRequest->getIP(),
 									'wft_forum' => $forumId,
 									'wft_last_post_timestamp' => $timestamp
 								),
@@ -580,7 +597,9 @@ class WikiForumClass {
 									array(
 										'wff_thread_count = wff_thread_count + 1',
 										'wff_last_post_timestamp' => $timestamp,
-										'wff_last_post_user' => $wgUser->getId()
+										'wff_last_post_user' => $wgUser->getId(),
+										'wff_last_post_user_text' => $wgUser->getName(),
+										'wff_last_post_user_ip' => $wgRequest->getIP()
 									),
 									array( 'wff_forum' => $forumId ),
 									__METHOD__
@@ -590,29 +609,29 @@ class WikiForumClass {
 								$this->result = false;
 							}
 						} else {
-							$this->errorMessage = wfMsg( 'wikiforum-error-double-post' );
+							$this->errorMessage = wfMessage( 'wikiforum-error-double-post' )->text();
 							$this->result = false;
 						}
 					} else {
-						$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+						$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 						$this->result = false;
 					}
 				} else {
 					$this->result = false;
 				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-error-no-text-or-title' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-no-text-or-title' )->text();
 				$this->result = false;
 			}
 		} else {
-			$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+			$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 			$this->result = false;
 		}
 
 		if ( $this->result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-add' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-add' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
 		return $this->result;
@@ -634,7 +653,7 @@ class WikiForumClass {
 			$reply = $dbr->fetchObject( $dbr->select(
 				'wikiforum_replies',
 				array( 'wfr_thread', 'wfr_reply_id', 'wfr_reply_text', 'wfr_user' ),
-				array( 'wfr_reply_id' => intval( $replyId ) ),
+				array( 'wfr_reply_id' => $replyId ),
 				__METHOD__
 			) );
 			$thread = $dbr->fetchObject( $dbr->select(
@@ -660,26 +679,28 @@ class WikiForumClass {
 							array(
 								'wfr_reply_text' => $text,
 								'wfr_edit_timestamp' => wfTimestampNow(),
-								'wfr_edit_user' => $wgUser->getId()
+								'wfr_edit_user' => $wgUser->getId(),
+								'wfr_edit_user_text' => $wgUser->getName(),
+								'wfr_edit_user_ip' => $wgRequest->getIP(),
 							),
 							array( 'wfr_reply_id' => $reply->wfr_reply_id ),
 							__METHOD__
 						);
 					} else {
-						$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+						$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 						$result = false;
 					}
 				} else {
 					$result = true;
 				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-error-not-found' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-not-found' )->text();
 				$result = false;
 			}
 		} else {
 			$form = $wgRequest->getBool( 'form' );
 			if ( isset( $form ) && $form == true ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-no-reply' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-no-reply' )->text();
 				$result = false;
 			} else {
 				$result = true;
@@ -687,9 +708,9 @@ class WikiForumClass {
 		}
 
 		if ( $result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-edit' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-edit' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
 		return $result;
@@ -702,7 +723,7 @@ class WikiForumClass {
 	 * @param $text String: reply text
 	 */
 	function addReply( $threadId, $text ) {
-		global $wgUser, $wgWikiForumAllowAnonymous;
+		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous;
 
 		$timestamp = wfTimestampNow();
 
@@ -717,7 +738,7 @@ class WikiForumClass {
 						array(
 							'wft_deleted' => 0,
 							'wft_closed' => 0,
-							'wft_thread' => intval( $threadId )
+							'wft_thread' => $threadId
 						),
 						__METHOD__
 					);
@@ -731,6 +752,7 @@ class WikiForumClass {
 								'wfr_deleted' => 0,
 								'wfr_reply_text' => $text,
 								'wfr_user' => $wgUser->getId(),
+								'wfr_user_text' => $wgUser->getName(),
 								'wfr_thread' => $thread->wft_thread,
 								'wfr_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
 							),
@@ -744,6 +766,7 @@ class WikiForumClass {
 									'wfr_reply_text' => $text,
 									'wfr_posted_timestamp' => $timestamp,
 									'wfr_user' => $wgUser->getId(),
+									'wfr_user_text' => $wgUser->getName(),
 									'wfr_thread' => $thread->wft_thread
 								),
 								__METHOD__
@@ -755,22 +778,24 @@ class WikiForumClass {
 									array(
 										'wft_reply_count = wft_reply_count + 1',
 										'wft_last_post_timestamp' => $timestamp,
-										'wft_last_post_user' => $wgUser->getId()
+										'wft_last_post_user' => $wgUser->getId(),
+										'wft_last_post_user_text' => $wgUser->getName(),
+										'wft_last_post_user_ip' => $wgRequest->getIP(),
 									),
-									array( 'wft_thread' => intval( $threadId ) ),
+									array( 'wft_thread' => $threadId ),
 									__METHOD__
 								);
 
 								$pkForum = $dbr->selectRow(
 									'wikiforum_threads',
 									'wft_forum',
-									array( 'wft_thread' => intval( $threadId ) ),
+									array( 'wft_thread' => $threadId ),
 									__METHOD__
 								);
 								$dbw->update(
 									'wikiforum_forums',
 									array( 'wff_reply_count = wff_reply_count + 1' ),
-									array( 'wff_forum' => intval( $pkForum->wft_forum ) ),
+									array( 'wff_forum' => $pkForum->wft_forum ),
 									__METHOD__
 								);
 
@@ -779,37 +804,37 @@ class WikiForumClass {
 								$this->result = false;
 							}
 						} else {
-							$this->errorMessage = wfMsg( 'wikiforum-error-double-post' );
+							$this->errorMessage = wfMessage( 'wikiforum-error-double-post' )->text();
 							$this->result = false;
 						}
 					} else {
-						$this->errorMessage = wfMsg( 'wikiforum-error-thread-closed' );
+						$this->errorMessage = wfMessage( 'wikiforum-error-thread-closed' )->text();
 						$this->result = false;
 					}
 				} else {
-					$this->errorMessage = wfMsg( 'wikiforum-error-no-reply' );
+					$this->errorMessage = wfMessage( 'wikiforum-error-no-reply' )->text();
 					$this->result = false;
 				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-error-not-found' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-not-found' )->text();
 				$this->result = false;
 			}
 		} else {
-			$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+			$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 			$this->result = false;
 		}
 
 		if ( $this->result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-add' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-add' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
 		return $this->result;
 	}
 
 	function addCategory( $categoryName ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		if (
 			$wgUser->isAllowed( 'wikiforum-admin' ) &&
@@ -832,30 +857,32 @@ class WikiForumClass {
 						'wfc_category_name' => $categoryName,
 						'wfc_sortkey' => ( $sortkey->the_key + 1 ),
 						'wfc_added_timestamp' => wfTimestampNow(),
-						'wfc_added_user' => $wgUser->getId()
+						'wfc_added_user' => $wgUser->getId(),
+						'wfc_added_user_text' => $wgUser->getName(),
+						'wfc_added_user_ip' => $wgRequest->getIP(),
 					),
 					__METHOD__
 				);
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-no-text-or-title' );
+				$this->errorMessage = wfMessage( 'wikiforum-no-text-or-title' )->text();
 				$this->result = false;
 			}
 		} else {
-			$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+			$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 			$this->result = false;
 		}
 
 		if ( $this->result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-add' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-add' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
 		return $this->result;
 	}
 
 	function editCategory( $id, $categoryName ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
 			if ( strlen( $categoryName ) > 0 ) {
@@ -864,7 +891,7 @@ class WikiForumClass {
 				$category = $dbr->fetchObject( $dbr->select(
 					'wikiforum_category',
 					array( 'wfc_category', 'wfc_category_name' ),
-					array( 'wfc_deleted' => 0, 'wfc_category' => intval( $id ) ),
+					array( 'wfc_deleted' => 0, 'wfc_category' => $id ),
 					__METHOD__
 				) );
 
@@ -880,91 +907,98 @@ class WikiForumClass {
 						array(
 							'wfc_category_name' => $categoryName,
 							'wfc_edited' => wfTimestampNow(),
-							'wfc_edited_user' => $wgUser->getId()
+							'wfc_edited_user' => $wgUser->getId(),
+							'wfc_edited_user_text' => $wgUser->getName(),
+							'wfc_edited_user_ip' => $wgRequest->getIP()
 						),
-						array( 'wfc_category' => intval( $category->wfc_category ) ),
+						array( 'wfc_category' => $category->wfc_category ),
 						__METHOD__
 					);
 				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-no-text-or-title' );
+				$this->errorMessage = wfMessage( 'wikiforum-no-text-or-title' )->text();
 				$this->result = false;
 			}
 		} else {
-			$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+			$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 			$this->result = false;
 		}
 
 		if ( $this->result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-edit' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-edit' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
 		return $this->result;
 	}
 
 	function addForum( $categoryId, $forumName, $description, $announcement ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
+
+		if ( strlen( $forumName ) < 0 ) {
+			$this->errorMessage = wfMessage( 'wikiforum-no-text-or-title' )->text();
+			$this->result = false;
+
+			return $this->result;
+		}
 
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
-			if ( strlen( $forumName ) > 0 ) {
-				$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 
-				$sortkey = $dbr->selectRow(
+			$sortKey = $dbr->selectRow(
+				'wikiforum_forums',
+				'MAX(wff_sortkey) AS the_key',
+				array(
+					'wff_deleted' => 0,
+					'wff_category' => $categoryId
+				),
+				__METHOD__
+			);
+
+			$category = $dbr->selectRow(
+				'wikiforum_category',
+				'wfc_category',
+				array(
+					'wfc_deleted' => 0,
+					'wfc_category' => $categoryId
+				),
+				__METHOD__
+			);
+
+			if ( $category->wfc_category > 0 && !wfReadOnly() ) {
+				$dbw = wfGetDB( DB_MASTER );
+				$this->result = $dbw->insert(
 					'wikiforum_forums',
-					'MAX(wff_sortkey) AS the_key',
 					array(
-						'wff_deleted' => 0,
-						'wff_category' => intval( $categoryId )
+						'wff_forum_name' => $forumName,
+						'wff_description' => $description,
+						'wff_category' => $category->wfc_category,
+						'wff_sortkey' => ( $sortKey->the_key + 1 ),
+						'wff_added_timestamp' => wfTimestampNow(),
+						'wff_added_user' => $wgUser->getId(),
+						'wff_added_user_text' => $wgUser->getName(),
+						'wff_added_user_ip' => $wgRequest->getIP(),
+						'wff_announcement' => $announcement
 					),
 					__METHOD__
 				);
-
-				$category = $dbr->selectRow(
-					'wikiforum_category',
-					'wfc_category',
-					array(
-						'wfc_deleted' => 0,
-						'wfc_category' => intval( $categoryId )
-					),
-					__METHOD__
-				);
-
-				if ( $category->wfc_category > 0 && !wfReadOnly() ) {
-					$dbw = wfGetDB( DB_MASTER );
-					$this->result = $dbw->insert(
-						'wikiforum_forums',
-						array(
-							'wff_forum_name' => $forumName,
-							'wff_description' => $description,
-							'wff_category' => $category->wfc_category,
-							'wff_sortkey' => ( $sortkey->the_key + 1 ),
-							'wff_added_timestamp' => wfTimestampNow(),
-							'wff_added_user' => $wgUser->getId(),
-							'wff_announcement' => $announcement
-						),
-						__METHOD__
-					);
-				} else {
-					$this->errorMessage = wfMsg( 'wikiforum-error-not-found' );
-					$this->result = false;
-				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-no-text-or-title' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-not-found' )->text();
 				$this->result = false;
 			}
 		} else {
-			$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+			$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 			$this->result = false;
 		}
 
 		if ( $this->result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-add' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-add' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
+
 		return $this->result;
 	}
 
@@ -978,7 +1012,7 @@ class WikiForumClass {
 	 * @return Boolean: did everything go well (true) or not (false)?
 	 */
 	function editForum( $id, $forumName, $description, $announcement ) {
-		global $wgUser;
+		global $wgRequest, $wgUser;
 
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
 			if ( strlen( $forumName ) > 0 ) {
@@ -989,7 +1023,7 @@ class WikiForumClass {
 						'wff_forum', 'wff_forum_name', 'wff_description',
 						'wff_announcement'
 					),
-					array( 'wff_deleted' => 0, 'wff_forum' => intval( $id ) ),
+					array( 'wff_deleted' => 0, 'wff_forum' => $id ),
 					__METHOD__
 				) );
 
@@ -1010,25 +1044,27 @@ class WikiForumClass {
 							'wff_description' => $description,
 							'wff_edited_timestamp' => wfTimestampNow(),
 							'wff_edited_user' => $wgUser->getId(),
+							'wff_edited_user_text' => $wgUser->getName(),
+							'wff_edited_user_ip' => $wgRequest->getIP(),
 							'wff_announcement' => $announcement
 						),
-						array( 'wff_forum' => intval( $forum->wff_forum ) ),
+						array( 'wff_forum' => $forum->wff_forum ),
 						__METHOD__
 					);
 				}
 			} else {
-				$this->errorMessage = wfMsg( 'wikiforum-no-text-or-title' );
+				$this->errorMessage = wfMessage( 'wikiforum-no-text-or-title' )->text();
 				$this->result = false;
 			}
 		} else {
-			$this->errorMessage = wfMsg( 'wikiforum-error-no-rights' );
+			$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 			$this->result = false;
 		}
 
 		if ( $this->result == false ) {
-			$this->errorTitle = wfMsg( 'wikiforum-error-add' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-add' )->text();
 			if ( $this->errorMessage == '' ) {
-				$this->errorMessage = wfMsg( 'wikiforum-error-general' );
+				$this->errorMessage = wfMessage( 'wikiforum-error-general' )->text();
 			}
 		}
 		return $this->result;
@@ -1066,7 +1102,7 @@ class WikiForumClass {
 				$forum = $dbr->selectRow(
 					$tablename,
 					'wff_category',
-					array( 'wff_deleted' => 0, 'wff_forum' => intval( $id ) ),
+					array( 'wff_deleted' => 0, 'wff_forum' => $id ),
 					__METHOD__
 				);
 				$sqlData = $dbr->select(
@@ -1122,7 +1158,7 @@ class WikiForumClass {
 	 * @return HTML
 	 */
 	function showOverview() {
-		global $wgOut, $wgUser, $wgLang, $wgScriptPath;
+		global $wgOut, $wgUser, $wgLang, $wgExtensionAssetsPath;
 
 		$output = $this->showFailure();
 
@@ -1141,7 +1177,7 @@ class WikiForumClass {
 		// Otherwise give 'em a search box to search the forum because
 		// Special:Search doesn't work for WikiForum
 		if ( !$dbr->numRows( $sqlCategories ) ) {
-			$output .= wfMsgExt( 'wikiforum-forum-is-empty', 'parse' );
+			$output .= wfMessage( 'wikiforum-forum-is-empty' )->parse();
 		} else {
 			$output .= WikiForumGui::getSearchbox();
 		}
@@ -1162,9 +1198,9 @@ class WikiForumClass {
 			$categoryLink = '';
 
 			if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/folder_add.png" title="' . wfMsg( 'wikiforum-add-forum' ) . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_add.png" title="' . wfMessage( 'wikiforum-add-forum' )->text() . '" /> ';
 				$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'addforum' => $cat->wfc_category ) ) . '">' .
-					wfMsg( 'wikiforum-add-forum' ) . '</a>';
+					wfMessage( 'wikiforum-add-forum' ) . '</a>';
 
 				$categoryLink = $this->showAdminIcons(
 					'category', $cat->wfc_category, true, true
@@ -1173,9 +1209,9 @@ class WikiForumClass {
 			}
 			$output .= WikiForumGui::getMainHeader(
 				$cat->wfc_category_name,
-				wfMsg( 'wikiforum-threads' ),
-				wfMsg( 'wikiforum-replies' ),
-				wfMsg( 'wikiforum-latest-thread' ),
+				wfMessage( 'wikiforum-threads' )->text(),
+				wfMessage( 'wikiforum-replies' )->text(),
+				wfMessage( 'wikiforum-latest-thread' )->text(),
 				$categoryLink
 			);
 
@@ -1183,15 +1219,19 @@ class WikiForumClass {
 				$forum_link = $this->showAdminIcons(
 					'forum', $forum->wff_forum, true, true
 				);
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/folder.png" title="' .
-					wfMsg( 'wikiforum-forum-name', $forum->wff_forum_name ) . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder.png" title="' .
+					wfMessage( 'wikiforum-forum-name', $forum->wff_forum_name )->text() . '" /> ';
 
 				$last_post = '';
 				if ( $forum->wff_last_post_timestamp > 0 ) {
 					$last_post = wfMessage(
 						'wikiforum-by',
 						$wgLang->timeanddate( $forum->wff_last_post_timestamp ),
-						WikiForumClass::getUserLink( $forum->user_name ),
+						WikiForumClass::getUserLink(
+							$forum->wff_last_post_user,
+							$forum->wff_last_post_user_text,
+							$forum->wff_last_post_user_ip
+						),
 						$forum->user_name
 					)->text();
 				}
@@ -1213,9 +1253,9 @@ class WikiForumClass {
 
 		// Forum admins are allowed to add new categories
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
-			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/database_add.png" title="' . wfMsg( 'wikiforum-add-category' ) . '" /> ';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
 			$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'addcategory' => true ) ) . '">' .
-				wfMsg( 'wikiforum-add-category' ) . '</a>';
+				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
 			$output .= WikiForumGui::getHeaderRow( 0, '', 0, '', $menuLink );
 		}
 
@@ -1223,7 +1263,7 @@ class WikiForumClass {
 	}
 
 	function showCategory( $categoryId ) {
-		global $wgOut, $wgLang, $wgUser, $wgScriptPath;
+		global $wgOut, $wgLang, $wgUser, $wgExtensionAssetsPath;
 
 		$output = $this->showFailure();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1231,7 +1271,7 @@ class WikiForumClass {
 		$sqlData = $dbr->select(
 			'wikiforum_category',
 			array( 'wfc_category', 'wfc_category_name' ),
-			array( 'wfc_deleted' => 0, 'wfc_category' => intval( $categoryId ) ),
+			array( 'wfc_deleted' => 0, 'wfc_category' => $categoryId ),
 			__METHOD__
 		);
 		$data_overview = $dbr->fetchObject( $sqlData );
@@ -1255,9 +1295,9 @@ class WikiForumClass {
 
 			// Forum admins are allowed to add new forums
 			if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/folder_add.png" title="' . wfMsg( 'wikiforum-add-forum' ) . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_add.png" title="' . wfMessage( 'wikiforum-add-forum' )->text() . '" /> ';
 				$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'addforum' => $data_overview->wfc_category ) ) . '">' .
-					wfMsg( 'wikiforum-add-forum' ) . '</a>';
+					wfMessage( 'wikiforum-add-forum' )->text() . '</a>';
 				$categoryLink = $this->showAdminIcons(
 					'category', $data_overview->wfc_category, false, false
 				);
@@ -1273,9 +1313,9 @@ class WikiForumClass {
 			);
 			$output .= WikiForumGui::getMainHeader(
 				$data_overview->wfc_category_name,
-				wfMsg( 'wikiforum-threads' ),
-				wfMsg( 'wikiforum-replies' ),
-				wfMsg( 'wikiforum-latest-thread' ),
+				wfMessage( 'wikiforum-threads' )->text(),
+				wfMessage( 'wikiforum-replies' )->text(),
+				wfMessage( 'wikiforum-latest-thread' )->text(),
 				$categoryLink
 			);
 
@@ -1284,8 +1324,8 @@ class WikiForumClass {
 					'forum', $forum->wff_forum, true, true
 				);
 
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/folder.png" title="' .
-					wfMsg( 'wikiforum-forum-name', $forum->wff_forum_name ) . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder.png" title="' .
+					wfMessage( 'wikiforum-forum-name', $forum->wff_forum_name )->text() . '" /> ';
 
 				$last_post = '';
 				// If there are replies, indicate that somehow...
@@ -1295,7 +1335,11 @@ class WikiForumClass {
 					$last_post = wfMessage(
 						'wikiforum-by',
 						$wgLang->timeanddate( $forum->wff_last_post_timestamp ),
-						WikiForumClass::getUserLink( $forum->user_name ),
+						WikiForumClass::getUserLink(
+							$forum->wff_last_post_user,
+							$forum->wff_last_post_user_text,
+							$forum->wff_last_post_user_ip
+						),
 						$forum->user_name
 					)->text();
 				}
@@ -1314,11 +1358,11 @@ class WikiForumClass {
 			}
 			$output .= WikiForumGui::getMainFooter();
 		} else {
-			$this->errorTitle = wfMsg( 'wikiforum-cat-not-found' );
-			$this->errorMessage = wfMsg(
+			$this->errorTitle = wfMessage( 'wikiforum-cat-not-found' )->text();
+			$this->errorMessage = wfMessage(
 				'wikiforum-cat-not-found-text',
 				'<a href="' . $specialPage->escapeFullURL() . '">' .
-					wfMsg( 'wikiforum-overview' ) . '</a>'
+					wfMessage( 'wikiforum-overview' )->text() . '</a>' // @todo FIXME
 			);
 		}
 		// Jack: unnecessary duplication of the "Overview" link on the bottom
@@ -1329,7 +1373,7 @@ class WikiForumClass {
 	}
 
 	function showForum( $forumId ) {
-		global $wgOut, $wgLang, $wgUser, $wgRequest, $wgScriptPath;
+		global $wgOut, $wgLang, $wgUser, $wgRequest, $wgExtensionAssetsPath;
 
 		$output = $this->showFailure();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1354,7 +1398,7 @@ class WikiForumClass {
 		}
 		// end sorting
 
-		$maxThreadsPerPage = intval( wfMsgForContent( 'wikiforum-max-threads-per-page' ) );
+		$maxThreadsPerPage = intval( wfMessage( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
 
 		// limiting
 		if ( $maxThreadsPerPage && $wgRequest->getVal( 'lc' ) > 0 ) {
@@ -1380,7 +1424,7 @@ class WikiForumClass {
 				'wff_deleted' => 0,
 				'wfc_deleted' => 0,
 				'wff_category = wfc_category',
-				'wff_forum' => intval( $forumId )
+				'wff_forum' => $forumId
 			),
 			__METHOD__
 		);
@@ -1404,16 +1448,16 @@ class WikiForumClass {
 				array( 'user' => array( 'LEFT JOIN', 'user_id = wft_user' ) )
 			);
 
-			$button['up'] = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/bullet_arrow_up.png" alt="" />';
-			$button['down'] = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/bullet_arrow_down.png" alt="" />';
+			$button['up'] = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/bullet_arrow_up.png" alt="" />';
+			$button['down'] = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/bullet_arrow_down.png" alt="" />';
 
 			// Non-moderators cannot post in an announcement-only forum
 			if ( $data_overview->wff_announcement == true && !$wgUser->isAllowed( 'wikiforum-moderator' ) ) {
 				$write_thread = '';
 			} else {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/note_add.png" title="' . wfMsg( 'wikiforum-write-thread' ) . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_add.png" title="' . wfMessage( 'wikiforum-write-thread' )->text() . '" /> ';
 				$write_thread = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'writethread' => $forumIdNumber ) ) . '">' .
-					wfMsg( 'wikiforum-write-thread' ) . '</a>';
+					wfMessage( 'wikiforum-write-thread' ) . '</a>';
 			}
 
 			$output .= WikiForumGui::getSearchbox();
@@ -1427,18 +1471,20 @@ class WikiForumClass {
 
 			// @todo FIXME: the logic here seems wonky from the end-users point
 			// of view and this code is horrible...
+			// The <br />s are here to fix ShoutWiki bug #176
+			// @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=174
 			$output .= WikiForumGui::getMainHeader(
 				$data_overview->wff_forum_name . ' <a href="' .
 					$specialPage->escapeFullURL( array( 'st' => 'thread', 'sd' => 'up', 'forum' => $forumIdNumber ) ) . '">' . $button['up'] .
 					'</a><a href="' .
 					$specialPage->escapeFullURL( array( 'st' => 'thread', 'sd' => 'down', 'forum' => $forumIdNumber ) ) . '">' . $button['down'] . '</a>',
-				wfMsg( 'wikiforum-replies' ) . ' <a href="' .
+				wfMessage( 'wikiforum-replies' )->text() . ' <br /><a href="' .
 				$specialPage->escapeFullURL( array( 'st' => 'answers', 'sd' => 'up', 'forum' => $forumIdNumber ) ) . '">' . $button['up'] .
 				'</a><a href="' . $specialPage->escapeFullURL( array( 'st' => 'answers', 'sd' => 'down', 'forum' => $forumIdNumber ) ) . '">' . $button['down'] . '</a>',
-				wfMsg( 'wikiforum-views' ) . ' <a href="' .
+				wfMessage( 'wikiforum-views' )->text() . ' <br /><a href="' .
 					$specialPage->escapeFullURL( array( 'st' => 'calls', 'sd' => 'up', 'forum' => $forumIdNumber ) ) . '">' . $button['up'] . '</a><a href="' .
 					$specialPage->escapeFullURL( array( 'st' => 'calls', 'sd' => 'down', 'forum' => $forumIdNumber ) ) . '">' . $button['down'] . '</a>',
-				wfMsg( 'wikiforum-latest-reply' ) . ' <a href="' .
+				wfMessage( 'wikiforum-latest-reply' )->text() . ' <br /><a href="' .
 					$specialPage->escapeFullURL( array( 'st' => 'last', 'sd' => 'up', 'forum' => $forumIdNumber ) ) . '">' . $button['up'] .
 					'</a><a href="' . $specialPage->escapeFullURL( array( 'st' => 'last', 'sd' => 'up', 'forum' => $forumIdNumber ) ) . '">' . $button['down'] . '</a>',
 				false
@@ -1458,8 +1504,12 @@ class WikiForumClass {
 					$last_post = wfMessage(
 						'wikiforum-by',
 						$wgLang->timeanddate( $thread->wft_last_post_timestamp ),
-						WikiForumClass::getUserLinkById( $thread->wft_last_post_user ),
-						User::newFromId( $thread->wft_last_post_user )->getName()
+						WikiForumClass::getUserLink(
+							$thread->wft_last_post_user,
+							$thread->wft_last_post_user_text,
+							$thread->wft_last_post_user_ip
+						),
+						$thread->wft_last_post_user_text
 					)->text();
 				}
 
@@ -1469,16 +1519,20 @@ class WikiForumClass {
 					$sticky = false;
 				}
 
+				$threadSPobj = SpecialPage::getTitleFor( 'WikiForum', $thread->wft_thread_name );
 				$output .= WikiForumGui::getMainBody(
 					'<p class="mw-wikiforum-thread">' . $icon .
-						'<a href="' . $specialPage->escapeFullURL( array( 'thread' => $thread->wft_thread ) ) . '">' .
-							htmlspecialchars( $thread->wft_thread_name ) . '</a>
-					<p class="mw-wikiforum-descr">' .
+						Linker::link( $threadSPobj, $thread->wft_thread_name ) .
+					'<p class="mw-wikiforum-descr">' .
 						wfMessage(
 							'wikiforum-posted',
 							$wgLang->timeanddate( $thread->wft_posted_timestamp ),
-							WikiForumClass::getUserLink( $thread->user_name ),
-							$thread->user_name
+							WikiForumClass::getUserLink(
+								$thread->wft_user,
+								$thread->wft_user_text,
+								$thread->wft_user_ip
+							),
+							$thread->wft_user_text
 						)->text() . '</p></p>',
 					$thread->wft_reply_count,
 					$thread->wft_view_count,
@@ -1489,7 +1543,7 @@ class WikiForumClass {
 
 			}
 			if ( $threads_exist == false ) {
-				$output .= WikiForumGui::getSingleLine( wfMsg( 'wikiforum-no-threads' ), 4 );
+				$output .= WikiForumGui::getSingleLine( wfMessage( 'wikiforum-no-threads' )->text(), 4 );
 			}
 			$output .= WikiForumGui::getMainFooter();
 
@@ -1513,27 +1567,34 @@ class WikiForumClass {
 				);
 			}
 		} else {
-			$this->errorTitle = wfMsg( 'wikiforum-forum-not-found' );
-			$this->errorMessage = wfMsg(
+			$this->errorTitle = wfMessage( 'wikiforum-forum-not-found' )->text();
+			$this->errorMessage = wfMessage(
 				'wikiforum-forum-not-found-text',
 				'<a href="' . $specialPage->escapeFullURL() . '">' .
-					wfMsg( 'wikiforum-overview' ) . '</a>'
-			);
+					wfMessage( 'wikiforum-overview' )->text() . '</a>' // @todo FIXME
+			)->text();
 		}
 
+		/* Hide the "Move thread" link as it seems broken. See also pasteThread() function in this class.
 		$pastethread_link = '';
 		if ( $f_movethread > 0 ) {
-			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/paste_plain.png" title="' . wfMsg( 'wikiforum-paste-thread' ) . '" /> ';
-			$pastethread_link = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'pastethread' => $f_movethread ) ) . '">' . wfMsg( 'wikiforum-paste-thread' ) . '</a> ';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/paste_plain.png" title="' . wfMessage( 'wikiforum-paste-thread' )->text() . '" /> ';
+			$pastethread_link = $icon . Linker::link(
+				$specialPage,
+				wfMessage( 'wikiforum-paste-thread' )->text(),
+				array(),
+				array( 'pastethread' => $f_movethread )
+			) . wfMessage( 'word-separator' )->plain();
 			$output .= WikiForumGui::getHeaderRow( 0, '', 0, '', $pastethread_link );
 		}
+		*/
 
 		$output .= $this->showFailure();
 		return $output;
 	}
 
 	function showThread( $threadId ) {
-		global $wgOut, $wgRequest, $wgUser, $wgLang, $wgScriptPath;
+		global $wgOut, $wgRequest, $wgUser, $wgLang, $wgExtensionAssetsPath;
 
 		$output = $this->showFailure();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1544,8 +1605,10 @@ class WikiForumClass {
 				'wft_thread', 'wft_thread_name', 'wft_text', 'wff_forum',
 				'wff_forum_name', 'wfc_category', 'wfc_category_name',
 				'user_name', 'user_id', 'wft_sticky', 'wft_edit_timestamp',
-				'wft_edit_user', 'wft_posted_timestamp', 'wft_user',
-				'wft_closed', 'wft_closed_user',
+				'wft_edit_user', 'wft_edit_user_text', 'wft_edit_user_ip',
+				'wft_posted_timestamp', 'wft_user', 'wft_user_text', 'wft_user_ip',
+				'wft_closed', 'wft_closed_user', 'wft_closed_user_text',
+				'wft_closed_user_ip',
 			),
 			array(
 				'wff_deleted' => 0,
@@ -1553,7 +1616,7 @@ class WikiForumClass {
 				'wft_deleted' => 0,
 				'wff_category = wfc_category',
 				'wff_forum = wft_forum',
-				'wft_thread' => intval( $threadId )
+				'wft_thread' => $threadId
 			),
 			__METHOD__,
 			array(),
@@ -1562,7 +1625,7 @@ class WikiForumClass {
 
 		$data_overview = $dbr->fetchObject( $sqlData );
 
-		$maxRepliesPerPage = intval( wfMsgForContent( 'wikiforum-max-replies-per-page' ) );
+		$maxRepliesPerPage = intval( wfMessage( 'wikiforum-max-replies-per-page' )->inContentLanguage()->plain() );
 
 		// limiting
 		if ( $maxRepliesPerPage && $wgRequest->getVal( 'lc' ) > 0 ) {
@@ -1603,7 +1666,7 @@ class WikiForumClass {
 				$dbw->update(
 					'wikiforum_threads',
 					array( 'wft_view_count = wft_view_count + 1' ),
-					array( 'wft_thread' => intval( $data_overview->wft_thread ) ),
+					array( 'wft_thread' => $data_overview->wft_thread ),
 					__METHOD__
 				);
 			}
@@ -1619,36 +1682,44 @@ class WikiForumClass {
 
 			if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
 				if ( $data_overview->wft_sticky == 1 ) {
-					$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/tag_blue_delete.png" title="' . wfMsg( 'wikiforum-remove-sticky' ) . '" /> ';
+					$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/tag_blue_delete.png" title="' . wfMessage( 'wikiforum-remove-sticky' )->text() . '" /> ';
 					$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'removesticky' => $data_overview->wft_thread ) ) . '">' .
-						wfMsg( 'wikiforum-remove-sticky' ) . '</a> ';
+						wfMessage( 'wikiforum-remove-sticky' )->text() . '</a> ';
 				} else {
-					$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/tag_blue_add.png" title="' . wfMsg( 'wikiforum-make-sticky' ) . '" /> ';
+					$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/tag_blue_add.png" title="' . wfMessage( 'wikiforum-make-sticky' )->text() . '" /> ';
 					$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'makesticky' => $data_overview->wft_thread ) ) . '">' .
-							wfMsg( 'wikiforum-make-sticky' ) . '</a> ';
+							wfMessage( 'wikiforum-make-sticky' )->text() . '</a> ';
 				}
 			}
 
-			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/comment_add.png" title="' . wfMsg( 'wikiforum-write-reply' ) . '" /> ';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comment_add.png" title="' . wfMessage( 'wikiforum-write-reply' )->text() . '" /> ';
 			// Replying is only possible to open threads
 			if ( $data_overview->wft_closed == 0 ) {
 				$menuLink .= $icon . '<a href="#writereply">' .
-					wfMsg( 'wikiforum-write-reply' ) . '</a>';
+					wfMessage( 'wikiforum-write-reply' )->text() . '</a>';
 			}
 
 			$posted = wfMessage(
 				'wikiforum-posted',
 				$wgLang->timeanddate( $data_overview->wft_posted_timestamp ),
-				WikiForumClass::getUserLink( $data_overview->user_name ),
-				$data_overview->user_name
+				WikiForumClass::getUserLink(
+					$data_overview->wft_user,
+					$data_overview->wft_user_text,
+					$data_overview->wft_user_ip
+				),
+				$data_overview->wft_user_text
 			)->text();
 			if ( $data_overview->wft_edit_timestamp > 0 ) {
 				$posted .= '<br /><i>' .
 					wfMessage(
 						'wikiforum-edited',
 						$wgLang->timeanddate( $data_overview->wft_edit_timestamp ),
-						WikiForumClass::getUserLinkById( $data_overview->wft_edit_user ),
-						User::newFromId( $data_overview->wft_edit_user )->getName()
+						WikiForumClass::getUserLink(
+							$data_overview->wft_edit_user,
+							$data_overview->wft_edit_user_text,
+							$data_overview->wft_edit_user_ip
+						),
+						$data_overview->wft_edit_user_text
 					)->text() . '</i>';
 			}
 
@@ -1663,7 +1734,8 @@ class WikiForumClass {
 
 			// Add topic name to the title
 			// @todo FIXME: this is lame and doesn't apply to the <title> attribute
-			$wgOut->setPageTitle( wfMsg( 'wikiforum-topic-name', $data_overview->wft_thread_name ) );
+			$wgOut->setPageTitle( wfMessage( 'wikiforum-topic-name', $data_overview->wft_thread_name )->text() );
+			$wgOut->setHTMLTitle( wfMessage( 'wikiforum-topic-name', $data_overview->wft_thread_name )->text() );
 
 			$output .= WikiForumGui::getThreadHeader(
 				htmlspecialchars( $data_overview->wft_thread_name ),
@@ -1685,7 +1757,11 @@ class WikiForumClass {
 				$posted = wfMessage(
 					'wikiforum-posted',
 					$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
-					WikiForumClass::getUserLink( $reply->user_name ),
+					WikiForumClass::getUserLink(
+						$reply->wfr_user,
+						$reply->wfr_user_text,
+						$reply->wfr_user_ip
+					),
 					$reply->user_name
 				)->text();
 				if ( $reply->wfr_edit_timestamp > 0 ) {
@@ -1693,8 +1769,12 @@ class WikiForumClass {
 						wfMessage(
 							'wikiforum-edited',
 							$wgLang->timeanddate( $reply->wfr_edit_timestamp ),
-							WikiForumClass::getUserLinkById( $reply->wfr_edit_user ),
-							User::newFromId( $reply->wfr_edit_user )->getName()
+							WikiForumClass::getUserLink(
+								$reply->wfr_edit_user,
+								$reply->wfr_edit_user_text,
+								$reply->wfr_edit_user_ip
+							),
+							$reply->wfr_edit_user_text
 						)->text() . '</i>';
 				}
 
@@ -1724,7 +1804,7 @@ class WikiForumClass {
 					$countReplies->count,
 					$limit_count,
 					$data_overview->wff_forum,
-					intval( $threadId )
+					$threadId
 				);
 			}
 
@@ -1740,25 +1820,27 @@ class WikiForumClass {
 			{
 				$output .= $this->showEditor( $data_overview->wft_thread, 'addcomment' );
 			} else {
-				$this->errorTitle = wfMsg( 'wikiforum-thread-closed' );
-				$this->errorMessage = wfMsg( 'wikiforum-error-thread-closed' );
+				$this->errorTitle = wfMessage( 'wikiforum-thread-closed' )->text();
+				$this->errorMessage = wfMessage( 'wikiforum-error-thread-closed' )->text();
 				$this->errorIcon = 'lock.png';// 'icon_thread_closed';
 			}
 		} else {
-			$this->errorTitle = wfMsg( 'wikiforum-thread-not-found' );
-			$this->errorMessage = wfMsg(
+			$this->errorTitle = wfMessage( 'wikiforum-thread-not-found' )->text();
+			$this->errorMessage = wfMessage(
 				'wikiforum-thread-not-found-text',
 				'<a href="' . $specialPage->escapeFullURL() . '">' .
-					wfMsg( 'wikiforum-overview' ) . '</a>'
-			);
+					wfMessage( 'wikiforum-overview' )->text() . '</a>' // @todo FIXME
+			)->text();
 		}
 
+		/* This "move thread" feature doesn't seem to be working so I'm commenting it out
 		$movethread_link = '';
 		if ( $wgUser->isAllowed( 'wikiforum-moderator' ) ) {
-			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/note_go.png" title="' . wfMsg( 'wikiforum-move-thread' ) . '" /> ';
-			$movethread_link = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'movethread' => $data_overview->wft_thread ) ) . '">' . wfMsg( 'wikiforum-move-thread' ) . '</a> ';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_go.png" title="' . wfMessage( 'wikiforum-move-thread' )->text() . '" /> ';
+			$movethread_link = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'movethread' => $data_overview->wft_thread ) ) . '">' . wfMessage( 'wikiforum-move-thread' )->text() . '</a> ';
 			$output .= WikiForumGui::getHeaderRow( 0, '', 0, '', $movethread_link );
 		}
+		*/
 
 		$output .= $this->showFailure();
 
@@ -1791,19 +1873,18 @@ class WikiForumClass {
 			$repliesTable = $dbr->tableName( 'wikiforum_replies' );
 
 			$sqlData = $dbr->query(
-				"SELECT wfr_posted_timestamp, wfr_user, wft_thread_name, wft_thread, wfr_reply_text AS Search, wfr_reply_id
+				"SELECT wfr_posted_timestamp, wfr_user, wfr_user_text, wfr_user_ip, wft_thread_name, wft_thread, wfr_reply_text AS Search, wfr_reply_id
 				FROM $repliesTable, $threadsTable
 				LEFT JOIN " . $dbr->tableName( 'user' ) . ' ON user_id = wft_user
 				WHERE wfr_deleted = 0 AND wft_deleted = 0 AND wft_thread = wfr_thread AND wfr_reply_text ' . $likeString . "
 				UNION ALL
-					SELECT wft_posted_timestamp, wft_user, wft_thread_name, wft_thread, wft_text AS Search, 0 FROM $threadsTable
+					SELECT wft_posted_timestamp, wft_user, wft_user_text, wft_user_ip, wft_thread_name, wft_thread, wft_text AS Search, 0 FROM $threadsTable
 					LEFT JOIN " . $dbr->tableName( 'user' ) . ' ON user_id = wft_user
 					WHERE wft_deleted = 0 AND (wft_text ' . $likeString . ' OR wft_thread_name ' . $likeString . ')
 					ORDER BY wfr_posted_timestamp DESC LIMIT 0, 30',
 				__METHOD__
 			);
 
-			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 			$output_temp = '';
 
 			foreach ( $sqlData as $result ) {
@@ -1812,37 +1893,41 @@ class WikiForumClass {
 					$anchor = '#reply_' . $result->wfr_reply_id;
 				}
 
-				$url = $specialPage->escapeFullURL( array( 'thread' => $result->wft_thread ) );
+				$url = SpecialPage::getTitleFor( 'WikiForum', $result->wft_thread_name )->escapeFullURL();
 
 				$posted = wfMessage(
 					'wikiforum-posted',
 					$wgLang->timeanddate( $result->wfr_posted_timestamp ),
-					$this->getUserLinkById( $result->wfr_user ),
-					User::newFromId( $result->wfr_user )->getName()
-				)->text() . '<br />' . wfMsg(
+					WikiForumClass::getUserLink(
+						$result->wfr_user,
+						$result->wfr_user_text,
+						$result->wfr_user_ip
+					),
+					$result->wfr_user_text
+				)->text() . '<br />' . wfMessage(
 						'wikiforum-search-thread',
 						'<a href="' . $url . $anchor . '">' .
 							$result->wft_thread_name .
 						'</a>'
-					);
+					)->text();
 
 				$output_temp .= WikiForumGui::getReply(
 					$this->parseIt( $result->Search ),
 					$posted,
 					false,
 					$result->wfr_reply_id,
-					$result->wft_user
+					$result->wfr_user
 				);
 				$i++;
 			}
 
-			$title = wfMsgExt( 'wikiforum-search-hits', 'parsemag', $i );
+			$title = wfMessage( 'wikiforum-search-hits', $i )->parse();
 			$output .= WikiForumGui::getReplyHeader( $title );
 			$output .= $output_temp;
 			$output .= WikiForumGui::getThreadFooter();
 		} else {
-			$this->errorTitle = wfMsg( 'wikiforum-error-search' );
-			$this->errorMessage = wfMsg( 'wikiforum-error-search-missing-query' );
+			$this->errorTitle = wfMessage( 'wikiforum-error-search' )->text();
+			$this->errorMessage = wfMessage( 'wikiforum-error-search-missing-query' )->text();
 		}
 		$output .= $this->showFailure();
 		return $output;
@@ -1852,18 +1937,18 @@ class WikiForumClass {
 	 * Preview a reply.
 	 */
 	function previewIssue( $type, $id, $previewTitle, $previewText ) {
-		global $wgUser, $wgLang;
+		global $wgRequest, $wgUser, $wgLang;
 
 		$output = $this->showFailure();
 
-		$title = wfMsg( 'wikiforum-preview' );
+		$title = wfMessage( 'wikiforum-preview' )->text();
 		if ( $previewTitle ) {
-			$title = wfMsg( 'wikiforum-preview-with-title', $previewTitle );
+			$title = wfMessage( 'wikiforum-preview-with-title', $previewTitle )->text();
 		}
 		$posted = wfMessage(
 			'wikiforum-posted',
 			$wgLang->timeanddate( wfTimestampNow() ),
-			$this->getUserLinkById( $wgUser->getId() ),
+			WikiForumClass::getUserLink( $wgUser->getId(), $wgUser->getName(), $wgRequest->getIP() ),
 			$wgUser->getName()
 		)->text();
 		if ( $type == 'addcomment' || $type == 'editcomment' ) {
@@ -1922,7 +2007,7 @@ class WikiForumClass {
 					'wft_deleted' => 0,
 					'wff_category = wfc_category',
 					'wff_forum = wft_forum',
-					'wft_thread' => intval( $forumId )
+					'wft_thread' => $forumId
 				),
 				__METHOD__
 			);
@@ -1937,7 +2022,7 @@ class WikiForumClass {
 					'wff_deleted' => 0,
 					'wfc_deleted' => 0,
 					'wff_category = wfc_category',
-					'wff_forum' => intval( $forumId )
+					'wff_forum' => $forumId
 				),
 				__METHOD__
 			);
@@ -1970,7 +2055,7 @@ class WikiForumClass {
 		$text_prev = '';
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$save_button = wfMsg( 'wikiforum-save' );
+		$save_button = wfMessage( 'wikiforum-save' )->plain();
 
 		if ( isset( $values['text'] ) && strlen( $values['text'] ) > 0 ) {
 			$text_prev = $values['text'];
@@ -1981,7 +2066,7 @@ class WikiForumClass {
 		$overview = '';
 
 		if ( $type == 'addcategory' ) {
-			$categoryName = wfMsg( 'wikiforum-add-category' );
+			$categoryName = wfMessage( 'wikiforum-add-category' )->text();
 		} elseif ( $type == 'editcategory' ) {
 			$overview = $dbr->fetchObject( $dbr->select(
 				'wikiforum_category',
@@ -1991,9 +2076,9 @@ class WikiForumClass {
 			) );
 			$id = $overview->wfc_category;
 			$title_prev = $overview->wfc_category_name;
-			$categoryName = wfMsg( 'wikiforum-edit-category' );
+			$categoryName = wfMessage( 'wikiforum-edit-category' )->text();
 		} elseif ( $type == 'addforum' ) {
-			$categoryName = wfMsg( 'wikiforum-add-forum' );
+			$categoryName = wfMessage( 'wikiforum-add-forum' )->text();
 		} elseif ( $type == 'editforum' ) {
 			$overview = $dbr->fetchObject( $dbr->select(
 				'wikiforum_forums',
@@ -2001,7 +2086,7 @@ class WikiForumClass {
 					'wff_forum', 'wff_forum_name', 'wff_description',
 					'wff_announcement'
 				),
-				array( 'wff_deleted' => 0, 'wff_forum' => intval( $id ) ),
+				array( 'wff_deleted' => 0, 'wff_forum' => $id ),
 				__METHOD__
 			) );
 			$id = $overview->wff_forum;
@@ -2009,7 +2094,7 @@ class WikiForumClass {
 			if ( strlen( $text_prev ) == 0 ) {
 				$text_prev = $overview->wff_description;
 			}
-			$categoryName = wfMsg( 'wikiforum-edit-forum' );
+			$categoryName = wfMessage( 'wikiforum-edit-forum' )->text();
 		}
 		$action = array( $type => $id );
 
@@ -2032,12 +2117,13 @@ class WikiForumClass {
 			$text_prev = $wgRequest->getVal( 'frmText' );
 			$title_prev	= $wgRequest->getVal( 'frmTitle' );
 		} else {
-			$title_prev = wfMsg( 'wikiforum-thread-title' );
+			$title_prev = wfMessage( 'wikiforum-thread-title' )->text();
 		}
 
 		if ( $type == 'addthread' || $type == 'editthread' ) {
 			$mod_editthread = $wgRequest->getInt( 'editthread' );
 			$mod_preview = $wgRequest->getBool( 'butPreview' );
+
 			if ( $mod_editthread && $mod_editthread > 0 ) {
 				if ( !$text_prev || !$title_prev || $mod_preview == true ) {
 					$data_thread = $dbr->fetchObject( $dbr->select(
@@ -2055,15 +2141,16 @@ class WikiForumClass {
 					if ( !$text_prev ) {
 						$text_prev = $data_thread->wft_text;
 					}
-					if ( $title_prev == wfMsg( 'wikiforum-thread-title' ) ) {
+					if ( $title_prev == wfMessage( 'wikiforum-thread-title' )->text() ) {
 						$title_prev = $data_thread->wft_thread_name;
 					}
 				}
 			} else {
 				$action = array( 'addthread' => $id );
 			}
+
 			$height = '25em';
-			$save_button = wfMsg( 'wikiforum-save-thread' );
+			$save_button = wfMessage( 'wikiforum-save-thread' )->text();
 			$input = WikiForumGui::getInput( $title_prev );
 		} else { // add reply
 			$mod_comment = $wgRequest->getInt( 'editcomment' );
@@ -2086,13 +2173,13 @@ class WikiForumClass {
 					$posted = wfMessage(
 						'wikiforum-posted',
 						$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
-						// Jack: removed this here to make quoting work
-						// if this is present, then pressing the quote button
+						// Jack: removed getUserLink() call here to make quoting work
+						// if the call is present, then pressing the quote button
 						// will generate shit like [quote=Posted on foo by Bar
 						// <a href="/wiki/User:Bar" title="Bar">Bar</a> (
 						// <a href="/wiki/Project:Administrators">administrator</a>)
 						// which is *not* what we want
-						/*$this->getUserLink(*/ $reply->user_name, /*)*/
+						$reply->user_name,
 						$reply->user_name
 					)->text();
 					$text_prev = '[quote=' . $posted . ']' .
@@ -2112,7 +2199,7 @@ class WikiForumClass {
 						'wikiforum-posted',
 						$wgLang->timeanddate( $thread->wft_posted_timestamp ),
 						// see the explanation above
-						/*$this->getUserLink(*/ $thread->user_name, /*)*/
+						$thread->user_name,
 						$thread->user_name
 					)->text();
 					$text_prev = '[quote=' . $posted . ']' .
@@ -2149,7 +2236,7 @@ class WikiForumClass {
 			}
 			$height = '10em';
 			$input = '';
-			$save_button = wfMsg( 'wikiforum-save-reply' );
+			$save_button = wfMessage( 'wikiforum-save-reply' )->text();
 		}
 		return WikiForumGui::getWriteForm(
 			$type, $action, $input, $height, $text_prev, $save_button
@@ -2166,14 +2253,14 @@ class WikiForumClass {
 	 * @return HTML
 	 */
 	private function showReplyButtons( $postedBy, $replyID, $threadID, $closed ) {
-		global $wgUser, $wgScriptPath;
+		global $wgUser, $wgExtensionAssetsPath;
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 		$editButtons = '<a href="' . $specialPage->escapeFullURL( array(
 			'thread' => $threadID,
 			'quotecomment' => $replyID
 		) ) . '#writereply">';
-		$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/comments_add.png" title="' . wfMsg( 'wikiforum-quote' ) . '" />';
+		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
 
 		if (
 			( $wgUser->getId() == $postedBy && $closed == 0 ) ||
@@ -2181,9 +2268,9 @@ class WikiForumClass {
 		)
 		{
 			$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'thread' => $threadID, 'editcomment' => $replyID ) ) . '#writereply">';
-			$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/comment_edit.png" title="' . wfMsg( 'wikiforum-edit-reply' ) . '" />';
+			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comment_edit.png" title="' . wfMessage( 'wikiforum-edit-reply' )->text() . '" />';
 			$editButtons .= '</a> <a href="' . $specialPage->escapeFullURL( array( 'thread' => $threadID, 'deletecomment' => $replyID ) ) . '">';
-			$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/comment_delete.png" title="' . wfMsg( 'wikiforum-delete-reply' ) . '" />';
+			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comment_delete.png" title="' . wfMessage( 'wikiforum-delete-reply' )->text() . '" />';
 		}
 
 		$editButtons .= '</a>';
@@ -2202,14 +2289,14 @@ class WikiForumClass {
 	 * @return HTML
 	 */
 	private function showThreadButtons( $postedBy, $closed, $threadID, $forumID ) {
-		global $wgUser, $wgScriptPath;
+		global $wgUser, $wgExtensionAssetsPath;
 
 		$editButtons = '';
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
 		$editButtons .= '<a href="' . $specialPage->escapeFullURL( array( 'thread' => $threadID, 'quotethread' => $threadID ) ) . '#writereply">';
-		$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/comments_add.png" title="' . wfMsg( 'wikiforum-quote' ) . '" />';
+		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
 		$editButtons .= '</a>';
 
 		if (
@@ -2218,20 +2305,20 @@ class WikiForumClass {
 		)
 		{
 			$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'editthread' => $threadID ) ) . '">';
-			$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/note_edit.png" title="' . wfMsg( 'wikiforum-edit-thread' ) . '" />';
+			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_edit.png" title="' . wfMessage( 'wikiforum-edit-thread' )->text() . '" />';
 			$editButtons .= '</a> <a href="' . $specialPage->escapeFullURL( array( 'forum' => $forumID, 'deletethread' => $threadID ) ) . '">';
-			$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/note_delete.png" title="' . wfMsg( 'wikiforum-delete-thread' ) . '" />';
+			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_delete.png" title="' . wfMessage( 'wikiforum-delete-thread' )->text() . '" />';
 			$editButtons .= '</a> ';
 
 			// Only moderators can lock and reopen threads
 			if ( $wgUser->isAllowed( 'wikiforum-moderator' ) ) {
 				if ( $closed == 0 ) {
 					$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'closethread' => $threadID ) ) . '">';
-					$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/lock_add.png" title="' . wfMsg( 'wikiforum-close-thread' ) . '" />';
+					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/lock_add.png" title="' . wfMessage( 'wikiforum-close-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				} else {
 					$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'reopenthread' => $threadID ) ) . '">';
-					$editButtons .= '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/lock_open.png" title="' . wfMsg( 'wikiforum-reopen-thread' ) . '" />';
+					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/lock_open.png" title="' . wfMessage( 'wikiforum-reopen-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				}
 			}
@@ -2250,7 +2337,7 @@ class WikiForumClass {
 	 * @return HTML
 	 */
 	private function showAdminIcons( $type, $id, $sortup, $sortdown ) {
-		global $wgUser, $wgScriptPath;
+		global $wgUser, $wgExtensionAssetsPath;
 
 		$link = '';
 
@@ -2266,19 +2353,19 @@ class WikiForumClass {
 
 			// For grep: wikiforum-edit-forum, wikiforum-edit-category,
 			// wikiforum-delete-forum, wikiforum-delete-category
-			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/' . $iconName . '_edit.png" title="' . wfMsg( 'wikiforum-edit-' . $type ) . '" />';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/' . $iconName . '_edit.png" title="' . wfMessage( 'wikiforum-edit-' . $type )->text() . '" />';
 			$link = ' <a href="' . $specialPage->escapeFullURL( array( 'edit' . $type => $id ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/' . $iconName . '_delete.png" title="' . wfMsg( 'wikiforum-delete-' . $type ) . '" />';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/' . $iconName . '_delete.png" title="' . wfMessage( 'wikiforum-delete-' . $type )->text() . '" />';
 			$link .= ' <a href="' . $specialPage->escapeFullURL( array( 'delete' . $type => $id ) ) . '">' . $icon . '</a>';
 
 			if ( $sortup == true ) {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/arrow_up.png" title="' . wfMsg( 'wikiforum-sort-up' ) . '" />';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
 				$link .= ' <a href="' . $specialPage->escapeFullURL( array( $type . 'up' => $id ) ) . '">' . $icon . '</a>';
 			}
 
 			if ( $sortdown == true ) {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/arrow_down.png" title="' . wfMsg( 'wikiforum-sort-down' ) . '" />';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
 				$link .= ' <a href="' . $specialPage->escapeFullURL( array( $type . 'down' => $id ) ) . '">' . $icon . '</a>';
 			}
 		}
@@ -2299,22 +2386,22 @@ class WikiForumClass {
 	 * @return HTML: img tag
 	 */
 	public static function getThreadIcon( $posted, $closed, $sticky ) {
-		global $wgScriptPath;
+		global $wgExtensionAssetsPath;
 
 		// Threads that are this many days old or newer are considered "new"
-		$dayDefinitionNew = intval( wfMsgForContent( 'wikiforum-day-definition-new' ) );
+		$dayDefinitionNew = intval( wfMessage( 'wikiforum-day-definition-new' )->inContentLanguage()->plain() );
 
 		$olderTimestamp = wfTimestamp( TS_MW, strtotime( '-' . $dayDefinitionNew . ' days' ) );
 
-		$imagePath = $wgScriptPath . '/extensions/WikiForum/icons';
+		$imagePath = $wgExtensionAssetsPath . '/WikiForum/icons';
 		if ( $sticky == 1 ) {
-			return '<img src="' . $imagePath . '/tag_blue.png" title="' . wfMsg( 'wikiforum-sticky' ) . '" /> ';
+			return '<img src="' . $imagePath . '/tag_blue.png" title="' . wfMessage( 'wikiforum-sticky' )->text() . '" /> ';
 		} elseif ( $closed > 0 ) {
-			return '<img src="' . $imagePath . '/lock.png" title="' . wfMsg( 'wikiforum-thread-closed' ) . '" /> ';
+			return '<img src="' . $imagePath . '/lock.png" title="' . wfMessage( 'wikiforum-thread-closed' )->text() . '" /> ';
 		} elseif ( $posted > $olderTimestamp ) {
-			return '<img src="' . $imagePath . '/new.png" title="' . wfMsg( 'wikiforum-new-thread' ) . '" /> ';
+			return '<img src="' . $imagePath . '/new.png" title="' . wfMessage( 'wikiforum-new-thread' )->text() . '" /> ';
 		} else {
-			return '<img src="' . $imagePath . '/note.png" title="' . wfMsg( 'wikiforum-thread' ) . '" /> ';
+			return '<img src="' . $imagePath . '/note.png" title="' . wfMessage( 'wikiforum-thread' )->text() . '" /> ';
 		}
 	}
 
@@ -2325,15 +2412,15 @@ class WikiForumClass {
 	 * @return HTML
 	 */
 	private function showFailure() {
-		global $wgScriptPath;
+		global $wgExtensionAssetsPath;
 
 		$output = '';
 
 		if ( strlen( $this->errorTitle ) > 0 ) {
 			if ( strlen( $this->errorIcon ) > 0 ) {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/' . $this->errorIcon . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/' . $this->errorIcon . '" /> ';
 			} else {
-				$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/exclamation.png" title="' . wfMsg( 'wikiforum-thread-closed' ) . '" /> ';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/exclamation.png" title="' . wfMessage( 'wikiforum-thread-closed' )->text() . '" /> ';
 			}
 			$output	= '<br /><table class="mw-wikiforum-frame"><tr><td>' . $icon .
 				$this->errorTitle . '<p class="mw-wikiforum-descr">' . $this->errorMessage .
@@ -2346,24 +2433,37 @@ class WikiForumClass {
 
 	// Helper functions, moved from WikiForumHelperClass.php
 	/**
-	 * Get the link to the specified user's userpage and group membership
-	 * for administrators and ShoutWiki staff.
-	 * For anonymous users, no link is generated, only the system message
-	 * is returned.
+	 * Get the link to the specified user's userpage (and group membership
+	 * for administrators and ShoutWiki staff).
 	 *
+	 * @param $uid Integer: user ID
 	 * @param $username String: username
+	 * @param $ip String: IP address
 	 * @return HTML
 	 */
-	public static function getUserLink( $username ) {
+	public static function getUserLink( $uid, $username, $ip ) {
 		global $wgContLang, $wgUser;
+
+		$userObj = User::newFromId( $uid );
+
+		// Do no further processing for anons, since anons cannot have
+		// groups.
+		if ( !$userObj instanceof User ) {
+			return Linker::link(
+				Title::makeTitle( NS_USER, $ip ),
+				$ip
+			);
+		}
+
+		$username = $userObj->getName();
 
 		if ( $username ) {
 			$retVal = Linker::link(
-				Title::newFromText( $wgContLang->getNsText( NS_USER ) . ':' . $username ),
-				htmlspecialchars( $username ) // @todo FIXME/CHECKME: double-escaping or not?
+				Title::makeTitle( NS_USER, $username ),
+				$username
 			);
 
-			$groups = User::newFromName( $username )->getEffectiveGroups();
+			$groups = $userObj->getEffectiveGroups();
 			// @todo FIXME: this code is horrible, it basically does
 			// special-casing for staff and sysop groups
 			// instead it should handle only staff as a special case
@@ -2389,38 +2489,23 @@ class WikiForumClass {
 				$retVal = $retVal . $staffSig;
 			} elseif ( in_array( 'sysop', $groups ) && !$isStaff ) {
 				// we <3 i18n
-				$retVal = $retVal . wfMsg( 'word-separator' ) .
-					wfMsg(
+				$retVal = $retVal . wfMessage( 'word-separator' )->plain() .
+					wfMessage(
 						'parentheses',
 						User::makeGroupLinkHTML( 'sysop', User::getGroupMember( 'sysop', $username ) )
-					);
+					)->text();
 			} elseif ( in_array( 'forumadmin', $groups ) && !$isStaff ) {
 				// this madness has to stop...really...
-				$retVal = $retVal . wfMsg( 'word-separator' ) .
-					wfMsg(
+				$retVal = $retVal . wfMessage( 'word-separator' )->plain() .
+					wfMessage(
 						'parentheses',
 						User::makeGroupLinkHTML( 'forumadmin', User::getGroupMember( 'forumadmin', $username ) )
-					);
+					)->text();
 			}
 			return $retVal;
 		} else {
-			return wfMsg( 'wikiforum-anonymous' );
-		}
-	}
-
-	/**
-	 * Get a link to the user's userpage unless the user is an anon (or MW
-	 * default or some other script with UID = 0).
-	 *
-	 * @param $userId Integer: user ID number
-	 * @return Mixed: string (MediaWiki:Wikiforum-anonymous) for users with
-	 *                UID = 0, HTML (link) for others
-	 */
-	public static function getUserLinkById( $userId ) {
-		if ( $userId == 0 ) {
-			return wfMsg( 'wikiforum-anonymous' );
-		} else {
-			return self::getUserLink( User::whoIs( $userId ) );
+			// This is just a failsafe, we should _never_ be hitting this anyway...
+			return wfMessage( 'wikiforum-anonymous' )->text();
 		}
 	}
 
@@ -2446,12 +2531,12 @@ class WikiForumClass {
 	}
 
 	function getSmilies( $text ) {
-		global $wgScriptPath;
+		global $wgExtensionAssetsPath;
 		global $wgWikiForumSmilies;
 
 		// damn unclear code => need a better preg_replace patter to simplify
 		if ( is_array( $wgWikiForumSmilies ) && !empty( $wgWikiForumSmilies ) ) {
-			$path = $wgScriptPath . '/extensions/WikiForum';
+			$path = $wgExtensionAssetsPath . '/WikiForum';
 			foreach ( $wgWikiForumSmilies as $key => $icon ) {
 				$text = str_replace(
 					$key,
@@ -2537,20 +2622,22 @@ class WikiForumClass {
 	function getThreadTitle( $id ) {
 		if ( is_numeric( $id[1] ) && $id[1] > 0 ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$overview = $dbr->select(
+			$res = $dbr->select(
 				'wikiforum_threads',
 				'wft_thread_name',
 				array(
 					'wft_deleted' => 0,
-					'wft_thread' => intval( $id[1] )
+					'wft_thread' => $id[1]
 				),
 				__METHOD__
 			);
 
-			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-			if ( $overview ) {
-				return '<i><a href="' . $specialPage->escapeFullURL( array( 'thread' => $id[1] ) ) . '">' .
-					$overview->wft_thread_name . '</a></i>';
+			if ( $res ) {
+				$specialPage = SpecialPage::getTitleFor( 'WikiForum', $res->wft_thread_name );
+				return '<i>' . Linker::link(
+					$specialPage,
+					$overview->wft_thread_name
+				) . '</i>';
 			} else {
 				return wfMessage(
 					'brackets',
@@ -2561,4 +2648,30 @@ class WikiForumClass {
 		return $id[0];
 	}
 
+	/**
+	 * Simple thread existence check. Checks if there is a thread with the
+	 * given title and if so, returns true; otherwise returns false.
+	 *
+	 * @param $title String: title to check for existence
+	 * @return Boolean: true when there's a thread with the supplied title
+	 */
+	function doesThreadExist( $title ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$threadId = $dbr->selectField(
+			'wikiforum_threads',
+			'wft_thread',
+			array(
+				'wft_deleted' => 0,
+				'wft_thread_name' => $title
+			),
+			__METHOD__
+		);
+		if ( $threadId ) {
+			// This thread exists already
+			return true;
+		} else {
+			// Doesn't exist and can be created
+			return false;
+		}
+	}
 }
