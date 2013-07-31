@@ -18,11 +18,11 @@ class WikiForumGui {
 	}
 
 	public static function getSearchbox() {
-		global $wgScriptPath;
+		global $wgExtensionAssetsPath;
 
 		$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$icon = '<img src="' . $wgScriptPath . '/extensions/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMsg( 'search' ) . '" />';
+		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
 
 		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $specialPageObj->escapeFullURL() . '">' .
 			'<div id="mw-wikiforum-searchbox-border">' . $icon .
@@ -48,15 +48,25 @@ class WikiForumGui {
 		)
 		{
 			$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
-			$output .= '<a href="' . $specialPageObj->escapeFullURL() . '">' .
-				wfMsg( 'wikiforum-overview' ) . '</a>';
+			$output .= Linker::link(
+				$specialPageObj,
+				wfMessage( 'wikiforum-overview' )->text()
+			);
 			if ( $catId > 0 && strlen( $catName ) > 0 ) {
-				$output .= ' &gt; <a href="' .
-					$specialPageObj->escapeFullURL( 'category=' . $catId ) . '">' .
-					$catName . '</a>';
+				$output .= ' &gt; ' . Linker::link(
+					$specialPageObj,
+					$catName,
+					array(),
+					array( 'category' => $catId )
+				);
 			}
 			if ( $forumId > 0 && strlen( $forumName ) > 0 ) {
-				$output .= ' &gt; <a href="' . $specialPageObj->escapeFullURL( 'forum=' . $forumId ) . '">' . $forumName . '</a>';
+				$output .= ' &gt; ' . Linker::link(
+					$specialPageObj,
+					$forumName,
+					array(),
+					array( 'forum' => $forumId )
+				);
 			}
 		}
 		if (
@@ -87,7 +97,7 @@ class WikiForumGui {
 
 		if ( $maxissues / $limit > 1 ) {
 			$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
-				wfMsg( 'wikiforum-pages' ) . wfMsg( 'word-separator' );
+				wfMessage( 'wikiforum-pages' )->text() . wfMessage( 'word-separator' )->plain();
 			for ( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
 				// URL query parameters
 				$urlParams = array(
@@ -119,7 +129,7 @@ class WikiForumGui {
 					$output .= ']';
 				}
 
-				$output .= wfMsg( 'word-separator' );
+				$output .= wfMessage( 'word-separator' )->plain();
 			}
 			$output .= '</td><td class="mw-wikiforum-rightside">';
 			$output .= '</td></tr></table>';
@@ -203,12 +213,19 @@ class WikiForumGui {
 			$avatar .= $avatarObj->getAvatarURL();
 			$avatar .= '</div>';
 		}
-		return self::getFrameHeader() . '
-				<table style="width:100%">
-					<tr>
+
+		// Hide the thread ID header entirely on preview mode; hiding the hash
+		// character (+brackets) only makes it look a tad bit wonky, hence this
+		$idHTML = '';
+		if ( $id ) {
+			$idHTML = '<tr>
 						<th class="mw-wikiforum-thread-top" style="text-align: right;">[#' . $id . ']</th>
-					</tr>
-					<tr>
+					</tr>';
+		}
+
+		return self::getFrameHeader() . '
+				<table style="width:100%">' . $idHTML .
+					'<tr>
 						<td class="mw-wikiforum-thread-main" colspan="2">' . $avatar .
 							$text . self::getBottomLine( $posted, $buttons ) . '
 						</td>
@@ -296,14 +313,13 @@ class WikiForumGui {
 				<tr>
 					<td>
 						<input name="butSave" type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />
-						<input name="butPreview" type="submit" value="' . wfMsg( 'wikiforum-button-preview' ) . '" accesskey="p" title="' . wfMsg( 'wikiforum-button-preview' ) . ' [p]" />';
+						<input name="butPreview" type="submit" value="' . wfMessage( 'wikiforum-button-preview' )->text() . '" accesskey="p" title="' . wfMessage( 'wikiforum-button-preview' )->text() . ' [p]" />' . "\n";
 			if ( $type == 'addthread' ) {
-				$output .= ' <input name="butCancel" type="button" value="' . wfMsg( 'cancel' ) . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />';
+				$output .= ' <input name="butCancel" type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />';
 			}
 			$output .= '</td>
-					</td>
-				</tr>
-			</table>
+					</tr>
+				</table>
 			</form>' . "\n";
 		}
 		return $output;
@@ -333,8 +349,8 @@ class WikiForumGui {
 				</tr>
 				<tr>
 					<td>
-						<p>' . wfMsg( 'wikiforum-name' ) . '</p>
-						<input type="text" name="frmTitle" style="width: 100%" value="' . $title_prev . '" />
+						<p>' . wfMessage( 'wikiforum-name' )->text() . '</p>
+						<input type="text" name="frmTitle" style="width: 100%" value="" placeholder="' . $title_prev . '" />
 					</td>
 				</tr>';
 			if ( $type == 'addforum' || $type == 'editforum' ) {
@@ -344,14 +360,14 @@ class WikiForumGui {
 				}
 				$output .= '<tr>
 					<td>
-						<p>' . wfMsg( 'wikiforum-description' ) . '</p>
+						<p>' . wfMessage( 'wikiforum-description' )->text() . '</p>
 						<textarea name="frmText" style="height: 40px;">' . $text_prev . '</textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<p><input type="checkbox" name="chkAnnouncement"' . $check . '/> ' .
-							wfMsg( 'wikiforum-announcement-only-description' ) .
+							wfMessage( 'wikiforum-announcement-only-description' )->text() .
 						'</p>
 					</td>
 				</tr>';
@@ -360,7 +376,7 @@ class WikiForumGui {
 				<tr>
 					<td>
 						<input name="butSubmit" type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />
-						<input name="butCancel" type="button" value="' . wfMsg( 'cancel' ) . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />
+						<input name="butCancel" type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->text() . ' [c]" />
 					</td>
 				</tr>
 			</table>
