@@ -308,9 +308,132 @@ class WikiForumHooks {
 		$updater->addExtensionUpdate( array( 'addTable', 'wikiforum_replies', $file, true ) );
 
 		// Add new *_user_text and *_user_ip columns introduced in 1.3.0-SW
+		// Yes, I realize that the code inside the if() loop is pretty insane,
+		// so if you have better suggestions on how to apply these patches, go
+		// ahead and edit the code
 		if ( !$updater->getDB()->fieldExists( 'wikiforum_category', 'wfc_added_user_text' ) ) {
+			// wikiforum_category
 			$updater->addExtensionUpdate( array(
-				'addField', $tableName, $columnName,
+				'addField', 'wikiforum_category', 'wfc_added_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_category', 'wfc_added_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_category', 'wfc_edited_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_category', 'wfc_edited_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_category', 'wfc_deleted_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_category', 'wfc_deleted_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			// wikiforum_forums
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_last_post_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_last_post_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_added_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_added_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_edited_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_edited_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_deleted_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_forums', 'wff_deleted_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			// wikiforum_threads
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_deleted_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_deleted_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_edit_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_edit_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_closed_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_closed_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_last_post_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_threads', 'wft_last_post_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			// wikiforum_replies
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_replies', 'wfr_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_replies', 'wfr_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_replies', 'wfr_deleted_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_replies', 'wfr_deleted_user_ip',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_replies', 'wfr_edit_user_text',
+				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
+			) );
+			$updater->addExtensionUpdate( array(
+				'addField', 'wikiforum_replies', 'wfr_edit_user_ip',
 				dirname( __FILE__ ) . '/sql/1.3.0-SW-new-fields.sql', true
 			) );
 		}
