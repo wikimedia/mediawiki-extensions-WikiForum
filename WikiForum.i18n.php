@@ -856,6 +856,18 @@ $messages['ce'] = array(
 	'wikiforum-preview' => 'Хьалха муха ю хьажа',
 	'wikiforum-preview-with-title' => 'Хьалха муха ю хьажар: $1',
 	'wikiforum-overview' => 'Гар',
+	'wikiforum-close-thread' => 'ДӀачӀагӀа га',
+	'wikiforum-delete-reply' => 'ДӀабаккха хаам',
+	'wikiforum-add-category' => 'ТIетоха категори',
+	'wikiforum-delete-category' => 'ДӀаяккха категори',
+	'wikiforum-delete-forum' => 'ДӀаяккха форум',
+);
+
+/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+ * @author ОйЛ
+ */
+$messages['cu'] = array(
+	'wikiforum-name' => 'имѧ :',
 );
 
 /** German (Deutsch)
@@ -2807,6 +2819,8 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Hamilton Abreu
+ * @author Luckas
+ * @author Malafaya
  * @author SandroHc
  */
 $messages['pt'] = array(
@@ -2814,7 +2828,7 @@ $messages['pt'] = array(
 	'wikiforum' => 'Fórum de conversação',
 	'wikiforum-anonymous' => 'Anónimo',
 	'wikiforum-announcement-only-description' => 'Fórum de anúncios (só os moderadores podem adicionar tópicos)',
-	'wikiforum-by' => '$1<br />de $2', # Fuzzy
+	'wikiforum-by' => '$1<br />de {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrição:',
 	'wikiforum-forum-is-empty' => 'Este fórum está vazio.
 Contacte um administrador para adicionar fóruns ou categorias.',
@@ -2830,7 +2844,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-search-thread' => 'Tópico: $1',
 	'wikiforum-thread-deleted' => 'tópico apagado',
 	'wikiforum-topic-name' => 'Fórum - $1',
-	'wikiforum-updates' => 'Fóruns actualizados recentemente',
+	'wikiforum-updates' => 'Fóruns atualizados recentemente',
 	'wikiforum-write-thread' => 'Tópico novo',
 	'wikiforum-replies' => 'Respostas',
 	'wikiforum-views' => 'Vistas',
@@ -2854,8 +2868,8 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-save-reply' => 'Gravar resposta',
 	'wikiforum-thread-title' => 'Título do tópico',
 	'wikiforum-no-threads' => 'Não existem tópicos disponíveis.',
-	'wikiforum-posted' => 'Publicado a $1 por $2', # Fuzzy
-	'wikiforum-edited' => 'Editado a $1 por $2', # Fuzzy
+	'wikiforum-posted' => 'Publicado em $1 por {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Editado em $1 por {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'A categoria não foi encontrada',
 	'wikiforum-cat-not-found-text' => 'A categoria não existe - voltar para $1',
 	'wikiforum-forum-not-found' => 'O fórum não foi encontrado',
@@ -2864,12 +2878,12 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-thread-not-found-text' => 'O tópico não existe ou foi apagado - voltar para $1.',
 	'wikiforum-error-thread-reopen' => 'Ocorreu um erro ao reabrir o tópico',
 	'wikiforum-error-thread-close' => 'Ocorreu um erro ao encerrar o tópico',
-	'wikiforum-error-general' => 'O objecto não foi encontrado ou não tem permissões para executar esta operação.',
+	'wikiforum-error-general' => 'O objeto não foi encontrado ou não tem permissões para executar esta operação.',
 	'wikiforum-error-no-rights' => 'Não tem as permissões necessárias para executar esta operação.',
-	'wikiforum-error-not-found' => 'O objecto não foi encontrado.',
+	'wikiforum-error-not-found' => 'Objeto não encontrado.',
 	'wikiforum-error-no-text-or-title' => 'O título ou o texto não foram devidamente preenchidos.',
 	'wikiforum-error-no-reply' => 'A resposta não foi devidamente preenchida.',
-	'wikiforum-error-double-post' => 'Protecção contra cliques repetidos: o tópico já foi adicionado.',
+	'wikiforum-error-double-post' => 'Proteção contra cliques repetidos: o tópico já foi adicionado.',
 	'wikiforum-error-thread-closed' => 'O tópico está fechado. Não é possível acrescentar uma resposta.',
 	'wikiforum-error-delete' => 'Ocorreu um erro ao apagar',
 	'wikiforum-error-sticky' => 'Ocorreu um erro ao alterar o atributo de tópico inamovível',
