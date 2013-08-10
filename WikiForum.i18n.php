@@ -2916,6 +2916,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
  */
 $messages['pt-br'] = array(
 	'wikiforum-description' => 'Descrição:',
+	'wikiforum-save' => 'Salvar',
 	'wikiforum-error-not-found' => 'Objeto não encontrado.',
 	'wikiforum-add-category' => 'Adicionar categoria',
 	'wikiforum-edit-category' => 'Editar categoria',
