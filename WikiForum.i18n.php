@@ -2915,8 +2915,28 @@ Contacte um administrador para adicionar fóruns ou categorias.',
  * @author Luckas Blade
  */
 $messages['pt-br'] = array(
+	'wikiforum-anonymous' => 'Anônimo',
+	'wikiforum-by' => '$1<br />por {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrição:',
+	'wikiforum-forum-name' => 'Fórum $1',
+	'wikiforum-name' => 'Nome:',
 	'wikiforum-save' => 'Salvar',
+	'wikiforum-topic-name' => 'Fórum - $1',
+	'wikiforum-write-thread' => 'Novo tópico',
+	'wikiforum-replies' => 'Respostas',
+	'wikiforum-views' => 'Visitas',
+	'wikiforum-thread' => 'Tópico',
+	'wikiforum-threads' => 'Tópicos',
+	'wikiforum-latest-reply' => 'Última resposta',
+	'wikiforum-forum' => 'Fórum: $1 > $2',
+	'wikiforum-overview' => 'Visão geral',
+	'wikiforum-pages' => 'Páginas:',
+	'wikiforum-write-reply' => 'Escrever uma resposta',
+	'wikiforum-edit-reply' => 'Editar resposta',
+	'wikiforum-delete-reply' => 'Apagar resposta',
+	'wikiforum-save-reply' => 'Salvar resposta',
+	'wikiforum-cat-not-found' => 'Categoria não encontrada',
+	'wikiforum-forum-not-found' => 'Fórum não encontrado',
 	'wikiforum-error-not-found' => 'Objeto não encontrado.',
 	'wikiforum-add-category' => 'Adicionar categoria',
 	'wikiforum-edit-category' => 'Editar categoria',
@@ -2924,6 +2944,7 @@ $messages['pt-br'] = array(
 	'wikiforum-add-forum' => 'Adicionar fórum',
 	'wikiforum-edit-forum' => 'Editar fórum',
 	'wikiforum-delete-forum' => 'Apagar fórum',
+	'wikiforum-quote' => 'Citar',
 );
 
 /** Romanian (română)
