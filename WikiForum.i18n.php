@@ -149,15 +149,25 @@ The former "This forum" stands for overall WikiForum feature, the latter "forums
 {{Identical|Name}}',
 	'wikiforum-button-preview' => 'Button text (and its tooltip) in the reply form
 {{Identical|Preview}}',
-	'wikiforum-preview' => '{{Identical|Preview}}',
-	'wikiforum-preview-with-title' => '{{Identical|Preview}}',
+	'wikiforum-preview' => 'See also:
+* {{msg-mw|Wikiforum-preview-with-title}} - with title
+{{Identical|Preview}}',
+	'wikiforum-preview-with-title' => 'Parameters:
+* $1 - forum name (forum title)
+See also:
+* {{msg-mw|Wikiforum-preview}} - without title
+{{Identical|Preview}}',
 	'wikiforum-save' => 'Button text
 {{Identical|Save}}',
 	'wikiforum-error-search' => 'Used as heading of error message',
 	'wikiforum-error-search-missing-query' => 'Used as error message in search result page.',
 	'wikiforum-search-hits' => 'Search result header. Parameters:
 * $1 is the number of search results.',
-	'wikiforum-search-thread' => '{{Identical|Thread}}',
+	'wikiforum-search-thread' => 'Preceded by {{msg-mw|Wikiforum-posted}}.
+
+Parameters:
+* $1 - thread name, with link
+{{Identical|Thread}}',
 	'wikiforum-thread-deleted' => 'The title of a deleted thread, wrapped in {{msg-mw|brackets}}.',
 	'wikiforum-topic-name' => 'Page title. Parameters:
 * $1 is a thread name.',
@@ -197,13 +207,17 @@ The former "This forum" stands for overall WikiForum feature, the latter "forums
 	'wikiforum-thread-title' => 'Default title of thread; used in creating new thread page.',
 	'wikiforum-no-threads' => 'Used in threads list when the forum has no available thread.',
 	'wikiforum-posted' => 'Thread header. Parameters:
-* $1 is a timestamp
-* $2 is a link to a user page with username as link description.
-* $3 is a plain text username used for GENDER.',
+* $1 - a timestamp
+* $2 - a link to a user page with username as link description
+* $3 - a plain text username used for GENDER
+See also:
+* {{msg-mw|Wikiforum-edited}}',
 	'wikiforum-edited' => 'Indicates a thread (or a reply) has been edited. Parameters:
-* $1 is a timestamp
-* $2 is a link to a user page with username as link description.
-* $3 is a plain text username used for GENDER.',
+* $1 - a timestamp
+* $2 - a link to a user page with username as link description
+* $3 - a plain text username used for GENDER
+See also:
+* {{msg-mw|Wikiforum-posted}}',
 	'wikiforum-cat-not-found' => 'Used as heading of error message',
 	'wikiforum-cat-not-found-text' => 'Error text requesting a non-existing category. Parameters:
 * $1 is {{msg-mw|wikiforum-overview}} (linked).',
