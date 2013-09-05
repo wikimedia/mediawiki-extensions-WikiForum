@@ -144,7 +144,8 @@ Also used as link in toolbox portlet.',
 	'wikiforum-forum-is-empty' => 'Used in [[Special:WikiForum]] when there are no categories/forums/threads.
 
 The former "This forum" stands for overall WikiForum feature, the latter "forums" stands for the forum in the category.',
-	'wikiforum-forum-name' => '$1 is the name of a forum',
+	'wikiforum-forum-name' => 'Used as tooltip for the image. Parameters:
+* $1 - the forum name',
 	'wikiforum-name' => 'Used as label for "category name" and "forum name" input box.
 {{Identical|Name}}',
 	'wikiforum-button-preview' => 'Button text (and its tooltip) in the reply form
