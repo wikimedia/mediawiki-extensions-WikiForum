@@ -3491,6 +3491,7 @@ Mangyaring makipag-ugnayan sa isang tagapangasiwa ng poro upang maidagdag ang il
 
 /** Turkish (Türkçe)
  * @author Emperyan
+ * @author Incelemeelemani
  */
 $messages['tr'] = array(
 	'wikiforum' => 'Tartışma sayfası',
@@ -3506,6 +3507,8 @@ $messages['tr'] = array(
 	'wikiforum-views' => 'Görüntüle',
 	'wikiforum-latest-reply' => '',
 	'wikiforum-pages' => 'Sayfalar:',
+	'wikiforum-thread-not-found' => 'Konu bulunamadı',
+	'wikiforum-error-not-found' => 'Nesne bulunamadı.',
 	'wikiforum-quote' => 'Alıntı',
 	'group-forumadmin' => 'Forum hizmetlileri',
 	'group-forumadmin-member' => 'Forum hizmetlisi', # Fuzzy
