@@ -3096,6 +3096,7 @@ $messages['roa-tara'] = array(
  * @author Artyom Bondartsov <erithion@gmail.com>
  * @author Base
  * @author Kaganer
+ * @author Okras
  * @author Ole Yves
  */
 $messages['ru'] = array(
@@ -3144,7 +3145,7 @@ $messages['ru'] = array(
 	'wikiforum-thread-title' => 'Заглавие Вашей ветки',
 	'wikiforum-no-threads' => 'В настоящий момент ветки отсутствуют.',
 	'wikiforum-posted' => 'Создано в $1 участником $2', # Fuzzy
-	'wikiforum-edited' => 'Отредактировано в $1 участником $2', # Fuzzy
+	'wikiforum-edited' => 'Отредактировано в $1 участником {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Категория не найдена',
 	'wikiforum-cat-not-found-text' => 'Категория не существует - назад к $1',
 	'wikiforum-forum-not-found' => 'Форум не найден',
