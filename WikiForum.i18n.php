@@ -3104,7 +3104,7 @@ $messages['ru'] = array(
 	'wikiforum' => 'Доска обсуждений',
 	'wikiforum-anonymous' => 'Аноним',
 	'wikiforum-announcement-only-description' => 'Доска объявлений (только модераторы могут добавлять ветки)',
-	'wikiforum-by' => '$1<br />от $2', # Fuzzy
+	'wikiforum-by' => '$1<br />от {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Описание:',
 	'wikiforum-forum-is-empty' => 'В настоящее время этот форум пуст.
 Пожалуйста, обратитесь к администратору форума с просьбой добавить нужные категории и форумы.',
@@ -3144,7 +3144,7 @@ $messages['ru'] = array(
 	'wikiforum-save-reply' => 'Сохранить сообщение',
 	'wikiforum-thread-title' => 'Заглавие Вашей ветки',
 	'wikiforum-no-threads' => 'В настоящий момент ветки отсутствуют.',
-	'wikiforum-posted' => 'Создано в $1 участником $2', # Fuzzy
+	'wikiforum-posted' => 'Создано в $1 участником {{GENDER:$3|$2}}',
 	'wikiforum-edited' => 'Отредактировано в $1 участником {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Категория не найдена',
 	'wikiforum-cat-not-found-text' => 'Категория не существует - назад к $1',
