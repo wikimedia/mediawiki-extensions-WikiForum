@@ -1151,6 +1151,7 @@ $messages['eu'] = array(
 );
 
 /** Persian (فارسی)
+ * @author Ebraminio
  * @author Mjbmr
  */
 $messages['fa'] = array(
@@ -1167,7 +1168,7 @@ $messages['fa'] = array(
 	'wikiforum-write-reply' => 'نوشتن یک پاسخ',
 	'wikiforum-edit-reply' => 'ویرایش پاسخ',
 	'wikiforum-delete-reply' => 'حذف پاسخ',
-	'wikiforum-save-reply' => 'ذخیره سازی پاسخ',
+	'wikiforum-save-reply' => 'ذخیره‌سازی پاسخ',
 	'wikiforum-cat-not-found' => 'رده یافت نشد',
 	'wikiforum-cat-not-found-text' => 'رده وجود ندارد - بازگشت به $1',
 	'wikiforum-error-not-found' => 'شیء یافت نشد.',
@@ -2836,14 +2837,14 @@ $messages['ps'] = array(
 	'wikiforum-pages' => 'مخونه:',
 	'wikiforum-write-reply' => 'يو ځواب ليکل',
 	'wikiforum-edit-reply' => 'ځواب سمول',
-	'wikiforum-delete-reply' => 'ځواب ړنګول',
+	'wikiforum-delete-reply' => 'ځواب ړنگول',
 	'wikiforum-save-reply' => 'ځواب خوندي کول',
 	'wikiforum-add-category' => 'وېشنيزه ورګډول',
 	'wikiforum-edit-category' => 'وېشنيزه سمول',
-	'wikiforum-delete-category' => 'وېشنيزه ړنګول',
+	'wikiforum-delete-category' => 'وېشنيزه ړنگول',
 	'wikiforum-add-forum' => 'فورم ورګډول',
 	'wikiforum-edit-forum' => 'فورم سمول',
-	'wikiforum-delete-forum' => 'فورم ړنګول',
+	'wikiforum-delete-forum' => 'فورم ړنگول',
 );
 
 /** Portuguese (português)
