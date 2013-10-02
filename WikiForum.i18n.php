@@ -2823,7 +2823,7 @@ Për piasì, ch'a contata n'aministrator ëd la piassa për ch'a gionta chèiche
  */
 $messages['ps'] = array(
 	'wikiforum-anonymous' => 'ورکنومی',
-	'wikiforum-description' => 'څرګندونه:',
+	'wikiforum-description' => 'څرگندونه:',
 	'wikiforum-forum-name' => '$1 فورم',
 	'wikiforum-name' => 'نوم:',
 	'wikiforum-button-preview' => 'مخليدنه',
