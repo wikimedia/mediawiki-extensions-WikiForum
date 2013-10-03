@@ -2839,10 +2839,10 @@ $messages['ps'] = array(
 	'wikiforum-edit-reply' => 'ځواب سمول',
 	'wikiforum-delete-reply' => 'ځواب ړنگول',
 	'wikiforum-save-reply' => 'ځواب خوندي کول',
-	'wikiforum-add-category' => 'وېشنيزه ورګډول',
+	'wikiforum-add-category' => 'وېشنيزه ورگډول',
 	'wikiforum-edit-category' => 'وېشنيزه سمول',
 	'wikiforum-delete-category' => 'وېشنيزه ړنگول',
-	'wikiforum-add-forum' => 'فورم ورګډول',
+	'wikiforum-add-forum' => 'فورم ورگډول',
 	'wikiforum-edit-forum' => 'فورم سمول',
 	'wikiforum-delete-forum' => 'فورم ړنگول',
 );
