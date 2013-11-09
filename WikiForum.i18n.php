@@ -2048,6 +2048,53 @@ $messages['ja'] = array(
 	'group-forumadmin.js' => '/* ここに記述したJSはフォーラム管理者のみに影響します */',
 );
 
+/** Lojban (Lojban)
+ * @author Gleki
+ */
+$messages['jbo'] = array(
+	'wikiforum' => 'lo nunstu papri',
+	'wikiforum-anonymous' => 'lo se cmene be lo sivni',
+	'wikiforum-announcement-only-description' => "lo noisku nunstu (to lo turni po'o ka'e jmina lo boxna)",
+	'wikiforum-description' => 'lo ve skicu',
+	'wikiforum-forum-name' => "la'oi $1 noi nunstu",
+	'wikiforum-name' => 'lo cmene',
+	'wikiforum-button-preview' => 'lo cipra jvinu',
+	'wikiforum-preview' => 'lo cipra jvinu',
+	'wikiforum-preview-with-title' => "lo cipra jvinu zo'u: la'oi $1",
+	'wikiforum-save' => 'stogau',
+	'wikiforum-error-search' => 'srera lo se sisku',
+	'wikiforum-search-thread' => "lo boxna zo'u: la'oi $1",
+	'wikiforum-thread-deleted' => "lo boxna co'i se vimcu",
+	'wikiforum-topic-name' => "lo nunstu zo'u: la'oi $1",
+	'wikiforum-updates' => 'lo nunstu poi cnino je se ningau',
+	'wikiforum-write-thread' => 'lo cnino te tavla',
+	'wikiforum-replies' => 'lo se spusku',
+	'wikiforum-views' => 'lo jvinu',
+	'wikiforum-thread' => 'lo boxna',
+	'wikiforum-threads' => 'lo boxna',
+	'wikiforum-latest-reply' => 'lo romoi se spusku',
+	'wikiforum-latest-thread' => 'lo romoi boxna',
+	'wikiforum-forum' => "lo nunstu zo'u: $1 > $2",
+	'wikiforum-overview' => 'lo mulno jvinu',
+	'wikiforum-pages' => 'lo papri',
+	'wikiforum-thread-closed' => "lo boxna co'i jai se dicra",
+	'wikiforum-new-thread' => 'lo cnino boxna',
+	'wikiforum-edit-thread' => 'stika lo boxna',
+	'wikiforum-delete-thread' => 'vimcu lo boxna',
+	'wikiforum-close-thread' => 'dicrygau lo boxna',
+	'wikiforum-reopen-thread' => 'toldicrygau lo boxna',
+	'wikiforum-write-reply' => 'ciska lo se spusku',
+	'wikiforum-edit-reply' => 'stika lo se spusku',
+	'wikiforum-delete-reply' => 'vimcu lo se spusku',
+	'wikiforum-save-thread' => 'stogau lo boxna',
+	'wikiforum-save-reply' => 'stogau lo se spusku',
+	'wikiforum-thread-title' => 'cmene lo pe do boxna',
+	'wikiforum-make-sticky' => 'gasnu lo nu snipa',
+	'wikiforum-move-thread' => 'muvgau lo boxna',
+	'wikiforum-paste-thread' => 'setca lo boxna',
+	'wikiforum-quote' => 'te sitna',
+);
+
 /** Georgian (ქართული)
  * @author David1010
  */
