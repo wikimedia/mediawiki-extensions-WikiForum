@@ -145,7 +145,8 @@ Also used as link in toolbox portlet.',
 
 The former "This forum" stands for overall WikiForum feature, the latter "forums" stands for the forum in the category.',
 	'wikiforum-forum-name' => 'Used as tooltip for the image. Parameters:
-* $1 - the forum name',
+* $1 - the forum name
+{{Identical|Forum}}',
 	'wikiforum-name' => 'Used as label for "category name" and "forum name" input box.
 {{Identical|Name}}',
 	'wikiforum-button-preview' => 'Button text (and its tooltip) in the reply form
@@ -171,7 +172,8 @@ Parameters:
 {{Identical|Thread}}',
 	'wikiforum-thread-deleted' => 'The title of a deleted thread, wrapped in {{msg-mw|brackets}}.',
 	'wikiforum-topic-name' => 'Page title. Parameters:
-* $1 is a thread name.',
+* $1 - a thread name
+{{Identical|Forum}}',
 	'wikiforum-updates' => 'Navigation item leading to updated forums.',
 	'wikiforum-write-thread' => 'Used as link text. This link is used to create a new thread (≒topic).',
 	'wikiforum-replies' => 'Used as column header of threads list. This column indicates number of replies.
