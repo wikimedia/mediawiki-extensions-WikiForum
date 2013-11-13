@@ -175,7 +175,8 @@ Parameters:
 * $1 - a thread name
 {{Identical|Forum}}',
 	'wikiforum-updates' => 'Navigation item leading to updated forums.',
-	'wikiforum-write-thread' => 'Used as link text. This link is used to create a new thread (≒topic).',
+	'wikiforum-write-thread' => 'Used as link text. This link is used to create a new thread (≒topic).
+{{Identical|New topic}}',
 	'wikiforum-replies' => 'Used as column header of threads list. This column indicates number of replies.
 {{Identical|Reply}}',
 	'wikiforum-views' => 'Used as column header of threads list. This column indicates the number of page views of the thread.
@@ -250,7 +251,8 @@ Note: "Category" version and "Forum" version of this message is missing at this 
 	'wikiforum-error-edit' => 'Used as heading of error message',
 	'wikiforum-add-category' => 'Used as link text in categories list page.
 {{Identical|Add category}}',
-	'wikiforum-edit-category' => 'Used as tooltip for edit link, and as page heading on edit page',
+	'wikiforum-edit-category' => 'Used as tooltip for edit link, and as page heading on edit page.
+{{Identical|Edit category}}',
 	'wikiforum-delete-category' => 'Used as tooltip for button.
 {{Identical|Delete category}}',
 	'wikiforum-add-forum' => 'Used as link text in categories list page and in forums list page.',
