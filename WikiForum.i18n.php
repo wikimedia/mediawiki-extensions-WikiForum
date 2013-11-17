@@ -1775,7 +1775,7 @@ $messages['ia'] = array(
 	'wikiforum' => 'Foro de discussion',
 	'wikiforum-anonymous' => 'Anonyme',
 	'wikiforum-announcement-only-description' => 'Foro de annunciation (solmente moderatores pote adder discussiones)',
-	'wikiforum-by' => '$1<br />per $2', # Fuzzy
+	'wikiforum-by' => '$1<br />per {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Description:',
 	'wikiforum-forum-is-empty' => 'Iste foro es vacue al momento.
 Per favor contacta un administrator del foro pro facer adder categorias e foros.',
@@ -1815,8 +1815,8 @@ Per favor contacta un administrator del foro pro facer adder categorias e foros.
 	'wikiforum-save-reply' => 'Salveguardar responsa',
 	'wikiforum-thread-title' => 'Titulo de tu filo',
 	'wikiforum-no-threads' => 'Nulle filo es disponibile al momento.',
-	'wikiforum-posted' => 'Publicate le $1 per $2', # Fuzzy
-	'wikiforum-edited' => 'Modificate le $1 per $2', # Fuzzy
+	'wikiforum-posted' => 'Publicate le $1 per {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Modificate le $1 per {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Categoria non trovate',
 	'wikiforum-cat-not-found-text' => 'Categoria non existe - retorna a $1',
 	'wikiforum-forum-not-found' => 'Foro non  trovate',
