@@ -776,6 +776,7 @@ $messages['br'] = array(
 );
 
 /** Catalan (català)
+ * @author Papapep
  * @author Pintor Smeargle
  * @author පසිඳු කාවින්ද
  */
@@ -831,15 +832,15 @@ Si us plau contacta amb l'administrador del fòrum per tenir algunes categories 
 	'wikiforum-forum-not-found' => 'Fòrum no trobat',
 	'wikiforum-forum-not-found-text' => 'Fòrum inexistent - torna a $1',
 	'wikiforum-thread-not-found' => 'Tema no trobat',
-	'wikiforum-thread-not-found-text' => 'Aquest tema no existeix o ha estat esborrat - torna a $1',
+	'wikiforum-thread-not-found-text' => "Aquest tema no existeix o s'ha suprimit - torna a $1",
 	'wikiforum-error-thread-reopen' => "S'ha produït un error en reobria el tema",
 	'wikiforum-error-thread-close' => "S'ha produït un error mentre es tancava el tema",
 	'wikiforum-error-general' => "No s'ha trobat aquest article o no tens dret per realitzar aquesta acció.",
 	'wikiforum-error-no-rights' => 'No tens drets per realitzar aquesta acció.',
 	'wikiforum-error-not-found' => 'Article no trobat',
-	'wikiforum-error-no-text-or-title' => 'El títol o text no ha estat escrit correctament.',
-	'wikiforum-error-no-reply' => 'La resposta no ha estat escrita correctament.',
-	'wikiforum-error-double-post' => 'Protecció de doble clic: el tema ja ha estat afegit',
+	'wikiforum-error-no-text-or-title' => "No s'ha escrit correctament el títol o text.",
+	'wikiforum-error-no-reply' => "No s'ha escrit correctament la resposta.",
+	'wikiforum-error-double-post' => "Protecció de doble clic: ja s'ha afegit el tema",
 	'wikiforum-error-thread-closed' => 'Tema actualment tancat. No és possible afegir una nova resposta aquí.',
 	'wikiforum-error-delete' => "Error mentre s'esborrava",
 	'wikiforum-error-sticky' => 'Error en canviar atribut enganxós',
