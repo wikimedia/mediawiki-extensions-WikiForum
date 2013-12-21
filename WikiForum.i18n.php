@@ -1499,6 +1499,13 @@ $messages['frp'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrators du barjacâjo',
 );
 
+/** Western Frisian (Frysk)
+ * @author Kening Aldgilles
+ */
+$messages['fy'] = array(
+	'wikiforum-save' => 'Fêstlizze',
+);
+
 /** Irish (Gaeilge)
  * @author පසිඳු කාවින්ද
  */
@@ -2593,7 +2600,7 @@ $messages['nl'] = array(
 	'wikiforum-announcement-only-description' => 'Aankondigingenforum (alleen forummoderatoren kunnen nieuwe berichten plaatsen)',
 	'wikiforum-by' => '$1<br />door {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beschrijving:',
-	'wikiforum-forum-is-empty' => 'Dit forum is op het moment leeg. 
+	'wikiforum-forum-is-empty' => 'Dit forum is op het moment leeg.
 Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.',
 	'wikiforum-forum-name' => 'Forum $1',
 	'wikiforum-name' => 'Naam:',
