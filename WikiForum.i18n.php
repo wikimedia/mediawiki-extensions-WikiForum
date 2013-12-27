@@ -116,6 +116,15 @@ Please contact a forum administrator to have some categories and forums added.',
 
 	'group-forumadmin.css' => '/* CSS placed here will affect forum administrators only */', # only translate this message to other languages if you have to change it
 	'group-forumadmin.js'  => '/* JS placed here will affect forum administrators only */', # only translate this message to other languages if you have to change it
+
+	// Logging messages
+	'log-name-forum' => 'Forum log',
+	'log-description-forum' => 'Logs [[Special:WikiForum|WikiForum]] events',
+
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|created}} a new category, $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|created}} a new forum, $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|created}} a new thread, $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|replied}} on the thread $4',
 );
 
 /** Message documentation (Message documentation)
@@ -281,6 +290,14 @@ See also [[Template:Identical/Sticky]].',
 	'grouppage-forumadmin' => '{{doc-group|forumadmin|page}}',
 	'group-forumadmin.css' => '{{doc-group|forumadmin|css}}',
 	'group-forumadmin.js' => '{{doc-group|forumadmin|js}}',
+
+	'log-name-forum' => 'Title for the forum log',
+	'log-description-forum' => 'Description of the forum log to be shown on Special:Log/forum',
+
+	'logentry-forum-add-category' => 'Shown when the user $1 created a new category, $4. {{logentry}}',
+	'logentry-forum-add-forum' => 'Shown when the user $1 created a new forum, $4. {{logentry}}',
+	'logentry-forum-add-thread' => 'Shown when the user $1 created a new thread, $4. {{logentry}}',
+	'logentry-forum-add-reply' => 'Shown when the user $1 replied on the thread $4. {{logentry}}',
 );
 
 /** Afrikaans (Afrikaans)

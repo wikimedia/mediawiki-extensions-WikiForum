@@ -81,6 +81,9 @@ $wgWikiForumSmilies = array(
 	*/
 );
 
+// Show the forum log in RecentChanges?
+$wgWikiForumLogInRC = true;
+
 // ResourceLoader support for MediaWiki 1.17+
 $wgResourceModules['ext.wikiForum'] = array(
 	'styles' => 'styles.css',
@@ -94,3 +97,7 @@ $wgHooks['SkinTemplateBuildNavUrlsNav_urlsAfterPermalink'][] = 'WikiForumHooks::
 $wgHooks['SkinTemplateToolboxEnd'][] = 'WikiForumHooks::addNavigationLinkToToolbox';
 $wgHooks['BeforePageDisplay'][] = 'WikiForumHooks::addStyles';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'WikiForumHooks::addTables';
+
+// Logging
+$wgLogTypes[] = 'forum';
+$wgLogActionsHandlers['forum/*'] = 'LogFormatter';

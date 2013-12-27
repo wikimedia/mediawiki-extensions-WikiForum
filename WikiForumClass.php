@@ -532,7 +532,7 @@ class WikiForumClass {
 	}
 
 	function addThread( $forumId, $title, $text ) {
-		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous;
+		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
 
 		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
 			if (
@@ -604,6 +604,18 @@ class WikiForumClass {
 									array( 'wff_forum' => $forumId ),
 									__METHOD__
 								);
+								$logEntry = new ManualLogEntry( 'forum', 'add-thread' );
+								$logEntry->setPerformer( $wgUser );
+								$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+								$shortText = $wgLang->truncate( $text, 50 );
+								$logEntry->setComment( $shortText );
+								$logEntry->setParameters( array(
+										'4::thread-name' => $title,
+								) );
+								$logid = $logEntry->insert();
+								if ( $wgWikiForumLogInRC ) {
+									$logEntry->publish( $logid );
+								}
 								$this->result = true;
 							} else {
 								$this->result = false;
@@ -723,7 +735,7 @@ class WikiForumClass {
 	 * @param $text String: reply text
 	 */
 	function addReply( $threadId, $text ) {
-		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous;
+		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
 
 		$timestamp = wfTimestampNow();
 
@@ -788,7 +800,7 @@ class WikiForumClass {
 
 								$pkForum = $dbr->selectRow(
 									'wikiforum_threads',
-									'wft_forum',
+									array( 'wft_forum, wft_thread_name' ),
 									array( 'wft_thread' => $threadId ),
 									__METHOD__
 								);
@@ -798,6 +810,19 @@ class WikiForumClass {
 									array( 'wff_forum' => $pkForum->wft_forum ),
 									__METHOD__
 								);
+
+								$logEntry = new ManualLogEntry( 'forum', 'add-reply' );
+								$logEntry->setPerformer( $wgUser );
+								$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+								$shortText = $wgLang->truncate( $text, 50 );
+								$logEntry->setComment( $shortText );
+								$logEntry->setParameters( array(
+										'4::thread-name' => $pkForum->wft_thread_name,
+								) );
+								$logid = $logEntry->insert();
+								if ( $wgWikiForumLogInRC ) {
+									$logEntry->publish( $logid );
+								}
 
 								$this->result = true;
 							} else {
@@ -834,7 +859,7 @@ class WikiForumClass {
 	}
 
 	function addCategory( $categoryName ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgWikiForumLogInRC, $wgLang;
 
 		if (
 			$wgUser->isAllowed( 'wikiforum-admin' ) &&
@@ -863,6 +888,16 @@ class WikiForumClass {
 					),
 					__METHOD__
 				);
+				$logEntry = new ManualLogEntry( 'forum', 'add-category' );
+				$logEntry->setPerformer( $wgUser );
+				$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+				$logEntry->setParameters( array(
+						'4::category-name' => $categoryName,
+				) );
+				$logid = $logEntry->insert();
+				if ( $wgWikiForumLogInRC ) {
+					$logEntry->publish( $logid );
+				}
 			} else {
 				$this->errorMessage = wfMessage( 'wikiforum-no-text-or-title' )->text();
 				$this->result = false;
@@ -934,7 +969,7 @@ class WikiForumClass {
 	}
 
 	function addForum( $categoryId, $forumName, $description, $announcement ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgWikiForumLogInRC, $wgLang;
 
 		if ( strlen( $forumName ) < 0 ) {
 			$this->errorMessage = wfMessage( 'wikiforum-no-text-or-title' )->text();
@@ -983,6 +1018,19 @@ class WikiForumClass {
 					),
 					__METHOD__
 				);
+
+				$logEntry = new ManualLogEntry( 'forum', 'add-forum' );
+				$logEntry->setPerformer( $wgUser );
+				$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+				$shortText = $wgLang->truncate( $description, 50 );
+				$logEntry->setComment( $shortText );
+				$logEntry->setParameters( array(
+					'4::forum-name' => $forumName,
+				) );
+				$logid = $logEntry->insert();
+				if ( $wgWikiForumLogInRC ) {
+					$logEntry->publish( $logid );
+				}
 			} else {
 				$this->errorMessage = wfMessage( 'wikiforum-error-not-found' )->text();
 				$this->result = false;
