@@ -117,7 +117,9 @@ class WikiForumHooks {
 					'wikiforum-by',
 					$wgLang->timeanddate( $thread->wft_last_post_timestamp ),
 					WikiForumClass::getUserLinkById( $thread->wft_last_post_user ),
-					User::newFromId( $thread->wft_last_post_user )->getName()
+					User::newFromId( $thread->wft_last_post_user )->getName(),
+					$wgLang->date( $thread->wft_last_post_timestamp ),
+					$wgLang->time( $thread->wft_last_post_timestamp )
 				)->text();
 			}
 
@@ -147,7 +149,9 @@ class WikiForumHooks {
 					'wikiforum-posted',
 					$wgLang->timeanddate( $thread->wft_posted_timestamp ),
 					WikiForumClass::getUserLink( $thread->user_name ),
-					$thread->user_name
+					$thread->user_name,
+					$wgLang->date( $thread->wft_posted_timestamp ),
+					$wgLang->time( $thread->wft_posted_timestamp )
 				)->text() . '<br />' .
 				wfMessage( 'wikiforum-forum', $categoryLink, $forumLink )->text() .
 				'</p></p>',
@@ -201,7 +205,9 @@ class WikiForumHooks {
 					'wikiforum-posted',
 					$wgLang->timeanddate( $overview->wft_posted_timestamp ),
 					WikiForumClass::getUserLink( $overview->user_name ),
-					$overview->user_name
+					$overview->user_name,
+					$wgLang->date( $overview->wft_posted_timestamp ),
+					$wgLang->time( $overview->wft_posted_timestamp )
 				)->text();
 				if ( $overview->wft_edit_timestamp > 0 ) {
 					$posted .= '<br /><i>' .
@@ -209,7 +215,9 @@ class WikiForumHooks {
 							'wikiforum-edited',
 							$wgLang->timeanddate( $overview->wft_edit_timestamp ),
 							WikiForumClass::getUserLinkById( $overview->wft_edit_user ),
-							$overview->wft_edit_user_text
+							$overview->wft_edit_user_text,
+							$wgLang->date( $overview->wft_edit_timestamp ),
+							$wgLang->time( $overview->wft_edit_timestamp )
 						)->text() . '</i>';
 				}
 
@@ -248,7 +256,9 @@ class WikiForumHooks {
 							'wikiforum-posted',
 							$wgLang->timeanddate( $reply->wfr_posted_timestamp ),
 							WikiForumClass::getUserLink( $reply->user_name ),
-							$reply->user_name
+							$reply->user_name,
+							$wgLang->date( $reply->wfr_posted_timestamp ),
+							$wgLang->time( $reply->wfr_posted_timestamp )
 						)->text();
 						if ( $reply->wfr_edit > 0 ) {
 							$posted .= '<br /><i>' .
@@ -256,7 +266,9 @@ class WikiForumHooks {
 									'wikiforum-edited',
 									$wgLang->timeanddate( $reply->wfr_edit ),
 									WikiForumClass::getUserLinkById( $reply->wfr_edit_user ),
-									$reply->wfr_edit_user_text
+									$reply->wfr_edit_user_text,
+									$wgLang->date( $reply->wfr_edit ),
+									$wgLang->time( $reply->wfr_edit )
 								)->text() . '</i>';
 						}
 						$output .= WikiForumGui::getReply(

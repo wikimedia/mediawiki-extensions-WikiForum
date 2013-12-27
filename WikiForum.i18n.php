@@ -23,7 +23,7 @@ $messages['en'] = array(
 
 	'wikiforum-anonymous' => 'Anonymous',
 	'wikiforum-announcement-only-description' => 'Announcement forum (only moderators can add threads)',
-	'wikiforum-by' => '$1<br />by {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'On $4 at $5<br />by {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Description:',
 	'wikiforum-forum-is-empty' => 'This forum is currently empty.
 Please contact a forum administrator to have some categories and forums added.',
@@ -65,8 +65,8 @@ Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-thread-title' => 'Title of your thread',
 	'wikiforum-no-threads' => 'No threads are available at the moment.',
 
-	'wikiforum-posted' => 'Posted at $1 by {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Edited at $1 by {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Posted by {{GENDER:$3|$2}} on $4 at $5.',
+	'wikiforum-edited' => 'Edited by {{GENDER:$3|$2}} on $4 at $5.',
 
 	'wikiforum-cat-not-found' => 'Category not found',
 	'wikiforum-cat-not-found-text' => 'Category does not exist - go back to $1',
@@ -145,9 +145,11 @@ Also used as link in toolbox portlet.',
 	'wikiforum-anonymous' => '{{Identical|Anonymous}}',
 	'wikiforum-announcement-only-description' => 'Used as label for checkbox in adding forum page.',
 	'wikiforum-by' => 'Forum post properties. Parameters:
-* $1 is a timestamp (time and date)
+* $1 - No longer used
 * $2 is a link to a user page with username as link description.
-* $3 is a plain text username used for GENDER.',
+* $3 is a plain text username used for GENDER.
+* $4 - a date
+* $5 - a time',
 	'wikiforum-description' => 'Used as label for "forum description" input box.
 {{Identical|Description}}',
 	'wikiforum-forum-is-empty' => 'Used in [[Special:WikiForum]] when there are no categories/forums/threads.
@@ -220,15 +222,19 @@ Parameters:
 	'wikiforum-thread-title' => 'Default title of thread; used in creating new thread page.',
 	'wikiforum-no-threads' => 'Used in threads list when the forum has no available thread.',
 	'wikiforum-posted' => 'Thread header. Parameters:
-* $1 - a timestamp
+* $1 - No longer used
 * $2 - a link to a user page with username as link description
 * $3 - a plain text username used for GENDER
+* $4 - a date
+* $5 - a time
 See also:
 * {{msg-mw|Wikiforum-edited}}',
 	'wikiforum-edited' => 'Indicates a thread (or a reply) has been edited. Parameters:
-* $1 - a timestamp
+* $1 - No longer used
 * $2 - a link to a user page with username as link description
 * $3 - a plain text username used for GENDER
+* $4 - (Optional) a date
+* $5 - (Optional) a time
 See also:
 * {{msg-mw|Wikiforum-posted}}',
 	'wikiforum-cat-not-found' => 'Used as heading of error message',

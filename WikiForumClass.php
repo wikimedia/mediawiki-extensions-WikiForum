@@ -1280,7 +1280,9 @@ class WikiForumClass {
 							$forum->wff_last_post_user_text,
 							$forum->wff_last_post_user_ip
 						),
-						$forum->user_name
+						$forum->user_name,
+						$wgLang->date( $forum->wff_last_post_timestamp ),
+						$wgLang->time( $forum->wff_last_post_timestamp )
 					)->text();
 				}
 
@@ -1388,7 +1390,9 @@ class WikiForumClass {
 							$forum->wff_last_post_user_text,
 							$forum->wff_last_post_user_ip
 						),
-						$forum->user_name
+						$forum->user_name,
+						$wgLang->date( $forum->wff_last_post_timestamp ),
+						$wgLang->time( $forum->wff_last_post_timestamp )
 					)->text();
 				}
 
@@ -1557,7 +1561,9 @@ class WikiForumClass {
 							$thread->wft_last_post_user_text,
 							$thread->wft_last_post_user_ip
 						),
-						$thread->wft_last_post_user_text
+						$thread->wft_last_post_user_text,
+						$wgLang->date( $thread->wft_last_post_timestamp ),
+						$wgLang->time( $thread->wft_last_post_timestamp )
 					)->text();
 				}
 
@@ -1580,7 +1586,9 @@ class WikiForumClass {
 								$thread->wft_user_text,
 								$thread->wft_user_ip
 							),
-							$thread->wft_user_text
+							$thread->wft_user_text,
+							$wgLang->date( $thread->wft_posted_timestamp ),
+							$wgLang->time( $thread->wft_posted_timestamp )
 						)->text() . '</p></p>',
 					$thread->wft_reply_count,
 					$thread->wft_view_count,
@@ -1755,7 +1763,9 @@ class WikiForumClass {
 					$data_overview->wft_user_text,
 					$data_overview->wft_user_ip
 				),
-				$data_overview->wft_user_text
+				$data_overview->wft_user_text,
+				$wgLang->date( $data_overview->wft_posted_timestamp ),
+				$wgLang->time( $data_overview->wft_posted_timestamp )
 			)->text();
 			if ( $data_overview->wft_edit_timestamp > 0 ) {
 				$posted .= '<br /><i>' .
@@ -1767,7 +1777,9 @@ class WikiForumClass {
 							$data_overview->wft_edit_user_text,
 							$data_overview->wft_edit_user_ip
 						),
-						$data_overview->wft_edit_user_text
+						$data_overview->wft_edit_user_text,
+						$wgLang->date( $data_overview->wft_edit_timestamp ),
+						$wgLang->time( $data_overview->wft_edit_timestamp )
 					)->text() . '</i>';
 			}
 
@@ -1810,7 +1822,9 @@ class WikiForumClass {
 						$reply->wfr_user_text,
 						$reply->wfr_user_ip
 					),
-					$reply->user_name
+					$reply->user_name,
+					$wgLang->date( $reply->wfr_posted_timestamp ),
+					$wgLang->time( $reply->wfr_posted_timestamp )
 				)->text();
 				if ( $reply->wfr_edit_timestamp > 0 ) {
 					$posted .= '<br /><i>' .
@@ -1822,7 +1836,9 @@ class WikiForumClass {
 								$reply->wfr_edit_user_text,
 								$reply->wfr_edit_user_ip
 							),
-							$reply->wfr_edit_user_text
+							$reply->wfr_edit_user_text,
+							$wgLang->date( $reply->wfr_edit_timestamp ),
+							$wgLang->time( $reply->wfr_edit_timestamp )
 						)->text() . '</i>';
 				}
 
@@ -1951,7 +1967,9 @@ class WikiForumClass {
 						$result->wfr_user_text,
 						$result->wfr_user_ip
 					),
-					$result->wfr_user_text
+					$result->wfr_user_text,
+					$wgLang->date( $result->wfr_posted_timestamp ),
+					$wgLang->time( $result->wfr_posted_timestamp )
 				)->text() . '<br />' . wfMessage(
 						'wikiforum-search-thread',
 						'<a href="' . $url . $anchor . '">' .
@@ -1997,7 +2015,9 @@ class WikiForumClass {
 			'wikiforum-posted',
 			$wgLang->timeanddate( wfTimestampNow() ),
 			WikiForumClass::getUserLink( $wgUser->getId(), $wgUser->getName(), $wgRequest->getIP() ),
-			$wgUser->getName()
+			$wgUser->getName(),
+			$wgLang->date( wfTimestampNow() ),
+			$wgLang->time( wfTimestampNow() )
 		)->text();
 		if ( $type == 'addcomment' || $type == 'editcomment' ) {
 			$output .= WikiForumGui::getReplyHeader( $title );
@@ -2228,7 +2248,9 @@ class WikiForumClass {
 						// <a href="/wiki/Project:Administrators">administrator</a>)
 						// which is *not* what we want
 						$reply->user_name,
-						$reply->user_name
+						$reply->user_name,
+						$wgLang->date( $reply->wfr_posted_timestamp ),
+						$wgLang->time( $reply->wfr_posted_timestamp )
 					)->text();
 					$text_prev = '[quote=' . $posted . ']' .
 						$reply->wfr_reply_text . '[/quote]';
@@ -2248,7 +2270,9 @@ class WikiForumClass {
 						$wgLang->timeanddate( $thread->wft_posted_timestamp ),
 						// see the explanation above
 						$thread->user_name,
-						$thread->user_name
+						$thread->user_name,
+						$wgLang->date( $thread->wft_posted_timestamp ),
+						$wgLang->time( $thread->wft_posted_timestamp )
 					)->text();
 					$text_prev = '[quote=' . $posted . ']' .
 						$thread->wft_text . '[/quote]';
