@@ -145,9 +145,9 @@ Also used as link in toolbox portlet.',
 	'wikiforum-anonymous' => '{{Identical|Anonymous}}',
 	'wikiforum-announcement-only-description' => 'Used as label for checkbox in adding forum page.',
 	'wikiforum-by' => 'Forum post properties. Parameters:
-* $1 - No longer used
-* $2 is a link to a user page with username as link description.
-* $3 is a plain text username used for GENDER.
+* $1 - (Unused) no longer used
+* $2 - a link to a user page with username as link description.
+* $3 - a plain text username used for GENDER.
 * $4 - a date
 * $5 - a time',
 	'wikiforum-description' => 'Used as label for "forum description" input box.
@@ -222,7 +222,7 @@ Parameters:
 	'wikiforum-thread-title' => 'Default title of thread; used in creating new thread page.',
 	'wikiforum-no-threads' => 'Used in threads list when the forum has no available thread.',
 	'wikiforum-posted' => 'Thread header. Parameters:
-* $1 - No longer used
+* $1 - (Unused) no longer used
 * $2 - a link to a user page with username as link description
 * $3 - a plain text username used for GENDER
 * $4 - a date
@@ -230,11 +230,11 @@ Parameters:
 See also:
 * {{msg-mw|Wikiforum-edited}}',
 	'wikiforum-edited' => 'Indicates a thread (or a reply) has been edited. Parameters:
-* $1 - No longer used
+* $1 - (Unused) no longer used
 * $2 - a link to a user page with username as link description
 * $3 - a plain text username used for GENDER
-* $4 - (Optional) a date
-* $5 - (Optional) a time
+* $4 - a date
+* $5 - a time
 See also:
 * {{msg-mw|Wikiforum-posted}}',
 	'wikiforum-cat-not-found' => 'Used as heading of error message',
@@ -296,14 +296,36 @@ See also [[Template:Identical/Sticky]].',
 	'grouppage-forumadmin' => '{{doc-group|forumadmin|page}}',
 	'group-forumadmin.css' => '{{doc-group|forumadmin|css}}',
 	'group-forumadmin.js' => '{{doc-group|forumadmin|js}}',
+	'log-name-forum' => 'Title for the forum log.
 
-	'log-name-forum' => 'Title for the forum log',
-	'log-description-forum' => 'Description of the forum log to be shown on Special:Log/forum',
+The description for the log is {{msg-mw|Log-description-forum}}.',
+	'log-description-forum' => 'Description of the forum log to be shown on [[Special:Log/forum]].
 
-	'logentry-forum-add-category' => 'Shown when the user $1 created a new category, $4. {{logentry}}',
-	'logentry-forum-add-forum' => 'Shown when the user $1 created a new forum, $4. {{logentry}}',
-	'logentry-forum-add-thread' => 'Shown when the user $1 created a new thread, $4. {{logentry}}',
-	'logentry-forum-add-reply' => 'Shown when the user $1 replied on the thread $4. {{logentry}}',
+The name of the log is {{msg-mw|Log-name-forum}}.',
+	'logentry-forum-add-category' => 'Shown when the user $1 created a new category, $4.
+
+{{logentry}}
+Additional parameters:
+* $4 - category name
+{{Related|Logentry-forum}}',
+	'logentry-forum-add-forum' => 'Shown when the user $1 created a new forum, $4.
+
+{{logentry}}
+Additional parameters:
+* $4 - forum title
+{{Related|Logentry-forum}}',
+	'logentry-forum-add-thread' => 'Shown when the user $1 created a new thread, $4.
+
+{{logentry}}
+Additional parameters:
+* $4 - thread title
+{{Related|Logentry-forum}}',
+	'logentry-forum-add-reply' => 'Shown when the user $1 replied on the thread $4.
+
+{{logentry}}
+Additional parameters:
+* $4 - thread title
+{{Related|Logentry-forum}}',
 );
 
 /** Afrikaans (Afrikaans)
@@ -922,7 +944,7 @@ $messages['de'] = array(
 	'wikiforum' => 'Forum',
 	'wikiforum-anonymous' => 'Anonymer',
 	'wikiforum-announcement-only-description' => 'Forumsankündigungen (nur Moderatoren können Themen hinzufügen)',
-	'wikiforum-by' => '$1<br />von {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'Am $4 um $5<br />von {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beschreibung:',
 	'wikiforum-forum-is-empty' => 'Dieses Forum ist derzeit leer.
 Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontaktieren.',
@@ -962,8 +984,8 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'wikiforum-save-reply' => 'Antwort speichern',
 	'wikiforum-thread-title' => 'Titel deines Themas',
 	'wikiforum-no-threads' => 'Derzeit gibt es keine Themen.',
-	'wikiforum-posted' => 'Verfasst am $1 von {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Bearbeitet am $1 von {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Verfasst von {{GENDER:$3|$2}} am $4 um $5.',
+	'wikiforum-edited' => 'Bearbeitet von {{GENDER:$3|$2}} am $4 um $5.',
 	'wikiforum-cat-not-found' => 'Die Kategorie wurde nicht gefunden.',
 	'wikiforum-cat-not-found-text' => 'Die Kategorie ist nicht vorhanden - bitte zu $1 zurückkehren.',
 	'wikiforum-forum-not-found' => 'Das Forum wurde nicht gefunden.',
@@ -1002,6 +1024,12 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'group-forumadmin' => 'Forumsadministratoren',
 	'group-forumadmin-member' => '{{GENDER:$1|Forumsadministrator|Forumsadministratorin}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumsadministratoren',
+	'log-name-forum' => 'Forums-Logbuch',
+	'log-description-forum' => 'Es folgt ein Logbuch von Ereignissen des [[Special:WikiForum|WikiForums]].',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|erstellte}} eine neue Kategorie, $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|erstellte}} ein neues Forum, $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|erstellte}} einen neuen Thread, $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|antwortete}} auf den Thread $4',
 );
 
 /** German (formal address) (Deutsch (Sie-Form)‎)
@@ -1032,6 +1060,102 @@ $messages['diq'] = array(
 	'wikiforum-quote' => 'Groteko',
 	'group-forumadmin-member' => '{{GENDER:$1|adminê forumi}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Admine forumi',
+);
+
+/** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'wikiforum-desc' => '[[Special:WikiForum|Forum]]owe rozšyrjenje za MediaWiki',
+	'wikiforum' => 'Forum',
+	'wikiforum-anonymous' => 'Anonymny',
+	'wikiforum-announcement-only-description' => 'Pśipowěźeński forum (jano moderatory mógu nitki pśidaś)',
+	'wikiforum-by' => '$4 $5<br />wót {{GENDER:$3|$2}}',
+	'wikiforum-description' => 'Wopisanje:',
+	'wikiforum-forum-is-empty' => 'Toś ten forum jo tuchylu prozny.
+Pšosym staj se z forumowym administratorom do zwiska, aby wón někotare kategorije a temy pśidał.',
+	'wikiforum-forum-name' => 'Forum $1',
+	'wikiforum-name' => 'Mě:',
+	'wikiforum-button-preview' => 'Pśeglěd',
+	'wikiforum-preview' => 'Pśeglěd',
+	'wikiforum-preview-with-title' => 'Pśeglěd: $1',
+	'wikiforum-save' => 'Składowaś',
+	'wikiforum-error-search' => 'Pytańska zmólka',
+	'wikiforum-error-search-missing-query' => 'Musyš pytańske zapśimjeśe pódaś!',
+	'wikiforum-search-hits' => '{{PLURAL:$1|jaden wuslědk namakany|$1j wuslědka namakanej|$1 wuslědki namakane|$1 wuslědkow namakane}}',
+	'wikiforum-search-thread' => 'Nitka: $1',
+	'wikiforum-thread-deleted' => 'nitka wulašowana',
+	'wikiforum-topic-name' => 'Forum - $1',
+	'wikiforum-updates' => 'Njedawno zaktualizěrowane forumy',
+	'wikiforum-write-thread' => 'Nowa tema',
+	'wikiforum-replies' => 'Wótegrona',
+	'wikiforum-views' => 'Zwobraznjenja',
+	'wikiforum-thread' => 'Nitka',
+	'wikiforum-threads' => 'Nitki',
+	'wikiforum-latest-reply' => 'Nejnowše wótegrono',
+	'wikiforum-latest-thread' => 'Nejnowša nitka',
+	'wikiforum-forum' => 'Forum: $1 > $2',
+	'wikiforum-overview' => 'Pśeglěd',
+	'wikiforum-pages' => 'Boki:',
+	'wikiforum-thread-closed' => 'Nitka zacynjona',
+	'wikiforum-new-thread' => 'Nowa nitka',
+	'wikiforum-edit-thread' => 'Nitku wobźěłaś',
+	'wikiforum-delete-thread' => 'Nitku lašowaś',
+	'wikiforum-close-thread' => 'Nitku zacyniś',
+	'wikiforum-reopen-thread' => 'Nitku znowego wócyniś',
+	'wikiforum-write-reply' => 'Wótegrono pisaś',
+	'wikiforum-edit-reply' => 'Wótegrono wobźěłaś',
+	'wikiforum-delete-reply' => 'Wótegrono lašowaś',
+	'wikiforum-save-thread' => 'Nitku składowaś',
+	'wikiforum-save-reply' => 'Wótegrono składowaś',
+	'wikiforum-thread-title' => 'Titel twójeje nitki',
+	'wikiforum-no-threads' => 'Tuchylu nitki njestoje k dispoziciji.',
+	'wikiforum-posted' => 'Pósłany $4 $5 wót {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Wobźěłany $4 $5 wót {{GENDER:$3|$2}}',
+	'wikiforum-cat-not-found' => 'Kategorija njejo se namakała',
+	'wikiforum-cat-not-found-text' => 'Kategorija njeeksistěrujo - pšosym wroś se k $1',
+	'wikiforum-forum-not-found' => 'Forum njejo se namakał',
+	'wikiforum-forum-not-found-text' => 'Forum njeeksistěrujo - pšosym wroś se k $1',
+	'wikiforum-thread-not-found' => 'Nitka njejo se namakała',
+	'wikiforum-thread-not-found-text' => 'Nitka njeeksistěrujo abo jo se južo wulašowała - pšosym wroś se k $1.',
+	'wikiforum-error-thread-reopen' => 'Zmólka pśi zasejwócynjanju nitki',
+	'wikiforum-error-thread-close' => 'Zmólka pśi zacynjanju nitki',
+	'wikiforum-error-general' => 'Objekt njejo se namakał abo pšawa za wuwjeźenje toś teje akcije feluju.',
+	'wikiforum-error-no-rights' => 'Njamaš pšawa, aby toś tu akciju wuwjadł.',
+	'wikiforum-error-not-found' => 'Objekt njejo se namakał.',
+	'wikiforum-error-no-text-or-title' => 'Titel abo tekst njejo se korektnje wupolnił.',
+	'wikiforum-error-no-reply' => 'Wótegrono njejo se korektnje wupołniło.',
+	'wikiforum-error-double-post' => 'Šćit dwójnego kliknjenja: nitka jo se južo pśidała.',
+	'wikiforum-error-thread-closed' => 'Nitka jo tuchylu zacynjona. Njejo móžno nowe wótegrono pśidaś.',
+	'wikiforum-error-delete' => 'Zmólka pśi lašowanju',
+	'wikiforum-error-sticky' => 'Zmólka pśi změnjanju atributa "sticky"',
+	'wikiforum-error-move-thread' => 'Zmólka pśi pśesuwanju nitki',
+	'wikiforum-error-add' => 'Zmólka pśi pśidawanju',
+	'wikiforum-error-edit' => 'Zmólka pśi wobźěłowanju',
+	'wikiforum-add-category' => 'Kategoriju pśidaś',
+	'wikiforum-edit-category' => 'Kategoriju wobźěłaś',
+	'wikiforum-delete-category' => 'Kategoriju lašowaś',
+	'wikiforum-add-forum' => 'Forum pśidaś',
+	'wikiforum-edit-forum' => 'Forum wobźěłaś',
+	'wikiforum-delete-forum' => 'Forum lašowaś',
+	'wikiforum-sort-up' => 'stupajucy sortěrowaś',
+	'wikiforum-sort-down' => 'wustupujucy sortěrowaś',
+	'wikiforum-remove-sticky' => 'Wótpěś',
+	'wikiforum-make-sticky' => 'Pśipěś',
+	'wikiforum-move-thread' => 'Nitku pśesunuś',
+	'wikiforum-paste-thread' => 'Nitku zasajźiś',
+	'wikiforum-quote' => 'Citěrowaś',
+	'right-wikiforum-admin' => 'Kategorije a forumy na boku [[Special:WikiForum|Forum]] pśidaś, wobźěłaś a wulašowaś',
+	'right-wikiforum-moderator' => 'Nitki a wótegrona na boku [[Special:WikiForum|Forum]] wobźěłaś a wulašowaś',
+	'group-forumadmin' => 'Forumowe administratory',
+	'group-forumadmin-member' => '{{GENDER:$1|forumowy administrator|forumowa administratorka}}',
+	'grouppage-forumadmin' => '{{ns:project}}:Forumowe administratory',
+	'log-name-forum' => 'Forumowy protokol',
+	'log-description-forum' => 'Protokolěrujo tšojenja [[Special:WikiForum|WikiForum]]',
+	'logentry-forum-add-category' => '$1 jo nowu kategoriju {{GENDER:$2|napórał|napórała}}, $4',
+	'logentry-forum-add-forum' => '$1 jo nowy forum {{GENDER:$2|napórał|napórała}}, $4',
+	'logentry-forum-add-thread' => '$1 jo nowu nitku {{GENDER:$2|napórał|napórała}}, $4',
+	'logentry-forum-add-reply' => '$1 jo w nitce $4 {{GENDER:$2|wótegronił|wótegroniła}}',
 );
 
 /** Esperanto (Esperanto)
@@ -1708,7 +1832,7 @@ $messages['hsb'] = array(
 	'wikiforum' => 'Diskusijna deska',
 	'wikiforum-anonymous' => 'Anonymny',
 	'wikiforum-announcement-only-description' => 'Připowědźenski forum (jenož moderatorojo móža nitki přidać)',
-	'wikiforum-by' => '$1<br />wot {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$4 $5<br />wot {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Wopisanje:',
 	'wikiforum-forum-is-empty' => 'Tutón forum je tuchwilu prózdny.
 Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre kategorije a temy přidał.',
@@ -1748,8 +1872,8 @@ Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre katego
 	'wikiforum-save-reply' => 'Wotmołwu składować',
 	'wikiforum-thread-title' => 'Titul twojeje nitki',
 	'wikiforum-no-threads' => 'Tuchwilu žane nitki k dispoziciji njesteja.',
-	'wikiforum-posted' => 'Pósłany $1 wot {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Wobdźěłany $1 wot {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Pósłany $4 $5 wot {{GENDER:$3|$2}}',
+	'wikiforum-edited' => 'Wobdźěłany $4 $5 wot {{GENDER:$3|$2}}',
 	'wikiforum-cat-not-found' => 'Kategorija njeje so namakała',
 	'wikiforum-cat-not-found-text' => 'Kategorija njeeksistuje - prošu wróć so k $1',
 	'wikiforum-forum-not-found' => 'Forum njeje so namakał',
@@ -1788,6 +1912,12 @@ Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre katego
 	'group-forumadmin' => 'Forumowi administratorojo',
 	'group-forumadmin-member' => '{{GENDER:$1|forumowy administrator|forumowa administratorka}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumowi administratorojo',
+	'log-name-forum' => 'Forumowy protokol',
+	'log-description-forum' => 'Protokoluje podawkow [[Special:WikiForum|WikiForum]]',
+	'logentry-forum-add-category' => '$1 je nowu kategoriju {{GENDER:$2|wutworił|wutworiła}}, $4',
+	'logentry-forum-add-forum' => '$1 je nowy forum {{GENDER:$2|wutworił|wutworiła}}, $4',
+	'logentry-forum-add-thread' => '$1 je nowu nitku {{GENDER:$2|wutworił|wutworiła}}, $4',
+	'logentry-forum-add-reply' => '$1 je w nitce $4 {{GENDER:$2|wotmołwił|wotmołwiła}}',
 );
 
 /** Armenian (Հայերեն)
@@ -2000,7 +2130,7 @@ $messages['ja'] = array(
 	'wikiforum' => '議論ボード',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '告知用フォーラム (スレッドを作成できるのはモデレーターのみ)',
-	'wikiforum-by' => '$1<br />投稿者 {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$4 $5<br />投稿者 {{GENDER:$3|$2}}',
 	'wikiforum-description' => '説明:',
 	'wikiforum-forum-is-empty' => '現在、このフォーラムは空です。
 フォーラム管理者に連絡して、カテゴリやフォーラムを追加してもらってください。',
@@ -2040,8 +2170,8 @@ $messages['ja'] = array(
 	'wikiforum-save-reply' => '返信を保存',
 	'wikiforum-thread-title' => 'スレッドの表題',
 	'wikiforum-no-threads' => '利用できるスレッドは現在ありません。',
-	'wikiforum-posted' => '{{GENDER:$3|$2}} が $1 に投稿',
-	'wikiforum-edited' => '{{GENDER:$3|$2}} が $1 に編集',
+	'wikiforum-posted' => '{{GENDER:$3|$2}} が $4 $5 に投稿',
+	'wikiforum-edited' => '{{GENDER:$3|$2}} が $4 $5 に編集',
 	'wikiforum-cat-not-found' => 'カテゴリが見つかりません',
 	'wikiforum-cat-not-found-text' => 'カテゴリは存在しません。$1に戻ってください。',
 	'wikiforum-forum-not-found' => 'フォーラムが見つかりません',
@@ -2082,6 +2212,12 @@ $messages['ja'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:フォーラム管理者',
 	'group-forumadmin.css' => '/* ここに記述したCSSはフォーラム管理者のみに影響します */',
 	'group-forumadmin.js' => '/* ここに記述したJSはフォーラム管理者のみに影響します */',
+	'log-name-forum' => 'フォーラム記録',
+	'log-description-forum' => '[[Special:WikiForum|ウィキフォーラム]]に関する記録',
+	'logentry-forum-add-category' => '$1 が新しいカテゴリ $4 を{{GENDER:$2|作成}}',
+	'logentry-forum-add-forum' => '$1 が新しいフォーラム $4 を{{GENDER:$2|作成}}',
+	'logentry-forum-add-thread' => '$1 が新しいスレッド $4 を{{GENDER:$2|作成}}',
+	'logentry-forum-add-reply' => '$1 がスレッド $4 で{{GENDER:$2|返信}}',
 );
 
 /** Lojban (Lojban)
@@ -2313,7 +2449,7 @@ $messages['lb'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Forum]]-Erweiderung fir MediaWiki',
 	'wikiforum' => 'Diskussiouns-Plattform',
 	'wikiforum-anonymous' => 'Anonym',
-	'wikiforum-by' => '$1<br />vum {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />vum {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Beschreiwung:',
 	'wikiforum-forum-is-empty' => 'Dëse Forum ass elo eidel.
 Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbäigesat ze kréien.',
@@ -2350,8 +2486,8 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'wikiforum-save-reply' => 'Äntwert späicheren',
 	'wikiforum-thread-title' => 'Titel vun Ärer Rubrik',
 	'wikiforum-no-threads' => 'Den Ament si keng Rubriken disponibel.',
-	'wikiforum-posted' => 'Matgedeelt ëm $1 vum {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Geännert ëm $1 vum {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Matgedeelt ëm $1 vum {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Geännert ëm $1 vum {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-cat-not-found' => 'Kategorie net fonnt',
 	'wikiforum-cat-not-found-text' => "D'Kategorie gëtt et net - gitt zréck op $1",
 	'wikiforum-forum-not-found' => 'De Forum gouf net fonnt',
@@ -2628,7 +2764,7 @@ $messages['nl'] = array(
 	'wikiforum' => 'Overlegplaats',
 	'wikiforum-anonymous' => 'Anoniem',
 	'wikiforum-announcement-only-description' => 'Aankondigingenforum (alleen forummoderatoren kunnen nieuwe berichten plaatsen)',
-	'wikiforum-by' => '$1<br />door {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />door {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Beschrijving:',
 	'wikiforum-forum-is-empty' => 'Dit forum is op het moment leeg.
 Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.',
@@ -2668,8 +2804,8 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'wikiforum-save-reply' => 'Reactie opslaan',
 	'wikiforum-thread-title' => 'Onderwerp van uw bericht',
 	'wikiforum-no-threads' => 'Er zijn op het moment geen onderwerpen beschikbaar.',
-	'wikiforum-posted' => 'Geplaatst op $1 door {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Bewerkt op $1 door {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Geplaatst op $1 door {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Bewerkt op $1 door {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-cat-not-found' => 'Categorie niet gevonden',
 	'wikiforum-cat-not-found-text' => 'Categorie bestaat niet - terug naar $1',
 	'wikiforum-forum-not-found' => 'Forum niet gevonden',
@@ -3681,6 +3817,7 @@ $messages['tr'] = array(
 
 /** Ukrainian (українська)
  * @author AS
+ * @author Andriykopanytsia
  * @author Base
  * @author Olvin
  * @author Ата
@@ -3691,7 +3828,7 @@ $messages['uk'] = array(
 	'wikiforum' => 'Дошка обговорень',
 	'wikiforum-anonymous' => 'Анонім',
 	'wikiforum-announcement-only-description' => 'Дошка оголошень (лише модератори можуть додавати гілки)',
-	'wikiforum-by' => '$1<br />від {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'О $5 $4 <br />від {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Опис:',
 	'wikiforum-forum-is-empty' => "Цей форум наразі порожній.
 Будь ласка, зв'яжіться з адміністратором форуму з проханням додати необхідні категорії та форуми.",
@@ -3731,8 +3868,8 @@ $messages['uk'] = array(
 	'wikiforum-save-reply' => 'Зберегти відповідь',
 	'wikiforum-thread-title' => 'Заголовок Вашої гілки',
 	'wikiforum-no-threads' => 'Наразі немає доступних гілок.',
-	'wikiforum-posted' => 'Створено о $1 {{GENDER:$3|користувачем|користувачкою}} $2',
-	'wikiforum-edited' => 'Редаговано $1 {{GENDER:$3|користувачем|користувачкою}} $2',
+	'wikiforum-posted' => 'Створено {{GENDER:$3|користувачем|користувачкою}} $2 о $5 $4.',
+	'wikiforum-edited' => 'Редаговано {{GENDER:$3|користувачем|користувачкою}} $2 о  $5 $4.',
 	'wikiforum-cat-not-found' => 'Категорію не знайдено',
 	'wikiforum-cat-not-found-text' => 'Категорія не існує — назад до $1',
 	'wikiforum-forum-not-found' => 'Форум не знайдено',
@@ -3773,6 +3910,12 @@ $messages['uk'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Адміністратори форуму',
 	'group-forumadmin.css' => '/* CSS, прописані тут, вплинуть лише на адміністраторів */',
 	'group-forumadmin.js' => '/* JS, прописана тут, вплине лише на адміністраторів */',
+	'log-name-forum' => 'Журнал форуму',
+	'log-description-forum' => 'Протоколює події [[Special:WikiForum|WikiForum]]',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|створив|створила}} нову категорію, $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|створив|створила}} новий форум, $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|створив|створила}} нову гілку, $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|відповів}} у гілці $4',
 );
 
 /** Urdu (اردو)
