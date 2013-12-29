@@ -330,9 +330,12 @@ Additional parameters:
 
 /** Afrikaans (Afrikaans)
  * @author Naudefj
+ * @author Winstonza
  */
 $messages['af'] = array(
 	'wikiforum-replies' => 'Antwoorde',
+	'wikiforum-edited' => 'Geredigeer deur {{GENDER:$3|$2}} op $4 om $5.',
+	'logentry-forum-add-forum' => "$1 het 'n nuwe forum, $4, geskep", # Fuzzy
 );
 
 /** Arabic (العربية)
@@ -2449,7 +2452,7 @@ $messages['lb'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Forum]]-Erweiderung fir MediaWiki',
 	'wikiforum' => 'Diskussiouns-Plattform',
 	'wikiforum-anonymous' => 'Anonym',
-	'wikiforum-by' => '$1<br />vum {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-by' => 'Den $4 ëm $5<br />vum {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beschreiwung:',
 	'wikiforum-forum-is-empty' => 'Dëse Forum ass elo eidel.
 Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbäigesat ze kréien.',
@@ -2486,8 +2489,8 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'wikiforum-save-reply' => 'Äntwert späicheren',
 	'wikiforum-thread-title' => 'Titel vun Ärer Rubrik',
 	'wikiforum-no-threads' => 'Den Ament si keng Rubriken disponibel.',
-	'wikiforum-posted' => 'Matgedeelt ëm $1 vum {{GENDER:$3|$2}}', # Fuzzy
-	'wikiforum-edited' => 'Geännert ëm $1 vum {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-posted' => 'Matgedeelt vum {{GENDER:$3|$2}} den $4 ëm $5.',
+	'wikiforum-edited' => 'Geännert vum {{GENDER:$3|$2}} den $4 ëm $5.',
 	'wikiforum-cat-not-found' => 'Kategorie net fonnt',
 	'wikiforum-cat-not-found-text' => "D'Kategorie gëtt et net - gitt zréck op $1",
 	'wikiforum-forum-not-found' => 'De Forum gouf net fonnt',
@@ -2516,6 +2519,7 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'group-forumadmin' => 'Administrateure vum Forum',
 	'group-forumadmin-member' => '{{GENDER:$1|Administrateur|Administratrice}} vum Forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|huet}} eng nei Rubrik iwwer $4 ugeluecht',
 );
 
 /** Lithuanian (lietuvių)
@@ -3567,6 +3571,7 @@ $messages['si'] = array(
 );
 
 /** Swedish (svenska)
+ * @author Jopparn
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
@@ -3574,7 +3579,7 @@ $messages['sv'] = array(
 	'wikiforum' => 'Diskussionstavla',
 	'wikiforum-anonymous' => 'Anonym',
 	'wikiforum-announcement-only-description' => 'Meddelandeforum (endast moderatorer kan lägga till trådar)',
-	'wikiforum-by' => '$1<br />av {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'Den $4 kl. $5<br/>av {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Beskrivning:',
 	'wikiforum-forum-is-empty' => 'Detta forum är för tillfället tomt.
 Var god kontakta en forumadministratör för att få några kategorier och forum tillagda.',
@@ -3614,8 +3619,8 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'wikiforum-save-reply' => 'Spara svar',
 	'wikiforum-thread-title' => 'Titel på din tråd',
 	'wikiforum-no-threads' => 'Inga trådar finns tillgängliga just nu.',
-	'wikiforum-posted' => 'Skrivet kl $1 av {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Redigerades kl $1 av {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Skrivet av {{GENDER:$3|$2}} den $4 kl $5.',
+	'wikiforum-edited' => 'Redigerades kl $1 av {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-cat-not-found' => 'Kategorin finns inte',
 	'wikiforum-cat-not-found-text' => 'Kategorin finns inte - gå tillbaka till $1',
 	'wikiforum-forum-not-found' => 'Forum hittades inte',
@@ -3656,6 +3661,10 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'grouppage-forumadmin' => '{{ns:project}}:Forumadministratörer',
 	'group-forumadmin.css' => '/* CSS som placeras här kommer endast att påverka forumadministratörer */',
 	'group-forumadmin.js' => '/* JS som placeras här kommer endast att påverka forumadministratörer */',
+	'log-name-forum' => 'Forumlogg',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|skapade}} en ny kategori, $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|skapade}} en ny tråd, $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|svarade}} på tråden $4',
 );
 
 /** Tamil (தமிழ்)
