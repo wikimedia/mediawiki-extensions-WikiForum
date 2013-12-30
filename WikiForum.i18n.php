@@ -1309,13 +1309,14 @@ $messages['eu'] = array(
  * @author Ebraminio
  * @author Mjbmr
  * @author Omidh
+ * @author Reza1615
  */
 $messages['fa'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|انجمن]]  برای مدیاویکی',
 	'wikiforum' => 'انجمن بحث و گفتگو',
 	'wikiforum-anonymous' => 'ناشناس',
 	'wikiforum-announcement-only-description' => 'انجمن اطلاع‌رسانی (فقط مدیران می‌توانند موضوعی اضافه کنند)',
-	'wikiforum-by' => '$1<br />توسط {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'در $4 در $5<br />توسط {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'شرح:',
 	'wikiforum-forum-is-empty' => 'این انجمن در حال حاضر خالی است.
 لطفاً با مدیر انجمن تماس بگیرید که چنددسته و انجمن اضافه کند.',
@@ -1355,8 +1356,8 @@ $messages['fa'] = array(
 	'wikiforum-save-reply' => 'ذخیره‌سازی پاسخ',
 	'wikiforum-thread-title' => 'عنوان موضوع شما',
 	'wikiforum-no-threads' => 'هیچ موضوعی در حال حاضر در دسترس نیست.',
-	'wikiforum-posted' => 'نوشته‌شده در $1 توسط {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'ویرایش‌شده در $1 توسط {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'نوشته‌شده توسط {{GENDER:$3|$2}} در $4 در $5.',
+	'wikiforum-edited' => 'ویرایش‌شده {{GENDER:$3|$2}} در $4 در $5.',
 	'wikiforum-cat-not-found' => 'رده یافت نشد',
 	'wikiforum-cat-not-found-text' => 'رده وجود ندارد - بازگشت به $1',
 	'wikiforum-forum-not-found' => 'انجمن یافت نشد',
@@ -1481,13 +1482,14 @@ Ota yhteyttä foorumin ylläpitäjään saadaksesi lisätyksi luokkia ja foorume
  * @author Crochet.david
  * @author Gomoko
  * @author Jack Phoenix <jack@countervandalism.net>
+ * @author Linedwell
  */
 $messages['fr'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Forum]] extension pour MediaWiki',
 	'wikiforum' => 'Forum de discussion',
 	'wikiforum-anonymous' => 'Anonyme',
 	'wikiforum-announcement-only-description' => 'Annonce du forum (seuls les modérateurs peuvent ajouter des fils de discussion)',
-	'wikiforum-by' => '$1<br />par {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />par {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Description :',
 	'wikiforum-forum-is-empty' => "Ce forum est actuellement vide.<br />Veuillez contacter un administrateur du forum pour qu'il ajoute certaines catégories et forums.",
 	'wikiforum-forum-name' => 'Forum $1',
@@ -1526,8 +1528,8 @@ $messages['fr'] = array(
 	'wikiforum-save-reply' => 'Enregistrer la réponse',
 	'wikiforum-thread-title' => 'Titre de votre fil de discussion',
 	'wikiforum-no-threads' => "Aucun fil de discussion n'est disponible à cet instant.",
-	'wikiforum-posted' => 'Posté à $1 par {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Modifié à $1 par {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Posté à $1 par {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Modifié à $1 par {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-cat-not-found' => 'Catégorie non trouvée',
 	'wikiforum-cat-not-found-text' => "La catégorie n'existe pas - revenir à $1",
 	'wikiforum-forum-not-found' => 'Forum introuvable',
@@ -1566,6 +1568,7 @@ $messages['fr'] = array(
 	'group-forumadmin' => 'Administrateurs du forum',
 	'group-forumadmin-member' => '{{GENDER:$1|administrateur du forum}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',
+	'logentry-forum-add-category' => '$1 a {{GENDER:$2|créé}} une nouvelle catégorie, $4',
 );
 
 /** Franco-Provençal (arpetan)
@@ -2583,7 +2586,7 @@ $messages['mk'] = array(
 	'wikiforum' => 'Форум',
 	'wikiforum-anonymous' => 'Анонимно',
 	'wikiforum-announcement-only-description' => 'Форум за известувања (теми можат да додаваат само модераторите)',
-	'wikiforum-by' => '$1<br />од {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'На $4 во $5 ч.<br />од {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Опис:',
 	'wikiforum-forum-is-empty' => 'Форумов е моментално празен.
 Побарајте од администраторот да додаде категории.',
@@ -2623,8 +2626,8 @@ $messages['mk'] = array(
 	'wikiforum-save-reply' => 'Зачувај одговор',
 	'wikiforum-thread-title' => 'Наслов на темата',
 	'wikiforum-no-threads' => 'Моментално нема расположиви теми.',
-	'wikiforum-posted' => 'Објавено во $1 од {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Уредено во $1 од {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Објавено од {{GENDER:$3|$2}} на $4 во $5 ч.',
+	'wikiforum-edited' => 'Изменето од {{GENDER:$3|$2}} на $4 во $5 ч.',
 	'wikiforum-cat-not-found' => 'Категоријата не е пронајдена.',
 	'wikiforum-cat-not-found-text' => 'Категоријата не постои - назад на $1',
 	'wikiforum-forum-not-found' => 'Форумот не е пронајден',
@@ -2665,6 +2668,12 @@ $messages['mk'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Администратори на форумот',
 	'group-forumadmin.css' => '/* Тука поставениот CSS ќе се применува само врз форумските администратори */',
 	'group-forumadmin.js' => '/* Тука поставениот JS ќе се применува само врз форумските администратори */',
+	'log-name-forum' => 'Форумски дневник',
+	'log-description-forum' => 'Заведува настани во [[Special:WikiForum|ВикиФорум]]',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|ја создаде}} новата категорија „$4“',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|го создаде}} новиот форум „$4“',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|ја создаде}} новата нишка „$4“',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|одговори}} на нишката „$4“',
 );
 
 /** Malay (Bahasa Melayu)
