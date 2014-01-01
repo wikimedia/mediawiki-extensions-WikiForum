@@ -929,6 +929,8 @@ $messages['ce'] = array(
 	'wikiforum-add-category' => 'ТIетоха категори',
 	'wikiforum-delete-category' => 'ДӀаяккха категори',
 	'wikiforum-delete-forum' => 'ДӀаяккха форум',
+	'group-forumadmin' => 'Форуман куьйгалхой',
+	'grouppage-forumadmin' => '{{ns:project}}:Форуман куьйгалхой',
 );
 
 /** Church Slavic (словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
@@ -1489,7 +1491,7 @@ $messages['fr'] = array(
 	'wikiforum' => 'Forum de discussion',
 	'wikiforum-anonymous' => 'Anonyme',
 	'wikiforum-announcement-only-description' => 'Annonce du forum (seuls les modérateurs peuvent ajouter des fils de discussion)',
-	'wikiforum-by' => '$1<br />par {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-by' => 'Le $4 à $5<br />par {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Description :',
 	'wikiforum-forum-is-empty' => "Ce forum est actuellement vide.<br />Veuillez contacter un administrateur du forum pour qu'il ajoute certaines catégories et forums.",
 	'wikiforum-forum-name' => 'Forum $1',
@@ -1528,8 +1530,8 @@ $messages['fr'] = array(
 	'wikiforum-save-reply' => 'Enregistrer la réponse',
 	'wikiforum-thread-title' => 'Titre de votre fil de discussion',
 	'wikiforum-no-threads' => "Aucun fil de discussion n'est disponible à cet instant.",
-	'wikiforum-posted' => 'Posté à $1 par {{GENDER:$3|$2}}', # Fuzzy
-	'wikiforum-edited' => 'Modifié à $1 par {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-posted' => 'Posté par {{GENDER:$3|$2}} le $4 à $5.',
+	'wikiforum-edited' => 'Modifié par {{GENDER:$3|$2}} le $4 à $5.',
 	'wikiforum-cat-not-found' => 'Catégorie non trouvée',
 	'wikiforum-cat-not-found-text' => "La catégorie n'existe pas - revenir à $1",
 	'wikiforum-forum-not-found' => 'Forum introuvable',
@@ -1568,7 +1570,12 @@ $messages['fr'] = array(
 	'group-forumadmin' => 'Administrateurs du forum',
 	'group-forumadmin-member' => '{{GENDER:$1|administrateur du forum}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',
+	'log-name-forum' => 'Journal du forum',
+	'log-description-forum' => 'Journaux des événements de [[Special:WikiForum|WikiForum]]',
 	'logentry-forum-add-category' => '$1 a {{GENDER:$2|créé}} une nouvelle catégorie, $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|a créé}} un nouveau forum, $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|a créé}} une nouvelle discussion, $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|a répondu}} sur la discussion $4',
 );
 
 /** Franco-Provençal (arpetan)
@@ -2522,7 +2529,9 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'group-forumadmin' => 'Administrateure vum Forum',
 	'group-forumadmin-member' => '{{GENDER:$1|Administrateur|Administratrice}} vum Forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|huet}} déi nei Kategorie $4 ugeluecht',
 	'logentry-forum-add-thread' => '$1 {{GENDER:$2|huet}} eng nei Rubrik iwwer $4 ugeluecht',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|huet}} an der Rubrik $4 geännert',
 );
 
 /** Lithuanian (lietuvių)
@@ -3588,7 +3597,7 @@ $messages['sv'] = array(
 	'wikiforum' => 'Diskussionstavla',
 	'wikiforum-anonymous' => 'Anonym',
 	'wikiforum-announcement-only-description' => 'Meddelandeforum (endast moderatorer kan lägga till trådar)',
-	'wikiforum-by' => 'Den $4 kl. $5<br/>av {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-by' => 'Den $4 kl. $5<br />av {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beskrivning:',
 	'wikiforum-forum-is-empty' => 'Detta forum är för tillfället tomt.
 Var god kontakta en forumadministratör för att få några kategorier och forum tillagda.',
@@ -3629,7 +3638,7 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'wikiforum-thread-title' => 'Titel på din tråd',
 	'wikiforum-no-threads' => 'Inga trådar finns tillgängliga just nu.',
 	'wikiforum-posted' => 'Skrivet av {{GENDER:$3|$2}} den $4 kl $5.',
-	'wikiforum-edited' => 'Redigerades kl $1 av {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Redigerades av {{GENDER:$3|$2}} den $4 kl. $5.',
 	'wikiforum-cat-not-found' => 'Kategorin finns inte',
 	'wikiforum-cat-not-found-text' => 'Kategorin finns inte - gå tillbaka till $1',
 	'wikiforum-forum-not-found' => 'Forum hittades inte',
@@ -3672,6 +3681,7 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'group-forumadmin.js' => '/* JS som placeras här kommer endast att påverka forumadministratörer */',
 	'log-name-forum' => 'Forumlogg',
 	'logentry-forum-add-category' => '$1 {{GENDER:$2|skapade}} en ny kategori, $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|skapade}} ett nytt forum, $4',
 	'logentry-forum-add-thread' => '$1 {{GENDER:$2|skapade}} en ny tråd, $4',
 	'logentry-forum-add-reply' => '$1 {{GENDER:$2|svarade}} på tråden $4',
 );
