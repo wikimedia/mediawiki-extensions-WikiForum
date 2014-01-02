@@ -3998,6 +3998,7 @@ $messages['yi'] = array(
 
 /** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
+ * @author Linxue9786
  * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
@@ -4005,7 +4006,7 @@ $messages['zh-hans'] = array(
 	'wikiforum' => '讨论板',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版块（只有版主可以发帖）',
-	'wikiforum-by' => '$1<br />由{{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />由{{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => '描述：',
 	'wikiforum-forum-is-empty' => '此论坛现在没有内容。请联系论坛管理员来添加分类和版块。',
 	'wikiforum-forum-name' => '版块 $1',
@@ -4044,8 +4045,8 @@ $messages['zh-hans'] = array(
 	'wikiforum-save-reply' => '保存回复',
 	'wikiforum-thread-title' => '您帖子的标题',
 	'wikiforum-no-threads' => '目前没有帖子可用。',
-	'wikiforum-posted' => '{{GENDER:$3|$2}}发布于$1',
-	'wikiforum-edited' => '{{GENDER:$3|$2}}编辑于$1',
+	'wikiforum-posted' => '{{GENDER:$3|$2}}发布于$1', # Fuzzy
+	'wikiforum-edited' => '{{GENDER:$3|$2}}编辑于$1', # Fuzzy
 	'wikiforum-cat-not-found' => '分类未找到',
 	'wikiforum-cat-not-found-text' => '分类不存在 - 回到$1',
 	'wikiforum-forum-not-found' => '版块未找到',
@@ -4084,6 +4085,11 @@ $messages['zh-hans'] = array(
 	'group-forumadmin' => '论坛管理员',
 	'group-forumadmin-member' => '{{GENDER:$1|论坛管理员}}',
 	'grouppage-forumadmin' => '{{ns:project}}:论坛管理员',
+	'log-name-forum' => '论坛日志',
+	'logentry-forum-add-category' => '$1{{GENDER:$2|已创建}}一个新分类目录，$4',
+	'logentry-forum-add-forum' => '$1{{GENDER:$2|已创建}}一个新论坛,$4',
+	'logentry-forum-add-thread' => '$1{{GENDER:$2|已创建}}一个新线程，$4',
+	'logentry-forum-add-reply' => '$1{{GENDER:$2|已回复}}在线程上$4',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
