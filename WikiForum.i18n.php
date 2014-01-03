@@ -2053,7 +2053,7 @@ $messages['it'] = array(
 	'wikiforum' => 'Forum di discussione',
 	'wikiforum-anonymous' => 'Anonimo',
 	'wikiforum-announcement-only-description' => 'Forum degli annunci (solo i moderatori possono aggiungere thread)',
-	'wikiforum-by' => '$1<br />di {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'Il $4 alle $5<br />da {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrizione:',
 	'wikiforum-forum-is-empty' => 'Questo forum è attualmente vuoto.
 Contatta un amministratore del forum per aggiungere alcune categorie e forum.',
@@ -2093,8 +2093,8 @@ Contatta un amministratore del forum per aggiungere alcune categorie e forum.',
 	'wikiforum-save-reply' => 'Salva risposta',
 	'wikiforum-thread-title' => 'Titolo del tuo thread',
 	'wikiforum-no-threads' => 'Nessun thread è disponibile al momento.',
-	'wikiforum-posted' => 'Inviato il $1 da {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Modificato il $1 da {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Inviato da {{GENDER:$3|$2}} il $4 alle $5.',
+	'wikiforum-edited' => 'Modificato da {{GENDER:$3|$2}} il $4 alle $5.',
 	'wikiforum-cat-not-found' => 'Categoria non trovata',
 	'wikiforum-cat-not-found-text' => 'La categoria non esiste - torna alla $1',
 	'wikiforum-forum-not-found' => 'Forum non trovato',
@@ -2133,6 +2133,10 @@ Contatta un amministratore del forum per aggiungere alcune categorie e forum.',
 	'group-forumadmin' => 'Amministratori del forum',
 	'group-forumadmin-member' => '{{GENDER:$1|amministratore|amministratrice|amministratore/trice}} del forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Amministratori del forum',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|ha creato}} una nuova categoria, $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|ha creato}} un nuovo forum, $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|ha creato}} un nuovo thread, $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|ha risposto}} nel thread $4',
 );
 
 /** Japanese (日本語)
@@ -3425,7 +3429,7 @@ $messages['ru'] = array(
 	'wikiforum' => 'Доска обсуждений',
 	'wikiforum-anonymous' => 'Аноним',
 	'wikiforum-announcement-only-description' => 'Доска объявлений (только модераторы могут добавлять ветки)',
-	'wikiforum-by' => '$1<br />от {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />от {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Описание:',
 	'wikiforum-forum-is-empty' => 'В настоящее время этот форум пуст.
 Пожалуйста, обратитесь к администратору форума с просьбой добавить нужные категории и форумы.',
@@ -3437,7 +3441,7 @@ $messages['ru'] = array(
 	'wikiforum-save' => 'Сохранить',
 	'wikiforum-error-search' => 'Ошибка поиска',
 	'wikiforum-error-search-missing-query' => 'Для поиска вы должны указать выражение.',
-	'wikiforum-search-hits' => 'Найдено {{PLURAL:$1|одно соответствие|$1 соответствия|$1 соответствий}}',
+	'wikiforum-search-hits' => 'Найдено {{PLURAL:$1|одно соответствие|$1 соответствий|$1 соответствия}}', # Fuzzy
 	'wikiforum-search-thread' => 'Ветка: $1',
 	'wikiforum-thread-deleted' => 'ветка удалена',
 	'wikiforum-topic-name' => 'Форум - $1',
@@ -3465,8 +3469,8 @@ $messages['ru'] = array(
 	'wikiforum-save-reply' => 'Сохранить сообщение',
 	'wikiforum-thread-title' => 'Заглавие Вашей ветки',
 	'wikiforum-no-threads' => 'В настоящий момент ветки отсутствуют.',
-	'wikiforum-posted' => 'Создано в $1 участником {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Отредактировано в $1 участником {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Создано в $1 участником {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Отредактировано в $1 участником {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-cat-not-found' => 'Категория не найдена',
 	'wikiforum-cat-not-found-text' => 'Категория не существует - назад к $1',
 	'wikiforum-forum-not-found' => 'Форум не найден',
@@ -4086,6 +4090,7 @@ $messages['zh-hans'] = array(
 	'group-forumadmin-member' => '{{GENDER:$1|论坛管理员}}',
 	'grouppage-forumadmin' => '{{ns:project}}:论坛管理员',
 	'log-name-forum' => '论坛日志',
+	'log-description-forum' => '[[Special:WikiForum|WikiForum]]的事件日志',
 	'logentry-forum-add-category' => '$1{{GENDER:$2|已创建}}一个新分类目录，$4',
 	'logentry-forum-add-forum' => '$1{{GENDER:$2|已创建}}一个新论坛,$4',
 	'logentry-forum-add-thread' => '$1{{GENDER:$2|已创建}}一个新线程，$4',
