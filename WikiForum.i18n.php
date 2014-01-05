@@ -3351,7 +3351,7 @@ Vă rugăm să contactați un administrator al forumului pentru a adăuga câtev
 	'wikiforum-thread-title' => 'Titlul firului dumneavoastră',
 	'wikiforum-no-threads' => 'Nici un fir nu este disponibil în acest moment.',
 	'wikiforum-posted' => 'Publicat la  $1 de $2', # Fuzzy
-	'wikiforum-edited' => 'Modificat la $1 de $2', # Fuzzy
+	'wikiforum-edited' => 'Modificat de {{GENDER:$3|$2}} la $1.', # Fuzzy
 	'wikiforum-cat-not-found' => 'Categorie negăsită',
 	'wikiforum-cat-not-found-text' => 'Categoria nu există — mergeți înapoi la $1',
 	'wikiforum-forum-not-found' => 'Forum negăsit',
@@ -4003,6 +4003,7 @@ $messages['yi'] = array(
 /** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
  * @author Linxue9786
+ * @author Liuxinyu970226
  * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
@@ -4010,7 +4011,7 @@ $messages['zh-hans'] = array(
 	'wikiforum' => '讨论板',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版块（只有版主可以发帖）',
-	'wikiforum-by' => '$1<br />由{{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-by' => '由{{GENDER:$3|$2}}在$4于$5<br />',
 	'wikiforum-description' => '描述：',
 	'wikiforum-forum-is-empty' => '此论坛现在没有内容。请联系论坛管理员来添加分类和版块。',
 	'wikiforum-forum-name' => '版块 $1',
@@ -4049,8 +4050,8 @@ $messages['zh-hans'] = array(
 	'wikiforum-save-reply' => '保存回复',
 	'wikiforum-thread-title' => '您帖子的标题',
 	'wikiforum-no-threads' => '目前没有帖子可用。',
-	'wikiforum-posted' => '{{GENDER:$3|$2}}发布于$1', # Fuzzy
-	'wikiforum-edited' => '{{GENDER:$3|$2}}编辑于$1', # Fuzzy
+	'wikiforum-posted' => '由{{GENDER:$3|$2}}在$4于$5发布。',
+	'wikiforum-edited' => '由{{GENDER:$3|$2}}于$4在$5编辑。',
 	'wikiforum-cat-not-found' => '分类未找到',
 	'wikiforum-cat-not-found-text' => '分类不存在 - 回到$1',
 	'wikiforum-forum-not-found' => '版块未找到',
