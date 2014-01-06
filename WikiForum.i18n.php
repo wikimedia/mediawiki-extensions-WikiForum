@@ -1397,6 +1397,7 @@ $messages['fa'] = array(
  * @author Crt
  * @author Jack Phoenix <jack@countervandalism.net>
  * @author Pxos
+ * @author Stryn
  */
 $messages['fi'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Foorumilaajennus]] MediaWikille.',
@@ -1443,8 +1444,8 @@ Ota yhteyttä foorumin ylläpitäjään saadaksesi lisätyksi luokkia ja foorume
 	'wikiforum-save-reply' => 'Tallenna vastaus',
 	'wikiforum-thread-title' => 'Aiheesi otsikko',
 	'wikiforum-no-threads' => 'Tällä hetkellä aiheita ei ole saatavilla.',
-	'wikiforum-posted' => 'Kirjoittanut käyttäjä {{GENDER:$3|$2}}, päiväys: $1',
-	'wikiforum-edited' => 'Muokannut käyttäjä {{GENDER:$3|$2}}, päiväys: $1',
+	'wikiforum-posted' => 'Kirjoittanut käyttäjä {{GENDER:$3|$2}}, päiväys: $1', # Fuzzy
+	'wikiforum-edited' => 'Muokannut käyttäjä {{GENDER:$3|$2}} $4 klo $5',
 	'wikiforum-cat-not-found' => 'Luokkaa ei löydy',
 	'wikiforum-cat-not-found-text' => 'Luokkaa ei ole olemassa - mene takaisin sivulle $1',
 	'wikiforum-forum-not-found' => 'Foorumia ei löydy',
