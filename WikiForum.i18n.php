@@ -2546,6 +2546,13 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'logentry-forum-add-reply' => '$1 {{GENDER:$2|huet}} an der Rubrik $4 geännert',
 );
 
+/** لوری (لوری)
+ * @author Mogoeilor
+ */
+$messages['lrc'] = array(
+	'logentry-forum-add-category' => '$1 {{جنس:$2|راست کرده}} یه گل دسه تازه, $4',
+);
+
 /** Lithuanian (lietuvių)
  * @author Eitvys200
  */
