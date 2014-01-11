@@ -3524,6 +3524,12 @@ $messages['ru'] = array(
 	'group-forumadmin' => 'Администраторы форума',
 	'group-forumadmin-member' => '{{GENDER:$1|Администратор форума}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Администраторы форума',
+	'log-name-forum' => 'Журнал форума',
+	'log-description-forum' => 'Протоколирует события [[Special:WikiForum|WikiForum]]',
+	'logentry-forum-add-category' => '$1 создал{{GENDER:$2||а}} новую категорию: $4',
+	'logentry-forum-add-forum' => '$1 создал{{GENDER:$2||а}} новый форум: $4',
+	'logentry-forum-add-thread' => '$1 создал{{GENDER:$2||а}} новую ветку: $4',
+	'logentry-forum-add-reply' => '$1 ответил{{GENDER:$2||а}} в ветке $4',
 );
 
 /** Sinhala (සිංහල)
