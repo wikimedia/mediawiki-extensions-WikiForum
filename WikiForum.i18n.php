@@ -2384,9 +2384,12 @@ $messages['ka'] = array(
 
 /** Korean (한국어)
  * @author LFM
+ * @author Priviet
  * @author 아라
  */
 $messages['ko'] = array(
+	'wikiforum-forum-is-empty' => '이 포럼은 현재 비어 있습니다.
+분류 및 포럼을 추가하려면 관리자에게 문의하십시오.',
 	'wikiforum-save' => '저장',
 	'wikiforum-thread-not-found-text' => '스레드가 존재하지 않거나 이미 삭제되었습니다. $1로 돌아갑니다.',
 	'wikiforum-error-thread-reopen' => '스레드를 다시 여는 동안 오류가 났습니다',
