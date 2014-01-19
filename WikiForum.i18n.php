@@ -2388,6 +2388,7 @@ $messages['ka'] = array(
  * @author 아라
  */
 $messages['ko'] = array(
+	'wikiforum' => '토론 게시판',
 	'wikiforum-anonymous' => '익명',
 	'wikiforum-description' => '설명:',
 	'wikiforum-forum-is-empty' => '이 포럼은 현재 비어 있습니다.
@@ -2768,7 +2769,7 @@ $messages['ms'] = array(
 	'wikiforum' => 'Papan perbincangan',
 	'wikiforum-anonymous' => 'Tanpa nama',
 	'wikiforum-announcement-only-description' => 'Forum pengumuman (penyelia sahaja yang boleh membuka tred)',
-	'wikiforum-by' => '$1<br />oleh {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'Pada $4, $5<br />oleh {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Keterangan:',
 	'wikiforum-forum-is-empty' => 'Forum ini kosong sekarang.
 Sila hubungi pentadbir forum untuk menambahkan kategori dan forum.',
@@ -2808,8 +2809,8 @@ Sila hubungi pentadbir forum untuk menambahkan kategori dan forum.',
 	'wikiforum-save-reply' => 'Simpan balasan',
 	'wikiforum-thread-title' => 'Tajuk tred anda',
 	'wikiforum-no-threads' => 'Tidak terdapat tred buat masa ini.',
-	'wikiforum-posted' => 'Diposkan oleh {{GENDER:$3|$2}} pada $1',
-	'wikiforum-edited' => 'Disunting oleh {{GENDER:$3|$2}} pada $1',
+	'wikiforum-posted' => 'Diposkan oleh {{GENDER:$3|$2}} pada $4, $5',
+	'wikiforum-edited' => 'Disunting oleh {{GENDER:$3|$2}} pada $4, $5',
 	'wikiforum-cat-not-found' => 'Kategori tidak dijumpai',
 	'wikiforum-cat-not-found-text' => 'Kategori tidak wujud - kembali ke $1',
 	'wikiforum-forum-not-found' => 'Forum tidak dijumpai',
@@ -2848,6 +2849,12 @@ Sila hubungi pentadbir forum untuk menambahkan kategori dan forum.',
 	'group-forumadmin' => 'Pentadbir forum',
 	'group-forumadmin-member' => '{{GENDER:$1|pentadbir forum}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Pentadbir forum',
+	'log-name-forum' => 'Log forum',
+	'log-description-forum' => 'Mengelogkan peristiwa-peristiwa [[Special:WikiForum|WikiForum]]',
+	'logentry-forum-add-category' => '$1 telah {{GENDER:$2|mewujudkan}} kategori baru, iaitu $4',
+	'logentry-forum-add-forum' => '$1 telah {{GENDER:$2|mewujudkan}} forum baru, iaitu $4',
+	'logentry-forum-add-thread' => '$1 telah {{GENDER:$2|mewujudkan}} tred baru, iaitu $4',
+	'logentry-forum-add-reply' => '$1 telah {{GENDER:$2|membalas}} di tred $4',
 );
 
 /** Dutch (Nederlands)
