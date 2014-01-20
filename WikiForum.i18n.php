@@ -2388,8 +2388,11 @@ $messages['ka'] = array(
  * @author 아라
  */
 $messages['ko'] = array(
+	'wikiforum-desc' => '미디어위키를 위한 [[Special:WikiForum|포럼]] 확장 기능',
 	'wikiforum' => '토론 게시판',
 	'wikiforum-anonymous' => '익명',
+	'wikiforum-announcement-only-description' => '알림 포럼(조정자만이 스레드를 추가할 수 있음)',
+	'wikiforum-by' => '$4 $5에<br />{{GENDER:$3|$2}} 사용자가',
 	'wikiforum-description' => '설명:',
 	'wikiforum-forum-is-empty' => '이 포럼은 현재 비어 있습니다.
 분류 및 포럼을 추가하려면 관리자에게 문의하십시오.',
