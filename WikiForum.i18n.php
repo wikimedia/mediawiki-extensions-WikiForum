@@ -1692,7 +1692,7 @@ $messages['gl'] = array(
 	'wikiforum' => 'Foro de conversa',
 	'wikiforum-anonymous' => 'Anónimo',
 	'wikiforum-announcement-only-description' => 'Foro de anuncios (só os moderadores poden engadir fíos)',
-	'wikiforum-by' => '$1<br />por {{GENDER:$3|$2}}',
+	'wikiforum-by' => 'O $4 ás $5<br />por {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Descrición:',
 	'wikiforum-forum-is-empty' => 'Este foro está baleiro.
 Póñase en contacto cun dos administradores do foro para engadir algunhas categorías e foros.',
@@ -1732,8 +1732,8 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'wikiforum-save-reply' => 'Gardar a resposta',
 	'wikiforum-thread-title' => 'Título do seu fío',
 	'wikiforum-no-threads' => 'Non hai fíos dispoñibles nestes intres.',
-	'wikiforum-posted' => 'Publicado o $1 por {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Editado o $1 por {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Publicado por {{GENDER:$3|$2}} o $4 ás $5.',
+	'wikiforum-edited' => 'Editado por {{GENDER:$3|$2}} o $4 ás $5.',
 	'wikiforum-cat-not-found' => 'Non se atopou a categoría',
 	'wikiforum-cat-not-found-text' => 'A categoría non existe; volver a $1',
 	'wikiforum-forum-not-found' => 'Non se atopou o foro',
@@ -1774,6 +1774,12 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores do foro',
 	'group-forumadmin.css' => '/* O CSS que se coloque aquí afectará soamente aos administradores do foro */',
 	'group-forumadmin.js' => '/* O JS que se coloque aquí afectará soamente aos administradores do foro */',
+	'log-name-forum' => 'Rexistro do foro',
+	'log-description-forum' => 'Rexistro de eventos do [[Special:WikiForum|foro do wiki]]',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|creou}} unha nova categoría: $4',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|creou}} un novo foro: $4',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|creou}} un novo fío: $4',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|respondeu}} no fío "$4"',
 );
 
 /** Swiss German (Alemannisch)
