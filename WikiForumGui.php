@@ -390,7 +390,7 @@ class WikiForumGui {
 
 	public static function getInput( $title_prev ) {
 		$title_prev = str_replace( '"', '&quot;', $title_prev );
-		return '<tr><td><input type="text" name="frmTitle" style="width:100%" value="' . $title_prev . '" /></td></tr>';
+		return '<tr><td><input type="text" name="frmTitle" style="width:100%" placeholder="' . $title_prev . '" /></td></tr>';
 	}
 
 }
