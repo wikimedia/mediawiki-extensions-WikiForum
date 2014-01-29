@@ -610,7 +610,7 @@ class WikiForumClass {
 								$shortText = $wgLang->truncate( $text, 50 );
 								$logEntry->setComment( $shortText );
 								$logEntry->setParameters( array(
-										'4::thread-name' => $title,
+										'4::thread-name' => $title
 								) );
 								$logid = $logEntry->insert();
 								if ( $wgWikiForumLogInRC ) {
@@ -813,11 +813,12 @@ class WikiForumClass {
 
 								$logEntry = new ManualLogEntry( 'forum', 'add-reply' );
 								$logEntry->setPerformer( $wgUser );
-								$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+								$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
 								$shortText = $wgLang->truncate( $text, 50 );
 								$logEntry->setComment( $shortText );
+								$forum = $pkForum->wft_thread_name;
 								$logEntry->setParameters( array(
-										'4::thread-name' => $pkForum->wft_thread_name,
+										'4::thread-name' => $forum,
 								) );
 								$logid = $logEntry->insert();
 								if ( $wgWikiForumLogInRC ) {
@@ -888,11 +889,19 @@ class WikiForumClass {
 					),
 					__METHOD__
 				);
+				$categoryID = $dbr->selectField(
+					'wikiforum_category',
+					'wfc_category',
+					array( 'wfc_category_name' => $categoryName ),
+					__METHOD__
+				);
+				$categoryURL = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'category' => $categoryID ) );
 				$logEntry = new ManualLogEntry( 'forum', 'add-category' );
 				$logEntry->setPerformer( $wgUser );
-				$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+				$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
 				$logEntry->setParameters( array(
-						'4::category-name' => $categoryName,
+						'4::category-url' => $categoryURL,
+						'5::category-name' => $categoryName
 				) );
 				$logid = $logEntry->insert();
 				if ( $wgWikiForumLogInRC ) {
@@ -1018,14 +1027,22 @@ class WikiForumClass {
 					),
 					__METHOD__
 				);
+				$forumID = $dbr->selectField(
+						'wikiforum_forums',
+						'wff_forum',
+						array( 'wff_forum_name' => $forumName ),
+						__METHOD__
+				);
+				$forumURL = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'forum' => $forumID ) );
 
 				$logEntry = new ManualLogEntry( 'forum', 'add-forum' );
 				$logEntry->setPerformer( $wgUser );
-				$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+				$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
 				$shortText = $wgLang->truncate( $description, 50 );
 				$logEntry->setComment( $shortText );
 				$logEntry->setParameters( array(
-					'4::forum-name' => $forumName,
+					'4::forum-url' => $forumURL,
+					'5::forum-name' => $forumName
 				) );
 				$logid = $logEntry->insert();
 				if ( $wgWikiForumLogInRC ) {
