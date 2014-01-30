@@ -121,10 +121,10 @@ Please contact a forum administrator to have some categories and forums added.',
 	'log-name-forum' => 'Forum log',
 	'log-description-forum' => 'Logs [[Special:WikiForum|WikiForum]] events',
 
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|created}} a new category, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|created}} a new forum, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|created}} a new thread, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|replied}} on the thread $4',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|created}} a new category, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|created}} a new forum, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|created}} a new thread, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|replied}} on the thread [[Special:WikiForum/$4|$4]]',
 );
 
 /** Message documentation (Message documentation)

@@ -35,7 +35,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
-	'version' => '1.3.0-SW',
+	'version' => '1.3.1',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
@@ -99,5 +99,6 @@ $wgHooks['BeforePageDisplay'][] = 'WikiForumHooks::addStyles';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'WikiForumHooks::addTables';
 
 // Logging
+$wgAutoloadClasses['WikiForumLogFormatter'] = $dir . 'WikiForumLogFormatter.php';
 $wgLogTypes[] = 'forum';
-$wgLogActionsHandlers['forum/*'] = 'LogFormatter';
+$wgLogActionsHandlers['forum/*'] = 'WikiForumLogFormatter';
