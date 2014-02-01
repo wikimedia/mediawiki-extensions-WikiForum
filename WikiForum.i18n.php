@@ -130,6 +130,7 @@ Please contact a forum administrator to have some categories and forums added.',
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
  * @author Purodha
+ * @author Raymond
  * @author Shirayuki
  * @author Siebrand
  * @author Umherirrender
@@ -335,7 +336,7 @@ Additional parameters:
 $messages['af'] = array(
 	'wikiforum-replies' => 'Antwoorde',
 	'wikiforum-edited' => 'Geredigeer deur {{GENDER:$3|$2}} op $4 om $5.',
-	'logentry-forum-add-forum' => "$1 het 'n nuwe forum, $4, geskep", # Fuzzy
+	'logentry-forum-add-forum' => "$1 het 'n nuwe forum, [$4 $5], geskep", # Fuzzy
 );
 
 /** Arabic (العربية)
@@ -490,10 +491,10 @@ Comunicate con un alministrador del foru p'amestar delles categoríes y foros.",
 	'grouppage-forumadmin' => '{{ns:project}}: Alministradores del foru',
 	'log-name-forum' => 'Rexistru del foru',
 	'log-description-forum' => 'Rexistra los socesos de [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|creó}} una nueva categoría, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|creó}} un nuevu foru, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|creó}} un nuevu filu, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|contestó}} nel filu $4',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|creó}} una nueva categoría, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|creó}} un nuevu foru, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|creó}} un nuevu filu, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|contestó}} nel filu [[Special:WikiForum/$4|$4]]',
 );
 
 /** Azerbaijani (azərbaycanca)
@@ -940,6 +941,16 @@ $messages['ce'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Форуман куьйгалхой',
 );
 
+/** Czech (čeština)
+ * @author Paxt
+ */
+$messages['cs'] = array(
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|vytvořil|vytvořila}} novou kategorii [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|vytvořil|vytvořila}} nové fórum [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|vytvořil|vytvořila}} nové vlákno, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|odpověděl|odpověděla}} na vlákně [[Special:WikiForum/$4|$4]]',
+);
+
 /** Church Slavic (словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
  * @author ОйЛ
  */
@@ -1038,10 +1049,10 @@ Bitte zum Hinzufügen von Themen und Kategorien einen Forumsadministrator kontak
 	'grouppage-forumadmin' => '{{ns:project}}:Forumsadministratoren',
 	'log-name-forum' => 'Forums-Logbuch',
 	'log-description-forum' => 'Es folgt ein Logbuch von Ereignissen des [[Special:WikiForum|WikiForums]].',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|erstellte}} eine neue Kategorie, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|erstellte}} ein neues Forum, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|erstellte}} einen neuen Thread, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|antwortete}} auf den Thread $4',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|erstellte}} eine neue Kategorie, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|erstellte}} ein neues Forum, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|erstellte}} einen neuen Thread, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|antwortete}} auf den Thread [[Special:WikiForum/$4|$4]]',
 );
 
 /** German (formal address) (Deutsch (Sie-Form)‎)
@@ -1065,7 +1076,7 @@ $messages['diq'] = array(
 	'wikiforum-button-preview' => 'Verqayt',
 	'wikiforum-preview' => 'Verqayt',
 	'wikiforum-preview-with-title' => 'Verqayt: $1',
-	'wikiforum-save' => 'Star ke',
+	'wikiforum-save' => 'Qeyd ke',
 	'wikiforum-thread' => 'Pine',
 	'wikiforum-forum' => 'Forum: $1 > $2',
 	'wikiforum-pages' => 'Peli:',
@@ -1164,10 +1175,10 @@ Pšosym staj se z forumowym administratorom do zwiska, aby wón někotare katego
 	'grouppage-forumadmin' => '{{ns:project}}:Forumowe administratory',
 	'log-name-forum' => 'Forumowy protokol',
 	'log-description-forum' => 'Protokolěrujo tšojenja [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 jo nowu kategoriju {{GENDER:$2|napórał|napórała}}, $4',
-	'logentry-forum-add-forum' => '$1 jo nowy forum {{GENDER:$2|napórał|napórała}}, $4',
-	'logentry-forum-add-thread' => '$1 jo nowu nitku {{GENDER:$2|napórał|napórała}}, $4',
-	'logentry-forum-add-reply' => '$1 jo w nitce $4 {{GENDER:$2|wótegronił|wótegroniła}}',
+	'logentry-forum-add-category' => '$1 jo nowu kategoriju {{GENDER:$2|napórał|napórała}}, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 jo nowy forum {{GENDER:$2|napórał|napórała}}, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 jo nowu nitku {{GENDER:$2|napórał|napórała}}, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 jo w nitce [[Special:WikiForum/$4|$4]] {{GENDER:$2|wótegronił|wótegroniła}}',
 );
 
 /** Esperanto (Esperanto)
@@ -1180,6 +1191,7 @@ $messages['eo'] = array(
 /** Spanish (español)
  * @author Armando-Martin
  * @author Bea.miau
+ * @author Csbotero
  * @author Dalton2
  */
 $messages['es'] = array(
@@ -1267,6 +1279,10 @@ Póngase en contacto con un administrador de foro para añadir algunas categorí
 	'group-forumadmin' => 'Administradores del foro',
 	'group-forumadmin-member' => '{{GENDER:$1|administrador|administradora}} del foro',
 	'grouppage-forumadmin' => '{{ns:project}}:Administradores del foro',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|creado}} una nueva categoría, [ $4  $5 ]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|creado}} un nuevo foro, [ $4  $5 ]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|created}} nueva secuencia, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|replied}} en la secuencia [[Special:WikiForum/$4|$4]]',
 );
 
 /** Estonian (eesti)
@@ -1580,10 +1596,10 @@ $messages['fr'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',
 	'log-name-forum' => 'Journal du forum',
 	'log-description-forum' => 'Journaux des événements de [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 a {{GENDER:$2|créé}} une nouvelle catégorie, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|a créé}} un nouveau forum, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|a créé}} une nouvelle discussion, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|a répondu}} sur la discussion $4',
+	'logentry-forum-add-category' => '$1 a {{GENDER:$2|créé}} une nouvelle catégorie, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|a créé}} un nouveau forum, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|a créé}} une nouvelle discussion, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|a répondu}} sur la discussion [[Special:WikiForum/$4|$4]]',
 );
 
 /** Franco-Provençal (arpetan)
@@ -1776,10 +1792,10 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'group-forumadmin.js' => '/* O JS que se coloque aquí afectará soamente aos administradores do foro */',
 	'log-name-forum' => 'Rexistro do foro',
 	'log-description-forum' => 'Rexistro de eventos do [[Special:WikiForum|foro do wiki]]',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|creou}} unha nova categoría: $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|creou}} un novo foro: $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|creou}} un novo fío: $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|respondeu}} no fío "$4"',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|creou}} unha nova categoría: [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|creou}} un novo foro: [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|creou}} un novo fío: [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|respondeu}} no fío "[[Special:WikiForum/$4|$4]]"',
 );
 
 /** Swiss German (Alemannisch)
@@ -1941,10 +1957,10 @@ Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre katego
 	'grouppage-forumadmin' => '{{ns:project}}:Forumowi administratorojo',
 	'log-name-forum' => 'Forumowy protokol',
 	'log-description-forum' => 'Protokoluje podawkow [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 je nowu kategoriju {{GENDER:$2|wutworił|wutworiła}}, $4',
-	'logentry-forum-add-forum' => '$1 je nowy forum {{GENDER:$2|wutworił|wutworiła}}, $4',
-	'logentry-forum-add-thread' => '$1 je nowu nitku {{GENDER:$2|wutworił|wutworiła}}, $4',
-	'logentry-forum-add-reply' => '$1 je w nitce $4 {{GENDER:$2|wotmołwił|wotmołwiła}}',
+	'logentry-forum-add-category' => '$1 je nowu kategoriju {{GENDER:$2|wutworił|wutworiła}}, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 je nowy forum {{GENDER:$2|wutworił|wutworiła}}, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 je nowu nitku {{GENDER:$2|wutworił|wutworiła}}, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 je w nitce [[Special:WikiForum/$4|$4]] {{GENDER:$2|wotmołwił|wotmołwiła}}',
 );
 
 /** Armenian (Հայերեն)
@@ -2147,10 +2163,10 @@ Contatta un amministratore del forum per aggiungere alcune categorie e forum.',
 	'group-forumadmin' => 'Amministratori del forum',
 	'group-forumadmin-member' => '{{GENDER:$1|amministratore|amministratrice|amministratore/trice}} del forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Amministratori del forum',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|ha creato}} una nuova categoria, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|ha creato}} un nuovo forum, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|ha creato}} un nuovo thread, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|ha risposto}} nel thread $4',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|ha creato}} una nuova categoria, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|ha creato}} un nuovo forum, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|ha creato}} un nuovo thread, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|ha risposto}} nel thread [[Special:WikiForum/$4|$4]]',
 );
 
 /** Japanese (日本語)
@@ -2245,10 +2261,10 @@ $messages['ja'] = array(
 	'group-forumadmin.js' => '/* ここに記述したJSはフォーラム管理者のみに影響します */',
 	'log-name-forum' => 'フォーラム記録',
 	'log-description-forum' => '[[Special:WikiForum|ウィキフォーラム]]に関する記録',
-	'logentry-forum-add-category' => '$1 が新しいカテゴリ $4 を{{GENDER:$2|作成}}',
-	'logentry-forum-add-forum' => '$1 が新しいフォーラム $4 を{{GENDER:$2|作成}}',
-	'logentry-forum-add-thread' => '$1 が新しいスレッド $4 を{{GENDER:$2|作成}}',
-	'logentry-forum-add-reply' => '$1 がスレッド $4 で{{GENDER:$2|返信}}',
+	'logentry-forum-add-category' => '$1 が新しいカテゴリ [$4 $5] を{{GENDER:$2|作成}}',
+	'logentry-forum-add-forum' => '$1 が新しいフォーラム [$4 $5] を{{GENDER:$2|作成}}',
+	'logentry-forum-add-thread' => '$1 が新しいスレッド [[Special:WikiForum/$4|$4]] を{{GENDER:$2|作成}}',
+	'logentry-forum-add-reply' => '$1 がスレッド [[Special:WikiForum/$4|$4]] で{{GENDER:$2|返信}}',
 );
 
 /** Lojban (Lojban)
@@ -2482,10 +2498,10 @@ $messages['ko'] = array(
 	'group-forumadmin.js' => '/* 이 자바스크립트 설정은 포럼 관리자에만 적용됩니다 */',
 	'log-name-forum' => '포럼 기록',
 	'log-description-forum' => '로그 [[Special:WikiForum|위키포럼]] 이벤트',
-	'logentry-forum-add-category' => '$1 사용자가 새 분류, $4 문서를 {{GENDER:$2|만들었습니다}}',
-	'logentry-forum-add-forum' => '$1 사용자 새 포럼, $4 문서를 {{GENDER:$2|만들었습니다}}',
-	'logentry-forum-add-thread' => '$1 사용자가 새 스레드 $4 문서를 {{GENDER:$2|만들었습니다}}',
-	'logentry-forum-add-reply' => '$1 사용자가 $4 스레드에 {{GENDER:$2|답변을 남겼습니다}}',
+	'logentry-forum-add-category' => '$1 사용자가 새 분류, [$4 $5] 문서를 {{GENDER:$2|만들었습니다}}',
+	'logentry-forum-add-forum' => '$1 사용자 새 포럼, [$4 $5] 문서를 {{GENDER:$2|만들었습니다}}',
+	'logentry-forum-add-thread' => '$1 사용자가 새 스레드 [[Special:WikiForum/$4|$4]] 문서를 {{GENDER:$2|만들었습니다}}',
+	'logentry-forum-add-reply' => '$1 사용자가 [[Special:WikiForum/$4|$4]] 스레드에 {{GENDER:$2|답변을 남겼습니다}}',
 );
 
 /** Colognian (Ripoarisch)
@@ -2607,16 +2623,16 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'group-forumadmin' => 'Administrateure vum Forum',
 	'group-forumadmin-member' => '{{GENDER:$1|Administrateur|Administratrice}} vum Forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|huet}} déi nei Kategorie $4 ugeluecht',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|huet}} eng nei Rubrik iwwer $4 ugeluecht',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|huet}} an der Rubrik $4 geännert',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|huet}} déi nei Kategorie [$4 $5] ugeluecht',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|huet}} eng nei Rubrik iwwer [[Special:WikiForum/$4|$4]] ugeluecht',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|huet}} an der Rubrik [[Special:WikiForum/$4|$4]] geännert',
 );
 
 /** لوری (لوری)
  * @author Mogoeilor
  */
 $messages['lrc'] = array(
-	'logentry-forum-add-category' => '$1 {{جنس:$2|راست کرده}} یه گل دسه تازه, $4',
+	'logentry-forum-add-category' => '$1 {{جنس:$2|راست کرده}} یه گل دسه تازه, [$4 $5]',
 );
 
 /** Lithuanian (lietuvių)
@@ -2764,10 +2780,10 @@ $messages['mk'] = array(
 	'group-forumadmin.js' => '/* Тука поставениот JS ќе се применува само врз форумските администратори */',
 	'log-name-forum' => 'Форумски дневник',
 	'log-description-forum' => 'Заведува настани во [[Special:WikiForum|ВикиФорум]]',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|ја создаде}} новата категорија „$4“',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|го создаде}} новиот форум „$4“',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|ја создаде}} новата нишка „$4“',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|одговори}} на нишката „$4“',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|ја создаде}} новата категорија „[$4 $5]“',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|го создаде}} новиот форум „[$4 $5]“',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|ја создаде}} новата нишка „[[Special:WikiForum/$4|$4]]“',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|одговори}} на нишката „[[Special:WikiForum/$4|$4]]“',
 );
 
 /** Malay (Bahasa Melayu)
@@ -2860,10 +2876,10 @@ Sila hubungi pentadbir forum untuk menambahkan kategori dan forum.',
 	'grouppage-forumadmin' => '{{ns:project}}:Pentadbir forum',
 	'log-name-forum' => 'Log forum',
 	'log-description-forum' => 'Mengelogkan peristiwa-peristiwa [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 telah {{GENDER:$2|mewujudkan}} kategori baru, iaitu $4',
-	'logentry-forum-add-forum' => '$1 telah {{GENDER:$2|mewujudkan}} forum baru, iaitu $4',
-	'logentry-forum-add-thread' => '$1 telah {{GENDER:$2|mewujudkan}} tred baru, iaitu $4',
-	'logentry-forum-add-reply' => '$1 telah {{GENDER:$2|membalas}} di tred $4',
+	'logentry-forum-add-category' => '$1 telah {{GENDER:$2|mewujudkan}} kategori baru, iaitu [$4 $5]',
+	'logentry-forum-add-forum' => '$1 telah {{GENDER:$2|mewujudkan}} forum baru, iaitu [$4 $5]',
+	'logentry-forum-add-thread' => '$1 telah {{GENDER:$2|mewujudkan}} tred baru, iaitu [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 telah {{GENDER:$2|membalas}} di tred [[Special:WikiForum/$4|$4]]',
 );
 
 /** Dutch (Nederlands)
@@ -3598,10 +3614,10 @@ $messages['ru'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:Администраторы форума',
 	'log-name-forum' => 'Журнал форума',
 	'log-description-forum' => 'Протоколирует события [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 создал{{GENDER:$2||а}} новую категорию: $4',
-	'logentry-forum-add-forum' => '$1 создал{{GENDER:$2||а}} новый форум: $4',
-	'logentry-forum-add-thread' => '$1 создал{{GENDER:$2||а}} новую ветку: $4',
-	'logentry-forum-add-reply' => '$1 ответил{{GENDER:$2||а}} в ветке $4',
+	'logentry-forum-add-category' => '$1 создал{{GENDER:$2||а}} новую категорию: [$4 $5]',
+	'logentry-forum-add-forum' => '$1 создал{{GENDER:$2||а}} новый форум: [$4 $5]',
+	'logentry-forum-add-thread' => '$1 создал{{GENDER:$2||а}} новую ветку: [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 ответил{{GENDER:$2||а}} в ветке [[Special:WikiForum/$4|$4]]',
 );
 
 /** Sinhala (සිංහල)
@@ -3777,10 +3793,10 @@ Var god kontakta en forumadministratör för att få några kategorier och forum
 	'group-forumadmin.css' => '/* CSS som placeras här kommer endast att påverka forumadministratörer */',
 	'group-forumadmin.js' => '/* JS som placeras här kommer endast att påverka forumadministratörer */',
 	'log-name-forum' => 'Forumlogg',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|skapade}} en ny kategori, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|skapade}} ett nytt forum, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|skapade}} en ny tråd, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|svarade}} på tråden $4',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|skapade}} en ny kategori, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|skapade}} ett nytt forum, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|skapade}} en ny tråd, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|svarade}} på tråden [[Special:WikiForum/$4|$4]]',
 );
 
 /** Tamil (தமிழ்)
@@ -3824,6 +3840,7 @@ $messages['te'] = array(
 
 /** Tagalog (Tagalog)
  * @author AnakngAraw
+ * @author Jewel457
  */
 $messages['tl'] = array(
 	'wikiforum-desc' => 'Dugtong ng [[Special:WikiForum|Poro]] para sa MediaWiki',
@@ -3839,7 +3856,7 @@ Mangyaring makipag-ugnayan sa isang tagapangasiwa ng poro upang maidagdag ang il
 	'wikiforum-button-preview' => 'Paunang tingin',
 	'wikiforum-preview' => 'Paunang tingin',
 	'wikiforum-preview-with-title' => 'Paunang tingin: $1',
-	'wikiforum-save' => 'Sagipin',
+	'wikiforum-save' => 'Itala',
 	'wikiforum-error-search' => 'Kamalian sa paghanap',
 	'wikiforum-error-search-missing-query' => 'Kailangan kang magbigay ng isang katagang hahanapin!',
 	'wikiforum-search-hits' => 'Nakatagpo ng {{PLURAL:$1|isang pagtama|$1 mga pagtama}}',
@@ -4037,10 +4054,10 @@ $messages['uk'] = array(
 	'group-forumadmin.js' => '/* JS, прописана тут, вплине лише на адміністраторів */',
 	'log-name-forum' => 'Журнал форуму',
 	'log-description-forum' => 'Протоколює події [[Special:WikiForum|WikiForum]]',
-	'logentry-forum-add-category' => '$1 {{GENDER:$2|створив|створила}} нову категорію, $4',
-	'logentry-forum-add-forum' => '$1 {{GENDER:$2|створив|створила}} новий форум, $4',
-	'logentry-forum-add-thread' => '$1 {{GENDER:$2|створив|створила}} нову гілку, $4',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|відповів}} у гілці $4',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|створив|створила}} нову категорію, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|створив|створила}} новий форум, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|створив|створила}} нову гілку, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|відповів}} у гілці [[Special:WikiForum/$4|$4]]',
 );
 
 /** Urdu (اردو)
@@ -4069,6 +4086,7 @@ $messages['uz'] = array(
 );
 
 /** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
  * @author පසිඳු කාවින්ද
  */
 $messages['vi'] = array(
@@ -4082,6 +4100,7 @@ $messages['vi'] = array(
 	'wikiforum-pages' => 'Các trang:',
 	'wikiforum-add-category' => 'Chèn thể loại',
 	'wikiforum-edit-category' => 'Sửa thể loại',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2}}đã tạo một thể loại mới, [$4  $5]',
 );
 
 /** Yiddish (ייִדיש)
@@ -4185,10 +4204,10 @@ $messages['zh-hans'] = array(
 	'grouppage-forumadmin' => '{{ns:project}}:论坛管理员',
 	'log-name-forum' => '论坛日志',
 	'log-description-forum' => '[[Special:WikiForum|WikiForum]]的事件日志',
-	'logentry-forum-add-category' => '$1{{GENDER:$2|已创建}}一个新分类目录，$4',
-	'logentry-forum-add-forum' => '$1{{GENDER:$2|已创建}}一个新论坛,$4',
-	'logentry-forum-add-thread' => '$1{{GENDER:$2|已创建}}一个新线程，$4',
-	'logentry-forum-add-reply' => '$1{{GENDER:$2|已回复}}在线程上$4',
+	'logentry-forum-add-category' => '$1{{GENDER:$2|已创建}}一个新分类目录，[$4 $5]',
+	'logentry-forum-add-forum' => '$1{{GENDER:$2|已创建}}一个新论坛,[$4 $5]',
+	'logentry-forum-add-thread' => '$1{{GENDER:$2|已创建}}一个新线程，[[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1{{GENDER:$2|已回复}}在线程上[[Special:WikiForum/$4|$4]]',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
