@@ -303,17 +303,19 @@ The description for the log is {{msg-mw|Log-description-forum}}.',
 	'log-description-forum' => 'Description of the forum log to be shown on [[Special:Log/forum]].
 
 The name of the log is {{msg-mw|Log-name-forum}}.',
-	'logentry-forum-add-category' => 'Shown when the user $1 created a new category, $4.
+	'logentry-forum-add-category' => 'Shown when the user $1 created a new category, $5.
 
 {{logentry}}
 Additional parameters:
-* $4 - category name
+* $4 - category URL
+* $5 - category name
 {{Related|Logentry-forum}}',
-	'logentry-forum-add-forum' => 'Shown when the user $1 created a new forum, $4.
+	'logentry-forum-add-forum' => 'Shown when the user $1 created a new forum, $5.
 
 {{logentry}}
 Additional parameters:
-* $4 - forum title
+* $4 - forum URL
+* $5 - forum title
 {{Related|Logentry-forum}}',
 	'logentry-forum-add-thread' => 'Shown when the user $1 created a new thread, $4.
 
@@ -943,12 +945,13 @@ $messages['ce'] = array(
 
 /** Czech (čeština)
  * @author Paxt
+ * @author Utar
  */
 $messages['cs'] = array(
 	'logentry-forum-add-category' => '$1 {{GENDER:$2|vytvořil|vytvořila}} novou kategorii [$4 $5]',
 	'logentry-forum-add-forum' => '$1 {{GENDER:$2|vytvořil|vytvořila}} nové fórum [$4 $5]',
 	'logentry-forum-add-thread' => '$1 {{GENDER:$2|vytvořil|vytvořila}} nové vlákno, [[Special:WikiForum/$4|$4]]',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|odpověděl|odpověděla}} na vlákně [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|odpověděl|odpověděla}} ve vlákně [[Special:WikiForum/$4|$4]]',
 );
 
 /** Church Slavic (словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
@@ -1331,6 +1334,7 @@ $messages['eu'] = array(
 );
 
 /** Persian (فارسی)
+ * @author Armin1392
  * @author Ebraminio
  * @author Mjbmr
  * @author Omidh
@@ -1398,6 +1402,7 @@ $messages['fa'] = array(
 	'wikiforum-error-double-post' => 'حفاظت دوبار-کلیک: موضوع پیش از این افزوده شده‌است.',
 	'wikiforum-error-thread-closed' => 'این موضوع در حال حاضر بسته است. امکان افزودن پاسخ‌های جدید در اینجا وجود ندارد.',
 	'wikiforum-error-delete' => 'خطا در حین حذف',
+	'wikiforum-error-sticky' => 'خطا هنگام تغییر ویژگی دشوار',
 	'wikiforum-error-move-thread' => 'خطا در حین انتقال موضوع',
 	'wikiforum-error-add' => 'خطا در حین اضافه‌کردن',
 	'wikiforum-error-edit' => 'خطا در حین ویرایش',
@@ -1408,12 +1413,18 @@ $messages['fa'] = array(
 	'wikiforum-edit-forum' => 'ویرایش انجمن',
 	'wikiforum-delete-forum' => 'حذف کردن انجمن',
 	'wikiforum-sort-up' => 'مرتب‌کردن',
+	'wikiforum-remove-sticky' => 'حذف دشوار',
+	'wikiforum-make-sticky' => 'ایجاد دشوار',
 	'wikiforum-move-thread' => 'انتقال موضوع',
 	'wikiforum-paste-thread' => 'ذخیرهٔ موضوع',
 	'wikiforum-quote' => 'نقل قول',
 	'group-forumadmin' => 'مدیران انجمن',
 	'group-forumadmin-member' => '{{GENDER:$1|مدیر انجمن}}',
 	'grouppage-forumadmin' => '{{ns:project}}:مدیران انجمن',
+	'log-name-forum' => 'ورود به محکمه',
+	'log-description-forum' => 'سیاهه‌ها [[Special:WikiForum|محکمهٔ ویکی]] حوادث',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|ایجاد شده}} یک گروه جدید, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|ایجاد}} یک محکمهٔ جدید, [$4 $5]',
 );
 
 /** Finnish (suomi)
