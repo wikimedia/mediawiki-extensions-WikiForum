@@ -3,9 +3,6 @@
  * Main class for WikiForum extension, contains all the logic to manage forums,
  * categories, individual topics, etc.
  *
- * @todo FIXME: if this class isn't split into multiple classes soon, it'll be
- * OVER 9000 lines long in no time...
- *
  * @file
  * @ingroup Extensions
  */
@@ -544,64 +541,52 @@ class WikiForumClass {
 				!$this->doesThreadExist( $title )
 			)
 			{
-				$dbr = wfGetDB( DB_SLAVE );
+				if ( !preg_replace( '/[' . Title::legalChars() . ']/', '', $title ) ) { // removes all legal chars, then sees if string has length
+					$dbr = wfGetDB( DB_SLAVE );
 
-				$overview = $dbr->fetchObject( $dbr->select(
-					array( 'wikiforum_forums', 'wikiforum_category' ),
-					array( 'wff_forum', 'wff_announcement' ),
-					array(
-						'wfc_deleted' => 0,
-						'wff_deleted' => 0,
-						'wfc_category = wff_category',
-						'wff_forum' => $forumId
-					),
-					__METHOD__
-				) );
+					$overview = $dbr->fetchObject( $dbr->select(
+						array( 'wikiforum_forums', 'wikiforum_category' ),
+						array( 'wff_forum', 'wff_announcement' ),
+						array(
+							'wfc_deleted' => 0,
+							'wff_deleted' => 0,
+							'wfc_category = wff_category',
+							'wff_forum' => $forumId
+						),
+						__METHOD__
+					) );
 
-				if ( $overview->wff_forum > 0 && !wfReadOnly() ) {
-					$dbw = wfGetDB( DB_MASTER );
-					$timestamp = wfTimestampNow();
-					if ( $overview->wff_announcement == false || $wgUser->isAllowed( 'wikiforum-moderator' ) ) {
-						$doublepost = $dbr->selectRow(
-							'wikiforum_threads',
-							'wft_thread AS id',
-							array(
-								'wft_deleted' => 0,
-								'wft_thread_name' => $title,
-								'wft_text' => $text,
-								'wft_user' => intval( $wgUser->getId() ),
-								'wft_forum' => $forumId,
-								'wft_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
-							),
-							__METHOD__
-						);
-
-						if ( $doublepost === false ) {
-							$result = $dbw->insert(
+					if ( $overview->wff_forum > 0 && !wfReadOnly() ) {
+						$dbw = wfGetDB( DB_MASTER );
+						$timestamp = wfTimestampNow();
+						if ( $overview->wff_announcement == false || $wgUser->isAllowed( 'wikiforum-moderator' ) ) {
+							$doublepost = $dbr->selectRow(
 								'wikiforum_threads',
+								'wft_thread AS id',
 								array(
+									'wft_deleted' => 0,
 									'wft_thread_name' => $title,
 									'wft_text' => $text,
-									'wft_posted_timestamp' => $timestamp,
-									'wft_user' => $wgUser->getId(),
-									'wft_user_text' => $wgUser->getName(),
-									'wft_user_ip' => $wgRequest->getIP(),
+									'wft_user' => intval( $wgUser->getId() ),
 									'wft_forum' => $forumId,
-									'wft_last_post_timestamp' => $timestamp
+									'wft_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
 								),
 								__METHOD__
 							);
-							if ( $result == true ) {
-								$dbw->update(
-									'wikiforum_forums',
+
+							if ( $doublepost === false ) {
+								$result = $dbw->insert(
+									'wikiforum_threads',
 									array(
-										'wff_thread_count = wff_thread_count + 1',
-										'wff_last_post_timestamp' => $timestamp,
-										'wff_last_post_user' => $wgUser->getId(),
-										'wff_last_post_user_text' => $wgUser->getName(),
-										'wff_last_post_user_ip' => $wgRequest->getIP()
+										'wft_thread_name' => $title,
+										'wft_text' => $text,
+										'wft_posted_timestamp' => $timestamp,
+										'wft_user' => $wgUser->getId(),
+										'wft_user_text' => $wgUser->getName(),
+										'wft_user_ip' => $wgRequest->getIP(),
+										'wft_forum' => $forumId,
+										'wft_last_post_timestamp' => $timestamp
 									),
-									array( 'wff_forum' => $forumId ),
 									__METHOD__
 								);
 								$logEntry = new ManualLogEntry( 'forum', 'add-thread' );
@@ -616,19 +601,19 @@ class WikiForumClass {
 								if ( $wgWikiForumLogInRC ) {
 									$logEntry->publish( $logid );
 								}
-								$this->result = true;
 							} else {
+								$this->errorMessage = wfMessage( 'wikiforum-error-double-post' )->text();
 								$this->result = false;
 							}
 						} else {
-							$this->errorMessage = wfMessage( 'wikiforum-error-double-post' )->text();
+							$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 							$this->result = false;
 						}
 					} else {
-						$this->errorMessage = wfMessage( 'wikiforum-error-no-rights' )->text();
 						$this->result = false;
 					}
 				} else {
+					$this->errorMessage = wfMessage( 'wikiforum-error-bad-title' )->text();
 					$this->result = false;
 				}
 			} else {

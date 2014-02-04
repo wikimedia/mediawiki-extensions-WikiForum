@@ -81,6 +81,7 @@ Please contact a forum administrator to have some categories and forums added.',
 	'wikiforum-error-no-rights' => 'You don\'t have the rights to perform this action.',
 	'wikiforum-error-not-found' => 'Object not found.',
 	'wikiforum-error-no-text-or-title' => 'Title or text not correctly filled out.',
+	'wikiforum-error-bad-title' => 'The title supplied contained invalid characters.',
 	'wikiforum-error-no-reply' => 'Reply not correctly filled out.',
 	'wikiforum-error-double-post' => 'Double-click protection: thread already added.', // @todo FIXME: better wording
 	'wikiforum-error-thread-closed' => 'Thread is currently closed. It\'s not possible to add a new reply here.',
@@ -257,6 +258,7 @@ For example this error occurs when the user double-clicked "Delete thread" butto
 	'wikiforum-error-no-text-or-title' => 'Used as error message in "creating new thread" page, when title or text is empty.
 
 Note: "Category" version and "Forum" version of this message is missing at this time: [[MediaWiki:Wikiforum-no-text-or-title]].',
+	'wikiforum-error-bad-title' => 'Used as error message in "creating new thread page", when the user supplied title is invalid.',
 	'wikiforum-error-no-reply' => 'Used as error message in creating a reply, when reply text is empty.',
 	'wikiforum-error-double-post' => 'Used as error message when the user double-clicked "Create thread" button.',
 	'wikiforum-error-thread-closed' => 'Used in closed thread and in threads list, to indicate it was closed by {{msg-mw|Wikiforum-close-thread}} feature.',
