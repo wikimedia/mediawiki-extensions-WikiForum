@@ -941,6 +941,8 @@ $messages['ce'] = array(
 	'wikiforum-delete-forum' => 'ДӀаяккха форум',
 	'group-forumadmin' => 'Форуман куьйгалхой',
 	'grouppage-forumadmin' => '{{ns:project}}:Форуман куьйгалхой',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2||кхоьллина}} керла категори: [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|||кхоьллина}} керла форум: [$4 $5]',
 );
 
 /** Czech (čeština)
