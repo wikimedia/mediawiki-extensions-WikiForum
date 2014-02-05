@@ -1524,6 +1524,7 @@ Ota yhteyttä foorumin ylläpitäjään saadaksesi lisätyksi luokkia ja foorume
  * @author Gomoko
  * @author Jack Phoenix <jack@countervandalism.net>
  * @author Linedwell
+ * @author Verdy p
  */
 $messages['fr'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Forum]] extension pour MediaWiki',
@@ -1609,6 +1610,8 @@ $messages['fr'] = array(
 	'group-forumadmin' => 'Administrateurs du forum',
 	'group-forumadmin-member' => '{{GENDER:$1|administrateur du forum}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateurs du forum',
+	'group-forumadmin.css' => '/* Le CSS placé ici n’affectera que les administrateurs du forum */',
+	'group-forumadmin.js' => '/* Le Javascript placé ici n’affectera que les administrateurs du forum */',
 	'log-name-forum' => 'Journal du forum',
 	'log-description-forum' => 'Journaux des événements de [[Special:WikiForum|WikiForum]]',
 	'logentry-forum-add-category' => '$1 a {{GENDER:$2|créé}} une nouvelle catégorie, [$4 $5]',
