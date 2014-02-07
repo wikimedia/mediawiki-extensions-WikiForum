@@ -467,6 +467,7 @@ Comunicate con un alministrador del foru p'amestar delles categoríes y foros.",
 	'wikiforum-error-no-rights' => 'Nun tienes permisos pa facer esta aición.',
 	'wikiforum-error-not-found' => "Nun s'alcontró l'oxetu.",
 	'wikiforum-error-no-text-or-title' => "El títulu o'l testu nun se completó correutamente.",
+	'wikiforum-error-bad-title' => 'El títulu que se dio contenía caráuteres inválidos.',
 	'wikiforum-error-no-reply' => 'La respuesta nun se completó correutamente.',
 	'wikiforum-error-double-post' => "Proteición escontra doble clic: el filu yá s'amestó.",
 	'wikiforum-error-thread-closed' => 'El filu anguaño ta zarráu. Nun ye posible amestar una nueva respuesta equí.',
@@ -1155,6 +1156,7 @@ Pšosym staj se z forumowym administratorom do zwiska, aby wón někotare katego
 	'wikiforum-error-no-rights' => 'Njamaš pšawa, aby toś tu akciju wuwjadł.',
 	'wikiforum-error-not-found' => 'Objekt njejo se namakał.',
 	'wikiforum-error-no-text-or-title' => 'Titel abo tekst njejo se korektnje wupolnił.',
+	'wikiforum-error-bad-title' => 'Pódany titel jo njepłaśiwe znamuška wopśimjeł.',
 	'wikiforum-error-no-reply' => 'Wótegrono njejo se korektnje wupołniło.',
 	'wikiforum-error-double-post' => 'Šćit dwójnego kliknjenja: nitka jo se južo pśidała.',
 	'wikiforum-error-thread-closed' => 'Nitka jo tuchylu zacynjona. Njejo móžno nowe wótegrono pśidaś.',
@@ -1782,6 +1784,7 @@ Póñase en contacto cun dos administradores do foro para engadir algunhas categ
 	'wikiforum-error-no-rights' => 'Non ten os dereitos necesarios para levar a cabo esta acción.',
 	'wikiforum-error-not-found' => 'Non se atopou o obxecto.',
 	'wikiforum-error-no-text-or-title' => 'O título ou o texto non se encheu correctamente.',
+	'wikiforum-error-bad-title' => 'O título proporcionado contiña caracteres non válidos.',
 	'wikiforum-error-no-reply' => 'A resposta non se encheu correctamente.',
 	'wikiforum-error-double-post' => 'Erro de dobre publicación: Xa se engadiu o fío.',
 	'wikiforum-error-thread-closed' => 'O fío está pechado. Non é posible engadir unha nova resposta.',
@@ -1949,6 +1952,7 @@ Prošu staj so z forumowym administratorom do zwiska, zo by wón někotre katego
 	'wikiforum-error-no-rights' => 'Nimaš prawa, zo by tutu akciju wuwjedł.',
 	'wikiforum-error-not-found' => 'Objekt njeje so namakał.',
 	'wikiforum-error-no-text-or-title' => 'Titul abo tekst njeje so korektnje wupjelnił.',
+	'wikiforum-error-bad-title' => 'Podaty titul je njepłaćiwe znamješka wobsahował.',
 	'wikiforum-error-no-reply' => 'Wotmołwa njeje so korektnje wupjelniła.',
 	'wikiforum-error-double-post' => 'Škit dwójneho kliknjenja: nitka je so hižo přidała.',
 	'wikiforum-error-thread-closed' => 'Nitka je tuchwilu začinjena. Njeje móžno, nowu wotmołwu přidać.',
@@ -3300,6 +3304,7 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Hamilton Abreu
+ * @author Imperadeiro98
  * @author Luckas
  * @author Malafaya
  * @author SandroHc
@@ -3309,7 +3314,7 @@ $messages['pt'] = array(
 	'wikiforum' => 'Fórum de conversação',
 	'wikiforum-anonymous' => 'Anónimo',
 	'wikiforum-announcement-only-description' => 'Fórum de anúncios (só os moderadores podem adicionar tópicos)',
-	'wikiforum-by' => '$1<br />de {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />de {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Descrição:',
 	'wikiforum-forum-is-empty' => 'Este fórum está vazio.
 Contacte um administrador para adicionar fóruns ou categorias.',
@@ -3349,8 +3354,8 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-save-reply' => 'Gravar resposta',
 	'wikiforum-thread-title' => 'Título do tópico',
 	'wikiforum-no-threads' => 'Não existem tópicos disponíveis.',
-	'wikiforum-posted' => 'Publicado em $1 por {{GENDER:$3|$2}}',
-	'wikiforum-edited' => 'Editado em $1 por {{GENDER:$3|$2}}',
+	'wikiforum-posted' => 'Publicado em $1 por {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Editado em $1 por {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-cat-not-found' => 'A categoria não foi encontrada',
 	'wikiforum-cat-not-found-text' => 'A categoria não existe - voltar para $1',
 	'wikiforum-forum-not-found' => 'O fórum não foi encontrado',
@@ -3363,6 +3368,7 @@ Contacte um administrador para adicionar fóruns ou categorias.',
 	'wikiforum-error-no-rights' => 'Não tem as permissões necessárias para executar esta operação.',
 	'wikiforum-error-not-found' => 'Objeto não encontrado.',
 	'wikiforum-error-no-text-or-title' => 'O título ou o texto não foram devidamente preenchidos.',
+	'wikiforum-error-bad-title' => 'O título fornecido continha carateres inválidos.',
 	'wikiforum-error-no-reply' => 'A resposta não foi devidamente preenchida.',
 	'wikiforum-error-double-post' => 'Proteção contra cliques repetidos: o tópico já foi adicionado.',
 	'wikiforum-error-thread-closed' => 'O tópico está fechado. Não é possível acrescentar uma resposta.',
@@ -4236,6 +4242,7 @@ $messages['zh-hans'] = array(
 );
 
 /** Traditional Chinese (中文（繁體）‎)
+ * @author Liuxinyu970226
  * @author Tntchn
  * @author Yfdyh000
  */
@@ -4244,7 +4251,7 @@ $messages['zh-hant'] = array(
 	'wikiforum' => '討論面板',
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版塊（只有版主可以發帖）',
-	'wikiforum-by' => '$1<br />由{{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />由{{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => '描述：',
 	'wikiforum-forum-is-empty' => '此論壇現在沒有內容。請聯繫論壇管理員來添加分類和版塊。',
 	'wikiforum-forum-name' => '版塊$1',
@@ -4283,8 +4290,8 @@ $messages['zh-hant'] = array(
 	'wikiforum-save-reply' => '保存回復',
 	'wikiforum-thread-title' => '您帖子的標題',
 	'wikiforum-no-threads' => '目前沒有帖子可用。',
-	'wikiforum-posted' => '{{GENDER:$3|$2}}發佈於$1',
-	'wikiforum-edited' => '{{GENDER:$3|$2}}編輯於$1',
+	'wikiforum-posted' => '{{GENDER:$3|$2}}發佈於$1', # Fuzzy
+	'wikiforum-edited' => '{{GENDER:$3|$2}}編輯於$1', # Fuzzy
 	'wikiforum-cat-not-found' => '分類未找到',
 	'wikiforum-cat-not-found-text' => '分類不存在 - 回到$1',
 	'wikiforum-forum-not-found' => '版塊未找到',
@@ -4321,4 +4328,6 @@ $messages['zh-hant'] = array(
 	'group-forumadmin' => '論壇管理員',
 	'group-forumadmin-member' => '{{GENDER:$1|論壇管理員}}',
 	'grouppage-forumadmin' => '{{ns:project}}:論壇管理員',
+	'logentry-forum-add-category' => '$1{{GENDER:$2|建立}}了一個新分類，[$4 $5]',
+	'logentry-forum-add-forum' => '$1{{GENDER:$2|建立}}了一個新論壇，[$4 $5]',
 );
