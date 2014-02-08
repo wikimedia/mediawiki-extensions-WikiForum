@@ -4055,6 +4055,7 @@ $messages['uk'] = array(
 	'wikiforum-error-no-rights' => 'У вас не вистачає прав для виконання цієї дії.',
 	'wikiforum-error-not-found' => "Об'єкт не знайдено.",
 	'wikiforum-error-no-text-or-title' => 'Текст або заголовок заповнені невірно.',
+	'wikiforum-error-bad-title' => 'Вказана назва містить неприпустимі символи.',
 	'wikiforum-error-no-reply' => 'Відповідь заповнено некоректно.',
 	'wikiforum-error-double-post' => 'Захист від подвійного кліку: гілку вже додано.',
 	'wikiforum-error-thread-closed' => 'Наразі гілку закрито. Додання нових повідомлень неможливе тут.',
