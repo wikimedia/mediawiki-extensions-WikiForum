@@ -2813,6 +2813,13 @@ $messages['mk'] = array(
 	'logentry-forum-add-reply' => '$1 {{GENDER:$2|одговори}} на нишката „[[Special:WikiForum/$4|$4]]“',
 );
 
+/** Marathi (मराठी)
+ * @author V.narsikar
+ */
+$messages['mr'] = array(
+	'wikiforum-error-bad-title' => 'दिलेल्या शीर्षकात अवैध कॅरेक्टर्स आहेत.',
+);
+
 /** Malay (Bahasa Melayu)
  * @author Anakmalaysia
  */
@@ -3100,7 +3107,7 @@ $messages['pl'] = array(
 	'wikiforum' => 'Forum',
 	'wikiforum-anonymous' => 'Anonimowy użytkownik',
 	'wikiforum-announcement-only-description' => 'Tablica ogłoszeń (tylko moderatorzy mogą dodawać wątki)',
-	'wikiforum-by' => '$1<br />przez {{GENDER:$3|$2}}',
+	'wikiforum-by' => '$1<br />przez {{GENDER:$3|$2}}', # Fuzzy
 	'wikiforum-description' => 'Opis:',
 	'wikiforum-forum-is-empty' => 'To forum jest aktualnie puste.
 Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
@@ -3154,6 +3161,7 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'wikiforum-error-no-rights' => 'Brak uprawnień do wykonania tej akcji.',
 	'wikiforum-error-not-found' => 'Cel nie został znaleziony.',
 	'wikiforum-error-no-text-or-title' => 'Tytuł lub tekst nie zostały poprawnie wypełnione.',
+	'wikiforum-error-bad-title' => 'Podany tytuł zawiera nieprawidłowe znaki.',
 	'wikiforum-error-no-reply' => 'Odpowiedź nie została poprawnie wypełniona.',
 	'wikiforum-error-double-post' => 'Uwaga: wątek został wcześniej dodany.',
 	'wikiforum-error-thread-closed' => 'Wątek jest aktualnie zamknięty. Nie można dodawać tu nowych odpowiedzi.',
