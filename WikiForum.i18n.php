@@ -2493,6 +2493,7 @@ $messages['ko'] = array(
 	'wikiforum-error-no-rights' => '이 작업을 수행할 권한이 없습니다.',
 	'wikiforum-error-not-found' => '개체를 찾을 수 없습니다.',
 	'wikiforum-error-no-text-or-title' => '제목이나 본문를 올바르게 채우지 않았습니다.',
+	'wikiforum-error-bad-title' => '입력한 제목에 올바르지 않은 문자가 포함되어 있습니다.',
 	'wikiforum-error-no-reply' => '답글의 내용을 올바르게 채우지 않았습니다.',
 	'wikiforum-error-double-post' => '이중 클릭 방지: 스레드를 이미 추가했습니다.',
 	'wikiforum-error-thread-closed' => '스레드가 현재 닫혔습니다. 여기에 새 답글을 추가할 수 없습니다.',
