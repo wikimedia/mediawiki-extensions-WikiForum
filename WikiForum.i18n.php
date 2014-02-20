@@ -2819,6 +2819,7 @@ $messages['mk'] = array(
  */
 $messages['mr'] = array(
 	'wikiforum-error-bad-title' => 'दिलेल्या शीर्षकात अवैध कॅरेक्टर्स आहेत.',
+	'logentry-forum-add-category' => '$1 ने [$4 $5] हा नविन वर्ग {{GENDER:$2|तयार केला}}',
 );
 
 /** Malay (Bahasa Melayu)
@@ -3660,6 +3661,17 @@ $messages['ru'] = array(
 	'logentry-forum-add-reply' => '$1 ответил{{GENDER:$2||а}} в ветке [[Special:WikiForum/$4|$4]]',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'wikiforum-error-bad-title' => 'The title supplied contained invalit characters.',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|created}} ae new category, [$4 $5]',
+	'logentry-forum-add-forum' => '$1 {{GENDER:$2|created}} ae new forum, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 {{GENDER:$2|created}} ae new thread, [[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|replied}} on the thread [[Special:WikiForum/$4|$4]]',
+);
+
 /** Sinhala (සිංහල)
  * @author පසිඳු කාවින්ද
  */
@@ -3865,6 +3877,7 @@ $messages['ta'] = array(
 );
 
 /** Telugu (తెలుగు)
+ * @author Ravichandra
  * @author Veeven
  */
 $messages['te'] = array(
@@ -3876,6 +3889,7 @@ $messages['te'] = array(
 	'wikiforum-views' => 'వీక్షణలు',
 	'wikiforum-overview' => 'అవలోకనం',
 	'wikiforum-pages' => 'పుటలు:',
+	'wikiforum-error-bad-title' => 'ఇచ్చిన శీర్షికలో ఉండకూడని అక్షరాలున్నాయి.',
 );
 
 /** Tagalog (Tagalog)
