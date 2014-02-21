@@ -2924,6 +2924,7 @@ Sila hubungi pentadbir forum untuk menambahkan kategori dan forum.',
  * @author McDutchie
  * @author SPQRobin
  * @author Siebrand
+ * @author Southparkfan
  */
 $messages['nl'] = array(
 	'wikiforum-desc' => '[[Special:WikiForum|Forum]] voor MediaWiki',
@@ -2971,7 +2972,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'wikiforum-thread-title' => 'Onderwerp van uw bericht',
 	'wikiforum-no-threads' => 'Er zijn op het moment geen onderwerpen beschikbaar.',
 	'wikiforum-posted' => 'Geplaatst op $1 door {{GENDER:$3|$2}}', # Fuzzy
-	'wikiforum-edited' => 'Bewerkt op $1 door {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-edited' => 'Bewerkt door {{GENDER:$3|$2}} op $4 om $5.',
 	'wikiforum-cat-not-found' => 'Categorie niet gevonden',
 	'wikiforum-cat-not-found-text' => 'Categorie bestaat niet - terug naar $1',
 	'wikiforum-forum-not-found' => 'Forum niet gevonden',
