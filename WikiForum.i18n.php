@@ -2652,7 +2652,7 @@ Kontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien derbä
 	'grouppage-forumadmin' => '{{ns:project}}:Administrateure vum Forum',
 	'logentry-forum-add-category' => '$1 {{GENDER:$2|huet}} déi nei Kategorie [$4 $5] ugeluecht',
 	'logentry-forum-add-thread' => '$1 {{GENDER:$2|huet}} eng nei Rubrik iwwer [[Special:WikiForum/$4|$4]] ugeluecht',
-	'logentry-forum-add-reply' => '$1 {{GENDER:$2|huet}} an der Rubrik [[Special:WikiForum/$4|$4]] geännert',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|huet}} an der Rubrik [[Special:WikiForum/$4|$4]] geäntwert',
 );
 
 /** لوری (لوری)
@@ -3191,6 +3191,7 @@ Skontaktuj się z administratorem w celu dodania nowych kategorii i działów.',
 	'group-forumadmin' => 'Administratorzy forum',
 	'group-forumadmin-member' => '{{GENDER:$1|administrator|administratorka}} forum',
 	'grouppage-forumadmin' => '{{ns:project}}:Administratorzy forum',
+	'logentry-forum-add-category' => '$1 {{GENDER:$2|utworzył|utworzyła}} nową kategorię, [$4 $5]',
 );
 
 /** Piedmontese (Piemontèis)
