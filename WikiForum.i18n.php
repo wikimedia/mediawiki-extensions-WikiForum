@@ -1421,6 +1421,7 @@ $messages['fa'] = array(
 	'wikiforum-edit-forum' => 'ویرایش انجمن',
 	'wikiforum-delete-forum' => 'حذف کردن انجمن',
 	'wikiforum-sort-up' => 'مرتب‌کردن',
+	'wikiforum-sort-down' => 'مرتب کردن',
 	'wikiforum-remove-sticky' => 'حذف دشوار',
 	'wikiforum-make-sticky' => 'ایجاد دشوار',
 	'wikiforum-move-thread' => 'انتقال موضوع',
