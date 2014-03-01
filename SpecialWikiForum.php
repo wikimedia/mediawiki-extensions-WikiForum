@@ -30,17 +30,12 @@ class WikiForum extends SpecialPage {
 			return;
 		}
 
-		// Checking for wfReadOnly() is done in the individual functions
-		// in WikiForumClass.php; besides, we should be able to browse the
-		// forum even when the DB is in read-only mode
-
 		$this->setHeaders();
-
-		$forum = new WikiForumClass;
-		$values = array();
 
 		// Add CSS
 		$out->addModuleStyles( 'ext.wikiForum' );
+
+		$output = '';
 
 		// If a parameter to the special page is specified, check its type
 		// and either display a forum (if parameter is a number) or a thread
@@ -50,283 +45,221 @@ class WikiForum extends SpecialPage {
 			$out->setRobotPolicy( 'index,follow' );
 
 			if ( is_numeric( $par ) ) {
-				$out->addHTML( $forum->showForum( $par ) );
+				$forum = WFForum::newFromID( $par );
+				if ( $forum ) {
+					$output .= $forum->show();
+				} else {
+					$output .= WikiForumClass::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
+					$output .= WikiForumClass::showOverview();
+				}
 			} else {
-				$threadId = WikiForumClass::findThreadIDByTitle( $par );
-				$out->addHTML( $forum->showThread( $threadId ) );
+				$thread = WFThread::newFromName( $par );
+				if ( $thread ) {
+					$output .= $thread->show();
+				} else {
+					$output .= WikiForumClass::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
+					$output .= WikiForumClass::showOverview();
+				}
 			}
 		} else {
-			// That's...a lot of variables. No kidding.
-			$mod_category		= $request->getInt( 'category' );
-			$mod_forum			= $request->getInt( 'forum' );
-			$mod_thread		= $request->getInt( 'thread' );
-			$mod_writethread	= $request->getInt( 'writethread' );
-			$mod_addcomment	= $request->getInt( 'addcomment' );
-			$mod_addthread		= $request->getInt( 'addthread' );
-			$mod_editcomment	= $request->getInt( 'editcomment' );
-			$mod_editthread	= $request->getInt( 'editthread' );
-			$mod_deletecomment	= $request->getInt( 'deletecomment' );
-			$mod_deletethread	= $request->getInt( 'deletethread' );
-			$mod_closethread	= $request->getInt( 'closethread' );
-			$mod_reopenthread	= $request->getInt( 'reopenthread' );
-			$mod_addcategory	= $request->getBool( 'addcategory' );
-			$mod_addforum		= $request->getInt( 'addforum' );
-			$mod_editcategory	= $request->getInt( 'editcategory' );
-			$mod_editforum		= $request->getInt( 'editforum' );
-			$mod_deletecategory	= $request->getInt( 'deletecategory' );
-			$mod_deleteforum	= $request->getInt( 'deleteforum' );
-			$mod_makesticky		= $request->getInt( 'makesticky' );
-			$mod_removesticky	= $request->getInt( 'removesticky' );
-			$mod_categoryup		= $request->getInt( 'categoryup' );
-			$mod_categorydown	= $request->getInt( 'categorydown' );
-			$mod_forumup		= $request->getInt( 'forumup' );
-			$mod_forumdown		= $request->getInt( 'forumdown' );
-			$mod_search			= $request->getVal( 'txtSearch' );
-			$mod_submit			= $request->getBool( 'butSubmit' );
-			$mod_pastethread	= $request->getInt( 'pastethread' );
+			$action = $request->getVal( 'wfaction' );
 
-			// Define this variable to prevent E_NOTICEs about undefined variable
-			$mod_none = false;
+			$threadID = $request->getInt( 'thread' );
+			$forumID = $request->getInt( 'forum' );
+			$categoryID = $request->getInt( 'category' );
+			$replyID = $request->getInt( 'reply' );
 
-			// Figure out what we're going to do here...post a reply, a new thread,
-			// edit a reply, edit a thread...and so on.
-			if ( isset( $mod_addcomment ) && $mod_addcomment > 0 ) {
-				$data_text = $request->getVal( 'frmText' );
-				$data_preview = $request->getBool( 'butPreview' );
-				$data_save = $request->getBool( 'butSave' );
-				if ( $data_save == true ) {
-					$result = $forum->addReply( $mod_addcomment, $data_text );
-					$mod_thread = $mod_addcomment;
-				} elseif ( $data_preview == true ) {
-					$result = $out->addHTML(
-						$forum->previewIssue(
-							'addcomment',
-							$mod_addcomment,
-							false,
-							$data_text
-						)
-					);
-					$mod_none = true;
-				}
-			} elseif ( isset( $mod_addthread ) && $mod_addthread > 0 ) {
-				$data_title = $request->getVal( 'frmTitle' );
-				$data_text = $request->getVal( 'frmText' );
-				$data_preview = $request->getBool( 'butPreview' );
-				$data_save = $request->getBool( 'butSave' );
+			$text = $request->getText( 'text' );
+			$title = $request->getText( 'name' );
 
-				if ( $data_save == true ) {
-					$result = $forum->addThread(
-						$mod_addthread,
-						$data_title,
-						$data_text
-					);
-					$mod_forum = $mod_addthread;
-				} elseif ( $data_preview == true ) {
-					$result = $out->addHTML(
-						$forum->previewIssue(
-							'addthread',
-							$mod_addthread,
-							$data_title,
-							$data_text
-						)
-					);
-					$mod_none = true;
+			if ( $categoryID ) { // actions requiring a category
+				$category = WFCategory::newFromID( $categoryID );
+
+				if ( !$category ) { // show error message, category not found
+					$output .= WikiForumClass::showErrorMessage( 'wikiforum-cat-not-found', 'wikiforum-cat-not-found-text' );
+					$output .= WikiForumClass::showOverview();
+
 				} else {
-					$mod_writethread = $mod_addthread;
-				}
-			} elseif ( isset( $mod_editcomment ) && $mod_editcomment > 0 ) {
-				$data_text = $request->getVal( 'frmText' );
-				$data_preview = $request->getBool( 'butPreview' );
-				$data_save = $request->getBool( 'butSave' );
+					if ( wfReadOnly() ) {
+						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-readonly' );
+						$output .= $category->show();
 
-				if ( $data_save == true ) {
-					$result = $forum->editReply(
-						$mod_editcomment,
-						$data_text
-					);
-					$mod_thread = $mod_thread;
-				} elseif ( $data_preview == true ) {
-					$result = $out->addHTML(
-						$forum->previewIssue(
-							'editcomment',
-							$mod_editcomment,
-							false,
-							$data_text
-						)
-					);
-					$mod_none = true;
-				}
-			} elseif ( isset( $mod_editthread ) && $mod_editthread > 0 ) {
-				$data_title = $request->getVal( 'frmTitle' );
-				$data_text = $request->getVal( 'frmText' );
-				$data_preview = $request->getBool( 'butPreview' );
-				$data_save = $request->getBool( 'butSave' );
+					} else {
+						switch ( $action ) {
+							case 'editcategory':
+								$output .= $category->showEditForm();
+								break;
+							case 'savecategory':
+								$output .= $category->edit( $title );
+								break;
+							case 'categorydown':
+								$output .= $category->sortDown();
+								break;
+							case 'categoryup':
+								$output .= $category->sortUp();
+								break;
+							case 'deletecategory':
+								$output .= $category->delete();
+								break;
 
-				if ( $data_save == true ) {
-					$result = $forum->editThread(
-						$mod_editthread,
-						$data_title,
-						$data_text
-					);
-					$mod_thread = $mod_editthread;
-				} elseif ( $data_preview == true ) {
-					$result = $out->addHTML(
-						$forum->previewIssue(
-							'editthread',
-							$mod_editthread,
-							$data_title,
-							$data_text
-						)
-					);
-					$mod_none = true;
+							case 'addforum':
+								$output .= $category->showAddForumForm();
+								break;
+							case 'savenewforum':
+								$forum = $category->addForum( $title, $text, $request->getBool( 'announcement', false ) );
+								if ( $forum ) { // @todo is this the best way to do it?
+									$output .= $forum->show();
+								}
+								break;
+
+							default:
+								$out->addHTML( $category->show() );
+								break;
+						}
+					}
+				}
+
+			} elseif ( $forumID ) { // actions requiring a forum
+				$forum = WFForum::newFromID( $forumID );
+
+				if ( !$forum ) { // show error message, forum not found
+					$output .= WikiForumClass::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
+					$output .= WikiForumClass::showOverview();
+
 				} else {
-					$mod_writethread = $mod_editthread;
-				}
-			} elseif ( isset( $mod_deletecomment ) && $mod_deletecomment > 0 ) {
-				$result = $forum->deleteReply( $mod_deletecomment );
-			} elseif ( isset( $mod_deletethread ) && $mod_deletethread > 0 ) {
-				$result = $forum->deleteThread( $mod_deletethread );
-			} elseif ( isset( $mod_deletecategory ) && $mod_deletecategory > 0 ) {
-				$result = $forum->deleteCategory( $mod_deletecategory );
-			} elseif ( isset( $mod_deleteforum ) && $mod_deleteforum > 0 ) {
-				$result = $forum->deleteForum( $mod_deleteforum );
-			} elseif ( isset( $mod_categoryup ) && $mod_categoryup > 0 ) {
-				$result = $forum->sortKeys( $mod_categoryup, 'category', true );
-			} elseif ( isset( $mod_categorydown ) && $mod_categorydown > 0 ) {
-				$result = $forum->sortKeys( $mod_categorydown, 'category', false );
-			} elseif ( isset( $mod_forumup ) && $mod_forumup > 0 ) {
-				$result = $forum->sortKeys( $mod_forumup, 'forum', true );
-			} elseif ( isset( $mod_forumdown ) && $mod_forumdown > 0 ) {
-				$result = $forum->sortKeys( $mod_forumdown, 'forum', false );
-			} elseif ( isset( $mod_closethread ) && $mod_closethread > 0 ) {
-				$result = $forum->closeThread( $mod_closethread );
-				$mod_thread = $mod_closethread;
-			} elseif ( isset( $mod_reopenthread ) && $mod_reopenthread > 0 ) {
-				$result = $forum->reopenThread( $mod_reopenthread );
-				$mod_thread = $mod_reopenthread;
-			} elseif ( isset( $mod_makesticky ) && $mod_makesticky > 0 ) {
-				$result = $forum->makeSticky( $mod_makesticky, true );
-				$mod_thread = $mod_makesticky;
-			} elseif ( isset( $mod_removesticky ) && $mod_removesticky > 0 ) {
-				$result = $forum->makeSticky( $mod_removesticky, false );
-				$mod_thread = $mod_removesticky;
-			} elseif ( isset( $mod_pastethread ) && $mod_pastethread > 0 ) {
-				$result = $forum->pasteThread( $mod_pastethread, $mod_forum );
-			} elseif (
-				isset( $mod_addcategory ) && $mod_addcategory == true &&
-				$user->isAllowed( 'wikiforum-admin' )
-			) {
-				if ( $mod_submit == true ) {
-					$values['title'] = $request->getVal( 'frmTitle' );
-					$mod_submit = $forum->addCategory( $values['title'] );
-				}
+					if ( wfReadOnly() ) {
+						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
+						$output .= $forum->show();
 
-				if ( $mod_submit == false ) {
-					$mod_showform = true;
-					$type = 'addcategory';
-					$id = $mod_addcategory;
-				}
-			} elseif (
-				isset( $mod_addforum ) && $mod_addforum > 0 &&
-				$user->isAllowed( 'wikiforum-admin' )
-			) {
-				if ( $mod_submit == true ) {
-					$values['title'] = $request->getVal( 'frmTitle' );
-					$values['text'] = $request->getVal( 'frmText' );
-
-					if ( $request->getBool( 'chkAnnouncement' ) == true ) {
-						$values['announce'] = '1';
 					} else {
-						$values['announce'] = '0';
+						switch ( $action ) {
+							case 'editforum':
+								$output .= $forum->showEditForm();
+								break;
+							case 'saveforum':
+								$output .= $forum->edit( $title, $text, $request->getVal( 'announcement' ) );
+								break;
+							case 'deleteforum':
+								$output .= $forum->delete();
+								break;
+							case 'forumup':
+								$output .= $forum->sortUp();
+								break;
+							case 'forumdown':
+								$output .= $forum->sortDown();
+								break;
+
+							case 'addthread':
+								$output .= $forum->showNewThreadForm();
+								break;
+							case 'savenewthread':
+								$thread = $forum->addThread( $title, $text );
+								if ( $thread ) {
+									$output .= $thread->show();
+								}
+								break;
+
+							default:
+								$output .= $forum->show();
+								break;
+						}
 					}
-					$mod_submit = $forum->addForum(
-						$mod_addforum,
-						$values['title'],
-						$values['text'],
-						$values['announce']
-					);
 				}
 
-				if ( $mod_submit == false ) {
-					$mod_showform = true;
-					$type = 'addforum';
-					$id = $mod_addforum;
-				}
-			} elseif (
-				isset( $mod_editcategory ) && $mod_editcategory > 0 &&
-				$user->isAllowed( 'wikiforum-admin' )
-			) {
-				if ( $mod_submit == true ) {
-					$values['title'] = $request->getVal( 'frmTitle' );
-					$mod_submit = $forum->editCategory(
-						$mod_editcategory,
-						$values['title']
-					);
-				}
+			} elseif( $threadID ) { // actions requiring a thread
+				$thread = WFThread::newFromID( $threadID );
 
-				if ( $mod_submit == false ) {
-					$mod_showform = true;
-					$type = 'editcategory';
-					$id = $mod_editcategory;
-				}
-			} elseif (
-				isset( $mod_editforum ) && $mod_editforum > 0 &&
-				$user->isAllowed( 'wikiforum-admin' )
-			) {
-				if ( $mod_submit == true ) {
-					$values['title'] = $request->getVal( 'frmTitle' );
-					$values['text'] = $request->getVal( 'frmText' );
+				if ( !$thread ) { // show error message, thread not found
+					$output .= WikiForumClass::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
+					$output .= WikiForumClass::showOverview();
 
-					if ( $request->getBool( 'chkAnnouncement' ) == true ) {
-						$values['announce'] = '1';
+				} else {
+					if ( wfReadOnly() ) {
+						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
+						$output .= $thread->show();
+
 					} else {
-						$values['announce'] = '0';
+						switch ( $action ) {
+							case 'editthread':
+								$output .= $thread->showEditForm();
+								break;
+							case 'savethread':
+								$output .= $thread->edit( $title, $text );
+								break;
+							case 'deletethread':
+								$output .= $thread->delete();
+								break;
+							case 'removesticky':
+								$output .= $thread->removeSticky();
+								break;
+							case 'makesticky':
+								$output .= $thread->makeSticky();
+								break;
+							case 'closethread':
+								$output .= $thread->close();
+								break;
+							case 'reopenthread':
+								$output .= $thread->reopen();
+								break;
+
+							case 'savenewreply':
+								$output .= $thread->addReply( $text );
+								break;
+
+							default:
+								$output .= $thread->show();
+								break;
+						}
 					}
-					$mod_submit = $forum->editForum(
-						$mod_editforum,
-						$values['title'],
-						$values['text'],
-						$values['announce']
-					);
 				}
 
-				if ( $mod_submit == false ) {
-					$mod_showform = true;
-					$type = 'editforum';
-					$id = $mod_editforum;
+			} elseif ( $replyID ) { // actions requiring a reply
+				$reply = WFReply::newFromID( $replyID );
+
+				if ( !$reply ) { // show error message, reply not found
+					$output .= WikiForumClass::showErrorMessage( 'wikiforum-reply-not-found', 'wikiforum-reply-not-found-text' );
+					$output .= WikiForumClass::showOverview();
+
+				} else {
+					if ( wfReadOnly() ) {
+						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
+						$output .= $reply->getThread()->show();
+					} else {
+						switch ( $action ) {
+							case 'deletereply':
+								$output .= $reply->delete();
+								break;
+							case 'editreply':
+								$output .= $reply->showEditor();
+								break;
+							case 'savereply':
+								$output .= $reply->edit( $text );
+								break;
+							default:
+								$output .= $reply->getThread()->show();
+								break;
+						}
+					}
+				}
+
+			} else { // other actions
+				switch ( $action ) {
+					case 'addcategory':
+						$output .= WFCategory::showAddForm();
+						break;
+					case 'savenewcategory': //title
+						$output .= WFCategory::add( $title );
+						break;
+					case 'search':
+						$output .= WikiForumClass::showSearchResults( $request->getText( 'query' ) );
+						break;
+					default:
+						$output .= WikiForumClass::showOverview();
+						break;
 				}
 			}
+		}
 
-			// Only in certain cases we want search spiders to index our content
-			// and follow links. These are overview (Special:WikiForum), individual
-			// threads, forums and categories.
-			if ( isset( $mod_search ) && $mod_search == true ) {
-				$out->addHTML( $forum->showSearchResults( $mod_search ) );
-			} elseif ( $mod_none == true ) {
-				// no data
-			} elseif ( isset( $mod_category ) && $mod_category > 0 ) {
-				// Let search spiders index our content
-				$out->setRobotPolicy( 'index,follow' );
-				$out->addHTML( $forum->showCategory( $mod_category ) );
-			} elseif ( isset( $mod_forum ) && $mod_forum > 0 ) {
-				// Let search spiders index our content
-				$out->setRobotPolicy( 'index,follow' );
-				$out->addHTML( $forum->showForum( $mod_forum ) );
-			} elseif ( isset( $mod_thread ) && $mod_thread > 0 ) {
-				// Let search spiders index our content
-				$out->setRobotPolicy( 'index,follow' );
-				$out->addHTML( $forum->showThread( $mod_thread ) );
-			} elseif ( isset( $mod_writethread ) && $mod_writethread > 0 ) {
-				$out->addHTML( $forum->writeThread( $mod_writethread ) );
-			} elseif ( isset( $mod_showform ) && $mod_showform ) {
-				$out->addHTML(
-					$forum->showEditorCatForum( $id, $type, $values )
-				);
-			} else {
-				// Let search spiders index our content
-				$out->setRobotPolicy( 'index,follow' );
-				$out->addHTML( $forum->showOverview() );
-			}
-		} // else from line 55 (the if $par is not specified one)
-	} // execute()
+		$out->addHTML( $output );
+	}
 }

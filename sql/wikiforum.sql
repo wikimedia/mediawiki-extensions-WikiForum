@@ -16,15 +16,12 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_category (
 	wfc_sortkey mediumint(5) NOT NULL DEFAULT '9', -- formerly: SortKey
 	wfc_added_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Added
 	wfc_added_user int(10) NOT NULL DEFAULT 0, -- formerly: AddedBy
-	wfc_added_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_added_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_edited int(10) NOT NULL DEFAULT 0, -- formerly: Edited
 	wfc_edited_user int(10) NOT NULL DEFAULT 0, -- formerly: EditedBy
-	wfc_edited_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_edited_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
 	wfc_deleted_user int(10) NOT NULL DEFAULT 0, -- formerly: DeletedBy
-	wfc_deleted_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_deleted_user_ip varchar(255) NOT NULL DEFAULT '' -- NEW in 1.3.0
 )/*$wgDBTableOptions*/;
 
@@ -37,20 +34,16 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_forums (
 	wff_thread_count int(10) NOT NULL DEFAULT 0, -- formerly: num_threads
 	wff_reply_count int(10) NOT NULL DEFAULT 0, -- formerly: num_articles
 	wff_last_post_user int(10) NOT NULL DEFAULT 0, -- formerly: lastpost_user
-	wff_last_post_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_last_post_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_last_post_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: lastpost_time
 	wff_added_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Added
 	wff_added_user int(10) NOT NULL DEFAULT 0, -- formerly: AddedBy
-	wff_added_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_added_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_edited_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edited
 	wff_edited_user int(10) NOT NULL DEFAULT 0, -- formerly: EditedBy
-	wff_edited_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_edited_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
 	wff_deleted_user int(10) NOT NULL DEFAULT 0, -- formerly: DeletedBy
-	wff_deleted_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_deleted_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_announcement tinyint(2) NOT NULL DEFAULT 0 -- new in version 1.2; previously called "Announcement"
 )/*$wgDBTableOptions*/;
@@ -66,21 +59,17 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_threads (
 	wft_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
 	wft_deleted_user int(10) NOT NULL DEFAULT 0, -- formerly: DeletedBy
-	wft_deleted_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_deleted_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_edit_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edit
 	wft_edit_user int(10) NOT NULL DEFAULT 0, -- formerly: EditBy
-	wft_edit_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_edit_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_closed int(10) NOT NULL DEFAULT 0, -- formerly: Closed
 	wft_closed_user int(10) NOT NULL DEFAULT 0, -- formerly: ClosedBy
-	wft_closed_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_closed_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_forum int(10) NOT NULL DEFAULT 0, -- formerly: fkForum
 	wft_reply_count int(10) NOT NULL DEFAULT 0, -- formerly: num_answers
 	wft_view_count int(10) NOT NULL DEFAULT 0, -- formerly: num_calls
 	wft_last_post_user int(10) NOT NULL DEFAULT 0, -- formerly: lastpost_user
-	wft_last_post_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_last_post_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_last_post_timestamp binary(14) NOT NULL DEFAULT '' -- formerly: lastpost_time
 )/*$wgDBTableOptions*/;
@@ -91,15 +80,12 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_replies (
 	wfr_reply_text text NOT NULL, -- formerly: Comment
 	wfr_posted_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Posted
 	wfr_user int(10) NOT NULL DEFAULT 0, -- formerly: PostedBy
-	wfr_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
 	wfr_deleted_user int(10) NOT NULL DEFAULT 0, -- formerly: DeletedBy
-	wfr_deleted_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_deleted_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_edit_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edit
 	wfr_edit_user int(10) NOT NULL DEFAULT 0, -- formerly: EditBy
-	wfr_edit_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_edit_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_thread int(10) NOT NULL -- formerly: fkThread
 )/*$wgDBTableOptions*/;

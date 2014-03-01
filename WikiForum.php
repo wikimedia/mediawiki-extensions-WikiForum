@@ -6,6 +6,7 @@
  * @ingroup Extensions
  * @author Michael Chlebek
  * @author Jack Phoenix <jack@countervandalism.net>
+ * @author UltrasonicNXT/Adam Carter
  * @date 26 July 2013
  * @copyright Copyright © 2010 Unidentify Studios
  * @copyright Copyright © 2010-2013 Jack Phoenix <jack@countervandalism.net>
@@ -33,8 +34,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
-	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
-	'version' => '1.4.0',
+	'author' => array( 'Michael Chlebek', 'Jack Phoenix', 'Adam Carter (UltrasonicNXT)' ),
+	'version' => '2.0.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
@@ -48,6 +49,10 @@ $wgAutoloadClasses['WikiForumHooks'] = $dir . 'WikiForumHooks.php';
 $wgAutoloadClasses['WikiForumGui'] = $dir . 'WikiForumGui.php';
 $wgAutoloadClasses['WikiForumClass'] = $dir . 'WikiForumClass.php';
 $wgAutoloadClasses['WikiForum'] = $dir . 'SpecialWikiForum.php';
+$wgAutoloadClasses['WFReply'] = $dir . 'Reply.php';
+$wgAutoloadClasses['WFThread'] = $dir . 'Thread.php';
+$wgAutoloadClasses['WFForum'] = $dir . 'Forum.php';
+$wgAutoloadClasses['WFCategory'] = $dir . 'Category.php';
 $wgSpecialPages['WikiForum'] = 'WikiForum';
 
 // New user rights for administrating and moderating the forum
@@ -93,9 +98,6 @@ $wgResourceModules['ext.wikiForum'] = array(
 
 // Hooked functions
 $wgHooks['ParserFirstCallInit'][] = 'WikiForumHooks::registerParserHooks';
-$wgHooks['SkinTemplateBuildNavUrlsNav_urlsAfterPermalink'][] = 'WikiForumHooks::addNavigationLink';
-$wgHooks['SkinTemplateToolboxEnd'][] = 'WikiForumHooks::addNavigationLinkToToolbox';
-$wgHooks['BeforePageDisplay'][] = 'WikiForumHooks::addStyles';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'WikiForumHooks::addTables';
 
 // Logging

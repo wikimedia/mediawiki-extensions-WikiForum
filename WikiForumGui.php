@@ -2,31 +2,45 @@
 /**
  * Graphical User Interface (GUI) methods used by WikiForum extension.
  *
- * All class methods are public and static.
+ * All class methods are static.
  *
  * @file
  * @ingroup Extensions
  */
 class WikiForumGui {
-
-	public static function getFrameHeader() {
+	/**
+	 * Show the header for thread and search pages
+	 *
+	 * @return string, html
+	 */
+	static function showFrameHeader() {
 		return '<table class="mw-wikiforum-frame" cellspacing="10"><tr><td class="mw-wikiforum-innerframe">';
 	}
 
-	public static function getFrameFooter() {
+	/**
+	 * Show the footer for thread and search pages
+	 *
+	 * @return string, HTML
+	 */
+	static function showFrameFooter() {
 		return '</td></tr></table>';
 	}
 
-	public static function getSearchbox() {
+	/**
+	 * Show the search box
+	 *
+	 * @return string
+	 */
+	static function showSearchbox() {
 		global $wgExtensionAssetsPath;
 
-		$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
+		$url = SpecialPage::getTitleFor( 'WikiForum' )->escapeFullURL( array( 'wfaction' => 'search' ) );
 
 		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
 
-		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $specialPageObj->escapeFullURL() . '">' .
+		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $url . '">' .
 			'<div id="mw-wikiforum-searchbox-border">' . $icon .
-			'<input type="text" value="" name="txtSearch" id="txtSearch" /></div>
+			'<input type="text" value="" name="query" id="txtSearch" /></div>
 		</form></div>';
 
 		return $output;
@@ -34,48 +48,22 @@ class WikiForumGui {
 
 	/**
 	 * Builds the header row -- the breadcrumb navigation
-	 * (Overview > Category name > Forum)
+	 * (Overview > Category name > Forum > Thread)
 	 *
-	 * @todo FIXME: would be nice to add > Topic name to the navigation, too
+	 * @param $links string: the actual overview/category/etc links
+	 * @param $additionalLinks string: more links to add on the other side - 'Add a new forum'-type links
+	 * @return string: HTML
 	 */
-	public static function getHeaderRow( $catId, $catName, $forumId, $forumName, $additionalLinks ) {
+	static function showHeaderRow( $links, $additionalLinks = '' ) {
 		global $wgUser, $wgWikiForumAllowAnonymous;
 
 		$output = '<table class="mw-wikiforum-headerrow"><tr><td class="mw-wikiforum-leftside">';
-		if (
-			strlen( $additionalLinks ) == 0 ||
-			$catId > 0 && strlen( $catName ) > 0
-		)
-		{
-			$specialPageObj = SpecialPage::getTitleFor( 'WikiForum' );
-			$output .= Linker::link(
-				$specialPageObj,
-				wfMessage( 'wikiforum-overview' )->text()
-			);
-			if ( $catId > 0 && strlen( $catName ) > 0 ) {
-				$output .= ' &gt; ' . Linker::link(
-					$specialPageObj,
-					$catName,
-					array(),
-					array( 'category' => $catId )
-				);
-			}
-			if ( $forumId > 0 && strlen( $forumName ) > 0 ) {
-				$output .= ' &gt; ' . Linker::link(
-					$specialPageObj,
-					$forumName,
-					array(),
-					array( 'forum' => $forumId )
-				);
-			}
-		}
-		if (
-			strlen( $additionalLinks ) > 0 &&
-			( $wgWikiForumAllowAnonymous || $wgUser->getId() > 0 )
-		)
-		{
+		$output .= $links;
+
+		if ( strlen( $additionalLinks ) > 0 && ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) ) {
 			$output .= '</td><td class="mw-wikiforum-rightside">' . $additionalLinks;
 		}
+
 		$output .= '</td></tr></table>';
 		return $output;
 	}
@@ -86,47 +74,30 @@ class WikiForumGui {
 	 * @param $page Integer: number of the current page
 	 * @param $maxissues Integer: amount of replies, fetched from the DB
 	 * @param $limit Integer: limit; this is also used for the SQL query
-	 * @param $forumId Integer: forum ID number, so that the pagination code
-	 *                          knows where it's going...
-	 * @param $threadId Integer: thread ID number, if we're paginating a thread
+	 * @param $params array: URL params to be passed, should have a thread or forum number
 	 * @return HTML
 	 */
-	public static function getFooterRow( $page, $maxissues, $limit, $forumId, $threadId = 0 ) {
+	static function showFooterRow( $page, $maxissues, $limit, $params ) {
 		$output = '';
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
 		if ( $maxissues / $limit > 1 ) {
 			$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
 				wfMessage( 'wikiforum-pages' )->text() . wfMessage( 'word-separator' )->plain();
+
 			for ( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
-				// URL query parameters
-				$urlParams = array(
-					'lp' => $i
-				);
-				// Thread ID is optional, but if it was given, we need to get
-				// rid of the forum parameter for the thread parameter to take
-				// precedence. Stupid, I know.
-				if ( $threadId ) {
-					$urlParams['thread'] = $threadId;
-				} else {
-					$urlParams['forum'] = $forumId;
-				}
-				if ( $i != $page + 1 ) {
-					$output .= '<a href="' . $specialPage->escapeFullURL( $urlParams ) . '">';
-				} else {
-					$output .= '[';
-				}
+				$urlParams = array_merge( array( 'page' => $i ), $params );
 
 				if ( $i <= 9 ) {
-					$output .= '0' . $i;
+					$pageNumber = '0' . $i;
 				} else {
-					$output .= $i;
+					$pageNumber = $i;
 				}
 
 				if ( $i != $page + 1 ) {
-					$output .= '</a>';
+					$output .= '<a href="' . $specialPage->escapeFullURL( $urlParams ) . '">' . $pageNumber . '</a>';
 				} else {
-					$output .= ']';
+					$output .= '[' . $pageNumber . ']';
 				}
 
 				$output .= wfMessage( 'word-separator' )->plain();
@@ -137,103 +108,84 @@ class WikiForumGui {
 		return $output;
 	}
 
-	public static function getMainHeader( $title1, $title2, $title3, $title4, $title5 ) {
-		return self::getFrameHeader() . '<table class="mw-wikiforum-title">' .
-			self::getMainHeaderRow(
-				$title1, $title2, $title3,
-				$title4, $title5
-			);
+	/**
+	 * Show the header for Forum and Category pages
+	 *
+	 * @param string $title1
+	 * @param string $title2
+	 * @param string $title3
+	 * @param string $title4
+	 * @param string $title5: optional, admin icons if given
+	 * @return string, HTML
+	 */
+	static function showMainHeader( $title1, $title2, $title3, $title4, $title5 = '' ) {
+		return self::showFrameHeader() . '<table class="mw-wikiforum-title">' .
+			self::showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 );
 	}
 
-	public static function getMainPageHeader( $title1, $title2, $title3, $title4 ) {
+	/**
+	 * Show the header for the <WikiForumList> tag
+	 *
+	 * @param string $title1
+	 * @param string $title2
+	 * @param string $title3
+	 * @param string $title4
+	 * @return string, HTML
+	 */
+	static function showListTagHeader( $title1, $title2, $title3, $title4 ) {
 		return '<table class="mw-wikiforum-mainpage" cellspacing="0">' .
-			self::getMainHeaderRow(
-				$title1, $title2,
-				$title3, $title4, false
-			);
+			self::showMainHeaderRow( $title1, $title2, $title3, $title4 );
 	}
 
-	public static function getMainHeaderRow( $title1, $title2, $title3, $title4, $title5 ) {
-		$output = '<tr class="mw-wikiforum-title">
-					<th class="mw-wikiforum-title">' . $title1 . '</th>';
+	/**
+	 * Show the header row. Only called from other GUI methods.
+	 *
+	 * @param string $title1
+	 * @param string $title2
+	 * @param string $title3
+	 * @param string $title4
+	 * @param string $title5: optional, admin icons if given
+	 * @return string, HTML
+	 */
+	private static function showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 = '' ) {
+		$output = '<tr class="mw-wikiforum-title"><th class="mw-wikiforum-title">' . $title1 . '</th>';
+
 		if ( $title5 ) {
-			$output .= '<th class="mw-wikiforum-admin"><p class="mw-wikiforum-valuetitle">' .
-				$title5 . '</p></th>';
+			$output .= '<th class="mw-wikiforum-admin"><p class="mw-wikiforum-valuetitle">' . $title5 . '</p></th>';
 		}
-		$output .= '
-					<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title2 . '</p></th>
-					<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title3 . '</p></th>
-					<th class="mw-wikiforum-lastpost"><p class="mw-wikiforum-valuetitle">' . $title4 . '</p></th></tr>';
+		$output .= '<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title2 . '</p></th>
+			<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title3 . '</p></th>
+			<th class="mw-wikiforum-lastpost"><p class="mw-wikiforum-valuetitle">' . $title4 . '</p></th></tr>';
+
 		return $output;
 	}
 
-	public static function getMainBody( $col_value1, $col_value2, $col_value3, $col_value4, $col_title5, $marked ) {
-		$output = '<tr class="mw-wikiforum-';
-		if ( $marked ) {
-			$output .= $marked;
-		} else {
-			$output .= 'normal';
-		}
-		$output .= '"><td class="mw-wikiforum-title">' . $col_value1 . '</td>';
-		if ( $col_title5 ) {
-			$output .= '<td class="mw-wikiforum-admin">' . $col_title5 . '</td>';
-		}
-		$output .= '
-					<td class="mw-wikiforum-value">' . $col_value2 . '</td>
-					<td class="mw-wikiforum-value">' . $col_value3 . '</td>
-					<td class="mw-wikiforum-value">' . $col_value4 . '</td></tr>';
-		return $output;
+	/**
+	 * Show the footer for Forum and Category pages
+	 *
+	 * @return string, HTML
+	 */
+	static function showMainFooter() {
+		return '</table>' . self::showFrameFooter();
 	}
 
-	public static function getMainFooter() {
-		return '</table>' . self::getFrameFooter();
-	}
-
-	public static function getMainPageFooter() {
+	/**
+	 * Show the footer for the <WikiForumList> tag
+	 *
+	 * @return string, HTML
+	 */
+	static function showListTagFooter() {
 		return '</table>';
 	}
 
 	/**
-	 * Get the thread header. This is used only for the starting post.
+	 * Only for search results: show the header row
 	 *
-	 * @param $title
-	 * @param $text String: thread text
-	 * @param $posted
-	 * @param $buttons
-	 * @param $id Integer: internal post ID number
-	 * @param $userId Integer: if supplied, and if wAvatar class (social tools)
-	 *                         exists, this will be used to get the poster's
-	 *                         avatar image
+	 * @param string $title
+	 * @return string
 	 */
-	public static function getThreadHeader( $title, $text, $posted, $buttons, $id, $userId ) {
-		$avatar = '';
-		if ( $userId && class_exists( 'wAvatar' ) ) {
-			$avatarObj = new wAvatar( $userId, 'l' );
-			$avatar = '<div class="wikiforum-avatar-image">';
-			$avatar .= $avatarObj->getAvatarURL();
-			$avatar .= '</div>';
-		}
-
-		// Hide the thread ID header entirely on preview mode; hiding the hash
-		// character (+brackets) only makes it look a tad bit wonky, hence this
-		$idHTML = '';
-		if ( $id ) {
-			$idHTML = '<tr>
-						<th class="mw-wikiforum-thread-top" style="text-align: right;">[#' . $id . ']</th>
-					</tr>';
-		}
-
-		return self::getFrameHeader() . '
-				<table style="width:100%">' . $idHTML .
-					'<tr>
-						<td class="mw-wikiforum-thread-main" colspan="2">' . $avatar .
-							$text . self::getBottomLine( $posted, $buttons ) . '
-						</td>
-					</tr>';
-	}
-
-	public static function getReplyHeader( $title ) {
-		return self::getFrameHeader() . '
+	static function showSearchHeader( $title ) {
+		return self::showFrameHeader() . '
 			<table style="width:100%">
 				<tr>
 					<th class="mw-wikiforum-thread-top" colspan="2">' .
@@ -242,23 +194,14 @@ class WikiForumGui {
 				</tr>';
 	}
 
-	public static function getThreadFooter() {
-		return '</table>' . self::getFrameFooter();
-	}
-
-	public static function getReply( $reply, $posted, $buttons, $id, $userId ) {
-		$avatar = '';
-		if ( $userId && class_exists( 'wAvatar' ) ) {
-			$avatarObj = new wAvatar( $userId, 'l' );
-			$avatar = '<div class="wikiforum-avatar-image">';
-			$avatar .= $avatarObj->getAvatarURL();
-			$avatar .= '</div>';
-		}
-		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . intval( $id ) . '">' . $avatar .
-			$reply . self::getBottomLine( $posted, $buttons ) . '</td></tr>';
-	}
-
-	public static function getBottomLine( $posted, $buttons ) {
+	/**
+	 * Show the bottom line of a thread or reply
+	 *
+	 * @param string $posted
+	 * @param string $buttons: optional, admin icons if given
+	 * @return string, HTML
+	 */
+	static function showBottomLine( $posted, $buttons = '' ) {
 		global $wgUser;
 
 		$output = '<table cellspacing="0" cellpadding="0" class="mw-wikiforum-posted">' .
@@ -273,49 +216,38 @@ class WikiForumGui {
 		return $output;
 	}
 
-	public static function getSingleLine( $message, $cols ) {
-		return '<tr class="sub"><td class="mw-wikiforum-title" colspan="' . intval( $cols ) . '">' .
-			$message . '</td></tr>';
-	}
-
 	/**
 	 * Get the editor form for writing a new thread, a reply, etc.
 	 *
-	 * @param $type String: either 'addthread' or 'editthread', depending on
-	 * what we are doing to a thread.
-	 * @param $action Array: action parameter(s) to be passed to the WikiForum
-	 * special page call (i.e. array( 'thread' => $threadId ))
-	 * @param $input String: usually whatever WikiForumGui::getInput() returns
+	 * @param $showCancel: show the cancel button?
+	 * @param $params Array: URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
+	 * @param $input String: used to add extra input fields
 	 * @param $height String: height of the textarea, i.e. '10em'
 	 * @param $text_prev
 	 * @param $saveButton String: save button text
 	 * @return String: HTML
 	 */
-	public static function getWriteForm( $type, $action, $input, $height, $text_prev, $saveButton ) {
+	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton ) {
 		global $wgOut, $wgUser, $wgWikiForumAllowAnonymous;
 
 		$output = '';
 
 		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
-			// Required for the edit buttons to display
-			$wgOut->addModules( 'mediawiki.action.edit' );
-			$toolbar = EditPage::getEditToolbar();
-			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
+			$wgOut->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
-			$output = '<form name="frmMain" method="post" action="' . $specialPage->escapeFullURL( $action ) . '" id="writereply">
+			$output = '<form name="frmMain" method="post" action="' . SpecialPage::getTitleFor( 'WikiForum' )->escapeFullURL( $params ) . '" id="writereply">
 			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
 				<tr>
-					<td>' . $toolbar . '</td>
+					<td>' . EditPage::getEditToolbar() . '</td>
 				</tr>
 				<tr>
-					<td><textarea name="frmText" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
+					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>
 				<tr>
 					<td>
-						<input name="butSave" type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />
-						<input name="butPreview" type="submit" value="' . wfMessage( 'wikiforum-button-preview' )->text() . '" accesskey="p" title="' . wfMessage( 'wikiforum-button-preview' )->text() . ' [p]" />' . "\n";
-			if ( $type == 'addthread' ) {
-				$output .= ' <input name="butCancel" type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />';
+						<input type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />';
+			if ( $showCancel ) {
+				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMsg( 'cancel' ) . ' [c]" />';
 			}
 			$output .= '</td>
 					</tr>
@@ -326,71 +258,106 @@ class WikiForumGui {
 	}
 
 	/**
-	 * Get the form for adding/editing categories and forums.
+	 * Get the main form for forums and categories
 	 *
-	 * @param $type
-	 * @param $categoryName
-	 * @param $action Array: URL parameters (like array( 'foo' => 'bar' ) or so)
-	 * @param $title_prev
-	 * @param $text_prev
-	 * @param $saveButton
+	 * @param string $url: url to send form to, with GET params
+	 * @param string $extraRow: row to add in after title input, for forums but not categories
+	 * @param string $formTitle: title for the form
+	 * @param string $titlePlaceholder: placeholder value for the title input
+	 * @param string $titleValue: value for the title input
+	 * @return string: HTML the form
 	 */
-	public static function getFormCatForum( $type, $categoryName, $action, $title_prev, $text_prev, $saveButton, $overviewObj ) {
-		global $wgUser;
-
-		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
-			$title_prev = str_replace( '"', '&quot;', $title_prev );
-			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-			$output = '
-			<form name="frmMain" method="post" action="' . $specialPage->escapeFullURL( $action ) . '" id="form">
+	static function showTopLevelForm( $url, $extraRow = '', $formTitle, $titlePlaceholder, $titleValue ) {
+		return '
+		<form name="frmMain" method="post" action="' . $url . '" id="form">
 			<table class="mw-wikiforum-frame" cellspacing="10">
 				<tr>
-					<th class="mw-wikiforum-title">' . $categoryName . '</th>
+					<th class="mw-wikiforum-title">' . $formTitle . '</th>
 				</tr>
 				<tr>
 					<td>
 						<p>' . wfMessage( 'wikiforum-name' )->text() . '</p>
-						<input type="text" name="frmTitle" style="width: 100%" value="" placeholder="' . $title_prev . '" />
-					</td>
-				</tr>';
-			if ( $type == 'addforum' || $type == 'editforum' ) {
-				$check = '';
-				if ( is_object( $overviewObj ) && $overviewObj->wff_announcement == true ) {
-					$check = 'checked="checked"';
-				}
-				$output .= '<tr>
-					<td>
-						<p>' . wfMessage( 'wikiforum-description' )->text() . '</p>
-						<textarea name="frmText" style="height: 40px;">' . $text_prev . '</textarea>
+						<input type="text" name="name" style="width: 100%" value="' . $titleValue . '" placeholder="' . $titlePlaceholder . '" />
 					</td>
 				</tr>
+					' . $extraRow . '
 				<tr>
 					<td>
-						<p><input type="checkbox" name="chkAnnouncement"' . $check . '/> ' .
-							wfMessage( 'wikiforum-announcement-only-description' )->text() .
-						'</p>
-					</td>
-				</tr>';
-			}
-			$output .= '
-				<tr>
-					<td>
-						<input name="butSubmit" type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />
-						<input name="butCancel" type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->text() . ' [c]" />
+						<input type="submit" value="' . wfMessage( 'wikiforum-save' )->text() . '" accesskey="s" title="' . wfMessage( 'wikiforum-save' )->text() . '" [s]" />
+						<input type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->text() . ' [c]" />
 					</td>
 				</tr>
 			</table>
-		</form>
-			';
-			return $output;
-		} else {
-			return '';
-		}
+		</form>';
 	}
 
-	public static function getInput( $title_prev ) {
-		$title_prev = str_replace( '"', '&quot;', $title_prev );
-		return '<tr><td><input type="text" name="frmTitle" style="width:100%" placeholder="' . $title_prev . '" /></td></tr>';
+	/**
+	 * Show the user and timestamp of when something was first posted. (With link)
+	 *
+	 * @param string $timestamp
+	 * @param User $user
+	 * @return string
+	 */
+	static function showPostedInfo( $timestamp, User $user ) {
+		$userLink = WikiForumClass::showUserLink( $user );
+		return self::showInfo( 'wikiforum-posted', $timestamp, $userLink, $user->getName() );
 	}
 
+	/**
+	 * Show the user and timestamp of when something was first posted, without any link. (Apparently needed for quoting)
+	 *
+	 * @param string $timestamp
+	 * @param User $user
+	 * @return string
+	 */
+	static function showPlainPostedInfo( $timestamp, User $user ) {
+		return self::showInfo( 'wikiforum-posted', $timestamp, $user->getName(), $user->getName() );
+	}
+
+	/**
+	 * Show the user and timestamp of when something was edited
+	 *
+	 * @param string $timestamp
+	 * @param User $user
+	 * @return string
+	 */
+	static function showEditedInfo( $timestamp, User $user ) {
+		$userLink = WikiForumClass::showUserLink( $user );
+		return self::showInfo( 'wikiforum-edited', $timestamp, $userLink, $user->getName() );
+	}
+
+	/**
+	 * Show the user and timestamp of the last post in a container
+	 *
+	 * @param string $timestamp
+	 * @param User $user
+	 * @return string
+	 */
+	static function showByInfo( $timestamp, User $user ) {
+		$userLink = WikiForumClass::showUserLink( $user );
+		return self::showInfo( 'wikiforum-by', $timestamp, $userLink, $user->getName() );
+	}
+
+	/**
+	 * Show an 'info' link, with user and timestamp of an action. Do not use, use show*Info() methods above.
+	 *
+	 * @param string $message
+	 * @param string $timestamp
+	 * @param string $userLink
+	 * @param string $userText
+	 * @return string
+	 */
+	private static function showInfo( $message, $timestamp, $userLink, $userText ) {
+		global $wgLang;
+
+		return wfMessage(
+			$message,
+			$wgLang->timeanddate( $timestamp ),
+			$userLink,
+			$userText,
+			$wgLang->date( $timestamp ),
+			$wgLang->time( $timestamp )
+		)->text();
+
+	}
 }
