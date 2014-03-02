@@ -3881,6 +3881,7 @@ $messages['ta'] = array(
 );
 
 /** Telugu (తెలుగు)
+ * @author Chaduvari
  * @author Ravichandra
  * @author Veeven
  */
@@ -3893,7 +3894,7 @@ $messages['te'] = array(
 	'wikiforum-views' => 'వీక్షణలు',
 	'wikiforum-overview' => 'అవలోకనం',
 	'wikiforum-pages' => 'పుటలు:',
-	'wikiforum-error-bad-title' => 'ఇచ్చిన శీర్షికలో ఉండకూడని అక్షరాలున్నాయి.',
+	'wikiforum-error-bad-title' => 'ఇచ్చిన శీర్షికలో చెల్లని అక్షరాలున్నాయి.',
 );
 
 /** Tagalog (Tagalog)
