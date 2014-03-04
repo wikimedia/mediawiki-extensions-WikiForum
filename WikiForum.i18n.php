@@ -2926,6 +2926,7 @@ Sila hubungi pentadbir forum untuk menambahkan kategori dan forum.',
  * @author McDutchie
  * @author SPQRobin
  * @author Siebrand
+ * @author Sjoerddebruin
  * @author Southparkfan
  */
 $messages['nl'] = array(
@@ -2933,7 +2934,7 @@ $messages['nl'] = array(
 	'wikiforum' => 'Overlegplaats',
 	'wikiforum-anonymous' => 'Anoniem',
 	'wikiforum-announcement-only-description' => 'Aankondigingenforum (alleen forummoderatoren kunnen nieuwe berichten plaatsen)',
-	'wikiforum-by' => '$1<br />door {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-by' => 'Op $4 om $5<br />door {{GENDER:$3|$2}}',
 	'wikiforum-description' => 'Beschrijving:',
 	'wikiforum-forum-is-empty' => 'Dit forum is op het moment leeg.
 Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.',
@@ -2973,7 +2974,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'wikiforum-save-reply' => 'Reactie opslaan',
 	'wikiforum-thread-title' => 'Onderwerp van uw bericht',
 	'wikiforum-no-threads' => 'Er zijn op het moment geen onderwerpen beschikbaar.',
-	'wikiforum-posted' => 'Geplaatst op $1 door {{GENDER:$3|$2}}', # Fuzzy
+	'wikiforum-posted' => 'Geplaatst door {{GENDER:$3|$2}} op $4 om $5.',
 	'wikiforum-edited' => 'Bewerkt door {{GENDER:$3|$2}} op $4 om $5.',
 	'wikiforum-cat-not-found' => 'Categorie niet gevonden',
 	'wikiforum-cat-not-found-text' => 'Categorie bestaat niet - terug naar $1',
@@ -3013,6 +3014,7 @@ Neem contact op met een forumbeheerder om categorieën en forums toe te voegen.'
 	'group-forumadmin' => 'Forumbeheerders',
 	'group-forumadmin-member' => '{{GENDER:$1|forumbeheerder}}',
 	'grouppage-forumadmin' => '{{ns:project}}:Forumbeheerders',
+	'log-name-forum' => 'Forumlogboek',
 );
 
 /** Occitan (occitan)
