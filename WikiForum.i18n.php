@@ -1407,6 +1407,8 @@ $messages['fa'] = array(
 	'wikiforum-error-no-rights' => 'شما دسترسی‌های لازم برای انجام این عمل را ندارید.',
 	'wikiforum-error-not-found' => 'شیء یافت نشد.',
 	'wikiforum-error-no-text-or-title' => 'عنوان یا متن به‌درستی پر نشده‌اند.',
+	'wikiforum-error-bad-title' => 'عنوان عرضه شده شامل مشخصه‌های نامعتبر است.',
+	'wikiforum-error-no-reply' => 'پاسخ بخ درستی پر نشده‌است.',
 	'wikiforum-error-double-post' => 'حفاظت دوبار-کلیک: موضوع پیش از این افزوده شده‌است.',
 	'wikiforum-error-thread-closed' => 'این موضوع در حال حاضر بسته است. امکان افزودن پاسخ‌های جدید در اینجا وجود ندارد.',
 	'wikiforum-error-delete' => 'خطا در حین حذف',
@@ -1427,6 +1429,8 @@ $messages['fa'] = array(
 	'wikiforum-move-thread' => 'انتقال موضوع',
 	'wikiforum-paste-thread' => 'ذخیرهٔ موضوع',
 	'wikiforum-quote' => 'نقل قول',
+	'right-wikiforum-admin' => 'افزودن، ویرایش و حذف دسته‌ها و انجمن‌ها در [[Special:WikiForum|بحث هیئت مدیره]]',
+	'right-wikiforum-moderator' => 'ویرایش و حذف موضوع‌ها و پاسخ‌ها در [[Special:WikiForum| بحث هیئت مدیره]]',
 	'group-forumadmin' => 'مدیران انجمن',
 	'group-forumadmin-member' => '{{GENDER:$1|مدیر انجمن}}',
 	'grouppage-forumadmin' => '{{ns:project}}:مدیران انجمن',
@@ -1434,6 +1438,9 @@ $messages['fa'] = array(
 	'log-description-forum' => 'سیاهه‌ها [[Special:WikiForum|محکمهٔ ویکی]] حوادث',
 	'logentry-forum-add-category' => '$1 {{GENDER:$2|ایجاد شده}} یک گروه جدید, [$4 $5]',
 	'logentry-forum-add-forum' => '$1 {{GENDER:$2|ایجاد}} یک محکمهٔ جدید, [$4 $5]',
+	'logentry-forum-add-thread' => '$1 یک موضوع جدید {{GENDER:$2|ایجاد کرده}}،
+[[Special:WikiForum/$4|$4]]',
+	'logentry-forum-add-reply' => '$1 {{GENDER:$2|پاسخ داده}} در موضوع [[Special:WikiForum/$4|$4]]',
 );
 
 /** Finnish (suomi)
