@@ -4247,6 +4247,7 @@ $messages['zh-hans'] = array(
 	'wikiforum-error-no-rights' => '你没有权限执行该动作。',
 	'wikiforum-error-not-found' => '找不到对象。',
 	'wikiforum-error-no-text-or-title' => '标题或文本填写不正确',
+	'wikiforum-error-bad-title' => '提供的标题包含非法字符。',
 	'wikiforum-error-no-reply' => '回复填写不正确。',
 	'wikiforum-error-double-post' => '双击保护：帖子已增加',
 	'wikiforum-error-thread-closed' => '帖子已关闭。不能发表新回复。',
