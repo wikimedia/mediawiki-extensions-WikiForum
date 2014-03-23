@@ -4187,6 +4187,7 @@ $messages['yi'] = array(
  * @author Hzy980512
  * @author Linxue9786
  * @author Liuxinyu970226
+ * @author Xiaomingyan
  * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
@@ -4195,7 +4196,7 @@ $messages['zh-hans'] = array(
 	'wikiforum-anonymous' => '匿名',
 	'wikiforum-announcement-only-description' => '公告版块（只有版主可以发帖）',
 	'wikiforum-by' => '由{{GENDER:$3|$2}}在$4于$5<br />',
-	'wikiforum-description' => '描述：',
+	'wikiforum-description' => '说明：',
 	'wikiforum-forum-is-empty' => '此论坛现在没有内容。请联系论坛管理员来添加分类和版块。',
 	'wikiforum-forum-name' => '版块 $1',
 	'wikiforum-name' => '名称：',
