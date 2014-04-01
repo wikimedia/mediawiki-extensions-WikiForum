@@ -7,7 +7,6 @@
  * @author Michael Chlebek
  * @author Jack Phoenix <jack@countervandalism.net>
  * @date 26 July 2013
- * @version 1.3.0-SW
  * @copyright Copyright © 2010 Unidentify Studios
  * @copyright Copyright © 2010-2013 Jack Phoenix <jack@countervandalism.net>
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 3.0 or later
@@ -35,13 +34,14 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix' ),
-	'version' => '1.3.1',
+	'version' => '1.4.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
 
 // Set up i18n, the new special page etc.
 $dir = dirname( __FILE__ ) . '/';
+$wgMessagesDirs['WikiForum'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['WikiForum'] = $dir . 'WikiForum.i18n.php';
 $wgExtensionMessagesFiles['WikiForumAlias'] = $dir . 'WikiForum.alias.php';
 $wgAutoloadClasses['WikiForumHooks'] = $dir . 'WikiForumHooks.php';

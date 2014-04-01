@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Naudefj",
+            "Winstonza"
+        ]
+    },
+    "wikiforum-replies": "Antwoorde",
+    "wikiforum-edited": "Geredigeer deur {{GENDER:$3|$2}} op $4 om $5.",
+    "logentry-forum-add-forum": "$1 het 'n nuwe forum, [$4 $5], geskep"
+}

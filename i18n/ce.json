@@ -1,0 +1,23 @@
+{
+    "@metadata": {
+        "authors": [
+            "Умар"
+        ]
+    },
+    "wikiforum-description": "Цуьнах лаьцна",
+    "wikiforum-button-preview": "Хьалха муха ю хьажа",
+    "wikiforum-preview": "Хьалха муха ю хьажа",
+    "wikiforum-preview-with-title": "Хьалха муха ю хьажар: $1",
+    "wikiforum-overview": "Гар",
+    "wikiforum-pages": "АгӀонаш:",
+    "wikiforum-close-thread": "ДӀачӀагӀа га",
+    "wikiforum-delete-reply": "ДӀабаккха хаам",
+    "wikiforum-add-category": "ТIетоха категори",
+    "wikiforum-delete-category": "ДӀаяккха категори",
+    "wikiforum-delete-forum": "ДӀаяккха форум",
+    "group-forumadmin": "Форуман куьйгалхой",
+    "grouppage-forumadmin": "{{ns:project}}:Форуман куьйгалхой",
+    "logentry-forum-add-category": "$1 {{GENDER:$2||кхоьллина}} керла категори: [$4 $5]",
+    "logentry-forum-add-forum": "$1 {{GENDER:$2|||кхоьллина}} керла форум: [$4 $5]",
+    "logentry-forum-add-reply": "$1 жоп делла гайн техь [[Special:WikiForum/$4|$4]]"
+}

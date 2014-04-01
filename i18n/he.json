@@ -1,0 +1,26 @@
+{
+    "@metadata": {
+        "authors": [
+            "חיים"
+        ]
+    },
+    "wikiforum-anonymous": "אנונימי",
+    "wikiforum-error-delete": "אירעה שגיאה בעת המחיקה",
+    "wikiforum-error-sticky": "אירעה שגיאה בעת שינוי תכונת דביק",
+    "wikiforum-error-move-thread": "אירעה שגיאה בעת העברת שרשור",
+    "wikiforum-error-add": "אירעה שגיאה בעת הוספה",
+    "wikiforum-error-edit": "אירעה שגיאה בעת עריכה",
+    "wikiforum-add-category": "הוספת קטגוריה",
+    "wikiforum-edit-category": "עריכת קטגוריה",
+    "wikiforum-delete-category": "מחיקת קטגוריה",
+    "wikiforum-add-forum": "הוספת פורום",
+    "wikiforum-edit-forum": "עריכת פורום",
+    "wikiforum-delete-forum": "מחיקת פורום",
+    "wikiforum-sort-up": "מיון כלפי מעלה",
+    "wikiforum-sort-down": "מיון כלפי מטה",
+    "wikiforum-remove-sticky": "הסר דביק",
+    "wikiforum-make-sticky": "הפוך לדביק",
+    "wikiforum-move-thread": "העברת שרשור",
+    "wikiforum-paste-thread": "הדבק שירשור",
+    "wikiforum-quote": "ציטוט"
+}

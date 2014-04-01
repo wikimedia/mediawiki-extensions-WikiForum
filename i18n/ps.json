@@ -1,0 +1,30 @@
+{
+    "@metadata": {
+        "authors": [
+            "Ahmed-Najib-Biabani-Ibrahimkhel"
+        ]
+    },
+    "wikiforum-anonymous": "ورکنومی",
+    "wikiforum-description": "څرگندونه:",
+    "wikiforum-forum-name": "$1 فورم",
+    "wikiforum-name": "نوم:",
+    "wikiforum-button-preview": "مخليدنه",
+    "wikiforum-preview": "مخليدنه",
+    "wikiforum-preview-with-title": "مخليدنه: $1",
+    "wikiforum-save": "خوندي کول",
+    "wikiforum-error-search": "د پلټنې تېروتنه",
+    "wikiforum-write-thread": "نوی سرليک",
+    "wikiforum-replies": "ځوابونه",
+    "wikiforum-views": "کتنې",
+    "wikiforum-pages": "مخونه:",
+    "wikiforum-write-reply": "يو ځواب ليکل",
+    "wikiforum-edit-reply": "ځواب سمول",
+    "wikiforum-delete-reply": "ځواب ړنگول",
+    "wikiforum-save-reply": "ځواب خوندي کول",
+    "wikiforum-add-category": "وېشنيزه ورگډول",
+    "wikiforum-edit-category": "وېشنيزه سمول",
+    "wikiforum-delete-category": "وېشنيزه ړنگول",
+    "wikiforum-add-forum": "فورم ورگډول",
+    "wikiforum-edit-forum": "فورم سمول",
+    "wikiforum-delete-forum": "فورم ړنگول"
+}
