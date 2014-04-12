@@ -254,7 +254,7 @@ class WikiForumClass {
 
 		// add smilies for reply text
 		$text = WikiForumClass::prepareSmilies( $text );
-		//$text = $wgOut->parse( $text ); @todo FIXME
+		$text = $wgOut->parse( $text );
 		$text = WikiForumClass::parseLinks( $text );
 		$text = WikiForumClass::parseQuotes( $text );
 		$text = WikiForumClass::getSmilies( $text );
