@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "Jopparn",
-            "WikiPhoenix"
+            "WikiPhoenix",
+            "Lokal Profil"
         ]
     },
     "wikiforum-desc": "[[Special:WikiForum|Forum]]tillägg för MediaWiki",
@@ -18,8 +19,6 @@
     "wikiforum-preview": "Förhandsgranska",
     "wikiforum-preview-with-title": "Förhandsgranska: $1",
     "wikiforum-save": "Spara",
-    "wikiforum-error-search": "Sökfel",
-    "wikiforum-error-search-missing-query": "Du måste ange en term att söka efter!",
     "wikiforum-search-hits": "Hittade {{PLURAL:$1|en träff|$1 träffar}}",
     "wikiforum-search-thread": "Tråd: $1",
     "wikiforum-thread-deleted": "tråden raderad",
@@ -51,11 +50,11 @@
     "wikiforum-posted": "Skrivet av {{GENDER:$3|$2}} den $4 kl $5.",
     "wikiforum-edited": "Redigerades av {{GENDER:$3|$2}} den $4 kl. $5.",
     "wikiforum-cat-not-found": "Kategorin finns inte",
-    "wikiforum-cat-not-found-text": "Kategorin finns inte - gå tillbaka till $1",
+    "wikiforum-cat-not-found-text": "Kategorin finns inte",
     "wikiforum-forum-not-found": "Forum hittades inte",
-    "wikiforum-forum-not-found-text": "Forum finns inte - gå tillbaka till $1",
+    "wikiforum-forum-not-found-text": "Forumet finns inte",
     "wikiforum-thread-not-found": "Tråden hittades inte",
-    "wikiforum-thread-not-found-text": "Tråden finns inte eller har redan tagits bort - gå tillbaka till $1.",
+    "wikiforum-thread-not-found-text": "Tråden finns inte eller har raderats",
     "wikiforum-error-thread-reopen": "Ett fel uppstod när tråden skulle återöppnas",
     "wikiforum-error-thread-close": "Ett fel uppstod när trådens skulle stängas",
     "wikiforum-error-general": "Objekt hittades inte eller inga rättigheter att utföra denna åtgärd.",
@@ -64,8 +63,10 @@
     "wikiforum-error-no-text-or-title": "Titel eller text är inte korrekt ifyllda.",
     "wikiforum-error-bad-title": "Den angivna rubriken innehöll ogiltiga tecken.",
     "wikiforum-error-no-reply": "Svaret inte korrekt ifyllt.",
-    "wikiforum-error-double-post": "Skydd från dubbelklick: tråden har redan lagts till.",
+    "wikiforum-error-double-post": "Du har redan postat detta svar!",
     "wikiforum-error-thread-closed": "Tråden är för tillfället stängd. Det är inte möjligt att lägga till ett nytt svar här.",
+    "wikiforum-error-search-missing-query": "Du måste ange en term att söka efter!",
+    "wikiforum-error-search": "Sökfel",
     "wikiforum-error-delete": "Ett fel uppstod under borttagningen",
     "wikiforum-error-sticky": "Ett fel uppstod klistringsattributen skulle ändras",
     "wikiforum-error-move-thread": "Ett fel uppstod när tråden skulle flyttas",
