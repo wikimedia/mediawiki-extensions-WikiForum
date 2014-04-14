@@ -96,7 +96,7 @@ class WFThread extends ContextSource {
 		if ( $this->getReplyCount() > 0 ) {
 			return WikiForumGui::showByInfo(
 				$this->data->wft_last_post_timestamp,
-				$this->getPostedBy()
+				WikiForumClass::getUserFromDB( $this->data->wft_last_post_user, $this->data->wft_last_post_user_ip )
 			);
 		} else {
 			return '';
@@ -617,11 +617,10 @@ class WFThread extends ContextSource {
 				__METHOD__
 			);
 			$output .= WikiForumGui::showFooterRow(
-				$maxPerPage,
+				$limit_page,
 				$countReplies->count,
 				$maxPerPage,
-				$this->getForum()->getId(),
-				$this->getId()
+				array( 'thread' => $this->getId() )
 			);
 		}
 

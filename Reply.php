@@ -395,7 +395,7 @@ class WFReply extends ContextSource {
 		$shortText = $wgLang->truncate( $text, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( array(
-				'4::thread-name' => $thread->getForum()->getName(),
+				'4::thread-name' => $thread->getName(),
 		) );
 		$logid = $logEntry->insert();
 		if ( $wgWikiForumLogInRC ) {
