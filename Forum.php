@@ -318,7 +318,7 @@ class WFForum extends ContextSource {
 			return $error . $this->show();
 		}
 		if ( strlen( $forumName ) == 0 ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-no-text-or-title' );
+			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . $this->showEditForm();
 		}
 

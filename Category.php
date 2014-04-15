@@ -382,7 +382,7 @@ class WFCategory extends ContextSource {
 			return $error . WikiForumClass::showOverview();
 		}
 		if ( strlen( $categoryName ) == 0 ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-no-text-or-title' );
+			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . WFCategory::showAddForm();
 		}
 
