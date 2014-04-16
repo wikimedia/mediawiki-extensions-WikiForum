@@ -74,6 +74,8 @@
 	"wikiforum-error-move-thread": "Ocorreu um erro ao mover o tópico",
 	"wikiforum-error-add": "Ocorreu um erro ao fazer a adição",
 	"wikiforum-error-edit": "Ocorreu um erro ao editar",
+	"wikiforum-error-category": "Erro de categoria",
+	"wikiforum-error-forum": "Erro do fórum",
 	"wikiforum-add-category": "Adicionar categoria",
 	"wikiforum-edit-category": "Editar categoria",
 	"wikiforum-delete-category": "Apagar categoria",

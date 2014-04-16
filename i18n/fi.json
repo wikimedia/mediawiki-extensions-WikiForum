@@ -4,7 +4,8 @@
 			"Crt",
 			"Jack Phoenix <jack@countervandalism.net>",
 			"Pxos",
-			"Stryn"
+			"Stryn",
+			"Nike"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Foorumilaajennus]] MediaWikille.",
@@ -68,6 +69,8 @@
 	"wikiforum-error-move-thread": "Virhe aihetta siirrettäessä",
 	"wikiforum-error-add": "Virhe lisätessä",
 	"wikiforum-error-edit": "Virhe muokatessa",
+	"wikiforum-error-category": "Luokkavirhe",
+	"wikiforum-error-forum": "Forum-virhe",
 	"wikiforum-add-category": "Lisää luokka",
 	"wikiforum-edit-category": "Muokkaa luokkaa",
 	"wikiforum-delete-category": "Poista luokka",
