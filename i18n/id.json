@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "පසිඳු කාවින්ද"
-        ]
-    },
-    "wikiforum-anonymous": "Anonim",
-    "wikiforum-description": "Deskripsi:",
-    "wikiforum-name": "Nama:",
-    "wikiforum-button-preview": "Pratayang",
-    "wikiforum-preview": "Pratayang",
-    "wikiforum-save": "Simpan"
+	"@metadata": {
+		"authors": [
+			"පසිඳු කාවින්ද"
+		]
+	},
+	"wikiforum-anonymous": "Anonim",
+	"wikiforum-description": "Deskripsi:",
+	"wikiforum-name": "Nama:",
+	"wikiforum-button-preview": "Pratayang",
+	"wikiforum-preview": "Pratayang",
+	"wikiforum-save": "Simpan"
 }

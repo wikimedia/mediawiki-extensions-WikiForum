@@ -1,25 +1,25 @@
 {
-    "@metadata": {
-        "authors": [
-            "AZISS",
-            "Vugar 1981"
-        ]
-    },
-    "wikiforum-anonymous": "Anonim",
-    "wikiforum-description": "İzah:",
-    "wikiforum-forum-name": "Forum $1",
-    "wikiforum-name": "Ad:",
-    "wikiforum-button-preview": "Sınaq görüntüsü",
-    "wikiforum-preview": "Sınaq görüntüsü",
-    "wikiforum-save": "Saxla",
-    "wikiforum-views": "Görünüş",
-    "wikiforum-pages": "Səhifələr:",
-    "wikiforum-cat-not-found": "Kateqoriya tapılmadı",
-    "wikiforum-add-category": "Kateqoriya əlavə et",
-    "wikiforum-edit-category": "Kateqoriyanı redaktə et",
-    "wikiforum-delete-category": "Kateqoriyanı sil",
-    "wikiforum-quote": "Sitat",
-    "group-forumadmin": "Forum idarəçiləri",
-    "group-forumadmin-member": "{{GENDER:$1|Forum idarəçisi}}",
-    "grouppage-forumadmin": "{{ns:project}}:Forum idarəçiləri"
+	"@metadata": {
+		"authors": [
+			"AZISS",
+			"Vugar 1981"
+		]
+	},
+	"wikiforum-anonymous": "Anonim",
+	"wikiforum-description": "İzah:",
+	"wikiforum-forum-name": "Forum $1",
+	"wikiforum-name": "Ad:",
+	"wikiforum-button-preview": "Sınaq görüntüsü",
+	"wikiforum-preview": "Sınaq görüntüsü",
+	"wikiforum-save": "Saxla",
+	"wikiforum-views": "Görünüş",
+	"wikiforum-pages": "Səhifələr:",
+	"wikiforum-cat-not-found": "Kateqoriya tapılmadı",
+	"wikiforum-add-category": "Kateqoriya əlavə et",
+	"wikiforum-edit-category": "Kateqoriyanı redaktə et",
+	"wikiforum-delete-category": "Kateqoriyanı sil",
+	"wikiforum-quote": "Sitat",
+	"group-forumadmin": "Forum idarəçiləri",
+	"group-forumadmin-member": "{{GENDER:$1|Forum idarəçisi}}",
+	"grouppage-forumadmin": "{{ns:project}}:Forum idarəçiləri"
 }

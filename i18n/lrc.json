@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Mogoeilor"
-        ]
-    },
-    "logentry-forum-add-category": "$1 {{جنس:$2|راست کرده}} یه گل دسه تازه, [$4 $5]"
+	"@metadata": {
+		"authors": [
+			"Mogoeilor"
+		]
+	},
+	"logentry-forum-add-category": "$1 {{جنس:$2|راست کرده}} یه گل دسه تازه, [$4 $5]"
 }

@@ -1,26 +1,26 @@
 {
-    "@metadata": {
-        "authors": [
-            "Karthi.dr",
-            "Shanmugamp7"
-        ]
-    },
-    "wikiforum-description": "விளக்கம்:",
-    "wikiforum-name": "பெயர்:",
-    "wikiforum-button-preview": "முன்தோற்றம்",
-    "wikiforum-preview": "முன்தோற்றம்",
-    "wikiforum-preview-with-title": "முன்தோற்றம்: $1",
-    "wikiforum-save": "சேமி",
-    "wikiforum-error-search": "தேடல் பிழை",
-    "wikiforum-write-reply": "மறுமொழி எழுது",
-    "wikiforum-edit-reply": "மறுமொழியைத் தொகு",
-    "wikiforum-delete-reply": "மறுமொழியை நீக்கு",
-    "wikiforum-save-reply": "மறுமொழியைச் சேமி",
-    "wikiforum-cat-not-found": "பகுப்பு காணப்படவில்லை.",
-    "wikiforum-error-delete": "நீக்கும் போது பிழை",
-    "wikiforum-error-add": "சேர்க்கும் போது பிழை",
-    "wikiforum-error-edit": "தொகுக்கும் போது பிழை",
-    "wikiforum-add-category": " பகுப்பைச் சேர்க்கவும்",
-    "wikiforum-edit-category": "பகுப்பைத் தொகு",
-    "wikiforum-delete-category": "பகுப்பினை நீக்கு"
+	"@metadata": {
+		"authors": [
+			"Karthi.dr",
+			"Shanmugamp7"
+		]
+	},
+	"wikiforum-description": "விளக்கம்:",
+	"wikiforum-name": "பெயர்:",
+	"wikiforum-button-preview": "முன்தோற்றம்",
+	"wikiforum-preview": "முன்தோற்றம்",
+	"wikiforum-preview-with-title": "முன்தோற்றம்: $1",
+	"wikiforum-save": "சேமி",
+	"wikiforum-write-reply": "மறுமொழி எழுது",
+	"wikiforum-edit-reply": "மறுமொழியைத் தொகு",
+	"wikiforum-delete-reply": "மறுமொழியை நீக்கு",
+	"wikiforum-save-reply": "மறுமொழியைச் சேமி",
+	"wikiforum-cat-not-found": "பகுப்பு காணப்படவில்லை.",
+	"wikiforum-error-search": "தேடல் பிழை",
+	"wikiforum-error-delete": "நீக்கும் போது பிழை",
+	"wikiforum-error-add": "சேர்க்கும் போது பிழை",
+	"wikiforum-error-edit": "தொகுக்கும் போது பிழை",
+	"wikiforum-add-category": " பகுப்பைச் சேர்க்கவும்",
+	"wikiforum-edit-category": "பகுப்பைத் தொகு",
+	"wikiforum-delete-category": "பகுப்பினை நீக்கு"
 }

@@ -1,27 +1,27 @@
 {
-    "@metadata": {
-        "authors": [
-            "Emperyan",
-            "Incelemeelemani"
-        ]
-    },
-    "wikiforum": "Tartışma sayfası",
-    "wikiforum-name": "Ad:",
-    "wikiforum-button-preview": "Ön izleme",
-    "wikiforum-preview": "Ön izleme",
-    "wikiforum-preview-with-title": "Ön izleme: $1",
-    "wikiforum-save": "Kaydet",
-    "wikiforum-error-search": "Arama hatası",
-    "wikiforum-search-thread": "Konu: $1",
-    "wikiforum-write-thread": "Yeni konu",
-    "wikiforum-replies": "Yanıtlar",
-    "wikiforum-views": "Görüntüle",
-    "wikiforum-latest-reply": "",
-    "wikiforum-pages": "Sayfalar:",
-    "wikiforum-thread-not-found": "Konu bulunamadı",
-    "wikiforum-error-not-found": "Nesne bulunamadı.",
-    "wikiforum-quote": "Alıntı",
-    "group-forumadmin": "Forum hizmetlileri",
-    "group-forumadmin-member": "Forum hizmetlisi",
-    "grouppage-forumadmin": "{{ns:project}}:Forum hizmetlileri"
+	"@metadata": {
+		"authors": [
+			"Emperyan",
+			"Incelemeelemani"
+		]
+	},
+	"wikiforum": "Tartışma sayfası",
+	"wikiforum-name": "Ad:",
+	"wikiforum-button-preview": "Ön izleme",
+	"wikiforum-preview": "Ön izleme",
+	"wikiforum-preview-with-title": "Ön izleme: $1",
+	"wikiforum-save": "Kaydet",
+	"wikiforum-search-thread": "Konu: $1",
+	"wikiforum-write-thread": "Yeni konu",
+	"wikiforum-replies": "Yanıtlar",
+	"wikiforum-views": "Görüntüle",
+	"wikiforum-latest-reply": "",
+	"wikiforum-pages": "Sayfalar:",
+	"wikiforum-thread-not-found": "Konu bulunamadı",
+	"wikiforum-error-not-found": "Nesne bulunamadı.",
+	"wikiforum-error-search": "Arama hatası",
+	"wikiforum-quote": "Alıntı",
+	"group-forumadmin": "Forum hizmetlileri",
+	"group-forumadmin-member": "Forum hizmetlisi",
+	"grouppage-forumadmin": "{{ns:project}}:Forum hizmetlileri"
 }

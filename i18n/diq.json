@@ -1,23 +1,23 @@
 {
-    "@metadata": {
-        "authors": [
-            "Erdemaslancan",
-            "Mirzali"
-        ]
-    },
-    "wikiforum-anonymous": "Bêname",
-    "wikiforum-by": "$1<br />by $2",
-    "wikiforum-description": "Şınasiyen:",
-    "wikiforum-forum-name": "Forum $1",
-    "wikiforum-name": "Name:",
-    "wikiforum-button-preview": "Verqayt",
-    "wikiforum-preview": "Verqayt",
-    "wikiforum-preview-with-title": "Verqayt: $1",
-    "wikiforum-save": "Qeyd ke",
-    "wikiforum-thread": "Pine",
-    "wikiforum-forum": "Forum: $1 > $2",
-    "wikiforum-pages": "Peli:",
-    "wikiforum-quote": "Groteko",
-    "group-forumadmin-member": "{{GENDER:$1|adminê forumi}}",
-    "grouppage-forumadmin": "{{ns:project}}:Admine forumi"
+	"@metadata": {
+		"authors": [
+			"Erdemaslancan",
+			"Mirzali"
+		]
+	},
+	"wikiforum-anonymous": "Bêname",
+	"wikiforum-by": "$1<br />by $2",
+	"wikiforum-description": "Şınasiyen:",
+	"wikiforum-forum-name": "Forum $1",
+	"wikiforum-name": "Name:",
+	"wikiforum-button-preview": "Verqayt",
+	"wikiforum-preview": "Verqayt",
+	"wikiforum-preview-with-title": "Verqayt: $1",
+	"wikiforum-save": "Qeyd ke",
+	"wikiforum-thread": "Pine",
+	"wikiforum-forum": "Forum: $1 > $2",
+	"wikiforum-pages": "Peli:",
+	"wikiforum-quote": "Groteko",
+	"group-forumadmin-member": "{{GENDER:$1|adminê forumi}}",
+	"grouppage-forumadmin": "{{ns:project}}:Admine forumi"
 }

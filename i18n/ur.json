@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "පසිඳු කාවින්ද"
-        ]
-    },
-    "wikiforum-error-search": "تلاش کی غلطی",
-    "wikiforum-replies": "جواب دیتا ہے",
-    "wikiforum-views": "خیالات",
-    "wikiforum-thread": "دھاگے",
-    "wikiforum-overview": "برجوں کا جائزہ:",
-    "wikiforum-pages": "صفحات:",
-    "wikiforum-close-thread": "قریب دھاگے",
-    "wikiforum-edit-reply": "جواب میں ترمیم کریں",
-    "wikiforum-delete-reply": "جواب کو خارج"
+	"@metadata": {
+		"authors": [
+			"පසිඳු කාවින්ද"
+		]
+	},
+	"wikiforum-replies": "جواب دیتا ہے",
+	"wikiforum-views": "خیالات",
+	"wikiforum-thread": "دھاگے",
+	"wikiforum-overview": "برجوں کا جائزہ:",
+	"wikiforum-pages": "صفحات:",
+	"wikiforum-close-thread": "قریب دھاگے",
+	"wikiforum-edit-reply": "جواب میں ترمیم کریں",
+	"wikiforum-delete-reply": "جواب کو خارج",
+	"wikiforum-error-search": "تلاش کی غلطی"
 }

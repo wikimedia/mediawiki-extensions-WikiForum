@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "V.narsikar"
-        ]
-    },
-    "wikiforum-error-bad-title": "दिलेल्या शीर्षकात अवैध कॅरेक्टर्स आहेत.",
-    "logentry-forum-add-category": "$1 ने [$4 $5] हा नविन वर्ग {{GENDER:$2|तयार केला}}"
+	"@metadata": {
+		"authors": [
+			"V.narsikar"
+		]
+	},
+	"wikiforum-error-bad-title": "दिलेल्या शीर्षकात अवैध कॅरेक्टर्स आहेत.",
+	"logentry-forum-add-category": "$1 ने [$4 $5] हा नविन वर्ग {{GENDER:$2|तयार केला}}"
 }

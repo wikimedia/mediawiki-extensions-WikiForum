@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Kghbln"
-        ]
-    },
-    "wikiforum-thread-title": "Title Ihres Themas",
-    "wikiforum-error-no-rights": "Sie haben nicht die Berechtigung diese Aktion auszuführen."
+	"@metadata": {
+		"authors": [
+			"Kghbln"
+		]
+	},
+	"wikiforum-thread-title": "Title Ihres Themas",
+	"wikiforum-error-no-rights": "Sie haben nicht die Berechtigung diese Aktion auszuführen."
 }

@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Paxt",
-            "Utar"
-        ]
-    },
-    "logentry-forum-add-category": "$1 {{GENDER:$2|vytvořil|vytvořila}} novou kategorii [$4 $5]",
-    "logentry-forum-add-forum": "$1 {{GENDER:$2|vytvořil|vytvořila}} nové fórum [$4 $5]",
-    "logentry-forum-add-thread": "$1 {{GENDER:$2|vytvořil|vytvořila}} nové vlákno, [[Special:WikiForum/$4|$4]]",
-    "logentry-forum-add-reply": "$1 {{GENDER:$2|odpověděl|odpověděla}} ve vlákně [[Special:WikiForum/$4|$4]]"
+	"@metadata": {
+		"authors": [
+			"Paxt",
+			"Utar"
+		]
+	},
+	"logentry-forum-add-category": "$1 {{GENDER:$2|vytvořil|vytvořila}} novou kategorii [$4 $5]",
+	"logentry-forum-add-forum": "$1 {{GENDER:$2|vytvořil|vytvořila}} nové fórum [$4 $5]",
+	"logentry-forum-add-thread": "$1 {{GENDER:$2|vytvořil|vytvořila}} nové vlákno, [[Special:WikiForum/$4|$4]]",
+	"logentry-forum-add-reply": "$1 {{GENDER:$2|odpověděl|odpověděla}} ve vlákně [[Special:WikiForum/$4|$4]]"
 }

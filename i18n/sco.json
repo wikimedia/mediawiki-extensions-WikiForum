@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "John Reid"
-        ]
-    },
-    "wikiforum-error-bad-title": "The title supplied contained invalit characters.",
-    "logentry-forum-add-category": "$1 {{GENDER:$2|created}} ae new category, [$4 $5]",
-    "logentry-forum-add-forum": "$1 {{GENDER:$2|created}} ae new forum, [$4 $5]",
-    "logentry-forum-add-thread": "$1 {{GENDER:$2|created}} ae new thread, [[Special:WikiForum/$4|$4]]",
-    "logentry-forum-add-reply": "$1 {{GENDER:$2|replied}} on the thread [[Special:WikiForum/$4|$4]]"
+	"@metadata": {
+		"authors": [
+			"John Reid"
+		]
+	},
+	"wikiforum-error-bad-title": "The title supplied contained invalit characters.",
+	"logentry-forum-add-category": "$1 {{GENDER:$2|created}} ae new category, [$4 $5]",
+	"logentry-forum-add-forum": "$1 {{GENDER:$2|created}} ae new forum, [$4 $5]",
+	"logentry-forum-add-thread": "$1 {{GENDER:$2|created}} ae new thread, [[Special:WikiForum/$4|$4]]",
+	"logentry-forum-add-reply": "$1 {{GENDER:$2|replied}} on the thread [[Special:WikiForum/$4|$4]]"
 }

@@ -1,26 +1,26 @@
 {
-    "@metadata": {
-        "authors": [
-            "Joetaras"
-        ]
-    },
-    "wikiforum-anonymous": "Anonime",
-    "wikiforum-description": "Descrizione:",
-    "wikiforum-forum-name": "Forum $1",
-    "wikiforum-name": "Nome:",
-    "wikiforum-button-preview": "Andeprime",
-    "wikiforum-preview": "Andeprime",
-    "wikiforum-preview-with-title": "Andeprime: $1",
-    "wikiforum-save": "Reggìstre",
-    "wikiforum-error-search": "Errore de ricerche",
-    "wikiforum-search-thread": "Argomende: $1",
-    "wikiforum-topic-name": "Forum $1",
-    "wikiforum-views": "Visite",
-    "wikiforum-thread": "Argomende",
-    "wikiforum-threads": "Argomende",
-    "wikiforum-latest-reply": "L'urtema resposte",
-    "wikiforum-latest-thread": "L'urteme argomende",
-    "wikiforum-forum": "Forum: $1 > $2",
-    "wikiforum-overview": "Panorameche",
-    "wikiforum-pages": "Pàggene:"
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"wikiforum-anonymous": "Anonime",
+	"wikiforum-description": "Descrizione:",
+	"wikiforum-forum-name": "Forum $1",
+	"wikiforum-name": "Nome:",
+	"wikiforum-button-preview": "Andeprime",
+	"wikiforum-preview": "Andeprime",
+	"wikiforum-preview-with-title": "Andeprime: $1",
+	"wikiforum-save": "Reggìstre",
+	"wikiforum-search-thread": "Argomende: $1",
+	"wikiforum-topic-name": "Forum $1",
+	"wikiforum-views": "Visite",
+	"wikiforum-thread": "Argomende",
+	"wikiforum-threads": "Argomende",
+	"wikiforum-latest-reply": "L'urtema resposte",
+	"wikiforum-latest-thread": "L'urteme argomende",
+	"wikiforum-forum": "Forum: $1 > $2",
+	"wikiforum-overview": "Panorameche",
+	"wikiforum-pages": "Pàggene:",
+	"wikiforum-error-search": "Errore de ricerche"
 }
