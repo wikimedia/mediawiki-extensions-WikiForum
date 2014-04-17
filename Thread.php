@@ -692,9 +692,8 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	function showTagListItem() {
-		$categoryLink = $thread->getForum()->getCategory()->showLink();
-		$forumLink = $thread->getForum()->showPlainLink();
-		$threadLink = $thread->showLink();
+		$categoryLink = $this->getForum()->getCategory()->showLink();
+		$forumLink = $this->getForum()->showPlainLink();
 
 		$extraInfo = '<br />' . wfMessage( 'wikiforum-forum', $categoryLink, $forumLink )->text();
 
