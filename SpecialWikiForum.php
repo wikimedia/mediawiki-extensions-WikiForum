@@ -106,10 +106,7 @@ class WikiForum extends SpecialPage {
 								$output .= $category->showAddForumForm();
 								break;
 							case 'savenewforum':
-								$forum = $category->addForum( $title, $text, $request->getBool( 'announcement', false ) );
-								if ( $forum ) { // @todo is this the best way to do it?
-									$output .= $forum->show();
-								}
+								$output .= $category->addForum( $title, $text, $request->getBool( 'announcement', false ) );
 								break;
 
 							default:
