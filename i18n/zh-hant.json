@@ -50,11 +50,11 @@
 	"wikiforum-posted": "{{GENDER:$3|$2}}發佈於$1",
 	"wikiforum-edited": "{{GENDER:$3|$2}}編輯於$1",
 	"wikiforum-cat-not-found": "分類未找到",
-	"wikiforum-cat-not-found-text": "分類不存在 - 回到$1",
+	"wikiforum-cat-not-found-text": "分類不存在",
 	"wikiforum-forum-not-found": "版塊未找到",
-	"wikiforum-forum-not-found-text": "板塊不存在-回到$1",
+	"wikiforum-forum-not-found-text": "板塊不存在",
 	"wikiforum-thread-not-found": "帖子未找到",
-	"wikiforum-thread-not-found-text": "帖子不存在或已被刪除-回到$1",
+	"wikiforum-thread-not-found-text": "帖子不存在或已被刪除",
 	"wikiforum-error-thread-reopen": "開放帖子時發生了錯誤",
 	"wikiforum-error-thread-close": "關閉帖子時發生錯誤",
 	"wikiforum-error-general": "找不到對象或無權限執行該動作。",
@@ -71,6 +71,7 @@
 	"wikiforum-error-move-thread": "移動帖子時發生錯誤",
 	"wikiforum-error-add": "添加時發生錯誤",
 	"wikiforum-error-edit": "編輯時發生錯誤",
+	"wikiforum-error-write": "寫入時出錯",
 	"wikiforum-add-category": "添加分類",
 	"wikiforum-edit-category": "編輯分類",
 	"wikiforum-delete-category": "刪除分類",
@@ -88,5 +89,6 @@
 	"group-forumadmin-member": "{{GENDER:$1|論壇管理員}}",
 	"grouppage-forumadmin": "{{ns:project}}:論壇管理員",
 	"logentry-forum-add-category": "$1{{GENDER:$2|建立}}了一個新分類，[$4 $5]",
-	"logentry-forum-add-forum": "$1{{GENDER:$2|建立}}了一個新論壇，[$4 $5]"
+	"logentry-forum-add-forum": "$1{{GENDER:$2|建立}}了一個新論壇，[$4 $5]",
+	"wikiforum-must-supply-thread": "您務必提供一個執行緒ID"
 }
