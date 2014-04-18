@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Gianfranco"
+			"Gianfranco",
+			"Ontsed"
 		]
 	},
 	"wikiforum-desc": "Estensione [[Special:WikiForum|forum]] per MediaWiki",
@@ -76,6 +77,9 @@
 	"wikiforum-error-add": "Errore durante l'aggiunta",
 	"wikiforum-error-edit": "Errore durante la modifica",
 	"wikiforum-error-write": "Errore durante la scrittura",
+	"wikiforum-error-category": "Errore di categoria",
+	"wikiforum-error-forum": "Errore del forum",
+	"wikiforum-error-thread": "Errore nel thread",
 	"wikiforum-add-category": "Aggiungi categoria",
 	"wikiforum-edit-category": "Modifica categoria",
 	"wikiforum-delete-category": "Cancella categoria",

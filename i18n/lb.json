@@ -78,5 +78,6 @@
 	"grouppage-forumadmin": "{{ns:project}}:Administrateure vum Forum",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|huet}} déi nei Kategorie [$4 $5] ugeluecht",
 	"logentry-forum-add-thread": "$1 {{GENDER:$2|huet}} eng nei Rubrik iwwer [[Special:WikiForum/$4|$4]] ugeluecht",
-	"logentry-forum-add-reply": "$1 {{GENDER:$2|huet}} an der Rubrik [[Special:WikiForum/$4|$4]] geäntwert"
+	"logentry-forum-add-reply": "$1 {{GENDER:$2|huet}} an der Rubrik [[Special:WikiForum/$4|$4]] geäntwert",
+	"wikiforum-category-preload": "Titel vun Ärer Kategorie"
 }
