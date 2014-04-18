@@ -375,7 +375,7 @@ class WFForum extends ContextSource {
 			__METHOD__
 		);
 
-		return $this->getForum()->show();
+		return $this->show();
 	}
 
 	/**
