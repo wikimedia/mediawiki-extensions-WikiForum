@@ -6,7 +6,7 @@
 			"Lokal Profil"
 		]
 	},
-	"wikiforum-desc": "[[Special:WikiForum|Forum]]tillägg för MediaWiki",
+	"wikiforum-desc": "[[Special:WikiForum|Forumtillägg]] för MediaWiki",
 	"wikiforum": "Diskussionstavla",
 	"wikiforum-anonymous": "Anonym",
 	"wikiforum-announcement-only-description": "Meddelandeforum (endast moderatorer kan lägga till trådar)",
@@ -45,7 +45,7 @@
 	"wikiforum-delete-reply": "Radera svar",
 	"wikiforum-save-thread": "Spara tråd",
 	"wikiforum-save-reply": "Spara svar",
-	"wikiforum-thread-title": "Titel på din tråd",
+	"wikiforum-thread-title": "Titeln på din tråd",
 	"wikiforum-no-threads": "Inga trådar finns tillgängliga just nu.",
 	"wikiforum-posted": "Skrivet av {{GENDER:$3|$2}} den $4 kl $5.",
 	"wikiforum-edited": "Redigerades av {{GENDER:$3|$2}} den $4 kl. $5.",
@@ -55,6 +55,8 @@
 	"wikiforum-forum-not-found-text": "Forumet finns inte",
 	"wikiforum-thread-not-found": "Tråden hittades inte",
 	"wikiforum-thread-not-found-text": "Tråden finns inte eller har raderats",
+	"wikiforum-reply-not-found": "Svaret hittades inte",
+	"wikiforum-reply-not-found-text": "Svaret finns inte.",
 	"wikiforum-error-thread-reopen": "Ett fel uppstod när tråden skulle återöppnas",
 	"wikiforum-error-thread-close": "Ett fel uppstod när trådens skulle stängas",
 	"wikiforum-error-general": "Objekt hittades inte eller inga rättigheter att utföra denna åtgärd.",
@@ -65,6 +67,8 @@
 	"wikiforum-error-no-reply": "Svaret inte korrekt ifyllt.",
 	"wikiforum-error-double-post": "Du har redan postat detta svar!",
 	"wikiforum-error-thread-closed": "Tråden är för tillfället stängd. Det är inte möjligt att lägga till ett nytt svar här.",
+	"wikiforum-error-title-already-exists": "En tråd med den angivna titeln finns redan, var god välj en annan.",
+	"wikiforum-error-readonly": "Databasen har markerats som skrivskyddad, du kan inte utföra några skrivåtgärder för tillfället.",
 	"wikiforum-error-search-missing-query": "Du måste ange en term att söka efter!",
 	"wikiforum-error-search": "Sökfel",
 	"wikiforum-error-delete": "Ett fel uppstod under borttagningen",
@@ -72,6 +76,10 @@
 	"wikiforum-error-move-thread": "Ett fel uppstod när tråden skulle flyttas",
 	"wikiforum-error-add": "Ett fel uppstod när det skulle läggas till",
 	"wikiforum-error-edit": "Ett fel uppstod under redigering",
+	"wikiforum-error-write": "Fel uppstod under skrivning",
+	"wikiforum-error-category": "Kategorifel",
+	"wikiforum-error-forum": "Forumfel",
+	"wikiforum-error-thread": "Trådfel",
 	"wikiforum-add-category": "Lägg till kategori",
 	"wikiforum-edit-category": "Redigera kategori",
 	"wikiforum-delete-category": "Radera kategori",
@@ -97,5 +105,8 @@
 	"logentry-forum-add-category": "$1 {{GENDER:$2|skapade}} en ny kategori, [$4 $5]",
 	"logentry-forum-add-forum": "$1 {{GENDER:$2|skapade}} ett nytt forum, [$4 $5]",
 	"logentry-forum-add-thread": "$1 {{GENDER:$2|skapade}} en ny tråd, [[Special:WikiForum/$4|$4]]",
-	"logentry-forum-add-reply": "$1 {{GENDER:$2|svarade}} på tråden [[Special:WikiForum/$4|$4]]"
+	"logentry-forum-add-reply": "$1 {{GENDER:$2|svarade}} på tråden [[Special:WikiForum/$4|$4]]",
+	"wikiforum-forum-preload": "Titeln på ditt forum",
+	"wikiforum-category-preload": "Titeln på din kategori",
+	"wikiforum-must-supply-thread": "Du måste ange ett tråd-ID"
 }
