@@ -484,7 +484,7 @@ class WFThread extends ContextSource {
 			)
 		) {
 			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-general', 'wikiforum-error-no-rights' );
-			return $error . $thread->show();
+			return $error . $this->show();
 		}
 
 		$dbw = wfGetDB( DB_MASTER );

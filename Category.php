@@ -311,7 +311,7 @@ class WFCategory extends ContextSource {
 	 * @return string: HTML
 	 */
 	function sortDown() {
-		return $this->sort();
+		return $this->sort( false );
 	}
 
 	/**
