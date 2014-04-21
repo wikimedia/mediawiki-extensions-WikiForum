@@ -150,10 +150,7 @@ class WikiForum extends SpecialPage {
 								$output .= $forum->showNewThreadForm();
 								break;
 							case 'savenewthread':
-								$thread = $forum->addThread( $title, $text );
-								if ( $thread ) {
-									$output .= $thread->show();
-								}
+								$output .= $forum->addThread( $title, $text );
 								break;
 
 							default:
