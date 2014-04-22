@@ -5,7 +5,8 @@
 			"Base",
 			"Kaganer",
 			"Okras",
-			"Ole Yves"
+			"Ole Yves",
+			"Meshkov.a"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Форумное]] расширение для MediaWiki",
@@ -56,9 +57,9 @@
 	"wikiforum-forum-not-found": "Форум не найден",
 	"wikiforum-forum-not-found-text": "Форум не существует",
 	"wikiforum-thread-not-found": "Ветка не найдена",
-	"wikiforum-thread-not-found-text": "Ветка не существует или удалена",
+	"wikiforum-thread-not-found-text": "Ветка не существует или была удалена",
 	"wikiforum-reply-not-found": "Ответ не найден",
-	"wikiforum-reply-not-found-text": "Ответа не существует.",
+	"wikiforum-reply-not-found-text": "Ответ не существует.",
 	"wikiforum-error-thread-reopen": "Ошибка при открытии ветки заново",
 	"wikiforum-error-thread-close": "Ошибка при закрытии ветки",
 	"wikiforum-error-general": "Объект не найден либо для выполнения операции не достаточно прав.",

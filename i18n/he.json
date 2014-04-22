@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"חיים"
+			"חיים",
+			"Amire80"
 		]
 	},
 	"wikiforum-anonymous": "אנונימי",
@@ -10,6 +11,7 @@
 	"wikiforum-error-move-thread": "אירעה שגיאה בעת העברת שרשור",
 	"wikiforum-error-add": "אירעה שגיאה בעת הוספה",
 	"wikiforum-error-edit": "אירעה שגיאה בעת עריכה",
+	"wikiforum-error-forum": "שגיאת פורום",
 	"wikiforum-add-category": "הוספת קטגוריה",
 	"wikiforum-edit-category": "עריכת קטגוריה",
 	"wikiforum-delete-category": "מחיקת קטגוריה",
