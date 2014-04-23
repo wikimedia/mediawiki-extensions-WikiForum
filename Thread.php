@@ -768,7 +768,7 @@ class WFThread extends ContextSource {
 	static function add( WFForum $forum, $title, $text ) {
 		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
 
-		if ( !$wgWikiForumAllowAnonymous || !$wgUser->isLoggedIn() ) {
+		if ( !$wgWikiForumAllowAnonymous && $wgUser->isAnon() ) {
 			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
