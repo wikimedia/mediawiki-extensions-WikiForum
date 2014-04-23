@@ -4,7 +4,8 @@
 			"Chrumps",
 			"Misiek95",
 			"Sp5uhe",
-			"Woytecr"
+			"Woytecr",
+			"Alan ffm"
 		]
 	},
 	"wikiforum-desc": "Rozszerzenie [[Special:WikiForum|forum]] dla MediaWiki",
@@ -51,11 +52,12 @@
 	"wikiforum-posted": "Napisane $1 przez $2",
 	"wikiforum-edited": "Edytowane $1 przez $2",
 	"wikiforum-cat-not-found": "Nie znaleziono kategorii",
-	"wikiforum-cat-not-found-text": "Kategoria nie istnieje – wróć do $1",
+	"wikiforum-cat-not-found-text": "Kategoria nie istnieje",
 	"wikiforum-forum-not-found": "Nie znaleziono forum.",
 	"wikiforum-forum-not-found-text": "Forum nie istnieje – wróć do $1",
 	"wikiforum-thread-not-found": "Nie znaleziono wątku",
 	"wikiforum-thread-not-found-text": "Wątek nie istnieje lub został skasowany – wróć do $1.",
+	"wikiforum-reply-not-found-text": "Odpowiedź nie istnieje.",
 	"wikiforum-error-thread-reopen": "Błąd podczas otwierania wątku",
 	"wikiforum-error-thread-close": "Błąd podczas zamykania wątku",
 	"wikiforum-error-general": "Cel nie został znaleziony lub brak uprawnień do wykonania tej akcji.",
@@ -91,5 +93,6 @@
 	"group-forumadmin": "Administratorzy forum",
 	"group-forumadmin-member": "{{GENDER:$1|administrator|administratorka}} forum",
 	"grouppage-forumadmin": "{{ns:project}}:Administratorzy forum",
-	"logentry-forum-add-category": "$1 {{GENDER:$2|utworzył|utworzyła}} nową kategorię, [$4 $5]"
+	"logentry-forum-add-category": "$1 {{GENDER:$2|utworzył|utworzyła}} nową kategorię, [$4 $5]",
+	"wikiforum-must-supply-thread": "Należy podać identyfikator wątku"
 }
