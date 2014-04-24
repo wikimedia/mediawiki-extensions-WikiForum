@@ -451,7 +451,7 @@ class WFCategory extends ContextSource {
 	static function showForm( $params, $titlePlaceholder, $titleValue, $formTitle ) {
 		global $wgUser;
 
-		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
+		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
 			return WikiForumClass::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
 		}
 
