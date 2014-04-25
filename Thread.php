@@ -132,7 +132,7 @@ class WFThread extends ContextSource {
 	function showEditedInfo() {
 		return WikiForumGui::showEditedInfo(
 			$this->data->wft_edit_timestamp,
-			$this->getPostedBy()
+			$this->getEditedBy()
 		);
 	}
 
@@ -187,6 +187,15 @@ class WFThread extends ContextSource {
 	 */
 	function getPostedById() {
 		return $this->data->wft_user;
+	}
+
+	/**
+	 * Get the user who's edited this thread
+	 *
+	 * @return User
+	 */
+	function getEditedBy() {
+		return WikiForumClass::getUserFromDB( $this->data->wft_edit_user, $this->data->wft_edit_user_ip );
 	}
 
 	/**
