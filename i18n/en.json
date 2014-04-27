@@ -56,16 +56,17 @@
     "wikiforum-edited": "Edited by {{GENDER:$3|$2}} on $4 at $5.",
 
     "wikiforum-cat-not-found": "Category not found",
-    "wikiforum-cat-not-found-text": "Category does not exist",
+    "wikiforum-cat-not-found-text": "Category does not exist.",
     "wikiforum-forum-not-found": "Forum not found",
-    "wikiforum-forum-not-found-text": "Forum does not exist",
+    "wikiforum-forum-not-found-text": "Forum does not exist.",
     "wikiforum-thread-not-found": "Thread not found",
-    "wikiforum-thread-not-found-text": "Thread does not exist or has been deleted",
+    "wikiforum-thread-not-found-text": "Thread does not exist or has been deleted.",
     "wikiforum-reply-not-found": "Reply not found",
     "wikiforum-reply-not-found-text": "Reply does not exist.",
 
     "wikiforum-error-thread-reopen": "Error while reopening thread",
     "wikiforum-error-thread-close": "Error while closing thread",
+    "wikiforum-error-general-title": "Object not found or no rights to perform this action",
     "wikiforum-error-general": "Object not found or no rights to perform this action.",
     "wikiforum-error-no-rights": "You don't have the rights to perform this action.",
     "wikiforum-error-not-found": "Object not found.",
@@ -74,9 +75,9 @@
     "wikiforum-error-no-reply": "Reply not correctly filled out.",
     "wikiforum-error-double-post": "You've already posted this reply!",
     "wikiforum-error-thread-closed": "Thread is currently closed. It's not possible to add a new reply here.",
-    "wikiforum-error-title-already-exists": "A thread already exists with the specified title, please choose another.",
+    "wikiforum-error-title-already-exists": "A thread already exists with the specified title. Please choose another.",
 
-    "wikiforum-error-readonly": "The database has been marked as read-only, you may not perform any write actions at the moment.",
+    "wikiforum-error-readonly": "The database has been marked as read-only. You may not perform any write actions at the moment.",
     "wikiforum-error-search-missing-query": "You must supply a term to search for!",
     "wikiforum-error-search": "Search error",
     "wikiforum-error-delete": "Error while deleting",
@@ -121,5 +122,5 @@
 
     "wikiforum-forum-preload": "Title of your forum",
     "wikiforum-category-preload": "Title of your category",
-    "wikiforum-must-supply-thread": "You must supply a thread ID"
+    "wikiforum-must-supply-thread": "You must supply a thread ID."
 }

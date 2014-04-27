@@ -492,7 +492,7 @@ class WFThread extends ContextSource {
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
 		) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-general', 'wikiforum-error-no-rights' );
+			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-general-title', 'wikiforum-error-no-rights' );
 			return $error . $this->show();
 		}
 
