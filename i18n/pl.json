@@ -5,7 +5,8 @@
 			"Misiek95",
 			"Sp5uhe",
 			"Woytecr",
-			"Alan ffm"
+			"Alan ffm",
+			"Wiochman"
 		]
 	},
 	"wikiforum-desc": "Rozszerzenie [[Special:WikiForum|forum]] dla MediaWiki",
@@ -57,6 +58,7 @@
 	"wikiforum-forum-not-found-text": "Forum nie istnieje",
 	"wikiforum-thread-not-found": "Nie znaleziono wątku",
 	"wikiforum-thread-not-found-text": "Wątek nie istnieje lub został skasowany – wróć do $1.",
+	"wikiforum-reply-not-found": "Brak odpowiedzi",
 	"wikiforum-reply-not-found-text": "Odpowiedź nie istnieje.",
 	"wikiforum-error-thread-reopen": "Błąd podczas otwierania wątku",
 	"wikiforum-error-thread-close": "Błąd podczas zamykania wątku",
