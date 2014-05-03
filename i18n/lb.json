@@ -56,6 +56,7 @@
 	"wikiforum-error-no-text-or-title": "Titel oder Text net korrekt ausgefëllt.",
 	"wikiforum-error-bad-title": "Den Titel den ugi gouf hat net valabel Buschtawen.",
 	"wikiforum-error-no-reply": "Äntwert net korrekt ausgefëllt!",
+	"wikiforum-error-title-already-exists": "Et gëtt schonn eng Rubrik mat deem Titel, sicht Iech w.e.g. een Aneren.",
 	"wikiforum-error-search-missing-query": "Dir musst e Begrëff uginn no deem gesicht soll ginn!",
 	"wikiforum-error-search": "Feeler beim Sichen",
 	"wikiforum-error-delete": "Feeler beim Läschen",
