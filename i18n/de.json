@@ -58,6 +58,7 @@
 	"wikiforum-reply-not-found-text": "Antwort ist nicht vorhanden.",
 	"wikiforum-error-thread-reopen": "Fehler beim Wiedereröffnen des Themas",
 	"wikiforum-error-thread-close": "Fehler beim Schließen des Themas",
+	"wikiforum-error-general-title": "Objekt nicht gefunden oder keine Rechte, um diese Aktion auszuführen.",
 	"wikiforum-error-general": "Das Objekt wurde nicht gefunden oder es fehlt die Berechtigung zum Ausführen dieser Aktion.",
 	"wikiforum-error-no-rights": "Du hast nicht die Berechtigung diese Aktion auszuführen.",
 	"wikiforum-error-not-found": "Das Objekt wurde nicht gefunden.",
