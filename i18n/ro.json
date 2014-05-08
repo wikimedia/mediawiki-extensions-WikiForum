@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Minisarm",
-			"Saturnian"
+			"Saturnian",
+			"Reception123"
 		]
 	},
 	"wikiforum-desc": "Extensie [[Special:WikiForum|Forum]] pentru MediaWiki",
@@ -49,11 +50,11 @@
 	"wikiforum-posted": "Publicat la  $1 de $2",
 	"wikiforum-edited": "Modificat de {{GENDER:$3|$2}} la $1.",
 	"wikiforum-cat-not-found": "Categorie negăsită",
-	"wikiforum-cat-not-found-text": "Categoria nu există — mergeți înapoi la $1",
+	"wikiforum-cat-not-found-text": "Categoria nu există.",
 	"wikiforum-forum-not-found": "Forum negăsit",
-	"wikiforum-forum-not-found-text": "Forumul nu există — mergeți înapoi la $1",
+	"wikiforum-forum-not-found-text": "Forumul nu există.",
 	"wikiforum-thread-not-found": "Fir negăsit",
-	"wikiforum-thread-not-found-text": "Firul nu există sau a fost deja șters — mergeți înapoi la $1.",
+	"wikiforum-thread-not-found-text": "Firul nu există sau a fost deja șters.",
 	"wikiforum-error-thread-reopen": "Eroare în timpul redeschiderii firului",
 	"wikiforum-error-thread-close": "Eroare în timpul închiderii firului",
 	"wikiforum-error-general": "Obiect negăsit sau fără drepturi pentru a efectua această acțiune.",

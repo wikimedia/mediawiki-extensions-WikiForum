@@ -57,6 +57,7 @@
 	"wikiforum-reply-not-found-text": "La respuesta nun esiste.",
 	"wikiforum-error-thread-reopen": "Error al reabrir el filu",
 	"wikiforum-error-thread-close": "Error al zarrar el filu",
+	"wikiforum-error-general-title": "Nun s'alcontró l'oxetu o nun tienes permisos pa facer esta aición",
 	"wikiforum-error-general": "Nun s'alcontró l'oxetu o nun tienes permisos pa facer esta aición.",
 	"wikiforum-error-no-rights": "Nun tienes permisos pa facer esta aición.",
 	"wikiforum-error-not-found": "Nun s'alcontró l'oxetu.",

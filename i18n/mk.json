@@ -57,6 +57,7 @@
 	"wikiforum-reply-not-found-text": "Одговорот не пости.",
 	"wikiforum-error-thread-reopen": "Грешка при преотвореањето на темата",
 	"wikiforum-error-thread-close": "Грешка при затворањето на темата",
+	"wikiforum-error-general-title": "Предметот не е најден, или пак немате права на ова дејство",
 	"wikiforum-error-general": "Објектот не е пронајден или недостасуваат права за извршување на ова дејство.",
 	"wikiforum-error-no-rights": "Ги немате потребните права за да го извршите ова дејство.",
 	"wikiforum-error-not-found": "Објектот не е пронајден.",

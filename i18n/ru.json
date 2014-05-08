@@ -62,6 +62,7 @@
 	"wikiforum-reply-not-found-text": "Ответ не существует.",
 	"wikiforum-error-thread-reopen": "Ошибка при открытии ветки заново",
 	"wikiforum-error-thread-close": "Ошибка при закрытии ветки",
+	"wikiforum-error-general-title": "Объект не найден либо для выполнения операции не достаточно прав",
 	"wikiforum-error-general": "Объект не найден либо для выполнения операции не достаточно прав.",
 	"wikiforum-error-no-rights": "У вас не хватает прав для выполнения данной операции.",
 	"wikiforum-error-not-found": "Объект не найден.",
