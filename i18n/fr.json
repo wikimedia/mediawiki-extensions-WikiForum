@@ -62,6 +62,7 @@
 	"wikiforum-reply-not-found-text": "La réponse n’existe pas",
 	"wikiforum-error-thread-reopen": "Erreur pendant la réouverture du fil de discussion",
 	"wikiforum-error-thread-close": "Erreur pendant la fermeture du fil de discussion",
+	"wikiforum-error-general-title": "Objet non trouvé, ou aucun droit pour effectuer cette action",
 	"wikiforum-error-general": "Objet non trouvé ou pas de droits pour effectuer cette action.",
 	"wikiforum-error-no-rights": "Vous n’avez pas les droits pour effectuer cette action.",
 	"wikiforum-error-not-found": "Objet non trouvé.",
