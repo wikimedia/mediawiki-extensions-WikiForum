@@ -357,7 +357,7 @@ class WFThread extends ContextSource {
 			__METHOD__
 		);
 
-		return $this->getCategory()->show();
+		return $this->getForum()->show();
 	}
 
 
