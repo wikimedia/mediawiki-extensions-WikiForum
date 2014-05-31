@@ -299,7 +299,11 @@ class WFReply extends ContextSource {
 		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
 
 		if (
-			( $user->getId() == $thread->getPostedById() && !$thread->isClosed() ) ||
+			(
+				( $user->getId() == $thread->getPostedById() || $user->getId() == $this->getPostedById() )
+				&& !$thread->isClosed()
+			)
+			||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
 			$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'editreply', 'reply' => $this->getId() ) ) . '#writereply">';
