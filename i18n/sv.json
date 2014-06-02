@@ -59,6 +59,7 @@
 	"wikiforum-reply-not-found-text": "Svaret finns inte.",
 	"wikiforum-error-thread-reopen": "Ett fel uppstod när tråden skulle återöppnas",
 	"wikiforum-error-thread-close": "Ett fel uppstod när trådens skulle stängas",
+	"wikiforum-error-general-title": "Objekt hittades inte eller inga rättigheter att utföra denna åtgärd",
 	"wikiforum-error-general": "Objekt hittades inte eller inga rättigheter att utföra denna åtgärd.",
 	"wikiforum-error-no-rights": "Du har inte rättigheterna att utföra denna åtgärd.",
 	"wikiforum-error-not-found": "Objektet hittades inte.",
