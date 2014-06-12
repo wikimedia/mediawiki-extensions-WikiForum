@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Agilight"
+		]
+	},
+	"wikiforum-forum-name": "Шуулган $1",
+	"wikiforum-topic-name": "Шуулган - $1",
+	"wikiforum-add-forum": "Шуулган немээр",
+	"wikiforum-edit-forum": "Шуулган эдер",
+	"wikiforum-delete-forum": "Шуулган казыыр"
+}
