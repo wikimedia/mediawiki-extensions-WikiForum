@@ -149,7 +149,7 @@ class WFThread extends ContextSource {
 			$fragment = 'reply_' . $reply;
 		}
 
-		return SpecialPage::getTitleFor( 'WikiForum', $this->getName(), $fragment )->escapeFullURL();
+		return htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum', $this->getName(), $fragment )->getFullURL() );
 	}
 
 	/**
@@ -567,11 +567,11 @@ class WFThread extends ContextSource {
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			if ( $this->isSticky() ) {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/tag_blue_delete.png" title="' . wfMessage( 'wikiforum-remove-sticky' )->text() . '" /> ';
-				$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'removesticky', 'thread' => $this->getId() ) ) . '">' .
+				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'removesticky', 'thread' => $this->getId() ) ) ) . '">' .
 					wfMessage( 'wikiforum-remove-sticky' )->text() . '</a> ';
 			} else {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/tag_blue_add.png" title="' . wfMessage( 'wikiforum-make-sticky' )->text() . '" /> ';
-				$menuLink = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'makesticky', 'thread' => $this->getId() ) ) . '">' .
+				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'makesticky', 'thread' => $this->getId() ) ) ) . '">' .
 					wfMessage( 'wikiforum-make-sticky' )->text() . '</a> ';
 			}
 		}
@@ -723,7 +723,7 @@ class WFThread extends ContextSource {
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$editButtons .= '<a href="' . $specialPage->escapeFullURL( array( 'thread' => $this->getId(), 'quotethread' => $this->getId() ) ) . '#writereply">';
+		$editButtons .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'thread' => $this->getId(), 'quotethread' => $this->getId() ) ) ) . '#writereply">';
 		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
 		$editButtons .= '</a>';
 
@@ -733,20 +733,20 @@ class WFThread extends ContextSource {
 			$user->getId() == $this->getPostedById() ||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
-			$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'editthread', 'thread' => $this->getId() ) ) . '">';
+			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editthread', 'thread' => $this->getId() ) ) ) . '">';
 			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_edit.png" title="' . wfMessage( 'wikiforum-edit-thread' )->text() . '" />';
-			$editButtons .= '</a> <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'deletethread', 'thread' => $this->getId() ) ) . '">';
+			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deletethread', 'thread' => $this->getId() ) ) ) . '">';
 			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_delete.png" title="' . wfMessage( 'wikiforum-delete-thread' )->text() . '" />';
 			$editButtons .= '</a> ';
 
 			// Only moderators can lock and reopen threads
 			if ( $user->isAllowed( 'wikiforum-moderator' ) ) {
 				if ( !$this->isClosed() ) {
-					$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'closethread', 'thread' => $this->getId() ) ) . '">';
+					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'closethread', 'thread' => $this->getId() ) ) ) . '">';
 					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/lock_add.png" title="' . wfMessage( 'wikiforum-close-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				} else {
-					$editButtons .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'reopenthread', 'thread' => $this->getId() ) ) . '">';
+					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'reopenthread', 'thread' => $this->getId() ) ) ) . '">';
 					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/lock_open.png" title="' . wfMessage( 'wikiforum-reopen-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				}

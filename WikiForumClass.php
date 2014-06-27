@@ -62,7 +62,7 @@ class WikiForumClass {
 		// Forum admins are allowed to add new categories
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
-			$menuLink = $icon . '<a href="' . SpecialPage::getTitleFor( 'WikiForum' )->escapeFullURL( array( 'wfaction' => 'addcategory' ) ) . '">' .
+			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'addcategory' ) ) ) . '">' .
 				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
 			$output .= WikiForumGui::showHeaderRow( '', $menuLink );
 		}

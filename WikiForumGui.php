@@ -34,7 +34,7 @@ class WikiForumGui {
 	static function showSearchbox() {
 		global $wgExtensionAssetsPath;
 
-		$url = SpecialPage::getTitleFor( 'WikiForum' )->escapeFullURL( array( 'wfaction' => 'search' ) );
+		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'search' ) ) );
 
 		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
 
@@ -95,7 +95,7 @@ class WikiForumGui {
 				}
 
 				if ( $i != $page + 1 ) {
-					$output .= '<a href="' . $specialPage->escapeFullURL( $urlParams ) . '">' . $pageNumber . '</a>';
+					$output .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( $urlParams ) ) . '">' . $pageNumber . '</a>';
 				} else {
 					$output .= '[' . $pageNumber . ']';
 				}
@@ -235,7 +235,7 @@ class WikiForumGui {
 		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
 			$wgOut->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
-			$output = '<form name="frmMain" method="post" action="' . SpecialPage::getTitleFor( 'WikiForum' )->escapeFullURL( $params ) . '" id="writereply">
+			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
 			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
 				<tr>
 					<td>' . EditPage::getEditToolbar() . '</td>
