@@ -72,7 +72,7 @@
 	"wikiforum-error-double-post": "Ви уже додали цю відповідь!",
 	"wikiforum-error-thread-closed": "Наразі гілку закрито. Додання нових повідомлень неможливе тут.",
 	"wikiforum-error-title-already-exists": "Гілка з указаною назвою вже існує. Будь ласка, оберіть іншу.",
-	"wikiforum-error-readonly": "База даних маркована тільки для читання. Наразі ви не можете здійснити ніяких дій запису.",
+	"wikiforum-error-readonly": "База даних маркована тільки для читання. Наразі Ви не можете здійснити ніяких дій запису.",
 	"wikiforum-error-search-missing-query": "Необхідно подати вираз для пошуку !",
 	"wikiforum-error-search": "Помилка пошуку",
 	"wikiforum-error-delete": "Помилка при вилученні",
