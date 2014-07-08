@@ -215,7 +215,7 @@ class WFForum extends ContextSource {
 	function getURL() {
 		$page = SpecialPage::getTitleFor( 'WikiForum' );
 
-		return $page->escapeFullURL( array( 'forum' => $this->getId() ) );
+		return htmlspecialchars( $page->getFullURL( array( 'forum' => $this->getId() ) ) );
 	}
 
 	/**
@@ -274,17 +274,17 @@ class WFForum extends ContextSource {
 			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_edit.png" title="' . wfMessage( 'wikiforum-edit-forum' )->text() . '" />';
-			$link = ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'editforum', 'forum' => $this->getId() ) ) . '">' . $icon . '</a>';
+			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editforum', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_delete.png" title="' . wfMessage( 'wikiforum-delete-forum' )->text() . '" />';
-			$link .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'deleteforum', 'forum' => $this->getId() ) ) . '">' . $icon . '</a>';
+			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deleteforum', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
 			if ( $sort ) {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
-				$link .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'forumup', 'forum' => $this->getId() ) ) . '">' . $icon . '</a>';
+				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'forumup', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
-				$link .= ' <a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'forumdown', 'forum' => $this->getId() ) ) . '">' . $icon . '</a>';
+				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'forumdown', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 			}
 		}
 
@@ -400,7 +400,7 @@ class WFForum extends ContextSource {
 			$write_thread = '';
 		} else {
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_add.png" title="' . wfMessage( 'wikiforum-write-thread' )->text() . '" /> ';
-			$write_thread = $icon . '<a href="' . $specialPage->escapeFullURL( array( 'wfaction' => 'addthread', 'forum' => $this->getId() ) ) . '">' .
+			$write_thread = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'addthread', 'forum' => $this->getId() ) ) ) . '">' .
 					wfMessage( 'wikiforum-write-thread' ) . '</a>';
 		}
 
@@ -413,21 +413,21 @@ class WFForum extends ContextSource {
 		// @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=174
 		$output .= WikiForumGui::showMainHeader(
 			$this->getName() . ' <a href="' .
-			$specialPage->escapeFullURL( array( 'st' => 'thread', 'sd' => 'up', 'forum' => $this->getId() ) ) . '">' . $up .
+			htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'thread', 'sd' => 'up', 'forum' => $this->getId() ) ) ) . '">' . $up .
 			'</a><a href="' .
-			$specialPage->escapeFullURL( array( 'st' => 'thread', 'sd' => 'down', 'forum' => $this->getId() ) ) . '">' . $down . '</a>',
+			htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'thread', 'sd' => 'down', 'forum' => $this->getId() ) ) ) . '">' . $down . '</a>',
 
 			wfMessage( 'wikiforum-replies' )->text() . ' <br /><a href="' .
-			$specialPage->escapeFullURL( array( 'st' => 'answers', 'sd' => 'up', 'forum' => $this->getId() ) ) . '">' . $up .
-			'</a><a href="' . $specialPage->escapeFullURL( array( 'st' => 'answers', 'sd' => 'down', 'forum' => $this->getId() ) ) . '">' . $down . '</a>',
+			htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'answers', 'sd' => 'up', 'forum' => $this->getId() ) ) ) . '">' . $up .
+			'</a><a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'answers', 'sd' => 'down', 'forum' => $this->getId() ) ) ) . '">' . $down . '</a>',
 
 			wfMessage( 'wikiforum-views' )->text() . ' <br /><a href="' .
-			$specialPage->escapeFullURL( array( 'st' => 'calls', 'sd' => 'up', 'forum' => $this->getId() ) ) . '">' . $up . '</a><a href="' .
-			$specialPage->escapeFullURL( array( 'st' => 'calls', 'sd' => 'down', 'forum' => $this->getId() ) ) . '">' . $down . '</a>',
+			htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'calls', 'sd' => 'up', 'forum' => $this->getId() ) ) ) . '">' . $up . '</a><a href="' .
+			htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'calls', 'sd' => 'down', 'forum' => $this->getId() ) ) ) . '">' . $down . '</a>',
 
 			wfMessage( 'wikiforum-latest-reply' )->text() . ' <br /><a href="' .
-			$specialPage->escapeFullURL( array( 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ) ) . '">' . $up .
-			'</a><a href="' . $specialPage->escapeFullURL( array( 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ) ) . '">' . $down . '</a>'
+			htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ) ) ) . '">' . $up .
+			'</a><a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ) ) ) . '">' . $down . '</a>'
 		);
 
 		// sorting
@@ -647,7 +647,7 @@ class WFForum extends ContextSource {
 		$titlePlaceholder = str_replace( '"', '&quot;', $titlePlaceholder );
 		$titleValue = str_replace( '"', '&quot;', $titleValue );
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-		$url = $specialPage->escapeFullURL( $params );
+		$url = htmlspecialchars( $specialPage->getFullURL( $params ) );
 
 		$check = '';
 		if ( $announcement ) {
