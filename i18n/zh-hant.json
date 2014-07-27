@@ -3,7 +3,8 @@
 		"authors": [
 			"Liuxinyu970226",
 			"Tntchn",
-			"Yfdyh000"
+			"Yfdyh000",
+			"LNDDYL"
 		]
 	},
 	"wikiforum-desc": "MediaWiki的[[Special:WikiForum|論壇]]擴展",
@@ -18,7 +19,7 @@
 	"wikiforum-button-preview": "預覽",
 	"wikiforum-preview": "預覽",
 	"wikiforum-preview-with-title": "預覽：$1",
-	"wikiforum-save": "保存",
+	"wikiforum-save": "儲存",
 	"wikiforum-search-hits": "找到{{PLURAL:$1|一個結果|$1個結果}}",
 	"wikiforum-search-thread": "帖子：$1",
 	"wikiforum-thread-deleted": "帖子已刪除",
@@ -26,7 +27,7 @@
 	"wikiforum-updates": "有更新的論壇",
 	"wikiforum-write-thread": "新帖子",
 	"wikiforum-replies": "回復",
-	"wikiforum-views": "查看數",
+	"wikiforum-views": "檢視數",
 	"wikiforum-thread": "帖子",
 	"wikiforum-threads": "帖子",
 	"wikiforum-latest-reply": "最新回復",
@@ -44,7 +45,7 @@
 	"wikiforum-edit-reply": "編輯回復",
 	"wikiforum-delete-reply": "刪除回復",
 	"wikiforum-save-thread": "保存帖子",
-	"wikiforum-save-reply": "保存回復",
+	"wikiforum-save-reply": "儲存回復",
 	"wikiforum-thread-title": "您帖子的標題",
 	"wikiforum-no-threads": "目前沒有帖子可用。",
 	"wikiforum-posted": "{{GENDER:$3|$2}}發佈於$1",
@@ -65,7 +66,7 @@
 	"wikiforum-error-double-post": "雙擊保護：帖子已增加",
 	"wikiforum-error-thread-closed": "帖子已關閉。不能發表新回復。",
 	"wikiforum-error-search-missing-query": "必須提供關鍵字來進行搜索！",
-	"wikiforum-error-search": "搜索錯誤",
+	"wikiforum-error-search": "搜尋錯誤",
 	"wikiforum-error-delete": "刪除時出現錯誤",
 	"wikiforum-error-sticky": "置頂時出現錯誤",
 	"wikiforum-error-move-thread": "移動帖子時發生錯誤",
