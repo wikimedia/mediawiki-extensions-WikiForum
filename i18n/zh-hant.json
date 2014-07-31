@@ -65,7 +65,7 @@
 	"wikiforum-error-no-reply": "回復填寫不正確。",
 	"wikiforum-error-double-post": "雙擊保護：帖子已增加",
 	"wikiforum-error-thread-closed": "帖子已關閉。不能發表新回復。",
-	"wikiforum-error-search-missing-query": "必須提供關鍵字來進行搜索！",
+	"wikiforum-error-search-missing-query": "必須提供關鍵字來進行搜尋！",
 	"wikiforum-error-search": "搜尋錯誤",
 	"wikiforum-error-delete": "刪除時出現錯誤",
 	"wikiforum-error-sticky": "置頂時出現錯誤",
