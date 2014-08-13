@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Anakmalaysia"
+			"Anakmalaysia",
+			"Pizza1016"
 		]
 	},
 	"wikiforum-desc": "Sambungan [[Special:WikiForum|forum]] untuk MediaWiki",
@@ -85,9 +86,9 @@
 	"wikiforum-quote": "Petikan",
 	"right-wikiforum-admin": "Mewujudkan, menyunting dan menghapuskan kategori dan forum di [[Special:WikiForum|papan perbincangan]]",
 	"right-wikiforum-moderator": "Menyunting dan menghapuskan tred dan balasan di [[Special:WikiForum|papan perbincangan]]",
-	"group-forumadmin": "Pentadbir forum",
-	"group-forumadmin-member": "{{GENDER:$1|pentadbir forum}}",
-	"grouppage-forumadmin": "{{ns:project}}:Pentadbir forum",
+	"group-forumadmin": "Penyelia forum",
+	"group-forumadmin-member": "{{GENDER:$1|penyelia forum}}",
+	"grouppage-forumadmin": "{{ns:project}}:Penyelia forum",
 	"log-name-forum": "Log forum",
 	"log-description-forum": "Mengelogkan peristiwa-peristiwa [[Special:WikiForum|WikiForum]]",
 	"logentry-forum-add-category": "$1 telah {{GENDER:$2|mewujudkan}} kategori baru, iaitu [$4 $5]",
