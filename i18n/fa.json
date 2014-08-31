@@ -5,7 +5,8 @@
 			"Ebraminio",
 			"Mjbmr",
 			"Omidh",
-			"Reza1615"
+			"Reza1615",
+			"Alirezaaa"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|انجمن]]  برای مدیاویکی",
@@ -35,7 +36,7 @@
 	"wikiforum-latest-thread": "آخرین موضوع",
 	"wikiforum-forum": "تالار گفتگو: $1 > $2",
 	"wikiforum-overview": "نمایش کلی",
-	"wikiforum-pages": "صفحه‌ها:",
+	"wikiforum-pages": "صفحات:",
 	"wikiforum-thread-closed": "موضوع بسته‌شده",
 	"wikiforum-new-thread": "موضوع جدید",
 	"wikiforum-edit-thread": "ویرایش موضوع",
@@ -95,7 +96,7 @@
 	"log-name-forum": "ورود به محکمه",
 	"log-description-forum": "سیاهه‌ها [[Special:WikiForum|محکمهٔ ویکی]] حوادث",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|ایجاد شده}} یک گروه جدید, [$4 $5]",
-	"logentry-forum-add-forum": "$1 {{GENDER:$2|ایجاد}} یک محکمهٔ جدید, [$4 $5]",
-	"logentry-forum-add-thread": "$1 یک موضوع جدید {{GENDER:$2|ایجاد کرده}}،\n[[Special:WikiForum/$4|$4]]",
+	"logentry-forum-add-forum": "$1 یک انجمن تازه {{GENDER:$2|ایجاد کرد}}، [$4 $5]",
+	"logentry-forum-add-thread": "$1 یک موضوع تازه {{GENDER:$2|ایجاد کرده}}،\n[[Special:WikiForum/$4|$4]]",
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|پاسخ داده}} در موضوع [[Special:WikiForum/$4|$4]]"
 }
