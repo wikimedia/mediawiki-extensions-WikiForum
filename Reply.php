@@ -227,7 +227,7 @@ class WFReply extends ContextSource {
 			(
 				(
 					$user->getId() != $this->getPostedById() &&
-					$$this->getThread()->isClosed()
+					$this->getThread()->isClosed()
 				) ||
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
