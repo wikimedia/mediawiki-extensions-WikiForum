@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vadgt"
+			"Vadgt",
+			"Xelgen"
 		]
 	},
-	"wikiforum-search-thread": "Դերձան՝ $1",
-	"wikiforum-thread": "Դերձան",
+	"wikiforum-search-thread": "Թեմա՝ $1",
+	"wikiforum-thread": "Թեմա",
 	"wikiforum-threads": "Դերձաններ"
 }
