@@ -22,7 +22,7 @@
 	"wikiforum-preview": "Предварительный просмотр",
 	"wikiforum-preview-with-title": "Предварительный просмотр: $1",
 	"wikiforum-save": "Сохранить",
-	"wikiforum-search-hits": "Найдено {{PLURAL:$1|$1 соответствие|$1 соответствий|$1 соответствия}}",
+	"wikiforum-search-hits": "Найдено {{PLURAL:$1|$1 соответствие|$1 соответствия|$1 соответствий}}",
 	"wikiforum-search-thread": "Ветка: $1",
 	"wikiforum-thread-deleted": "ветка удалена",
 	"wikiforum-topic-name": "Форум - $1",
