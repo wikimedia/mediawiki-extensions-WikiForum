@@ -349,9 +349,9 @@ class WFThread extends ContextSource {
 			array(
 				"wff_reply_count = wff_reply_count - $replyCount",
 				'wff_thread_count = wff_thread_count - 1',
-				'wff_last_post_user' => $row['wft_last_post_user'],
-				'wff_last_post_user_ip' => $row['wft_last_post_user_ip'],
-				'wff_last_post_timestamp' => $row['wft_last_post_timestamp']
+				'wff_last_post_user' => $row->wft_last_post_user,
+				'wff_last_post_user_ip' => $row->wft_last_post_user_ip,
+				'wff_last_post_timestamp' => $row->wft_last_post_timestamp
 			),
 			array( 'wff_forum' => $this->getForum()->getId() ),
 			__METHOD__
