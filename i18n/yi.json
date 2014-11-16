@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"פוילישער"
 		]
 	},
 	"wikiforum-anonymous": "אַנאנים",
 	"wikiforum-name": "נאָמען:",
+	"wikiforum-button-preview": "פֿאראויסקוק",
 	"wikiforum-save": "אויפֿהיטן"
 }
