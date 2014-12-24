@@ -254,6 +254,7 @@ class WikiForumClass {
 
 		// add smilies for reply text
 		$text = WikiForumClass::prepareSmilies( $text );
+		$text = nl2br( $text ); // convert single line breaks into proper breaks
 		$text = $wgOut->parse( $text );
 		$text = WikiForumClass::parseLinks( $text );
 		$text = WikiForumClass::parseQuotes( $text );
