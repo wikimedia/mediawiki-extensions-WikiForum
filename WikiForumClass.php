@@ -172,7 +172,7 @@ class WikiForumClass {
 					User::makeGroupLinkHTML( 'sysop', User::getGroupMember( 'sysop', $username ) )
 				)->text();
 
-		} elseif ( in_array( 'forumadmin', $groups ) && !$isStaff ) {
+		} elseif ( in_array( 'forumadmin', $groups ) ) {
 			$groupText .= wfMessage( 'word-separator' )->plain() .
 				wfMessage(
 					'parentheses',
@@ -332,4 +332,33 @@ class WikiForumClass {
 		return $text;
 	}
 
+	/**
+	 * Should we require the user to pass a captcha?
+	 *
+	 * @return bool
+	 */
+	public static function useCaptcha() {
+		global $wgCaptchaClass, $wgCaptchaTriggers, $wgUser;
+		return $wgCaptchaClass &&
+			isset( $wgCaptchaTriggers['wikiforum'] ) &&
+			$wgCaptchaTriggers['wikiforum'] &&
+			!$wgUser->isAllowed( 'skipcaptcha' );
+	}
+
+	/**
+	 * Return the HTML for the captcha
+	 *
+	 * @return string
+	 */
+	public static function getCaptcha() {
+		wfSetupSession(); // NOTE: make sure we have a session. May be required for CAPTCHAs to work.
+		$output = wfMessage( "captcha-sendemail" )->parseAsBlock();
+
+		$captcha = ConfirmEditHooks::getInstance();
+		$captcha->trigger = 'wikiforum';
+		$captcha->action = 'post';
+		$output .= $captcha->getForm();
+
+		return $output;
+	}
 }

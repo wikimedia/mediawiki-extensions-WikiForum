@@ -5,6 +5,7 @@ class WFThread extends ContextSource {
 	private $data;
 	public $forum;
 	private $replies;
+	public $preloadText;
 
 	private function __construct( $sql ) {
 		$this->data = $sql;
@@ -322,7 +323,7 @@ class WFThread extends ContextSource {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$result = $dbw->delete(
+		$dbw->delete(
 			'wikiforum_threads',
 			array( 'wft_thread' => $this->getId() ),
 			__METHOD__
@@ -342,8 +343,7 @@ class WFThread extends ContextSource {
 			__METHOD__,
 			array( 'LIMIT' => 1 )
 		);
-		// Update the forum table so that the data shown on
-		// Special:WikiForum is up to date
+		// Update the forum table so that the data shown on Special:WikiForum is up to date
 		$dbw->update(
 			'wikiforum_forums',
 			array(
@@ -798,6 +798,24 @@ class WFThread extends ContextSource {
 			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
+		if ( WikiForumClass::useCaptcha() ) {
+			$captcha = ConfirmEditHooks::getInstance();
+			$captcha->trigger = 'wikiforum';
+			if ( !ConfirmEditHooks::getInstance()->passCaptcha() ) {
+				$output = WikiForumClass::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
+				$output .= WFThread::showGeneralEditor(
+					$title,
+					'',
+					$text,
+					array(
+						'wfaction' => 'savenewthread',
+						'forum' => $forum->getId()
+					)
+				);
+				return $output;
+			}
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 		$timestamp = wfTimestampNow();
 
@@ -961,6 +979,8 @@ class WFThread extends ContextSource {
 		} elseif ( $quoteThread ) {
 			$posted = $this->showPlainPostedInfo();
 			$textValue = '[quote=' . $posted . ']' . $this->getText() . '[/quote]';
+		} elseif ( $this->preloadText ) {
+			$textValue = $this->preloadText;
 		}
 
 		return WFReply::showGeneralEditor(

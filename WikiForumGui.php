@@ -75,7 +75,7 @@ class WikiForumGui {
 	 * @param $maxissues Integer: amount of replies, fetched from the DB
 	 * @param $limit Integer: limit; this is also used for the SQL query
 	 * @param $params array: URL params to be passed, should have a thread or forum number
-	 * @return HTML
+	 * @return string HTML
 	 */
 	static function showFooterRow( $page, $maxissues, $limit, $params ) {
 		$output = '';
@@ -242,8 +242,11 @@ class WikiForumGui {
 				</tr>
 				<tr>
 					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
-				</tr>
-				<tr>
+				</tr>';
+			if ( WikiForumClass::useCaptcha() ) {
+				$output .= '<tr><td>' . WikiForumClass::getCaptcha() . '</td></tr>';
+			}
+			$output .= '<tr>
 					<td>
 						<input type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />';
 			if ( $showCancel ) {

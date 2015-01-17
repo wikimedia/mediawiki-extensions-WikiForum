@@ -320,7 +320,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Add a reply with the text $text to the thread with ID = $threadId.
 	 *
-	 * @param WFThread $threadId: thread to reply to
+	 * @param WFThread $thread: thread to reply to
 	 * @param string $text: reply text
 	 * @return string: HTML of thread
 	 */
@@ -339,6 +339,17 @@ class WFReply extends ContextSource {
 
 		if ( $thread->isClosed() ) {
 			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-thread-closed' );
+		}
+
+		if ( WikiForumClass::useCaptcha() ) {
+			$captcha = ConfirmEditHooks::getInstance();
+			$captcha->trigger = 'wikiforum';
+			if ( !ConfirmEditHooks::getInstance()->passCaptcha() ) {
+				$output = WikiForumClass::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
+				$thread->preloadText = $text;
+				$output .= $thread->show();
+				return $output;
+			}
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );

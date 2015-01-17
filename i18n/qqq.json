@@ -115,5 +115,7 @@
 	"logentry-forum-add-thread": "Shown when the user $1 created a new thread, $4.\n\n{{logentry}}\nAdditional parameters:\n* $4 - thread title\n{{Related|Logentry-forum}}",
 	"logentry-forum-add-reply": "Shown when the user $1 replied on the thread $4.\n\n{{logentry}}\nAdditional parameters:\n* $4 - thread title\n{{Related|Logentry-forum}}",
 	"wikiforum-forum-preload": "Used as placeholder for title.\n\nSee also:\n* {{msg-mw|Wikiforum-category-preload}}",
-	"wikiforum-category-preload": "Used as placeholder for title.\n\nSee also:\n* {{msg-mw|Wikiforum-forum-preload}}"
+	"wikiforum-category-preload": "Used as placeholder for title.\n\nSee also:\n* {{msg-mw|Wikiforum-forum-preload}}",
+	"wikiforum-captcha": "Label for the CAPTCHA",
+	"wikiforum-error-captcha": "Error message shown when the CAPTCHA is failed."
 }

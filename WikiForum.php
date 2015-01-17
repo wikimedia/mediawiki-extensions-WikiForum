@@ -35,7 +35,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix', 'Adam Carter (UltrasonicNXT)' ),
-	'version' => '2.0.7',
+	'version' => '2.1.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
@@ -104,3 +104,6 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'WikiForumHooks::addTables';
 $wgAutoloadClasses['WikiForumLogFormatter'] = $dir . 'WikiForumLogFormatter.php';
 $wgLogTypes[] = 'forum';
 $wgLogActionsHandlers['forum/*'] = 'WikiForumLogFormatter';
+
+// ConfirmEdit/CAPTCHAs
+$wgCaptchaTriggers['wikiforum'] = true; // CAPTCHA on by default
