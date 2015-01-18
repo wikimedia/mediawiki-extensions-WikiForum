@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"David1010"
+			"David1010",
+			"MIKHEIL"
 		]
 	},
 	"wikiforum-desc": "მედიავიკის გაფართოებები [[Special:WikiForum|ფორუმისათვის]]",
@@ -70,5 +71,6 @@
 	"wikiforum-quote": "ციტირება",
 	"group-forumadmin": "ფორუმის ადმინისტრატორები",
 	"group-forumadmin-member": "{{GENDER:$1|ფორუმის ადმინისტრატორი}}",
-	"grouppage-forumadmin": "{{ns:project}}:ფორუმის ადმინისტრატორები"
+	"grouppage-forumadmin": "{{ns:project}}:ფორუმის ადმინისტრატორები",
+	"wikiforum-error-captcha": "შეცდომა - CAPTCHA არასწორია ან აკლია"
 }

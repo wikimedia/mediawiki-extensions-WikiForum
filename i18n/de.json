@@ -106,5 +106,7 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|antwortete}} auf den Thread [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Titel deines Forums",
 	"wikiforum-category-preload": "Titel deiner Kategorie",
-	"wikiforum-must-supply-thread": "Du musst eine Themenkennung angeben"
+	"wikiforum-must-supply-thread": "Du musst eine Themenkennung angeben",
+	"wikiforum-captcha": "Um das Wiki vor automatisiertem Spam zu schützen, bitten wir dich, die unten stehende einfache Frage zu lösen und die Antwort im Kasten zu beantworten ([[Special:Captcha/help|weitere Informationen]]):",
+	"wikiforum-error-captcha": "Fehler: Falsches oder fehlendes CAPTCHA"
 }
