@@ -110,5 +110,6 @@
 	"logentry-forum-add-reply": "$1{{GENDER:$2|已回复}}在线程上[[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "您的论坛标题",
 	"wikiforum-category-preload": "您的分类标题",
-	"wikiforum-must-supply-thread": "您必须提供一个帖子ID"
+	"wikiforum-must-supply-thread": "您必须提供一个帖子ID",
+	"wikiforum-error-captcha": "错误——不正确的或丢失验证码"
 }
