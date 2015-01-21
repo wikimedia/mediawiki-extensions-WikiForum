@@ -111,5 +111,6 @@
 	"wikiforum-forum-preload": "您的论坛标题",
 	"wikiforum-category-preload": "您的分类标题",
 	"wikiforum-must-supply-thread": "您必须提供一个帖子ID",
+	"wikiforum-captcha": "为保护本wiki免受自动垃圾程序的破坏，我们恳请你解决下面的简单问题，并将答案输入到框中（[[Special:Captcha/help|更多信息]]）：",
 	"wikiforum-error-captcha": "错误——不正确的或丢失验证码"
 }
