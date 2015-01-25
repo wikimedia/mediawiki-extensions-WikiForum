@@ -109,5 +109,7 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|svarade}} på tråden [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Titeln på ditt forum",
 	"wikiforum-category-preload": "Titeln på din kategori",
-	"wikiforum-must-supply-thread": "Du måste ange ett tråd-ID"
+	"wikiforum-must-supply-thread": "Du måste ange ett tråd-ID",
+	"wikiforum-captcha": "För att skydda wikin mot automatiserad spam ber vi dig att lösa den enkla frågan nedan och skriva svaret i fältet ([[Special:Captcha/help|mer information]]):",
+	"wikiforum-error-captcha": "Fel - ogiltig eller saknad CAPTCHA"
 }
