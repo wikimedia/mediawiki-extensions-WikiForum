@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toliño"
+			"Toliño",
+			"Elisardojm"
 		]
 	},
 	"wikiforum-desc": "Extensión de [[Special:WikiForum|foro]] para MediaWiki",
@@ -48,11 +49,11 @@
 	"wikiforum-posted": "Publicado por {{GENDER:$3|$2}} o $4 ás $5.",
 	"wikiforum-edited": "Editado por {{GENDER:$3|$2}} o $4 ás $5.",
 	"wikiforum-cat-not-found": "Non se atopou a categoría",
-	"wikiforum-cat-not-found-text": "A categoría non existe; volver a $1",
+	"wikiforum-cat-not-found-text": "A categoría non existe.",
 	"wikiforum-forum-not-found": "Non se atopou o foro",
-	"wikiforum-forum-not-found-text": "O foro non existe; volver a $1",
+	"wikiforum-forum-not-found-text": "O foro non existe.",
 	"wikiforum-thread-not-found": "Non se atopou o fío",
-	"wikiforum-thread-not-found-text": "O fío non existe ou foi borrado; volver a $1.",
+	"wikiforum-thread-not-found-text": "O fío non existe ou foi borrado.",
 	"wikiforum-error-thread-reopen": "Erro ao reabrir o fío",
 	"wikiforum-error-thread-close": "Erro ao pechar o fío",
 	"wikiforum-error-general": "Non se atopou o obxecto ou non ten os dereitos necesarios para levar a cabo esta acción.",
@@ -61,7 +62,7 @@
 	"wikiforum-error-no-text-or-title": "O título ou o texto non se encheu correctamente.",
 	"wikiforum-error-bad-title": "O título proporcionado contiña caracteres non válidos.",
 	"wikiforum-error-no-reply": "A resposta non se encheu correctamente.",
-	"wikiforum-error-double-post": "Erro de dobre publicación: Xa se engadiu o fío.",
+	"wikiforum-error-double-post": "Xa publicou esta resposta!",
 	"wikiforum-error-thread-closed": "O fío está pechado. Non é posible engadir unha nova resposta.",
 	"wikiforum-error-search-missing-query": "Cómpre achegar o termo para a procura!",
 	"wikiforum-error-search": "Erro de procura",
