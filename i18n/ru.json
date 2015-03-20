@@ -110,5 +110,7 @@
 	"logentry-forum-add-reply": "$1 ответил{{GENDER:$2||а}} в ветке [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Название вашего форума",
 	"wikiforum-category-preload": "Название категории",
-	"wikiforum-must-supply-thread": "Необходимо указать идентификатор ветки"
+	"wikiforum-must-supply-thread": "Необходимо указать идентификатор ветки",
+	"wikiforum-captcha": "В целях защиты вики-проекта от автоматического спама, пожалуйста, решите простой пример и введите ответ в текстовое поле ниже ([[Special:Captcha/help|подробнее]]):",
+	"wikiforum-error-captcha": "Ошибка: неправильная или пустая капча"
 }
