@@ -22,7 +22,7 @@
 	"wikiforum-preview": "Vista previa",
 	"wikiforum-preview-with-title": "Vista previa: $1",
 	"wikiforum-save": "Guardar",
-	"wikiforum-search-hits": "Encontrado {{PLURAL:$1|one hit|$1 hits}}",
+	"wikiforum-search-hits": "Se {{PLURAL:$1|encontró un resultado|encontraron $1 resultados}}",
 	"wikiforum-search-thread": "Hilo: $1",
 	"wikiforum-thread-deleted": "Hilo eliminado",
 	"wikiforum-topic-name": "Foro - $1",
