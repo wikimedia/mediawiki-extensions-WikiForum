@@ -790,6 +790,8 @@ class WFThread extends ContextSource {
 			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-title-already-exists' );
 		}
 
+		$title = trim( $title );
+
 		if ( preg_replace( '/[' . Title::legalChars() . ']/', '', $title ) ) { // removes all legal chars, then sees if string has length
 			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-bad-title' );
 		}

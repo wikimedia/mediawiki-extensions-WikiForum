@@ -35,7 +35,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix', 'Adam Carter (UltrasonicNXT)' ),
-	'version' => '2.1.1',
+	'version' => '2.1.2',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
