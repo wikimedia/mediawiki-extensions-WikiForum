@@ -105,5 +105,7 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|contestó}} nel filu [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Títulu del foru",
 	"wikiforum-category-preload": "Títulu de la categoría",
-	"wikiforum-must-supply-thread": "Tien de dar una ID de filu"
+	"wikiforum-must-supply-thread": "Tien de dar una ID de filu",
+	"wikiforum-captcha": "Pa protexer la wiki escontra la puxarra automática, pidímoste por favor que resuelvas la cenciella cuestión de más abaxo y qu'escribas la respuesta nel cuadru ([[Special:Captcha/help|más información]]):",
+	"wikiforum-error-captcha": "Error - CAPTCHA incorreutu o perdíu"
 }
