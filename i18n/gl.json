@@ -106,5 +106,8 @@
 	"logentry-forum-add-thread": "$1 {{GENDER:$2|creou}} un novo fío: [[Special:WikiForum/$4|$4]]",
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|respondeu}} no fío \"[[Special:WikiForum/$4|$4]]\"",
 	"wikiforum-forum-preload": "Título do seu foro",
-	"wikiforum-category-preload": "Título da súa categoría"
+	"wikiforum-category-preload": "Título da súa categoría",
+	"wikiforum-must-supply-thread": "Debe proporcionar un identificador de fío",
+	"wikiforum-captcha": "Para protexer o wiki contra o spam automático, resolva a pregunta sinxela que aparece a continuación e introduza a resposta na caixa ([[Special:Captcha/help|máis información]]):",
+	"wikiforum-error-captcha": "Erro - falta o CAPTCHA ou é incorrecto"
 }
