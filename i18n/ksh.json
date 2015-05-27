@@ -6,7 +6,7 @@
 	},
 	"wikiforum-desc": "Määd_e [[Special:WikiForum|Forum]] em Wiki müjjelesch.",
 	"wikiforum-anonymous": "Nameloßß",
-	"wikiforum-name": "Der Naame:",
+	"wikiforum-name": "Der Nahme:",
 	"wikiforum-button-preview": "{{int:preview}}",
 	"wikiforum-preview": "{{int:preview}}",
 	"wikiforum-preview-with-title": "{{int:preview}}: $1",
@@ -30,7 +30,7 @@
 	"wikiforum-no-threads": "Mer han kein {{int:Wikiforum-threads}} em Momang",
 	"wikiforum-add-category": "Saachjropp derbei donn",
 	"wikiforum-edit-category": "En Ssachjropp ändere",
-	"wikiforum-delete-category": "Donn di Saachjrupp fottnämme",
+	"wikiforum-delete-category": "Donn di Saachjropp fottschmiiße",
 	"wikiforum-sort-up": "Zoteer vun onge noh bovve",
 	"wikiforum-sort-down": "Zoteer vun bovve noh onge"
 }
