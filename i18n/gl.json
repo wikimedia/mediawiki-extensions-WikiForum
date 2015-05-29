@@ -67,6 +67,7 @@
 	"wikiforum-error-no-reply": "A resposta non se encheu correctamente.",
 	"wikiforum-error-double-post": "Xa publicou esta resposta!",
 	"wikiforum-error-thread-closed": "O fío está pechado. Non é posible engadir unha nova resposta.",
+	"wikiforum-error-title-already-exists": "Xa existe un fío co título indicado. Por favor escolla outro.",
 	"wikiforum-error-readonly": "A base de datos marcouse como só de lectura. Non pode relizar ningunha acción de escritura polo momento.",
 	"wikiforum-error-search-missing-query": "Cómpre achegar o termo para a procura!",
 	"wikiforum-error-search": "Erro de procura",
