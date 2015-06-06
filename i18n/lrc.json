@@ -4,5 +4,5 @@
 			"Mogoeilor"
 		]
 	},
-	"logentry-forum-add-category": "$1 {{جنس:$2|راست کرده}} یه گل دسه تازه, [$4 $5]"
+	"logentry-forum-add-category": "$1 {{GENDER:$2|راست کرده}} یه گل دسه تازه, [$4 $5]"
 }
