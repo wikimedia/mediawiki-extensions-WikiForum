@@ -32,5 +32,6 @@
 	"wikiforum-edit-category": "En Ssachjropp ändere",
 	"wikiforum-delete-category": "Donn di Saachjropp fottschmiiße",
 	"wikiforum-sort-up": "Zoteer vun onge noh bovve",
-	"wikiforum-sort-down": "Zoteer vun bovve noh onge"
+	"wikiforum-sort-down": "Zoteer vun bovve noh onge",
+	"wikiforum-error-captcha": "Fähler: Et <span style=\"text-transform:uppercase\" title=\"Jät zom Ennjävve, öm ze zeije, dadd ene Minsch vör em Kompjuhter sez\">Kaptscha</span> schtemmp nidd udd es jaa nit doh."
 }
