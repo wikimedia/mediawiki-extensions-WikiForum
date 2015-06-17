@@ -180,7 +180,7 @@ class WikiForumClass {
 				)->text();
 		}
 
-		wfRunHooks( 'WikiForumSig', array( &$groupText, $user ) );
+		Hooks::run( 'WikiForumSig', array( &$groupText, $user ) );
 
 		$retVal .= $groupText;
 
