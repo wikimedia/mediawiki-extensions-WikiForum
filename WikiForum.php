@@ -41,18 +41,17 @@ $wgExtensionCredits['other'][] = array(
 );
 
 // Set up i18n, the new special page etc.
-$dir = dirname( __FILE__ ) . '/';
 $wgMessagesDirs['WikiForum'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['WikiForum'] = $dir . 'WikiForum.i18n.php';
-$wgExtensionMessagesFiles['WikiForumAlias'] = $dir . 'WikiForum.alias.php';
-$wgAutoloadClasses['WikiForumHooks'] = $dir . 'WikiForumHooks.php';
-$wgAutoloadClasses['WikiForumGui'] = $dir . 'WikiForumGui.php';
-$wgAutoloadClasses['WikiForumClass'] = $dir . 'WikiForumClass.php';
-$wgAutoloadClasses['WikiForum'] = $dir . 'SpecialWikiForum.php';
-$wgAutoloadClasses['WFReply'] = $dir . 'Reply.php';
-$wgAutoloadClasses['WFThread'] = $dir . 'Thread.php';
-$wgAutoloadClasses['WFForum'] = $dir . 'Forum.php';
-$wgAutoloadClasses['WFCategory'] = $dir . 'Category.php';
+$wgExtensionMessagesFiles['WikiForum'] = __DIR__ . '/WikiForum.i18n.php';
+$wgExtensionMessagesFiles['WikiForumAlias'] = __DIR__ . '/WikiForum.alias.php';
+$wgAutoloadClasses['WikiForumHooks'] = __DIR__ . '/WikiForumHooks.php';
+$wgAutoloadClasses['WikiForumGui'] = __DIR__ . '/WikiForumGui.php';
+$wgAutoloadClasses['WikiForumClass'] = __DIR__ . '/WikiForumClass.php';
+$wgAutoloadClasses['WikiForum'] = __DIR__ . '/SpecialWikiForum.php';
+$wgAutoloadClasses['WFReply'] = __DIR__ . '/Reply.php';
+$wgAutoloadClasses['WFThread'] = __DIR__ . '/Thread.php';
+$wgAutoloadClasses['WFForum'] = __DIR__ . '/Forum.php';
+$wgAutoloadClasses['WFCategory'] = __DIR__ . '/Category.php';
 $wgSpecialPages['WikiForum'] = 'WikiForum';
 
 // New user rights for administrating and moderating the forum
@@ -92,7 +91,7 @@ $wgWikiForumLogInRC = true;
 // ResourceLoader support for MediaWiki 1.17+
 $wgResourceModules['ext.wikiForum'] = array(
 	'styles' => 'styles.css',
-	'localBasePath' => dirname( __FILE__ ),
+	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'WikiForum',
 );
 
@@ -101,7 +100,7 @@ $wgHooks['ParserFirstCallInit'][] = 'WikiForumHooks::registerParserHooks';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'WikiForumHooks::addTables';
 
 // Logging
-$wgAutoloadClasses['WikiForumLogFormatter'] = $dir . 'WikiForumLogFormatter.php';
+$wgAutoloadClasses['WikiForumLogFormatter'] = __DIR__ . '/WikiForumLogFormatter.php';
 $wgLogTypes[] = 'forum';
 $wgLogActionsHandlers['forum/*'] = 'WikiForumLogFormatter';
 
