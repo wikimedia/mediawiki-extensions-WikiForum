@@ -6,7 +6,8 @@
 			"Gomoko",
 			"Jack Phoenix <jack@countervandalism.net>",
 			"Linedwell",
-			"Verdy p"
+			"Verdy p",
+			"Urhixidur"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]] extension pour MediaWiki",
@@ -76,7 +77,7 @@
 	"wikiforum-error-search-missing-query": "Vous devez fournir un terme à rechercher !",
 	"wikiforum-error-search": "Erreur de recherche",
 	"wikiforum-error-delete": "Erreur lors de la suppression",
-	"wikiforum-error-sticky": "Erreur pendant la modification de l'attribut post-it",
+	"wikiforum-error-sticky": "Erreur pendant la modification de l’attribut notaucollant",
 	"wikiforum-error-move-thread": "Erreur pendant le déplacement du fil de discussion",
 	"wikiforum-error-add": "Erreur lors de l'ajout",
 	"wikiforum-error-edit": "Erreur lors de la modification",
