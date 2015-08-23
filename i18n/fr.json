@@ -7,7 +7,8 @@
 			"Jack Phoenix <jack@countervandalism.net>",
 			"Linedwell",
 			"Verdy p",
-			"Urhixidur"
+			"Urhixidur",
+			"Wladek92"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]] extension pour MediaWiki",
@@ -113,5 +114,7 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|a répondu}} sur la discussion [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Titre de votre forum",
 	"wikiforum-category-preload": "Titre de votre catégorie",
-	"wikiforum-must-supply-thread": "Vous devez fournir un ID de fil"
+	"wikiforum-must-supply-thread": "Vous devez fournir un ID de fil",
+	"wikiforum-captcha": "Afin de protéger le wiki contre le spam automatique, nous vous demandons de bien vouloir répondre à la question ci dessous en inscrivant le résultat dans le cadre ([[Special:Captcha/help|plus d'informations]]) :",
+	"wikiforum-error-captcha": "Erreur - CAPTCHA incorrect ou manquant"
 }
