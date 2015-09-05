@@ -232,13 +232,21 @@ class WikiForumGui {
 
 		$output = '';
 
+		if ( class_exists( 'WikiEditorHooks' ) ) {
+			$editPage = new EditPage( new Article( SpecialPage::getTitleFor( 'WikiForum' ) ) );
+			WikiEditorHooks::editPageShowEditFormInitial( $editPage, $wgOut );
+			$toolbar = '';
+		} else {
+			$toolbar = EditPage::getEditToolbar();
+		}
+
 		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
 			$wgOut->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
 			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
 			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
 				<tr>
-					<td>' . EditPage::getEditToolbar() . '</td>
+					<td>' . $toolbar . '</td>
 				</tr>
 				<tr>
 					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
