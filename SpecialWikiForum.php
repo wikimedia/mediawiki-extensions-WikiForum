@@ -147,7 +147,7 @@ class WikiForum extends SpecialPage {
 								break;
 
 							case 'addthread':
-								$output .= $forum->showNewThreadForm();
+								$output .= $forum->showNewThreadForm( '', '' );
 								break;
 							case 'savenewthread':
 								$output .= $forum->addThread( $title, $text );

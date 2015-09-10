@@ -685,11 +685,11 @@ class WFForum extends ContextSource {
 	 *
 	 * @return string: HTML the editor
 	 */
-	function showNewThreadForm() {
+	function showNewThreadForm( $preloadTitle, $preloadText ) {
 		return WFThread::showGeneralEditor(
-			'',
+			$preloadTitle,
 			wfMessage( 'wikiforum-thread-title' )->text(),
-			'',
+			$preloadText,
 			array(
 				'wfaction' => 'savenewthread',
 				'forum' => $this->getId()

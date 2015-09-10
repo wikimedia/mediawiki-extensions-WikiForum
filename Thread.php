@@ -783,7 +783,7 @@ class WFThread extends ContextSource {
 
 		if ( strlen( $text ) == 0 || strlen( $title ) == 0 ) { // show form again, return it
 			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
-			return $error . $forum->showNewThreadEditor();
+			return $error . $forum->showNewThreadForm( $title, $text );
 		}
 
 		if ( WFThread::titleExists( $title ) ) {
