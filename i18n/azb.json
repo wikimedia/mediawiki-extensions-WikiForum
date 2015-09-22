@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Ebrahimi-amir",
-			"Mousa"
+			"Mousa",
+			"Alp Er Tunqa"
 		]
 	},
 	"wikiforum-desc": "مئدیاویکی اوچون اؤزل [[Special:WikiForum|فوروم]] اوزانتی‌سی",
-	"wikiforum": "دانیشیق صحیفه‌سی",
+	"wikiforum": "دانیشیق صفحه‌سی",
 	"wikiforum-anonymous": "تانیلمایان",
 	"wikiforum-announcement-only-description": "بیلدیریلر فورومو (یالنیز ایداره‌چیلر قونو آرتیرا بیلرلر)",
 	"wikiforum-by": "$1<br />{{GENDER:$3|$2}} ایله",
