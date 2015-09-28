@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eitvys200"
+			"Eitvys200",
+			"Zygimantus"
 		]
 	},
 	"wikiforum": "Diskusijų lenta",
@@ -23,6 +24,8 @@
 	"wikiforum-threads": "Temos",
 	"wikiforum-latest-reply": "Paskutinis atsakymas",
 	"wikiforum-latest-thread": "Paskutinė tema",
+	"wikiforum-forum": "Forumas: $1 > $2",
+	"wikiforum-overview": "Apžvalga",
 	"wikiforum-pages": "Puslapiai:",
 	"wikiforum-thread-closed": "Tema uždaryta",
 	"wikiforum-new-thread": "Nauja tema",
@@ -37,18 +40,33 @@
 	"wikiforum-save-reply": "Išsaugoti atsakymą",
 	"wikiforum-thread-title": "Jūsų temos pavadinimas",
 	"wikiforum-cat-not-found": "Kategorija nerasta",
+	"wikiforum-cat-not-found-text": "Kategorija neegzistuoja.",
 	"wikiforum-forum-not-found": "Forumas nerastas",
+	"wikiforum-forum-not-found-text": "Forumas neegzistuoja.",
 	"wikiforum-thread-not-found": "Tema nerasta",
+	"wikiforum-reply-not-found": "Atsakymas nerastas",
+	"wikiforum-reply-not-found-text": "Atsakymo nėra.",
+	"wikiforum-error-no-rights": "Jūs neturite reikiamų teisių, kad galėtumėte atlikti šį veiksmą.",
 	"wikiforum-error-not-found": "Objektas nerastas.",
+	"wikiforum-error-double-post": "Jūs jau paskelbėte šį atsakymą!",
 	"wikiforum-error-search": "Paieškos klaida",
 	"wikiforum-error-delete": "Klaida trinant",
 	"wikiforum-error-move-thread": "Klaida perkeliant temą",
 	"wikiforum-error-add": "Klaida pridedant",
 	"wikiforum-error-edit": "Klaida redaguojant",
+	"wikiforum-error-write": "Klaida rašant",
+	"wikiforum-error-category": "Kategorijos klaida",
+	"wikiforum-error-forum": "Forumo klaida",
+	"wikiforum-error-thread": "Temos klaida",
 	"wikiforum-add-category": "Pridėti kategoriją",
 	"wikiforum-edit-category": "Redaguoti kategoriją",
 	"wikiforum-delete-category": "Ištrinti kategoriją",
 	"wikiforum-add-forum": "Pridėti forumą",
 	"wikiforum-edit-forum": "Redaguoti forumą",
-	"wikiforum-quote": "Citata"
+	"wikiforum-delete-forum": "Ištrinti forumą",
+	"wikiforum-sort-down": "rūšiuoti žemyn",
+	"wikiforum-move-thread": "Perkelti temą",
+	"wikiforum-paste-thread": "Įklijuoti temą",
+	"wikiforum-quote": "Citata",
+	"group-forumadmin": "Forumo administratoriai"
 }

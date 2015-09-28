@@ -3,7 +3,8 @@
 		"authors": [
 			"LFM",
 			"Priviet",
-			"아라"
+			"아라",
+			"Hwangjy9"
 		]
 	},
 	"wikiforum-desc": "미디어위키를 위한 [[Special:WikiForum|포럼]] 확장 기능",
@@ -50,11 +51,11 @@
 	"wikiforum-posted": "{{GENDER:$3|$2}} 사용자가 $4 $5에 게시함.",
 	"wikiforum-edited": "{{GENDER:$3|$2}} 사용자가 $4 $5에 편집함.",
 	"wikiforum-cat-not-found": "분류를 찾을 수 없습니다.",
-	"wikiforum-cat-not-found-text": "분류가 존재하지 않습니다. - $1로 돌아가세요",
+	"wikiforum-cat-not-found-text": "분류가 존재하지 않습니다.",
 	"wikiforum-forum-not-found": "포럼을 찾을 수 없습니다",
-	"wikiforum-forum-not-found-text": "포럼이 존재하지 않습니다. - $1로 돌아가세요",
+	"wikiforum-forum-not-found-text": "포럼이 존재하지 않습니다.",
 	"wikiforum-thread-not-found": "스레드를 찾을 수 없습니다",
-	"wikiforum-thread-not-found-text": "스레드가 존재하지 않거나 이미 삭제되었습니다. $1로 돌아갑니다.",
+	"wikiforum-thread-not-found-text": "스레드가 존재하지 않거나 삭제되었습니다.",
 	"wikiforum-error-thread-reopen": "스레드를 다시 여는 동안 오류가 났습니다",
 	"wikiforum-error-thread-close": "스레드를 닫는 동안 오류가 났습니다",
 	"wikiforum-error-general": "개체를 찾을 수 없거나 이 작업을 수행할 권한이 없습니다.",
@@ -63,7 +64,7 @@
 	"wikiforum-error-no-text-or-title": "제목이나 본문를 올바르게 채우지 않았습니다.",
 	"wikiforum-error-bad-title": "입력한 제목에 올바르지 않은 문자가 포함되어 있습니다.",
 	"wikiforum-error-no-reply": "답글의 내용을 올바르게 채우지 않았습니다.",
-	"wikiforum-error-double-post": "이중 클릭 방지: 스레드를 이미 추가했습니다.",
+	"wikiforum-error-double-post": "이 답장을 이미 올렸습니다!",
 	"wikiforum-error-thread-closed": "스레드가 현재 닫혔습니다. 여기에 새 답글을 추가할 수 없습니다.",
 	"wikiforum-error-search-missing-query": "검색어를 지정해야 합니다!",
 	"wikiforum-error-search": "검색 오류",
