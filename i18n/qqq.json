@@ -116,6 +116,7 @@
 	"logentry-forum-add-reply": "Shown when the user $1 replied on the thread $4.\n\n{{logentry}}\nAdditional parameters:\n* $4 - thread title\n{{Related|Logentry-forum}}",
 	"wikiforum-forum-preload": "Used as placeholder for title.\n\nSee also:\n* {{msg-mw|Wikiforum-category-preload}}",
 	"wikiforum-category-preload": "Used as placeholder for title.\n\nSee also:\n* {{msg-mw|Wikiforum-forum-preload}}",
+	"wikiforum-must-supply-thread": "Used as warning message when no thread ID was set for a WikiForum",
 	"wikiforum-captcha": "Label for the CAPTCHA",
 	"wikiforum-error-captcha": "Error message shown when the CAPTCHA is failed."
 }
