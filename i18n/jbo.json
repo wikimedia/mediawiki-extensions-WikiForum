@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gleki"
+			"Gleki",
+			"Xbony2"
 		]
 	},
 	"wikiforum-desc": "lo [[Special:WikiForum|nuncasnu]] ke se jmina tutci co me'oi MediaWiki",
@@ -44,11 +45,11 @@
 	"wikiforum-thread-title": "cmene lo pe do boxna",
 	"wikiforum-no-threads": "no lo boxna ca ka'e se pilno",
 	"wikiforum-cat-not-found": "lo klesi na se tolcri",
-	"wikiforum-cat-not-found-text": "lo klesi na zasti i ko muvdu la'oi $1",
+	"wikiforum-cat-not-found-text": "lo klesi na zasti",
 	"wikiforum-forum-not-found": "lo nu casnu na se tolcri",
-	"wikiforum-forum-not-found-text": "lo nu casnu na zasti i ko muvdu la'oi $1",
+	"wikiforum-forum-not-found-text": "lo nu casnu na zasti",
 	"wikiforum-thread-not-found": "lo boxna na se tolcri",
-	"wikiforum-thread-not-found-text": "lo boxna na zasti vau ja ba'o se vimcu i ko klama la'oi $1",
+	"wikiforum-thread-not-found-text": "lo boxna na zasti vau ja ba'o se vimcu",
 	"wikiforum-error-not-found": "lo dacti na se tolcri",
 	"wikiforum-error-search": "srera lo se sisku",
 	"wikiforum-error-add": "srera fau lo nu jmina",
