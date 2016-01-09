@@ -35,7 +35,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
 	'author' => array( 'Michael Chlebek', 'Jack Phoenix', 'Adam Carter (UltrasonicNXT)' ),
-	'version' => '2.2.2',
+	'version' => '2.2.3',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
 	'descriptionmsg' => 'wikiforum-desc'
 );
@@ -93,6 +93,7 @@ $wgResourceModules['ext.wikiForum'] = array(
 	'styles' => 'styles.css',
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'WikiForum',
+	'position' => 'top'
 );
 
 // Hooked functions
