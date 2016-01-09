@@ -252,7 +252,7 @@ class WikiForumGui {
 					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>';
 			if ( WikiForumClass::useCaptcha() ) {
-				$output .= '<tr><td>' . WikiForumClass::getCaptcha() . '</td></tr>';
+				$output .= '<tr><td>' . WikiForumClass::getCaptcha( $wgOut ) . '</td></tr>';
 			}
 			$output .= '<tr>
 					<td>

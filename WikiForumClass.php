@@ -348,14 +348,14 @@ class WikiForumClass {
 	 *
 	 * @return string
 	 */
-	public static function getCaptcha() {
+	public static function getCaptcha( $out ) {
 		wfSetupSession(); // NOTE: make sure we have a session. May be required for CAPTCHAs to work.
 		$output = wfMessage( "captcha-sendemail" )->parseAsBlock();
 
 		$captcha = ConfirmEditHooks::getInstance();
 		$captcha->trigger = 'wikiforum';
 		$captcha->action = 'post';
-		$output .= $captcha->getForm();
+		$output .= $captcha->getForm( $out );
 
 		return $output;
 	}
