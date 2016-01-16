@@ -40,7 +40,7 @@
 	"wikiforum-latest-thread": "Used as column header of forums list. This column indicates who/when created/edited the latest thread. See {{msg-mw|Wikiforum-by}}.",
 	"wikiforum-forum": "Parameters:\n* $1 is a reply count\n* $2 is a view count.",
 	"wikiforum-overview": "Link text to forum overview.\n{{Identical|Overview}}",
-	"wikiforum-pages": "Followed by pagination links, like [01] [02] etc.\n{{Identical|Page}}",
+	"wikiforum-pages": "Followed by pagination links, like [01] [02] etc. Parameters:\n* $1 is page number, for PLURAL support\n{{Identical|Page}}",
 	"wikiforum-thread-closed": "Used in closed thread which was closed by {{msg-mw|Wikiforum-close-thread}} feature.",
 	"wikiforum-new-thread": "Used as tooltip for \"NEW\" icon which indicates the thread is new.",
 	"wikiforum-edit-thread": "Used as tooltip for button.",

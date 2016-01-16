@@ -36,7 +36,7 @@
 	"wikiforum-latest-thread": "Latest thread",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-overview": "Overview",
-	"wikiforum-pages": "Pages:",
+	"wikiforum-pages": "{{PLURAL:$1|Page|Pages}}:",
 	"wikiforum-thread-closed": "Thread closed",
 	"wikiforum-new-thread": "New thread",
 	"wikiforum-edit-thread": "Edit thread",
