@@ -14,6 +14,10 @@ class WikiForum extends SpecialPage {
 		parent::__construct( 'WikiForum' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Show the special page
 	 *
