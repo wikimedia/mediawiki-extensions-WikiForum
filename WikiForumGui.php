@@ -82,9 +82,6 @@ class WikiForumGui {
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
 		if ( $maxissues / $limit > 1 ) {
-			$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
-				wfMessage( 'wikiforum-pages' )->text() . wfMessage( 'word-separator' )->plain();
-
 			for ( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
 				$urlParams = array_merge( array( 'page' => $i ), $params );
 
@@ -93,6 +90,11 @@ class WikiForumGui {
 				} else {
 					$pageNumber = $i;
 				}
+
+				$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
+				wfMessage( 'wikiforum-pages' )
+				->numParams( count( $pageNumber ) )->text() .
+				wfMessage( 'word-separator' )->plain();
 
 				if ( $i != $page + 1 ) {
 					$output .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( $urlParams ) ) . '">' . $pageNumber . '</a>';
