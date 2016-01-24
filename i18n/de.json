@@ -32,7 +32,7 @@
 	"wikiforum-latest-thread": "Neuestes Thema",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-overview": "Übersicht",
-	"wikiforum-pages": "Seiten:",
+	"wikiforum-pages": "{{PLURAL:$1|Seite|Seiten}}:",
 	"wikiforum-thread-closed": "Thema abgeschlossen",
 	"wikiforum-new-thread": "Neues Thema",
 	"wikiforum-edit-thread": "Thema bearbeiten",
