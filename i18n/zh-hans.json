@@ -36,7 +36,7 @@
 	"wikiforum-latest-thread": "最新帖子",
 	"wikiforum-forum": "版块：$1 > $2",
 	"wikiforum-overview": "概览",
-	"wikiforum-pages": "页面：",
+	"wikiforum-pages": "{{PLURAL:$1|页面}}：",
 	"wikiforum-thread-closed": "帖子已关闭",
 	"wikiforum-new-thread": "新帖子",
 	"wikiforum-edit-thread": "编辑帖子",

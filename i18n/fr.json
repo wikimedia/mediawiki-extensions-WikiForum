@@ -38,7 +38,7 @@
 	"wikiforum-latest-thread": "Dernier fil de discussion",
 	"wikiforum-forum": "Forum : $1 > $2",
 	"wikiforum-overview": "Vue d’ensemble",
-	"wikiforum-pages": "Pages :",
+	"wikiforum-pages": "{{PLURAL:$1|Page|Pages}} :",
 	"wikiforum-thread-closed": "Fil de discussion fermé",
 	"wikiforum-new-thread": "Nouveau fil de discussion",
 	"wikiforum-edit-thread": "Modifier le fil de discussion",

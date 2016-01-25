@@ -32,7 +32,7 @@
 	"wikiforum-latest-thread": "Último fío",
 	"wikiforum-forum": "Foro: $1 > $2",
 	"wikiforum-overview": "Vista xeral",
-	"wikiforum-pages": "Páxinas:",
+	"wikiforum-pages": "{{PLURAL:$1|Páxina|Páxinas}}:",
 	"wikiforum-thread-closed": "Fío pechado",
 	"wikiforum-new-thread": "Novo fío",
 	"wikiforum-edit-thread": "Editar o fío",

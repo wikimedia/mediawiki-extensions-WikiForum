@@ -27,7 +27,7 @@
 	"wikiforum-latest-thread": "Lescht Rubrik",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-overview": "Iwwersiicht",
-	"wikiforum-pages": "Säiten:",
+	"wikiforum-pages": "{{PLURAL:$1|Säit|Säiten}}:",
 	"wikiforum-thread-closed": "Rubrik zougemaach",
 	"wikiforum-new-thread": "Nei Rubrik",
 	"wikiforum-edit-thread": "Rubrik änneren",

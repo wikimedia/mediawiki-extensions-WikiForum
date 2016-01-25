@@ -36,7 +36,7 @@
 	"wikiforum-latest-thread": "Laatste onderwerp",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-overview": "Overzicht",
-	"wikiforum-pages": "Pagina's:",
+	"wikiforum-pages": "{{PLURAL:$1|Pagina|Pagina's}}:",
 	"wikiforum-thread-closed": "Onderwerp is gesloten",
 	"wikiforum-new-thread": "Nieuw onderwerp",
 	"wikiforum-edit-thread": "Onderwerp bewerken",
