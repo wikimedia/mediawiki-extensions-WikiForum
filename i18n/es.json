@@ -36,7 +36,7 @@
 	"wikiforum-latest-thread": "Último hilo",
 	"wikiforum-forum": "Foro: $1 > $2",
 	"wikiforum-overview": "Vista general",
-	"wikiforum-pages": "Páginas:",
+	"wikiforum-pages": "{{PLURAL:$1|Página|Páginas}}:",
 	"wikiforum-thread-closed": "Hilo cerrado",
 	"wikiforum-new-thread": "Hilo nuevo",
 	"wikiforum-edit-thread": "Editar hilo",

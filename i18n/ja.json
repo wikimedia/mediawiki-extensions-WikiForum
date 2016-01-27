@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Sujiniku"
 		]
 	},
 	"wikiforum-desc": "MediaWiki 用[[Special:WikiForum|フォーラム]]の拡張機能",
@@ -31,7 +32,7 @@
 	"wikiforum-latest-thread": "最新のスレッド",
 	"wikiforum-forum": "フォーラム: $1 > $2",
 	"wikiforum-overview": "概要",
-	"wikiforum-pages": "ページ:",
+	"wikiforum-pages": "{{PLURAL:$1|ページ}}:",
 	"wikiforum-thread-closed": "閉じられたスレッド",
 	"wikiforum-new-thread": "新しいスレッド",
 	"wikiforum-edit-thread": "スレッドを編集",

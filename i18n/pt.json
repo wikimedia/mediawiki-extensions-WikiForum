@@ -6,7 +6,8 @@
 			"Luckas",
 			"Malafaya",
 			"SandroHc",
-			"Nemo bis"
+			"Nemo bis",
+			"Vitorvicentevalente"
 		]
 	},
 	"wikiforum-desc": "Extensão para criar [[Special:WikiForum|fóruns]] no MediaWiki",
@@ -36,7 +37,7 @@
 	"wikiforum-latest-thread": "Tópico mais recente",
 	"wikiforum-forum": "Fórum: $1 > $2",
 	"wikiforum-overview": "Resumo",
-	"wikiforum-pages": "Páginas:",
+	"wikiforum-pages": "{{PLURAL:$1|Página|Páginas}}:",
 	"wikiforum-thread-closed": "Tópico encerrado",
 	"wikiforum-new-thread": "Tópico novo",
 	"wikiforum-edit-thread": "Editar tópico",
