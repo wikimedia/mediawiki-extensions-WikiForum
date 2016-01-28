@@ -36,7 +36,7 @@
 	"wikiforum-latest-thread": "Последняя ветка",
 	"wikiforum-forum": "Форум: $1 > $2",
 	"wikiforum-overview": "Обзор",
-	"wikiforum-pages": "Страниц:",
+	"wikiforum-pages": "{{PLURAL:$1|Страница|Страницы}}:",
 	"wikiforum-thread-closed": "Ветка закрыта",
 	"wikiforum-new-thread": "Новая ветка",
 	"wikiforum-edit-thread": "Редактировать ветку",

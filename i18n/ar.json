@@ -3,7 +3,8 @@
 		"authors": [
 			"Meno25",
 			"ترجمان05",
-			"روخو"
+			"روخو",
+			"Shbib Al-Subaie"
 		]
 	},
 	"wikiforum-anonymous": "مجهول",
@@ -25,7 +26,7 @@
 	"wikiforum-latest-thread": "آخر خيط",
 	"wikiforum-forum": "منتدى: $1 > $2",
 	"wikiforum-overview": "نظرة عامة",
-	"wikiforum-pages": "الصفحات:",
+	"wikiforum-pages": "{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}}",
 	"wikiforum-thread-closed": "الخيط تم غلقه",
 	"wikiforum-new-thread": "خيط جديد",
 	"wikiforum-edit-thread": "تعديل الخيط",
