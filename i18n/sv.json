@@ -33,7 +33,7 @@
 	"wikiforum-latest-thread": "Senaste tråden",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-overview": "Översikt",
-	"wikiforum-pages": "Sidor:",
+	"wikiforum-pages": "{{PLURAL:$1|Sida|Sidor}}:",
 	"wikiforum-thread-closed": "Tråden är stängd",
 	"wikiforum-new-thread": "Ny tråd",
 	"wikiforum-edit-thread": "Redigera tråd",
