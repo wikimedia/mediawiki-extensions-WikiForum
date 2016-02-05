@@ -16,7 +16,7 @@
 	"wikiforum-write-thread": "نوی سرليک",
 	"wikiforum-replies": "ځوابونه",
 	"wikiforum-views": "کتنې",
-	"wikiforum-pages": "مخونه:",
+	"wikiforum-pages": "{{PLURAL:$1|مخ|مخونه}}:",
 	"wikiforum-write-reply": "يو ځواب ليکل",
 	"wikiforum-edit-reply": "ځواب سمول",
 	"wikiforum-delete-reply": "ځواب ړنگول",
