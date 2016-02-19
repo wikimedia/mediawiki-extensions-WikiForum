@@ -6,7 +6,8 @@
 			"Base",
 			"Olvin",
 			"Ата",
-			"Тест"
+			"Тест",
+			"Piramidion"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Форумне]] розширення для MediaWiki",
@@ -36,7 +37,7 @@
 	"wikiforum-latest-thread": "Остання гілка",
 	"wikiforum-forum": "Форум: $1 > $2",
 	"wikiforum-overview": "Огляд",
-	"wikiforum-pages": "Сторінки:",
+	"wikiforum-pages": "{{PLURAL:$1|Сторінка|Сторінки}}:",
 	"wikiforum-thread-closed": "Гілку закрито",
 	"wikiforum-new-thread": "Нова гілка",
 	"wikiforum-edit-thread": "Редагувати гілку",
@@ -112,5 +113,7 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|відповів}} у гілці [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Назва вашого форуму",
 	"wikiforum-category-preload": "Назва вашої категорії",
-	"wikiforum-must-supply-thread": "Необхідно вказати ID гілки."
+	"wikiforum-must-supply-thread": "Необхідно вказати ID гілки.",
+	"wikiforum-captcha": "Аби захистити вікі від автоматизованого спаму, ми просимо Вас відповісти на просте запитання внизу та вписати відповідь у текстове поле ([[Special:Captcha/help|детальніше]]):",
+	"wikiforum-error-captcha": "Помилка — неправильна або відсутня капча"
 }
