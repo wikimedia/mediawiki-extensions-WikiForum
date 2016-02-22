@@ -29,7 +29,7 @@
 	"wikiforum-latest-thread": "Darrièr fial de discussion",
 	"wikiforum-forum": "Forum : $1 > $2",
 	"wikiforum-overview": "Vista d'ensemble",
-	"wikiforum-pages": "$2 {{PLURAL:$1|pagina|paginas}} :",
+	"wikiforum-pages": "{{PLURAL:$1|pagina|paginas}} :",
 	"wikiforum-thread-closed": "Fial de discussion tampat",
 	"wikiforum-new-thread": "Fial de discussion novèl",
 	"wikiforum-edit-thread": "Modificar lo fial de discussion",
