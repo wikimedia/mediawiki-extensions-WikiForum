@@ -34,10 +34,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'WikiForum',
-	'author' => array( 'Michael Chlebek', 'Jack Phoenix', 'Adam Carter (UltrasonicNXT)' ),
+	'author' => array(
+		'Michael Chlebek',
+		'Jack Phoenix',
+		'Adam Carter (UltrasonicNXT)'
+	),
 	'version' => '2.2.3',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:WikiForum',
-	'descriptionmsg' => 'wikiforum-desc'
+	'descriptionmsg' => 'wikiforum-desc',
+	'license-name' => 'GPL-3.0+'
 );
 
 // Set up i18n, the new special page etc.
