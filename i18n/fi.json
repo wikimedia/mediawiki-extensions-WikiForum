@@ -6,7 +6,8 @@
 			"Pxos",
 			"Stryn",
 			"Nike",
-			"Jack Phoenix"
+			"Jack Phoenix",
+			"01miki10"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Foorumilaajennus]] MediaWikille.",
@@ -36,7 +37,7 @@
 	"wikiforum-latest-thread": "Viimeisin aihe",
 	"wikiforum-forum": "Foorumi: $1 > $2",
 	"wikiforum-overview": "Yleiskatsaus",
-	"wikiforum-pages": "Sivuja:",
+	"wikiforum-pages": "{{PLURAL:$1|Sivu|Sivuja}}:",
 	"wikiforum-thread-closed": "Aihe suljettu",
 	"wikiforum-new-thread": "Uusi aihe",
 	"wikiforum-edit-thread": "Muokkaa aihetta",
@@ -100,6 +101,8 @@
 	"group-forumadmin": "Foorumin ylläpitäjät",
 	"group-forumadmin-member": "{{GENDER:$1|foorumin ylläpitäjä}}",
 	"grouppage-forumadmin": "{{ns:project}}:Foorumin ylläpitäjät",
+	"group-forumadmin.css": "/* Tämän sivun CSS vaikuttaa vain foorumin ylläpitäjiin */",
+	"group-forumadmin.js": "/* Tämän sivun JavaScript vaikuttaa vain foorumin ylläpitäjiin */",
 	"log-name-forum": "Foorumiloki",
 	"log-description-forum": "Loki [[Special:WikiForum|WikiForumin]] tapahtumista",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|loi}} uuden luokan, [$4 $5]",
