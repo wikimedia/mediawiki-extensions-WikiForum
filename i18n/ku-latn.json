@@ -6,7 +6,9 @@
 	},
 	"wikiforum-description": "Danasîn:",
 	"wikiforum-name": "Nav",
+	"wikiforum-save": "Tomar bike",
 	"wikiforum-pages": "{{PLURAL:$1|Rûpel}}",
 	"wikiforum-cat-not-found": "Kategorî nehate dîtin",
+	"wikiforum-cat-not-found-text": "Kategorî tune ye.",
 	"wikiforum-edit-category": "Kategoriyê biguherîne"
 }
