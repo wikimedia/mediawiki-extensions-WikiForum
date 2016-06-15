@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"חיים",
-			"Amire80"
+			"Amire80",
+			"Guycn2"
 		]
 	},
 	"wikiforum-anonymous": "אנונימי",
@@ -24,5 +25,7 @@
 	"wikiforum-make-sticky": "הפוך לדביק",
 	"wikiforum-move-thread": "העברת שרשור",
 	"wikiforum-paste-thread": "הדבק שירשור",
-	"wikiforum-quote": "ציטוט"
+	"wikiforum-quote": "ציטוט",
+	"right-wikiforum-admin": "הוספה, עריכה ומחיקה של קטגוריות ופורומים ב[[Special:WikiForum|לוח הדיונים]]",
+	"right-wikiforum-moderator": "עריכה ומחיקה של שרשורים ותגובות ב[[Special:WikiForum|לוח הדיונים]]"
 }
