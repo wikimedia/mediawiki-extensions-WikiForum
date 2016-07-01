@@ -31,7 +31,7 @@
 	"wikiforum-latest-thread": "Последна тема",
 	"wikiforum-forum": "Форум: $1 > $2",
 	"wikiforum-overview": "Резиме",
-	"wikiforum-pages": "Страници:",
+	"wikiforum-pages": "{{PLURAL:$1|Страница|Страници}}:",
 	"wikiforum-thread-closed": "Темата е затворена",
 	"wikiforum-new-thread": "Нова тема",
 	"wikiforum-edit-thread": "Уреди нишка",
