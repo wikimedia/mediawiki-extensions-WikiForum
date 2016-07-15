@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
-			"Luckas"
+			"Luckas",
+			"Pikne"
 		]
 	},
 	"wikiforum-description": "Kirjeldus:",
@@ -14,7 +15,7 @@
 	"wikiforum-views": "Vaatamisi",
 	"wikiforum-latest-reply": "Viimane vastus",
 	"wikiforum-overview": "Ülevaade",
-	"wikiforum-pages": "Lehekülgi:",
+	"wikiforum-pages": "{{PLURAL:$1|Lehekülg|Leheküljed}}:",
 	"wikiforum-write-reply": "Kirjuta vastus",
 	"wikiforum-edit-reply": "Muuda vastust",
 	"wikiforum-delete-reply": "Kustuta vastus",
