@@ -86,7 +86,7 @@
 	"wikiforum-sort-down": "아래로",
 	"wikiforum-remove-sticky": "고정 제거",
 	"wikiforum-make-sticky": "고정 만들기",
-	"wikiforum-move-thread": "스레드 옮기기",
+	"wikiforum-move-thread": "스레드 이동",
 	"wikiforum-paste-thread": "스레드 붙여넣기",
 	"wikiforum-quote": "인용",
 	"right-wikiforum-admin": "[[Special:WikiForum|토론 게시판]]의 분류와 포럼을 추가, 편집 및 삭제",
@@ -98,8 +98,8 @@
 	"group-forumadmin.js": "/* 이 자바스크립트 설정은 포럼 관리자에만 적용됩니다 */",
 	"log-name-forum": "포럼 기록",
 	"log-description-forum": "로그 [[Special:WikiForum|위키포럼]] 이벤트",
-	"logentry-forum-add-category": "$1 사용자가 새 분류, [$4 $5] 문서를 {{GENDER:$2|만들었습니다}}",
+	"logentry-forum-add-category": "$1님이 새 분류인, [$4 $5]을(를) {{GENDER:$2|만들었습니다}}",
 	"logentry-forum-add-forum": "$1 사용자 새 포럼, [$4 $5] 문서를 {{GENDER:$2|만들었습니다}}",
-	"logentry-forum-add-thread": "$1 사용자가 새 스레드 [[Special:WikiForum/$4|$4]] 문서를 {{GENDER:$2|만들었습니다}}",
-	"logentry-forum-add-reply": "$1 사용자가 [[Special:WikiForum/$4|$4]] 스레드에 {{GENDER:$2|답변을 남겼습니다}}"
+	"logentry-forum-add-thread": "$1님이 새 스레드인, [[Special:WikiForum/$4|$4]]을(를) {{GENDER:$2|만들었습니다}}",
+	"logentry-forum-add-reply": "$1님이 [[Special:WikiForum/$4|$4]] 스레드에 {{GENDER:$2|답변을 남겼습니다}}"
 }
