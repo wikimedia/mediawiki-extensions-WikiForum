@@ -353,9 +353,15 @@ class WikiForumClass {
 		$output = wfMessage( "captcha-sendemail" )->parseAsBlock();
 
 		$captcha = ConfirmEditHooks::getInstance();
-		$captcha->trigger = 'wikiforum';
-		$captcha->action = 'post';
-		$output .= $captcha->getForm( $out );
+		$captcha->setTrigger( 'wikiforum' );
+		$captcha->setAction( 'post' );
+
+		$formInformation = $captcha->getFormInformation();
+		$formMetainfo = $formInformation;
+		unset( $formMetainfo['html'] );
+		$captcha->addFormInformationToOutput( $out, $formMetainfo );
+
+		$output .= $formInformation['html'];
 
 		return $output;
 	}
