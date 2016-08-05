@@ -802,8 +802,8 @@ class WFThread extends ContextSource {
 
 		if ( WikiForumClass::useCaptcha() ) {
 			$captcha = ConfirmEditHooks::getInstance();
-			$captcha->trigger = 'wikiforum';
-			if ( !ConfirmEditHooks::getInstance()->passCaptcha() ) {
+			$captcha->setTrigger( 'wikiforum' );
+			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
 				$output = WikiForumClass::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
 				$output .= WFThread::showGeneralEditor(
 					$title,
