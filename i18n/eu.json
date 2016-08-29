@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Sator"
 		]
 	},
 	"wikiforum-anonymous": "Anonimoa",
@@ -11,6 +12,6 @@
 	"wikiforum-preview": "Aurrebista",
 	"wikiforum-save": "Gorde",
 	"wikiforum-overview": "Ikuspegi orokorra",
-	"wikiforum-pages": "Orrialdeak:",
+	"wikiforum-pages": "{{PLURAL:$1|Orrialdea|Orrialdeak}}:",
 	"wikiforum-quote": "Aipu"
 }
