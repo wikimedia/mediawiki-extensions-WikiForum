@@ -38,6 +38,7 @@
 	"wikiforum-overview": "Overview",
 	"wikiforum-pages": "{{PLURAL:$1|Page|Pages}}:",
 	"wikiforum-thread-closed": "Thread closed",
+	"wikiforum-sticky": "Sticky thread",
 	"wikiforum-new-thread": "New thread",
 	"wikiforum-edit-thread": "Edit thread",
 	"wikiforum-delete-thread": "Delete thread",
