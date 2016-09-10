@@ -1,0 +1,88 @@
+{
+	"name": "WikiForum",
+	"version": "2.2.3",
+	"author": [
+		"Michael Chlebek",
+		"Jack Phoenix",
+		"Adam Carter (UltrasonicNXT)"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:WikiForum",
+	"descriptionmsg": "wikiforum-desc",
+	"license-name": "GPL-3.0+",
+	"type": "other",
+	"GroupPermissions": {
+		"forumadmin": {
+			"wikiforum-admin": true,
+			"wikiforum-moderator": true
+		},
+		"sysop": {
+			"wikiforum-admin": true,
+			"wikiforum-moderator": true
+		}
+	},
+	"AddGroups": {
+		"bureaucrat": [
+			"forumadmin"
+		]
+	},
+	"RemoveGroups": {
+		"bureaucrat": [
+			"forumadmin"
+		]
+	},
+	"AvailableRights": [
+		"wikiforum-admin",
+		"wikiforum-moderator"
+	],
+	"SpecialPages": {
+		"WikiForum": "WikiForum"
+	},
+	"LogTypes": [
+		"forum"
+	],
+	"LogActionsHandlers": {
+		"forum/*": "WikiForumLogFormatter"
+	},
+	"MessagesDirs": {
+		"WikiForum": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"WikiForumAlias": "WikiForum.alias.php"
+	},
+	"AutoloadClasses": {
+		"WikiForumHooks": "WikiForumHooks.php",
+		"WikiForumGui": "WikiForumGui.php",
+		"WikiForumClass": "WikiForumClass.php",
+		"WikiForum": "SpecialWikiForum.php",
+		"WFReply": "Reply.php",
+		"WFThread": "Thread.php",
+		"WFForum": "Forum.php",
+		"WFCategory": "Category.php",
+		"WikiForumLogFormatter": "WikiForumLogFormatter.php"
+	},
+	"ResourceModules": {
+		"ext.wikiForum": {
+			"styles": "styles.css",
+			"position": "top"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "WikiForum"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "WikiForumHooks::registerParserHooks",
+		"LoadExtensionSchemaUpdates": "WikiForumHooks::addTables"
+	},
+	"config": {
+		"WikiForumAllowAnonymous": true,
+		"WikiForumSmilies": [],
+		"WikiForumLogInRC": true,
+		"CaptchaTriggers": {
+			"wikiforum": true
+		}
+	},
+	"manifest_version": 1
+}
