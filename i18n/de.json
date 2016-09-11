@@ -34,6 +34,7 @@
 	"wikiforum-overview": "Übersicht",
 	"wikiforum-pages": "{{PLURAL:$1|Seite|Seiten}}:",
 	"wikiforum-thread-closed": "Thema abgeschlossen",
+	"wikiforum-sticky": "Angehefteter Thread",
 	"wikiforum-new-thread": "Neues Thema",
 	"wikiforum-edit-thread": "Thema bearbeiten",
 	"wikiforum-delete-thread": "Thema löschen",

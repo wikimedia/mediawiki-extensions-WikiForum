@@ -33,6 +33,7 @@
 	"wikiforum-overview": "Резиме",
 	"wikiforum-pages": "{{PLURAL:$1|Страница|Страници}}:",
 	"wikiforum-thread-closed": "Темата е затворена",
+	"wikiforum-sticky": "Леплива нишка",
 	"wikiforum-new-thread": "Нова тема",
 	"wikiforum-edit-thread": "Уреди нишка",
 	"wikiforum-delete-thread": "Избриши тема",

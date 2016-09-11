@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Papuass"
+			"Papuass",
+			"Bbot22"
 		]
 	},
+	"wikiforum-sticky": "Izceltā tēma",
 	"wikiforum-forum-not-found-text": "Forums neeksistē",
 	"wikiforum-error-double-post": "Jūs jau esat ievietojis šo atbildi!"
 }
