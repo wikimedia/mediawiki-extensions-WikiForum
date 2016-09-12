@@ -38,6 +38,7 @@
 	"wikiforum-overview": "概览",
 	"wikiforum-pages": "{{PLURAL:$1|页面}}：",
 	"wikiforum-thread-closed": "帖子已关闭",
+	"wikiforum-sticky": "粘贴的帖子",
 	"wikiforum-new-thread": "新帖子",
 	"wikiforum-edit-thread": "编辑帖子",
 	"wikiforum-delete-thread": "删除帖子",
