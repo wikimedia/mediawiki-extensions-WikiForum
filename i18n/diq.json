@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Erdemaslancan",
-			"Mirzali"
+			"Mirzali",
+			"Asmen"
 		]
 	},
 	"wikiforum-anonymous": "Bêname",
@@ -16,7 +17,7 @@
 	"wikiforum-save": "Qeyd ke",
 	"wikiforum-thread": "Mewzu",
 	"wikiforum-forum": "Forum: $1 > $2",
-	"wikiforum-pages": "Peli:",
+	"wikiforum-pages": "{{PLURAL:$1|Pele|Peli}}:",
 	"wikiforum-quote": "Groteko",
 	"group-forumadmin-member": "{{GENDER:$1|adminê forumi}}",
 	"grouppage-forumadmin": "{{ns:project}}:İdarekarê forumi"
