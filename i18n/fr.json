@@ -40,6 +40,7 @@
 	"wikiforum-overview": "Vue d’ensemble",
 	"wikiforum-pages": "{{PLURAL:$1|Page|Pages}} :",
 	"wikiforum-thread-closed": "Fil de discussion fermé",
+	"wikiforum-sticky": "Fil épinglé",
 	"wikiforum-new-thread": "Nouveau fil de discussion",
 	"wikiforum-edit-thread": "Modifier le fil de discussion",
 	"wikiforum-delete-thread": "Supprimer le fil de discussion",
