@@ -65,7 +65,7 @@
 	"wikiforum-error-thread-close": "关闭帖子时发生错误",
 	"wikiforum-error-general-title": "找不到对象或没有权限执行此操作",
 	"wikiforum-error-general": "找不到对象或无权限执行该动作。",
-	"wikiforum-error-no-rights": "你没有权限执行该动作。",
+	"wikiforum-error-no-rights": "您没有权限执行该动作。",
 	"wikiforum-error-not-found": "找不到对象。",
 	"wikiforum-error-no-text-or-title": "标题或文本填写不正确",
 	"wikiforum-error-bad-title": "提供的标题包含非法字符。",
