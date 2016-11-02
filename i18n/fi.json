@@ -7,7 +7,8 @@
 			"Stryn",
 			"Nike",
 			"Jack Phoenix",
-			"01miki10"
+			"01miki10",
+			"Pyscowicz"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Foorumilaajennus]] MediaWikille.",
@@ -39,6 +40,7 @@
 	"wikiforum-overview": "Yleiskatsaus",
 	"wikiforum-pages": "{{PLURAL:$1|Sivu|Sivuja}}:",
 	"wikiforum-thread-closed": "Aihe suljettu",
+	"wikiforum-sticky": "Nahkea viestiketju",
 	"wikiforum-new-thread": "Uusi aihe",
 	"wikiforum-edit-thread": "Muokkaa aihetta",
 	"wikiforum-delete-thread": "Poista aihe",
