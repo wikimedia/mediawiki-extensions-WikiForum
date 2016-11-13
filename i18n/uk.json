@@ -39,6 +39,7 @@
 	"wikiforum-overview": "Огляд",
 	"wikiforum-pages": "{{PLURAL:$1|Сторінка|Сторінки}}:",
 	"wikiforum-thread-closed": "Гілку закрито",
+	"wikiforum-sticky": "Приклеєна гілка",
 	"wikiforum-new-thread": "Нова гілка",
 	"wikiforum-edit-thread": "Редагувати гілку",
 	"wikiforum-delete-thread": "Вилучити гілку",
