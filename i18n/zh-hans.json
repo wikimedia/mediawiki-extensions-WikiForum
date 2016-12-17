@@ -104,6 +104,7 @@
 	"group-forumadmin-member": "{{GENDER:$1|论坛管理员}}",
 	"grouppage-forumadmin": "{{ns:project}}:论坛管理员",
 	"group-forumadmin.css": "/* 这里放置的CSS将只影响论坛管理员 */",
+	"group-forumadmin.js": "/* 这里放置的JS将只影响论坛管理员 */",
 	"log-name-forum": "论坛日志",
 	"log-description-forum": "[[Special:WikiForum|WikiForum]]的事件日志",
 	"logentry-forum-add-category": "$1{{GENDER:$2|已创建}}一个新分类目录，[$4 $5]",

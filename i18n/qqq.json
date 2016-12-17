@@ -42,6 +42,7 @@
 	"wikiforum-overview": "Link text to forum overview.\n{{Identical|Overview}}",
 	"wikiforum-pages": "Followed by pagination links, like [01] [02] etc. Parameters:\n* $1 is page number, for PLURAL support\n{{Identical|Page}}",
 	"wikiforum-thread-closed": "Used in closed thread which was closed by {{msg-mw|Wikiforum-close-thread}} feature.",
+	"wikiforum-sticky": "Used as image title",
 	"wikiforum-new-thread": "Used as tooltip for \"NEW\" icon which indicates the thread is new.",
 	"wikiforum-edit-thread": "Used as tooltip for button.",
 	"wikiforum-delete-thread": "Used as tooltip for button.",
