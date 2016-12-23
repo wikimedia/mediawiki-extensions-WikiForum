@@ -37,6 +37,7 @@ class WikiForum extends SpecialPage {
 
 		// Add CSS
 		$out->addModuleStyles( 'ext.wikiForum' );
+		$out->addModules( 'mediawiki.page.gallery' ); // needed to show galleries correctly. Should be a better way of doing this so it's only loaded if there is a gallery, but I can't find it.
 
 		$output = '';
 
