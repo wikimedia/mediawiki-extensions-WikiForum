@@ -3,7 +3,8 @@
 		"authors": [
 			"Minisarm",
 			"Saturnian",
-			"Reception123"
+			"Reception123",
+			"Strainu"
 		]
 	},
 	"wikiforum-desc": "Extensie [[Special:WikiForum|Forum]] pentru MediaWiki",
@@ -33,7 +34,7 @@
 	"wikiforum-latest-thread": "Cel mai recent fir",
 	"wikiforum-forum": "Forum : $1 > $2",
 	"wikiforum-overview": "Informații generale",
-	"wikiforum-pages": "Pagini:",
+	"wikiforum-pages": "{{PLURAL:$1|Pagină|Pagini}}",
 	"wikiforum-thread-closed": "Fir închis",
 	"wikiforum-new-thread": "Fir nou",
 	"wikiforum-edit-thread": "Modifică fir",
@@ -47,7 +48,7 @@
 	"wikiforum-save-reply": "Salvează răspuns",
 	"wikiforum-thread-title": "Titlul firului dumneavoastră",
 	"wikiforum-no-threads": "Nici un fir nu este disponibil în acest moment.",
-	"wikiforum-posted": "Publicat la  $1 de $2",
+	"wikiforum-posted": "Publicat la $5 de {{GENDER:$3|$2}} pe $4",
 	"wikiforum-edited": "Modificat de {{GENDER:$3|$2}} la $1.",
 	"wikiforum-cat-not-found": "Categorie negăsită",
 	"wikiforum-cat-not-found-text": "Categoria nu există.",
