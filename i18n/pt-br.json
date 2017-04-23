@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Luckas",
-			"Luckas Blade"
+			"Luckas Blade",
+			"Felipe L. Ewald"
 		]
 	},
 	"wikiforum-anonymous": "Anônimo",
@@ -20,7 +21,7 @@
 	"wikiforum-latest-reply": "Última resposta",
 	"wikiforum-forum": "Fórum: $1 > $2",
 	"wikiforum-overview": "Visão geral",
-	"wikiforum-pages": "Páginas:",
+	"wikiforum-pages": "{{PLURAL:$1|Página|Páginas}}:",
 	"wikiforum-write-reply": "Escrever uma resposta",
 	"wikiforum-edit-reply": "Editar resposta",
 	"wikiforum-delete-reply": "Apagar resposta",
