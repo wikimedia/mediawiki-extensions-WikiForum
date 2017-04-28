@@ -4,14 +4,15 @@
 			"EugeneZelenko",
 			"Jim-by",
 			"Renessaince",
-			"Wizardist"
+			"Wizardist",
+			"Red Winged Duck"
 		]
 	},
 	"wikiforum-desc": "Пашырэньне [[Special:WikiForum|форуму]] для MediaWiki",
 	"wikiforum": "Дошка абмеркаваньняў",
 	"wikiforum-anonymous": "Ананім",
 	"wikiforum-announcement-only-description": "Форум аб’яваў (толькі мадэратары могуць дадаваць галіны)",
-	"wikiforum-by": "$1<br />ад $2",
+	"wikiforum-by": "$4 у $5<br />{{GENDER:$3|$2}}",
 	"wikiforum-description": "Апісаньне:",
 	"wikiforum-forum-is-empty": "Гэты форум у цяперашні момант часу пусты.\nКалі ласка, скантактуйцеся з адміністратарам форуму, каб дадаць катэгорыі і форумы.",
 	"wikiforum-forum-name": "Форум $1",
