@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"පසිඳු කාවින්ද",
-			"Sator"
+			"Sator",
+			"Subi"
 		]
 	},
 	"wikiforum-anonymous": "Anonimoa",
@@ -11,6 +12,9 @@
 	"wikiforum-button-preview": "Aurrebista",
 	"wikiforum-preview": "Aurrebista",
 	"wikiforum-save": "Gorde",
+	"wikiforum-write-thread": "Gai berria",
+	"wikiforum-replies": "Erantzunak",
+	"wikiforum-views": "Ikustaldiak",
 	"wikiforum-overview": "Ikuspegi orokorra",
 	"wikiforum-pages": "{{PLURAL:$1|Orrialdea|Orrialdeak}}:",
 	"wikiforum-quote": "Aipu"
