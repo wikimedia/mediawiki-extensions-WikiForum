@@ -6,7 +6,8 @@
 			"Kaganer",
 			"Okras",
 			"Ole Yves",
-			"Meshkov.a"
+			"Meshkov.a",
+			"Facenapalm"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Форумное]] расширение для MediaWiki",
@@ -38,6 +39,7 @@
 	"wikiforum-overview": "Обзор",
 	"wikiforum-pages": "{{PLURAL:$1|Страница|Страницы}}:",
 	"wikiforum-thread-closed": "Ветка закрыта",
+	"wikiforum-sticky": "Прикреплённая ветка",
 	"wikiforum-new-thread": "Новая ветка",
 	"wikiforum-edit-thread": "Редактировать ветку",
 	"wikiforum-delete-thread": "Удалить ветку",
