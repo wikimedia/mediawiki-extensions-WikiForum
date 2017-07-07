@@ -36,7 +36,7 @@ class WikiForumGui {
 
 		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'search' ) ) );
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
+		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
 
 		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $url . '">' .
 			'<div id="mw-wikiforum-searchbox-border">' . $icon .

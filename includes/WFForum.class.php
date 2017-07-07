@@ -226,7 +226,7 @@ class WFForum extends ContextSource {
 	function showLink() {
 		global $wgExtensionAssetsPath;
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder.png" title="' . wfMessage( 'wikiforum-forum-name', $this->getName() )->text() . '" /> ';
+		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/folder.png" title="' . wfMessage( 'wikiforum-forum-name', $this->getName() )->text() . '" /> ';
 		return $icon . $this->showPlainLink();
 	}
 
@@ -273,17 +273,17 @@ class WFForum extends ContextSource {
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_edit.png" title="' . wfMessage( 'wikiforum-edit-forum' )->text() . '" />';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/folder_edit.png" title="' . wfMessage( 'wikiforum-edit-forum' )->text() . '" />';
 			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editforum', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_delete.png" title="' . wfMessage( 'wikiforum-delete-forum' )->text() . '" />';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/folder_delete.png" title="' . wfMessage( 'wikiforum-delete-forum' )->text() . '" />';
 			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deleteforum', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
 			if ( $sort ) {
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'forumup', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'forumdown', 'forum' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 			}
 		}
@@ -392,14 +392,14 @@ class WFForum extends ContextSource {
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$up = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/bullet_arrow_up.png" alt="" />';
-		$down = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/bullet_arrow_down.png" alt="" />';
+		$up = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/bullet_arrow_up.png" alt="" />';
+		$down = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/bullet_arrow_down.png" alt="" />';
 
 		// Non-moderators cannot post in an announcement-only forum
 		if ( $this->isAnnouncement() && !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
 			$write_thread = '';
 		} else {
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/note_add.png" title="' . wfMessage( 'wikiforum-write-thread' )->text() . '" /> ';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/note_add.png" title="' . wfMessage( 'wikiforum-write-thread' )->text() . '" /> ';
 			$write_thread = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'addthread', 'forum' => $this->getId() ) ) ) . '">' .
 					wfMessage( 'wikiforum-write-thread' ) . '</a>';
 		}

@@ -1,6 +1,6 @@
 {
 	"name": "WikiForum",
-	"version": "2.2.4",
+	"version": "2.3.0",
 	"author": [
 		"Michael Chlebek",
 		"Jack Phoenix",
@@ -49,22 +49,22 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"WikiForumAlias": "WikiForum.alias.php"
+		"WikiForumAlias": "includes/WikiForum.alias.php"
 	},
 	"AutoloadClasses": {
-		"WikiForumHooks": "WikiForumHooks.php",
-		"WikiForumGui": "WikiForumGui.php",
-		"WikiForumClass": "WikiForumClass.php",
-		"WikiForum": "SpecialWikiForum.php",
-		"WFReply": "Reply.php",
-		"WFThread": "Thread.php",
-		"WFForum": "Forum.php",
-		"WFCategory": "Category.php",
-		"WikiForumLogFormatter": "WikiForumLogFormatter.php"
+		"WikiForumHooks": "includes/WikiForum.hooks.php",
+		"WikiForumGui": "includes/WikiForumGui.class.php",
+		"WikiForumClass": "includes/WikiForum.class.php",
+		"WikiForum": "includes/specials/SpecialWikiForum.php",
+		"WFReply": "includes/WFReply.class.php",
+		"WFThread": "includes/WFThread.class.php",
+		"WFForum": "includes/WFForum.class.php",
+		"WFCategory": "includes/WFCategory.class.php",
+		"WikiForumLogFormatter": "includes/WikiForumLogFormatter.class.php"
 	},
 	"ResourceModules": {
 		"ext.wikiForum": {
-			"styles": "styles.css",
+			"styles": "resources/css/styles.css",
 			"position": "top"
 		}
 	},

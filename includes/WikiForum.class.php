@@ -20,7 +20,7 @@ class WikiForumClass {
 		$errorTitle = wfMessage( $errorTitleMsg )->text();
 		$errorMessage = wfMessage( $errorMessageMsg )->text();
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/' . $errorIcon . '" /> ';
+		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/' . $errorIcon . '" /> ';
 
 		$output	= '<br /><table class="mw-wikiforum-frame"><tr><td>' . $icon . $errorTitle . '<p class="mw-wikiforum-descr">' . $errorMessage . '</p></td></tr></table>';
 
@@ -61,7 +61,7 @@ class WikiForumClass {
 
 		// Forum admins are allowed to add new categories
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
 			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'addcategory' ) ) ) . '">' .
 				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
 			$output .= WikiForumGui::showHeaderRow( '', $menuLink );
