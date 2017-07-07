@@ -536,7 +536,7 @@ class WFThread extends ContextSource {
 
 		$olderTimestamp = wfTimestamp( TS_MW, strtotime( '-' . $dayDefinitionNew . ' days' ) );
 
-		$imagePath = $wgExtensionAssetsPath . '/WikiForum/icons';
+		$imagePath = $wgExtensionAssetsPath . '/WikiForum/resources/images';
 		if ( $this->isSticky() ) {
 			return '<img src="' . $imagePath . '/tag_blue.png" title="' . wfMessage( 'wikiforum-sticky' )->text() . '" /> ';
 		} elseif ( $this->isClosed() ) {

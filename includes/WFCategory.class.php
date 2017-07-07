@@ -140,7 +140,7 @@ class WFCategory extends ContextSource {
 	function showAddForumLink() {
 		global $wgExtensionAssetsPath;
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/folder_add.png" title="' . wfMessage( 'wikiforum-add-forum' )->text() . '" /> ';
+		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/folder_add.png" title="' . wfMessage( 'wikiforum-add-forum' )->text() . '" /> ';
 		return $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'addforum', 'category' => $this->getId() ) ) ) . '">' .
 			wfMessage( 'wikiforum-add-forum' )->text() . '</a>';
 	}
@@ -161,17 +161,17 @@ class WFCategory extends ContextSource {
 
 			// For grep: wikiforum-edit-forum, wikiforum-edit-category,
 			// wikiforum-delete-forum, wikiforum-delete-category
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/database_edit.png" title="' . wfMessage( 'wikiforum-edit-category' )->text() . '" />';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_edit.png" title="' . wfMessage( 'wikiforum-edit-category' )->text() . '" />';
 			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editcategory', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/database_delete.png" title="' . wfMessage( 'wikiforum-delete-category' )->text() . '" />';
+			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_delete.png" title="' . wfMessage( 'wikiforum-delete-category' )->text() . '" />';
 			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deletecategory', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
 			if ( $sort ) {
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'categoryup', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/icons/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
+				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'categorydown', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
 			}
 		}
