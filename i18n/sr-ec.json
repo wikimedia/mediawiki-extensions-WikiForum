@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Милан Јелисавчић"
+		]
+	},
+	"wikiforum-description": "Опис:",
+	"wikiforum-name": "Назив:",
+	"wikiforum-button-preview": "Преглед",
+	"wikiforum-preview": "Преглед",
+	"wikiforum-preview-with-title": "Преглед: $1",
+	"wikiforum-save": "Сачувај",
+	"wikiforum-write-thread": "Нова тема",
+	"wikiforum-views": "Прегледи",
+	"wikiforum-quote": "Цитат"
+}
