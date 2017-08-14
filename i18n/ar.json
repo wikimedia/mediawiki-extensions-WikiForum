@@ -4,11 +4,12 @@
 			"Meno25",
 			"ترجمان05",
 			"روخو",
-			"Shbib Al-Subaie"
+			"Shbib Al-Subaie",
+			"ديفيد"
 		]
 	},
 	"wikiforum-anonymous": "مجهول",
-	"wikiforum-by": "$1<br />بواسطة $2",
+	"wikiforum-by": "في $4 في $5<br />بواسطة {{GENDER:$3|$2}}",
 	"wikiforum-description": "الوصف:",
 	"wikiforum-forum-name": "منتدى $1",
 	"wikiforum-name": "الاسم:",
@@ -39,7 +40,7 @@
 	"wikiforum-save-thread": "حفظ الخيط",
 	"wikiforum-save-reply": "حفظ الرد",
 	"wikiforum-thread-title": "عنوان خيطك",
-	"wikiforum-cat-not-found-text": "تصنيف غير موجود -- العودة إلى $1",
+	"wikiforum-cat-not-found-text": "التصنيف غير موجود",
 	"wikiforum-thread-not-found": "لم يتم العثور على النقاش",
 	"wikiforum-error-no-rights": "ليس لديك الحق في تنفيذ هذا الإجراء.",
 	"wikiforum-error-not-found": "كائن غير موجود.",
