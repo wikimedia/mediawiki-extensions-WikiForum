@@ -76,12 +76,12 @@
 		"ParserFirstCallInit": "WikiForumHooks::registerParserHooks",
 		"LoadExtensionSchemaUpdates": "WikiForumHooks::addTables"
 	},
+	"CaptchaTriggers": {
+		"wikiforum": true
+	},
 	"config": {
 		"WikiForumAllowAnonymous": true,
-		"WikiForumLogInRC": true,
-		"CaptchaTriggers": {
-			"wikiforum": true
-		}
+		"WikiForumLogInRC": true
 	},
 	"manifest_version": 1
 }
