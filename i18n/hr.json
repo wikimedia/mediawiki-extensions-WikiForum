@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bugoslav"
+		]
+	},
+	"logentry-forum-add-thread": "$1 {{GENDER:$2|stvorio je|stvorila je}} novu temu, [[Special:WikiForum/$4|$4]]"
+}
