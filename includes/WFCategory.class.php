@@ -16,7 +16,7 @@ class WFCategory extends ContextSource {
 	 * @return WFCategory|boolean: the category, or false on failure
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_category',
@@ -49,7 +49,7 @@ class WFCategory extends ContextSource {
 	 * @return WFCategory|boolean: WFCategory the category, or false on failure
 	 */
 	public static function newFromName( $title ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_category',
@@ -90,7 +90,7 @@ class WFCategory extends ContextSource {
 	 */
 	function getForums() {
 		if ( !$this->forums ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$sqlForums = $dbr->select(
 				'wikiforum_forums',
@@ -326,7 +326,7 @@ class WFCategory extends ContextSource {
 			return $error . $this->show();
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$sqlData = $dbr->select(
 			'wikiforum_category',
@@ -386,7 +386,7 @@ class WFCategory extends ContextSource {
 			return $error . WFCategory::showAddForm();
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$sortkey = $dbr->selectRow(
 			'wikiforum_category',
 			'MAX(wfc_sortkey) AS the_key',

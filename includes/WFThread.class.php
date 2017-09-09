@@ -18,7 +18,7 @@ class WFThread extends ContextSource {
 	 * @return WFThread
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_threads',
@@ -55,7 +55,7 @@ class WFThread extends ContextSource {
 		// use friggin' underscores...
 		$titleText = str_replace( '_', ' ', $titleText );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$data = $dbr->selectRow(
 			'wikiforum_threads',
 			'*',
@@ -272,7 +272,7 @@ class WFThread extends ContextSource {
 	 */
 	function getReplies() {
 		if ( !$this->replies ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$sqlReplies = $dbr->select(
 				'wikiforum_replies',
@@ -618,7 +618,7 @@ class WFThread extends ContextSource {
 		$output .= $this->showFooter();
 
 		if ( $maxPerPage > 0 ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$countReplies = $dbr->selectRow(
 				'wikiforum_replies',
 				'COUNT(*) AS count',

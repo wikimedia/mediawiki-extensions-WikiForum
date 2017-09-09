@@ -17,7 +17,7 @@ class WFForum extends ContextSource {
 	 * @return WFForum
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_forums',
@@ -50,7 +50,7 @@ class WFForum extends ContextSource {
 	 * @return WFForum|boolean: the forum, or false on failure
 	 */
 	public static function newFromName( $title ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_forums',
@@ -167,7 +167,7 @@ class WFForum extends ContextSource {
 	 */
 	function getThreads( $orderBy = '' ) {
 		if ( !$this->threads ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$sqlThreads = $dbr->select(
 				'wikiforum_threads',
@@ -322,7 +322,7 @@ class WFForum extends ContextSource {
 			return $error . $this->showEditForm();
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		if (
 			$this->getName() != $forumName ||
@@ -388,7 +388,7 @@ class WFForum extends ContextSource {
 		$request = $this->getRequest();
 
 		$output = '';
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
@@ -506,7 +506,7 @@ class WFForum extends ContextSource {
 	 */
 	private function sort( $direction_up ) {
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 
 			$sqlData = $dbr->select( // select all forums in the same category as this
 				'wikiforum_forums',
@@ -570,7 +570,7 @@ class WFForum extends ContextSource {
 			return $error . $category->show();
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$sortKey = $dbr->selectRow(
 			'wikiforum_forums',

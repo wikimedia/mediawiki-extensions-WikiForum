@@ -29,7 +29,7 @@ class WikiForumHooks {
 			$args['num'] = 5;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$sqlThreads = $dbr->select(
 			array( 'wikiforum_threads' ),
 			array( '*' ),

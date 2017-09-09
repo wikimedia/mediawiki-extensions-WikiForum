@@ -16,7 +16,7 @@ class WFReply extends ContextSource {
 	 * @return WFReply
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_replies',
@@ -39,7 +39,7 @@ class WFReply extends ContextSource {
 	 * @return WFReply
 	 */
 	public static function newFromText( $text ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_replies',
@@ -352,7 +352,7 @@ class WFReply extends ContextSource {
 			}
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$doublepost = $dbr->selectRow(
 			'wikiforum_replies',
 			'wfr_reply_id',
