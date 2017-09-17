@@ -1,6 +1,6 @@
 {
 	"name": "WikiForum",
-	"version": "2.3.1",
+	"version": "2.4.0",
 	"author": [
 		"Michael Chlebek",
 		"Jack Phoenix",
@@ -78,7 +78,6 @@
 	},
 	"config": {
 		"WikiForumAllowAnonymous": true,
-		"WikiForumSmilies": [],
 		"WikiForumLogInRC": true,
 		"CaptchaTriggers": {
 			"wikiforum": true

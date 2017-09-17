@@ -1,6 +1,6 @@
 <?php
 /**
- * Helper class for WikiForum extension, for showing the overview, parsing smileys, etc
+ * Helper class for WikiForum extension, for showing the overview, parsing special text, etc
  *
  * @file
  * @ingroup Extensions
@@ -204,59 +204,12 @@ class WikiForumClass {
 		return $avatar;
 	}
 
-	/**
-	 * "Prepare" smilies by wrapping them in <nowiki>.
-	 *
-	 * @param $text String: text to search for smilies
-	 * @return $text String: input text with smilies wrapped inside <nowiki>
-	 */
-	static function prepareSmilies( $text ) {
-		global $wgWikiForumSmilies;
-
-		if ( is_array( $wgWikiForumSmilies ) ) {
-			foreach ( $wgWikiForumSmilies as $key => $icon ) {
-				$text = str_replace( $key, "<nowiki>$key</nowiki>", $text );
-			}
-		}
-		return $text;
-	}
-
-	static function getSmilies( $text ) {
-		global $wgExtensionAssetsPath;
-		global $wgWikiForumSmilies;
-
-		// damn unclear code => need a better preg_replace patter to simplify
-		if ( is_array( $wgWikiForumSmilies ) && !empty( $wgWikiForumSmilies ) ) {
-			$path = $wgExtensionAssetsPath . '/WikiForum';
-			foreach ( $wgWikiForumSmilies as $key => $icon ) {
-				$text = str_replace(
-					$key,
-					'<img src="' . $path . '/' . $icon . '" title="' . $key . '"/>',
-					$text
-				);
-				$text = str_replace(
-					'&lt;nowiki&gt;<img src="' .  $path . '/' . $icon . '" title="' . $key . '"/>&lt;/nowiki&gt;',
-					$key,
-					$text
-				);
-				$text = preg_replace(
-					'/\&lt;nowiki\&gt;(.+)\&lt;\/nowiki\&gt;/iUs',
-					'\1',
-					$text
-				);
-			}
-		}
-		return $text;
-	}
-
 	static function parseIt( $text ) {
 		global $wgOut;
 
-		$text = WikiForumClass::prepareSmilies( $text ); // add smilies for reply text
 		$text = $wgOut->parse( $text );
 		$text = WikiForumClass::parseLinks( $text );
 		$text = WikiForumClass::parseQuotes( $text );
-		$text = WikiForumClass::getSmilies( $text );
 
 		return $text;
 	}
