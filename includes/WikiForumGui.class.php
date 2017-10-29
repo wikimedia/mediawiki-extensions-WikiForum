@@ -234,7 +234,7 @@ class WikiForumGui {
 
 		$output = '';
 
-		if ( class_exists( 'WikiEditorHooks' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiEditor' ) ) {
 			$editPage = new EditPage( new Article( SpecialPage::getTitleFor( 'WikiForum' ) ) );
 			WikiEditorHooks::editPageShowEditFormInitial( $editPage, $wgOut );
 			$toolbar = '';
