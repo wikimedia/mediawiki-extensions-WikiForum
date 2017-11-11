@@ -1,5 +1,5 @@
 -- SQL schema for WikiForum extension
--- Rewritten by Jack Phoenix <jack@countervandalism> in December 2010
+-- Rewritten by Jack Phoenix in December 2010
 -- the "formerly" comments refer to the names that Michael Chlebek, the
 -- original author of WikiForum, called those columns
 --
@@ -8,7 +8,7 @@
 --
 -- This schema should be SQLite-friendly, too.
 -- I followed this commit by Mark when making the changes:
--- http://www.mediawiki.org/wiki/Special:Code/MediaWiki/77272
+-- https://www.mediawiki.org/wiki/Special:Code/MediaWiki/77272
 
 CREATE TABLE IF NOT EXISTS /*_*/wikiforum_category (
 	wfc_category int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT, -- formerly: pkCategory
