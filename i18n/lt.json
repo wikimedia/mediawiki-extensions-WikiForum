@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Eitvys200",
-			"Zygimantus"
+			"Zygimantus",
+			"Manvydasz"
 		]
 	},
 	"wikiforum": "Diskusijų lenta",
@@ -27,7 +28,7 @@
 	"wikiforum-latest-thread": "Paskutinė tema",
 	"wikiforum-forum": "Forumas: $1 > $2",
 	"wikiforum-overview": "Apžvalga",
-	"wikiforum-pages": "Puslapiai:",
+	"wikiforum-pages": "{{PLURAL:$1|puslapis|puslapiai|puslapių}}",
 	"wikiforum-thread-closed": "Tema uždaryta",
 	"wikiforum-new-thread": "Nauja tema",
 	"wikiforum-edit-thread": "Redaguoti temą",
