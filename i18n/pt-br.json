@@ -3,11 +3,12 @@
 		"authors": [
 			"Luckas",
 			"Luckas Blade",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"wikiforum-anonymous": "Anônimo",
-	"wikiforum-by": "$1<br />por {{GENDER:$3|$2}}",
+	"wikiforum-by": "A $4 às $5<br />por {{GENDER:$3|$2}}",
 	"wikiforum-description": "Descrição:",
 	"wikiforum-forum-name": "Fórum $1",
 	"wikiforum-name": "Nome:",
