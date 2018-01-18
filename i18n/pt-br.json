@@ -7,12 +7,21 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
+	"wikiforum-desc": "Extensão para criar [[Special:WikiForum|fóruns]] no MediaWiki",
+	"wikiforum": "Fórum de conversação",
 	"wikiforum-anonymous": "Anônimo",
+	"wikiforum-announcement-only-description": "Fórum de anúncios (só os moderadores podem adicionar tópicos)",
 	"wikiforum-by": "A $4 às $5<br />por {{GENDER:$3|$2}}",
 	"wikiforum-description": "Descrição:",
+	"wikiforum-forum-is-empty": "Este fórum está vazio.\nContacte um administrador para adicionar fóruns ou categorias.",
 	"wikiforum-forum-name": "Fórum $1",
 	"wikiforum-name": "Nome:",
+	"wikiforum-button-preview": "Pré-visualizar",
+	"wikiforum-preview": "Pré-visualizar",
+	"wikiforum-preview-with-title": "Vista previa: $1",
 	"wikiforum-save": "Salvar",
+	"wikiforum-search-hits": "{{PLURAL:$1|Foi encontrado um resultado|Foram encontrados $1 resultados}}",
+	"wikiforum-search-thread": "Tópico: $1",
 	"wikiforum-topic-name": "Fórum - $1",
 	"wikiforum-write-thread": "Novo tópico",
 	"wikiforum-replies": "Respostas",
@@ -36,5 +45,6 @@
 	"wikiforum-add-forum": "Adicionar fórum",
 	"wikiforum-edit-forum": "Editar fórum",
 	"wikiforum-delete-forum": "Apagar fórum",
-	"wikiforum-quote": "Citar"
+	"wikiforum-quote": "Citar",
+	"wikiforum-error-captcha": "Erro - CAPTCHA incorreto ou em falta"
 }
