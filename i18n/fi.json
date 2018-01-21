@@ -101,7 +101,7 @@
 	"wikiforum-quote": "Lainaa",
 	"right-wikiforum-admin": "Lisätä, muokata ja poistaa luokkia ja foorumeja [[Special:WikiForum|keskustelupalstalla]]",
 	"right-wikiforum-moderator": "Muokata ja poistaa aiheita ja vastauksia [[Special:WikiForum|keskustelupalstalla]]",
-	"group-forumadmin": "Foorumin ylläpitäjät",
+	"group-forumadmin": "foorumin ylläpitäjät",
 	"group-forumadmin-member": "{{GENDER:$1|foorumin ylläpitäjä}}",
 	"grouppage-forumadmin": "{{ns:project}}:Foorumin ylläpitäjät",
 	"group-forumadmin.css": "/* Tämän sivun CSS vaikuttaa vain foorumin ylläpitäjiin */",
