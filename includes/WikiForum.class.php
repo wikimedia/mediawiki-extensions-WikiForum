@@ -169,14 +169,14 @@ class WikiForumClass {
 			$groupText .= wfMessage( 'word-separator' )->plain() .
 				wfMessage(
 					'parentheses',
-					User::makeGroupLinkHTML( 'sysop', User::getGroupMember( 'sysop', $username ) )
+					UserGroupMembership::getLink( 'sysop', RequestContext::getMain(), 'html', $username )
 				)->text();
 
 		} elseif ( in_array( 'forumadmin', $groups ) ) {
 			$groupText .= wfMessage( 'word-separator' )->plain() .
 				wfMessage(
 					'parentheses',
-					User::makeGroupLinkHTML( 'forumadmin', User::getGroupMember( 'forumadmin', $username ) )
+					UserGroupMembership::getLink( 'forumadmin', RequestContext::getMain(), 'html', $username )
 				)->text();
 		}
 
