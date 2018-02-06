@@ -18,6 +18,9 @@
 	"wikiforum-thread": "Mewzu",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-pages": "{{PLURAL:$1|Pele|Peli}}:",
+	"wikiforum-add-category": "Kategoriye cı ke",
+	"wikiforum-edit-category": "Kategoriye bıvurne",
+	"wikiforum-delete-category": "Kategoriye bestere",
 	"wikiforum-quote": "Groteko",
 	"group-forumadmin-member": "{{GENDER:$1|adminê forumi}}",
 	"grouppage-forumadmin": "{{ns:project}}:İdarekarê forumi"
