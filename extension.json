@@ -64,8 +64,7 @@
 	},
 	"ResourceModules": {
 		"ext.wikiForum": {
-			"styles": "resources/css/styles.css",
-			"position": "top"
+			"styles": "resources/css/styles.css"
 		}
 	},
 	"ResourceFileModulePaths": {
