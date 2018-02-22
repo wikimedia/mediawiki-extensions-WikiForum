@@ -34,7 +34,7 @@
 	"wikiforum-latest-reply": "最新回復",
 	"wikiforum-latest-thread": "最新討論串",
 	"wikiforum-forum": "論壇：$1 > $2",
-	"wikiforum-overview": "概覽",
+	"wikiforum-overview": "概要",
 	"wikiforum-pages": "{{PLURAL:$1| 頁面| 頁面}}：",
 	"wikiforum-thread-closed": "討論串已關閉",
 	"wikiforum-sticky": "鎖定討論串",
