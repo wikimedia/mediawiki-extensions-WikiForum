@@ -1,6 +1,6 @@
 {
 	"name": "WikiForum",
-	"version": "2.4.1",
+	"version": "2.5.0",
 	"author": [
 		"Michael Chlebek",
 		"Jack Phoenix",
@@ -13,6 +13,9 @@
 		"MediaWiki": ">= 1.29.0"
 	},
 	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"GroupPermissions": {
 		"forumadmin": {
 			"wikiforum-admin": true,
@@ -44,7 +47,7 @@
 		"forum"
 	],
 	"LogActionsHandlers": {
-		"forum/*": "WikiForumLogFormatter"
+		"forum/*": "WikitextLogFormatter"
 	},
 	"MessagesDirs": {
 		"WikiForum": [
@@ -62,8 +65,7 @@
 		"WFReply": "includes/WFReply.php",
 		"WFThread": "includes/WFThread.php",
 		"WFForum": "includes/WFForum.php",
-		"WFCategory": "includes/WFCategory.php",
-		"WikiForumLogFormatter": "includes/WikiForumLogFormatter.php"
+		"WFCategory": "includes/WFCategory.php"
 	},
 	"ResourceModules": {
 		"ext.wikiForum": {
