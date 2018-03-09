@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Les Meloures"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]]-Erweiderung fir MediaWiki",
@@ -63,7 +64,7 @@
 	"wikiforum-error-search": "Feeler beim Sichen",
 	"wikiforum-error-delete": "Feeler beim Läschen",
 	"wikiforum-error-move-thread": "Feeler beim Réckele vun der Rubrik",
-	"wikiforum-error-add": "Feeler beim Dobäisetzen",
+	"wikiforum-error-add": "Feeler beim Derbäisetzen",
 	"wikiforum-error-edit": "Feeler beim Änneren",
 	"wikiforum-error-write": "Feeler beim Schreiwen",
 	"wikiforum-error-category": "Feeler an der Kategorie",
@@ -77,7 +78,7 @@
 	"wikiforum-move-thread": "Rubrik réckelen",
 	"wikiforum-paste-thread": "Rubrik drasetzen",
 	"wikiforum-quote": "Zitat",
-	"right-wikiforum-admin": "Dobäisetzen, änneren a läsche vu Kategorien a Foren op [[Special:WikiForum|der Diskussiounswand]]",
+	"right-wikiforum-admin": "Derbäisetzen, änneren a läsche vu Kategorien a Foren op [[Special:WikiForum|der Diskussiounswand]]",
 	"right-wikiforum-moderator": "Rubriken an Äntwerten op [[Special:WikiForum|der Diskussiounswand]] änneren oder läschen",
 	"group-forumadmin": "Administrateure vum Forum",
 	"group-forumadmin-member": "{{GENDER:$1|Administrateur|Administratrice}} vum Forum",
