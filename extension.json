@@ -52,18 +52,18 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"WikiForumAlias": "includes/WikiForum.alias.php"
+		"WikiForumAlias": "includes/WikiForum.i18n.alias.php"
 	},
 	"AutoloadClasses": {
-		"WikiForumHooks": "includes/WikiForum.hooks.php",
-		"WikiForumGui": "includes/WikiForumGui.class.php",
-		"WikiForum": "includes/WikiForum.class.php",
+		"WikiForumHooks": "includes/WikiForumHooks.php",
+		"WikiForumGui": "includes/WikiForumGui.php",
+		"WikiForum": "includes/WikiForum.php",
 		"SpecialWikiForum": "includes/specials/SpecialWikiForum.php",
-		"WFReply": "includes/WFReply.class.php",
-		"WFThread": "includes/WFThread.class.php",
-		"WFForum": "includes/WFForum.class.php",
-		"WFCategory": "includes/WFCategory.class.php",
-		"WikiForumLogFormatter": "includes/WikiForumLogFormatter.class.php"
+		"WFReply": "includes/WFReply.php",
+		"WFThread": "includes/WFThread.php",
+		"WFForum": "includes/WFForum.php",
+		"WFCategory": "includes/WFCategory.php",
+		"WikiForumLogFormatter": "includes/WikiForumLogFormatter.php"
 	},
 	"ResourceModules": {
 		"ext.wikiForum": {
