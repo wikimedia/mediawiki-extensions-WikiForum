@@ -6,7 +6,7 @@
  * @ingroup Extensions
  */
 
-class WikiForum extends SpecialPage {
+class SpecialWikiForum extends SpecialPage {
 	/**
 	 * Constructor -- set up the new special page
 	 */
@@ -53,16 +53,16 @@ class WikiForum extends SpecialPage {
 				if ( $forum ) {
 					$output .= $forum->show();
 				} else {
-					$output .= WikiForumClass::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
-					$output .= WikiForumClass::showOverview();
+					$output .= WikiForum::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
+					$output .= WikiForum::showOverview();
 				}
 			} else {
 				$thread = WFThread::newFromName( $par );
 				if ( $thread ) {
 					$output .= $thread->show();
 				} else {
-					$output .= WikiForumClass::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
-					$output .= WikiForumClass::showOverview();
+					$output .= WikiForum::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
+					$output .= WikiForum::showOverview();
 				}
 			}
 		} else {
@@ -80,12 +80,12 @@ class WikiForum extends SpecialPage {
 				$category = WFCategory::newFromID( $categoryID );
 
 				if ( !$category ) { // show error message, category not found
-					$output .= WikiForumClass::showErrorMessage( 'wikiforum-cat-not-found', 'wikiforum-cat-not-found-text' );
-					$output .= WikiForumClass::showOverview();
+					$output .= WikiForum::showErrorMessage( 'wikiforum-cat-not-found', 'wikiforum-cat-not-found-text' );
+					$output .= WikiForum::showOverview();
 
 				} else {
 					if ( wfReadOnly() ) {
-						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-readonly' );
+						$output .= WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-readonly' );
 						$output .= $category->show();
 
 					} else {
@@ -124,12 +124,12 @@ class WikiForum extends SpecialPage {
 				$forum = WFForum::newFromID( $forumID );
 
 				if ( !$forum ) { // show error message, forum not found
-					$output .= WikiForumClass::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
-					$output .= WikiForumClass::showOverview();
+					$output .= WikiForum::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
+					$output .= WikiForum::showOverview();
 
 				} else {
 					if ( wfReadOnly() ) {
-						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
+						$output .= WikiForum::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
 						$output .= $forum->show();
 
 					} else {
@@ -168,12 +168,12 @@ class WikiForum extends SpecialPage {
 				$thread = WFThread::newFromID( $threadID );
 
 				if ( !$thread ) { // show error message, thread not found
-					$output .= WikiForumClass::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
-					$output .= WikiForumClass::showOverview();
+					$output .= WikiForum::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
+					$output .= WikiForum::showOverview();
 
 				} else {
 					if ( wfReadOnly() ) {
-						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
+						$output .= WikiForum::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
 						$output .= $thread->show();
 
 					} else {
@@ -215,12 +215,12 @@ class WikiForum extends SpecialPage {
 				$reply = WFReply::newFromID( $replyID );
 
 				if ( !$reply ) { // show error message, reply not found
-					$output .= WikiForumClass::showErrorMessage( 'wikiforum-reply-not-found', 'wikiforum-reply-not-found-text' );
-					$output .= WikiForumClass::showOverview();
+					$output .= WikiForum::showErrorMessage( 'wikiforum-reply-not-found', 'wikiforum-reply-not-found-text' );
+					$output .= WikiForum::showOverview();
 
 				} else {
 					if ( wfReadOnly() ) {
-						$output .= WikiForumClass::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
+						$output .= WikiForum::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
 						$output .= $reply->getThread()->show();
 					} else {
 						switch ( $action ) {
@@ -249,10 +249,10 @@ class WikiForum extends SpecialPage {
 						$output .= WFCategory::add( $title );
 						break;
 					case 'search':
-						$output .= WikiForumClass::showSearchResults( $request->getText( 'query' ) );
+						$output .= WikiForum::showSearchResults( $request->getText( 'query' ) );
 						break;
 					default:
-						$output .= WikiForumClass::showOverview();
+						$output .= WikiForum::showOverview();
 						break;
 				}
 			}

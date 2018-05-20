@@ -5,7 +5,7 @@
  * @file
  * @ingroup Extensions
  */
-class WikiForumClass {
+class WikiForum {
 
 	/**
 	 * Show an error message for the given title, message, and optional icon
@@ -127,7 +127,7 @@ class WikiForumClass {
 
 			$output .= '</table>' . WikiForumGui::showFrameFooter();
 		} else {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-search', 'wikiforum-error-search-missing-query' );
+			return self::showErrorMessage( 'wikiforum-error-search', 'wikiforum-error-search-missing-query' );
 		}
 		return $output;
 	}
@@ -208,8 +208,8 @@ class WikiForumClass {
 		global $wgOut;
 
 		$text = $wgOut->parse( $text );
-		$text = WikiForumClass::parseLinks( $text );
-		$text = WikiForumClass::parseQuotes( $text );
+		$text = self::parseLinks( $text );
+		$text = self::parseQuotes( $text );
 
 		return $text;
 	}
@@ -223,7 +223,7 @@ class WikiForumClass {
 	static function parseLinks( $text ) {
 		$text = preg_replace_callback(
 			'/\[thread#(.*?)\]/i',
-			'WikiForumClass::threadLinkFromID', //array( $this, 'getThreadTitle' ),
+			'WikiForum::threadLinkFromID', //array( $this, 'getThreadTitle' ),
 			$text
 		);
 		return $text;

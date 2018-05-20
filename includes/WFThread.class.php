@@ -97,7 +97,7 @@ class WFThread extends ContextSource {
 		if ( $this->getReplyCount() > 0 ) {
 			return WikiForumGui::showByInfo(
 				$this->data->wft_last_post_timestamp,
-				WikiForumClass::getUserFromDB( $this->data->wft_last_post_user, $this->data->wft_last_post_user_ip )
+				WikiForum::getUserFromDB( $this->data->wft_last_post_user, $this->data->wft_last_post_user_ip )
 			);
 		} else {
 			return '';
@@ -196,7 +196,7 @@ class WFThread extends ContextSource {
 	 * @return User
 	 */
 	function getEditedBy() {
-		return WikiForumClass::getUserFromDB( $this->data->wft_edit_user, $this->data->wft_edit_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wft_edit_user, $this->data->wft_edit_user_ip );
 	}
 
 	/**
@@ -205,7 +205,7 @@ class WFThread extends ContextSource {
 	 * @return User
 	 */
 	function getPostedBy() {
-		return WikiForumClass::getUserFromDB( $this->data->wft_user, $this->data->wft_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wft_user, $this->data->wft_user_ip );
 	}
 
 	/**
@@ -318,7 +318,7 @@ class WFThread extends ContextSource {
 			$user->isAnon() ||
 			( $user->getId() != $this->getPostedBy() && !$user->isAllowed( 'wikiforum-moderator' ) )
 		) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
 
@@ -368,7 +368,7 @@ class WFThread extends ContextSource {
 	 */
 	function reopen() {
 		if ( !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-thread-reopen', 'wikiforum-error-general' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-thread-reopen', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
 		$dbw = wfGetDB( DB_MASTER );
@@ -397,7 +397,7 @@ class WFThread extends ContextSource {
 		$user = $this->getUser();
 
 		if ( !$user->isAllowed( 'wikiforum-moderator' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-thread-close', 'wikiforum-error-general' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-thread-close', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
 
@@ -446,7 +446,7 @@ class WFThread extends ContextSource {
 	 */
 	private function sticky( $value ) {
 		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-sticky', 'wikiforum-error-general' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-sticky', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
 
@@ -477,7 +477,7 @@ class WFThread extends ContextSource {
 			$text && $title && strlen( $text ) == 1 ||
 			strlen( $title ) == 1
 		) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
 			return $error . $this->showEditor();
 		}
 
@@ -492,7 +492,7 @@ class WFThread extends ContextSource {
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
 		) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-general-title', 'wikiforum-error-no-rights' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-general-title', 'wikiforum-error-no-rights' );
 			return $error . $this->show();
 		}
 
@@ -585,7 +585,7 @@ class WFThread extends ContextSource {
 		$output .= WikiForumGui::showSearchbox();
 
 		if ( $this->isClosed() ) {
-			$output .= WikiForumClass::showErrorMessage( 'wikiforum-thread-closed', 'wikiforum-error-thread-closed', 'lock.png' );
+			$output .= WikiForum::showErrorMessage( 'wikiforum-thread-closed', 'wikiforum-error-thread-closed', 'lock.png' );
 		}
 
 		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $menuLink );
@@ -778,33 +778,33 @@ class WFThread extends ContextSource {
 		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
 
 		if ( !$wgWikiForumAllowAnonymous && $wgUser->isAnon() ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
 		if ( strlen( $text ) == 0 || strlen( $title ) == 0 ) { // show form again, return it
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . $forum->showNewThreadForm( $title, $text );
 		}
 
 		if ( WFThread::titleExists( $title ) ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-title-already-exists' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-title-already-exists' );
 		}
 
 		$title = trim( $title );
 
 		if ( preg_replace( '/[' . Title::legalChars() . ']/', '', $title ) ) { // removes all legal chars, then sees if string has length
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-bad-title' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-bad-title' );
 		}
 
 		if ( $forum->isAnnouncement() && !$wgUser->isAllowed( 'wikiforum-moderator' ) ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
-		if ( WikiForumClass::useCaptcha() ) {
+		if ( WikiForum::useCaptcha() ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
-				$output = WikiForumClass::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
+				$output = WikiForum::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
 				$output .= WFThread::showGeneralEditor(
 					$title,
 					'',
@@ -866,7 +866,7 @@ class WFThread extends ContextSource {
 		if ( $result ) {
 			return $thread->show();
 		} else {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-general' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-general' );
 		}
 	}
 
@@ -902,8 +902,8 @@ class WFThread extends ContextSource {
 						<th class="mw-wikiforum-thread-top" style="text-align: right;">[#' . $this->getId() . ']</th>
 					</tr>
 					<tr>
-						<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForumClass::showAvatar( $this->getPostedBy() ) .
-							WikiForumClass::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->showButtons() ) . '
+						<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
+							WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->showButtons() ) . '
 						</td>
 					</tr>';
 	}
@@ -913,8 +913,8 @@ class WFThread extends ContextSource {
 		$posted .= '<br />' . wfMessage( 'wikiforum-search-thread', $this->showLink() )->text();
 
 		return 	'<tr>
-					<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForumClass::showAvatar( $this->getPostedBy() ) .
-						WikiForumClass::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted ) . '
+					<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
+						WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted ) . '
 					</td>
 				</tr>';
 	}

@@ -200,7 +200,7 @@ class WFCategory extends ContextSource {
 		$user = $this->getUser();
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
 
@@ -211,7 +211,7 @@ class WFCategory extends ContextSource {
 			__METHOD__
 		);
 
-		return WikiForumClass::showOverview();
+		return WikiForum::showOverview();
 	}
 
 	/**
@@ -224,11 +224,11 @@ class WFCategory extends ContextSource {
 		$user = $this->getUser();
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
 			return $error . $this->show();
 		}
 		if ( strlen( $categoryName ) == 0 ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
 			return $error . $this->showEditForm();
 		}
 
@@ -322,7 +322,7 @@ class WFCategory extends ContextSource {
 	 */
 	private function sort( $direction_up ) {
 		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
 			return $error . $this->show();
 		}
 
@@ -365,7 +365,7 @@ class WFCategory extends ContextSource {
 			);
 		}
 
-		return WikiForumClass::showOverview();
+		return WikiForum::showOverview();
 	}
 
 	/**
@@ -378,11 +378,11 @@ class WFCategory extends ContextSource {
 		global $wgWikiForumLogInRC, $wgUser, $wgRequest;
 
 		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
-			return $error . WikiForumClass::showOverview();
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
+			return $error . WikiForum::showOverview();
 		}
 		if ( strlen( $categoryName ) == 0 ) {
-			$error = WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . WFCategory::showAddForm();
 		}
 
@@ -452,7 +452,7 @@ class WFCategory extends ContextSource {
 		global $wgUser;
 
 		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
 		}
 
 		$titlePlaceholder = str_replace( '"', '&quot;', $titlePlaceholder );

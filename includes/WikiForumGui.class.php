@@ -253,8 +253,8 @@ class WikiForumGui {
 				<tr>
 					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>';
-			if ( WikiForumClass::useCaptcha() ) {
-				$output .= '<tr><td>' . WikiForumClass::getCaptcha( $wgOut ) . '</td></tr>';
+			if ( WikiForum::useCaptcha() ) {
+				$output .= '<tr><td>' . WikiForum::getCaptcha( $wgOut ) . '</td></tr>';
 			}
 			$output .= '<tr>
 					<td>
@@ -312,7 +312,7 @@ class WikiForumGui {
 	 * @return string
 	 */
 	static function showPostedInfo( $timestamp, User $user ) {
-		$userLink = WikiForumClass::showUserLink( $user );
+		$userLink = WikiForum::showUserLink( $user );
 		return self::showInfo( 'wikiforum-posted', $timestamp, $userLink, $user->getName() );
 	}
 
@@ -335,7 +335,7 @@ class WikiForumGui {
 	 * @return string
 	 */
 	static function showEditedInfo( $timestamp, User $user ) {
-		$userLink = WikiForumClass::showUserLink( $user );
+		$userLink = WikiForum::showUserLink( $user );
 		return self::showInfo( 'wikiforum-edited', $timestamp, $userLink, $user->getName() );
 	}
 
@@ -347,7 +347,7 @@ class WikiForumGui {
 	 * @return string
 	 */
 	static function showByInfo( $timestamp, User $user ) {
-		$userLink = WikiForumClass::showUserLink( $user );
+		$userLink = WikiForum::showUserLink( $user );
 		return self::showInfo( 'wikiforum-by', $timestamp, $userLink, $user->getName() );
 	}
 

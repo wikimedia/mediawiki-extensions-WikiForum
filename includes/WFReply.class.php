@@ -107,7 +107,7 @@ class WFReply extends ContextSource {
 	 * @return User
 	 */
 	function getPostedBy() {
-		return WikiForumClass::getUserFromDB( $this->data->wfr_user, $this->data->wfr_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wfr_user, $this->data->wfr_user_ip );
 	}
 
 	/**
@@ -117,7 +117,7 @@ class WFReply extends ContextSource {
 	 */
 	function getEditedBy() {
 		if ( $this->hasBeenEdited() ) {
-			return WikiForumClass::getUserFromDB( $this->data->wfr_edit_user, $this->data->wfr_edit_user_ip );
+			return WikiForum::getUserFromDB( $this->data->wfr_edit_user, $this->data->wfr_edit_user_ip );
 		} else {
 			return false;
 		}
@@ -187,7 +187,7 @@ class WFReply extends ContextSource {
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
 		) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -198,7 +198,7 @@ class WFReply extends ContextSource {
 		);
 
 		if ( !$result ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 		}
 
 		return $this->getThread()->show();
@@ -215,7 +215,7 @@ class WFReply extends ContextSource {
 		$user = $this->getUser();
 
 		if ( strlen( $text ) == 0 ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-reply' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-reply' );
 		}
 
 		if ( $text == $this->getText() ) {
@@ -232,7 +232,7 @@ class WFReply extends ContextSource {
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
 		) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -263,10 +263,10 @@ class WFReply extends ContextSource {
 			$posted .= '<br /><i>' . $this->showEditedInfo() . '</i>';
 		}
 
-		$avatar = WikiForumClass::showAvatar( $this->getPostedBy() );
+		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
 		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
-			WikiForumClass::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->showButtons() ) . '</td></tr>';
+			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->showButtons() ) . '</td></tr>';
 	}
 
 	/**
@@ -277,10 +277,10 @@ class WFReply extends ContextSource {
 	function showForSearch() {
 		$posted = $this->showPostedInfo();
 		$posted .= '<br />' . wfMessage( 'wikiforum-search-thread', $this->getThread()->showLink( $this->getId() ) )->text();
-		$avatar = WikiForumClass::showAvatar( $this->getPostedBy() );
+		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
 		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
-			WikiForumClass::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, '' ) . '</td></tr>';
+			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, '' ) . '</td></tr>';
 	}
 
 	/**
@@ -330,22 +330,22 @@ class WFReply extends ContextSource {
 		$timestamp = wfTimestampNow();
 
 		if ( !$wgWikiForumAllowAnonymous && !$wgUser->isLoggedIn() ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
 		if ( strlen( $text ) == 0 ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-reply' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-reply' );
 		}
 
 		if ( $thread->isClosed() ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-thread-closed' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-thread-closed' );
 		}
 
-		if ( WikiForumClass::useCaptcha() ) {
+		if ( WikiForum::useCaptcha() ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
-				$output = WikiForumClass::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
+				$output = WikiForum::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
 				$thread->preloadText = $text;
 				$output .= $thread->show();
 				return $output;
@@ -366,7 +366,7 @@ class WFReply extends ContextSource {
 		);
 
 		if ( $doublepost ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-double-post' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-double-post' );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -382,7 +382,7 @@ class WFReply extends ContextSource {
 		);
 
 		if ( !$result ) {
-			return WikiForumClass::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-general' );
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-general' );
 		}
 
 		$dbw->update(

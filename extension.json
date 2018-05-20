@@ -38,7 +38,7 @@
 		"wikiforum-moderator"
 	],
 	"SpecialPages": {
-		"WikiForum": "WikiForum"
+		"WikiForum": "SpecialWikiForum"
 	},
 	"LogTypes": [
 		"forum"
@@ -57,8 +57,8 @@
 	"AutoloadClasses": {
 		"WikiForumHooks": "includes/WikiForum.hooks.php",
 		"WikiForumGui": "includes/WikiForumGui.class.php",
-		"WikiForumClass": "includes/WikiForum.class.php",
-		"WikiForum": "includes/specials/SpecialWikiForum.php",
+		"WikiForum": "includes/WikiForum.class.php",
+		"SpecialWikiForum": "includes/specials/SpecialWikiForum.php",
 		"WFReply": "includes/WFReply.class.php",
 		"WFThread": "includes/WFThread.class.php",
 		"WFForum": "includes/WFForum.class.php",
