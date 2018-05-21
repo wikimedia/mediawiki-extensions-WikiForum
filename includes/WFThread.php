@@ -911,7 +911,7 @@ class WFThread extends ContextSource {
 		$posted = $this->showPostedInfo();
 		$posted .= '<br />' . wfMessage( 'wikiforum-search-thread', $this->showLink() )->text();
 
-		return 	'<tr>
+		return '<tr>
 					<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
 						WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted ) . '
 					</td>

@@ -16,7 +16,6 @@
 		<exclude name="MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$wgUser" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
-		<exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.IncorrectSingle" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php,php5,inc"/>
