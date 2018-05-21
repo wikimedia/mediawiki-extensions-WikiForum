@@ -106,7 +106,7 @@ class WikiForumHooks {
 	 * @return Boolean true
 	 */
 	public static function addTables( $updater ) {
-		$dir = dirname( __FILE__ ) . '/../sql';
+		$dir = __DIR__ . '/../sql';
 		$file = "$dir/wikiforum.sql";
 
 		$updater->addExtensionTable( 'wikiforum_category', $file );

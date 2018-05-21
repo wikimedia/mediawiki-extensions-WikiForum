@@ -343,16 +343,16 @@ class WFCategory extends ContextSource {
 			array_push( $new_array, $entry );
 			$i++;
 		}
-		for ( $i = 0; $i < sizeof( $new_array ); $i++ ) {
+		for ( $i = 0; $i < count( $new_array ); $i++ ) {
 			if ( $new_array[$i]->wfc_category == $this->getId() ) {
 				if ( $direction_up && $i > 0 ) {
 					$new_array[$i]->wfc_sortkey--;
 					$new_array[$i - 1]->wfc_sortkey++;
-				} elseif ( !$direction_up && $i + 1 < sizeof( $new_array ) ) {
+				} elseif ( !$direction_up && $i + 1 < count( $new_array ) ) {
 					$new_array[$i]->wfc_sortkey++;
 					$new_array[$i + 1]->wfc_sortkey--;
 				}
-				$i = sizeof( $new_array );
+				$i = count( $new_array );
 			}
 		}
 		$dbw = wfGetDB( DB_MASTER );
