@@ -10,7 +10,7 @@ class WikiForumHooks {
 	 * Set up the two new parser hooks: <WikiForumList> and <WikiForumThread>
 	 *
 	 * @param $parser Object: instance of Parser
-	 * @return Boolean: true
+	 * @return Boolean true
 	 */
 	public static function registerParserHooks( &$parser ) {
 		$parser->setHook( 'WikiForumList', 'WikiForumHooks::renderWikiForumList' );
@@ -103,7 +103,7 @@ class WikiForumHooks {
 	 * maintenance/update.php.
 	 *
 	 * @param $updater DatabaseUpdater
-	 * @return Boolean: true
+	 * @return Boolean true
 	 */
 	public static function addTables( $updater ) {
 		$dir = dirname( __FILE__ ) . '/../sql';

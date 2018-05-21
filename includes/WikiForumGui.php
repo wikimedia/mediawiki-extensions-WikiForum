@@ -11,7 +11,7 @@ class WikiForumGui {
 	/**
 	 * Show the header for thread and search pages
 	 *
-	 * @return string, html
+	 * @return string html
 	 */
 	static function showFrameHeader() {
 		return '<table class="mw-wikiforum-frame" cellspacing="10"><tr><td class="mw-wikiforum-innerframe">';
@@ -20,7 +20,7 @@ class WikiForumGui {
 	/**
 	 * Show the footer for thread and search pages
 	 *
-	 * @return string, HTML
+	 * @return string HTML
 	 */
 	static function showFrameFooter() {
 		return '</td></tr></table>';
@@ -52,7 +52,7 @@ class WikiForumGui {
 	 *
 	 * @param $links string: the actual overview/category/etc links
 	 * @param $additionalLinks string: more links to add on the other side - 'Add a new forum'-type links
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	static function showHeaderRow( $links, $additionalLinks = '' ) {
 		global $wgUser, $wgWikiForumAllowAnonymous;
@@ -117,8 +117,8 @@ class WikiForumGui {
 	 * @param string $title2
 	 * @param string $title3
 	 * @param string $title4
-	 * @param string $title5: optional, admin icons if given
-	 * @return string, HTML
+	 * @param string $title5 optional, admin icons if given
+	 * @return string HTML
 	 */
 	static function showMainHeader( $title1, $title2, $title3, $title4, $title5 = '' ) {
 		return self::showFrameHeader() . '<table class="mw-wikiforum-title">' .
@@ -132,7 +132,7 @@ class WikiForumGui {
 	 * @param string $title2
 	 * @param string $title3
 	 * @param string $title4
-	 * @return string, HTML
+	 * @return string HTML
 	 */
 	static function showListTagHeader( $title1, $title2, $title3, $title4 ) {
 		return '<table class="mw-wikiforum-mainpage" cellspacing="0">' .
@@ -165,7 +165,7 @@ class WikiForumGui {
 	/**
 	 * Show the footer for Forum and Category pages
 	 *
-	 * @return string, HTML
+	 * @return string HTML
 	 */
 	static function showMainFooter() {
 		return '</table>' . self::showFrameFooter();
@@ -174,7 +174,7 @@ class WikiForumGui {
 	/**
 	 * Show the footer for the <WikiForumList> tag
 	 *
-	 * @return string, HTML
+	 * @return string HTML
 	 */
 	static function showListTagFooter() {
 		return '</table>';
@@ -200,8 +200,8 @@ class WikiForumGui {
 	 * Show the bottom line of a thread or reply
 	 *
 	 * @param string $posted
-	 * @param string $buttons: optional, admin icons if given
-	 * @return string, HTML
+	 * @param string $buttons optional, admin icons if given
+	 * @return string HTML
 	 */
 	static function showBottomLine( $posted, $buttons = '' ) {
 		global $wgUser;
@@ -227,7 +227,7 @@ class WikiForumGui {
 	 * @param $height String: height of the textarea, i.e. '10em'
 	 * @param $text_prev
 	 * @param $saveButton String: save button text
-	 * @return String: HTML
+	 * @return String HTML
 	 */
 	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton ) {
 		global $wgOut, $wgUser, $wgWikiForumAllowAnonymous;
@@ -273,12 +273,12 @@ class WikiForumGui {
 	/**
 	 * Get the main form for forums and categories
 	 *
-	 * @param string $url: url to send form to, with GET params
-	 * @param string $extraRow: row to add in after title input, for forums but not categories
-	 * @param string $formTitle: title for the form
-	 * @param string $titlePlaceholder: placeholder value for the title input
-	 * @param string $titleValue: value for the title input
-	 * @return string: HTML the form
+	 * @param string $url url to send form to, with GET params
+	 * @param string $extraRow row to add in after title input, for forums but not categories
+	 * @param string $formTitle title for the form
+	 * @param string $titlePlaceholder placeholder value for the title input
+	 * @param string $titleValue value for the title input
+	 * @return string HTML the form
 	 */
 	static function showTopLevelForm( $url, $extraRow = '', $formTitle, $titlePlaceholder, $titleValue ) {
 		return '

@@ -10,9 +10,9 @@ class WikiForum {
 	/**
 	 * Show an error message for the given title, message, and optional icon
 	 *
-	 * @param string $errorTitleMsg: message key
-	 * @param string $errorMessageMsg: message key
-	 * @param string $errorIcon: icon finename (optional)
+	 * @param string $errorTitleMsg message key
+	 * @param string $errorMessageMsg message key
+	 * @param string $errorIcon icon finename (optional)
 	 */
 	static function showErrorMessage( $errorTitleMsg, $errorMessageMsg, $errorIcon = 'exclamation.png' ) {
 		global $wgExtensionAssetsPath;
@@ -137,7 +137,7 @@ class WikiForum {
 	 *
 	 * @param int $userID
 	 * @param string $userIP
-	 * @return User|boolean
+	 * @return User|bool
 	 */
 	static function getUserFromDB( $userID, $userIP ) {
 		if ( $userID ) {
@@ -150,7 +150,7 @@ class WikiForum {
 	/**
 	 * Get the link to the specified user's userpage (and group membership)
 	 *
-	 * @param User $user: user object
+	 * @param User $user user object
 	 * @return HTML
 	 */
 	public static function showUserLink( User $user ) {
@@ -191,7 +191,7 @@ class WikiForum {
 	 * Show the HTML for the avatar for the given user
 	 *
 	 * @param User $user
-	 * @return string: HTML, the avatar
+	 * @return string HTML, the avatar
 	 */
 	static function showAvatar( User $user ) {
 		$avatar = '';

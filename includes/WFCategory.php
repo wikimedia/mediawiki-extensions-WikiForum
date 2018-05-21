@@ -12,8 +12,8 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get a new WFCategory object from the given ID
 	 *
-	 * @param int $id: id to get the category for
-	 * @return WFCategory|boolean: the category, or false on failure
+	 * @param int $id id to get the category for
+	 * @return WFCategory|bool the category, or false on failure
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -35,7 +35,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get a new WFCategory category from the given SQL row
 	 *
-	 * @param stdClass $sql: The row. Must be a row, not a result wrapper!
+	 * @param stdClass $sql The row. Must be a row, not a result wrapper!
 	 * @return WFCategory
 	 */
 	public static function newFromSQL( $sql ) {
@@ -45,8 +45,8 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get a new WFCategory object from the given category title
 	 *
-	 * @param string $title: title to search for the category for
-	 * @return WFCategory|boolean: WFCategory the category, or false on failure
+	 * @param string $title title to search for the category for
+	 * @return WFCategory|bool WFCategory the category, or false on failure
 	 */
 	public static function newFromName( $title ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -77,7 +77,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get this category's ID number
 	 *
-	 * @return int: the ID
+	 * @return int the ID
 	 */
 	function getId() {
 		return $this->data->wfc_category;
@@ -86,7 +86,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get an array of this category's child forums
 	 *
-	 * @return multitype:WFForum: array of WFForum forums
+	 * @return multitype:WFForum array of WFForum forums
 	 */
 	function getForums() {
 		if ( !$this->forums ) {
@@ -126,7 +126,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get the HTML for a link to this category
 	 *
-	 * @return string: HTML the link
+	 * @return string HTML the link
 	 */
 	function showLink() {
 		return '<a href="' . $this->getURL() . '">' . $this->getName() . '</a>';
@@ -135,7 +135,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show a link to add a forum to this category. (You should probably check user priviledges before showing though!)
 	 *
-	 * @return string: HTML, the link
+	 * @return string HTML, the link
 	 */
 	function showAddForumLink() {
 		global $wgExtensionAssetsPath;
@@ -182,10 +182,10 @@ class WFCategory extends ContextSource {
 	/**
 	 * Add a new forum to this category
 	 *
-	 * @param string $title: forum title to add
-	 * @param string $description: forum description to add
-	 * @param boolean $announcement: is this an annoucement forum?
-	 * @return string: HTML error, or shown HTML forum
+	 * @param string $title forum title to add
+	 * @param string $description forum description to add
+	 * @param bool $announcement is this an annoucement forum?
+	 * @return string HTML error, or shown HTML forum
 	 */
 	function addForum( $title, $description, $announcement ) {
 		return WFForum::add( $this, $title, $description, $announcement );
@@ -217,7 +217,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Edit the category's name
 	 *
-	 * @param string $categoryName: user supplied new name
+	 * @param string $categoryName user supplied new name
 	 * @return string
 	 */
 	function edit( $categoryName ) {
@@ -256,7 +256,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show the category page, with search box and header row
 	 *
-	 * @return string: HTML, the category page
+	 * @return string HTML, the category page
 	 */
 	function show() {
 		$output = WikiForumGui::showSearchbox();
@@ -266,9 +266,9 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show the main bit of the category, for displaying on category pages, or on the overview
 	 *
-	 * @param string $headerLinks: Optional: HTML of links to show to the left (Overview > Category type links)
-	 * @param boolean $sortLinks: Optional: set to false to disable the sorting links
-	 * @return string: HTML, the category
+	 * @param string $headerLinks Optional: HTML of links to show to the left (Overview > Category type links)
+	 * @param bool $sortLinks Optional: set to false to disable the sorting links
+	 * @return string HTML, the category
 	 */
 	function showMain( $headerLinks = '', $sortLinks = true ) {
 		$addLink = '';
@@ -299,7 +299,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Sort the category upwards
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function sortUp() {
 		return $this->sort( true );
@@ -308,7 +308,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Sort the category downwards
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function sortDown() {
 		return $this->sort( false );
@@ -371,8 +371,8 @@ class WFCategory extends ContextSource {
 	/**
 	 * Add a new category, with the given name
 	 *
-	 * @param string $categoryName: name to add
-	 * @return string: HTML
+	 * @param string $categoryName name to add
+	 * @return string HTML
 	 */
 	static function add( $categoryName ) {
 		global $wgWikiForumLogInRC, $wgUser, $wgRequest;
@@ -466,7 +466,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show the form for editing this category
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function showEditForm() {
 		$params = [ 'wfaction' => 'savecategory', 'category' => $this->getId() ];
@@ -476,7 +476,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show the form for adding a new category
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	static function showAddForm() {
 		$params = [ 'wfaction' => 'savenewcategory' ];
@@ -486,7 +486,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show the form for adding a new forum to this category
 	 *
-	 * @return string: HTML, the form
+	 * @return string HTML, the form
 	 */
 	function showAddForumForm() {
 		$params = [ 'wfaction' => 'savenewforum', 'category' => $this->getId() ];

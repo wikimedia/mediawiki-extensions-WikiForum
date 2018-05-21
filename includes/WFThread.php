@@ -14,7 +14,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the WFThread object for the thread with the given ID number
 	 *
-	 * @param int $id: ID to find
+	 * @param int $id ID to find
 	 * @return WFThread
 	 */
 	public static function newFromID( $id ) {
@@ -37,7 +37,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the WFThread object from a row from the DB
 	 *
-	 * @param stdClass $sql: the row. Not a ResultWrapper! (Either use $dbr->fetchObject(), or loop through the resultWrapper!)
+	 * @param stdClass $sql the row. Not a ResultWrapper! (Either use $dbr->fetchObject(), or loop through the resultWrapper!)
 	 * @return WFThread
 	 */
 	public static function newFromSQL( $sql ) {
@@ -48,7 +48,7 @@ class WFThread extends ContextSource {
 	 * Find a thread when you know the title.
 	 *
 	 * @param $titleText String: thread title
-	 * @return boolean|WFThread: Thread, or false on failure
+	 * @return bool|WFThread Thread, or false on failure
 	 */
 	public static function newFromName( $titleText ) {
 		// Titles are stored with spaces in the DB but the query will otherwise
@@ -73,7 +73,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Whether or not the thread is sticky
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	function isSticky() {
 		return $this->data->wft_sticky == true;
@@ -82,7 +82,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Whether or not the thread is closed
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	function isClosed() {
 		return $this->data->wft_closed == true;
@@ -140,7 +140,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the URL to this thread
 	 *
-	 * @param int $reply: auto scroll to reply, optional
+	 * @param int $reply auto scroll to reply, optional
 	 * @return string
 	 */
 	function getURL( $reply = false ) {
@@ -156,8 +156,8 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the HTML for a link to this thread
 	 *
-	 * @param int|boolean $reply: Optional: Reply to scroll to (through url #fragment)
-	 * @return string: HTML the link
+	 * @param int|bool $reply Optional: Reply to scroll to (through url #fragment)
+	 * @return string HTML the link
 	 */
 	function showLink( $reply = false ) {
 		return '<a href="' . $this->getURL() . '">' . $this->getName() . '</a>';
@@ -241,7 +241,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Get this thread's ID number
 	 *
-	 * @return int: id
+	 * @return int id
 	 */
 	function getId() {
 		return $this->data->wft_thread;
@@ -268,7 +268,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Gets an array of this thread's replies
 	 *
-	 * @return multitype:WFReply: array of replies
+	 * @return multitype:WFReply array of replies
 	 */
 	function getReplies() {
 		if ( !$this->replies ) {
@@ -298,8 +298,8 @@ class WFThread extends ContextSource {
 	/**
 	 * Add a reply to this thread
 	 *
-	 * @param string $text: user-supplied reply text
-	 * @return boolean: true if success, or false on failure
+	 * @param string $text user-supplied reply text
+	 * @return bool true if success, or false on failure
 	 */
 	function addReply( $text ) {
 		return WFReply::add( $this, $text );
@@ -309,7 +309,7 @@ class WFThread extends ContextSource {
 	 * Deletes the thread
 	 *
 	 * @param $threadId Integer: ID number of the thread to delete
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function delete() {
 		$user = $this->getUser();
@@ -364,7 +364,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Reopens the thread
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function reopen() {
 		if ( !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
@@ -391,7 +391,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Closes the thread
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function close() {
 		$user = $this->getUser();
@@ -423,7 +423,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Make the thread sticky
 	 *
-	 * @return boolean: success?
+	 * @return bool success?
 	 */
 	function makeSticky() {
 		return $this->sticky( 1 );
@@ -432,7 +432,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Stop the thread being sticky
 	 *
-	 * @return boolean: success?
+	 * @return bool success?
 	 */
 	function removeSticky() {
 		return $this->sticky( 0 );
@@ -466,9 +466,9 @@ class WFThread extends ContextSource {
 	/**
 	 * Edit the title and/or text of the thread
 	 *
-	 * @param string $title: user supplied new title
-	 * @param string $text: user supplied new text
-	 * @return string: HTML
+	 * @param string $title user supplied new title
+	 * @param string $text user supplied new text
+	 * @return string HTML
 	 */
 	function edit( $title, $text ) {
 		$user = $this->getUser();
@@ -526,7 +526,7 @@ class WFThread extends ContextSource {
 	 * locked icon for locked threads and an ordinary thread icon for
 	 * everything else.
 	 *
-	 * @return HTML: img tag
+	 * @return HTML img tag
 	 */
 	function getIcon() {
 		global $wgExtensionAssetsPath;
@@ -551,7 +551,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Show this thread, with headers, replies, frames, et al.
 	 *
-	 * @return string: HTML of thread
+	 * @return string HTML of thread
 	 */
 	function show() {
 		global $wgExtensionAssetsPath;
@@ -760,7 +760,7 @@ class WFThread extends ContextSource {
 	 * Check whether a thread with the given title exists
 	 *
 	 * @param string $title
-	 * @return boolean
+	 * @return bool
 	 */
 	static function titleExists( $title ) {
 		return WFThread::newFromName( $title ) == true;
@@ -769,10 +769,10 @@ class WFThread extends ContextSource {
 	/**
 	 * Add a new thread
 	 *
-	 * @param WFForum $forum: forum to add thread to
-	 * @param string $title: thread title
-	 * @param string $text: thread text
-	 * @return boolean|WFThread: WFThread of new thread if success, otherwise false
+	 * @param WFForum $forum forum to add thread to
+	 * @param string $title thread title
+	 * @param string $text thread text
+	 * @return bool|WFThread WFThread of new thread if success, otherwise false
 	 */
 	static function add( WFForum $forum, $title, $text ) {
 		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
@@ -948,10 +948,10 @@ class WFThread extends ContextSource {
 	/**
 	 * Show the editor for adding a thread/editing one
 	 *
-	 * @param string $titleValue: value to preload the title input with
-	 * @param string $titlePlaceholder: the placeholder element of the title input
-	 * @param string $textValue: value to preload the text field with
-	 * @param array $params: array of URL params to pass to the form
+	 * @param string $titleValue value to preload the title input with
+	 * @param string $titlePlaceholder the placeholder element of the title input
+	 * @param string $textValue value to preload the text field with
+	 * @param array $params array of URL params to pass to the form
 	 * @return string
 	 */
 	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params ) {
@@ -967,7 +967,7 @@ class WFThread extends ContextSource {
 	 *
 	 * @param $quoteReply int: the ID of the reply to quote in the editor. 0 for not quoting a reply
 	 * @param $quoteThread boolean: true-quote this thread in the editor. false-don't
-	 * @return string: HTML the editor
+	 * @return string HTML the editor
 	 */
 	function showNewReplyForm( $quoteReply, $quoteThread ) {
 		$textValue = '';

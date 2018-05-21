@@ -12,7 +12,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Return a new WFReply instance for the given reply ID
 	 *
-	 * @param int $id: ID to get the reply for
+	 * @param int $id ID to get the reply for
 	 * @return WFReply
 	 */
 	public static function newFromID( $id ) {
@@ -35,7 +35,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Return a new WFReply instance for the given reply text content
 	 *
-	 * @param string $text: text to get the reply for
+	 * @param string $text text to get the reply for
 	 * @return WFReply
 	 */
 	public static function newFromText( $text ) {
@@ -58,7 +58,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Returns a WFReply instance for the given SQL row
 	 *
-	 * @param stdClass $sql: row from the DB. Not resultWrapper!
+	 * @param stdClass $sql row from the DB. Not resultWrapper!
 	 * @return WFReply
 	 */
 	public static function newFromSQL( $sql ) {
@@ -86,7 +86,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Get the reply's ID number
 	 *
-	 * @return int: the id
+	 * @return int the id
 	 */
 	function getId() {
 		return $this->data->wfr_reply_id;
@@ -95,7 +95,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Get the ID of the user who posted the reply
 	 *
-	 * @return int: the ID
+	 * @return int the ID
 	 */
 	function getPostedById() {
 		return $this->data->wfr_user;
@@ -126,7 +126,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Get this reply's parent thread
 	 *
-	 * @return WFThread: the thread
+	 * @return WFThread the thread
 	 */
 	function getThread() {
 		if ( !$this->thread ) {
@@ -138,7 +138,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Has the reply been edited?
 	 *
-	 * @return boolean: true if it has, false if it has not
+	 * @return bool true if it has, false if it has not
 	 */
 	function hasBeenEdited() {
 		return $this->data->wfr_edit_timestamp == true;
@@ -175,7 +175,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Deletes the reply
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function delete() {
 		$user = $this->getUser();
@@ -209,7 +209,7 @@ class WFReply extends ContextSource {
 	 * Edit the reply
 	 *
 	 * @param $text String: new reply text
-	 * @return string: HTML of thread
+	 * @return string HTML of thread
 	 */
 	function edit( $text ) {
 		$user = $this->getUser();
@@ -254,7 +254,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Show this reply
 	 *
-	 * @return string: HTML the reply
+	 * @return string HTML the reply
 	 */
 	function show() {
 		$posted = $this->showPostedInfo();
@@ -286,7 +286,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Show the reply buttons: quote, edit and delete.
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function showButtons() {
 		global $wgExtensionAssetsPath;
@@ -320,9 +320,9 @@ class WFReply extends ContextSource {
 	/**
 	 * Add a reply with the text $text to the thread with ID = $threadId.
 	 *
-	 * @param WFThread $thread: thread to reply to
-	 * @param string $text: reply text
-	 * @return string: HTML of thread
+	 * @param WFThread $thread thread to reply to
+	 * @param string $text reply text
+	 * @return string HTML of thread
 	 */
 	static function add( WFThread $thread, $text ) {
 		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
@@ -423,7 +423,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Show the editor for this reply
 	 *
-	 * @return string: HTML, the editor
+	 * @return string HTML, the editor
 	 */
 	function showEditor() {
 		return WFReply::showGeneralEditor(
@@ -439,8 +439,8 @@ class WFReply extends ContextSource {
 	/**
 	 * Show the reply editor
 	 *
-	 * @param array $params: URL params to be passed to form
-	 * @param string $textValue: value to preload the editor with
+	 * @param array $params URL params to be passed to form
+	 * @param string $textValue value to preload the editor with
 	 * @return string
 	 */
 	static function showGeneralEditor( $params, $text_prev = '', $showCancel = false ) {

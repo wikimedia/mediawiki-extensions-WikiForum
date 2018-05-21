@@ -36,7 +36,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Get a new forum object from the given database row
 	 *
-	 * @param stdClass $sql: DB row. Must be a row, not a ResultWrapper!
+	 * @param stdClass $sql DB row. Must be a row, not a ResultWrapper!
 	 * @return WFForum
 	 */
 	public static function newFromSQL( $sql ) {
@@ -46,8 +46,8 @@ class WFForum extends ContextSource {
 	/**
 	 * Get a WFForum object for the given title
 	 *
-	 * @param string $title: title to get forum for
-	 * @return WFForum|boolean: the forum, or false on failure
+	 * @param string $title title to get forum for
+	 * @return WFForum|bool the forum, or false on failure
 	 */
 	public static function newFromName( $title ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -69,7 +69,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Is this an annoucement forum?
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	function isAnnouncement() {
 		return $this->data->wff_announcement == true;
@@ -105,7 +105,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Get this forum's ID number
 	 *
-	 * @return int: the ID
+	 * @return int the ID
 	 */
 	function getId() {
 		return $this->data->wff_forum;
@@ -162,8 +162,8 @@ class WFForum extends ContextSource {
 	/**
 	 * Get an array of this forum's children threads
 	 *
-	 * @param array $orderBy: SQL fragment for ordering by
-	 * @return multitype:WFThread: array of threads
+	 * @param array $orderBy SQL fragment for ordering by
+	 * @return multitype:WFThread array of threads
 	 */
 	function getThreads( $orderBy = '' ) {
 		if ( !$this->threads ) {
@@ -210,7 +210,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Get the URL to this forum
 	 *
-	 * @return string: the URL
+	 * @return string the URL
 	 */
 	function getURL() {
 		$page = SpecialPage::getTitleFor( 'WikiForum' );
@@ -221,7 +221,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Show a link to this forum, with icon
 	 *
-	 * @return string: HTML, the link
+	 * @return string HTML, the link
 	 */
 	function showLink() {
 		global $wgExtensionAssetsPath;
@@ -242,7 +242,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Show an item (row) for a list (table) for this forum. The sort you find on category pages, and the overview
 	 *
-	 * @return string: HTML, the row.
+	 * @return string HTML, the row.
 	 */
 	function showListItem() {
 		$output = '<tr class="mw-wikiforum-marked"> <td class="mw-wikiforum-title">
@@ -294,9 +294,9 @@ class WFForum extends ContextSource {
 	/**
 	 * Add a new thread to this forum
 	 *
-	 * @param string $title: user-supplied title
-	 * @param string $text: user-supplied text
-	 * @return WFThread|boolean: the thread on success, or false on failure
+	 * @param string $title user-supplied title
+	 * @param string $text user-supplied text
+	 * @return WFThread|bool the thread on success, or false on failure
 	 */
 	function addThread( $title, $text ) {
 		return WFThread::add( $this, $title, $text );
@@ -308,7 +308,7 @@ class WFForum extends ContextSource {
 	 * @param $forumName String: forum name as supplied by the user
 	 * @param $description String: forum description as supplied by the user
 	 * @param $announcement boolean
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function edit( $forumName, $description, $announcement ) {
 		$user = $this->getUser();
@@ -358,7 +358,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Deletes the forum
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function delete() {
 		$user = $this->getUser();
@@ -381,7 +381,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Show this forum, including frames, headers, et al.
 	 *
-	 * @return string: HTML the forum
+	 * @return string HTML the forum
 	 */
 	function show() {
 		global $wgExtensionAssetsPath;
@@ -483,7 +483,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Sort this forum upwards
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function sortUp() {
 		return $this->sort( true );
@@ -492,7 +492,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Sort this forum downwards
 	 *
-	 * @return string: HTML
+	 * @return string HTML
 	 */
 	function sortDown() {
 		return $this->sort( false );
@@ -552,11 +552,11 @@ class WFForum extends ContextSource {
 	/**
 	 * Add a new forum
 	 *
-	 * @param WFCategory $category: category to add to
-	 * @param string $forumName: user-supplied name
-	 * @param string $description: user-supplied description
-	 * @param boolean $announcement: user-supplied announcement checkbox
-	 * @return string: HTML
+	 * @param WFCategory $category category to add to
+	 * @param string $forumName user-supplied name
+	 * @param string $description user-supplied description
+	 * @param bool $announcement user-supplied announcement checkbox
+	 * @return string HTML
 	 */
 	static function add( WFCategory $category, $forumName, $description, $announcement ) {
 		global $wgWikiForumLogInRC, $wgUser, $wgRequest, $wgLang;
@@ -630,11 +630,11 @@ class WFForum extends ContextSource {
 	/**
 	 * Get the form for adding/editing forums.
 	 *
-	 * @param array $params: URL parameters
-	 * @param string $titlePlaceholder: placeholder attribute for the title input
-	 * @param string $titleValue: value attribute for the title input
-	 * @param boolean $announcement: value for the announcement checkbox
-	 * @param string $formTitle: title to label the form with
+	 * @param array $params URL parameters
+	 * @param string $titlePlaceholder placeholder attribute for the title input
+	 * @param string $titleValue value attribute for the title input
+	 * @param bool $announcement value for the announcement checkbox
+	 * @param string $formTitle title to label the form with
 	 * @return string HTML, the form
 	 */
 	static function showForm( $params, $titlePlaceholder = '', $titleValue = '', $textValue = '', $announcement = false, $formTitle ) {
@@ -673,7 +673,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Show the form for editing this forum
 	 *
-	 * @return string: HTML, the form
+	 * @return string HTML, the form
 	 */
 	function showEditForm() {
 		$params = [ 'wfaction' => 'saveforum', 'forum' => $this->getId() ];
@@ -683,7 +683,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Show the editor for adding a new thread to this forum
 	 *
-	 * @return string: HTML the editor
+	 * @return string HTML the editor
 	 */
 	function showNewThreadForm( $preloadTitle, $preloadText ) {
 		return WFThread::showGeneralEditor(
