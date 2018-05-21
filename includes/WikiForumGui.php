@@ -371,6 +371,5 @@ class WikiForumGui {
 			$wgLang->date( $timestamp ),
 			$wgLang->time( $timestamp )
 		)->text();
-
 	}
 }
