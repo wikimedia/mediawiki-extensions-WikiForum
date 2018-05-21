@@ -196,7 +196,7 @@ class WikiForum {
 	static function showAvatar( User $user ) {
 		$avatar = '';
 		if ( class_exists( 'wAvatar' ) ) {
-			$avatarObj = new wAvatar( $user->getId() , 'l' );
+			$avatarObj = new wAvatar( $user->getId(), 'l' );
 			$avatar = '<div class="wikiforum-avatar-image">';
 			$avatar .= $avatarObj->getAvatarURL();
 			$avatar .= '</div>';
