@@ -21,7 +21,7 @@ class WFReply extends ContextSource {
 		$data = $dbr->selectRow(
 			'wikiforum_replies',
 			'*',
-			array( 'wfr_reply_id' => $id ),
+			[ 'wfr_reply_id' => $id ],
 			__METHOD__
 		);
 
@@ -44,7 +44,7 @@ class WFReply extends ContextSource {
 		$data = $dbr->selectRow(
 			'wikiforum_replies',
 			'*',
-			array( 'wfr_reply_text' => $text ),
+			[ 'wfr_reply_text' => $text ],
 			__METHOD__
 		);
 
@@ -193,7 +193,7 @@ class WFReply extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->delete(
 			'wikiforum_replies',
-			array( 'wfr_reply_id' => $this->getId() ),
+			[ 'wfr_reply_id' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -238,13 +238,13 @@ class WFReply extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->update(
 			'wikiforum_replies',
-			array(
+			[
 				'wfr_reply_text' => $text,
 				'wfr_edit_timestamp' => wfTimestampNow(),
 				'wfr_edit_user' => $user->getId(),
 				'wfr_edit_user_ip' => $this->getRequest()->getIP(),
-			),
-			array( 'wfr_reply_id' => $this->getId() ),
+			],
+			[ 'wfr_reply_id' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -295,7 +295,7 @@ class WFReply extends ContextSource {
 		$user = $this->getUser();
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-		$editButtons = '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'thread' => $thread->getId(), 'quotereply' => $this->getId() ) ) ) . '#writereply">';
+		$editButtons = '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $thread->getId(), 'quotereply' => $this->getId() ] ) ) . '#writereply">';
 		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
 
 		if (
@@ -306,9 +306,9 @@ class WFReply extends ContextSource {
 			||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
-			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editreply', 'reply' => $this->getId() ) ) ) . '#writereply">';
+			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editreply', 'reply' => $this->getId() ] ) ) . '#writereply">';
 			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comment_edit.png" title="' . wfMessage( 'wikiforum-edit-reply' )->text() . '" />';
-			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deletereply', 'reply' => $this->getId() ) ) ) . '">';
+			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletereply', 'reply' => $this->getId() ] ) ) . '">';
 			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comment_delete.png" title="' . wfMessage( 'wikiforum-delete-reply' )->text() . '" />';
 		}
 
@@ -356,12 +356,12 @@ class WFReply extends ContextSource {
 		$doublepost = $dbr->selectRow(
 			'wikiforum_replies',
 			'wfr_reply_id',
-			array(
+			[
 				'wfr_reply_text' => $text,
 				'wfr_user' => $wgUser->getId(),
 				'wfr_thread' => $thread->getId(),
 				'wfr_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
-			),
+			],
 			__METHOD__
 		);
 
@@ -372,12 +372,12 @@ class WFReply extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->insert(
 			'wikiforum_replies',
-			array(
+			[
 				'wfr_reply_text' => $text,
 				'wfr_posted_timestamp' => $timestamp,
 				'wfr_user' => $wgUser->getId(),
 				'wfr_thread' => $thread->getId()
-			),
+			],
 			__METHOD__
 		);
 
@@ -387,20 +387,20 @@ class WFReply extends ContextSource {
 
 		$dbw->update(
 			'wikiforum_threads',
-			array(
+			[
 				'wft_reply_count = wft_reply_count + 1',
 				'wft_last_post_timestamp' => $timestamp,
 				'wft_last_post_user' => $wgUser->getId(),
 				'wft_last_post_user_ip' => $wgRequest->getIP(),
-			),
-			array( 'wft_thread' => $thread->getId() ),
+			],
+			[ 'wft_thread' => $thread->getId() ],
 			__METHOD__
 		);
 
 		$dbw->update(
 			'wikiforum_forums',
-			array( 'wff_reply_count = wff_reply_count + 1' ),
-			array( 'wff_forum' => $thread->getForum()->getId() ),
+			[ 'wff_reply_count = wff_reply_count + 1' ],
+			[ 'wff_forum' => $thread->getForum()->getId() ],
 			__METHOD__
 		);
 
@@ -409,9 +409,9 @@ class WFReply extends ContextSource {
 		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
 		$shortText = $wgLang->truncate( $text, 50 );
 		$logEntry->setComment( $shortText );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 				'4::thread-name' => $thread->getName(),
-		) );
+		] );
 		$logid = $logEntry->insert();
 		if ( $wgWikiForumLogInRC ) {
 			$logEntry->publish( $logid );
@@ -427,10 +427,10 @@ class WFReply extends ContextSource {
 	 */
 	function showEditor() {
 		return WFReply::showGeneralEditor(
-			array(
+			[
 				'wfaction' => 'savereply',
 				'reply' => $this->getId()
-			),
+			],
 			$this->getText(),
 			true
 		);

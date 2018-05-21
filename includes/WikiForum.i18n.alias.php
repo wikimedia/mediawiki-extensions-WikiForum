@@ -6,14 +6,14 @@
  * @ingroup Extensions
  */
 
-$specialPageAliases = array();
+$specialPageAliases = [];
 
 /** English */
-$specialPageAliases['en'] = array(
-	'WikiForum' => array( 'WikiForum', 'Forum' ),
-);
+$specialPageAliases['en'] = [
+	'WikiForum' => [ 'WikiForum', 'Forum' ],
+];
 
 /** Finnish (Suomi) */
-$specialPageAliases['fi'] = array(
-	'WikiForum' => array( 'WikiFoorumi', 'Foorumi' ),
-);
+$specialPageAliases['fi'] = [
+	'WikiForum' => [ 'WikiFoorumi', 'Foorumi' ],
+];

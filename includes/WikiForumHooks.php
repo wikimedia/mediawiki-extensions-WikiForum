@@ -31,14 +31,14 @@ class WikiForumHooks {
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$sqlThreads = $dbr->select(
-			array( 'wikiforum_threads' ),
-			array( '*' ),
-			array(),
+			[ 'wikiforum_threads' ],
+			[ '*' ],
+			[],
 			__METHOD__,
-			array(
+			[
 				'ORDER BY' => 'wft_last_post_timestamp DESC',
 				'LIMIT' => intval( $args['num'] )
-			)
+			]
 		);
 
 		$output = WikiForumGui::showListTagHeader(

@@ -34,7 +34,7 @@ class WikiForumGui {
 	static function showSearchbox() {
 		global $wgExtensionAssetsPath;
 
-		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'search' ) ) );
+		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] ) );
 
 		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
 
@@ -83,7 +83,7 @@ class WikiForumGui {
 
 		if ( $maxissues / $limit > 1 ) {
 			for ( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
-				$urlParams = array_merge( array( 'page' => $i ), $params );
+				$urlParams = array_merge( [ 'page' => $i ], $params );
 
 				if ( $i <= 9 ) {
 					$pageNumber = '0' . $i;

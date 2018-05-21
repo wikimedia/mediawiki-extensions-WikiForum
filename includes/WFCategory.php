@@ -21,7 +21,7 @@ class WFCategory extends ContextSource {
 		$data = $dbr->selectRow(
 			'wikiforum_category',
 			'*',
-			array( 'wfc_category' => $id ),
+			[ 'wfc_category' => $id ],
 			__METHOD__
 		);
 
@@ -54,7 +54,7 @@ class WFCategory extends ContextSource {
 		$data = $dbr->selectRow(
 			'wikiforum_category',
 			'*',
-			array( 'wfc_category_name' => $title ),
+			[ 'wfc_category_name' => $title ],
 			__METHOD__
 		);
 
@@ -95,12 +95,12 @@ class WFCategory extends ContextSource {
 			$sqlForums = $dbr->select(
 				'wikiforum_forums',
 				'*',
-				array( 'wff_category' => $this->getId() ),
+				[ 'wff_category' => $this->getId() ],
 				__METHOD__,
-				array( 'ORDER BY' => 'wff_sortkey ASC, wff_forum ASC' )
+				[ 'ORDER BY' => 'wff_sortkey ASC, wff_forum ASC' ]
 			);
 
-			$forums = array();
+			$forums = [];
 
 			foreach( $sqlForums as $sql ) {
 				$forum = WFForum::newFromSQL( $sql );
@@ -120,7 +120,7 @@ class WFCategory extends ContextSource {
 	 * @return string
 	 */
 	function getURL() {
-		return htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'category' => $this->getId() ) ) );
+		return htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'category' => $this->getId() ] ) );
 	}
 
 	/**
@@ -141,7 +141,7 @@ class WFCategory extends ContextSource {
 		global $wgExtensionAssetsPath;
 
 		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/folder_add.png" title="' . wfMessage( 'wikiforum-add-forum' )->text() . '" /> ';
-		return $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'addforum', 'category' => $this->getId() ) ) ) . '">' .
+		return $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addforum', 'category' => $this->getId() ] ) ) . '">' .
 			wfMessage( 'wikiforum-add-forum' )->text() . '</a>';
 	}
 
@@ -162,17 +162,17 @@ class WFCategory extends ContextSource {
 			// For grep: wikiforum-edit-forum, wikiforum-edit-category,
 			// wikiforum-delete-forum, wikiforum-delete-category
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_edit.png" title="' . wfMessage( 'wikiforum-edit-category' )->text() . '" />';
-			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editcategory', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
+			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editcategory', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_delete.png" title="' . wfMessage( 'wikiforum-delete-category' )->text() . '" />';
-			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deletecategory', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
+			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletecategory', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
 			if ( $sort ) {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'categoryup', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
+				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categoryup', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'categorydown', 'category' => $this->getId() ) ) ) . '">' . $icon . '</a>';
+				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categorydown', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 			}
 		}
 
@@ -207,7 +207,7 @@ class WFCategory extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->delete(
 			'wikiforum_category',
-			array( 'wfc_category' => $this->getId() ),
+			[ 'wfc_category' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -236,12 +236,12 @@ class WFCategory extends ContextSource {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update(
 				'wikiforum_category',
-				array(
+				[
 					'wfc_category_name' => $categoryName,
 					'wfc_edited' => wfTimestampNow(),
 					'wfc_edited_user_ip' => $this->getRequest()->getIP()
-				),
-				array( 'wfc_category' => $this->getId() ),
+				],
+				[ 'wfc_category' => $this->getId() ],
 				__METHOD__
 			);
 		}
@@ -330,14 +330,14 @@ class WFCategory extends ContextSource {
 
 		$sqlData = $dbr->select(
 			'wikiforum_category',
-			array( 'wfc_category', 'wfc_sortkey' ),
-			array(),
+			[ 'wfc_category', 'wfc_sortkey' ],
+			[],
 			__METHOD__,
-			array( 'ORDER BY' => 'wfc_sortkey ASC' )
+			[ 'ORDER BY' => 'wfc_sortkey ASC' ]
 		);
 
 		$i = 0;
-		$new_array = array();
+		$new_array = [];
 		foreach ( $sqlData as $entry ) {
 			$entry->wfc_sortkey = $i;
 			array_push( $new_array, $entry );
@@ -359,8 +359,8 @@ class WFCategory extends ContextSource {
 		foreach ( $new_array as $entry ) {
 			$result = $dbw->update(
 				'wikiforum_category',
-				array( 'wfc_sortkey' => $entry->wfc_sortkey ),
-				array( 'wfc_category' => $entry->wfc_category ),
+				[ 'wfc_sortkey' => $entry->wfc_sortkey ],
+				[ 'wfc_category' => $entry->wfc_category ],
 				__METHOD__
 			);
 		}
@@ -390,20 +390,20 @@ class WFCategory extends ContextSource {
 		$sortkey = $dbr->selectRow(
 			'wikiforum_category',
 			'MAX(wfc_sortkey) AS the_key',
-			array(),
+			[],
 			__METHOD__
 		);
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
 			'wikiforum_category',
-			array(
+			[
 				'wfc_category_name' => $categoryName,
 				'wfc_sortkey' => ( $sortkey->the_key + 1 ),
 				'wfc_added_timestamp' => wfTimestampNow(),
 				'wfc_added_user' => $wgUser->getId(),
 				'wfc_added_user_ip' => $wgRequest->getIP(),
-			),
+			],
 			__METHOD__
 		);
 
@@ -412,10 +412,10 @@ class WFCategory extends ContextSource {
 		$logEntry = new ManualLogEntry( 'forum', 'add-category' );
 		$logEntry->setPerformer( $wgUser );
 		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 			'4::category-url' => $category->getURL(),
 			'5::category-name' => $categoryName
-		) );
+		] );
 		$logid = $logEntry->insert();
 		if ( $wgWikiForumLogInRC ) {
 			$logEntry->publish( $logid );
@@ -469,7 +469,7 @@ class WFCategory extends ContextSource {
 	 * @return string: HTML
 	 */
 	function showEditForm() {
-		$params = array( 'wfaction' => 'savecategory', 'category' => $this->getId() );
+		$params = [ 'wfaction' => 'savecategory', 'category' => $this->getId() ];
 		return self::showForm( $params, '', $this->getName(), wfMessage( 'wikiforum-edit-category' )->text() );
 	}
 
@@ -479,7 +479,7 @@ class WFCategory extends ContextSource {
 	 * @return string: HTML
 	 */
 	static function showAddForm() {
-		$params = array( 'wfaction' => 'savenewcategory' );
+		$params = [ 'wfaction' => 'savenewcategory' ];
 		return self::showForm( $params, wfMessage( 'wikiforum-category-preload' )->text(), '', wfMessage( 'wikiforum-add-category' )->text() );
 	}
 
@@ -489,7 +489,7 @@ class WFCategory extends ContextSource {
 	 * @return string: HTML, the form
 	 */
 	function showAddForumForm() {
-		$params = array( 'wfaction' => 'savenewforum', 'category' => $this->getId() );
+		$params = [ 'wfaction' => 'savenewforum', 'category' => $this->getId() ];
 		return WFForum::showForm( $params, wfMessage( 'wikiforum-forum-preload' )->text(), '', '', false, wfMessage( 'wikiforum-add-forum' )->text() );
 	}
 }

@@ -23,7 +23,7 @@ class WFThread extends ContextSource {
 		$data = $dbr->selectRow(
 			'wikiforum_threads',
 			'*',
-			array( 'wft_thread' => $id ),
+			[ 'wft_thread' => $id ],
 			__METHOD__
 		);
 
@@ -59,7 +59,7 @@ class WFThread extends ContextSource {
 		$data = $dbr->selectRow(
 			'wikiforum_threads',
 			'*',
-			array( 'wft_thread_name' => $titleText ),
+			[ 'wft_thread_name' => $titleText ],
 			__METHOD__
 		);
 
@@ -277,12 +277,12 @@ class WFThread extends ContextSource {
 			$sqlReplies = $dbr->select(
 				'wikiforum_replies',
 				'*',
-				array( 'wfr_thread' => $this->getId() ),
+				[ 'wfr_thread' => $this->getId() ],
 				__METHOD__,
-				array( 'ORDER BY' => 'wfr_posted_timestamp ASC' )
+				[ 'ORDER BY' => 'wfr_posted_timestamp ASC' ]
 			);
 
-			$replies = array();
+			$replies = [];
 
 			foreach( $sqlReplies as $sql ) {
 				$reply = WFReply::newFromSQL( $sql );
@@ -325,7 +325,7 @@ class WFThread extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete(
 			'wikiforum_threads',
-			array( 'wft_thread' => $this->getId() ),
+			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 		// Update threads/replies counters
@@ -334,26 +334,26 @@ class WFThread extends ContextSource {
 		// to update the information about the latest post & its author
 		$row = $dbw->selectRow(
 			'wikiforum_threads',
-			array(
+			[
 				'wft_last_post_user',
 				'wft_last_post_user_ip',
 				'wft_last_post_timestamp',
-			),
-			array('wft_forum' => $this->getForum()->getId() ),
+			],
+			['wft_forum' => $this->getForum()->getId() ],
 			__METHOD__,
-			array( 'LIMIT' => 1 )
+			[ 'LIMIT' => 1 ]
 		);
 		// Update the forum table so that the data shown on Special:WikiForum is up to date
 		$dbw->update(
 			'wikiforum_forums',
-			array(
+			[
 				"wff_reply_count = wff_reply_count - $replyCount",
 				'wff_thread_count = wff_thread_count - 1',
 				'wff_last_post_user' => $row->wft_last_post_user,
 				'wff_last_post_user_ip' => $row->wft_last_post_user_ip,
 				'wff_last_post_timestamp' => $row->wft_last_post_timestamp
-			),
-			array( 'wff_forum' => $this->getForum()->getId() ),
+			],
+			[ 'wff_forum' => $this->getForum()->getId() ],
 			__METHOD__
 		);
 
@@ -374,11 +374,11 @@ class WFThread extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->update(
 			'wikiforum_threads',
-			array(
+			[
 				'wft_closed' => 0,
 				'wft_closed_user' => 0
-			),
-			array( 'wft_thread' => $this->getId() ),
+			],
+			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -404,12 +404,12 @@ class WFThread extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->update(
 			'wikiforum_threads',
-			array(
+			[
 				'wft_closed' => wfTimestampNow(),
 				'wft_closed_user' => $user->getId(),
 				'wft_closed_user_ip' => $this->getRequest()->getIP()
-			),
-			array( 'wft_thread' => $this->getId() ),
+			],
+			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -453,8 +453,8 @@ class WFThread extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->update(
 			'wikiforum_threads',
-			array( 'wft_sticky' => $value ),
-			array( 'wft_thread' => $this->getId() ),
+			[ 'wft_sticky' => $value ],
+			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -499,14 +499,14 @@ class WFThread extends ContextSource {
 		$dbw = wfGetDB( DB_MASTER );
 		$result = $dbw->update(
 			'wikiforum_threads',
-			array(
+			[
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
 				'wft_edit_timestamp' => wfTimestampNow(),
 				'wft_edit_user' => $user->getId(),
 				'wft_edit_user_ip' => $this->getRequest()->getIP(),
-			),
-			array( 'wft_thread' => $this->getId() ),
+			],
+			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -567,11 +567,11 @@ class WFThread extends ContextSource {
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			if ( $this->isSticky() ) {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/tag_blue_delete.png" title="' . wfMessage( 'wikiforum-remove-sticky' )->text() . '" /> ';
-				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'removesticky', 'thread' => $this->getId() ) ) ) . '">' .
+				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ) ) . '">' .
 					wfMessage( 'wikiforum-remove-sticky' )->text() . '</a> ';
 			} else {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/tag_blue_add.png" title="' . wfMessage( 'wikiforum-make-sticky' )->text() . '" /> ';
-				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'makesticky', 'thread' => $this->getId() ) ) ) . '">' .
+				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'makesticky', 'thread' => $this->getId() ] ) ) . '">' .
 					wfMessage( 'wikiforum-make-sticky' )->text() . '</a> ';
 			}
 		}
@@ -622,14 +622,14 @@ class WFThread extends ContextSource {
 			$countReplies = $dbr->selectRow(
 				'wikiforum_replies',
 				'COUNT(*) AS count',
-				array( 'wfr_thread' => $this->getId() ),
+				[ 'wfr_thread' => $this->getId() ],
 				__METHOD__
 			);
 			$output .= WikiForumGui::showFooterRow(
 				$limit_page,
 				$countReplies->count,
 				$maxPerPage,
-				array( 'thread' => $this->getId() )
+				[ 'thread' => $this->getId() ]
 			);
 		}
 
@@ -643,8 +643,8 @@ class WFThread extends ContextSource {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update(
 				'wikiforum_threads',
-				array( 'wft_view_count = wft_view_count + 1' ),
-				array( 'wft_thread' => $this->getId() ),
+				[ 'wft_view_count = wft_view_count + 1' ],
+				[ 'wft_thread' => $this->getId() ],
 				__METHOD__
 			);
 		}
@@ -723,7 +723,7 @@ class WFThread extends ContextSource {
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$editButtons .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'thread' => $this->getId(), 'quotethread' => $this->getId() ) ) ) . '#writereply">';
+		$editButtons .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $this->getId(), 'quotethread' => $this->getId() ] ) ) . '#writereply">';
 		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
 		$editButtons .= '</a>';
 
@@ -733,20 +733,20 @@ class WFThread extends ContextSource {
 			$user->getId() == $this->getPostedById() ||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
-			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'editthread', 'thread' => $this->getId() ) ) ) . '">';
+			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editthread', 'thread' => $this->getId() ] ) ) . '">';
 			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/note_edit.png" title="' . wfMessage( 'wikiforum-edit-thread' )->text() . '" />';
-			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'deletethread', 'thread' => $this->getId() ) ) ) . '">';
+			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletethread', 'thread' => $this->getId() ] ) ) . '">';
 			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/note_delete.png" title="' . wfMessage( 'wikiforum-delete-thread' )->text() . '" />';
 			$editButtons .= '</a> ';
 
 			// Only moderators can lock and reopen threads
 			if ( $user->isAllowed( 'wikiforum-moderator' ) ) {
 				if ( !$this->isClosed() ) {
-					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'closethread', 'thread' => $this->getId() ) ) ) . '">';
+					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'closethread', 'thread' => $this->getId() ] ) ) . '">';
 					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/lock_add.png" title="' . wfMessage( 'wikiforum-close-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				} else {
-					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( array( 'wfaction' => 'reopenthread', 'thread' => $this->getId() ) ) ) . '">';
+					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'reopenthread', 'thread' => $this->getId() ] ) ) . '">';
 					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/lock_open.png" title="' . wfMessage( 'wikiforum-reopen-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				}
@@ -809,10 +809,10 @@ class WFThread extends ContextSource {
 					$title,
 					'',
 					$text,
-					array(
+					[
 						'wfaction' => 'savenewthread',
 						'forum' => $forum->getId()
-					)
+					]
 				);
 				return $output;
 			}
@@ -823,7 +823,7 @@ class WFThread extends ContextSource {
 
 		$result = $dbw->insert(
 			'wikiforum_threads',
-			array(
+			[
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
 				'wft_posted_timestamp' => $timestamp,
@@ -831,7 +831,7 @@ class WFThread extends ContextSource {
 				'wft_user_ip' => $wgRequest->getIP(),
 				'wft_forum' => $forum->getId(),
 				'wft_last_post_timestamp' => $timestamp
-			),
+			],
 			__METHOD__
 		);
 
@@ -840,13 +840,13 @@ class WFThread extends ContextSource {
 
 		$dbw->update( // update thread counters
 			'wikiforum_forums',
-			array(
+			[
 				'wff_thread_count = wff_thread_count + 1',
 				'wff_last_post_user' => $wgUser->getId(),
 				'wff_last_post_user_ip' => $wgRequest->getIP(),
 				'wff_last_post_timestamp' => $timestamp
-			),
-			array( 'wff_forum' => $forum->getId() ),
+			],
+			[ 'wff_forum' => $forum->getId() ],
 			__METHOD__
 		);
 
@@ -855,9 +855,9 @@ class WFThread extends ContextSource {
 		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
 		$shortText = $wgLang->truncate( $text, 50 );
 		$logEntry->setComment( $shortText );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 			'4::thread-name' => $title
-		) );
+		] );
 		$logid = $logEntry->insert();
 		if ( $wgWikiForumLogInRC ) {
 			$logEntry->publish( $logid );
@@ -938,10 +938,10 @@ class WFThread extends ContextSource {
 			$this->getName(),
 			'',
 			$this->getText(),
-			array(
+			[
 				'wfaction' => 'savethread',
 				'thread' => $this->getId()
-			)
+			]
 		);
 	}
 
@@ -986,10 +986,10 @@ class WFThread extends ContextSource {
 		}
 
 		return WFReply::showGeneralEditor(
-			array(
+			[
 				'wfaction' => 'savenewreply',
 				'thread' => $this->getId()
-			),
+			],
 			$textValue
 		);
 	}

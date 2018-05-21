@@ -42,9 +42,9 @@ class WikiForum {
 		$sqlCategories = $dbr->select(
 			'wikiforum_category',
 			'*',
-			array(),
+			[],
 			__METHOD__,
-			array( 'ORDER BY' => 'wfc_sortkey ASC, wfc_category ASC' )
+			[ 'ORDER BY' => 'wfc_sortkey ASC, wfc_category ASC' ]
 		);
 
 		if ( $sqlCategories->numRows() ) {
@@ -62,7 +62,7 @@ class WikiForum {
 		// Forum admins are allowed to add new categories
 		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
-			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( array( 'wfaction' => 'addcategory' ) ) ) . '">' .
+			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ) . '">' .
 				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
 			$output .= WikiForumGui::showHeaderRow( '', $menuLink );
 		}
@@ -100,7 +100,7 @@ class WikiForum {
 				'*',
 				"(wft_thread_name $likeString OR wft_text $likeString)",
 				__METHOD__,
-				array( 'ORDER BY' => 'wft_posted_timestamp DESC', 'LIMIT' => $limit  )
+				[ 'ORDER BY' => 'wft_posted_timestamp DESC', 'LIMIT' => $limit  ]
 			);
 
 			foreach ( $threadData as $sql ) {
@@ -115,7 +115,7 @@ class WikiForum {
 				'*',
 				"wfr_reply_text $likeString",
 				__METHOD__,
-				array( 'ORDER BY' => 'wfr_posted_timestamp DESC', 'LIMIT' => $limit )
+				[ 'ORDER BY' => 'wfr_posted_timestamp DESC', 'LIMIT' => $limit ]
 			);
 
 			foreach ( $replyData as $sql ) {
@@ -180,7 +180,7 @@ class WikiForum {
 				)->text();
 		}
 
-		Hooks::run( 'WikiForumSig', array( &$groupText, $user ) );
+		Hooks::run( 'WikiForumSig', [ &$groupText, $user ] );
 
 		$retVal .= $groupText;
 
