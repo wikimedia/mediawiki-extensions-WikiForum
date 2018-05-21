@@ -164,7 +164,7 @@ class SpecialWikiForum extends SpecialPage {
 					}
 				}
 
-			} elseif( $threadID ) { // actions requiring a thread
+			} elseif ( $threadID ) { // actions requiring a thread
 				$thread = WFThread::newFromID( $threadID );
 
 				if ( !$thread ) { // show error message, thread not found
@@ -245,7 +245,7 @@ class SpecialWikiForum extends SpecialPage {
 					case 'addcategory':
 						$output .= WFCategory::showAddForm();
 						break;
-					case 'savenewcategory': //title
+					case 'savenewcategory': // title
 						$output .= WFCategory::add( $title );
 						break;
 					case 'search':

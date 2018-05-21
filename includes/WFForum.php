@@ -179,7 +179,7 @@ class WFForum extends ContextSource {
 
 			$threads = [];
 
-			foreach( $sqlThreads as $sql ) {
+			foreach ( $sqlThreads as $sql ) {
 				$thread = WFThread::newFromSQL( $sql );
 				$thread->forum = $this; // saves thread making DB query to find this
 				$threads[] = $thread;

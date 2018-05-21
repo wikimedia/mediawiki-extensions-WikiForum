@@ -102,7 +102,7 @@ class WFCategory extends ContextSource {
 
 			$forums = [];
 
-			foreach( $sqlForums as $sql ) {
+			foreach ( $sqlForums as $sql ) {
 				$forum = WFForum::newFromSQL( $sql );
 				$forum->category = $this; // saves forum making DB query to find this
 				$forums[] = $forum;

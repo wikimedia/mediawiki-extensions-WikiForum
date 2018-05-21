@@ -284,7 +284,7 @@ class WFThread extends ContextSource {
 
 			$replies = [];
 
-			foreach( $sqlReplies as $sql ) {
+			foreach ( $sqlReplies as $sql ) {
 				$reply = WFReply::newFromSQL( $sql );
 				$reply->thread = $this; // saves thread making DB query to find
 				$replies[] = $reply;
@@ -339,7 +339,7 @@ class WFThread extends ContextSource {
 				'wft_last_post_user_ip',
 				'wft_last_post_timestamp',
 			],
-			['wft_forum' => $this->getForum()->getId() ],
+			[ 'wft_forum' => $this->getForum()->getId() ],
 			__METHOD__,
 			[ 'LIMIT' => 1 ]
 		);
@@ -359,7 +359,6 @@ class WFThread extends ContextSource {
 
 		return $this->getForum()->show();
 	}
-
 
 	/**
 	 * Reopens the thread
@@ -804,7 +803,7 @@ class WFThread extends ContextSource {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
-				$output = WikiForum::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
+				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
 				$output .= WFThread::showGeneralEditor(
 					$title,
 					'',

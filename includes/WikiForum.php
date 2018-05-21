@@ -92,7 +92,6 @@ class WikiForum {
 			// buildLike() will escape the query properly, add the word LIKE and the "double quotes"
 			$likeString = $dbr->buildLike( $dbr->anyString(), $what, $dbr->anyString() );
 
-
 			$limit = intval( wfMessage( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
 
 			$threadData = $dbr->select(
@@ -100,7 +99,7 @@ class WikiForum {
 				'*',
 				"(wft_thread_name $likeString OR wft_text $likeString)",
 				__METHOD__,
-				[ 'ORDER BY' => 'wft_posted_timestamp DESC', 'LIMIT' => $limit  ]
+				[ 'ORDER BY' => 'wft_posted_timestamp DESC', 'LIMIT' => $limit ]
 			);
 
 			foreach ( $threadData as $sql ) {
@@ -223,7 +222,7 @@ class WikiForum {
 	static function parseLinks( $text ) {
 		$text = preg_replace_callback(
 			'/\[thread#(.*?)\]/i',
-			'WikiForum::threadLinkFromID', //array( $this, 'getThreadTitle' ),
+			'WikiForum::threadLinkFromID', // array( $this, 'getThreadTitle' ),
 			$text
 		);
 		return $text;
@@ -239,7 +238,7 @@ class WikiForum {
 		$thread = WFThread::newFromID( $id );
 		if ( $thread ) {
 			return '<i>' . $thread->showLink() . '</i>';
-		} else { //fallback, got to return something
+		} else { // fallback, got to return something
 			return $id;
 		}
 	}

@@ -204,7 +204,6 @@ class WFReply extends ContextSource {
 		return $this->getThread()->show();
 	}
 
-
 	/**
 	 * Edit the reply
 	 *
@@ -345,7 +344,7 @@ class WFReply extends ContextSource {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
-				$output = WikiForum::showErrorMessage('wikiforum-error-add', 'wikiforum-error-captcha');
+				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
 				$thread->preloadText = $text;
 				$output .= $thread->show();
 				return $output;
