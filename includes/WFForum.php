@@ -595,7 +595,7 @@ class WFForum extends ContextSource {
 			__METHOD__
 		);
 
-		$forum = WFForum::newFromName( $forumName );
+		$forum = self::newFromName( $forumName );
 		$forum->category = $category;
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-forum' );

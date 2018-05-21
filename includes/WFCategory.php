@@ -383,7 +383,7 @@ class WFCategory extends ContextSource {
 		}
 		if ( strlen( $categoryName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
-			return $error . WFCategory::showAddForm();
+			return $error . self::showAddForm();
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -407,7 +407,7 @@ class WFCategory extends ContextSource {
 			__METHOD__
 		);
 
-		$category = WFCategory::newFromName( $categoryName );
+		$category = self::newFromName( $categoryName );
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-category' );
 		$logEntry->setPerformer( $wgUser );

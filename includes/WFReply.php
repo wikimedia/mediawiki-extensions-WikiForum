@@ -425,7 +425,7 @@ class WFReply extends ContextSource {
 	 * @return string HTML, the editor
 	 */
 	function showEditor() {
-		return WFReply::showGeneralEditor(
+		return self::showGeneralEditor(
 			[
 				'wfaction' => 'savereply',
 				'reply' => $this->getId()

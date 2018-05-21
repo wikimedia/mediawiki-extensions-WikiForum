@@ -762,7 +762,7 @@ class WFThread extends ContextSource {
 	 * @return bool
 	 */
 	static function titleExists( $title ) {
-		return WFThread::newFromName( $title ) == true;
+		return self::newFromName( $title ) == true;
 	}
 
 	/**
@@ -785,7 +785,7 @@ class WFThread extends ContextSource {
 			return $error . $forum->showNewThreadForm( $title, $text );
 		}
 
-		if ( WFThread::titleExists( $title ) ) {
+		if ( self::titleExists( $title ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-title-already-exists' );
 		}
 
@@ -804,7 +804,7 @@ class WFThread extends ContextSource {
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
 				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
-				$output .= WFThread::showGeneralEditor(
+				$output .= self::showGeneralEditor(
 					$title,
 					'',
 					$text,
@@ -834,7 +834,7 @@ class WFThread extends ContextSource {
 			__METHOD__
 		);
 
-		$thread = WFThread::newFromName( $title );
+		$thread = self::newFromName( $title );
 		$thread->forum = $forum; // saves an extra DB query
 
 		$dbw->update( // update thread counters
@@ -933,7 +933,7 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	function showEditForm() {
-		return WFThread::showGeneralEditor(
+		return self::showGeneralEditor(
 			$this->getName(),
 			'',
 			$this->getText(),
