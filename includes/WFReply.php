@@ -406,7 +406,7 @@ class WFReply extends ContextSource {
 		$logEntry = new ManualLogEntry( 'forum', 'add-reply' );
 		$logEntry->setPerformer( $wgUser );
 		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
-		$shortText = $wgLang->truncate( $text, 50 );
+		$shortText = $wgLang->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
 				'4::thread-name' => $thread->getName(),

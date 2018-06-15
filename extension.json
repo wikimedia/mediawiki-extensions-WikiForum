@@ -9,9 +9,6 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:WikiForum",
 	"descriptionmsg": "wikiforum-desc",
 	"license-name": "GPL-3.0-or-later",
-	"requires": {
-		"MediaWiki": ">= 1.29.0"
-	},
 	"type": "other",
 	"requires": {
 		"MediaWiki": ">= 1.31.0"

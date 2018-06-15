@@ -601,7 +601,7 @@ class WFForum extends ContextSource {
 		$logEntry = new ManualLogEntry( 'forum', 'add-forum' );
 		$logEntry->setPerformer( $wgUser );
 		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
-		$shortText = $wgLang->truncate( $description, 50 );
+		$shortText = $wgLang->truncateForDatabase( $description, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
 			'4::forum-url' => $forum->getURL(),
