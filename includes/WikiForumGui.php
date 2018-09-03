@@ -260,7 +260,7 @@ class WikiForumGui {
 					<td>
 						<input type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />';
 			if ( $showCancel ) {
-				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' ) ->escaped(). ' [c]" />';
+				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />';
 			}
 			$output .= '</td>
 					</tr>
