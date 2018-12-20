@@ -101,6 +101,8 @@
 	"group-forumadmin": "Administradores do fórum",
 	"group-forumadmin-member": "{{GENDER:$1|administrador|administradora}} do fórum",
 	"grouppage-forumadmin": "{{ns:project}}:Administradores do fórum",
+	"group-forumadmin.css": "/* CSS colocado aqui afetará apenas os administradores do fórum */",
+	"group-forumadmin.js": "/* JS colocado aqui afetará apenas os administradores do fórum */",
 	"log-name-forum": "Registo do fórum",
 	"log-description-forum": "Regista os eventos do [[Special:WikiForum|WikiForum]]",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|criou}} uma categoria nova, [$4 $5]",
