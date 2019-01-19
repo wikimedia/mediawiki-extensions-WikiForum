@@ -102,6 +102,8 @@
 	"group-forumadmin": "إداريو المنتدى",
 	"group-forumadmin-member": "{{GENDER:$1|إداري|إدارية}} منتدى",
 	"grouppage-forumadmin": "{{ns:project}}:إداريو المنتدى",
+	"group-forumadmin.css": "/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على إداريي المنتدى فقط */",
+	"group-forumadmin.js": "/* الجافا سكريبت المعروضة هنا ستؤثر على إداريي المنتدى فقط */",
 	"log-name-forum": "سجل المنتدى",
 	"log-description-forum": "سجلات أحداث [[Special:WikiForum|منتدى الويكي]]",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|أنشأ|أنشأت}} تصنيفا جديدا، [$4 $5]",
