@@ -316,7 +316,7 @@ class WFThread extends ContextSource {
 
 		if (
 			$user->isAnon() ||
-			( $user->getId() != $this->getPostedBy() && !$user->isAllowed( 'wikiforum-moderator' ) )
+			( $user->getId() != $this->getPostedBy()->getId() && !$user->isAllowed( 'wikiforum-moderator' ) )
 		) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 			return $error . $this->show();
@@ -349,9 +349,9 @@ class WFThread extends ContextSource {
 			[
 				"wff_reply_count = wff_reply_count - $replyCount",
 				'wff_thread_count = wff_thread_count - 1',
-				'wff_last_post_user' => $row->wft_last_post_user,
-				'wff_last_post_user_ip' => $row->wft_last_post_user_ip,
-				'wff_last_post_timestamp' => $row->wft_last_post_timestamp
+				'wff_last_post_user' => $row->wft_last_post_user ?? null,
+				'wff_last_post_user_ip' => $row->wft_last_post_user_ip ?? null,
+				'wff_last_post_timestamp' => $row->wft_last_post_timestamp ?? null
 			],
 			[ 'wff_forum' => $this->getForum()->getId() ],
 			__METHOD__
