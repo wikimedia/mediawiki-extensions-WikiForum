@@ -105,6 +105,7 @@
 	"group-forumadmin-member": "{{GENDER:$1|forumbeheerder}}",
 	"grouppage-forumadmin": "{{ns:project}}:Forumbeheerders",
 	"log-name-forum": "Forumlogboek",
+	"log-description-forum": "Registreert [[Special:WikiForum|WikiForum]] gebeurtenissen",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|maakte}} een nieuwe categorie aan, [$4 $5]",
 	"logentry-forum-add-forum": "$1 {{GENDER:$2|maakte}} een nieuw forum aan, [$4 $5]",
 	"logentry-forum-add-thread": "$1 {{GENDER:$2|maakte}} een nieuwe draad aan, [[Special:WikiForum/$4|$4]]",
@@ -112,5 +113,6 @@
 	"wikiforum-forum-preload": "Naam van uw forum",
 	"wikiforum-category-preload": "Naam voor uw categorie",
 	"wikiforum-must-supply-thread": "U moet een draad-ID opgeven.",
+	"wikiforum-captcha": "Ter bescherming tegen geautomatiseerde spam, vragen we u vriendelijk om het antwoord van de onderstaande vraag in het invoerveld in te vullen ([[Special:Captcha/help|meer informatie]]):",
 	"wikiforum-error-captcha": "Fout - verkeerde of ontbrekende CAPTCHA"
 }
