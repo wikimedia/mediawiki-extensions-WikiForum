@@ -13,6 +13,6 @@
 	"wikiforum-replies": "స్పందనలు",
 	"wikiforum-views": "వీక్షణలు",
 	"wikiforum-overview": "అవలోకనం",
-	"wikiforum-pages": "పుటలు:",
+	"wikiforum-pages": "{{PLURAL:$1|పేజీ|పేజీలు}}:",
 	"wikiforum-error-bad-title": "ఇచ్చిన శీర్షికలో చెల్లని అక్షరాలున్నాయి."
 }
