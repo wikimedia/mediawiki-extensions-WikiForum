@@ -8,7 +8,8 @@
 			"Linedwell",
 			"Verdy p",
 			"Urhixidur",
-			"Wladek92"
+			"Wladek92",
+			"Derugon"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]] extension pour MediaWiki",
@@ -100,7 +101,9 @@
 	"wikiforum-move-thread": "Déplacer le fil de discussion",
 	"wikiforum-paste-thread": "Coller le fil de discussion",
 	"wikiforum-quote": "Citer",
+	"action-wikiforum-admin": "ajouter, modifier et supprimer des catégories et forums sur [[Special:WikiForum|le tableau de discussion]]",
 	"right-wikiforum-admin": "Ajouter, modifier et supprimer catégories et forums sur [[Special:WikiForum|the discussion board]]",
+	"action-wikiforum-moderator": "modifier et supprimer des fils de discussion et réponses sur [[Special:WikiForum|le panneau de discussion]]",
 	"right-wikiforum-moderator": "Modifier et supprimer fils de discussion et réponses sur [[Special:WikiForum|the discussion board]]",
 	"group-forumadmin": "Administrateurs du forum",
 	"group-forumadmin-member": "{{GENDER:$1|administrateur du forum}}",
