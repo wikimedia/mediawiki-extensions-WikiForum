@@ -32,6 +32,10 @@ class SpecialWikiForum extends SpecialPage {
 		if ( $user->isBlocked() ) {
 			throw new UserBlockedError( $user->getBlock() );
 		}
+		// Also check for global blocks
+		if ( $user->isBlockedGlobally() ) {
+			throw new UserBlockedError( $user->getGlobalBlock() );
+		}
 
 		$this->setHeaders();
 
