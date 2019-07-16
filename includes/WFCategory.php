@@ -425,6 +425,7 @@ class WFCategory extends ContextSource {
 	}
 
 	// GUI Methods
+
 	/**
 	 * Shows the header row links - the breadcrumb navigation
 	 * (Overview > Category name)

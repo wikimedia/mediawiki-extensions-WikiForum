@@ -870,6 +870,7 @@ class WFThread extends ContextSource {
 	}
 
 	// GUI METHODS
+
 	/**
 	 * Show the header row links - the breadcrumb navigation
 	 * (Overview > Category name > Forum > Thread)
