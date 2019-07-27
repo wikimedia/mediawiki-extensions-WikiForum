@@ -113,6 +113,6 @@
 	"wikiforum-forum-preload": "您的論壇標題",
 	"wikiforum-category-preload": "您的分類標題",
 	"wikiforum-must-supply-thread": "您需要提供一個討論串 ID。",
-	"wikiforum-captcha": "為防止 wiki 遭受自動濫用程序的破壞，我們懇請您回答以下問題並將答案輸入在框內（[[Special:Captcha/help|更多訊息]]）：",
+	"wikiforum-captcha": "為防止 wiki 遭受自動濫用程序的破壞，我們懇請您回答以下問題並將答案輸入在方塊內（[[Special:Captcha/help|更多資訊]]）：",
 	"wikiforum-error-captcha": "錯誤 - 驗證碼不正確或有缺少"
 }
