@@ -7,7 +7,8 @@
 			"Olvin",
 			"Ата",
 			"Тест",
-			"Piramidion"
+			"Piramidion",
+			"Vlad5250"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Форумне]] розширення для MediaWiki",
@@ -99,7 +100,9 @@
 	"wikiforum-move-thread": "Перенести гілку",
 	"wikiforum-paste-thread": "Вставити гілку",
 	"wikiforum-quote": "Цитувати",
+	"action-wikiforum-admin": "додавати, редагувати і вилучати категорії та форуми на [[Special:WikiForum|дошці обговорень]]",
 	"right-wikiforum-admin": "Додавати, редагувати і вилучати категорії та форуми на [[Special:WikiForum|дошці обговорень]]",
+	"action-wikiforum-moderator": "редагувати і вилучати гілки та відповіді на [[Special:WikiForum|дошці обговорень]]",
 	"right-wikiforum-moderator": "Редагувати і вилучати гілки та відповіді на [[Special:WikiForum|дошці обговорень]]",
 	"group-forumadmin": "Адміністратори форуму",
 	"group-forumadmin-member": "{{GENDER:$1|адміністратор|адміністраторка}} форуму",
