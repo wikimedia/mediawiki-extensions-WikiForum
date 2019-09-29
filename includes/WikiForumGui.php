@@ -93,7 +93,7 @@ class WikiForumGui {
 
 				$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
 				wfMessage( 'wikiforum-pages' )
-				->numParams( count( $pageNumber ) )->text() .
+				->numParams( $pageNumber )->text() .
 				wfMessage( 'word-separator' )->plain();
 
 				if ( $i != $page + 1 ) {
