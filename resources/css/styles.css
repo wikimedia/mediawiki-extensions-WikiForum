@@ -191,6 +191,12 @@ blockquote {
 	padding: 10px;
 	border: 1px dotted #ccc;
 	background: #f9f9f9;
+	/* Restrict quote elements' width so that SocialProfile avatars don't overlap them
+	 * For some skins, 85% would be acceptable also, but 80% is the one that works
+	 * for all skins I tested (except Dusk, but Dusk is a special case anyway, given
+	 * its insanely narrow content area, which thankfully isn't a standard)
+	 */
+	max-width: 80%;
 }
 
 blockquote p.posted {
