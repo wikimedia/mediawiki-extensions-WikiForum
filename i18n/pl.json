@@ -6,7 +6,8 @@
 			"Sp5uhe",
 			"Woytecr",
 			"Alan ffm",
-			"Wiochman"
+			"Wiochman",
+			"Rail"
 		]
 	},
 	"wikiforum-desc": "Rozszerzenie [[Special:WikiForum|forum]] dla MediaWiki",
@@ -98,7 +99,9 @@
 	"wikiforum-move-thread": "Przenieś wątek",
 	"wikiforum-paste-thread": "Doklej wątek",
 	"wikiforum-quote": "Cytuj",
+	"action-wikiforum-admin": "dodawania, edycji i usuwania kategorii oraz forów na [[Special:WikiForum|forum dyskusyjnym]]",
 	"right-wikiforum-admin": "Dodawanie, edycja i usuwanie kategorii oraz forów na [[Special:WikiForum|forum dyskusyjnym]]",
+	"action-wikiforum-moderator": "edycji i usuwania wątków oraz odpowiedzi na [[Special:WikiForum|forum dyskusyjnym]]",
 	"right-wikiforum-moderator": "Edycja i usuwanie wątków oraz odpowiedzi na [[Special:WikiForum|forum dyskusyjnym]]",
 	"group-forumadmin": "Administratorzy forum",
 	"group-forumadmin-member": "{{GENDER:$1|administrator|administratorka}} forum",
