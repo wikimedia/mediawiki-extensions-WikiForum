@@ -9,7 +9,8 @@
 			"Verdy p",
 			"Urhixidur",
 			"Wladek92",
-			"Derugon"
+			"Derugon",
+			"Thibaut120094"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]] extension pour MediaWiki",
@@ -73,7 +74,7 @@
 	"wikiforum-error-no-text-or-title": "Titre ou texte pas correctement rempli.",
 	"wikiforum-error-bad-title": "Le titre fournit contenait des caractères non valides.",
 	"wikiforum-error-no-reply": "La réponse n'est pas correctement remplie.",
-	"wikiforum-error-double-post": "Vous avez déjà publié cette réponse !",
+	"wikiforum-error-double-post": "Vous avez déjà publié cette réponse !",
 	"wikiforum-error-thread-closed": "Ce fil de discussion est actuellement fermé. Il n'est pas possible d'ajouter une nouvelle réponse ici.",
 	"wikiforum-error-title-already-exists": "Un fil existe déjà avec le titre spécifié, veuillez en choisir un autre.",
 	"wikiforum-error-readonly": "La base de données a été marquée en lecture seule, vous ne pouvez effectuer aucune action d’écriture pour l’instant.",
