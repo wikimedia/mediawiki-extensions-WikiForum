@@ -55,7 +55,6 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_threads (
 	wft_sticky tinyint(1) NOT NULL DEFAULT 0, -- formerly: Sticky
 	wft_posted_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Posted
 	wft_user int(10) NOT NULL DEFAULT 0, -- formerly: PostedBy
-	wft_user_text varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
 	wft_deleted_user int(10) NOT NULL DEFAULT 0, -- formerly: DeletedBy

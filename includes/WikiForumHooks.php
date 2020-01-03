@@ -132,7 +132,7 @@ class WikiForumHooks {
 			// wikiforum_replies
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_user_ip', $file );
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_edit_user_ip', $file );
-		} elseif ( $updater->getDB()->fieldExists( 'wikiforum_category', 'wfc_added_user_user_text' ) ) {
+		} elseif ( $updater->getDB()->fieldExists( 'wikiforum_category', 'wfc_added_user_text' ) ) {
 			// Upgrade from post 1.3.0-SW and pre 2.0.0
 
 			$file = $dir . '/2.0.0-drop-fields.sql';
