@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_category ADD COLUMN wfc_edited_actor bigint unsigned NOT NULL AFTER wfc_edited;

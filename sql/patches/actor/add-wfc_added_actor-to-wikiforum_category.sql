@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_category ADD COLUMN wfc_added_actor bigint unsigned NOT NULL AFTER wfc_added_timestamp;

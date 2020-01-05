@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_threads ADD COLUMN wft_edit_actor bigint unsigned NOT NULL AFTER wft_edit_timestamp;

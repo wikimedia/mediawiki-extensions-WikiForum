@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_forums DROP COLUMN wff_added_user;

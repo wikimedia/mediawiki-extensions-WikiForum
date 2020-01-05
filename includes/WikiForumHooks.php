@@ -102,10 +102,12 @@ class WikiForumHooks {
 	 * Adds the four new tables to the database when the user runs
 	 * maintenance/update.php.
 	 *
+	 * Also runs other database upgrades for users upgrading from an older version
+	 * of WikiForum.
+	 *
 	 * @param $updater DatabaseUpdater
-	 * @return Boolean true
 	 */
-	public static function addTables( $updater ) {
+	public static function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__ . '/../sql';
 		$file = "$dir/wikiforum.sql";
 
@@ -114,8 +116,9 @@ class WikiForumHooks {
 		$updater->addExtensionTable( 'wikiforum_threads', $file );
 		$updater->addExtensionTable( 'wikiforum_replies', $file );
 
+		$db = $updater->getDB();
 		// upgrade from pre 1.3.0-SW
-		if ( !$updater->getDB()->fieldExists( 'wikiforum_category', 'wfc_added_user_ip' ) ) {
+		if ( !$db->fieldExists( 'wikiforum_category', 'wfc_added_user_ip' ) ) {
 			$file = $dir . '/1.3.0-SW-new-fields.sql';
 			// wikiforum_category
 			$updater->addExtensionField( 'wikiforum_category', 'wfc_added_user_ip', $file );
@@ -132,9 +135,8 @@ class WikiForumHooks {
 			// wikiforum_replies
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_user_ip', $file );
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_edit_user_ip', $file );
-		} elseif ( $updater->getDB()->fieldExists( 'wikiforum_category', 'wfc_added_user_text' ) ) {
+		} elseif ( $db->fieldExists( 'wikiforum_category', 'wfc_added_user_text' ) ) {
 			// Upgrade from post 1.3.0-SW and pre 2.0.0
-
 			$file = $dir . '/2.0.0-drop-fields.sql';
 			// wikiforum_category
 			$updater->dropExtensionField( 'wikiforum_category', 'wfc_added_user_text', $file );
@@ -161,6 +163,81 @@ class WikiForumHooks {
 			$updater->dropExtensionField( 'wikiforum_replies', 'wfr_edit_user_text', $file );
 		}
 
-		return true;
+		// Slightly an overkill, given that I didn't bother splitting out the huge files
+		// into one-query-per-file, but whatever...
+		// The existence of *any* of these fields means that we are upgrading from a pre-actor
+		// version of WikiForum and we need to add in the actor columns
+		if (
+			$db->fieldExists( 'wikiforum_category', 'wfc_added_user' ) ||
+			$db->fieldExists( 'wikiforum_category', 'wfc_edited_user' ) ||
+			$db->fieldExists( 'wikiforum_category', 'wfc_deleted_user' ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_last_post_user' ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_added_user' ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_edited_user' ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_deleted_user' ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_user' ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_deleted_user' ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_edit_user' ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_closed_user' ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_last_post_user' ) ||
+			$db->fieldExists( 'wikiforum_replies', 'wfr_user' ) ||
+			$db->fieldExists( 'wikiforum_replies', 'wfr_deleted_user' ) ||
+			$db->fieldExists( 'wikiforum_replies', 'wfr_edit_user' )
+		) {
+			// 1. add the new actor columns for each table
+
+			// wikiforum_category
+			$updater->addExtensionField( 'wikiforum_category', 'wfc_added_actor', "$dir/patches/actor/add-wfc_added_actor-to-wikiforum_category.sql" );
+			$updater->addExtensionField( 'wikiforum_category', 'wfc_edited_actor', "$dir/patches/actor/add-wfc_edited_actor-to-wikiforum_category.sql" );
+			$updater->addExtensionField( 'wikiforum_category', 'wfc_deleted_actor', "$dir/patches/actor/add-wfc_deleted_actor-to-wikiforum_category.sql" );
+			// wikiforum_forums
+			$updater->addExtensionField( 'wikiforum_forums', 'wff_last_post_actor', "$dir/patches/actor/add-wff_last_post_actor-to-wikiforum_forums.sql" );
+			$updater->addExtensionField( 'wikiforum_forums', 'wff_added_actor', "$dir/patches/actor/add-wff_added_actor-to-wikiforum_forums.sql" );
+			$updater->addExtensionField( 'wikiforum_forums', 'wff_edited_actor', "$dir/patches/actor/add-wff_edited_actor-to-wikiforum_forums.sql" );
+			$updater->addExtensionField( 'wikiforum_forums', 'wff_deleted_actor', "$dir/patches/actor/add-wff_deleted_actor-to-wikiforum_forums.sql" );
+			// wikiforum_threads
+			$updater->addExtensionField( 'wikiforum_threads', 'wft_actor', "$dir/patches/actor/add-wft_actor-to-wikiforum_threads.sql" );
+			$updater->addExtensionField( 'wikiforum_threads', 'wft_deleted_actor', "$dir/patches/actor/add-wft_deleted_actor-to-wikiforum_threads.sql" );
+			$updater->addExtensionField( 'wikiforum_threads', 'wft_edit_actor', "$dir/patches/actor/add-wft_edit_actor-to-wikiforum_threads.sql" );
+			$updater->addExtensionField( 'wikiforum_threads', 'wft_closed_actor', "$dir/patches/actor/add-wft_closed_actor-to-wikiforum_threads.sql" );
+			$updater->addExtensionField( 'wikiforum_threads', 'wft_last_post_actor', "$dir/patches/actor/add-wft_last_post_actor-to-wikiforum_threads.sql" );
+			// wikiforum_replies
+			$updater->addExtensionField( 'wikiforum_replies', 'wfr_actor', "$dir/patches/actor/add-wfr_actor-to-wikiforum_replies.sql" );
+			$updater->addExtensionField( 'wikiforum_replies', 'wfr_deleted_actor', "$dir/patches/actor/add-wfr_deleted_actor-to-wikiforum_replies.sql" );
+			$updater->addExtensionField( 'wikiforum_replies', 'wfr_edit_actor', "$dir/patches/actor/add-wfr_edit_actor-to-wikiforum_replies.sql" );
+
+			// 2. migrate old data to the new actor fields
+			// PITFALL WARNING! Do NOT change this to $updater->runMaintenance,
+			// THEY ARE NOT THE SAME THING and this MUST be using addExtensionUpdate
+			// instead for the code to work as desired!
+			// HT Skizzerz
+			$updater->addExtensionUpdate( [
+				'runMaintenance',
+				'MigrateOldWikiForumUserColumnsToActor',
+				'../maintenance/migrateOldWikiForumUserColumnsToActor.php'
+			] );
+
+			// 3. drop old, now unused fields
+
+			// wikiforum_category
+			$updater->dropExtensionField( 'wikiforum_category', 'wfc_added_user', "$dir/patches/actor/drop-wfc_added_user-from-wikiforum_category.sql" );
+			$updater->dropExtensionField( 'wikiforum_category', 'wfc_edited_user', "$dir/patches/actor/drop-wfc_edited_user-from-wikiforum_category.sql" );
+			$updater->dropExtensionField( 'wikiforum_category', 'wfc_deleted_user', "$dir/patches/actor/drop-wfc_deleted_user-from-wikiforum_category.sql" );
+			// wikiforum_forums
+			$updater->dropExtensionField( 'wikiforum_forums', 'wff_last_post_user', "$dir/patches/actor/drop-wff_last_post_user-from-wikiforum_forums.sql" );
+			$updater->dropExtensionField( 'wikiforum_forums', 'wff_added_user', "$dir/patches/actor/drop-wff_added_user-from-wikiforum_forums.sql" );
+			$updater->dropExtensionField( 'wikiforum_forums', 'wff_edited_user', "$dir/patches/actor/drop-wff_edited_user-from-wikiforum_forums.sql" );
+			$updater->dropExtensionField( 'wikiforum_forums', 'wff_deleted_user', "$dir/patches/actor/drop-wff_deleted_user-from-wikiforum_forums.sql" );
+			// wikiforum_threads
+			$updater->dropExtensionField( 'wikiforum_threads', 'wft_user', "$dir/patches/actor/drop-wft_user-from-wikiforum_threads.sql" );
+			$updater->dropExtensionField( 'wikiforum_threads', 'wft_deleted_user', "$dir/patches/actor/drop-wft_deleted_user-from-wikiforum_threads.sql" );
+			$updater->dropExtensionField( 'wikiforum_threads', 'wft_edit_user', "$dir/patches/actor/drop-wft_edit_user-from-wikiforum_threads.sql" );
+			$updater->dropExtensionField( 'wikiforum_threads', 'wft_closed_user', "$dir/patches/actor/drop-wft_closed_user-from-wikiforum_threads.sql" );
+			$updater->dropExtensionField( 'wikiforum_threads', 'wft_last_post_user', "$dir/patches/actor/drop-wft_last_post_user-from-wikiforum_threads.sql" );
+			// wikiforum_replies
+			$updater->dropExtensionField( 'wikiforum_replies', 'wfr_user', "$dir/patches/actor/drop-wfr_user-from-wikiforum_replies.sql" );
+			$updater->dropExtensionField( 'wikiforum_replies', 'wfr_deleted_user', "$dir/patches/actor/drop-wfr_deleted_user-from-wikiforum_replies.sql" );
+			$updater->dropExtensionField( 'wikiforum_replies', 'wfr_edit_user', "$dir/patches/actor/drop-wfr_edit_user-from-wikiforum_replies.sql" );
+		}
 	}
 }

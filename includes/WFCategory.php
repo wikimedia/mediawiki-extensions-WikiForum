@@ -401,7 +401,7 @@ class WFCategory extends ContextSource {
 				'wfc_category_name' => $categoryName,
 				'wfc_sortkey' => ( $sortkey->the_key + 1 ),
 				'wfc_added_timestamp' => wfTimestampNow(),
-				'wfc_added_user' => $wgUser->getId(),
+				'wfc_added_actor' => $wgUser->getActorId(),
 				'wfc_added_user_ip' => $wgRequest->getIP(),
 			],
 			__METHOD__

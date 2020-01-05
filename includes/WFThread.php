@@ -97,7 +97,7 @@ class WFThread extends ContextSource {
 		if ( $this->getReplyCount() > 0 ) {
 			return WikiForumGui::showByInfo(
 				$this->data->wft_last_post_timestamp,
-				WikiForum::getUserFromDB( $this->data->wft_last_post_user, $this->data->wft_last_post_user_ip )
+				WikiForum::getUserFromDB( $this->data->wft_last_post_actor, $this->data->wft_last_post_user_ip )
 			);
 		} else {
 			return '';
@@ -182,12 +182,12 @@ class WFThread extends ContextSource {
 	}
 
 	/**
-	 * Get the ID of the user who originally posted this thread
+	 * Get the actor ID of the user who originally posted this thread
 	 *
-	 * @return string
+	 * @return int
 	 */
 	function getPostedById() {
-		return $this->data->wft_user;
+		return $this->data->wft_actor;
 	}
 
 	/**
@@ -196,7 +196,7 @@ class WFThread extends ContextSource {
 	 * @return User
 	 */
 	function getEditedBy() {
-		return WikiForum::getUserFromDB( $this->data->wft_edit_user, $this->data->wft_edit_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wft_edit_actor, $this->data->wft_edit_user_ip );
 	}
 
 	/**
@@ -205,7 +205,7 @@ class WFThread extends ContextSource {
 	 * @return User
 	 */
 	function getPostedBy() {
-		return WikiForum::getUserFromDB( $this->data->wft_user, $this->data->wft_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wft_actor, $this->data->wft_user_ip );
 	}
 
 	/**
@@ -316,7 +316,7 @@ class WFThread extends ContextSource {
 
 		if (
 			$user->isAnon() ||
-			( $user->getId() != $this->getPostedBy()->getId() && !$user->isAllowed( 'wikiforum-moderator' ) )
+			( $user->getActorId() != $this->getPostedBy()->getActorId() && !$user->isAllowed( 'wikiforum-moderator' ) )
 		) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 			return $error . $this->show();
@@ -335,7 +335,7 @@ class WFThread extends ContextSource {
 		$row = $dbw->selectRow(
 			'wikiforum_threads',
 			[
-				'wft_last_post_user',
+				'wft_last_post_actor',
 				'wft_last_post_user_ip',
 				'wft_last_post_timestamp',
 			],
@@ -349,7 +349,7 @@ class WFThread extends ContextSource {
 			[
 				"wff_reply_count = wff_reply_count - $replyCount",
 				'wff_thread_count = wff_thread_count - 1',
-				'wff_last_post_user' => $row->wft_last_post_user ?? null,
+				'wff_last_post_actor' => $row->wft_last_post_actor ?? null,
 				'wff_last_post_user_ip' => $row->wft_last_post_user_ip ?? null,
 				'wff_last_post_timestamp' => $row->wft_last_post_timestamp ?? null
 			],
@@ -375,14 +375,14 @@ class WFThread extends ContextSource {
 			'wikiforum_threads',
 			[
 				'wft_closed' => 0,
-				'wft_closed_user' => 0
+				'wft_closed_actor' => 0
 			],
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 
 		$this->data->wft_closed = 0;
-		$this->data->wft_closed_user = 0;
+		$this->data->wft_closed_actor = 0;
 
 		return $this->show();
 	}
@@ -405,7 +405,7 @@ class WFThread extends ContextSource {
 			'wikiforum_threads',
 			[
 				'wft_closed' => wfTimestampNow(),
-				'wft_closed_user' => $user->getId(),
+				'wft_closed_actor' => $user->getActorId(),
 				'wft_closed_user_ip' => $this->getRequest()->getIP()
 			],
 			[ 'wft_thread' => $this->getId() ],
@@ -413,7 +413,7 @@ class WFThread extends ContextSource {
 		);
 
 		$this->data->wft_closed = wfTimestampNow();
-		$this->data->wft_closed_user = $user->getId();
+		$this->data->wft_closed_actor = $user->getActorId();
 		$this->data->wft_closed_user_ip = $this->getRequest()->getIP();
 
 		return $this->show();
@@ -487,7 +487,7 @@ class WFThread extends ContextSource {
 		if (
 			$user->isAnon() ||
 			(
-				$user->getId() != $this->getPostedById() &&
+				$user->getActorId() != $this->getPostedById() &&
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
 		) {
@@ -502,7 +502,7 @@ class WFThread extends ContextSource {
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
 				'wft_edit_timestamp' => wfTimestampNow(),
-				'wft_edit_user' => $user->getId(),
+				'wft_edit_actor' => $user->getActorId(),
 				'wft_edit_user_ip' => $this->getRequest()->getIP(),
 			],
 			[ 'wft_thread' => $this->getId() ],
@@ -512,7 +512,7 @@ class WFThread extends ContextSource {
 		$this->data->wft_thread_name = $title;
 		$this->data->wft_text = $text;
 		$this->data->wft_edit_timestamp = wfTimestampNow();
-		$this->data->wft_edit_user = $user->getId();
+		$this->data->wft_edit_actor = $user->getActorId();
 		$this->data->wft_edit_user_ip = $this->getRequest()->getIP();
 
 		return $this->show();
@@ -729,7 +729,7 @@ class WFThread extends ContextSource {
 		$forum = $this->getForum();
 
 		if (
-			$user->getId() == $this->getPostedById() ||
+			$user->getActorId() == $this->getPostedById() ||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
 			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editthread', 'thread' => $this->getId() ] ) ) . '">';
@@ -826,7 +826,7 @@ class WFThread extends ContextSource {
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
 				'wft_posted_timestamp' => $timestamp,
-				'wft_user' => $wgUser->getId(),
+				'wft_actor' => $wgUser->getActorId(),
 				'wft_user_ip' => $wgRequest->getIP(),
 				'wft_forum' => $forum->getId(),
 				'wft_last_post_timestamp' => $timestamp
@@ -841,7 +841,7 @@ class WFThread extends ContextSource {
 			'wikiforum_forums',
 			[
 				'wff_thread_count = wff_thread_count + 1',
-				'wff_last_post_user' => $wgUser->getId(),
+				'wff_last_post_actor' => $wgUser->getActorId(),
 				'wff_last_post_user_ip' => $wgRequest->getIP(),
 				'wff_last_post_timestamp' => $timestamp
 			],

@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_replies ADD COLUMN wfr_actor bigint unsigned NOT NULL AFTER wfr_posted_timestamp;

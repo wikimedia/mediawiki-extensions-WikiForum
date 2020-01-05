@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_replies DROP COLUMN wfr_user;

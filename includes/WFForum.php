@@ -126,7 +126,7 @@ class WFForum extends ContextSource {
 	 * @return User
 	 */
 	function getLastPostUser() {
-		return WikiForum::getUserFromDB( $this->data->wff_last_post_user, $this->data->wff_last_post_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wff_last_post_actor, $this->data->wff_last_post_user_ip );
 	}
 
 	/**
@@ -336,7 +336,7 @@ class WFForum extends ContextSource {
 					'wff_forum_name' => $forumName,
 					'wff_description' => $description,
 					'wff_edited_timestamp' => wfTimestampNow(),
-					'wff_edited_user' => $user->getId(),
+					'wff_edited_actor' => $user->getActorId(),
 					'wff_edited_user_ip' => $this->getRequest()->getIP(),
 					'wff_announcement' => $announcement
 				],
@@ -348,7 +348,7 @@ class WFForum extends ContextSource {
 		$this->data->wff_forum_name = $forumName;
 		$this->data->wff_description = $description;
 		$this->data->wff_edited_timestamp = wfTimestampNow();
-		$this->data->wff_edited_user = $user->getId();
+		$this->data->wff_edited_actor = $user->getActorId();
 		$this->data->wff_edited_user_ip = $this->getRequest()->getIP();
 		$this->data->wff_announcement = $announcement;
 
@@ -588,7 +588,7 @@ class WFForum extends ContextSource {
 				'wff_category' => $category->getId(),
 				'wff_sortkey' => ( $sortKey->the_key + 1 ),
 				'wff_added_timestamp' => wfTimestampNow(),
-				'wff_added_user' => $wgUser->getId(),
+				'wff_added_actor' => $wgUser->getActorId(),
 				'wff_added_user_ip' => $wgRequest->getIP(),
 				'wff_announcement' => $announcement
 			],

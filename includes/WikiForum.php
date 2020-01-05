@@ -134,13 +134,13 @@ class WikiForum {
 	/**
 	 * Return a user object from fields from the DB
 	 *
-	 * @param int $userID
+	 * @param int $actorID
 	 * @param string $userIP
 	 * @return User|bool
 	 */
-	static function getUserFromDB( $userID, $userIP ) {
-		if ( $userID ) {
-			return User::newFromID( $userID );
+	public static function getUserFromDB( $actorID, $userIP ) {
+		if ( $actorID ) {
+			return User::newFromActorId( $actorID );
 		} else {
 			return User::newFromName( $userIP, false );
 		}

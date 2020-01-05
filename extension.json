@@ -1,6 +1,6 @@
 {
 	"name": "WikiForum",
-	"version": "2.5.1",
+	"version": "2.6.0",
 	"author": [
 		"Michael Chlebek",
 		"Jack Phoenix",
@@ -11,7 +11,7 @@
 	"license-name": "GPL-3.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.32.0"
+		"MediaWiki": ">= 1.34.0"
 	},
 	"GroupPermissions": {
 		"forumadmin": {
@@ -55,6 +55,7 @@
 		"WikiForumAlias": "includes/WikiForum.i18n.alias.php"
 	},
 	"AutoloadClasses": {
+		"MigrateOldWikiForumUserColumnsToActor": "maintenance/migrateOldWikiForumUserColumnsToActor.php",
 		"WikiForumHooks": "includes/WikiForumHooks.php",
 		"WikiForumGui": "includes/WikiForumGui.php",
 		"WikiForum": "includes/WikiForum.php",
@@ -75,7 +76,7 @@
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "WikiForumHooks::registerParserHooks",
-		"LoadExtensionSchemaUpdates": "WikiForumHooks::addTables"
+		"LoadExtensionSchemaUpdates": "WikiForumHooks::onLoadExtensionSchemaUpdates"
 	},
 	"CaptchaTriggers": {
 		"wikiforum": true

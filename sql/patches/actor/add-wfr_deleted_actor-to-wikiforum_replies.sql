@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_replies ADD COLUMN wfr_deleted_actor bigint unsigned NOT NULL AFTER wfr_deleted;

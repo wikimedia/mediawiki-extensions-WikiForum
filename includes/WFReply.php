@@ -93,12 +93,12 @@ class WFReply extends ContextSource {
 	}
 
 	/**
-	 * Get the ID of the user who posted the reply
+	 * Get the actor ID of the user who posted the reply
 	 *
 	 * @return int the ID
 	 */
 	function getPostedById() {
-		return $this->data->wfr_user;
+		return $this->data->wfr_actor;
 	}
 
 	/**
@@ -107,7 +107,7 @@ class WFReply extends ContextSource {
 	 * @return User
 	 */
 	function getPostedBy() {
-		return WikiForum::getUserFromDB( $this->data->wfr_user, $this->data->wfr_user_ip );
+		return WikiForum::getUserFromDB( $this->data->wfr_actor, $this->data->wfr_user_ip );
 	}
 
 	/**
@@ -117,7 +117,7 @@ class WFReply extends ContextSource {
 	 */
 	function getEditedBy() {
 		if ( $this->hasBeenEdited() ) {
-			return WikiForum::getUserFromDB( $this->data->wfr_edit_user, $this->data->wfr_edit_user_ip );
+			return WikiForum::getUserFromDB( $this->data->wfr_edit_actor, $this->data->wfr_edit_user_ip );
 		} else {
 			return false;
 		}
@@ -183,7 +183,7 @@ class WFReply extends ContextSource {
 		if (
 			$user->isAnon() ||
 			(
-				$user->getId() != $this->getPostedById() &&
+				$user->getActorId() != $this->getPostedById() &&
 				!$user->isAllowed( 'wikiforum-moderator' )
 			)
 		) {
@@ -225,7 +225,7 @@ class WFReply extends ContextSource {
 			$user->isAnon() ||
 			(
 				(
-					$user->getId() != $this->getPostedById() &&
+					$user->getActorId() != $this->getPostedById() &&
 					$this->getThread()->isClosed()
 				) ||
 				!$user->isAllowed( 'wikiforum-moderator' )
@@ -240,7 +240,7 @@ class WFReply extends ContextSource {
 			[
 				'wfr_reply_text' => $text,
 				'wfr_edit_timestamp' => wfTimestampNow(),
-				'wfr_edit_user' => $user->getId(),
+				'wfr_edit_actor' => $user->getActorId(),
 				'wfr_edit_user_ip' => $this->getRequest()->getIP(),
 			],
 			[ 'wfr_reply_id' => $this->getId() ],
@@ -299,7 +299,7 @@ class WFReply extends ContextSource {
 
 		if (
 			(
-				( $user->getId() == $thread->getPostedById() || $user->getId() == $this->getPostedById() )
+				( $user->getActorId() == $thread->getPostedById() || $user->getActorId() == $this->getPostedById() )
 				&& !$thread->isClosed()
 			)
 			||
@@ -357,7 +357,7 @@ class WFReply extends ContextSource {
 			'wfr_reply_id',
 			[
 				'wfr_reply_text' => $text,
-				'wfr_user' => $wgUser->getId(),
+				'wfr_actor' => $wgUser->getActorId(),
 				'wfr_thread' => $thread->getId(),
 				'wfr_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
 			],
@@ -374,7 +374,7 @@ class WFReply extends ContextSource {
 			[
 				'wfr_reply_text' => $text,
 				'wfr_posted_timestamp' => $timestamp,
-				'wfr_user' => $wgUser->getId(),
+				'wfr_actor' => $wgUser->getActorId(),
 				'wfr_thread' => $thread->getId()
 			],
 			__METHOD__
@@ -389,7 +389,7 @@ class WFReply extends ContextSource {
 			[
 				'wft_reply_count = wft_reply_count + 1',
 				'wft_last_post_timestamp' => $timestamp,
-				'wft_last_post_user' => $wgUser->getId(),
+				'wft_last_post_actor' => $wgUser->getActorId(),
 				'wft_last_post_user_ip' => $wgRequest->getIP(),
 			],
 			[ 'wft_thread' => $thread->getId() ],

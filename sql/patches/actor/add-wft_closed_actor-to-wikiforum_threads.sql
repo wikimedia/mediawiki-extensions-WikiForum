@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_threads ADD COLUMN wft_closed_actor bigint unsigned NOT NULL AFTER wft_closed;

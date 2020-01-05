@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_threads ADD COLUMN wft_last_post_actor bigint unsigned NOT NULL AFTER wft_view_count;
