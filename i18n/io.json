@@ -4,5 +4,6 @@
 			"Joao Xavier"
 		]
 	},
-	"wikiforum-description": "Deskripto:"
+	"wikiforum-description": "Deskripto:",
+	"wikiforum-pages": "{{PLURAL:$1|Pagino|Pagini}}:"
 }
