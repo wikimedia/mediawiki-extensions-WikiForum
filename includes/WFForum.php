@@ -501,8 +501,8 @@ class WFForum extends ContextSource {
 	/**
 	 * Do the actual sorting. Do not use - use sortUp and sortDown above instead!
 	 *
-	 * @param boolean $direction_up: true - up, false - down
-	 * @return string: HTML
+	 * @param bool $direction_up true - up, false - down
+	 * @return string HTML
 	 */
 	private function sort( $direction_up ) {
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {

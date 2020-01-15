@@ -440,8 +440,8 @@ class WFThread extends ContextSource {
 	/**
 	 * Changes the thread's sticky value. Do not use, use makeSticky() and removeSticky() instead
 	 *
-	 * @param int $value: 0/1 (for db)
-	 * @return string: HTML
+	 * @param int $value 0/1 (for db)
+	 * @return string HTML
 	 */
 	private function sticky( $value ) {
 		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {

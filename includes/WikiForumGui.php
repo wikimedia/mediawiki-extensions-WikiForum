@@ -146,8 +146,8 @@ class WikiForumGui {
 	 * @param string $title2
 	 * @param string $title3
 	 * @param string $title4
-	 * @param string $title5: optional, admin icons if given
-	 * @return string, HTML
+	 * @param string $title5 optional, admin icons if given
+	 * @return string HTML
 	 */
 	private static function showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 = '' ) {
 		$output = '<tr class="mw-wikiforum-title"><th class="mw-wikiforum-title">' . $title1 . '</th>';

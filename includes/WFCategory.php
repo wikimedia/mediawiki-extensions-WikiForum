@@ -317,8 +317,8 @@ class WFCategory extends ContextSource {
 	/**
 	 * Sort the category. Do not use! Use sortUp() or sortDown() instead!
 	 *
-	 * @param boolean $direction_up: true sort up, false sort down
-	 * @return string: HTML
+	 * @param bool $direction_up true sort up, false sort down
+	 * @return string HTML
 	 */
 	private function sort( $direction_up ) {
 		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
