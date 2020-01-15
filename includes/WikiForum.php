@@ -206,7 +206,7 @@ class WikiForum {
 	static function parseIt( $text ) {
 		global $wgOut;
 
-		$text = $wgOut->parse( $text );
+		$text = $wgOut->parseAsContent( $text );
 		$text = self::parseLinks( $text );
 		$text = self::parseQuotes( $text );
 
