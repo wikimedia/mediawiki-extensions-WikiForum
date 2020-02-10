@@ -250,7 +250,7 @@ class SpecialWikiForum extends SpecialPage {
 						$output .= WFCategory::showAddForm();
 						break;
 					case 'savenewcategory': // title
-						$output .= WFCategory::add( $title );
+						$output .= WFCategory::add( $title, $user );
 						break;
 					case 'search':
 						$output .= WikiForum::showSearchResults( $request->getText( 'query' ) );

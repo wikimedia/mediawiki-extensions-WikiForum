@@ -64,7 +64,7 @@ class WikiForum {
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
 			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ) . '">' .
 				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
-			$output .= WikiForumGui::showHeaderRow( '', $menuLink );
+			$output .= WikiForumGui::showHeaderRow( '', $wgUser, $menuLink );
 		}
 
 		return $output;
@@ -80,7 +80,7 @@ class WikiForum {
 		global $wgOut, $wgRequest, $wgUser, $wgLang;
 
 		$output = WikiForumGui::showSearchbox();
-		$output .= WikiForumGui::showHeaderRow( '', '' );
+		$output .= WikiForumGui::showHeaderRow( '', $wgUser );
 
 		if ( strlen( $what ) > 1 ) {
 			$i = 0;

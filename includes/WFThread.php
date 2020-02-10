@@ -556,6 +556,7 @@ class WFThread extends ContextSource {
 		global $wgExtensionAssetsPath;
 		$request = $this->getRequest();
 		$out = $this->getOutput();
+		$user = $this->getUser();
 
 		$output = '';
 
@@ -563,7 +564,7 @@ class WFThread extends ContextSource {
 
 		$menuLink = '';
 
-		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
+		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
 			if ( $this->isSticky() ) {
 				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/tag_blue_delete.png" title="' . wfMessage( 'wikiforum-remove-sticky' )->text() . '" /> ';
 				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ) ) . '">' .
@@ -587,7 +588,7 @@ class WFThread extends ContextSource {
 			$output .= WikiForum::showErrorMessage( 'wikiforum-thread-closed', 'wikiforum-error-thread-closed', 'lock.png' );
 		}
 
-		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $menuLink );
+		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $user, $menuLink );
 
 		// Add topic name to the title
 		$out->setPageTitle( wfMessage( 'wikiforum-topic-name', $this->getName() )->text() );

@@ -51,16 +51,17 @@ class WikiForumGui {
 	 * (Overview > Category name > Forum > Thread)
 	 *
 	 * @param $links string: the actual overview/category/etc links
+	 * @param User $user
 	 * @param $additionalLinks string: more links to add on the other side - 'Add a new forum'-type links
 	 * @return string HTML
 	 */
-	static function showHeaderRow( $links, $additionalLinks = '' ) {
-		global $wgUser, $wgWikiForumAllowAnonymous;
+	static function showHeaderRow( $links, User $user, $additionalLinks = '' ) {
+		global $wgWikiForumAllowAnonymous;
 
 		$output = '<table class="mw-wikiforum-headerrow"><tr><td class="mw-wikiforum-leftside">';
 		$output .= $links;
 
-		if ( strlen( $additionalLinks ) > 0 && ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) ) {
+		if ( strlen( $additionalLinks ) > 0 && ( $wgWikiForumAllowAnonymous || $user->isLoggedIn() ) ) {
 			$output .= '</td><td class="mw-wikiforum-rightside">' . $additionalLinks;
 		}
 

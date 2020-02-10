@@ -324,11 +324,12 @@ class WFReply extends ContextSource {
 	 * @return string HTML of thread
 	 */
 	static function add( WFThread $thread, $text ) {
-		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
+		global $wgRequest, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
 
 		$timestamp = wfTimestampNow();
+		$user = $thread->getUser();
 
-		if ( !$wgWikiForumAllowAnonymous && !$wgUser->isLoggedIn() ) {
+		if ( !$wgWikiForumAllowAnonymous && !$user->isLoggedIn() ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
@@ -343,7 +344,7 @@ class WFReply extends ContextSource {
 		if ( WikiForum::useCaptcha() ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
-			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
+			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $user ) ) {
 				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
 				$thread->preloadText = $text;
 				$output .= $thread->show();
@@ -357,7 +358,7 @@ class WFReply extends ContextSource {
 			'wfr_reply_id',
 			[
 				'wfr_reply_text' => $text,
-				'wfr_actor' => $wgUser->getActorId(),
+				'wfr_actor' => $user->getActorId(),
 				'wfr_thread' => $thread->getId(),
 				'wfr_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
 			],
@@ -374,7 +375,7 @@ class WFReply extends ContextSource {
 			[
 				'wfr_reply_text' => $text,
 				'wfr_posted_timestamp' => $timestamp,
-				'wfr_actor' => $wgUser->getActorId(),
+				'wfr_actor' => $user->getActorId(),
 				'wfr_thread' => $thread->getId()
 			],
 			__METHOD__
@@ -389,7 +390,7 @@ class WFReply extends ContextSource {
 			[
 				'wft_reply_count = wft_reply_count + 1',
 				'wft_last_post_timestamp' => $timestamp,
-				'wft_last_post_actor' => $wgUser->getActorId(),
+				'wft_last_post_actor' => $user->getActorId(),
 				'wft_last_post_user_ip' => $wgRequest->getIP(),
 			],
 			[ 'wft_thread' => $thread->getId() ],
@@ -404,7 +405,7 @@ class WFReply extends ContextSource {
 		);
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-reply' );
-		$logEntry->setPerformer( $wgUser );
+		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
 		$shortText = $wgLang->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );

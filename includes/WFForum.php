@@ -405,7 +405,7 @@ class WFForum extends ContextSource {
 		}
 
 		$output .= WikiForumGui::showSearchbox();
-		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $write_thread );
+		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $this->getUser(), $write_thread );
 
 		// @todo FIXME: the logic here seems wonky from the end-users point
 		// of view and this code is horrible...

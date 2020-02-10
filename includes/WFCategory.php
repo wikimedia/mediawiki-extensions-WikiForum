@@ -273,13 +273,14 @@ class WFCategory extends ContextSource {
 	function showMain( $headerLinks = '', $sortLinks = true ) {
 		$addLink = '';
 		$categoryLink = '';
+		$user = $this->getUser();
 
-		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
+		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
 			$categoryLink = $this->showAdminIcons( $sortLinks );
 			$addLink = $this->showAddForumLink();
 		}
 
-		$output = WikiForumGui::showHeaderRow( $headerLinks, $addLink );
+		$output = WikiForumGui::showHeaderRow( $headerLinks, $user, $addLink );
 
 		$output .= WikiForumGui::showMainHeader(
 			$this->getName(),
@@ -372,12 +373,13 @@ class WFCategory extends ContextSource {
 	 * Add a new category, with the given name
 	 *
 	 * @param string $categoryName name to add
+	 * @param User $user
 	 * @return string HTML
 	 */
-	static function add( $categoryName ) {
-		global $wgWikiForumLogInRC, $wgUser, $wgRequest;
+	static function add( $categoryName, User $user ) {
+		global $wgWikiForumLogInRC, $wgRequest;
 
-		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
+		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 			return $error . WikiForum::showOverview();
 		}
@@ -401,7 +403,7 @@ class WFCategory extends ContextSource {
 				'wfc_category_name' => $categoryName,
 				'wfc_sortkey' => ( $sortkey->the_key + 1 ),
 				'wfc_added_timestamp' => wfTimestampNow(),
-				'wfc_added_actor' => $wgUser->getActorId(),
+				'wfc_added_actor' => $user->getActorId(),
 				'wfc_added_user_ip' => $wgRequest->getIP(),
 			],
 			__METHOD__
@@ -410,7 +412,7 @@ class WFCategory extends ContextSource {
 		$category = self::newFromName( $categoryName );
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-category' );
-		$logEntry->setPerformer( $wgUser );
+		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
 		$logEntry->setParameters( [
 			'4::category-url' => $category->getURL(),
