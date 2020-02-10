@@ -31,10 +31,11 @@ class WikiForum {
 	 * Show an overview of all available categories and their forums.
 	 * Used in the special page class.
 	 *
+	 * @param User $user
 	 * @return HTML
 	 */
-	static function showOverview() {
-		global $wgUser, $wgExtensionAssetsPath;
+	static function showOverview( User $user ) {
+		global $wgExtensionAssetsPath;
 
 		$output = '';
 
@@ -60,11 +61,11 @@ class WikiForum {
 		}
 
 		// Forum admins are allowed to add new categories
-		if ( $wgUser->isAllowed( 'wikiforum-admin' ) ) {
+		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
 			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ) . '">' .
 				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
-			$output .= WikiForumGui::showHeaderRow( '', $wgUser, $menuLink );
+			$output .= WikiForumGui::showHeaderRow( '', $user, $menuLink );
 		}
 
 		return $output;
@@ -285,14 +286,15 @@ class WikiForum {
 	/**
 	 * Should we require the user to pass a captcha?
 	 *
+	 * @param User $user
 	 * @return bool
 	 */
-	public static function useCaptcha() {
-		global $wgCaptchaClass, $wgCaptchaTriggers, $wgUser;
+	public static function useCaptcha( User $user ) {
+		global $wgCaptchaClass, $wgCaptchaTriggers;
 		return $wgCaptchaClass &&
 			isset( $wgCaptchaTriggers['wikiforum'] ) &&
 			$wgCaptchaTriggers['wikiforum'] &&
-			!$wgUser->isAllowed( 'skipcaptcha' );
+			!$user->isAllowed( 'skipcaptcha' );
 	}
 
 	/**

@@ -58,7 +58,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= $forum->show();
 				} else {
 					$output .= WikiForum::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
-					$output .= WikiForum::showOverview();
+					$output .= WikiForum::showOverview( $user );
 				}
 			} else {
 				$thread = WFThread::newFromName( $par );
@@ -66,7 +66,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= $thread->show();
 				} else {
 					$output .= WikiForum::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
-					$output .= WikiForum::showOverview();
+					$output .= WikiForum::showOverview( $user );
 				}
 			}
 		} else {
@@ -85,7 +85,7 @@ class SpecialWikiForum extends SpecialPage {
 
 				if ( !$category ) { // show error message, category not found
 					$output .= WikiForum::showErrorMessage( 'wikiforum-cat-not-found', 'wikiforum-cat-not-found-text' );
-					$output .= WikiForum::showOverview();
+					$output .= WikiForum::showOverview( $user );
 
 				} else {
 					if ( wfReadOnly() ) {
@@ -129,7 +129,7 @@ class SpecialWikiForum extends SpecialPage {
 
 				if ( !$forum ) { // show error message, forum not found
 					$output .= WikiForum::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
-					$output .= WikiForum::showOverview();
+					$output .= WikiForum::showOverview( $user );
 
 				} else {
 					if ( wfReadOnly() ) {
@@ -173,7 +173,7 @@ class SpecialWikiForum extends SpecialPage {
 
 				if ( !$thread ) { // show error message, thread not found
 					$output .= WikiForum::showErrorMessage( 'wikiforum-thread-not-found', 'wikiforum-thread-not-found-text' );
-					$output .= WikiForum::showOverview();
+					$output .= WikiForum::showOverview( $user );
 
 				} else {
 					if ( wfReadOnly() ) {
@@ -220,7 +220,7 @@ class SpecialWikiForum extends SpecialPage {
 
 				if ( !$reply ) { // show error message, reply not found
 					$output .= WikiForum::showErrorMessage( 'wikiforum-reply-not-found', 'wikiforum-reply-not-found-text' );
-					$output .= WikiForum::showOverview();
+					$output .= WikiForum::showOverview( $user );
 
 				} else {
 					if ( wfReadOnly() ) {
@@ -256,7 +256,7 @@ class SpecialWikiForum extends SpecialPage {
 						$output .= WikiForum::showSearchResults( $request->getText( 'query' ) );
 						break;
 					default:
-						$output .= WikiForum::showOverview();
+						$output .= WikiForum::showOverview( $user );
 						break;
 				}
 			}

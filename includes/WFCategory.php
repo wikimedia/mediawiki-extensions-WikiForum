@@ -211,7 +211,7 @@ class WFCategory extends ContextSource {
 			__METHOD__
 		);
 
-		return WikiForum::showOverview();
+		return WikiForum::showOverview( $user );
 	}
 
 	/**
@@ -322,7 +322,9 @@ class WFCategory extends ContextSource {
 	 * @return string HTML
 	 */
 	private function sort( $direction_up ) {
-		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
+		$user = $this->getUser();
+
+		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
 			return $error . $this->show();
 		}
@@ -366,7 +368,7 @@ class WFCategory extends ContextSource {
 			);
 		}
 
-		return WikiForum::showOverview();
+		return WikiForum::showOverview( $user );
 	}
 
 	/**
@@ -381,7 +383,7 @@ class WFCategory extends ContextSource {
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
-			return $error . WikiForum::showOverview();
+			return $error . WikiForum::showOverview( $user );
 		}
 		if ( strlen( $categoryName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );

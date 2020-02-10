@@ -800,7 +800,7 @@ class WFThread extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
-		if ( WikiForum::useCaptcha() ) {
+		if ( WikiForum::useCaptcha( $wgUser ) ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
@@ -904,7 +904,7 @@ class WFThread extends ContextSource {
 					</tr>
 					<tr>
 						<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
-							WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->showButtons() ) . '
+							WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser(), $this->showButtons() ) . '
 						</td>
 					</tr>';
 	}
@@ -915,7 +915,7 @@ class WFThread extends ContextSource {
 
 		return '<tr>
 					<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
-						WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted ) . '
+						WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser() ) . '
 					</td>
 				</tr>';
 	}
@@ -942,7 +942,8 @@ class WFThread extends ContextSource {
 			[
 				'wfaction' => 'savethread',
 				'thread' => $this->getId()
-			]
+			],
+			$this->getUser()
 		);
 	}
 
@@ -953,14 +954,15 @@ class WFThread extends ContextSource {
 	 * @param string $titlePlaceholder the placeholder element of the title input
 	 * @param string $textValue value to preload the text field with
 	 * @param array $params array of URL params to pass to the form
+	 * @param User $user
 	 * @return string
 	 */
-	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params ) {
+	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params, User $user ) {
 		$titleValue = str_replace( '"', '&quot;', $titleValue );
 		$titlePlaceholder = str_replace( '"', '&quot;', $titlePlaceholder );
 		$input = '<tr><td><input type="text" name="name" style="width:100%" placeholder="' . $titlePlaceholder . '" value="' . $titleValue . '" /></td></tr>';
 
-		return WikiForumGui::showWriteForm( true, $params, $input, '25em', $textValue, wfMessage( 'wikiforum-save-thread' )->text() );
+		return WikiForumGui::showWriteForm( true, $params, $input, '25em', $textValue, wfMessage( 'wikiforum-save-thread' )->text(), $user );
 	}
 
 	/**
@@ -991,6 +993,7 @@ class WFThread extends ContextSource {
 				'wfaction' => 'savenewreply',
 				'thread' => $this->getId()
 			],
+			$this->getUser(),
 			$textValue
 		);
 	}

@@ -201,16 +201,15 @@ class WikiForumGui {
 	 * Show the bottom line of a thread or reply
 	 *
 	 * @param string $posted
+	 * @param User $user
 	 * @param string $buttons optional, admin icons if given
 	 * @return string HTML
 	 */
-	static function showBottomLine( $posted, $buttons = '' ) {
-		global $wgUser;
-
+	static function showBottomLine( $posted, User $user, $buttons = '' ) {
 		$output = '<table cellspacing="0" cellpadding="0" class="mw-wikiforum-posted">' .
 			'<tr><td class="mw-wikiforum-leftside">' . $posted . '</td>';
 
-		if ( $wgUser->isLoggedIn() ) {
+		if ( $user->isLoggedIn() ) {
 			$output .= '<td class="mw-wikiforum-rightside">' . $buttons . '</td>';
 		}
 
@@ -228,10 +227,11 @@ class WikiForumGui {
 	 * @param $height String: height of the textarea, i.e. '10em'
 	 * @param $text_prev
 	 * @param $saveButton String: save button text
+	 * @param User $user
 	 * @return String HTML
 	 */
-	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton ) {
-		global $wgOut, $wgUser, $wgWikiForumAllowAnonymous;
+	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton, User $user ) {
+		global $wgOut, $wgWikiForumAllowAnonymous;
 
 		$output = '';
 
@@ -243,7 +243,7 @@ class WikiForumGui {
 			$toolbar = EditPage::getEditToolbar();
 		}
 
-		if ( $wgWikiForumAllowAnonymous || $wgUser->isLoggedIn() ) {
+		if ( $wgWikiForumAllowAnonymous || $user->isLoggedIn() ) {
 			$wgOut->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
 			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
@@ -254,7 +254,7 @@ class WikiForumGui {
 				<tr>
 					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>';
-			if ( WikiForum::useCaptcha() ) {
+			if ( WikiForum::useCaptcha( $user ) ) {
 				$output .= '<tr><td>' . WikiForum::getCaptcha( $wgOut ) . '</td></tr>';
 			}
 			$output .= '<tr>

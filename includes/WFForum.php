@@ -693,7 +693,8 @@ class WFForum extends ContextSource {
 			[
 				'wfaction' => 'savenewthread',
 				'forum' => $this->getId()
-			]
+			],
+			$this->getUser()
 		);
 	}
 

@@ -265,7 +265,7 @@ class WFReply extends ContextSource {
 		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
 		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
-			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->showButtons() ) . '</td></tr>';
+			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser(), $this->showButtons() ) . '</td></tr>';
 	}
 
 	/**
@@ -279,7 +279,7 @@ class WFReply extends ContextSource {
 		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
 		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
-			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, '' ) . '</td></tr>';
+			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser() ) . '</td></tr>';
 	}
 
 	/**
@@ -341,7 +341,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-thread-closed' );
 		}
 
-		if ( WikiForum::useCaptcha() ) {
+		if ( WikiForum::useCaptcha( $user ) ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
 			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $user ) ) {
@@ -431,6 +431,7 @@ class WFReply extends ContextSource {
 				'wfaction' => 'savereply',
 				'reply' => $this->getId()
 			],
+			$this->getUser(),
 			$this->getText(),
 			true
 		);
@@ -440,10 +441,12 @@ class WFReply extends ContextSource {
 	 * Show the reply editor
 	 *
 	 * @param array $params URL params to be passed to form
+	 * @param User $user
 	 * @param string $textValue value to preload the editor with
+	 * @param bool $showCancel
 	 * @return string
 	 */
-	static function showGeneralEditor( $params, $text_prev = '', $showCancel = false ) {
-		return WikiForumGui::showWriteForm( $showCancel, $params, '', '10em', $text_prev, wfMessage( 'wikiforum-save-reply' )->text() );
+	static function showGeneralEditor( $params, User $user, $text_prev = '', $showCancel = false ) {
+		return WikiForumGui::showWriteForm( $showCancel, $params, '', '10em', $text_prev, wfMessage( 'wikiforum-save-reply' )->text(), $user );
 	}
 }
