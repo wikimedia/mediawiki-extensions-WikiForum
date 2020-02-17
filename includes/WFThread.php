@@ -775,9 +775,10 @@ class WFThread extends ContextSource {
 	 * @return bool|WFThread WFThread of new thread if success, otherwise false
 	 */
 	static function add( WFForum $forum, $title, $text ) {
-		global $wgRequest, $wgUser, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
+		global $wgRequest, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
+		$user = $forum->getUser();
 
-		if ( !$wgWikiForumAllowAnonymous && $wgUser->isAnon() ) {
+		if ( !$wgWikiForumAllowAnonymous && $user->isAnon() ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
@@ -796,14 +797,14 @@ class WFThread extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-bad-title' );
 		}
 
-		if ( $forum->isAnnouncement() && !$wgUser->isAllowed( 'wikiforum-moderator' ) ) {
+		if ( $forum->isAnnouncement() && !$user->isAllowed( 'wikiforum-moderator' ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
-		if ( WikiForum::useCaptcha( $wgUser ) ) {
+		if ( WikiForum::useCaptcha( $user ) ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
-			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $wgUser ) ) {
+			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $user ) ) {
 				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
 				$output .= self::showGeneralEditor(
 					$title,

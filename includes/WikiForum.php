@@ -75,13 +75,14 @@ class WikiForum {
 	 * Show the search results page.
 	 *
 	 * @param $what String: the search query string.
+	 * @param User $user
 	 * @return HTML output
 	 */
-	static function showSearchResults( $what ) {
-		global $wgOut, $wgRequest, $wgUser, $wgLang;
+	static function showSearchResults( $what, User $user ) {
+		global $wgOut, $wgRequest, $wgLang;
 
 		$output = WikiForumGui::showSearchbox();
-		$output .= WikiForumGui::showHeaderRow( '', $wgUser );
+		$output .= WikiForumGui::showHeaderRow( '', $user );
 
 		if ( strlen( $what ) > 1 ) {
 			$i = 0;

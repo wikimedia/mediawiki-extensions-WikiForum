@@ -253,7 +253,7 @@ class SpecialWikiForum extends SpecialPage {
 						$output .= WFCategory::add( $title, $user );
 						break;
 					case 'search':
-						$output .= WikiForum::showSearchResults( $request->getText( 'query' ) );
+						$output .= WikiForum::showSearchResults( $request->getText( 'query' ), $user );
 						break;
 					default:
 						$output .= WikiForum::showOverview( $user );
