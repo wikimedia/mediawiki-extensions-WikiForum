@@ -828,7 +828,7 @@ class WFThread extends ContextSource {
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
 				'wft_posted_timestamp' => $timestamp,
-				'wft_actor' => $wgUser->getActorId(),
+				'wft_actor' => $user->getActorId(),
 				'wft_user_ip' => $wgRequest->getIP(),
 				'wft_forum' => $forum->getId(),
 				'wft_last_post_timestamp' => $timestamp
@@ -843,7 +843,7 @@ class WFThread extends ContextSource {
 			'wikiforum_forums',
 			[
 				'wff_thread_count = wff_thread_count + 1',
-				'wff_last_post_actor' => $wgUser->getActorId(),
+				'wff_last_post_actor' => $user->getActorId(),
 				'wff_last_post_user_ip' => $wgRequest->getIP(),
 				'wff_last_post_timestamp' => $timestamp
 			],
@@ -852,7 +852,7 @@ class WFThread extends ContextSource {
 		);
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-thread' );
-		$logEntry->setPerformer( $wgUser );
+		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
 		$shortText = $wgLang->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );
