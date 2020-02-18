@@ -559,13 +559,14 @@ class WFForum extends ContextSource {
 	 * @return string HTML
 	 */
 	static function add( WFCategory $category, $forumName, $description, $announcement ) {
-		global $wgWikiForumLogInRC, $wgUser, $wgRequest, $wgLang;
+		global $wgWikiForumLogInRC, $wgRequest, $wgLang;
+		$user = $category->getUser();
 
 		if ( strlen( $forumName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . $category->showAddForumForm();
 		}
-		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
+		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 			return $error . $category->show();
 		}
@@ -588,7 +589,7 @@ class WFForum extends ContextSource {
 				'wff_category' => $category->getId(),
 				'wff_sortkey' => ( $sortKey->the_key + 1 ),
 				'wff_added_timestamp' => wfTimestampNow(),
-				'wff_added_actor' => $wgUser->getActorId(),
+				'wff_added_actor' => $user->getActorId(),
 				'wff_added_user_ip' => $wgRequest->getIP(),
 				'wff_announcement' => $announcement
 			],
@@ -599,7 +600,7 @@ class WFForum extends ContextSource {
 		$forum->category = $category;
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-forum' );
-		$logEntry->setPerformer( $wgUser );
+		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
 		$shortText = $wgLang->truncateForDatabase( $description, 50 );
 		$logEntry->setComment( $shortText );
@@ -635,12 +636,11 @@ class WFForum extends ContextSource {
 	 * @param string $titleValue value attribute for the title input
 	 * @param bool $announcement value for the announcement checkbox
 	 * @param string $formTitle title to label the form with
+	 * @param User $user
 	 * @return string HTML, the form
 	 */
-	static function showForm( $params, $titlePlaceholder = '', $titleValue = '', $textValue = '', $announcement = false, $formTitle ) {
-		global $wgUser;
-
-		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
+	static function showForm( $params, $titlePlaceholder = '', $titleValue = '', $textValue = '', $announcement = false, $formTitle, User $user ) {
+		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-write', 'wikiforum-error-no-rights' );
 		}
 
@@ -677,7 +677,7 @@ class WFForum extends ContextSource {
 	 */
 	function showEditForm() {
 		$params = [ 'wfaction' => 'saveforum', 'forum' => $this->getId() ];
-		return self::showForm( $params, '', $this->getName(), $this->getText(), $this->isAnnouncement(), wfMessage( 'wikiforum-edit-forum' )->text() );
+		return self::showForm( $params, '', $this->getName(), $this->getText(), $this->isAnnouncement(), wfMessage( 'wikiforum-edit-forum' )->text(), $this->getUser() );
 	}
 
 	/**

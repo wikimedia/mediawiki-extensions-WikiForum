@@ -247,7 +247,7 @@ class SpecialWikiForum extends SpecialPage {
 			} else { // other actions
 				switch ( $action ) {
 					case 'addcategory':
-						$output .= WFCategory::showAddForm();
+						$output .= WFCategory::showAddForm( $user );
 						break;
 					case 'savenewcategory': // title
 						$output .= WFCategory::add( $title, $user );
