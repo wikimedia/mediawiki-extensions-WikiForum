@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
-			"Les Meloures"
+			"Les Meloures",
+			"Soued031"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]]-Erweiderung fir MediaWiki",
@@ -10,7 +11,7 @@
 	"wikiforum-anonymous": "Anonym",
 	"wikiforum-by": "Den $4 ëm $5<br />vum {{GENDER:$3|$2}}",
 	"wikiforum-description": "Beschreiwung:",
-	"wikiforum-forum-is-empty": "Dëse Forum ass elo eidel.\nKontaktéiert w.e.g. en Administrateur vum Forum fir Sujeten a Kategorien dobäigesat ze kréien.",
+	"wikiforum-forum-is-empty": "Dëse Forum ass elo eidel.\nKontaktéiert wgl. en Administrateur vum Forum fir Sujeten a Kategorien dobäigesat ze kréien.",
 	"wikiforum-forum-name": "$1-Forum",
 	"wikiforum-name": "Numm:",
 	"wikiforum-button-preview": "Kucken ouni ofzespäicheren",
@@ -59,7 +60,7 @@
 	"wikiforum-error-no-text-or-title": "Titel oder Text net korrekt ausgefëllt.",
 	"wikiforum-error-bad-title": "Den Titel den ugi gouf hat net valabel Buschtawen.",
 	"wikiforum-error-no-reply": "Äntwert net korrekt ausgefëllt!",
-	"wikiforum-error-title-already-exists": "Et gëtt schonn eng Rubrik mat deem Titel, sicht Iech w.e.g. een Aneren.",
+	"wikiforum-error-title-already-exists": "Et gëtt schonn eng Rubrik mat deem Titel, sicht Iech wgl. een Aneren.",
 	"wikiforum-error-search-missing-query": "Dir musst e Begrëff uginn no deem gesicht soll ginn!",
 	"wikiforum-error-search": "Feeler beim Sichen",
 	"wikiforum-error-delete": "Feeler beim Läschen",
