@@ -387,7 +387,7 @@ class WFCategory extends ContextSource {
 		}
 		if ( strlen( $categoryName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
-			return $error . self::showAddForm();
+			return $error . self::showAddForm( $user );
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -452,11 +452,10 @@ class WFCategory extends ContextSource {
 	 * @param $titlePlaceholder
 	 * @param $titleValue
 	 * @param $formTitle
+	 * @param User $user
 	 */
-	static function showForm( $params, $titlePlaceholder, $titleValue, $formTitle ) {
-		global $wgUser;
-
-		if ( !$wgUser->isAllowed( 'wikiforum-admin' ) ) {
+	static function showForm( $params, $titlePlaceholder, $titleValue, $formTitle, User $user ) {
+		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
 		}
 
@@ -475,17 +474,18 @@ class WFCategory extends ContextSource {
 	 */
 	function showEditForm() {
 		$params = [ 'wfaction' => 'savecategory', 'category' => $this->getId() ];
-		return self::showForm( $params, '', $this->getName(), wfMessage( 'wikiforum-edit-category' )->text() );
+		return self::showForm( $params, '', $this->getName(), wfMessage( 'wikiforum-edit-category' )->text(), $this->getUser() );
 	}
 
 	/**
 	 * Show the form for adding a new category
 	 *
+	 * @param User $user
 	 * @return string HTML
 	 */
-	static function showAddForm() {
+	static function showAddForm( User $user ) {
 		$params = [ 'wfaction' => 'savenewcategory' ];
-		return self::showForm( $params, wfMessage( 'wikiforum-category-preload' )->text(), '', wfMessage( 'wikiforum-add-category' )->text() );
+		return self::showForm( $params, wfMessage( 'wikiforum-category-preload' )->text(), '', wfMessage( 'wikiforum-add-category' )->text(), $user );
 	}
 
 	/**
@@ -495,6 +495,6 @@ class WFCategory extends ContextSource {
 	 */
 	function showAddForumForm() {
 		$params = [ 'wfaction' => 'savenewforum', 'category' => $this->getId() ];
-		return WFForum::showForm( $params, wfMessage( 'wikiforum-forum-preload' )->text(), '', '', false, wfMessage( 'wikiforum-add-forum' )->text() );
+		return WFForum::showForm( $params, wfMessage( 'wikiforum-forum-preload' )->text(), '', '', false, wfMessage( 'wikiforum-add-forum' )->text(), $this->getUser() );
 	}
 }
