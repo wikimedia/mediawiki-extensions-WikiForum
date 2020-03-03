@@ -351,7 +351,7 @@ class WFThread extends ContextSource {
 				'wff_thread_count = wff_thread_count - 1',
 				'wff_last_post_actor' => $row->wft_last_post_actor ?? null,
 				'wff_last_post_user_ip' => $row->wft_last_post_user_ip ?? null,
-				'wff_last_post_timestamp' => $row->wft_last_post_timestamp ?? null
+				'wff_last_post_timestamp' => $dbw->timestampOrNull( $row->wft_last_post_timestamp ?? null )
 			],
 			[ 'wff_forum' => $this->getForum()->getId() ],
 			__METHOD__
@@ -501,7 +501,7 @@ class WFThread extends ContextSource {
 			[
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
-				'wft_edit_timestamp' => wfTimestampNow(),
+				'wft_edit_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wft_edit_actor' => $user->getActorId(),
 				'wft_edit_user_ip' => $this->getRequest()->getIP(),
 			],
@@ -827,11 +827,11 @@ class WFThread extends ContextSource {
 			[
 				'wft_thread_name' => $title,
 				'wft_text' => $text,
-				'wft_posted_timestamp' => $timestamp,
+				'wft_posted_timestamp' => $dbw->timestamp( $timestamp ),
 				'wft_actor' => $user->getActorId(),
 				'wft_user_ip' => $wgRequest->getIP(),
 				'wft_forum' => $forum->getId(),
-				'wft_last_post_timestamp' => $timestamp
+				'wft_last_post_timestamp' => $dbw->timestamp( $timestamp )
 			],
 			__METHOD__
 		);
@@ -845,7 +845,7 @@ class WFThread extends ContextSource {
 				'wff_thread_count = wff_thread_count + 1',
 				'wff_last_post_actor' => $user->getActorId(),
 				'wff_last_post_user_ip' => $wgRequest->getIP(),
-				'wff_last_post_timestamp' => $timestamp
+				'wff_last_post_timestamp' => $dbw->timestamp( $timestamp )
 			],
 			[ 'wff_forum' => $forum->getId() ],
 			__METHOD__
