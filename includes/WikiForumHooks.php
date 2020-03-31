@@ -109,14 +109,19 @@ class WikiForumHooks {
 	 */
 	public static function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__ . '/../sql';
+
+		$db = $updater->getDB();
 		$file = "$dir/wikiforum.sql";
+		// @todo Split into one table per file
+		if ( $db->getType() === 'postgres' ) {
+			$file = "$dir/wikiforum.postgres.sql";
+		}
 
 		$updater->addExtensionTable( 'wikiforum_category', $file );
 		$updater->addExtensionTable( 'wikiforum_forums', $file );
 		$updater->addExtensionTable( 'wikiforum_threads', $file );
 		$updater->addExtensionTable( 'wikiforum_replies', $file );
 
-		$db = $updater->getDB();
 		// upgrade from pre 1.3.0-SW
 		if ( !$db->fieldExists( 'wikiforum_category', 'wfc_added_user_ip' ) ) {
 			$file = $dir . '/1.3.0-SW-new-fields.sql';

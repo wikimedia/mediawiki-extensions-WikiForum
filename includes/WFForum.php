@@ -335,7 +335,7 @@ class WFForum extends ContextSource {
 				[
 					'wff_forum_name' => $forumName,
 					'wff_description' => $description,
-					'wff_edited_timestamp' => wfTimestampNow(),
+					'wff_edited_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 					'wff_edited_actor' => $user->getActorId(),
 					'wff_edited_user_ip' => $this->getRequest()->getIP(),
 					'wff_announcement' => $announcement
@@ -588,7 +588,7 @@ class WFForum extends ContextSource {
 				'wff_description' => $description,
 				'wff_category' => $category->getId(),
 				'wff_sortkey' => ( $sortKey->the_key + 1 ),
-				'wff_added_timestamp' => wfTimestampNow(),
+				'wff_added_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wff_added_actor' => $user->getActorId(),
 				'wff_added_user_ip' => $wgRequest->getIP(),
 				'wff_announcement' => $announcement

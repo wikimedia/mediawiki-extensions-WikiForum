@@ -239,7 +239,7 @@ class WFReply extends ContextSource {
 			'wikiforum_replies',
 			[
 				'wfr_reply_text' => $text,
-				'wfr_edit_timestamp' => wfTimestampNow(),
+				'wfr_edit_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wfr_edit_actor' => $user->getActorId(),
 				'wfr_edit_user_ip' => $this->getRequest()->getIP(),
 			],
@@ -360,6 +360,10 @@ class WFReply extends ContextSource {
 				'wfr_reply_text' => $text,
 				'wfr_actor' => $user->getActorId(),
 				'wfr_thread' => $thread->getId(),
+				// @todo FIXME: This would need $dbw->timestamp() but the results of calling that
+				// on either $timestamp or the completed calculation seem odd...namely that
+				// $dbw->timestamp( $timestamp - ( 24 * 3600 ) ) is NOT the same as $timestamp - ( 24 * 3600 )
+				// even on MySQL/MariaDB?! I don't even...
 				'wfr_posted_timestamp > ' . ( $timestamp - ( 24 * 3600 ) )
 			],
 			__METHOD__
