@@ -304,7 +304,10 @@ class WikiForum {
 	 * @return string
 	 */
 	public static function getCaptcha( $out ) {
-		wfSetupSession(); // NOTE: make sure we have a session. May be required for CAPTCHAs to work.
+		global $wgRequest;
+
+		// NOTE: make sure we have a session. May be required for CAPTCHAs to work.
+		$wgRequest->getSession()->persist();
 		$output = wfMessage( "captcha-sendemail" )->parseAsBlock();
 
 		$captcha = ConfirmEditHooks::getInstance();
