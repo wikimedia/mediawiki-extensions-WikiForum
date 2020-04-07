@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luckas",
-			"Luckas Blade",
+			"Eduardo Addad de Oliveira",
 			"Felipe L. Ewald",
-			"Eduardo Addad de Oliveira"
+			"Luckas",
+			"Luckas Blade"
 		]
 	},
 	"wikiforum-desc": "Extensão para criar [[Special:WikiForum|fóruns]] no MediaWiki",

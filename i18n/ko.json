@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hwangjy9",
 			"LFM",
 			"Priviet",
-			"아라",
-			"Hwangjy9"
+			"아라"
 		]
 	},
 	"wikiforum-desc": "미디어위키를 위한 [[Special:WikiForum|포럼]] 확장 기능",

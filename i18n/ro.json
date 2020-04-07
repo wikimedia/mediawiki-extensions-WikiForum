@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Andrei Stroe",
 			"Minisarm",
-			"Saturnian",
 			"Reception123",
-			"Strainu",
-			"Andrei Stroe"
+			"Saturnian",
+			"Strainu"
 		]
 	},
 	"wikiforum-desc": "Extensie [[Special:WikiForum|Forum]] pentru MediaWiki",

@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kly",
+			"LNDDYL",
 			"Liuxinyu970226",
 			"Tntchn",
-			"Yfdyh000",
-			"LNDDYL",
-			"Kly"
+			"Yfdyh000"
 		]
 	},
 	"wikiforum-desc": "用於MediaWiki的[[Special:WikiForum|論壇]]擴充套件",

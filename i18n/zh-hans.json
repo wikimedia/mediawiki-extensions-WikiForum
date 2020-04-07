@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hudafu",
 			"Hzy980512",
 			"Linxue9786",
 			"Liuxinyu970226",
 			"Xiaomingyan",
-			"Yfdyh000",
-			"Hudafu"
+			"Yfdyh000"
 		]
 	},
 	"wikiforum-desc": "适用于MediaWiki的[[Special:WikiForum|论坛]]扩展程序",
