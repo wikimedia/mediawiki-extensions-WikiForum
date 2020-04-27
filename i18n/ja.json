@@ -93,6 +93,7 @@
 	"wikiforum-move-thread": "スレッドを移動",
 	"wikiforum-paste-thread": "スレッドを貼り付け",
 	"wikiforum-quote": "引用",
+	"action-wikiforum-admin": "[[Special:WikiForum|議論ボード]]でのカテゴリやフォーラムの追加/編集/削除",
 	"right-wikiforum-admin": "[[Special:WikiForum|議論ボード]]でカテゴリやフォーラムを追加/編集/削除",
 	"right-wikiforum-moderator": "[[Special:WikiForum|議論ボード]]でスレッドや返信を編集/削除",
 	"group-forumadmin": "フォーラム管理者",
