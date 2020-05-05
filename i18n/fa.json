@@ -4,6 +4,7 @@
 			"Alirezaaa",
 			"Armin1392",
 			"Ebraminio",
+			"Huji",
 			"Mjbmr",
 			"Omidh",
 			"Reza1615"
@@ -11,7 +12,7 @@
 	},
 	"wikiforum-desc": "[[Special:WikiForum|انجمن]]  برای مدیاویکی",
 	"wikiforum": "انجمن بحث و گفتگو",
-	"wikiforum-anonymous": "ناشناس",
+	"wikiforum-anonymous": "گمنام",
 	"wikiforum-announcement-only-description": "انجمن اطلاع‌رسانی (فقط مدیران می‌توانند موضوعی اضافه کنند)",
 	"wikiforum-by": "در $4 در $5<br />توسط {{GENDER:$3|$2}}",
 	"wikiforum-description": "شرح:",
