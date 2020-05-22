@@ -51,85 +51,291 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 		$dbw = $this->getDB( DB_MASTER );
 
 		// wikiforum_category
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_category' )} SET wfc_added_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wfc_added_user)",
-			__METHOD__
+		$res = $dbw->select(
+			'wikiforum_category',
+			[
+				'wfc_added_user',
+				'wfc_edited_user',
+				'wfc_deleted_user',
+			],
+			'',
+			__METHOD__,
+			[ 'DISTINCT' ]
 		);
+		foreach ( $res as $row ) {
+			$user = $this->getUser( $row->wfc_added_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_category',
+					[
+						'wfc_added_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wfc_added_user' => $row->wfc_added_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_category' )} SET wfc_edited_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wfc_edited_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wfc_edited_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_category',
+					[
+						'wfc_edited_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wfc_edited_user' => $row->wfc_edited_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_category' )} SET wfc_deleted_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wfc_deleted_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wfc_deleted_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_category',
+					[
+						'wfc_deleted_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wfc_deleted_user' => $row->wfc_deleted_user
+					],
+					__METHOD__
+				);
+			}
+		}
 
 		// wikiforum_forums
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_forums' )} SET wff_last_post_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wff_last_post_user)",
-			__METHOD__
+		$res = $dbw->select(
+			'wikiforum_forums',
+			[
+				'wff_last_post_user',
+				'wff_added_user',
+				'wff_edited_user',
+				'wff_deleted_user'
+			],
+			'',
+			__METHOD__,
+			[ 'DISTINCT' ]
 		);
+		foreach ( $res as $row ) {
+			$user = $this->getUser( $row->wff_last_post_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_forums',
+					[
+						'wff_last_post_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wff_last_post_user' => $row->wff_last_post_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_forums' )} SET wff_added_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wff_added_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wff_added_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_forums',
+					[
+						'wff_added_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wff_added_user' => $row->wff_added_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_forums' )} SET wff_edited_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wff_edited_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wff_edited_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_forums',
+					[
+						'wff_edited_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wff_edited_user' => $row->wff_edited_user
+					]
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_forums' )} SET wff_deleted_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wff_deleted_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wff_deleted_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_forums',
+					[
+						'wff_deleted_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wff_deleted_user' => $row->wff_deleted_user
+					],
+					__METHOD__
+				);
+			}
+		}
 
 		// wikiforum_threads
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_threads' )} SET wft_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wft_user)",
-			__METHOD__
+		$res = $dbw->select(
+			'wikiforum_threads',
+			[
+				'wft_user',
+				'wft_deleted_user',
+				'wft_edit_user',
+				'wft_closed_user',
+				'wft_last_post_user'
+			],
+			'',
+			__METHOD__,
+			[ 'DISTINCT' ]
 		);
+		foreach ( $res as $row ) {
+			$user = $this->getUser( $row->wft_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_threads',
+					[
+						'wft_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wft_user' => $row->wft_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_threads' )} SET wft_deleted_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wft_deleted_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wft_deleted_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_threads',
+					[
+						'wft_deleted_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wft_deleted_user' => $row->wft_deleted_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_threads' )} SET wft_edit_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wft_edit_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wft_edit_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_threads',
+					[
+						'wft_edit_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wft_edit_user' => $row->wft_edit_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_threads' )} SET wft_closed_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wft_closed_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wft_closed_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_threads',
+					[
+						'wft_closed_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wft_closed_user' => $row->wft_closed_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_threads' )} SET wft_last_post_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wft_last_post_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wft_last_post_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_threads',
+					[
+						'wft_last_post_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wft_last_post_user' => $row->wft_last_post_user
+					],
+					__METHOD__
+				);
+			}
+		}
 
 		// wikiforum_replies
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_replies' )} SET wfr_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wfr_user)",
-			__METHOD__
+		$res = $dbw->select(
+			'wikiforum_replies',
+			[
+				'wfr_user',
+				'wfr_deleted_user',
+				'wfr_edit_user'
+			],
+			'',
+			__METHOD__,
+			[ 'DISTINCT' ]
 		);
+		foreach ( $res as $row ) {
+			$user = $this->getUser( $row->wfr_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_replies',
+					[
+						'wfr_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wfr_user' => $row->wfr_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_replies' )} SET wfr_deleted_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wfr_deleted_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wfr_deleted_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_replies',
+					[
+						'wfr_deleted_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wfr_deleted_user' => $row->wfr_deleted_user
+					],
+					__METHOD__
+				);
+			}
 
-		$dbw->query(
-			"UPDATE {$dbw->tableName( 'wikiforum_replies' )} SET wfr_edit_actor=(SELECT actor_id FROM {$dbw->tableName( 'actor' )} WHERE actor_user=wfr_edit_user)",
-			__METHOD__
-		);
+			$user = $this->getUser( $row->wfr_edit_user );
+			if ( $user ) {
+				$dbw->update(
+					'wikiforum_replies',
+					[
+						'wfr_edit_actor' => $user->getActorId( $dbw )
+					],
+					[
+						'wfr_edit_user' => $row->wfr_edit_user
+					],
+					__METHOD__
+				);
+			}
+		}
 
 		return true;
+	}
+
+	/**
+	 * Fetches the user from newFromId.
+	 *
+	 * @param $userId int
+	 *
+	 * @return User|bool
+	 */
+	protected function getUser( $userId ) {
+		if ( (int)$userId === 0 ) {
+			return false;
+		}
+
+		// We create a user object
+		// to get to actor id.
+		return User::newFromId( $userId );
 	}
 }
 
