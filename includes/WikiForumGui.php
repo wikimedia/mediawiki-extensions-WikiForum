@@ -221,7 +221,7 @@ class WikiForumGui {
 	/**
 	 * Get the editor form for writing a new thread, a reply, etc.
 	 *
-	 * @param $showCancel: show the cancel button?
+	 * @param $showCancel show the cancel button?
 	 * @param $params Array: URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
 	 * @param $input String: used to add extra input fields
 	 * @param $height String: height of the textarea, i.e. '10em'

@@ -9,8 +9,8 @@ class WikiForumHooks {
 	/**
 	 * Set up the two new parser hooks: <WikiForumList> and <WikiForumThread>
 	 *
-	 * @param $parser Object: instance of Parser
-	 * @return Boolean true
+	 * @param &$parser Object: instance of Parser
+	 * @return bool true
 	 */
 	public static function registerParserHooks( &$parser ) {
 		$parser->setHook( 'WikiForumList', 'WikiForumHooks::renderWikiForumList' );
