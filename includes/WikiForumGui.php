@@ -50,9 +50,9 @@ class WikiForumGui {
 	 * Builds the header row -- the breadcrumb navigation
 	 * (Overview > Category name > Forum > Thread)
 	 *
-	 * @param $links string: the actual overview/category/etc links
+	 * @param string $links the actual overview/category/etc links
 	 * @param User $user
-	 * @param $additionalLinks string: more links to add on the other side - 'Add a new forum'-type links
+	 * @param string $additionalLinks more links to add on the other side - 'Add a new forum'-type links
 	 * @return string HTML
 	 */
 	static function showHeaderRow( $links, User $user, $additionalLinks = '' ) {
@@ -72,10 +72,10 @@ class WikiForumGui {
 	/**
 	 * Gets the footer row, in other words: pagination links.
 	 *
-	 * @param $page Integer: number of the current page
-	 * @param $maxissues Integer: amount of replies, fetched from the DB
-	 * @param $limit Integer: limit; this is also used for the SQL query
-	 * @param $params array: URL params to be passed, should have a thread or forum number
+	 * @param int $page number of the current page
+	 * @param int $maxissues amount of replies, fetched from the DB
+	 * @param int $limit limit; this is also used for the SQL query
+	 * @param array $params URL params to be passed, should have a thread or forum number
 	 * @return string HTML
 	 */
 	static function showFooterRow( $page, $maxissues, $limit, $params ) {
@@ -221,12 +221,12 @@ class WikiForumGui {
 	/**
 	 * Get the editor form for writing a new thread, a reply, etc.
 	 *
-	 * @param $showCancel show the cancel button?
-	 * @param $params Array: URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
-	 * @param $input String: used to add extra input fields
-	 * @param $height String: height of the textarea, i.e. '10em'
-	 * @param $text_prev
-	 * @param $saveButton String: save button text
+	 * @param bool $showCancel show the cancel button?
+	 * @param array $params URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
+	 * @param string $input used to add extra input fields
+	 * @param string $height height of the textarea, i.e. '10em'
+	 * @param string $text_prev
+	 * @param string $saveButton save button text
 	 * @param User $user
 	 * @return String HTML
 	 */

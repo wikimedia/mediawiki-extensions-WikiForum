@@ -262,8 +262,8 @@ class WFForum extends ContextSource {
 	/**
 	 * Show icons for administrative functions (edit, delete, sort up/down).
 	 *
-	 * @param $sort Boolean
-	 * @return HTML
+	 * @param bool $sort
+	 * @return string HTML
 	 */
 	function showAdminIcons( $sort ) {
 		global $wgExtensionAssetsPath;
@@ -305,9 +305,9 @@ class WFForum extends ContextSource {
 	/**
 	 * Edit the forum
 	 *
-	 * @param $forumName String: forum name as supplied by the user
-	 * @param $description String: forum description as supplied by the user
-	 * @param $announcement boolean
+	 * @param string $forumName forum name as supplied by the user
+	 * @param string $description forum description as supplied by the user
+	 * @param bool $announcement
 	 * @return string HTML
 	 */
 	function edit( $forumName, $description, $announcement ) {
@@ -634,6 +634,7 @@ class WFForum extends ContextSource {
 	 * @param array $params URL parameters
 	 * @param string $titlePlaceholder placeholder attribute for the title input
 	 * @param string $titleValue value attribute for the title input
+	 * @param string $textValue
 	 * @param bool $announcement value for the announcement checkbox
 	 * @param string $formTitle title to label the form with
 	 * @param User $user
@@ -683,6 +684,8 @@ class WFForum extends ContextSource {
 	/**
 	 * Show the editor for adding a new thread to this forum
 	 *
+	 * @param string $preloadTitle
+	 * @param string $preloadText
 	 * @return string HTML the editor
 	 */
 	function showNewThreadForm( $preloadTitle, $preloadText ) {

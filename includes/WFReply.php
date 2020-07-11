@@ -207,7 +207,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Edit the reply
 	 *
-	 * @param $text String: new reply text
+	 * @param string $text new reply text
 	 * @return string HTML of thread
 	 */
 	function edit( $text ) {
@@ -446,7 +446,7 @@ class WFReply extends ContextSource {
 	 *
 	 * @param array $params URL params to be passed to form
 	 * @param User $user
-	 * @param string $textValue value to preload the editor with
+	 * @param string $text_prev value to preload the editor with
 	 * @param bool $showCancel
 	 * @return string
 	 */

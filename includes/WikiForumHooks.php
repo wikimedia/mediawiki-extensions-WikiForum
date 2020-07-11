@@ -9,7 +9,7 @@ class WikiForumHooks {
 	/**
 	 * Set up the two new parser hooks: <WikiForumList> and <WikiForumThread>
 	 *
-	 * @param &$parser Object: instance of Parser
+	 * @param Parser &$parser
 	 * @return bool true
 	 */
 	public static function registerParserHooks( &$parser ) {
@@ -21,6 +21,11 @@ class WikiForumHooks {
 	/**
 	 * Callback for <WikiForumList> tag.
 	 * Takes only the following argument: num (used as the LIMIT for the SQL query)
+	 * @param string $input
+	 * @param array $args
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
 	 */
 	public static function renderWikiForumList( $input, $args, Parser $parser, $frame ) {
 		$parser->getOutput()->addModuleStyles( 'ext.wikiForum' );
@@ -63,6 +68,11 @@ class WikiForumHooks {
 	 * Callback for the <WikiForumThread> hook.
 	 * Takes the following arguments: id (ID number of the thread, used in SQL
 	 * query), replies (whether to display replies)
+	 * @param string $input
+	 * @param array $args
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
 	 */
 	public static function renderWikiForumThread( $input, $args, Parser $parser, $frame ) {
 		$parser->getOutput()->addModuleStyles( 'ext.wikiForum' );
@@ -105,7 +115,7 @@ class WikiForumHooks {
 	 * Also runs other database upgrades for users upgrading from an older version
 	 * of WikiForum.
 	 *
-	 * @param $updater DatabaseUpdater
+	 * @param DatabaseUpdater $updater
 	 */
 	public static function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__ . '/../sql';

@@ -47,7 +47,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Find a thread when you know the title.
 	 *
-	 * @param $titleText String: thread title
+	 * @param string $titleText thread title
 	 * @return bool|WFThread Thread, or false on failure
 	 */
 	public static function newFromName( $titleText ) {
@@ -308,7 +308,6 @@ class WFThread extends ContextSource {
 	/**
 	 * Deletes the thread
 	 *
-	 * @param $threadId Integer: ID number of the thread to delete
 	 * @return string HTML
 	 */
 	function delete() {
@@ -525,7 +524,7 @@ class WFThread extends ContextSource {
 	 * locked icon for locked threads and an ordinary thread icon for
 	 * everything else.
 	 *
-	 * @return HTML img tag
+	 * @return string HTML img tag
 	 */
 	function getIcon() {
 		global $wgExtensionAssetsPath;
@@ -656,7 +655,8 @@ class WFThread extends ContextSource {
 	 * Show an item (row) for a list (table), for this thread. Used on forum pages and the <WikiForumList> tag
 	 * Do not use. Use showListItem() and showTagListItem() below.
 	 *
-	 * @param extraInfo string: any extra information to show after the posted info
+	 * @param string $class
+	 * @param string $extraInfo any extra information to show after the posted info
 	 * @return string
 	 */
 	private function showListItemMain( $class, $extraInfo = '' ) {
@@ -713,7 +713,7 @@ class WFThread extends ContextSource {
 	 * Shows the edit/delete buttons for the topic author, moderators and also
 	 * close (lock) and reopen (unlock) buttons for moderators.
 	 *
-	 * @return HTML
+	 * @return string HTML
 	 */
 	function showButtons() {
 		global $wgExtensionAssetsPath;
@@ -969,8 +969,8 @@ class WFThread extends ContextSource {
 	/**
 	 * Show the editor for adding a new reply to this thread
 	 *
-	 * @param $quoteReply int: the ID of the reply to quote in the editor. 0 for not quoting a reply
-	 * @param $quoteThread boolean: true-quote this thread in the editor. false-don't
+	 * @param int $quoteReply the ID of the reply to quote in the editor. 0 for not quoting a reply
+	 * @param bool $quoteThread true-quote this thread in the editor. false-don't
 	 * @return string HTML the editor
 	 */
 	function showNewReplyForm( $quoteReply, $quoteThread ) {

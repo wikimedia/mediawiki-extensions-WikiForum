@@ -148,8 +148,8 @@ class WFCategory extends ContextSource {
 	/**
 	 * Show icons for administrative functions (edit, delete, sort up/down).
 	 *
-	 * @param $sort Boolean
-	 * @return HTML
+	 * @param bool $sort
+	 * @return string HTML
 	 */
 	function showAdminIcons( $sort ) {
 		global $wgExtensionAssetsPath;
@@ -448,11 +448,12 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get the form for adding/editing categories and forums.
 	 *
-	 * @param $params Array: URL parameters (like array( 'foo' => 'bar' ) or so)
-	 * @param $titlePlaceholder
-	 * @param $titleValue
-	 * @param $formTitle
+	 * @param array $params URL parameters (like array( 'foo' => 'bar' ) or so)
+	 * @param string $titlePlaceholder
+	 * @param string $titleValue
+	 * @param string $formTitle
 	 * @param User $user
+	 * @return string HTML
 	 */
 	static function showForm( $params, $titlePlaceholder, $titleValue, $formTitle, User $user ) {
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {

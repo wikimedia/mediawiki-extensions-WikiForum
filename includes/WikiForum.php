@@ -13,6 +13,7 @@ class WikiForum {
 	 * @param string $errorTitleMsg message key
 	 * @param string $errorMessageMsg message key
 	 * @param string $errorIcon icon finename (optional)
+	 * @return string HTML
 	 */
 	static function showErrorMessage( $errorTitleMsg, $errorMessageMsg, $errorIcon = 'exclamation.png' ) {
 		global $wgExtensionAssetsPath;
@@ -32,7 +33,7 @@ class WikiForum {
 	 * Used in the special page class.
 	 *
 	 * @param User $user
-	 * @return HTML
+	 * @return string HTML
 	 */
 	static function showOverview( User $user ) {
 		global $wgExtensionAssetsPath;
@@ -74,9 +75,9 @@ class WikiForum {
 	/**
 	 * Show the search results page.
 	 *
-	 * @param $what String: the search query string.
+	 * @param string $what the search query string.
 	 * @param User $user
-	 * @return HTML output
+	 * @return string HTML output
 	 */
 	static function showSearchResults( $what, User $user ) {
 		global $wgOut, $wgRequest, $wgLang;
@@ -152,7 +153,7 @@ class WikiForum {
 	 * Get the link to the specified user's userpage (and group membership)
 	 *
 	 * @param User $user user object
-	 * @return HTML
+	 * @return string HTML
 	 */
 	public static function showUserLink( User $user ) {
 		$username = $user->getName();
@@ -301,6 +302,7 @@ class WikiForum {
 	/**
 	 * Return the HTML for the captcha
 	 *
+	 * @param OutputPage $out
 	 * @return string
 	 */
 	public static function getCaptcha( $out ) {
