@@ -95,6 +95,7 @@
 	"wikiforum-quote": "引用",
 	"action-wikiforum-admin": "[[Special:WikiForum|議論ボード]]でのカテゴリやフォーラムの追加/編集/削除",
 	"right-wikiforum-admin": "[[Special:WikiForum|議論ボード]]でカテゴリやフォーラムを追加/編集/削除",
+	"action-wikiforum-moderator": "[[Special:WikiForum|議論ボード]]でのスレッドや返信の編集/削除",
 	"right-wikiforum-moderator": "[[Special:WikiForum|議論ボード]]でスレッドや返信を編集/削除",
 	"group-forumadmin": "フォーラム管理者",
 	"group-forumadmin-member": "フォーラム管理者",
