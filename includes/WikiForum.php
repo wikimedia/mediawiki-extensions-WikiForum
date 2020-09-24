@@ -80,8 +80,6 @@ class WikiForum {
 	 * @return string HTML output
 	 */
 	static function showSearchResults( $what, User $user ) {
-		global $wgOut, $wgRequest, $wgLang;
-
 		$output = WikiForumGui::showSearchbox();
 		$output .= WikiForumGui::showHeaderRow( '', $user );
 
@@ -206,6 +204,10 @@ class WikiForum {
 		return $avatar;
 	}
 
+	/**
+	 * @param string $text
+	 * @return string HTML
+	 */
 	static function parseIt( $text ) {
 		global $wgOut;
 
@@ -271,6 +273,10 @@ class WikiForum {
 		return $text;
 	}
 
+	/**
+	 * @param string $text
+	 * @return string
+	 */
 	public static function deleteTags( $text ) {
 		$text = preg_replace(
 			'/\<WikiForumThread id=(.*?)\/\>/',

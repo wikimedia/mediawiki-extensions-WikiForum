@@ -326,7 +326,7 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 	 *
 	 * @param string $userId
 	 *
-	 * @return User|bool
+	 * @return User|false
 	 */
 	protected function getUser( $userId ) {
 		if ( (int)$userId === 0 ) {

@@ -5,6 +5,9 @@ class WFReply extends ContextSource {
 	private $data;
 	public $thread;
 
+	/**
+	 * @param stdClass $sql
+	 */
 	private function __construct( $sql ) {
 		$this->data = $sql;
 	}
@@ -13,7 +16,7 @@ class WFReply extends ContextSource {
 	 * Return a new WFReply instance for the given reply ID
 	 *
 	 * @param int $id ID to get the reply for
-	 * @return WFReply
+	 * @return WFReply|false
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -36,7 +39,7 @@ class WFReply extends ContextSource {
 	 * Return a new WFReply instance for the given reply text content
 	 *
 	 * @param string $text text to get the reply for
-	 * @return WFReply
+	 * @return WFReply|false
 	 */
 	public static function newFromText( $text ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -113,7 +116,7 @@ class WFReply extends ContextSource {
 	/**
 	 * Get the user who edited the reply, if it has been edited
 	 *
-	 * @return User
+	 * @return User|false
 	 */
 	function getEditedBy() {
 		if ( $this->hasBeenEdited() ) {
@@ -275,7 +278,7 @@ class WFReply extends ContextSource {
 	 */
 	function showForSearch() {
 		$posted = $this->showPostedInfo();
-		$posted .= '<br />' . wfMessage( 'wikiforum-search-thread', $this->getThread()->showLink( $this->getId() ) )->text();
+		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread', $this->getThread()->showLink( $this->getId() ) )->text();
 		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
 		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
@@ -288,14 +291,14 @@ class WFReply extends ContextSource {
 	 * @return string HTML
 	 */
 	function showButtons() {
-		global $wgExtensionAssetsPath;
+		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 
 		$thread = $this->getThread();
 		$user = $this->getUser();
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 		$editButtons = '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $thread->getId(), 'quotereply' => $this->getId() ] ) ) . '#writereply">';
-		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
+		$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . $this->msg( 'wikiforum-quote' )->text() . '" />';
 
 		if (
 			(
@@ -306,9 +309,9 @@ class WFReply extends ContextSource {
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
 			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editreply', 'reply' => $this->getId() ] ) ) . '#writereply">';
-			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comment_edit.png" title="' . wfMessage( 'wikiforum-edit-reply' )->text() . '" />';
+			$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comment_edit.png" title="' . $this->msg( 'wikiforum-edit-reply' )->text() . '" />';
 			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletereply', 'reply' => $this->getId() ] ) ) . '">';
-			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comment_delete.png" title="' . wfMessage( 'wikiforum-delete-reply' )->text() . '" />';
+			$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comment_delete.png" title="' . $this->msg( 'wikiforum-delete-reply' )->text() . '" />';
 		}
 
 		$editButtons .= '</a>';

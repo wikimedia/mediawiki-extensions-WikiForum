@@ -281,7 +281,7 @@ class WikiForumGui {
 	 * @param string $titleValue value for the title input
 	 * @return string HTML the form
 	 */
-	static function showTopLevelForm( $url, $extraRow = '', $formTitle, $titlePlaceholder, $titleValue ) {
+	static function showTopLevelForm( $url, $extraRow, $formTitle, $titlePlaceholder, $titleValue ) {
 		return '
 		<form name="frmMain" method="post" action="' . $url . '" id="form">
 			<table class="mw-wikiforum-frame" cellspacing="10">

@@ -5,6 +5,9 @@ class WFCategory extends ContextSource {
 	private $data;
 	private $forums;
 
+	/**
+	 * @param stdClass $sql
+	 */
 	private function __construct( $sql ) {
 		$this->data = $sql;
 	}
@@ -13,7 +16,7 @@ class WFCategory extends ContextSource {
 	 * Get a new WFCategory object from the given ID
 	 *
 	 * @param int $id id to get the category for
-	 * @return WFCategory|bool the category, or false on failure
+	 * @return WFCategory|false the category, or false on failure
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -46,7 +49,7 @@ class WFCategory extends ContextSource {
 	 * Get a new WFCategory object from the given category title
 	 *
 	 * @param string $title title to search for the category for
-	 * @return WFCategory|bool WFCategory the category, or false on failure
+	 * @return WFCategory|false the category, or false on failure
 	 */
 	public static function newFromName( $title ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -138,11 +141,11 @@ class WFCategory extends ContextSource {
 	 * @return string HTML, the link
 	 */
 	function showAddForumLink() {
-		global $wgExtensionAssetsPath;
+		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/folder_add.png" title="' . wfMessage( 'wikiforum-add-forum' )->text() . '" /> ';
+		$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_add.png" title="' . $this->msg( 'wikiforum-add-forum' )->text() . '" /> ';
 		return $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addforum', 'category' => $this->getId() ] ) ) . '">' .
-			wfMessage( 'wikiforum-add-forum' )->text() . '</a>';
+			$this->msg( 'wikiforum-add-forum' )->text() . '</a>';
 	}
 
 	/**
@@ -152,7 +155,7 @@ class WFCategory extends ContextSource {
 	 * @return string HTML
 	 */
 	function showAdminIcons( $sort ) {
-		global $wgExtensionAssetsPath;
+		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 
 		$link = '';
 
@@ -161,17 +164,17 @@ class WFCategory extends ContextSource {
 
 			// For grep: wikiforum-edit-forum, wikiforum-edit-category,
 			// wikiforum-delete-forum, wikiforum-delete-category
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_edit.png" title="' . wfMessage( 'wikiforum-edit-category' )->text() . '" />';
+			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/database_edit.png" title="' . $this->msg( 'wikiforum-edit-category' )->text() . '" />';
 			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editcategory', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_delete.png" title="' . wfMessage( 'wikiforum-delete-category' )->text() . '" />';
+			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/database_delete.png" title="' . $this->msg( 'wikiforum-delete-category' )->text() . '" />';
 			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletecategory', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
 			if ( $sort ) {
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . wfMessage( 'wikiforum-sort-up' )->text() . '" />';
+				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . $this->msg( 'wikiforum-sort-up' )->text() . '" />';
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categoryup', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . wfMessage( 'wikiforum-sort-down' )->text() . '" />';
+				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . $this->msg( 'wikiforum-sort-down' )->text() . '" />';
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categorydown', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 			}
 		}
@@ -284,9 +287,9 @@ class WFCategory extends ContextSource {
 
 		$output .= WikiForumGui::showMainHeader(
 			$this->getName(),
-			wfMessage( 'wikiforum-threads' )->text(),
-			wfMessage( 'wikiforum-replies' )->text(),
-			wfMessage( 'wikiforum-latest-thread' )->text(),
+			$this->msg( 'wikiforum-threads' )->text(),
+			$this->msg( 'wikiforum-replies' )->text(),
+			$this->msg( 'wikiforum-latest-thread' )->text(),
 			$categoryLink
 		);
 
@@ -439,7 +442,7 @@ class WFCategory extends ContextSource {
 	function showHeaderLinks() {
 		$output = Linker::link(
 			SpecialPage::getTitleFor( 'WikiForum' ),
-			wfMessage( 'wikiforum-overview' )->text()
+			$this->msg( 'wikiforum-overview' )->text()
 		);
 
 		return $output . ' &gt; ' . $this->showLink();
@@ -475,7 +478,7 @@ class WFCategory extends ContextSource {
 	 */
 	function showEditForm() {
 		$params = [ 'wfaction' => 'savecategory', 'category' => $this->getId() ];
-		return self::showForm( $params, '', $this->getName(), wfMessage( 'wikiforum-edit-category' )->text(), $this->getUser() );
+		return self::showForm( $params, '', $this->getName(), $this->msg( 'wikiforum-edit-category' )->text(), $this->getUser() );
 	}
 
 	/**
@@ -496,6 +499,6 @@ class WFCategory extends ContextSource {
 	 */
 	function showAddForumForm() {
 		$params = [ 'wfaction' => 'savenewforum', 'category' => $this->getId() ];
-		return WFForum::showForm( $params, wfMessage( 'wikiforum-forum-preload' )->text(), '', '', false, wfMessage( 'wikiforum-add-forum' )->text(), $this->getUser() );
+		return WFForum::showForm( $params, $this->msg( 'wikiforum-forum-preload' )->text(), '', '', false, $this->msg( 'wikiforum-add-forum' )->text(), $this->getUser() );
 	}
 }

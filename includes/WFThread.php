@@ -7,6 +7,9 @@ class WFThread extends ContextSource {
 	private $replies;
 	public $preloadText;
 
+	/**
+	 * @param stdClass $sql
+	 */
 	private function __construct( $sql ) {
 		$this->data = $sql;
 	}
@@ -15,7 +18,7 @@ class WFThread extends ContextSource {
 	 * Get the WFThread object for the thread with the given ID number
 	 *
 	 * @param int $id ID to find
-	 * @return WFThread
+	 * @return WFThread|false
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -48,7 +51,7 @@ class WFThread extends ContextSource {
 	 * Find a thread when you know the title.
 	 *
 	 * @param string $titleText thread title
-	 * @return bool|WFThread Thread, or false on failure
+	 * @return WFThread|false Thread, or false on failure
 	 */
 	public static function newFromName( $titleText ) {
 		// Titles are stored with spaces in the DB but the query will otherwise
@@ -527,22 +530,22 @@ class WFThread extends ContextSource {
 	 * @return string HTML img tag
 	 */
 	function getIcon() {
-		global $wgExtensionAssetsPath;
+		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 
 		// Threads that are this many days old or newer are considered "new"
-		$dayDefinitionNew = intval( wfMessage( 'wikiforum-day-definition-new' )->inContentLanguage()->plain() );
+		$dayDefinitionNew = intval( $this->msg( 'wikiforum-day-definition-new' )->inContentLanguage()->plain() );
 
 		$olderTimestamp = wfTimestamp( TS_MW, strtotime( '-' . $dayDefinitionNew . ' days' ) );
 
-		$imagePath = $wgExtensionAssetsPath . '/WikiForum/resources/images';
+		$imagePath = $extensionAssetsPath . '/WikiForum/resources/images';
 		if ( $this->isSticky() ) {
-			return '<img src="' . $imagePath . '/tag_blue.png" title="' . wfMessage( 'wikiforum-sticky' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/tag_blue.png" title="' . $this->msg( 'wikiforum-sticky' )->text() . '" /> ';
 		} elseif ( $this->isClosed() ) {
-			return '<img src="' . $imagePath . '/lock.png" title="' . wfMessage( 'wikiforum-thread-closed' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/lock.png" title="' . $this->msg( 'wikiforum-thread-closed' )->text() . '" /> ';
 		} elseif ( $this->getPostedTimestamp() > $olderTimestamp ) {
-			return '<img src="' . $imagePath . '/new.png" title="' . wfMessage( 'wikiforum-new-thread' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/new.png" title="' . $this->msg( 'wikiforum-new-thread' )->text() . '" /> ';
 		} else {
-			return '<img src="' . $imagePath . '/note.png" title="' . wfMessage( 'wikiforum-thread' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/note.png" title="' . $this->msg( 'wikiforum-thread' )->text() . '" /> ';
 		}
 	}
 
@@ -552,7 +555,7 @@ class WFThread extends ContextSource {
 	 * @return string HTML of thread
 	 */
 	function show() {
-		global $wgExtensionAssetsPath;
+		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 		$request = $this->getRequest();
 		$out = $this->getOutput();
 		$user = $this->getUser();
@@ -565,20 +568,20 @@ class WFThread extends ContextSource {
 
 		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
 			if ( $this->isSticky() ) {
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/tag_blue_delete.png" title="' . wfMessage( 'wikiforum-remove-sticky' )->text() . '" /> ';
+				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/tag_blue_delete.png" title="' . $this->msg( 'wikiforum-remove-sticky' )->text() . '" /> ';
 				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ) ) . '">' .
-					wfMessage( 'wikiforum-remove-sticky' )->text() . '</a> ';
+					$this->msg( 'wikiforum-remove-sticky' )->text() . '</a> ';
 			} else {
-				$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/tag_blue_add.png" title="' . wfMessage( 'wikiforum-make-sticky' )->text() . '" /> ';
+				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/tag_blue_add.png" title="' . $this->msg( 'wikiforum-make-sticky' )->text() . '" /> ';
 				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'makesticky', 'thread' => $this->getId() ] ) ) . '">' .
-					wfMessage( 'wikiforum-make-sticky' )->text() . '</a> ';
+					$this->msg( 'wikiforum-make-sticky' )->text() . '</a> ';
 			}
 		}
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comment_add.png" title="' . wfMessage( 'wikiforum-write-reply' )->text() . '" /> ';
+		$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comment_add.png" title="' . $this->msg( 'wikiforum-write-reply' )->text() . '" /> ';
 		// Replying is only possible to open threads
 		if ( !$this->isClosed() ) {
-			$menuLink .= $icon . '<a href="#writereply">' . wfMessage( 'wikiforum-write-reply' )->text() . '</a>';
+			$menuLink .= $icon . '<a href="#writereply">' . $this->msg( 'wikiforum-write-reply' )->text() . '</a>';
 		}
 
 		$output .= WikiForumGui::showSearchbox();
@@ -590,13 +593,13 @@ class WFThread extends ContextSource {
 		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $user, $menuLink );
 
 		// Add topic name to the title
-		$out->setPageTitle( wfMessage( 'wikiforum-topic-name', $this->getName() )->text() );
-		$out->setHTMLTitle( wfMessage( 'wikiforum-topic-name', $this->getName() )->text() );
+		$out->setPageTitle( $this->msg( 'wikiforum-topic-name', $this->getName() )->text() );
+		$out->setHTMLTitle( $this->msg( 'wikiforum-topic-name', $this->getName() )->text() );
 
 		$output .= $this->showHeader();
 
 		// limiting
-		$maxPerPage = intval( wfMessage( 'wikiforum-max-replies-per-page' )->inContentLanguage()->plain() );
+		$maxPerPage = intval( $this->msg( 'wikiforum-max-replies-per-page' )->inContentLanguage()->plain() );
 
 		if ( is_numeric( $request->getVal( 'page' ) ) ) {
 			$limit_page = $request->getVal( 'page' ) - 1;
@@ -704,7 +707,7 @@ class WFThread extends ContextSource {
 		$categoryLink = $this->getForum()->getCategory()->showLink();
 		$forumLink = $this->getForum()->showPlainLink();
 
-		$extraInfo = '<br />' . wfMessage( 'wikiforum-forum', $categoryLink, $forumLink )->text();
+		$extraInfo = '<br />' . $this->msg( 'wikiforum-forum', $categoryLink, $forumLink )->text();
 
 		return $this->showListItemMain( 'normal', $extraInfo );
 	}
@@ -716,7 +719,7 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	function showButtons() {
-		global $wgExtensionAssetsPath;
+		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 		$user = $this->getUser();
 
 		$editButtons = '';
@@ -724,7 +727,7 @@ class WFThread extends ContextSource {
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
 		$editButtons .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $this->getId(), 'quotethread' => $this->getId() ] ) ) . '#writereply">';
-		$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . wfMessage( 'wikiforum-quote' )->text() . '" />';
+		$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . $this->msg( 'wikiforum-quote' )->text() . '" />';
 		$editButtons .= '</a>';
 
 		$forum = $this->getForum();
@@ -734,20 +737,20 @@ class WFThread extends ContextSource {
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
 			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editthread', 'thread' => $this->getId() ] ) ) . '">';
-			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/note_edit.png" title="' . wfMessage( 'wikiforum-edit-thread' )->text() . '" />';
+			$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/note_edit.png" title="' . $this->msg( 'wikiforum-edit-thread' )->text() . '" />';
 			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletethread', 'thread' => $this->getId() ] ) ) . '">';
-			$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/note_delete.png" title="' . wfMessage( 'wikiforum-delete-thread' )->text() . '" />';
+			$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/note_delete.png" title="' . $this->msg( 'wikiforum-delete-thread' )->text() . '" />';
 			$editButtons .= '</a> ';
 
 			// Only moderators can lock and reopen threads
 			if ( $user->isAllowed( 'wikiforum-moderator' ) ) {
 				if ( !$this->isClosed() ) {
 					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'closethread', 'thread' => $this->getId() ] ) ) . '">';
-					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/lock_add.png" title="' . wfMessage( 'wikiforum-close-thread' )->text() . '" />';
+					$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/lock_add.png" title="' . $this->msg( 'wikiforum-close-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				} else {
 					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'reopenthread', 'thread' => $this->getId() ] ) ) . '">';
-					$editButtons .= '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/lock_open.png" title="' . wfMessage( 'wikiforum-reopen-thread' )->text() . '" />';
+					$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/lock_open.png" title="' . $this->msg( 'wikiforum-reopen-thread' )->text() . '" />';
 					$editButtons .= '</a>';
 				}
 			}
@@ -912,7 +915,7 @@ class WFThread extends ContextSource {
 
 	function showHeaderForSearch() {
 		$posted = $this->showPostedInfo();
-		$posted .= '<br />' . wfMessage( 'wikiforum-search-thread', $this->showLink() )->text();
+		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread', $this->showLink() )->text();
 
 		return '<tr>
 					<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
