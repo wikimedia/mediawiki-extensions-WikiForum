@@ -274,24 +274,6 @@ class WikiForum {
 	}
 
 	/**
-	 * @param string $text
-	 * @return string
-	 */
-	public static function deleteTags( $text ) {
-		$text = preg_replace(
-			'/\<WikiForumThread id=(.*?)\/\>/',
-			'&lt;WikiForumThread id=\1/&gt;',
-			$text
-		);
-		$text = preg_replace(
-			'/\<WikiForumList(.*)\/>/',
-			'&lt;WikiForumList \1/&gt;',
-			$text
-		);
-		return $text;
-	}
-
-	/**
 	 * Should we require the user to pass a captcha?
 	 *
 	 * @param User $user
