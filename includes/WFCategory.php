@@ -16,7 +16,7 @@ class WFCategory extends ContextSource {
 	 * Get a new WFCategory object from the given ID
 	 *
 	 * @param int $id id to get the category for
-	 * @return WFCategory|false the category, or false on failure
+	 * @return self|false the category, or false on failure
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -29,7 +29,7 @@ class WFCategory extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFCategory( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
@@ -39,17 +39,17 @@ class WFCategory extends ContextSource {
 	 * Get a new WFCategory category from the given SQL row
 	 *
 	 * @param stdClass $sql The row. Must be a row, not a result wrapper!
-	 * @return WFCategory
+	 * @return self
 	 */
 	public static function newFromSQL( $sql ) {
-		return new WFCategory( $sql );
+		return new self( $sql );
 	}
 
 	/**
 	 * Get a new WFCategory object from the given category title
 	 *
 	 * @param string $title title to search for the category for
-	 * @return WFCategory|false the category, or false on failure
+	 * @return self|false the category, or false on failure
 	 */
 	public static function newFromName( $title ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -62,7 +62,7 @@ class WFCategory extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFCategory( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
