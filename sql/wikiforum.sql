@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_category (
 	wfc_added_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Added
 	wfc_added_actor bigint unsigned NOT NULL,
 	wfc_added_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
-	wfc_edited int(10) NOT NULL DEFAULT 0, -- formerly: Edited
+	wfc_edited_timestamp varchar(14) NULL default NULL, -- formerly: Edited
 	wfc_edited_actor bigint unsigned NOT NULL,
 	wfc_edited_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS wikiforum_category (
 	wfc_added_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wfc_added_actor INTEGER NOT NULL,
 	wfc_added_user_ip TEXT NOT NULL DEFAULT '',
-	wfc_edited INTEGER NOT NULL DEFAULT 0,
+	wfc_edited_timestamp TIMESTAMPTZ NULL default NULL,
 	wfc_edited_actor INTEGER NOT NULL,
 	wfc_edited_user_ip TEXT NOT NULL DEFAULT '',
 	wfc_deleted INTEGER NOT NULL DEFAULT 0,
