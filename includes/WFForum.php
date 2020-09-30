@@ -338,7 +338,7 @@ class WFForum extends ContextSource {
 					'wff_edited_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 					'wff_edited_actor' => $user->getActorId(),
 					'wff_edited_user_ip' => $this->getRequest()->getIP(),
-					'wff_announcement' => $announcement
+					'wff_announcement' => (bool)$announcement
 				],
 				[ 'wff_forum' => $this->getId() ],
 				__METHOD__
