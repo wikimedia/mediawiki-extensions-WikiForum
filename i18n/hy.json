@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kareyac",
 			"Vadgt",
 			"Xelgen"
 		]
 	},
 	"wikiforum-search-thread": "Թեմա՝ $1",
 	"wikiforum-thread": "Թեմա",
-	"wikiforum-threads": "Դերձաններ"
+	"wikiforum-threads": "Դերձաններ",
+	"wikiforum-add-category": "Ավելացնել կատեգորիա"
 }
