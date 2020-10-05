@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"DCLXVI",
+			"Kareyac",
 			"StanProg",
 			"පසිඳු කාවින්ද"
 		]
@@ -18,6 +19,7 @@
 	"wikiforum-thread": "Нишка",
 	"wikiforum-threads": "Нишки",
 	"wikiforum-pages": "{{PLURAL:$1|Страница|Страници}}:",
+	"wikiforum-add-category": "Добавяне на категория",
 	"wikiforum-add-forum": "Добавяне на форум",
 	"wikiforum-edit-forum": "Редактиране на форум",
 	"wikiforum-delete-forum": "Изтриване на форум"
