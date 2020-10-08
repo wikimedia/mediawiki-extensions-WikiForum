@@ -68,10 +68,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_category',
 					[
-						'wfc_added_actor' => $user->getActorId( $dbw )
+						'wfc_added_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wfc_added_user' => $row->wfc_added_user
+						'wfc_added_user' => (int)$row->wfc_added_user
 					],
 					__METHOD__
 				);
@@ -82,10 +82,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_category',
 					[
-						'wfc_edited_actor' => $user->getActorId( $dbw )
+						'wfc_edited_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wfc_edited_user' => $row->wfc_edited_user
+						'wfc_edited_user' => (int)$row->wfc_edited_user
 					],
 					__METHOD__
 				);
@@ -96,10 +96,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_category',
 					[
-						'wfc_deleted_actor' => $user->getActorId( $dbw )
+						'wfc_deleted_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wfc_deleted_user' => $row->wfc_deleted_user
+						'wfc_deleted_user' => (int)$row->wfc_deleted_user
 					],
 					__METHOD__
 				);
@@ -125,10 +125,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_last_post_actor' => $user->getActorId( $dbw )
+						'wff_last_post_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wff_last_post_user' => $row->wff_last_post_user
+						'wff_last_post_user' => (int)$row->wff_last_post_user
 					],
 					__METHOD__
 				);
@@ -139,10 +139,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_added_actor' => $user->getActorId( $dbw )
+						'wff_added_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wff_added_user' => $row->wff_added_user
+						'wff_added_user' => (int)$row->wff_added_user
 					],
 					__METHOD__
 				);
@@ -153,10 +153,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_edited_actor' => $user->getActorId( $dbw )
+						'wff_edited_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wff_edited_user' => $row->wff_edited_user
+						'wff_edited_user' => (int)$row->wff_edited_user
 					]
 				);
 			}
@@ -166,10 +166,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_deleted_actor' => $user->getActorId( $dbw )
+						'wff_deleted_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wff_deleted_user' => $row->wff_deleted_user
+						'wff_deleted_user' => (int)$row->wff_deleted_user
 					],
 					__METHOD__
 				);
@@ -196,10 +196,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_actor' => $user->getActorId( $dbw )
+						'wft_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wft_user' => $row->wft_user
+						'wft_user' => (int)$row->wft_user
 					],
 					__METHOD__
 				);
@@ -210,10 +210,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_deleted_actor' => $user->getActorId( $dbw )
+						'wft_deleted_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wft_deleted_user' => $row->wft_deleted_user
+						'wft_deleted_user' => (int)$row->wft_deleted_user
 					],
 					__METHOD__
 				);
@@ -224,10 +224,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_edit_actor' => $user->getActorId( $dbw )
+						'wft_edit_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wft_edit_user' => $row->wft_edit_user
+						'wft_edit_user' => (int)$row->wft_edit_user
 					],
 					__METHOD__
 				);
@@ -238,10 +238,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_closed_actor' => $user->getActorId( $dbw )
+						'wft_closed_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wft_closed_user' => $row->wft_closed_user
+						'wft_closed_user' => (int)$row->wft_closed_user
 					],
 					__METHOD__
 				);
@@ -252,10 +252,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_last_post_actor' => $user->getActorId( $dbw )
+						'wft_last_post_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wft_last_post_user' => $row->wft_last_post_user
+						'wft_last_post_user' => (int)$row->wft_last_post_user
 					],
 					__METHOD__
 				);
@@ -280,10 +280,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_replies',
 					[
-						'wfr_actor' => $user->getActorId( $dbw )
+						'wfr_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wfr_user' => $row->wfr_user
+						'wfr_user' => (int)$row->wfr_user
 					],
 					__METHOD__
 				);
@@ -294,10 +294,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_replies',
 					[
-						'wfr_deleted_actor' => $user->getActorId( $dbw )
+						'wfr_deleted_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wfr_deleted_user' => $row->wfr_deleted_user
+						'wfr_deleted_user' => (int)$row->wfr_deleted_user
 					],
 					__METHOD__
 				);
@@ -308,10 +308,10 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 				$dbw->update(
 					'wikiforum_replies',
 					[
-						'wfr_edit_actor' => $user->getActorId( $dbw )
+						'wfr_edit_actor' => (int)$user->getActorId( $dbw )
 					],
 					[
-						'wfr_edit_user' => $row->wfr_edit_user
+						'wfr_edit_user' => (int)$row->wfr_edit_user
 					],
 					__METHOD__
 				);
