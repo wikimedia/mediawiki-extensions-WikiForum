@@ -10,10 +10,7 @@ CREATE TABLE IF NOT EXISTS wikiforum_category (
 	wfc_added_user_ip TEXT NOT NULL DEFAULT '',
 	wfc_edited_timestamp TIMESTAMPTZ NULL default NULL,
 	wfc_edited_actor INTEGER NOT NULL,
-	wfc_edited_user_ip TEXT NOT NULL DEFAULT '',
-	wfc_deleted INTEGER NOT NULL DEFAULT 0,
-	wfc_deleted_actor INTEGER NOT NULL,
-	wfc_deleted_user_ip TEXT NOT NULL DEFAULT ''
+	wfc_edited_user_ip TEXT NOT NULL DEFAULT ''
 );
 
 ALTER SEQUENCE wikiforum_category_wfc_category_seq OWNED BY wikiforum_category.wfc_category;
@@ -38,9 +35,6 @@ CREATE TABLE IF NOT EXISTS wikiforum_forums (
 	wff_edited_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wff_edited_actor INTEGER NOT NULL,
 	wff_edited_user_ip TEXT NOT NULL DEFAULT '',
-	wff_deleted INTEGER NOT NULL DEFAULT 0,
-	wff_deleted_actor INTEGER NOT NULL,
-	wff_deleted_user_ip TEXT NOT NULL DEFAULT '',
 	wff_announcement SMALLINT NOT NULL DEFAULT 0
 );
 
@@ -57,9 +51,6 @@ CREATE TABLE IF NOT EXISTS wikiforum_threads (
 	wft_posted_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wft_actor INTEGER NOT NULL,
 	wft_user_ip TEXT NOT NULL DEFAULT '',
-	wft_deleted INTEGER NOT NULL DEFAULT 0,
-	wft_deleted_actor INTEGER NOT NULL,
-	wft_deleted_user_ip TEXT NOT NULL DEFAULT '',
 	wft_edit_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wft_edit_actor INTEGER NOT NULL,
 	wft_edit_user_ip TEXT NOT NULL DEFAULT '',
@@ -85,9 +76,6 @@ CREATE TABLE IF NOT EXISTS wikiforum_replies (
 	wfr_posted_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wfr_actor INTEGER NOT NULL,
 	wfr_user_ip TEXT NOT NULL DEFAULT '',
-	wfr_deleted INTEGER NOT NULL DEFAULT 0,
-	wfr_deleted_actor INTEGER NOT NULL,
-	wfr_deleted_user_ip TEXT NOT NULL DEFAULT '',
 	wfr_edit_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wfr_edit_actor INTEGER NOT NULL,
 	wfr_edit_user_ip TEXT NOT NULL DEFAULT '',

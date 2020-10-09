@@ -264,5 +264,18 @@ class WikiForumHooks {
 		] );
 
 		$updater->dropExtensionField( 'wikiforum_category', 'wfc_edited', "$dir/patches/drop-wfc_edited-from-wikiforum_category.sql" );
+
+		$updater->dropExtensionField( 'wikiforum_category', 'wfc_deleted', "$dir/patches/drop-wfc_deleted-from-wikiforum_category.sql" );
+		$updater->dropExtensionField( 'wikiforum_category', 'wfc_deleted_actor', "$dir/patches/drop-wfc_deleted_actor-from-wikiforum_category.sql" );
+		$updater->dropExtensionField( 'wikiforum_category', 'wfc_deleted_user_ip', "$dir/patches/drop-wfc_deleted_user_ip-from-wikiforum_category.sql" );
+		$updater->dropExtensionField( 'wikiforum_forums', 'wff_deleted', "$dir/patches/drop-wff_deleted-from-wikiforum_forums.sql" );
+		$updater->dropExtensionField( 'wikiforum_forums', 'wff_deleted_actor', "$dir/patches/drop-wff_deleted_actor-from-wikiforum_forums.sql" );
+		$updater->dropExtensionField( 'wikiforum_forums', 'wff_deleted_user_ip', "$dir/patches/drop-wff_deleted_user_ip-from-wikiforum_forums.sql" );
+		$updater->dropExtensionField( 'wikiforum_threads', 'wft_deleted', "$dir/patches/drop-wft_deleted-from-wikiforum_threads.sql" );
+		$updater->dropExtensionField( 'wikiforum_threads', 'wft_deleted_actor', "$dir/patches/drop-wft_deleted_actor-from-wikiforum_threads.sql" );
+		$updater->dropExtensionField( 'wikiforum_threads', 'wft_deleted_user_ip', "$dir/patches/drop-wft_deleted_user_ip-from-wikiforum_threads.sql" );
+		$updater->dropExtensionField( 'wikiforum_replies', 'wfr_deleted', "$dir/patches/drop-wfr_deleted-from-wikiforum_replies.sql" );
+		$updater->dropExtensionField( 'wikiforum_replies', 'wft_deleted_actor', "$dir/patches/drop-wfr_deleted_actor-from-wikiforum_replies.sql" );
+		$updater->dropExtensionField( 'wikiforum_replies', 'wft_deleted_user_ip', "$dir/patches/drop-wfr_deleted_user_ip-from-wikiforum_replies.sql" );
 	}
 }

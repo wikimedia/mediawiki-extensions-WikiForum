@@ -19,10 +19,7 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_category (
 	wfc_added_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfc_edited_timestamp varchar(14) NULL default NULL, -- formerly: Edited
 	wfc_edited_actor bigint unsigned NOT NULL,
-	wfc_edited_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
-	wfc_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
-	wfc_deleted_actor bigint unsigned NOT NULL,
-	wfc_deleted_user_ip varchar(255) NOT NULL DEFAULT '' -- NEW in 1.3.0
+	wfc_edited_user_ip varchar(255) NOT NULL DEFAULT '' -- NEW in 1.3.0
 )/*$wgDBTableOptions*/;
 
 CREATE TABLE IF NOT EXISTS /*_*/wikiforum_forums (
@@ -42,9 +39,6 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_forums (
 	wff_edited_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edited
 	wff_edited_actor bigint unsigned NOT NULL,
 	wff_edited_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
-	wff_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
-	wff_deleted_actor bigint unsigned NOT NULL,
-	wff_deleted_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wff_announcement tinyint(2) NOT NULL DEFAULT 0 -- new in version 1.2; previously called "Announcement"
 )/*$wgDBTableOptions*/;
 
@@ -56,9 +50,6 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_threads (
 	wft_posted_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Posted
 	wft_actor bigint unsigned NOT NULL,
 	wft_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
-	wft_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
-	wft_deleted_actor bigint unsigned NOT NULL,
-	wft_deleted_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_edit_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edit
 	wft_edit_actor bigint unsigned NOT NULL,
 	wft_edit_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
@@ -80,9 +71,6 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_replies (
 	wfr_posted_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Posted
 	wfr_actor bigint unsigned NOT NULL,
 	wfr_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
-	wfr_deleted int(10) NOT NULL DEFAULT 0, -- formerly: Deleted
-	wfr_deleted_actor bigint unsigned NOT NULL,
-	wfr_deleted_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wfr_edit_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edit
 	wfr_edit_actor bigint unsigned NOT NULL,
 	wfr_edit_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
