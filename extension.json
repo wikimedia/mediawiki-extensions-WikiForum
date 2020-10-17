@@ -55,6 +55,7 @@
 		"WikiForumAlias": "includes/WikiForum.i18n.alias.php"
 	},
 	"AutoloadClasses": {
+		"MigrateOldWikiForumTimestampColumnToNew": "maintenance/migrateOldWikiForumTimestampColumnToNew.php",
 		"MigrateOldWikiForumUserColumnsToActor": "maintenance/migrateOldWikiForumUserColumnsToActor.php",
 		"WikiForumHooks": "includes/WikiForumHooks.php",
 		"WikiForumGui": "includes/WikiForumGui.php",

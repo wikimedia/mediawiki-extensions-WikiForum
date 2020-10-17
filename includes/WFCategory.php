@@ -241,7 +241,7 @@ class WFCategory extends ContextSource {
 				'wikiforum_category',
 				[
 					'wfc_category_name' => $categoryName,
-					'wfc_edited' => wfTimestampNow(),
+					'wfc_edited_timestamp' => wfTimestampNow(),
 					'wfc_edited_user_ip' => $this->getRequest()->getIP()
 				],
 				[ 'wfc_category' => $this->getId() ],
@@ -250,7 +250,7 @@ class WFCategory extends ContextSource {
 		}
 
 		$this->data->wfc_category_name = $categoryName;
-		$this->data->wfc_edited = wfTimestampNow();
+		$this->data->wfc_edited_timestamp = wfTimestampNow();
 		$this->data->wfc_edited_user_ip = $this->getRequest()->getIP();
 
 		return $this->show();
