@@ -55,8 +55,7 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 			'wikiforum_category',
 			[
 				'wfc_added_user',
-				'wfc_edited_user',
-				'wfc_deleted_user',
+				'wfc_edited_user'
 			],
 			'',
 			__METHOD__,
@@ -90,20 +89,6 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 					__METHOD__
 				);
 			}
-
-			$user = $this->getUser( $row->wfc_deleted_user );
-			if ( $user ) {
-				$dbw->update(
-					'wikiforum_category',
-					[
-						'wfc_deleted_actor' => (int)$user->getActorId( $dbw )
-					],
-					[
-						'wfc_deleted_user' => (int)$row->wfc_deleted_user
-					],
-					__METHOD__
-				);
-			}
 		}
 
 		// wikiforum_forums
@@ -112,8 +97,7 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 			[
 				'wff_last_post_user',
 				'wff_added_user',
-				'wff_edited_user',
-				'wff_deleted_user'
+				'wff_edited_user'
 			],
 			'',
 			__METHOD__,
@@ -160,20 +144,6 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 					]
 				);
 			}
-
-			$user = $this->getUser( $row->wff_deleted_user );
-			if ( $user ) {
-				$dbw->update(
-					'wikiforum_forums',
-					[
-						'wff_deleted_actor' => (int)$user->getActorId( $dbw )
-					],
-					[
-						'wff_deleted_user' => (int)$row->wff_deleted_user
-					],
-					__METHOD__
-				);
-			}
 		}
 
 		// wikiforum_threads
@@ -181,7 +151,6 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 			'wikiforum_threads',
 			[
 				'wft_user',
-				'wft_deleted_user',
 				'wft_edit_user',
 				'wft_closed_user',
 				'wft_last_post_user'
@@ -200,20 +169,6 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 					],
 					[
 						'wft_user' => (int)$row->wft_user
-					],
-					__METHOD__
-				);
-			}
-
-			$user = $this->getUser( $row->wft_deleted_user );
-			if ( $user ) {
-				$dbw->update(
-					'wikiforum_threads',
-					[
-						'wft_deleted_actor' => (int)$user->getActorId( $dbw )
-					],
-					[
-						'wft_deleted_user' => (int)$row->wft_deleted_user
 					],
 					__METHOD__
 				);
@@ -267,7 +222,6 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 			'wikiforum_replies',
 			[
 				'wfr_user',
-				'wfr_deleted_user',
 				'wfr_edit_user'
 			],
 			'',
@@ -284,20 +238,6 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 					],
 					[
 						'wfr_user' => (int)$row->wfr_user
-					],
-					__METHOD__
-				);
-			}
-
-			$user = $this->getUser( $row->wfr_deleted_user );
-			if ( $user ) {
-				$dbw->update(
-					'wikiforum_replies',
-					[
-						'wfr_deleted_actor' => (int)$user->getActorId( $dbw )
-					],
-					[
-						'wfr_deleted_user' => (int)$row->wfr_deleted_user
 					],
 					__METHOD__
 				);
