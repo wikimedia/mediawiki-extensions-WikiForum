@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS wikiforum_category (
 	wfc_category_name TEXT NOT NULL,
 	wfc_sortkey INTEGER NOT NULL DEFAULT 9,
 	wfc_added_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wfc_added_actor INTEGER NOT NULL,
+	wfc_added_actor INTEGER NULL DEFAULT NULL,
 	wfc_added_user_ip TEXT NOT NULL DEFAULT '',
 	wfc_edited_timestamp TIMESTAMPTZ NULL default NULL,
-	wfc_edited_actor INTEGER NOT NULL,
+	wfc_edited_actor INTEGER NULL DEFAULT NULL,
 	wfc_edited_user_ip TEXT NOT NULL DEFAULT ''
 );
 
@@ -26,14 +26,14 @@ CREATE TABLE IF NOT EXISTS wikiforum_forums (
 	wff_sortkey INTEGER NOT NULL DEFAULT 9,
 	wff_thread_count INTEGER NOT NULL DEFAULT 0,
 	wff_reply_count INTEGER NOT NULL DEFAULT 0,
-	wff_last_post_actor INTEGER NOT NULL,
+	wff_last_post_actor INTEGER NULL DEFAULT NULL,
 	wff_last_post_user_ip TEXT NOT NULL DEFAULT '',
 	wff_last_post_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wff_added_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wff_added_actor INTEGER NOT NULL,
+	wff_added_actor INTEGER NULL DEFAULT NULL,
 	wff_added_user_ip TEXT NOT NULL DEFAULT '',
 	wff_edited_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wff_edited_actor INTEGER NOT NULL,
+	wff_edited_actor INTEGER NULL DEFAULT NULL,
 	wff_edited_user_ip TEXT NOT NULL DEFAULT '',
 	wff_announcement SMALLINT NOT NULL DEFAULT 0
 );
@@ -49,18 +49,18 @@ CREATE TABLE IF NOT EXISTS wikiforum_threads (
 	wft_text TEXT NOT NULL,
 	wft_sticky SMALLINT NOT NULL DEFAULT 0,
 	wft_posted_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wft_actor INTEGER NOT NULL,
+	wft_actor INTEGER NULL DEFAULT NULL,
 	wft_user_ip TEXT NOT NULL DEFAULT '',
 	wft_edit_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wft_edit_actor INTEGER NOT NULL,
+	wft_edit_actor INTEGER NULL DEFAULT NULL,
 	wft_edit_user_ip TEXT NOT NULL DEFAULT '',
 	wft_closed INTEGER NOT NULL DEFAULT 0,
-	wft_closed_actor INTEGER NOT NULL,
+	wft_closed_actor INTEGER NULL DEFAULT NULL,
 	wft_closed_user_ip TEXT NOT NULL DEFAULT '',
 	wft_forum INTEGER NOT NULL DEFAULT 0,
 	wft_reply_count INTEGER NOT NULL DEFAULT 0,
 	wft_view_count INTEGER NOT NULL DEFAULT 0,
-	wft_last_post_actor INTEGER NOT NULL,
+	wft_last_post_actor INTEGER NULL DEFAULT NULL,
 	wft_last_post_user_ip TEXT NOT NULL DEFAULT '',
 	wft_last_post_timestamp TIMESTAMPTZ NOT NULL default NOW()
 );
@@ -74,10 +74,10 @@ CREATE TABLE IF NOT EXISTS wikiforum_replies (
 	wfr_reply_id INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('wikiforum_replies_wfr_reply_id_seq'),
 	wfr_reply_text TEXT NOT NULL,
 	wfr_posted_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wfr_actor INTEGER NOT NULL,
+	wfr_actor INTEGER NULL DEFAULT NULL,
 	wfr_user_ip TEXT NOT NULL DEFAULT '',
 	wfr_edit_timestamp TIMESTAMPTZ NOT NULL default NOW(),
-	wfr_edit_actor INTEGER NOT NULL,
+	wfr_edit_actor INTEGER NULL DEFAULT NULL,
 	wfr_edit_user_ip TEXT NOT NULL DEFAULT '',
 	wfr_thread INTEGER NOT NULL
 );

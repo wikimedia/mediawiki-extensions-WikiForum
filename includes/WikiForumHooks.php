@@ -277,5 +277,17 @@ class WikiForumHooks {
 		$updater->dropExtensionField( 'wikiforum_replies', 'wfr_deleted', "$dir/patches/drop-wfr_deleted-from-wikiforum_replies.sql" );
 		$updater->dropExtensionField( 'wikiforum_replies', 'wft_deleted_actor', "$dir/patches/drop-wfr_deleted_actor-from-wikiforum_replies.sql" );
 		$updater->dropExtensionField( 'wikiforum_replies', 'wft_deleted_user_ip', "$dir/patches/drop-wfr_deleted_user_ip-from-wikiforum_replies.sql" );
+
+		$updater->modifyExtensionField( 'wikiforum_category', 'wfc_added_actor', "$dir/patches/actor/add-default-to-wfc_added_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_category', 'wfc_edited_actor', "$dir/patches/actor/add-default-to-wfc_edited_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_forums', 'wff_last_post_actor', "$dir/patches/actor/add-default-to-wff_last_post_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_forums', 'wff_added_actor', "$dir/patches/actor/add-default-to-wff_added_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_forums', 'wff_edited_actor', "$dir/patches/actor/add-default-to-wff_edited_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_threads', 'wft_actor', "$dir/patches/actor/add-default-to-wft_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_threads', 'wft_edit_actor', "$dir/patches/actor/add-default-to-wft_edit_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_threads', 'wft_closed_actor', "$dir/patches/actor/add-default-to-wft_closed_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_threads', 'wft_last_post_actor', "$dir/patches/actor/add-default-to-wft_last_post_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_replies', 'wfr_actor', "$dir/patches/actor/add-default-to-wfr_actor.sql" );
+		$updater->modifyExtensionField( 'wikiforum_replies', 'wfr_edit_actor', "$dir/patches/actor/add-default-to-wfr_edit_actor.sql" );
 	}
 }
