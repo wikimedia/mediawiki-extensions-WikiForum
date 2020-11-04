@@ -228,7 +228,7 @@ class WikiForumGui {
 	 * @param string $text_prev
 	 * @param string $saveButton save button text
 	 * @param User $user
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton, User $user ) {
 		global $wgOut, $wgWikiForumAllowAnonymous;
