@@ -18,7 +18,7 @@ class WFThread extends ContextSource {
 	 * Get the WFThread object for the thread with the given ID number
 	 *
 	 * @param int $id ID to find
-	 * @return WFThread|false
+	 * @return self|false
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -31,7 +31,7 @@ class WFThread extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFThread( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
@@ -41,17 +41,17 @@ class WFThread extends ContextSource {
 	 * Get the WFThread object from a row from the DB
 	 *
 	 * @param stdClass $sql the row. Not a ResultWrapper! (Either use $dbr->fetchObject(), or loop through the resultWrapper!)
-	 * @return WFThread
+	 * @return self
 	 */
 	public static function newFromSQL( $sql ) {
-		return new WFThread( $sql );
+		return new self( $sql );
 	}
 
 	/**
 	 * Find a thread when you know the title.
 	 *
 	 * @param string $titleText thread title
-	 * @return WFThread|false Thread, or false on failure
+	 * @return self|false Thread, or false on failure
 	 */
 	public static function newFromName( $titleText ) {
 		// Titles are stored with spaces in the DB but the query will otherwise
@@ -67,7 +67,7 @@ class WFThread extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFThread( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
@@ -271,7 +271,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Gets an array of this thread's replies
 	 *
-	 * @return multitype:WFReply array of replies
+	 * @return WFReply[]
 	 */
 	function getReplies() {
 		if ( !$this->replies ) {
@@ -775,7 +775,7 @@ class WFThread extends ContextSource {
 	 * @param WFForum $forum forum to add thread to
 	 * @param string $title thread title
 	 * @param string $text thread text
-	 * @return bool|WFThread WFThread of new thread if success, otherwise false
+	 * @return string HTML
 	 */
 	static function add( WFForum $forum, $title, $text ) {
 		global $wgRequest, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;

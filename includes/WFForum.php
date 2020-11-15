@@ -17,7 +17,7 @@ class WFForum extends ContextSource {
 	 * Get a new forum object for the given ID
 	 *
 	 * @param int $id
-	 * @return WFForum|false
+	 * @return self|false
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -30,7 +30,7 @@ class WFForum extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFForum( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
@@ -40,17 +40,17 @@ class WFForum extends ContextSource {
 	 * Get a new forum object from the given database row
 	 *
 	 * @param stdClass $sql DB row. Must be a row, not a ResultWrapper!
-	 * @return WFForum
+	 * @return self
 	 */
 	public static function newFromSQL( $sql ) {
-		return new WFForum( $sql );
+		return new self( $sql );
 	}
 
 	/**
 	 * Get a WFForum object for the given title
 	 *
 	 * @param string $title title to get forum for
-	 * @return WFForum|false the forum, or false on failure
+	 * @return self|false the forum, or false on failure
 	 */
 	public static function newFromName( $title ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -63,7 +63,7 @@ class WFForum extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFForum( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}

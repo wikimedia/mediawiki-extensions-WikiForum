@@ -16,7 +16,7 @@ class WFReply extends ContextSource {
 	 * Return a new WFReply instance for the given reply ID
 	 *
 	 * @param int $id ID to get the reply for
-	 * @return WFReply|false
+	 * @return self|false
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -29,7 +29,7 @@ class WFReply extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFReply( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
@@ -39,7 +39,7 @@ class WFReply extends ContextSource {
 	 * Return a new WFReply instance for the given reply text content
 	 *
 	 * @param string $text text to get the reply for
-	 * @return WFReply|false
+	 * @return self|false
 	 */
 	public static function newFromText( $text ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -52,7 +52,7 @@ class WFReply extends ContextSource {
 		);
 
 		if ( $data ) {
-			return new WFReply( $data );
+			return new self( $data );
 		} else {
 			return false;
 		}
@@ -62,10 +62,10 @@ class WFReply extends ContextSource {
 	 * Returns a WFReply instance for the given SQL row
 	 *
 	 * @param stdClass $sql row from the DB. Not resultWrapper!
-	 * @return WFReply
+	 * @return self
 	 */
 	public static function newFromSQL( $sql ) {
-		return new WFReply( $sql );
+		return new self( $sql );
 	}
 
 	/**

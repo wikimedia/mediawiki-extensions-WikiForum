@@ -227,25 +227,14 @@ class WikiForum {
 	static function parseLinks( $text ) {
 		$text = preg_replace_callback(
 			'/\[thread#(.*?)\]/i',
-			'WikiForum::threadLinkFromID', // array( $this, 'getThreadTitle' ),
+			function ( $id ) {
+				$thread = WFThread::newFromID( $id );
+				// fallback, got to return something
+				return $thread ? '<i>' . $thread->showLink() . '</i>' : $id;
+			},
 			$text
 		);
 		return $text;
-	}
-
-	/**
-	 * Get a link to a thread from it's ID, for parseLinks() above
-	 *
-	 * @param int $id
-	 * @return string|int
-	 */
-	static function threadLinkFromID( $id ) {
-		$thread = WFThread::newFromID( $id );
-		if ( $thread ) {
-			return '<i>' . $thread->showLink() . '</i>';
-		} else { // fallback, got to return something
-			return $id;
-		}
 	}
 
 	/**
