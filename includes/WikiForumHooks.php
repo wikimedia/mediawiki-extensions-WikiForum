@@ -255,7 +255,7 @@ class WikiForumHooks {
 			$updater->dropExtensionField( 'wikiforum_replies', 'wfr_edit_user', "$dir/patches/actor/drop-wfr_edit_user-from-wikiforum_replies.sql" );
 		}
 
-		$updater->addExtensionField( 'wikiforum_category', 'wfc_edited_timestamp', "$dir/patches/actor/add-wfc_edited_timestamp-to-wikiforum_category.sql" );
+		$updater->addExtensionField( 'wikiforum_category', 'wfc_edited_timestamp', "$dir/patches/add-wfc_edited_timestamp-to-wikiforum_category.sql" );
 
 		$updater->addExtensionUpdate( [
 			'runMaintenance',
