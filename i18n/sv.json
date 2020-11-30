@@ -3,6 +3,7 @@
 		"authors": [
 			"Jopparn",
 			"Lokal Profil",
+			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
@@ -35,6 +36,7 @@
 	"wikiforum-overview": "Översikt",
 	"wikiforum-pages": "{{PLURAL:$1|Sida|Sidor}}:",
 	"wikiforum-thread-closed": "Tråden är stängd",
+	"wikiforum-sticky": "Fäst tråd",
 	"wikiforum-new-thread": "Ny tråd",
 	"wikiforum-edit-thread": "Redigera tråd",
 	"wikiforum-delete-thread": "Radera tråd",
@@ -94,7 +96,9 @@
 	"wikiforum-move-thread": "Flytta tråden",
 	"wikiforum-paste-thread": "Klistra in tråden",
 	"wikiforum-quote": "Citat",
+	"action-wikiforum-admin": "lägg till, redigera och radera kategorier och forum på [[Special:WikiForum|diskussionstavlan]]",
 	"right-wikiforum-admin": "Lägg till, redigera och ta bort kategorier och forum på [[Special:WikiForum|diskussionstavlan]]",
+	"action-wikiforum-moderator": "redigera och radera trådar och svar på [[Special:WikiForum|diskussionstavlan]]",
 	"right-wikiforum-moderator": "Redigera och ta bort trådar och svar på [[Special:WikiForum|diskussionstavlan]]",
 	"group-forumadmin": "Forumadministratörer",
 	"group-forumadmin-member": "{{GENDER:$1|forumadministratör}}",
