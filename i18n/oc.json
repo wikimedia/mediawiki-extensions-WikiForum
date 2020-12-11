@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BrennodAloisi",
 			"Cedric31"
 		]
 	},
@@ -12,9 +13,9 @@
 	"wikiforum-description": "Descripcion :",
 	"wikiforum-forum-name": "Forum $1",
 	"wikiforum-name": "Nom :",
-	"wikiforum-button-preview": "Apercebut",
-	"wikiforum-preview": "Apercebut",
-	"wikiforum-preview-with-title": "Apercebut : $1",
+	"wikiforum-button-preview": "Previsualizacion",
+	"wikiforum-preview": "Previsualizacion",
+	"wikiforum-preview-with-title": "Previsualizar: $1",
 	"wikiforum-save": "Enregistrar",
 	"wikiforum-search-hits": "Trobat {{PLURAL:$1|una ocuréncia|$1 ocuréncias}}",
 	"wikiforum-search-thread": "Fial de discussion : $1",
