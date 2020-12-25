@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS /*_*/wikiforum_threads (
 	wft_edit_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Edit
 	wft_edit_actor bigint unsigned NULL DEFAULT NULL,
 	wft_edit_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
-	wft_closed int(10) NOT NULL DEFAULT 0, -- formerly: Closed
+	wft_closed_timestamp binary(14) NOT NULL DEFAULT '', -- formerly: Closed
 	wft_closed_actor bigint unsigned NULL DEFAULT NULL,
 	wft_closed_user_ip varchar(255) NOT NULL DEFAULT '', -- NEW in 1.3.0
 	wft_forum int(10) NOT NULL DEFAULT 0, -- formerly: fkForum

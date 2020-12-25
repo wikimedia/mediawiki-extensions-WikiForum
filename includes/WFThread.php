@@ -88,7 +88,7 @@ class WFThread extends ContextSource {
 	 * @return bool
 	 */
 	function isClosed() {
-		return $this->data->wft_closed == true;
+		return $this->data->wft_closed_timestamp == true;
 	}
 
 	/**
@@ -376,14 +376,14 @@ class WFThread extends ContextSource {
 		$result = $dbw->update(
 			'wikiforum_threads',
 			[
-				'wft_closed' => 0,
+				'wft_closed_timestamp' => 0,
 				'wft_closed_actor' => 0
 			],
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
 
-		$this->data->wft_closed = 0;
+		$this->data->wft_closed_timestamp = 0;
 		$this->data->wft_closed_actor = 0;
 
 		return $this->show();
@@ -406,7 +406,7 @@ class WFThread extends ContextSource {
 		$result = $dbw->update(
 			'wikiforum_threads',
 			[
-				'wft_closed' => wfTimestampNow(),
+				'wft_closed_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wft_closed_actor' => $user->getActorId(),
 				'wft_closed_user_ip' => $this->getRequest()->getIP()
 			],
@@ -414,7 +414,7 @@ class WFThread extends ContextSource {
 			__METHOD__
 		);
 
-		$this->data->wft_closed = wfTimestampNow();
+		$this->data->wft_closed_timestamp = wfTimestampNow();
 		$this->data->wft_closed_actor = $user->getActorId();
 		$this->data->wft_closed_user_ip = $this->getRequest()->getIP();
 

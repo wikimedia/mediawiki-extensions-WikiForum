@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/wikiforum_threads ADD COLUMN wft_closed_timestamp binary(14) NOT NULL default '' AFTER wft_edit_user_ip;

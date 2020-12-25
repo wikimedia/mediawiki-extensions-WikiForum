@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS wikiforum_threads (
 	wft_edit_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wft_edit_actor INTEGER NULL DEFAULT NULL,
 	wft_edit_user_ip TEXT NOT NULL DEFAULT '',
-	wft_closed INTEGER NOT NULL DEFAULT 0,
+	wft_closed_timestamp TIMESTAMPTZ NOT NULL default NOW(),
 	wft_closed_actor INTEGER NULL DEFAULT NULL,
 	wft_closed_user_ip TEXT NOT NULL DEFAULT '',
 	wft_forum INTEGER NOT NULL DEFAULT 0,

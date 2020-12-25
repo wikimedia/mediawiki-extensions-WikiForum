@@ -256,14 +256,16 @@ class WikiForumHooks {
 		}
 
 		$updater->addExtensionField( 'wikiforum_category', 'wfc_edited_timestamp', "$dir/patches/add-wfc_edited_timestamp-to-wikiforum_category.sql" );
+		$updater->addExtensionField( 'wikiforum_threads', 'wft_closed_timestamp', "$dir/patches/add-wft_closed_timestamp-to-wikiforum_threads.sql" );
 
 		$updater->addExtensionUpdate( [
 			'runMaintenance',
-			'MigrateOldWikiForumTimestampColumnToNew',
-			'../maintenance/migrateOldWikiForumTimestampColumnToNew.php'
+			'MigrateOldWikiForumTimestampColumnsToNew',
+			'../maintenance/migrateOldWikiForumTimestampColumnsToNew.php'
 		] );
 
 		$updater->dropExtensionField( 'wikiforum_category', 'wfc_edited', "$dir/patches/drop-wfc_edited-from-wikiforum_category.sql" );
+		$updater->dropExtensionField( 'wikiforum_threads', 'wft_closed', "$dir/patches/drop-wft_closed-from-wikiforum_threads.sql" );
 
 		$updater->dropExtensionField( 'wikiforum_category', 'wfc_deleted', "$dir/patches/drop-wfc_deleted-from-wikiforum_category.sql" );
 		$updater->dropExtensionField( 'wikiforum_category', 'wfc_deleted_actor', "$dir/patches/drop-wfc_deleted_actor-from-wikiforum_category.sql" );
