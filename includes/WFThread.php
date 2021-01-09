@@ -88,7 +88,7 @@ class WFThread extends ContextSource {
 	 * @return bool
 	 */
 	function isClosed() {
-		return $this->data->wft_closed_timestamp == true;
+		return $this->data->wft_closed_timestamp > 0;
 	}
 
 	/**
@@ -376,7 +376,7 @@ class WFThread extends ContextSource {
 		$result = $dbw->update(
 			'wikiforum_threads',
 			[
-				'wft_closed_timestamp' => 0,
+				'wft_closed_timestamp' => '',
 				'wft_closed_actor' => 0
 			],
 			[ 'wft_thread' => $this->getId() ],
