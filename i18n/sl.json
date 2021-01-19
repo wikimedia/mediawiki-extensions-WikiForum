@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dbc334",
 			"Eleassar",
 			"Janezdrilc"
 		]
 	},
 	"wikiforum-description": "Opis:",
-	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani|Strani|Strani}}:"
+	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani}}:"
 }
