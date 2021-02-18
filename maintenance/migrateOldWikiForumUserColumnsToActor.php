@@ -3,6 +3,9 @@
  * @file
  * @ingroup Maintenance
  */
+
+use MediaWiki\MediaWikiServices;
+
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
@@ -64,10 +67,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 		foreach ( $res as $row ) {
 			$user = $this->getUser( $row->wfc_added_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_category',
 					[
-						'wfc_added_actor' => (int)$user->getActorId( $dbw )
+						'wfc_added_actor' => $actorId
 					],
 					[
 						'wfc_added_user' => (int)$row->wfc_added_user
@@ -78,10 +87,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wfc_edited_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_category',
 					[
-						'wfc_edited_actor' => (int)$user->getActorId( $dbw )
+						'wfc_edited_actor' => $actorId
 					],
 					[
 						'wfc_edited_user' => (int)$row->wfc_edited_user
@@ -106,10 +121,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 		foreach ( $res as $row ) {
 			$user = $this->getUser( $row->wff_last_post_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_last_post_actor' => (int)$user->getActorId( $dbw )
+						'wff_last_post_actor' => $actorId
 					],
 					[
 						'wff_last_post_user' => (int)$row->wff_last_post_user
@@ -120,10 +141,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wff_added_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_added_actor' => (int)$user->getActorId( $dbw )
+						'wff_added_actor' => $actorId
 					],
 					[
 						'wff_added_user' => (int)$row->wff_added_user
@@ -134,10 +161,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wff_edited_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_forums',
 					[
-						'wff_edited_actor' => (int)$user->getActorId( $dbw )
+						'wff_edited_actor' => $actorId
 					],
 					[
 						'wff_edited_user' => (int)$row->wff_edited_user
@@ -162,10 +195,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 		foreach ( $res as $row ) {
 			$user = $this->getUser( $row->wft_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_actor' => (int)$user->getActorId( $dbw )
+						'wft_actor' => $actorId
 					],
 					[
 						'wft_user' => (int)$row->wft_user
@@ -176,10 +215,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wft_edit_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_edit_actor' => (int)$user->getActorId( $dbw )
+						'wft_edit_actor' => $actorId
 					],
 					[
 						'wft_edit_user' => (int)$row->wft_edit_user
@@ -190,10 +235,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wft_closed_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_closed_actor' => (int)$user->getActorId( $dbw )
+						'wft_closed_actor' => $actorId
 					],
 					[
 						'wft_closed_user' => (int)$row->wft_closed_user
@@ -204,10 +255,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wft_last_post_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_threads',
 					[
-						'wft_last_post_actor' => (int)$user->getActorId( $dbw )
+						'wft_last_post_actor' => $actorId
 					],
 					[
 						'wft_last_post_user' => (int)$row->wft_last_post_user
@@ -231,10 +288,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 		foreach ( $res as $row ) {
 			$user = $this->getUser( $row->wfr_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_replies',
 					[
-						'wfr_actor' => (int)$user->getActorId( $dbw )
+						'wfr_actor' => $actorId
 					],
 					[
 						'wfr_user' => (int)$row->wfr_user
@@ -245,10 +308,16 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 
 			$user = $this->getUser( $row->wfr_edit_user );
 			if ( $user ) {
+				if ( interface_exists( '\MediaWiki\User\ActorNormalization' ) ) {
+					// MW 1.36+
+					$actorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
+				} else {
+					$actorId = $user->getActorId( $dbw );
+				}
 				$dbw->update(
 					'wikiforum_replies',
 					[
-						'wfr_edit_actor' => (int)$user->getActorId( $dbw )
+						'wfr_edit_actor' => $actorId
 					],
 					[
 						'wfr_edit_user' => (int)$row->wfr_edit_user
