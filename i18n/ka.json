@@ -30,7 +30,7 @@
 	"wikiforum-latest-thread": "ბოლო ტოტი",
 	"wikiforum-forum": "ფორუმი: $1 > $2",
 	"wikiforum-overview": "გადახედვა",
-	"wikiforum-pages": "გვერდები:",
+	"wikiforum-pages": "{{PLURAL:$1|გვერდი|გვერდი}}:",
 	"wikiforum-thread-closed": "ტოტი დახურულია",
 	"wikiforum-new-thread": "ახალი ტოტი",
 	"wikiforum-edit-thread": "ტოტის რედაქტირება",
