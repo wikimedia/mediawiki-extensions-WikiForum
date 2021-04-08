@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"J budissin",
 			"Michawiki"
 		]
 	},
@@ -56,7 +57,7 @@
 	"wikiforum-error-thread-reopen": "Zmylk při zasowočinjenju nitki",
 	"wikiforum-error-thread-close": "Zmylk při začinjenju nitki",
 	"wikiforum-error-general": "Objekt njeje so namakał abo prawa za wuwjedźenje tuteje akcije faluja.",
-	"wikiforum-error-no-rights": "Nimaš prawa, zo by tutu akciju wuwjedł.",
+	"wikiforum-error-no-rights": "Nimaš prawo tutu akciju přewjesć",
 	"wikiforum-error-not-found": "Objekt njeje so namakał.",
 	"wikiforum-error-no-text-or-title": "Titul abo tekst njeje so korektnje wupjelnił.",
 	"wikiforum-error-bad-title": "Podaty titul je njepłaćiwe znamješka wobsahował.",
