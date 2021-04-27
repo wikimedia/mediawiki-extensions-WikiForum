@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class WFCategory extends ContextSource {
 
 	private $data;
@@ -440,7 +442,7 @@ class WFCategory extends ContextSource {
 	 * @return string
 	 */
 	function showHeaderLinks() {
-		$output = Linker::link(
+		$output = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'WikiForum' ),
 			$this->msg( 'wikiforum-overview' )->text()
 		);

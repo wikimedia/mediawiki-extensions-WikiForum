@@ -1,10 +1,13 @@
 <?php
 /**
- * Helper class for WikiForum extension, for showing the overview, parsing special text, etc
+ * Helper class for WikiForum extension, for showing the overview, parsing special text, etc.
  *
  * @file
  * @ingroup Extensions
  */
+
+use MediaWiki\MediaWikiServices;
+
 class WikiForum {
 
 	/**
@@ -155,12 +158,19 @@ class WikiForum {
 	 */
 	public static function showUserLink( User $user ) {
 		$username = $user->getName();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		if ( $user->isAnon() ) { // Do no further processing for anons, since anons cannot have groups.
-			return Linker::link( Title::makeTitle( NS_USER_TALK, $username ), $username );
+			return $linkRenderer->makeLink(
+				Title::makeTitle( NS_USER_TALK, $username ),
+				$username
+			);
 		}
 
-		$retVal = Linker::link( Title::makeTitle( NS_USER, $username ), $username );
+		$retVal = $linkRenderer->makeLink(
+			Title::makeTitle( NS_USER, $username ),
+			$username
+		);
 
 		$groups = $user->getEffectiveGroups();
 		$groupText = '';
