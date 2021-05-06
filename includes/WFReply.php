@@ -332,7 +332,7 @@ class WFReply extends ContextSource {
 		$timestamp = wfTimestampNow();
 		$user = $thread->getUser();
 
-		if ( !$wgWikiForumAllowAnonymous && !$user->isLoggedIn() ) {
+		if ( !$wgWikiForumAllowAnonymous && !$user->isRegistered() ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
