@@ -237,7 +237,7 @@ class WikiForum {
 	static function parseLinks( $text ) {
 		$text = preg_replace_callback(
 			'/\[thread#(.*?)\]/i',
-			function ( $id ) {
+			static function ( $id ) {
 				$thread = WFThread::newFromID( $id );
 				// fallback, got to return something
 				return $thread ? '<i>' . $thread->showLink() . '</i>' : $id;
