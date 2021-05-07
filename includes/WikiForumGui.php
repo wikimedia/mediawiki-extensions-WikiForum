@@ -61,7 +61,7 @@ class WikiForumGui {
 		$output = '<table class="mw-wikiforum-headerrow"><tr><td class="mw-wikiforum-leftside">';
 		$output .= $links;
 
-		if ( strlen( $additionalLinks ) > 0 && ( $wgWikiForumAllowAnonymous || $user->isLoggedIn() ) ) {
+		if ( strlen( $additionalLinks ) > 0 && ( $wgWikiForumAllowAnonymous || $user->isRegistered() ) ) {
 			$output .= '</td><td class="mw-wikiforum-rightside">' . $additionalLinks;
 		}
 
@@ -209,7 +209,7 @@ class WikiForumGui {
 		$output = '<table cellspacing="0" cellpadding="0" class="mw-wikiforum-posted">' .
 			'<tr><td class="mw-wikiforum-leftside">' . $posted . '</td>';
 
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$output .= '<td class="mw-wikiforum-rightside">' . $buttons . '</td>';
 		}
 
@@ -243,7 +243,7 @@ class WikiForumGui {
 			$toolbar = EditPage::getEditToolbar();
 		}
 
-		if ( $wgWikiForumAllowAnonymous || $user->isLoggedIn() ) {
+		if ( $wgWikiForumAllowAnonymous || $user->isRegistered() ) {
 			$wgOut->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
 			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
