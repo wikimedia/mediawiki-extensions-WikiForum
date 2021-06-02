@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Shirayuki",
-			"Sujiniku"
+			"Sujiniku",
+			"しぃ"
 		]
 	},
 	"wikiforum-desc": "MediaWiki 用[[Special:WikiForum|フォーラム]]の拡張機能",
-	"wikiforum": "議論ボード",
+	"wikiforum": "Wikiフォーラム",
 	"wikiforum-anonymous": "匿名",
 	"wikiforum-announcement-only-description": "告知用フォーラム (スレッドを作成できるのはモデレーターのみ)",
 	"wikiforum-by": "$4 $5<br />投稿者 {{GENDER:$3|$2}}",
