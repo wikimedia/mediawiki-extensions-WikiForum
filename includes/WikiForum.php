@@ -172,7 +172,9 @@ class WikiForum {
 			$username
 		);
 
-		$groups = $user->getEffectiveGroups();
+		$groups = MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getUserEffectiveGroups( $user );
 		$groupText = '';
 
 		if ( in_array( 'sysop', $groups ) ) {
