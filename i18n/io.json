@@ -5,6 +5,9 @@
 		]
 	},
 	"wikiforum-description": "Deskripto:",
+	"wikiforum-button-preview": "Previdar",
+	"wikiforum-preview": "Previdar",
+	"wikiforum-preview-with-title": "Previdado: $1",
 	"wikiforum-pages": "{{PLURAL:$1|Pagino|Pagini}}:",
 	"wikiforum-add-category": "Adjuntez kategorio"
 }
