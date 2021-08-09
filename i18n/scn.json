@@ -5,6 +5,10 @@
 		]
 	},
 	"wikiforum-description": "Discrizzioni:",
+	"wikiforum-name": "Nomu:",
+	"wikiforum-button-preview": "Antiprima",
+	"wikiforum-preview": "Antiprima",
+	"wikiforum-preview-with-title": "Antiprima: $1",
 	"wikiforum-save": "Sarva",
 	"wikiforum-pages": "{{PLURAL:$1|Pàggina|Pàggini}}:"
 }
