@@ -209,7 +209,7 @@ class WFCategory extends ContextSource {
 			return $error . $this->show();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$res = $dbw->delete(
 			'wikiforum_category',
 			[ 'wfc_category' => $this->getId() ],
@@ -238,7 +238,7 @@ class WFCategory extends ContextSource {
 		}
 
 		if ( $this->getName() != $categoryName ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->update(
 				'wikiforum_category',
 				[
@@ -363,7 +363,7 @@ class WFCategory extends ContextSource {
 				$i = count( $new_array );
 			}
 		}
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		foreach ( $new_array as $entry ) {
 			$result = $dbw->update(
 				'wikiforum_category',
@@ -403,7 +403,7 @@ class WFCategory extends ContextSource {
 			__METHOD__
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'wikiforum_category',
 			[

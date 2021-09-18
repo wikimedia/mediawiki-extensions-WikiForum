@@ -39,7 +39,7 @@ class MigrateOldWikiForumTimestampColumnsToNew extends LoggedUpdateMaintenance {
 	 * @return bool True to log the update as done
 	 */
 	protected function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( $dbw->fieldExists( 'wikiforum_category', 'wfc_edited', __METHOD__ ) ) {
 			// wikiforum_category

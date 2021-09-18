@@ -332,7 +332,7 @@ class WFForum extends ContextSource {
 			$this->getText() != $description ||
 			$this->isAnnouncement() != $announcement
 		) { // only update DB if anything has been changed
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->update(
 				'wikiforum_forums',
 				[
@@ -371,7 +371,7 @@ class WFForum extends ContextSource {
 			return $error . $this->show();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$result = $dbw->delete(
 			'wikiforum_forums',
 			[ 'wff_forum' => $this->getId() ],
@@ -538,7 +538,7 @@ class WFForum extends ContextSource {
 					$i = count( $new_array );
 				}
 			}
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 			foreach ( $new_array as $entry ) {
 				$result = $dbw->update(
 					'wikiforum_forums',
@@ -583,7 +583,7 @@ class WFForum extends ContextSource {
 			__METHOD__
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'wikiforum_forums',
 			[

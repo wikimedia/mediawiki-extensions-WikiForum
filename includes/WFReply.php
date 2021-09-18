@@ -193,7 +193,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$result = $dbw->delete(
 			'wikiforum_replies',
 			[ 'wfr_reply_id' => $this->getId() ],
@@ -237,7 +237,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$result = $dbw->update(
 			'wikiforum_replies',
 			[
@@ -376,7 +376,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-double-post' );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$result = $dbw->insert(
 			'wikiforum_replies',
 			[
