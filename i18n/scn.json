@@ -10,5 +10,6 @@
 	"wikiforum-preview": "Antiprima",
 	"wikiforum-preview-with-title": "Antiprima: $1",
 	"wikiforum-save": "Sarva",
-	"wikiforum-pages": "{{PLURAL:$1|Pàggina|Pàggini}}:"
+	"wikiforum-pages": "{{PLURAL:$1|Pàggina|Pàggini}}:",
+	"wikiforum-delete-category": "Cancella catigurìa"
 }
