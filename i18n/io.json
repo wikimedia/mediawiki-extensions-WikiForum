@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"JSantos",
 			"Joao Xavier"
 		]
 	},
+	"wikiforum-anonymous": "Anonimo",
 	"wikiforum-description": "Deskripto:",
 	"wikiforum-button-preview": "Previdar",
 	"wikiforum-preview": "Previdar",
