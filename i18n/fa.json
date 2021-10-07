@@ -5,6 +5,7 @@
 			"Armin1392",
 			"Ebraminio",
 			"Huji",
+			"Jeeputer",
 			"Mjbmr",
 			"Omidh",
 			"Reza1615"
@@ -37,7 +38,7 @@
 	"wikiforum-latest-thread": "آخرین موضوع",
 	"wikiforum-forum": "تالار گفتگو: $1 > $2",
 	"wikiforum-overview": "نمایش کلی",
-	"wikiforum-pages": "صفحات:",
+	"wikiforum-pages": "{{PLURAL:$1|صفحه|صفحه‌ها}}:",
 	"wikiforum-thread-closed": "موضوع بسته‌شده",
 	"wikiforum-new-thread": "موضوع جدید",
 	"wikiforum-edit-thread": "ویرایش موضوع",
