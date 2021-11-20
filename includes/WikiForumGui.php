@@ -231,20 +231,25 @@ class WikiForumGui {
 	 * @return string HTML
 	 */
 	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton, User $user ) {
-		global $wgOut, $wgWikiForumAllowAnonymous;
+		global $wgWikiForumAllowAnonymous;
 
 		$output = '';
 
+		$requestContext = RequestContext::getMain();
+		$out = $requestContext->getOutput();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiEditor' ) ) {
-			$editPage = new EditPage( new Article( SpecialPage::getTitleFor( 'WikiForum' ) ) );
-			WikiEditorHooks::editPageShowEditFormInitial( $editPage, $wgOut );
+			if ( $user->getOption( 'usebetatoolbar' ) ) {
+				$out->addModuleStyles( 'ext.wikiEditor.styles' );
+				$out->addModules( 'ext.wikiEditor' );
+			}
+
 			$toolbar = '';
 		} else {
 			$toolbar = EditPage::getEditToolbar();
 		}
 
 		if ( $wgWikiForumAllowAnonymous || $user->isRegistered() ) {
-			$wgOut->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
+			$out->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
 			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
 			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
@@ -255,7 +260,7 @@ class WikiForumGui {
 					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
 				</tr>';
 			if ( WikiForum::useCaptcha( $user ) ) {
-				$output .= '<tr><td>' . WikiForum::getCaptcha( $wgOut ) . '</td></tr>';
+				$output .= '<tr><td>' . WikiForum::getCaptcha( $out ) . '</td></tr>';
 			}
 			$output .= '<tr>
 					<td>
