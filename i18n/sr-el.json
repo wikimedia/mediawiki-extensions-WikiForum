@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"wikiforum-description": "Opis:",
+	"wikiforum-name": "Naziv:",
+	"wikiforum-button-preview": "Pregled",
+	"wikiforum-preview": "Pregled",
+	"wikiforum-preview-with-title": "Pregled: $1",
+	"wikiforum-save": "Sačuvaj",
+	"wikiforum-write-thread": "Nova tema",
+	"wikiforum-views": "Pregledi",
+	"wikiforum-quote": "Citat"
+}
