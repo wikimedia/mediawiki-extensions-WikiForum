@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\User\UserIdentity;
+
 /**
  * Graphical User Interface (GUI) methods used by WikiForum extension.
  *
@@ -51,11 +54,11 @@ class WikiForumGui {
 	 * (Overview > Category name > Forum > Thread)
 	 *
 	 * @param string $links the actual overview/category/etc links
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $additionalLinks more links to add on the other side - 'Add a new forum'-type links
 	 * @return string HTML
 	 */
-	static function showHeaderRow( $links, User $user, $additionalLinks = '' ) {
+	static function showHeaderRow( $links, UserIdentity $user, $additionalLinks = '' ) {
 		global $wgWikiForumAllowAnonymous;
 
 		$output = '<table class="mw-wikiforum-headerrow"><tr><td class="mw-wikiforum-leftside">';

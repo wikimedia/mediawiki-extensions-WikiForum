@@ -87,7 +87,13 @@ class WikiForumHooks {
 			return wfMessage( 'wikiforum-thread-not-found-text' )->text();
 		}
 
-		$output = WikiForumGui::showHeaderRow( $thread->showHeaderLinks(), $parser->getUser() );
+		if ( method_exists( $parser, 'getUserIdentity' ) ) {
+			// MW 1.36+
+			$user = $parser->getUserIdentity();
+		} else {
+			$user = $parser->getUser();
+		}
+		$output = WikiForumGui::showHeaderRow( $thread->showHeaderLinks(), $user );
 
 		$posted = $thread->showPostedInfo();
 		if ( $thread->getEditedTimestamp() > 0 ) {
