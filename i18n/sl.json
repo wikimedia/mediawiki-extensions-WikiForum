@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Janezdrilc"
+			"Janezdrilc",
+			"Dbc334",
+			"Eleassar"
 		]
 	},
-	"wikiforum-description": "Opis:"
+	"wikiforum-description": "Opis:",
+	"wikiforum-name": "Ime:",
+	"wikiforum-save": "Shrani",
+	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani}}:"
 }

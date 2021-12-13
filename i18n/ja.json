@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Shirayuki",
-			"Sujiniku"
+			"Sujiniku",
+			"しぃ"
 		]
 	},
 	"wikiforum-desc": "MediaWiki 用[[Special:WikiForum|フォーラム]]の拡張機能",
-	"wikiforum": "議論ボード",
+	"wikiforum": "Wikiフォーラム",
 	"wikiforum-anonymous": "匿名",
 	"wikiforum-announcement-only-description": "告知用フォーラム (スレッドを作成できるのはモデレーターのみ)",
 	"wikiforum-by": "$4 $5<br />投稿者 {{GENDER:$3|$2}}",
@@ -34,6 +35,7 @@
 	"wikiforum-overview": "概要",
 	"wikiforum-pages": "{{PLURAL:$1|ページ}}:",
 	"wikiforum-thread-closed": "閉じられたスレッド",
+	"wikiforum-sticky": "付箋付きスレッド",
 	"wikiforum-new-thread": "新しいスレッド",
 	"wikiforum-edit-thread": "スレッドを編集",
 	"wikiforum-delete-thread": "スレッドを削除",
@@ -95,6 +97,7 @@
 	"wikiforum-quote": "引用",
 	"action-wikiforum-admin": "[[Special:WikiForum|議論ボード]]でのカテゴリやフォーラムの追加/編集/削除",
 	"right-wikiforum-admin": "[[Special:WikiForum|議論ボード]]でカテゴリやフォーラムを追加/編集/削除",
+	"action-wikiforum-moderator": "[[Special:WikiForum|議論ボード]]でのスレッドや返信の編集/削除",
 	"right-wikiforum-moderator": "[[Special:WikiForum|議論ボード]]でスレッドや返信を編集/削除",
 	"group-forumadmin": "フォーラム管理者",
 	"group-forumadmin-member": "フォーラム管理者",
@@ -109,5 +112,7 @@
 	"logentry-forum-add-reply": "$1 がスレッド [[Special:WikiForum/$4|$4]] で{{GENDER:$2|返信}}",
 	"wikiforum-forum-preload": "フォーラムの表題",
 	"wikiforum-category-preload": "カテゴリの表題",
-	"wikiforum-must-supply-thread": "スレッド ID を指定してください。"
+	"wikiforum-must-supply-thread": "スレッド ID を指定してください。",
+	"wikiforum-captcha": "スパム行為からWikiを守るために、以下の簡単な質問を解いて、その答えをボックスに入力してください。([[Special:Captcha/help|詳しく]]):",
+	"wikiforum-error-captcha": "エラー - CAPTCHAが正しくない、または見つからない"
 }

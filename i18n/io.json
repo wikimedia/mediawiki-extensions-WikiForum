@@ -1,10 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Joao Xavier"
+			"Joao Xavier",
+			"JSantos"
 		]
 	},
+	"wikiforum-anonymous": "Anonimo",
 	"wikiforum-description": "Deskripto:",
+	"wikiforum-button-preview": "Previdar",
+	"wikiforum-preview": "Previdar",
+	"wikiforum-preview-with-title": "Previdado: $1",
+	"wikiforum-replies": "Respondi",
 	"wikiforum-pages": "{{PLURAL:$1|Pagino|Pagini}}:",
 	"wikiforum-add-category": "Adjuntez kategorio"
 }
