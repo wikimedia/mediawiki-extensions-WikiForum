@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special:WikiForum -- an overview of all available boards on the forum
  *
@@ -88,7 +91,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( wfReadOnly() ) {
+					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-readonly' );
 						$output .= $category->show();
 
@@ -132,7 +135,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( wfReadOnly() ) {
+					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
 						$output .= $forum->show();
 
@@ -176,7 +179,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( wfReadOnly() ) {
+					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
 						$output .= $thread->show();
 
@@ -223,7 +226,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( wfReadOnly() ) {
+					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
 						$output .= $reply->getThread()->show();
 					} else {

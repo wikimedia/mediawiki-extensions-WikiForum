@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class WFThread extends ContextSource {
 
 	private $data;
@@ -641,7 +643,7 @@ class WFThread extends ContextSource {
 			$output .= $this->showNewReplyForm( $quoteReply, $quoteThread );
 		}
 
-		if ( !wfReadOnly() ) {
+		if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->update(
 				'wikiforum_threads',
