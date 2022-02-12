@@ -28,7 +28,7 @@ class WikiForumHooks {
 	 * @return string
 	 */
 	public static function renderWikiForumList( $input, $args, Parser $parser, $frame ) {
-		$parser->getOutput()->addModuleStyles( 'ext.wikiForum' );
+		$parser->getOutput()->addModuleStyles( [ 'ext.wikiForum' ] );
 
 		if ( !isset( $args['num'] ) ) {
 			$args['num'] = 5;
@@ -75,7 +75,7 @@ class WikiForumHooks {
 	 * @return string
 	 */
 	public static function renderWikiForumThread( $input, $args, Parser $parser, $frame ) {
-		$parser->getOutput()->addModuleStyles( 'ext.wikiForum' );
+		$parser->getOutput()->addModuleStyles( [ 'ext.wikiForum' ] );
 
 		if ( !isset( $args['id'] ) || $args['id'] == 0 ) {
 			return wfMessage( 'wikiforum-must-supply-thread' )->text();
