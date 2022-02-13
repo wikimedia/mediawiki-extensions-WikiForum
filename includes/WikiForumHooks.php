@@ -47,10 +47,10 @@ class WikiForumHooks {
 		);
 
 		$output = WikiForumGui::showListTagHeader(
-			wfMessage( 'wikiforum-updates' )->text(),
-			wfMessage( 'wikiforum-replies' )->text(),
-			wfMessage( 'wikiforum-views' )->text(),
-			wfMessage( 'wikiforum-latest-reply' )->text()
+			wfMessage( 'wikiforum-updates' )->escaped(),
+			wfMessage( 'wikiforum-replies' )->escaped(),
+			wfMessage( 'wikiforum-views' )->escaped(),
+			wfMessage( 'wikiforum-latest-reply' )->escaped()
 		);
 
 		foreach ( $sqlThreads as $threadData ) {
@@ -78,13 +78,13 @@ class WikiForumHooks {
 		$parser->getOutput()->addModuleStyles( [ 'ext.wikiForum' ] );
 
 		if ( !isset( $args['id'] ) || $args['id'] == 0 ) {
-			return wfMessage( 'wikiforum-must-supply-thread' )->text();
+			return wfMessage( 'wikiforum-must-supply-thread' )->escaped();
 		}
 
 		$thread = WFThread::newFromID( $args['id'] );
 
 		if ( !$thread ) {
-			return wfMessage( 'wikiforum-thread-not-found-text' )->text();
+			return wfMessage( 'wikiforum-thread-not-found-text' )->escaped();
 		}
 
 		if ( method_exists( $parser, 'getUserIdentity' ) ) {
