@@ -858,7 +858,7 @@ class WFThread extends ContextSource {
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-thread' );
 		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'wikiforum' ) );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
 		$shortText = $wgLang->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
