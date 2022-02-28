@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afia360"
+		]
+	},
+	"wikiforum-desc": "[[Special:Wikibama|Bama]] ntoasoɔ ma MediaWiki",
+	"wikiforum": "Bama a yɛtoatoa adwene wɔ so",
+	"wikiforum-anonymous": "Deɛ yɛnnim",
+	"wikiforum-description": "Worekyerɛkyerɛ biribi mu",
+	"wikiforum-name": "Edin:",
+	"wikiforum-button-preview": "Hwɛ ansa",
+	"wikiforum-preview": "Hwɛ ansa",
+	"wikiforum-preview-with-title": "Hwɛ ansa: $1",
+	"wikiforum-save": "Fa sie",
+	"wikiforum-replies": "Mmuaeɛ ahodoɔ",
+	"wikiforum-views": "Adwenkyerɛ ahodoɔ",
+	"wikiforum-latest-thread": "Fine a abasoɔ",
+	"wikiforum-write-reply": "Twerɛ mmuaeɛ",
+	"wikiforum-edit-reply": "Sesa mmuaeɛ",
+	"wikiforum-delete-reply": "Pepa mmuaeɛ",
+	"wikiforum-save-reply": "Kora mmuaeɛ",
+	"wikiforum-reply-not-found": "Yɛahunu mmuaeɛ no",
+	"wikiforum-error-not-found": "Yɛahunu ade no"
+}
