@@ -101,5 +101,11 @@
 	"log-description-forum": "[[Special:WikiForum|WikiForum]] ఘటనలను చిట్టా లోకి చేరుస్తుంది",
 	"logentry-forum-add-category": "$1, [$4 $5] వర్గాన్ని {{GENDER:$2|సృష్టించారు}}",
 	"logentry-forum-add-forum": "$1, కొత్త వేదిక [$4 $5] ను {{GENDER:$2|సృష్టించారు}}",
-	"logentry-forum-add-thread": "$1, ఓ కొత్త తీగ, [[Special:WikiForum/$4|$4]] {{GENDER:$2|సృష్టించారు}}"
+	"logentry-forum-add-thread": "$1, ఓ కొత్త తీగ, [[Special:WikiForum/$4|$4]] {{GENDER:$2|సృష్టించారు}}",
+	"logentry-forum-add-reply": "[[Special:WikiForum/$4|$4]] తీగలో $1 {{GENDER:$2|సమాధానమిచ్చారు}}",
+	"wikiforum-forum-preload": "మీ వేదిక శీర్షిక",
+	"wikiforum-category-preload": "మీ వర్గం శీర్షిక",
+	"wikiforum-must-supply-thread": "ఒక తీగ ఐడీ ఇవ్వాలి.",
+	"wikiforum-captcha": "ఆటోమాటిక్ స్పామింగుకు గురికాకుండా ఈ వికీని కాపాడేందుకు, కింద చూపిన చిన్నపాటి ప్రశ్నను పరిష్కరించి సమాధానాన్ని పెట్టెలో రాయమని కోరుతున్నాం ([[Special:Captcha/help|మరింత సమాచారం]]):",
+	"wikiforum-error-captcha": "లోపం - కాప్చా తప్పు లేద అసలు ఇవ్వలేదు"
 }
