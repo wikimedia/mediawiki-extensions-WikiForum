@@ -40,7 +40,7 @@
 	"wikiforum-latest-thread": "Dernier fil de discussion",
 	"wikiforum-forum": "Forum : $1 > $2",
 	"wikiforum-overview": "Vue d’ensemble",
-	"wikiforum-pages": "{{PLURAL:$1|Page|Pages}} :",
+	"wikiforum-pages": "Page{{PLURAL:$1||s}} :",
 	"wikiforum-thread-closed": "Fil de discussion fermé",
 	"wikiforum-sticky": "Fil épinglé",
 	"wikiforum-new-thread": "Nouveau fil de discussion",
