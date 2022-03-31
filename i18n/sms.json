@@ -10,6 +10,10 @@
 	"wikiforum-preview-with-title": "Ouddǩiõččmõš: $1",
 	"wikiforum-save": "Ruõkk",
 	"wikiforum-views": "Vuäinnmõõžž",
+	"wikiforum-edit-reply": "Muuʹtt vaʹsttõõzz",
+	"wikiforum-delete-reply": "Jaukkâd vaʹsttõõzz",
+	"wikiforum-save-reply": "Ruõkk vaʹsttõõzz",
 	"wikiforum-error-search": "Ooccâmvââʹǩǩ",
-	"wikiforum-add-category": "Lââʹzzet kategoria"
+	"wikiforum-add-category": "Lââʹzzet kategoria",
+	"wikiforum-delete-category": "Jaukkâd kategoria"
 }
