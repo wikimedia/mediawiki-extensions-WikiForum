@@ -105,7 +105,7 @@
 	"group-forumadmin": "مدیران انجمن",
 	"group-forumadmin-member": "{{GENDER:$1|مدیریت انجمن}}",
 	"grouppage-forumadmin": "{{ns:project}}:مدیران انجمن",
-	"log-name-forum": "ورود به محکمه",
+	"log-name-forum": "سیاهۀ انجمن",
 	"log-description-forum": "سیاهه‌ها [[Special:WikiForum|محکمهٔ ویکی]] حوادث",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|ایجاد شده}} یک گروه جدید, [$4 $5]",
 	"logentry-forum-add-forum": "$1 یک انجمن تازه {{GENDER:$2|ایجاد کرد}}، [$4 $5]",
