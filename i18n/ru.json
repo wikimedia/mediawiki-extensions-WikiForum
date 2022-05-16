@@ -8,6 +8,7 @@
 			"Meshkov.a",
 			"Okras",
 			"Ole Yves",
+			"Pacha Tchernof",
 			"Stjn"
 		]
 	},
@@ -20,9 +21,9 @@
 	"wikiforum-forum-is-empty": "В настоящее время этот форум пуст.\nПожалуйста, обратитесь к администратору форума с просьбой добавить нужные категории и форумы.",
 	"wikiforum-forum-name": "Форум $1",
 	"wikiforum-name": "Имя:",
-	"wikiforum-button-preview": "Предварительный просмотр",
-	"wikiforum-preview": "Предварительный просмотр",
-	"wikiforum-preview-with-title": "Предварительный просмотр: $1",
+	"wikiforum-button-preview": "Предпросмотр",
+	"wikiforum-preview": "Предпросмотр",
+	"wikiforum-preview-with-title": "Предпросмотр: $1",
 	"wikiforum-save": "Сохранить",
 	"wikiforum-search-hits": "Найдено {{PLURAL:$1|$1 соответствие|$1 соответствия|$1 соответствий}}",
 	"wikiforum-search-thread": "Ветка: $1",
