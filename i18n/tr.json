@@ -4,6 +4,7 @@
 			"BaRaN6161 TURK",
 			"Emperyan",
 			"Incelemeelemani",
+			"SaldırganSincap",
 			"Sezgin İbiş"
 		]
 	},
@@ -108,7 +109,7 @@
 	"logentry-forum-add-category": "$1 yeni bir kategori {{GENDER:$2|oluşturdu}}, [$4 $5]",
 	"logentry-forum-add-forum": "$1 yeni bir forum {{GENDER:$2|oluşturdu}}, [$4 $5]",
 	"logentry-forum-add-thread": "$1 yeni bir ileti {{GENDER:$2|oluşturdu}}, [[Special:WikiForum/$4|$4]]",
-	"logentry-forum-add-reply": "$1 iletiyi {{GENDER:$2|yanıt verdi}}, [[Special:WikiForum/$4|$4]]",
+	"logentry-forum-add-reply": "$1, [[Special:WikiForum/$4|$4]] iletisinde {{GENDER:$2|yanıt verdi}}",
 	"wikiforum-forum-preload": "Forumunuzun başlığı",
 	"wikiforum-category-preload": "Kategorinizin başlığı",
 	"wikiforum-must-supply-thread": "Bir ileti kimliği sağlamanız gerekir.",
