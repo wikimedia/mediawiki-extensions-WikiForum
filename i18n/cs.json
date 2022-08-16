@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kareyac",
 			"Paxt",
 			"Utar"
 		]
 	},
+	"wikiforum-add-category": "Přidat kategorii",
 	"logentry-forum-add-category": "$1 {{GENDER:$2|vytvořil|vytvořila}} novou kategorii [$4 $5]",
 	"logentry-forum-add-forum": "$1 {{GENDER:$2|vytvořil|vytvořila}} nové fórum [$4 $5]",
 	"logentry-forum-add-thread": "$1 {{GENDER:$2|vytvořil|vytvořila}} nové vlákno, [[Special:WikiForum/$4|$4]]",
