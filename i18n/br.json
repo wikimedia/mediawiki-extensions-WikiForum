@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fulup",
-			"Y-M D"
+			"Y-M D",
+			"Huñvreüs"
 		]
 	},
 	"wikiforum": "Form kaozeal",
@@ -45,9 +46,9 @@
 	"wikiforum-posted": "Postet d'an $1 gant $2",
 	"wikiforum-edited": "Kemmet da $1 gant $2",
 	"wikiforum-cat-not-found": "N'eo ket bet kavet ar rummad",
-	"wikiforum-cat-not-found-text": "N'eus ket eus ar rummad-mañ - distreiñ da $1",
+	"wikiforum-cat-not-found-text": "N'eus ket eus ar rummad-mañ.",
 	"wikiforum-forum-not-found": "N'eo ket bet kavet ar foroù",
-	"wikiforum-forum-not-found-text": "N'eus ket eus ar forom-mañ - distreiñ da $1",
+	"wikiforum-forum-not-found-text": "N'eus ket eus ar forom-mañ.",
 	"wikiforum-thread-not-found": "N'eo ket bet kavet an neudennad",
 	"wikiforum-error-thread-reopen": "Fazi en ur addigeriñ an neudennad",
 	"wikiforum-error-thread-close": "Fazi en ur serriñ an neudennad",
