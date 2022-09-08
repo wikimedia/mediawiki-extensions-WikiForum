@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -241,7 +242,7 @@ class WikiForumGui {
 		$requestContext = RequestContext::getMain();
 		$out = $requestContext->getOutput();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiEditor' ) ) {
-			if ( $user->getOption( 'usebetatoolbar' ) ) {
+			if ( MediaWikiServices::getInstance()->getUserOptionsLookup()->getOption( $user, 'usebetatoolbar' ) ) {
 				$out->addModuleStyles( 'ext.wikiEditor.styles' );
 				$out->addModules( 'ext.wikiEditor' );
 			}
