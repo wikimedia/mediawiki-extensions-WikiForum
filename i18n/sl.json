@@ -9,5 +9,8 @@
 	"wikiforum-description": "Opis:",
 	"wikiforum-name": "Ime:",
 	"wikiforum-save": "Shrani",
-	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani}}:"
+	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani}}:",
+	"wikiforum-add-category": "Dodaj kategorijo",
+	"wikiforum-edit-category": "Uredi kategorijo",
+	"wikiforum-delete-category": "Izbriši kategorijo"
 }
