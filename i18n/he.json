@@ -67,7 +67,7 @@
 	"wikiforum-error-no-rights": "אין לך הרשאות מתאימות לביצוע פעולה זו.",
 	"wikiforum-error-not-found": "האובייקט לא נמצא.",
 	"wikiforum-error-no-text-or-title": "הכותרת או הטקסט לא מולאו כנדרש.",
-	"wikiforum-error-bad-title": "הכותרת כוללת תווים בלתי חוקיים.",
+	"wikiforum-error-bad-title": "הכותרת כוללת תווים בלתי־תקינים.",
 	"wikiforum-error-no-reply": "התגובה לא מולאה כנדרש.",
 	"wikiforum-error-double-post": "כבר פרסמת תגובה זו!",
 	"wikiforum-error-thread-closed": "האשכול נעול כרגע. לא ניתן להוסיף תגובות חדשות.",
