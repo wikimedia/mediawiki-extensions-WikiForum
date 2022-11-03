@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Justman10000",
 			"Kghbln",
 			"Metalhead64"
 		]
@@ -94,7 +95,9 @@
 	"wikiforum-move-thread": "Thema verschieben",
 	"wikiforum-paste-thread": "Thema einfügen",
 	"wikiforum-quote": "Zitieren",
+	"action-wikiforum-admin": "Kategorien und Foren auf [[Special:WikiForum|Das Diskussionsforum]] hinzufügen, bearbeiten und löschen",
 	"right-wikiforum-admin": "Foren und Kategorien auf der Spezialseite [[Special:WikiForum|Forum]] hinzufügen, bearbeiten und löschen",
+	"action-wikiforum-moderator": "Themen und Antworten im [[Special:WikiForum|Diskussionsforum]] bearbeiten und löschen",
 	"right-wikiforum-moderator": "Themen und Beiträge auf der Spezialseite [[Special:WikiForum|Forum]] bearbeiten und löschen",
 	"group-forumadmin": "Forumsadministratoren",
 	"group-forumadmin-member": "{{GENDER:$1|Forumsadministrator|Forumsadministratorin}}",
