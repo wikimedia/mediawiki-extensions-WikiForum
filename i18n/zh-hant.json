@@ -65,7 +65,7 @@
 	"wikiforum-error-thread-close": "關閉討論串時出錯",
 	"wikiforum-error-general-title": "找不到對象或無權限執行該動作",
 	"wikiforum-error-general": "找不到對象或無權限執行該動作。",
-	"wikiforum-error-no-rights": "你沒有權限執行該動作。",
+	"wikiforum-error-no-rights": "您無權這樣做。",
 	"wikiforum-error-not-found": "找不到對象。",
 	"wikiforum-error-no-text-or-title": "標題或文本填寫不正確",
 	"wikiforum-error-bad-title": "提供的標題包含無效字元。",
