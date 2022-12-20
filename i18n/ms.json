@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
-			"Pizza1016"
+			"Pizza1016",
+			"Tofeiku"
 		]
 	},
 	"wikiforum-desc": "Sambungan [[Special:WikiForum|forum]] untuk MediaWiki",
@@ -32,7 +33,7 @@
 	"wikiforum-latest-thread": "Tred terkini",
 	"wikiforum-forum": "Forum: $1 > $2",
 	"wikiforum-overview": "Intisari",
-	"wikiforum-pages": "Laman:",
+	"wikiforum-pages": "{{PLURAL:$1|Laman}}:",
 	"wikiforum-thread-closed": "Tred ditutup",
 	"wikiforum-new-thread": "Tred baru",
 	"wikiforum-edit-thread": "Sunting tred",
@@ -49,7 +50,7 @@
 	"wikiforum-posted": "Diposkan oleh {{GENDER:$3|$2}} pada $4, $5",
 	"wikiforum-edited": "Disunting oleh {{GENDER:$3|$2}} pada $4, $5",
 	"wikiforum-cat-not-found": "Kategori tidak dijumpai",
-	"wikiforum-cat-not-found-text": "Kategori tidak wujud - kembali ke $1",
+	"wikiforum-cat-not-found-text": "Kategori tidak wujud.",
 	"wikiforum-forum-not-found": "Forum tidak dijumpai",
 	"wikiforum-forum-not-found-text": "Forum tidak wujud - kembali ke $1",
 	"wikiforum-thread-not-found": "Tred tidak dijumpai",
