@@ -17,6 +17,7 @@
 	"wikiforum-thread": "Nit",
 	"wikiforum-threads": "Niti",
 	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani}}:",
+	"wikiforum-error-no-rights": "Nimate pravice za izvedbo tega dejanja.",
 	"wikiforum-add-category": "Dodaj kategorijo",
 	"wikiforum-edit-category": "Uredi kategorijo",
 	"wikiforum-delete-category": "Izbriši kategorijo"
