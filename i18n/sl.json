@@ -6,6 +6,7 @@
 			"Janezdrilc"
 		]
 	},
+	"wikiforum-anonymous": "Anonimnež",
 	"wikiforum-description": "Opis:",
 	"wikiforum-name": "Ime:",
 	"wikiforum-button-preview": "Predogled",
@@ -21,5 +22,7 @@
 	"wikiforum-error-no-rights": "Nimate pravice za izvedbo tega dejanja.",
 	"wikiforum-add-category": "Dodaj kategorijo",
 	"wikiforum-edit-category": "Uredi kategorijo",
-	"wikiforum-delete-category": "Izbriši kategorijo"
+	"wikiforum-delete-category": "Izbriši kategorijo",
+	"wikiforum-sort-up": "razvrstitev naraščajoče",
+	"wikiforum-sort-down": "razvrstitev padajoče"
 }
