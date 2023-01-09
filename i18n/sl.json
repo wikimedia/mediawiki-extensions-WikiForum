@@ -6,7 +6,7 @@
 			"Eleassar"
 		]
 	},
-	"wikiforum-anonymous": "Anonimnež",
+	"wikiforum-anonymous": "Anonimni",
 	"wikiforum-description": "Opis:",
 	"wikiforum-name": "Ime:",
 	"wikiforum-button-preview": "Predogled",
@@ -18,8 +18,10 @@
 	"wikiforum-views": "Ogledi",
 	"wikiforum-thread": "Nit",
 	"wikiforum-threads": "Niti",
+	"wikiforum-overview": "Pregled",
 	"wikiforum-pages": "{{PLURAL:$1|Stran|Strani}}:",
 	"wikiforum-error-no-rights": "Nimate pravice za izvedbo tega dejanja.",
+	"wikiforum-error-search": "Napaka pri iskanju",
 	"wikiforum-add-category": "Dodaj kategorijo",
 	"wikiforum-edit-category": "Uredi kategorijo",
 	"wikiforum-delete-category": "Izbriši kategorijo",
