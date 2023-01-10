@@ -48,5 +48,6 @@
 	"wikiforum-edit-category": "Uredi kategorijo",
 	"wikiforum-delete-category": "Izbriši kategorijo",
 	"wikiforum-sort-up": "razvrstitev naraščajoče",
-	"wikiforum-sort-down": "razvrstitev padajoče"
+	"wikiforum-sort-down": "razvrstitev padajoče",
+	"wikiforum-error-captcha": "Napaka – nepravilna ali manjkajoča CAPTCHA"
 }
