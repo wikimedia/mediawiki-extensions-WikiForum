@@ -7,6 +7,7 @@
 		]
 	},
 	"wikiforum-anonymous": "Anonimni",
+	"wikiforum-announcement-only-description": "Forum za obvestila (niti lahko dodajajo samo moderatorji)",
 	"wikiforum-description": "Opis:",
 	"wikiforum-name": "Ime:",
 	"wikiforum-button-preview": "Predogled",
@@ -24,10 +25,18 @@
 	"wikiforum-close-thread": "Zapri nit",
 	"wikiforum-reopen-thread": "Znova odpri nit",
 	"wikiforum-save-reply": "Shrani odgovor",
+	"wikiforum-no-threads": "Trenutno ni na voljo nobena nit.",
+	"wikiforum-cat-not-found-text": "Kategorija ne obstaja.",
+	"wikiforum-forum-not-found": "Forum ni bil najden",
+	"wikiforum-forum-not-found-text": "Forum ne obstaja.",
+	"wikiforum-thread-not-found": "Nit ni bila najdena",
+	"wikiforum-reply-not-found": "Odgovor ni bil najden",
+	"wikiforum-reply-not-found-text": "Odgovor ne obstaja.",
 	"wikiforum-error-thread-reopen": "Napaka pri ponovnem odpiranju niti",
 	"wikiforum-error-thread-close": "Napaka pri zapiranju niti",
 	"wikiforum-error-general": "Objekt ni najden ali pa nimate dovoljenja za izvedbo tega dejanja.",
 	"wikiforum-error-no-rights": "Nimate pravice za izvedbo tega dejanja.",
+	"wikiforum-error-not-found": "Objekt ni bil najden.",
 	"wikiforum-error-no-text-or-title": "Naslov ali besedilo ni pravilno izpolnjeno.",
 	"wikiforum-error-bad-title": "Predloženi naslov je vseboval neveljavne znake.",
 	"wikiforum-error-no-reply": "Odgovor ni pravilno izpolnjen.",
@@ -48,5 +57,8 @@
 	"wikiforum-edit-category": "Uredi kategorijo",
 	"wikiforum-delete-category": "Izbriši kategorijo",
 	"wikiforum-sort-up": "razvrstitev naraščajoče",
-	"wikiforum-sort-down": "razvrstitev padajoče"
+	"wikiforum-sort-down": "razvrstitev padajoče",
+	"action-wikiforum-moderator": "urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
+	"right-wikiforum-moderator": "Urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
+	"wikiforum-error-captcha": "Napaka – nepravilna ali manjkajoča CAPTCHA"
 }
