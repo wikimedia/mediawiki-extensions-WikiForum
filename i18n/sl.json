@@ -6,7 +6,9 @@
 			"Eleassar"
 		]
 	},
+	"wikiforum": "Razpravni panel",
 	"wikiforum-anonymous": "Anonimni",
+	"wikiforum-announcement-only-description": "Forum za obvestila (niti lahko dodajajo samo moderatorji)",
 	"wikiforum-description": "Opis:",
 	"wikiforum-name": "Ime:",
 	"wikiforum-button-preview": "Predogled",
@@ -24,6 +26,7 @@
 	"wikiforum-close-thread": "Zapri nit",
 	"wikiforum-reopen-thread": "Znova odpri nit",
 	"wikiforum-save-reply": "Shrani odgovor",
+	"wikiforum-no-threads": "Trenutno ni na voljo nobena nit.",
 	"wikiforum-cat-not-found-text": "Kategorija ne obstaja.",
 	"wikiforum-forum-not-found": "Forum ni bil najden",
 	"wikiforum-forum-not-found-text": "Forum ne obstaja.",
@@ -56,5 +59,7 @@
 	"wikiforum-delete-category": "Izbriši kategorijo",
 	"wikiforum-sort-up": "razvrstitev naraščajoče",
 	"wikiforum-sort-down": "razvrstitev padajoče",
+	"action-wikiforum-moderator": "urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
+	"right-wikiforum-moderator": "Urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
 	"wikiforum-error-captcha": "Napaka – nepravilna ali manjkajoča CAPTCHA"
 }
