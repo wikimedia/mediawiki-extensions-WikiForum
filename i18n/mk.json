@@ -45,7 +45,7 @@
 	"wikiforum-save-thread": "Зачувај тема",
 	"wikiforum-save-reply": "Зачувај одговор",
 	"wikiforum-thread-title": "Наслов на темата",
-	"wikiforum-no-threads": "Моментално нема расположиви теми.",
+	"wikiforum-no-threads": "Моментално нема расположливи теми.",
 	"wikiforum-posted": "Објавено од {{GENDER:$3|$2}} на $4 во $5 ч.",
 	"wikiforum-edited": "Изменето од {{GENDER:$3|$2}} на $4 во $5 ч.",
 	"wikiforum-cat-not-found": "Категоријата не е пронајдена.",
