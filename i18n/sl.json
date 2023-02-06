@@ -61,5 +61,6 @@
 	"wikiforum-sort-down": "razvrstitev padajoče",
 	"action-wikiforum-moderator": "urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
 	"right-wikiforum-moderator": "Urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
+	"log-name-forum": "Dnevnik foruma",
 	"wikiforum-error-captcha": "Napaka – nepravilna ali manjkajoča CAPTCHA"
 }
