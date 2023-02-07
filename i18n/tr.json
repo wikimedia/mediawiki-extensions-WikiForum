@@ -5,7 +5,8 @@
 			"Emperyan",
 			"Incelemeelemani",
 			"SaldırganSincap",
-			"Sezgin İbiş"
+			"Sezgin İbiş",
+			"Rapsar"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]] için MediaWiki uzantısı",
@@ -85,10 +86,10 @@
 	"wikiforum-error-forum": "Forum hatası",
 	"wikiforum-error-thread": "İleti hatası",
 	"wikiforum-add-category": "Kategori ekle",
-	"wikiforum-edit-category": "Kategori düzenle",
+	"wikiforum-edit-category": "Kategoriyi değiştir",
 	"wikiforum-delete-category": "Kategori sil",
 	"wikiforum-add-forum": "Forum ekle",
-	"wikiforum-edit-forum": "Forum düzenle",
+	"wikiforum-edit-forum": "Forumu değiştir",
 	"wikiforum-delete-forum": "Forum sil",
 	"wikiforum-sort-up": "yukarıya sırala",
 	"wikiforum-sort-down": "aşağıya sırala",
