@@ -192,7 +192,7 @@ class WikiForum {
 				)->text();
 		}
 
-		Hooks::run( 'WikiForumSig', [ &$groupText, $user ] );
+		MediaWikiServices::getInstance()->getHookContainer()->run( 'WikiForumSig', [ &$groupText, $user ] );
 
 		$retVal .= $groupText;
 
