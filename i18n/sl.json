@@ -60,7 +60,7 @@
 	"wikiforum-reply-not-found-text": "Odgovor ne obstaja.",
 	"wikiforum-error-thread-reopen": "Napaka pri ponovnem odpiranju niti",
 	"wikiforum-error-thread-close": "Napaka pri zapiranju niti",
-	"wikiforum-error-general-title": "Objekt ni najden ali nimate dovoljenja za izvedbo tega dejanja",
+	"wikiforum-error-general-title": "Objekt ni najden ali pa nimate pravic za izvedbo tega dejanja",
 	"wikiforum-error-general": "Objekt ni najden ali pa nimate dovoljenja za izvedbo tega dejanja.",
 	"wikiforum-error-no-rights": "Nimate pravice za izvedbo tega dejanja.",
 	"wikiforum-error-not-found": "Objekt ni bil najden.",
