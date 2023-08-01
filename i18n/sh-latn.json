@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"wikiforum-desc": "[[Special:WikiForum|Forumsko]] proširenje za MediaWiki",
+	"wikiforum": "Forum",
+	"wikiforum-anonymous": "Anonim",
+	"wikiforum-announcement-only-description": "Forum za najave (temi mogu dodavati samo moderatori)",
+	"wikiforum-description": "Opis:",
+	"wikiforum-forum-is-empty": "Ovaj forum je trenutno prazan.\nMolimo tražite administratora kako bi dodao kategorije.",
+	"wikiforum-forum-name": "Forum $1",
+	"wikiforum-name": "Naziv:",
+	"wikiforum-button-preview": "Pregled",
+	"wikiforum-preview": "Pregled",
+	"wikiforum-preview-with-title": "Pregled: $1",
+	"wikiforum-save": "Sačuvaj",
+	"wikiforum-search-hits": "Pronađeno {{PLURAL:$1|jedan pogodak|$1 pogodaka}}",
+	"wikiforum-topic-name": "Forum - $1",
+	"wikiforum-write-thread": "Nova tema",
+	"wikiforum-replies": "Odgovori",
+	"wikiforum-views": "Pregledi",
+	"wikiforum-forum": "Forum: $1 > $2",
+	"action-wikiforum-admin": "dodavanje, uređivanje i brisanje kategorija i foruma na [[Special:WikiForum|forumu]]",
+	"right-wikiforum-admin": "Dodavanje, uređivanje i brisanje kategorija i foruma na [[Special:WikiForum|forumu]]",
+	"action-wikiforum-moderator": "uređivanje ​​i brisanje tema i odgovora na [[Special:WikiForum|forumu]]",
+	"right-wikiforum-moderator": "Uređivanje ​​i brisanje tema i odgovora na [[Special:WikiForum|forumu]]",
+	"group-forumadmin": "Administratori foruma",
+	"group-forumadmin-member": "{{GENDER:$1|administrator foruma|administratorka foruma}}",
+	"grouppage-forumadmin": "{{ns:project}}:Administratori foruma",
+	"log-name-forum": "Dnevnik foruma",
+	"log-description-forum": "Zapisuje [[Special:WikiForum|WikiForum]] događaje",
+	"wikiforum-captcha": "Da bismo zaštitili se od automatskog spamiranja, ljubazno vas molimo da riješite jednostavan zadatak ispod i odgovor unesete u kutijicu ([[Special:Captcha/help|više informacija]]):"
+}
