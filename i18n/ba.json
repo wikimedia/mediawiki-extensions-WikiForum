@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Haqmar",
+			"Айсар",
 			"З. ӘЙЛЕ"
 		]
 	},
@@ -25,7 +26,7 @@
 	"wikiforum-latest-thread": "Һуңғы тармаҡ",
 	"wikiforum-forum": "Форум: $1 > $2",
 	"wikiforum-overview": "Байҡау",
-	"wikiforum-pages": "{{PLURAL:$1|Бит}}:",
+	"wikiforum-pages": "{{PLURAL:$1|Бит|Биттәр}}:",
 	"wikiforum-thread-closed": "Тармаҡ ябыҡ",
 	"wikiforum-new-thread": "Яңы тармаҡ",
 	"wikiforum-edit-thread": "Тармаҡты мөхәррирләргә",
