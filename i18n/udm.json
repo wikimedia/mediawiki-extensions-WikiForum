@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kaganer"
+			"Kaganer",
+			"Света Поторочина"
 		]
 	},
-	"wikiforum-button-preview": "Бамез эскерон",
-	"wikiforum-preview": "Бамез эскерон",
+	"wikiforum-button-preview": "Азьпал учкон",
+	"wikiforum-preview": "Азьпал учкон",
 	"wikiforum-preview-with-title": "Бамез эскерон: $1"
 }

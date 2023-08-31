@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Haqmar"
+			"Haqmar",
+			"Айсар",
+			"З. ӘЙЛЕ"
 		]
 	},
-	"wikiforum-by": "$1<br />от $2",
+	"wikiforum-by": "$4 көнө $5 ваҡыты<br />{{GENDER:$3|$2}} тарафынан",
 	"wikiforum-description": "Тасуирлама:",
 	"wikiforum-forum-name": "Форум $1",
 	"wikiforum-name": "Исем:",
@@ -24,7 +26,7 @@
 	"wikiforum-latest-thread": "Һуңғы тармаҡ",
 	"wikiforum-forum": "Форум: $1 > $2",
 	"wikiforum-overview": "Байҡау",
-	"wikiforum-pages": "Биттәр:",
+	"wikiforum-pages": "{{PLURAL:$1|Бит|Биттәр}}:",
 	"wikiforum-thread-closed": "Тармаҡ ябыҡ",
 	"wikiforum-new-thread": "Яңы тармаҡ",
 	"wikiforum-edit-thread": "Тармаҡты мөхәррирләргә",
@@ -37,6 +39,6 @@
 	"wikiforum-save-thread": "Тармаҡты һаҡларға",
 	"wikiforum-save-reply": "Яуапты һаҡларға",
 	"wikiforum-thread-title": "Һеҙҙең тармаҡ исеме",
-	"wikiforum-posted": "$1 - $2 ҡатнашыусыһы ҡүйҙы",
+	"wikiforum-posted": "$4 көндө $5 ваҡытта {{GENDER:$3|$2}} баҫтырҙы.",
 	"wikiforum-error-search": "Эҙләү хатаһы"
 }
