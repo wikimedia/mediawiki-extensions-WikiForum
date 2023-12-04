@@ -3,7 +3,8 @@
 		"authors": [
 			"Dbc334",
 			"Eleassar",
-			"Janezdrilc"
+			"Janezdrilc",
+			"Upwinxp"
 		]
 	},
 	"wikiforum-desc": "Razširitev [[Special:WikiForum|Forum]] za MediaWiki",
@@ -100,7 +101,7 @@
 	"action-wikiforum-moderator": "urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
 	"right-wikiforum-moderator": "Urejanje in brisanje niti in odgovorov na [[Special:WikiForum|razpravnem panelu]]",
 	"group-forumadmin": "Administratorji foruma",
-	"group-forumadmin-member": "{{GENDER:$1|administrator forumov|administratorka forumov|administrator_ka forumov}}",
+	"group-forumadmin-member": "{{GENDER:$1|administrator forumov|administratorka forumov|administrator/ka forumov}}",
 	"grouppage-forumadmin": "{{ns:project}}:Administratorji forumov",
 	"log-name-forum": "Dnevnik foruma",
 	"log-description-forum": "Zapisuje[[Special:WikiForum|vikiforumske]] dogodke",
