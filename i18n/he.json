@@ -11,7 +11,7 @@
 	"wikiforum-desc": "הרחבת [[Special:WikiForum|פורום]] עבור מדיה־ויקי",
 	"wikiforum": "לוח דיונים",
 	"wikiforum-anonymous": "אנונימי",
-	"wikiforum-announcement-only-description": "פורום הכרזות (רק מנחים יכולים להוסיף אשכולות)",
+	"wikiforum-announcement-only-description": "פורום הכרזות (רק מפקחים יכולים להוסיף אשכולות)",
 	"wikiforum-by": "בתאריך $4 בשעה $5<br />מאת {{GENDER:$3|$2}}",
 	"wikiforum-description": "תיאור:",
 	"wikiforum-forum-is-empty": "הפורום הזה ריק כרגע. נא לפנות למנהל פורום לצורך הוספת קטגוריות ופורומים.",
