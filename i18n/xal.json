@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Алия"
+		]
+	},
+	"wikiforum-topic-name": "Хурл - $1",
+	"wikiforum-forum": "Хурл: $1 > $2",
+	"wikiforum-forum-not-found": "Хурл олдсн уга",
+	"wikiforum-forum-not-found-text": "Хурл бәәхш",
+	"wikiforum-error-forum": "Хурлын эндү",
+	"wikiforum-add-forum": "Хурл немх",
+	"wikiforum-edit-forum": "Хурлыг ясврлх",
+	"wikiforum-delete-forum": "Хурлыг уга кех",
+	"group-forumadmin": "Хурлын администратормуд",
+	"group-forumadmin-member": "{{GENDER:$1|Хурлын администратор}}",
+	"grouppage-forumadmin": "{{ns:project}}:Хурлын администратормуд",
+	"log-name-forum": "Хурлын лог",
+	"wikiforum-forum-preload": "Тана хурлын нерн"
+}
