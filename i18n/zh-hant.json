@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anterdc99",
 			"Kly",
 			"LNDDYL",
 			"Liuxinyu970226",
@@ -99,7 +100,7 @@
 	"wikiforum-paste-thread": "貼上討論串",
 	"wikiforum-quote": "引用",
 	"action-wikiforum-admin": "在[[Special:WikiForum|討論面板]]添加、編輯和刪除分類和論壇",
-	"right-wikiforum-admin": "在[[Special:WikiForum|討論面板]]添加、編輯和刪除分類和帖子",
+	"right-wikiforum-admin": "在[[Special:WikiForum|討論面板]]添加、編輯和刪除分類和論壇",
 	"action-wikiforum-moderator": "在[[Special:WikiForum|討論面板]]編輯和刪除討論串與回覆",
 	"right-wikiforum-moderator": "在[[Special:WikiForum|討論面板]]編輯和刪除討論串與回覆",
 	"group-forumadmin": "論壇管理員",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anterdc99",
 			"Hudafu",
 			"Hzy980512",
 			"Linxue9786",
@@ -98,8 +99,10 @@
 	"wikiforum-move-thread": "移动帖子",
 	"wikiforum-paste-thread": "粘贴帖子",
 	"wikiforum-quote": "引用",
-	"right-wikiforum-admin": "在[[Special:WikiForum|讨论面板]]添加、编辑和删除分类和帖子",
-	"right-wikiforum-moderator": "在[[Special:WikiForum|讨论面板]]编辑和删除帖子和回复",
+	"action-wikiforum-admin": "在[[Special:WikiForum|讨论板]]添加、编辑和删除分类及论坛",
+	"right-wikiforum-admin": "在[[Special:WikiForum|讨论面板]]添加、编辑和删除分类及论坛",
+	"action-wikiforum-moderator": "在[[Special:WikiForum|讨论板]]编辑和删除帖子及回复",
+	"right-wikiforum-moderator": "在[[Special:WikiForum|讨论板]]编辑和删除帖子及回复",
 	"group-forumadmin": "论坛管理员",
 	"group-forumadmin-member": "{{GENDER:$1|论坛管理员}}",
 	"grouppage-forumadmin": "{{ns:project}}:论坛管理员",
