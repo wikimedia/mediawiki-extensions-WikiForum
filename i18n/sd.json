@@ -4,8 +4,18 @@
 			"Mehtab ahmed"
 		]
 	},
+	"wikiforum-desc": "ميڊياوڪي لاءِ [[Special:WikiForum|فورم]] وڌاءُ",
+	"wikiforum": "گفتگو بورڊ",
+	"wikiforum-anonymous": "گمنام",
+	"wikiforum-announcement-only-description": "اعلان فورم (صرف منتظم موضوع شامل ڪري سگهن ٿا)",
+	"wikiforum-by": "$4ع تي $5 وڳي < پاران <br />{{GENDER:$3|$2}}",
 	"wikiforum-description": "تشريح:",
+	"wikiforum-forum-is-empty": "هي فورم في الحال خالي آهي. مھرباني ڪري فورم جي منتظم سان رابطو ڪريو تہ جيئن ڪي زمرا ۽ فورم شامل ڪيا وڃن.",
+	"wikiforum-forum-name": "فورم $1",
 	"wikiforum-name": "نالو:",
+	"wikiforum-button-preview": "پيش-نگاھ",
+	"wikiforum-preview": "پيش-نگاھ",
+	"wikiforum-preview-with-title": "پيش-نگاھ: $1",
 	"wikiforum-save": "سانڍيو",
 	"wikiforum-write-thread": "نئون موضوع",
 	"wikiforum-error-no-rights": "توھان کي ھي عمل سرانجام ڏيڻ جا حق نہ آھن."
