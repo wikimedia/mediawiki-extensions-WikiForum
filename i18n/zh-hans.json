@@ -7,7 +7,8 @@
 			"Liuxinyu970226",
 			"Xiaomingyan",
 			"Yfdyh000",
-			"Anterdc99"
+			"Anterdc99",
+			"LittlePaw365"
 		]
 	},
 	"wikiforum-desc": "适用于MediaWiki的[[Special:WikiForum|论坛]]扩展程序",
@@ -75,7 +76,7 @@
 	"wikiforum-error-thread-closed": "帖子已关闭。不能发表新回复。",
 	"wikiforum-error-title-already-exists": "已经存在一个指定标题的帖子。请另选一个。",
 	"wikiforum-error-readonly": "数据库已标记为只读，因此您现在不可以执行任何修改行为。",
-	"wikiforum-error-search-missing-query": "必须提供关键字来进行搜索！",
+	"wikiforum-error-search-missing-query": "您必须提供要搜索的词语！",
 	"wikiforum-error-search": "搜索错误",
 	"wikiforum-error-delete": "删除时出现错误",
 	"wikiforum-error-sticky": "置顶时出现错误",
