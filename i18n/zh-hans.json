@@ -7,7 +7,8 @@
 			"Liuxinyu970226",
 			"Xiaomingyan",
 			"Yfdyh000",
-			"Anterdc99"
+			"Anterdc99",
+			"LittlePaw365"
 		]
 	},
 	"wikiforum-desc": "适用于MediaWiki的[[Special:WikiForum|论坛]]扩展程序",
@@ -75,7 +76,7 @@
 	"wikiforum-error-thread-closed": "帖子已关闭。不能发表新回复。",
 	"wikiforum-error-title-already-exists": "已经存在一个指定标题的帖子。请另选一个。",
 	"wikiforum-error-readonly": "数据库已标记为只读，因此您现在不可以执行任何修改行为。",
-	"wikiforum-error-search-missing-query": "必须提供关键字来进行搜索！",
+	"wikiforum-error-search-missing-query": "您必须提供要搜索的词语！",
 	"wikiforum-error-search": "搜索错误",
 	"wikiforum-error-delete": "删除时出现错误",
 	"wikiforum-error-sticky": "置顶时出现错误",
@@ -110,9 +111,9 @@
 	"group-forumadmin.js": "/* 这里放置的JS将只影响论坛管理员 */",
 	"log-name-forum": "论坛日志",
 	"log-description-forum": "[[Special:WikiForum|WikiForum]]的事件日志",
-	"logentry-forum-add-category": "$1{{GENDER:$2|已创建}}一个新分类目录，[$4 $5]",
-	"logentry-forum-add-forum": "$1{{GENDER:$2|已创建}}一个新论坛,[$4 $5]",
-	"logentry-forum-add-thread": "$1{{GENDER:$2|已创建}}一个新线程，[[Special:WikiForum/$4|$4]]",
+	"logentry-forum-add-category": "$1{{GENDER:$2|创建了}}新分类，[$4 $5]",
+	"logentry-forum-add-forum": "$1{{GENDER:$2|创建了}}新论坛，[$4 $5]",
+	"logentry-forum-add-thread": "$1{{GENDER:$2|创建了}}新帖子，[[Special:WikiForum/$4|$4]]",
 	"logentry-forum-add-reply": "$1{{GENDER:$2|已回复}}在线程上[[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "您的论坛标题",
 	"wikiforum-category-preload": "您的分类标题",
