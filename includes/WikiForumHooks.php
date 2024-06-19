@@ -228,14 +228,9 @@ class WikiForumHooks {
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_edit_actor', "$dir/patches/actor/add-wfr_edit_actor-to-wikiforum_replies.sql" );
 
 			// 2. migrate old data to the new actor fields
-			// PITFALL WARNING! Do NOT change this to $updater->runMaintenance,
-			// THEY ARE NOT THE SAME THING and this MUST be using addExtensionUpdate
-			// instead for the code to work as desired!
-			// HT Skizzerz
 			$updater->addExtensionUpdate( [
 				'runMaintenance',
 				'MigrateOldWikiForumUserColumnsToActor',
-				'../maintenance/migrateOldWikiForumUserColumnsToActor.php'
 			] );
 
 			// 3. drop old, now unused fields
@@ -267,7 +262,6 @@ class WikiForumHooks {
 		$updater->addExtensionUpdate( [
 			'runMaintenance',
 			'MigrateOldWikiForumTimestampColumnsToNew',
-			'../maintenance/migrateOldWikiForumTimestampColumnsToNew.php'
 		] );
 
 		$updater->dropExtensionField( 'wikiforum_category', 'wfc_edited', "$dir/patches/drop-wfc_edited-from-wikiforum_category.sql" );
