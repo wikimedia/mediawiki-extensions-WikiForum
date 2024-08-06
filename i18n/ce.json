@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Исмаил Садуев",
 			"Умар"
 		]
 	},
-	"wikiforum-description": "Цуьнах лаьцна",
+	"wikiforum-description": "Цунах лаьцна",
 	"wikiforum-button-preview": "Хьалххе хьажар",
 	"wikiforum-preview": "Хьалххе хьажар",
 	"wikiforum-preview-with-title": "Хьалххе хьажар: $1",
