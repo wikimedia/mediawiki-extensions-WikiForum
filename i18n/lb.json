@@ -3,7 +3,8 @@
 		"authors": [
 			"Les Meloures",
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Volvox"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forum]]-Erweiderung fir MediaWiki",
@@ -21,7 +22,7 @@
 	"wikiforum-search-thread": "Rubrik: $1",
 	"wikiforum-thread-deleted": "Rubrik geläscht",
 	"wikiforum-topic-name": "$1-Forum",
-	"wikiforum-write-thread": "Neit Thema",
+	"wikiforum-write-thread": "Neit Theema",
 	"wikiforum-replies": "Äntwerten",
 	"wikiforum-thread": "Rubrik",
 	"wikiforum-threads": "Rubriken",
