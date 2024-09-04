@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"AZISS",
-			"Vugar 1981"
+			"Vugar 1981",
+			"Nemoralis"
 		]
 	},
 	"wikiforum-anonymous": "Anonim",
@@ -13,7 +14,7 @@
 	"wikiforum-preview": "Sınaq görüntüsü",
 	"wikiforum-save": "Saxla",
 	"wikiforum-views": "Görünüş",
-	"wikiforum-pages": "Səhifələr:",
+	"wikiforum-pages": "{{PLURAL:$1|Səhifə}}:",
 	"wikiforum-cat-not-found": "Kateqoriya tapılmadı",
 	"wikiforum-add-category": "Kateqoriya əlavə et",
 	"wikiforum-edit-category": "Kateqoriyanı redaktə et",
