@@ -21,7 +21,7 @@ class WFCategory extends ContextSource {
 	 * @return self|false the category, or false on failure
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_category',
@@ -54,7 +54,7 @@ class WFCategory extends ContextSource {
 	 * @return self|false the category, or false on failure
 	 */
 	public static function newFromName( $title ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_category',
@@ -95,7 +95,7 @@ class WFCategory extends ContextSource {
 	 */
 	function getForums() {
 		if ( !$this->forums ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 			$sqlForums = $dbr->select(
 				'wikiforum_forums',
@@ -209,7 +209,7 @@ class WFCategory extends ContextSource {
 			return $error . $this->show();
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$res = $dbw->delete(
 			'wikiforum_category',
 			[ 'wfc_category' => $this->getId() ],
@@ -238,7 +238,7 @@ class WFCategory extends ContextSource {
 		}
 
 		if ( $this->getName() != $categoryName ) {
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 			$dbw->update(
 				'wikiforum_category',
 				[
@@ -334,7 +334,7 @@ class WFCategory extends ContextSource {
 			return $error . $this->show();
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		$sqlData = $dbr->select(
 			'wikiforum_category',
@@ -363,7 +363,7 @@ class WFCategory extends ContextSource {
 				$i = count( $new_array );
 			}
 		}
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		foreach ( $new_array as $entry ) {
 			$result = $dbw->update(
 				'wikiforum_category',
@@ -395,7 +395,7 @@ class WFCategory extends ContextSource {
 			return $error . self::showAddForm( $user );
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$sortkey = $dbr->selectRow(
 			'wikiforum_category',
 			'MAX(wfc_sortkey) AS the_key',
@@ -403,7 +403,7 @@ class WFCategory extends ContextSource {
 			__METHOD__
 		);
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->insert(
 			'wikiforum_category',
 			[

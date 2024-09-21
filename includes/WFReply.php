@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class WFReply extends ContextSource {
 
 	private $data;
@@ -19,7 +21,7 @@ class WFReply extends ContextSource {
 	 * @return self|false
 	 */
 	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_replies',
@@ -42,7 +44,7 @@ class WFReply extends ContextSource {
 	 * @return self|false
 	 */
 	public static function newFromText( $text ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		$data = $dbr->selectRow(
 			'wikiforum_replies',
@@ -193,7 +195,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->delete(
 			'wikiforum_replies',
 			[ 'wfr_reply_id' => $this->getId() ],
@@ -237,7 +239,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->update(
 			'wikiforum_replies',
 			[
@@ -355,7 +357,7 @@ class WFReply extends ContextSource {
 			}
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$doublepost = $dbr->selectRow(
 			'wikiforum_replies',
 			'wfr_reply_id',
@@ -376,7 +378,7 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-double-post' );
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->insert(
 			'wikiforum_replies',
 			[

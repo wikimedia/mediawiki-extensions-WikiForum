@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Static class containing all the hooked functions used by WikiForum.
  *
@@ -34,7 +37,7 @@ class WikiForumHooks {
 			$args['num'] = 5;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$sqlThreads = $dbr->select(
 			[ 'wikiforum_threads' ],
 			[ '*' ],

@@ -43,7 +43,7 @@ class WikiForum {
 
 		$output = '';
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$sqlCategories = $dbr->select(
 			'wikiforum_category',
 			'*',
@@ -92,7 +92,7 @@ class WikiForum {
 			$title = wfMessage( 'wikiforum-search-hits', $i )->parse();
 			$output .= WikiForumGui::showSearchHeader( $title );
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 			// buildLike() will escape the query properly, add the word LIKE and the "double quotes"
 			$likeString = $dbr->buildLike( $dbr->anyString(), $what, $dbr->anyString() );
 
