@@ -476,10 +476,7 @@ class WFThread extends ContextSource {
 	function edit( $title, $text ) {
 		$user = $this->getUser();
 
-		if (
-			$text && $title && strlen( $text ) == 1 ||
-			strlen( $title ) == 1
-		) {
+		if ( strlen( $text ) <= 1 || strlen( $title ) <= 1 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
 			return $error . $this->showEditor();
 		}
