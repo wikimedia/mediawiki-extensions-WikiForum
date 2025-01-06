@@ -103,15 +103,23 @@ class SpecialWikiForum extends SpecialPage {
 							case 'savecategory':
 								$output .= $category->edit( $title );
 								break;
+							/* DISABLED due to T312733
+							For users with JS enabled, this is handled by the JS in /resources/js/ext.wikiForum.admin-links.js
+							For no-JS users, there is no replacement right now. :-(
+							In the future, these action can perhaps render a confirmation form which
+							would have the appropriate anti-CSRF token set or something like that.
 							case 'categorydown':
 								$output .= $category->sortDown();
 								break;
 							case 'categoryup':
 								$output .= $category->sortUp();
 								break;
+
+							// Also disabled due to T312733 and handled by the same JS file as above
 							case 'deletecategory':
 								$output .= $category->delete();
 								break;
+							*/
 
 							case 'addforum':
 								$output .= $category->showAddForumForm();
@@ -147,6 +155,7 @@ class SpecialWikiForum extends SpecialPage {
 							case 'saveforum':
 								$output .= $forum->edit( $title, $text, $request->getVal( 'announcement' ) );
 								break;
+							/* Also disabled due to T312733
 							case 'deleteforum':
 								$output .= $forum->delete();
 								break;
@@ -156,7 +165,7 @@ class SpecialWikiForum extends SpecialPage {
 							case 'forumdown':
 								$output .= $forum->sortDown();
 								break;
-
+							*/
 							case 'addthread':
 								$output .= $forum->showNewThreadForm( '', '' );
 								break;
@@ -194,12 +203,14 @@ class SpecialWikiForum extends SpecialPage {
 							case 'deletethread':
 								$output .= $thread->delete();
 								break;
+							/* See above why these are commented out but tl,dr: T312733
 							case 'removesticky':
 								$output .= $thread->removeSticky();
 								break;
 							case 'makesticky':
 								$output .= $thread->makeSticky();
 								break;
+							*/
 							case 'closethread':
 								$output .= $thread->close();
 								break;

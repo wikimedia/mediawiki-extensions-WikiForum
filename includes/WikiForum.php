@@ -15,14 +15,14 @@ class WikiForum {
 	 *
 	 * @param string $errorTitleMsg message key
 	 * @param string $errorMessageMsg message key
-	 * @param string $errorIcon icon finename (optional)
+	 * @param string $errorIcon icon filename (optional)
 	 * @return string HTML
 	 */
 	static function showErrorMessage( $errorTitleMsg, $errorMessageMsg, $errorIcon = 'exclamation.png' ) {
 		global $wgExtensionAssetsPath;
 
-		$errorTitle = wfMessage( $errorTitleMsg )->text();
-		$errorMessage = wfMessage( $errorMessageMsg )->text();
+		$errorTitle = wfMessage( $errorTitleMsg )->parse();
+		$errorMessage = wfMessage( $errorMessageMsg )->parse();
 
 		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/' . $errorIcon . '" /> ';
 
@@ -68,7 +68,7 @@ class WikiForum {
 		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
 			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
 			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ) . '">' .
-				wfMessage( 'wikiforum-add-category' )->text() . '</a>';
+				wfMessage( 'wikiforum-add-category' )->escaped() . '</a>';
 			$output .= WikiForumGui::showHeaderRow( '', $user, $menuLink );
 		}
 

@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jack Phoenix"
+		]
+	},
+	"wikiforum-invalid-id": "Generic error message used in most/all of WikiForum's API modules when the module is passed an invalid thread, category or forum identifier, i.e. there is no such thread, category or forum, or the thread, category or forum in question was deleted, or the passed parameter was not even a number.",
+	"apihelp-wikiforum-admin-delete-summary": "{{doc-apihelp-summary|wikiforum-admin-delete}}",
+	"apihelp-wikiforum-admin-delete-param-id": "{{doc-apihelp-param|wikiforum-admin-delete|id}}",
+	"apihelp-wikiforum-admin-delete-param-iscategory": "{{doc-apihelp-param|wikiforum-admin-delete|iscategory}}",
+	"apihelp-wikiforum-admin-delete-example-1": "{{doc-apihelp-example|wikiforum-admin-delete}}",
+
+	"apihelp-wikiforum-set-thread-stickiness-summary": "{{doc-apihelp-summary|wikiforum-set-thread-stickiness}}",
+	"apihelp-wikiforum-set-thread-stickiness-param-id": "{{doc-apihelp-param|wikiforum-set-thread-stickiness|id}}",
+	"apihelp-wikiforum-set-thread-stickiness-param-stickiness": "{{doc-apihelp-param|wikiforum-set-thread-stickiness|stickiness}}",
+	"apihelp-wikiforum-set-thread-stickiness-example-1": "{{doc-apihelp-example|wikiforum-set-thread-stickiness}}",
+
+	"apihelp-wikiforum-sort-summary": "{{doc-apihelp-summary|wikiforum-sort}}",
+	"apihelp-wikiforum-sort-param-direction": "{{doc-apihelp-param|wikiforum-sort|direction}}",
+	"apihelp-wikiforum-sort-param-id": "{{doc-apihelp-param|wikiforum-sort|id}}",
+	"apihelp-wikiforum-sort-param-iscategory": "{{doc-apihelp-param|wikiforum-sort|iscategory}}",
+	"apihelp-wikiforum-sort-example-1": "{{doc-apihelp-example|wikiforum-sort}}"
+}

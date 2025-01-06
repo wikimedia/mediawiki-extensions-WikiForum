@@ -195,6 +195,10 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 		}
 
+		if ( !$user->matchEditToken( $this->getRequest()->getVal( 'wpToken' ) ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'sessionfailure' );
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->delete(
 			'wikiforum_replies',
@@ -216,6 +220,7 @@ class WFReply extends ContextSource {
 	 * @return string HTML of thread
 	 */
 	function edit( $text ) {
+		$request = $this->getRequest();
 		$user = $this->getUser();
 
 		if ( strlen( $text ) == 0 ) {
@@ -239,6 +244,10 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
 		}
 
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'sessionfailure' );
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->update(
 			'wikiforum_replies',
@@ -246,7 +255,7 @@ class WFReply extends ContextSource {
 				'wfr_reply_text' => $text,
 				'wfr_edit_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wfr_edit_actor' => $user->getActorId(),
-				'wfr_edit_user_ip' => $this->getRequest()->getIP(),
+				'wfr_edit_user_ip' => $request->getIP(),
 			],
 			[ 'wfr_reply_id' => $this->getId() ],
 			__METHOD__
@@ -329,9 +338,10 @@ class WFReply extends ContextSource {
 	 * @return string HTML of thread
 	 */
 	static function add( WFThread $thread, $text ) {
-		global $wgRequest, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
+		global $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC;
 
 		$timestamp = wfTimestampNow();
+		$request = $thread->getRequest();
 		$user = $thread->getUser();
 
 		if ( !$wgWikiForumAllowAnonymous && !$user->isRegistered() ) {
@@ -349,12 +359,16 @@ class WFReply extends ContextSource {
 		if ( WikiForum::useCaptcha( $user ) ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
-			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $user ) ) {
+			if ( !$captcha->passCaptchaFromRequest( $request, $user ) ) {
 				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
 				$thread->preloadText = $text;
 				$output .= $thread->show();
 				return $output;
 			}
+		}
+
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
 		}
 
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
@@ -400,7 +414,7 @@ class WFReply extends ContextSource {
 				'wft_reply_count = wft_reply_count + 1',
 				'wft_last_post_timestamp' => $timestamp,
 				'wft_last_post_actor' => $user->getActorId(),
-				'wft_last_post_user_ip' => $wgRequest->getIP(),
+				'wft_last_post_user_ip' => $request->getIP(),
 			],
 			[ 'wft_thread' => $thread->getId() ],
 			__METHOD__
@@ -416,10 +430,10 @@ class WFReply extends ContextSource {
 		$logEntry = new ManualLogEntry( 'forum', 'add-reply' );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
-		$shortText = $wgLang->truncateForDatabase( $text, 50 );
+		$shortText = $thread->getLanguage()->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
-				'4::thread-name' => $thread->getName(),
+			'4::thread-name' => $thread->getName(),
 		] );
 		$logid = $logEntry->insert();
 		if ( $wgWikiForumLogInRC ) {

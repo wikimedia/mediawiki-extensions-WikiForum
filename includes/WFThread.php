@@ -165,7 +165,7 @@ class WFThread extends ContextSource {
 	 * @return string HTML the link
 	 */
 	function showLink( $reply = false ) {
-		return '<a href="' . $this->getURL() . '">' . $this->getName() . '</a>';
+		return '<a href="' . $this->getURL( $reply ) . '">' . htmlspecialchars( $this->getName(), ENT_QUOTES ) . '</a>';
 	}
 
 	/**
@@ -316,6 +316,7 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	function delete() {
+		$request = $this->getRequest();
 		$user = $this->getUser();
 
 		if (
@@ -326,14 +327,21 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-delete', 'sessionfailure' );
+			return $error . $this->show();
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->delete(
 			'wikiforum_threads',
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
+
 		// Update threads/replies counters
 		$replyCount = $this->getReplyCount();
+
 		// When the thread we're about to delete is deleted, we also need
 		// to update the information about the latest post & its author
 		$row = $dbw->selectRow(
@@ -347,6 +355,7 @@ class WFThread extends ContextSource {
 			__METHOD__,
 			[ 'LIMIT' => 1 ]
 		);
+
 		// Update the forum table so that the data shown on Special:WikiForum is up to date
 		$dbw->update(
 			'wikiforum_forums',
@@ -370,10 +379,19 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	function reopen() {
-		if ( !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
+		$request = $this->getRequest();
+		$user = $this->getUser();
+
+		if ( !$user->isAllowed( 'wikiforum-moderator' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-thread-reopen', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
+
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-thread-reopen', 'sessionfailure' );
+			return $error . $this->show();
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->update(
 			'wikiforum_threads',
@@ -397,10 +415,16 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	function close() {
+		$request = $this->getRequest();
 		$user = $this->getUser();
 
 		if ( !$user->isAllowed( 'wikiforum-moderator' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-thread-close', 'wikiforum-error-general' );
+			return $error . $this->show();
+		}
+
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-thread-close', 'sessionfailure' );
 			return $error . $this->show();
 		}
 
@@ -410,7 +434,7 @@ class WFThread extends ContextSource {
 			[
 				'wft_closed_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wft_closed_actor' => $user->getActorId(),
-				'wft_closed_user_ip' => $this->getRequest()->getIP()
+				'wft_closed_user_ip' => $request->getIP()
 			],
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
@@ -418,7 +442,7 @@ class WFThread extends ContextSource {
 
 		$this->data->wft_closed_timestamp = wfTimestampNow();
 		$this->data->wft_closed_actor = $user->getActorId();
-		$this->data->wft_closed_user_ip = $this->getRequest()->getIP();
+		$this->data->wft_closed_user_ip = $request->getIP();
 
 		return $this->show();
 	}
@@ -426,7 +450,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Make the thread sticky
 	 *
-	 * @return bool success?
+	 * @return string HTML -- whatever sticky() returned
 	 */
 	function makeSticky() {
 		return $this->sticky( 1 );
@@ -435,7 +459,7 @@ class WFThread extends ContextSource {
 	/**
 	 * Stop the thread being sticky
 	 *
-	 * @return bool success?
+	 * @return string HTML -- whatever sticky() returned
 	 */
 	function removeSticky() {
 		return $this->sticky( 0 );
@@ -448,10 +472,22 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	private function sticky( $value ) {
-		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
+		$request = $this->getRequest();
+		$user = $this->getUser();
+
+		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-sticky', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
+
+		/* This actually won't work because there _isn't_ a form involved w/ this request...
+		it's just a pure GET with the appropriate URL parameter(s) set. So we need to change
+		that to make this part of the codebase /truly/ immune to CSRF.
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-sticky', 'sessionfailure' );
+			return $error . $this->show();
+		}
+		*/
 
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->update(
@@ -474,9 +510,13 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	function edit( $title, $text ) {
+		$request = $this->getRequest();
 		$user = $this->getUser();
 
-		if ( strlen( $text ) <= 1 || strlen( $title ) <= 1 ) {
+		if (
+			( $text && $title && strlen( $text ) == 1 ) ||
+			strlen( $title ) == 1
+		) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
 			return $error . $this->showEditor();
 		}
@@ -496,6 +536,11 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'sessionfailure' );
+			return $error . $this->show();
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->update(
 			'wikiforum_threads',
@@ -504,7 +549,7 @@ class WFThread extends ContextSource {
 				'wft_text' => $text,
 				'wft_edit_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wft_edit_actor' => $user->getActorId(),
-				'wft_edit_user_ip' => $this->getRequest()->getIP(),
+				'wft_edit_user_ip' => $request->getIP(),
 			],
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
@@ -514,7 +559,7 @@ class WFThread extends ContextSource {
 		$this->data->wft_text = $text;
 		$this->data->wft_edit_timestamp = wfTimestampNow();
 		$this->data->wft_edit_actor = $user->getActorId();
-		$this->data->wft_edit_user_ip = $this->getRequest()->getIP();
+		$this->data->wft_edit_user_ip = $request->getIP();
 
 		return $this->show();
 	}
@@ -538,13 +583,13 @@ class WFThread extends ContextSource {
 
 		$imagePath = $extensionAssetsPath . '/WikiForum/resources/images';
 		if ( $this->isSticky() ) {
-			return '<img src="' . $imagePath . '/tag_blue.png" title="' . $this->msg( 'wikiforum-sticky' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/tag_blue.png" title="' . $this->msg( 'wikiforum-sticky' )->escaped() . '" /> ';
 		} elseif ( $this->isClosed() ) {
-			return '<img src="' . $imagePath . '/lock.png" title="' . $this->msg( 'wikiforum-thread-closed' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/lock.png" title="' . $this->msg( 'wikiforum-thread-closed' )->escaped() . '" /> ';
 		} elseif ( $this->getPostedTimestamp() > $olderTimestamp ) {
-			return '<img src="' . $imagePath . '/new.png" title="' . $this->msg( 'wikiforum-new-thread' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/new.png" title="' . $this->msg( 'wikiforum-new-thread' )->escaped() . '" /> ';
 		} else {
-			return '<img src="' . $imagePath . '/note.png" title="' . $this->msg( 'wikiforum-thread' )->text() . '" /> ';
+			return '<img src="' . $imagePath . '/note.png" title="' . $this->msg( 'wikiforum-thread' )->escaped() . '" /> ';
 		}
 	}
 
@@ -566,13 +611,16 @@ class WFThread extends ContextSource {
 		$menuLink = '';
 
 		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
+			// @see T312733
+			$out->addModules( 'ext.wikiForum.admin-sticky-links' );
+
 			if ( $this->isSticky() ) {
 				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/tag_blue_delete.png" title="' . $this->msg( 'wikiforum-remove-sticky' )->escaped() . '" /> ';
-				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ) ) . '">' .
+				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ) ) . '" class="wikiforum-thread-remove-sticky" data-wikiforum-thread-id="' . $this->getId() . '">' .
 					$this->msg( 'wikiforum-remove-sticky' )->escaped() . '</a> ';
 			} else {
 				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/tag_blue_add.png" title="' . $this->msg( 'wikiforum-make-sticky' )->escaped() . '" /> ';
-				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'makesticky', 'thread' => $this->getId() ] ) ) . '">' .
+				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'makesticky', 'thread' => $this->getId() ] ) ) . '" class="wikiforum-thread-make-sticky" data-wikiforum-thread-id="' . $this->getId() . '">' .
 					$this->msg( 'wikiforum-make-sticky' )->escaped() . '</a> ';
 			}
 		}
@@ -601,7 +649,7 @@ class WFThread extends ContextSource {
 		$maxPerPage = intval( $this->msg( 'wikiforum-max-replies-per-page' )->inContentLanguage()->plain() );
 
 		if ( is_numeric( $request->getVal( 'page' ) ) ) {
-			$limit_page = $request->getVal( 'page' ) - 1;
+			$limit_page = $request->getInt( 'page' ) - 1;
 		} else {
 			$limit_page = 0;
 		}
@@ -777,7 +825,9 @@ class WFThread extends ContextSource {
 	 * @return string HTML
 	 */
 	static function add( WFForum $forum, $title, $text ) {
-		global $wgRequest, $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC, $wgLang;
+		global $wgWikiForumAllowAnonymous, $wgWikiForumLogInRC;
+
+		$request = $forum->getRequest();
 		$user = $forum->getUser();
 
 		if ( !$wgWikiForumAllowAnonymous && $user->isAnon() ) {
@@ -806,7 +856,7 @@ class WFThread extends ContextSource {
 		if ( WikiForum::useCaptcha( $user ) ) {
 			$captcha = ConfirmEditHooks::getInstance();
 			$captcha->setTrigger( 'wikiforum' );
-			if ( !$captcha->passCaptchaFromRequest( $wgRequest, $user ) ) {
+			if ( !$captcha->passCaptchaFromRequest( $request, $user ) ) {
 				$output = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-captcha' );
 				$output .= self::showGeneralEditor(
 					$title,
@@ -821,6 +871,10 @@ class WFThread extends ContextSource {
 			}
 		}
 
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$timestamp = wfTimestampNow();
 
@@ -831,7 +885,7 @@ class WFThread extends ContextSource {
 				'wft_text' => $text,
 				'wft_posted_timestamp' => $dbw->timestamp( $timestamp ),
 				'wft_actor' => $user->getActorId(),
-				'wft_user_ip' => $wgRequest->getIP(),
+				'wft_user_ip' => $request->getIP(),
 				'wft_forum' => $forum->getId(),
 				'wft_last_post_timestamp' => $dbw->timestamp( $timestamp )
 			],
@@ -846,7 +900,7 @@ class WFThread extends ContextSource {
 			[
 				'wff_thread_count = wff_thread_count + 1',
 				'wff_last_post_actor' => $user->getActorId(),
-				'wff_last_post_user_ip' => $wgRequest->getIP(),
+				'wff_last_post_user_ip' => $request->getIP(),
 				'wff_last_post_timestamp' => $dbw->timestamp( $timestamp )
 			],
 			[ 'wff_forum' => $forum->getId() ],
@@ -856,7 +910,7 @@ class WFThread extends ContextSource {
 		$logEntry = new ManualLogEntry( 'forum', 'add-thread' );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
-		$shortText = $wgLang->truncateForDatabase( $text, 50 );
+		$shortText = $forum->getLanguage()->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
 			'4::thread-name' => $title

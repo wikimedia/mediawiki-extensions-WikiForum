@@ -1,6 +1,6 @@
 {
 	"name": "WikiForum",
-	"version": "2.6.0",
+	"version": "2.7.0",
 	"author": [
 		"Michael Chlebek",
 		"Jack Phoenix",
@@ -48,13 +48,22 @@
 	},
 	"MessagesDirs": {
 		"WikiForum": [
-			"i18n"
+			"i18n",
+			"i18n/api"
 		]
 	},
 	"ExtensionMessagesFiles": {
 		"WikiForumAlias": "includes/WikiForum.i18n.alias.php"
 	},
+	"APIModules": {
+		"wikiforum-admin-delete": "ApiWikiForumAdminDelete",
+		"wikiforum-set-thread-stickiness": "ApiWikiForumSetThreadStickiness",
+		"wikiforum-sort": "ApiWikiForumSort"
+	},
 	"AutoloadClasses": {
+		"ApiWikiForumAdminDelete": "includes/api/ApiWikiForumAdminDelete.php",
+		"ApiWikiForumSetThreadStickiness": "includes/api/ApiWikiForumSetThreadStickiness.php",
+		"ApiWikiForumSort": "includes/api/ApiWikiForumSort.php",
 		"MigrateOldWikiForumTimestampColumnsToNew": "maintenance/migrateOldWikiForumTimestampColumnsToNew.php",
 		"MigrateOldWikiForumUserColumnsToActor": "maintenance/migrateOldWikiForumUserColumnsToActor.php",
 		"WikiForumHooks": "includes/WikiForumHooks.php",
@@ -69,6 +78,14 @@
 	"ResourceModules": {
 		"ext.wikiForum": {
 			"styles": "resources/css/styles.css"
+		},
+		"ext.wikiForum.admin-links": {
+			"scripts": "resources/js/ext.wikiForum.admin-links.js",
+			"dependencies": "mediawiki.api"
+		},
+		"ext.wikiForum.admin-sticky-links": {
+			"scripts": "resources/js/ext.wikiForum.admin-sticky-links.js",
+			"dependencies": "mediawiki.api"
 		}
 	},
 	"ResourceFileModulePaths": {

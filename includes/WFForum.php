@@ -83,7 +83,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Get this forum's name/title
 	 *
-	 * @return string
+	 * @return string Unescaped name pulled from the DB; remember to escape it yourself!
 	 */
 	function getName() {
 		return $this->data->wff_forum_name;
@@ -92,16 +92,16 @@ class WFForum extends ContextSource {
 	/**
 	 * Show a forum's name for displaying (often in tooltips)
 	 *
-	 * @return string
+	 * @return string HTML-safe i18n message
 	 */
 	function showName() {
-		return $this->msg( 'wikiforum-forum-name', $this->getName() )->text();
+		return $this->msg( 'wikiforum-forum-name', $this->getName() )->escaped();
 	}
 
 	/**
 	 * Get the text/description of this forum
 	 *
-	 * @return string
+	 * @return string Unescaped string pulled from the DB; remember to escape it yourself!
 	 */
 	function getText() {
 		return $this->data->wff_description;
@@ -215,7 +215,7 @@ class WFForum extends ContextSource {
 	/**
 	 * Get the URL to this forum
 	 *
-	 * @return string the URL
+	 * @return string the URL (properly escaped and thus HTML-safe)
 	 */
 	function getURL() {
 		$page = SpecialPage::getTitleFor( 'WikiForum' );
@@ -231,17 +231,17 @@ class WFForum extends ContextSource {
 	function showLink() {
 		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 
-		$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder.png" title="' . $this->msg( 'wikiforum-forum-name', $this->getName() )->text() . '" /> ';
+		$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder.png" title="' . $this->msg( 'wikiforum-forum-name', $this->getName() )->escaped() . '" /> ';
 		return $icon . $this->showPlainLink();
 	}
 
 	/**
 	 * Show a link to this forum, without icon
 	 *
-	 * @return string
+	 * @return string Properly escaped HTML string
 	 */
 	function showPlainLink() {
-		return '<a href="' . $this->getURL() . '">' . $this->getName() . '</a>';
+		return '<a href="' . $this->getURL() . '">' . htmlspecialchars( $this->getName(), ENT_QUOTES ) . '</a>';
 	}
 
 	/**
@@ -251,7 +251,8 @@ class WFForum extends ContextSource {
 	 */
 	function showListItem() {
 		$output = '<tr class="mw-wikiforum-marked"> <td class="mw-wikiforum-title">
-				<p class="mw-wikiforum-issue">' . $this->showLink() . '</p><p class="mw-wikiforum-descr">' . $this->getText() . '</p></td>';
+				<p class="mw-wikiforum-issue">' . $this->showLink() . '</p><p class="mw-wikiforum-descr">' .
+				htmlspecialchars( $this->getText(), ENT_QUOTES ) . '</p></td>';
 
 		$icons = $this->showAdminIcons( true );
 		if ( $icons ) {
@@ -267,8 +268,8 @@ class WFForum extends ContextSource {
 	/**
 	 * Show icons for administrative functions (edit, delete, sort up/down).
 	 *
-	 * @param bool $sort
-	 * @return string HTML
+	 * @param bool $sort Display "sort up" and "sort down" links?
+	 * @return string HTML Links for privileged users, nothing for those w/o the wikiforum-admin user right
 	 */
 	function showAdminIcons( $sort ) {
 		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
@@ -278,18 +279,21 @@ class WFForum extends ContextSource {
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_edit.png" title="' . $this->msg( 'wikiforum-edit-forum' )->text() . '" />';
+			// @see https://phabricator.wikimedia.org/T312733
+			$this->getOutput()->addModules( 'ext.wikiForum.admin-links' );
+
+			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_edit.png" title="' . $this->msg( 'wikiforum-edit-forum' )->escaped() . '" />';
 			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editforum', 'forum' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_delete.png" title="' . $this->msg( 'wikiforum-delete-forum' )->text() . '" />';
-			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deleteforum', 'forum' => $this->getId() ] ) ) . '">' . $icon . '</a>';
+			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_delete.png" title="' . $this->msg( 'wikiforum-delete-forum' )->escaped() . '" />';
+			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deleteforum', 'forum' => $this->getId() ] ) ) . '" class="wikiforum-delete-forum-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
 
 			if ( $sort ) {
-				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . $this->msg( 'wikiforum-sort-up' )->text() . '" />';
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumup', 'forum' => $this->getId() ] ) ) . '">' . $icon . '</a>';
+				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . $this->msg( 'wikiforum-sort-up' )->escaped() . '" />';
+				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumup', 'forum' => $this->getId() ] ) ) . '"class="wikiforum-up-link wikiforum-forum-sort-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
 
-				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . $this->msg( 'wikiforum-sort-down' )->text() . '" />';
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumdown', 'forum' => $this->getId() ] ) ) . '">' . $icon . '</a>';
+				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . $this->msg( 'wikiforum-sort-down' )->escaped() . '" />';
+				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumdown', 'forum' => $this->getId() ] ) ) . '" class="wikiforum-down-link wikiforum-forum-sort-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
 			}
 		}
 
@@ -316,14 +320,21 @@ class WFForum extends ContextSource {
 	 * @return string HTML
 	 */
 	function edit( $forumName, $description, $announcement ) {
+		$request = $this->getRequest();
 		$user = $this->getUser();
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 			return $error . $this->show();
 		}
+
 		if ( strlen( $forumName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
+			return $error . $this->showEditForm();
+		}
+
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
 			return $error . $this->showEditForm();
 		}
 
@@ -342,7 +353,7 @@ class WFForum extends ContextSource {
 					'wff_description' => $description,
 					'wff_edited_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 					'wff_edited_actor' => $user->getActorId(),
-					'wff_edited_user_ip' => $this->getRequest()->getIP(),
+					'wff_edited_user_ip' => $request->getIP(),
 					'wff_announcement' => (bool)$announcement
 				],
 				[ 'wff_forum' => $this->getId() ],
@@ -354,7 +365,7 @@ class WFForum extends ContextSource {
 		$this->data->wff_description = $description;
 		$this->data->wff_edited_timestamp = wfTimestampNow();
 		$this->data->wff_edited_actor = $user->getActorId();
-		$this->data->wff_edited_user_ip = $this->getRequest()->getIP();
+		$this->data->wff_edited_user_ip = $request->getIP();
 		$this->data->wff_announcement = $announcement;
 
 		return $this->show();
@@ -372,6 +383,9 @@ class WFForum extends ContextSource {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 			return $error . $this->show();
 		}
+
+		// @todo FIXME: anti-CSRF feature would go here but since the request is currently a GET
+		// request...
 
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->delete(
@@ -404,9 +418,9 @@ class WFForum extends ContextSource {
 		if ( $this->isAnnouncement() && !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
 			$write_thread = '';
 		} else {
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/note_add.png" title="' . $this->msg( 'wikiforum-write-thread' )->text() . '" /> ';
+			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/note_add.png" title="' . $this->msg( 'wikiforum-write-thread' )->escaped() . '" /> ';
 			$write_thread = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'addthread', 'forum' => $this->getId() ] ) ) . '">' .
-				$this->msg( 'wikiforum-write-thread' ) . '</a>';
+				$this->msg( 'wikiforum-write-thread' )->escaped() . '</a>';
 		}
 
 		$output .= WikiForumGui::showSearchbox();
@@ -417,20 +431,20 @@ class WFForum extends ContextSource {
 		// The <br />s are here to fix ShoutWiki bug #176
 		// @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=174
 		$output .= WikiForumGui::showMainHeader(
-			$this->getName() . ' <a href="' .
+			htmlspecialchars( $this->getName(), ENT_QUOTES ) . ' <a href="' .
 			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'thread', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up .
 			'</a><a href="' .
 			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'thread', 'sd' => 'down', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>',
 
-			$this->msg( 'wikiforum-replies' )->text() . ' <br /><a href="' .
+			$this->msg( 'wikiforum-replies' )->escaped() . ' <br /><a href="' .
 			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'answers', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up .
 			'</a><a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'answers', 'sd' => 'down', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>',
 
-			$this->msg( 'wikiforum-views' )->text() . ' <br /><a href="' .
+			$this->msg( 'wikiforum-views' )->escaped() . ' <br /><a href="' .
 			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'calls', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up . '</a><a href="' .
 			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'calls', 'sd' => 'down', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>',
 
-			$this->msg( 'wikiforum-latest-reply' )->text() . ' <br /><a href="' .
+			$this->msg( 'wikiforum-latest-reply' )->escaped() . ' <br /><a href="' .
 			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up .
 			'</a><a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>'
 		);
@@ -474,7 +488,8 @@ class WFForum extends ContextSource {
 		}
 
 		if ( !$threads ) {
-			$output .= '<tr class="sub"><td class="mw-wikiforum-title" colspan="4">' . $this->msg( 'wikiforum-no-threads' )->text() . '</td></tr>';
+			$output .= '<tr class="sub"><td class="mw-wikiforum-title" colspan="4">' .
+				$this->msg( 'wikiforum-no-threads' )->escaped() . '</td></tr>';
 		}
 		$output .= WikiForumGui::showMainFooter();
 
@@ -510,6 +525,9 @@ class WFForum extends ContextSource {
 	 * @return string HTML
 	 */
 	private function sort( $direction_up ) {
+		// @todo FIXME: needs anti-CSRF support...somehow
+		// ashley 22 May 2024: now sorta done via the API module + JS which uses that +
+		// commenting out the code in SpecialWikiForum.php which calls this directly
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
@@ -564,15 +582,23 @@ class WFForum extends ContextSource {
 	 * @return string HTML
 	 */
 	static function add( WFCategory $category, $forumName, $description, $announcement ) {
-		global $wgWikiForumLogInRC, $wgRequest, $wgLang;
+		global $wgWikiForumLogInRC;
+
+		$request = $category->getRequest();
 		$user = $category->getUser();
 
 		if ( strlen( $forumName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . $category->showAddForumForm();
 		}
+
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
+			return $error . $category->show();
+		}
+
+		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
 			return $error . $category->show();
 		}
 
@@ -595,7 +621,7 @@ class WFForum extends ContextSource {
 				'wff_sortkey' => ( $sortKey->the_key + 1 ),
 				'wff_added_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 				'wff_added_actor' => $user->getActorId(),
-				'wff_added_user_ip' => $wgRequest->getIP(),
+				'wff_added_user_ip' => $request->getIP(),
 				'wff_announcement' => $announcement
 			],
 			__METHOD__
@@ -607,7 +633,7 @@ class WFForum extends ContextSource {
 		$logEntry = new ManualLogEntry( 'forum', 'add-forum' );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
-		$shortText = $wgLang->truncateForDatabase( $description, 50 );
+		$shortText = $category->getLanguage()->truncateForDatabase( $description, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
 			'4::forum-url' => $forum->getURL(),
@@ -661,14 +687,14 @@ class WFForum extends ContextSource {
 		}
 		$extraRow = '<tr>
 			<td>
-				<p>' . wfMessage( 'wikiforum-description' )->text() . '</p>
+				<p>' . wfMessage( 'wikiforum-description' )->escaped() . '</p>
 				<textarea name="text" style="height: 40px;">' . $textValue . '</textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<p><input type="checkbox" name="announcement"' . $check . '/> ' .
-					wfMessage( 'wikiforum-announcement-only-description' )->text() .
+					wfMessage( 'wikiforum-announcement-only-description' )->escaped() .
 					'</p>
 			</td>
 		</tr>';
@@ -683,7 +709,7 @@ class WFForum extends ContextSource {
 	 */
 	function showEditForm() {
 		$params = [ 'wfaction' => 'saveforum', 'forum' => $this->getId() ];
-		return self::showForm( $params, '', $this->getName(), $this->getText(), $this->isAnnouncement(), $this->msg( 'wikiforum-edit-forum' )->text(), $this->getUser() );
+		return self::showForm( $params, '', $this->getName(), $this->getText(), $this->isAnnouncement(), $this->msg( 'wikiforum-edit-forum' )->escaped(), $this->getUser() );
 	}
 
 	/**
@@ -696,7 +722,7 @@ class WFForum extends ContextSource {
 	function showNewThreadForm( $preloadTitle, $preloadText ) {
 		return WFThread::showGeneralEditor(
 			$preloadTitle,
-			$this->msg( 'wikiforum-thread-title' )->text(),
+			$this->msg( 'wikiforum-thread-title' )->escaped(),
 			$preloadText,
 			[
 				'wfaction' => 'savenewthread',

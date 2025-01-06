@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jack Phoenix"
+		]
+	},
+	"wikiforum-invalid-id": "Invalid ID",
+	"apihelp-wikiforum-admin-delete-summary": "Delete a forum category or forum",
+	"apihelp-wikiforum-admin-delete-param-id": "ID of the thing to be deleted",
+	"apihelp-wikiforum-admin-delete-param-iscategory": "Is the thing about to be deleted a forum category?",
+	"apihelp-wikiforum-admin-delete-example-1": "Delete the category with the ID #32",
+
+	"apihelp-wikiforum-set-thread-stickiness-summary": "Set the stickiness status of a thread, i.e. make a previously sticky thread a regular thread or turn a regular thread into a sticky thread",
+	"apihelp-wikiforum-set-thread-stickiness-param-id": "ID of the thread",
+	"apihelp-wikiforum-set-thread-stickiness-param-stickiness": "Action to take, either <kbd>set</kbd> to make a thread sticky or <kbd>remove</kbd> to remove a thread's sticky status",
+	"apihelp-wikiforum-set-thread-stickiness-example-1": "Make the thread with the ID #666 sticky",
+
+	"apihelp-wikiforum-sort-summary": "Move a forum or a category up or down in the overview listing (Special:WikiForum)",
+	"apihelp-wikiforum-sort-param-direction": "Direction to move the category or forum to, either <kbd>up</kbd> or <kbd>down</kbd>",
+	"apihelp-wikiforum-sort-param-id": "ID of the forum or category to sort",
+	"apihelp-wikiforum-sort-param-iscategory": "Is the thing about to be sorted a forum category?",
+	"apihelp-wikiforum-sort-example-1": "Move the forum category with the ID #32 up"
+}

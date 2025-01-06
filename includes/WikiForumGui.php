@@ -40,7 +40,7 @@ class WikiForumGui {
 
 		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] ) );
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->text() . '" />';
+		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->escaped() . '" />';
 
 		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $url . '">' .
 			'<div id="mw-wikiforum-searchbox-border">' . $icon .
@@ -97,9 +97,8 @@ class WikiForumGui {
 				}
 
 				$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
-				wfMessage( 'wikiforum-pages' )
-				->numParams( $pageNumber )->text() .
-				wfMessage( 'word-separator' )->plain();
+					wfMessage( 'wikiforum-pages' )->numParams( $pageNumber )->parse() .
+					wfMessage( 'word-separator' )->parse();
 
 				if ( $i != $page + 1 ) {
 					$output .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( $urlParams ) ) . '">' . $pageNumber . '</a>';
@@ -107,7 +106,7 @@ class WikiForumGui {
 					$output .= '[' . $pageNumber . ']';
 				}
 
-				$output .= wfMessage( 'word-separator' )->plain();
+				$output .= wfMessage( 'word-separator' )->parse();
 			}
 			$output .= '</td><td class="mw-wikiforum-rightside">';
 			$output .= '</td></tr></table>';
@@ -117,6 +116,8 @@ class WikiForumGui {
 
 	/**
 	 * Show the header for Forum and Category pages
+	 *
+	 * @note Caller(s) should escape the $titleN variables!
 	 *
 	 * @param string $title1
 	 * @param string $title2
@@ -133,6 +134,8 @@ class WikiForumGui {
 	/**
 	 * Show the header for the <WikiForumList> tag
 	 *
+	 * @note Caller(s) should escape the $titleN variables!
+	 *
 	 * @param string $title1
 	 * @param string $title2
 	 * @param string $title3
@@ -146,6 +149,8 @@ class WikiForumGui {
 
 	/**
 	 * Show the header row. Only called from other GUI methods.
+	 *
+	 * @note Caller(s) should escape the $titleN variables!
 	 *
 	 * @param string $title1
 	 * @param string $title2
@@ -268,6 +273,7 @@ class WikiForumGui {
 			}
 			$output .= '<tr>
 					<td>
+						<input type="hidden" name="wpToken" value="' . $user->getEditToken() . '" />
 						<input type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />';
 			if ( $showCancel ) {
 				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />';
@@ -299,15 +305,16 @@ class WikiForumGui {
 				</tr>
 				<tr>
 					<td>
-						<p>' . wfMessage( 'wikiforum-name' )->text() . '</p>
+						<p>' . wfMessage( 'wikiforum-name' )->escaped() . '</p>
 						<input type="text" name="name" style="width: 100%" value="' . $titleValue . '" placeholder="' . $titlePlaceholder . '" />
 					</td>
 				</tr>
 					' . $extraRow . '
 				<tr>
 					<td>
-						<input type="submit" value="' . wfMessage( 'wikiforum-save' )->text() . '" accesskey="s" title="' . wfMessage( 'wikiforum-save' )->text() . '" [s]" />
-						<input type="button" value="' . wfMessage( 'cancel' )->text() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->text() . ' [c]" />
+						<input type="hidden" name="wpToken" value="' . RequestContext::getMain()->getUser()->getEditToken() . '" />
+						<input type="submit" value="' . wfMessage( 'wikiforum-save' )->escaped() . '" accesskey="s" title="' . wfMessage( 'wikiforum-save' )->escaped() . '" [s]" />
+						<input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />
 					</td>
 				</tr>
 			</table>
@@ -371,15 +378,15 @@ class WikiForumGui {
 	 * @return string
 	 */
 	private static function showInfo( $message, $timestamp, $userLink, $userText ) {
-		global $wgLang;
+		$lang = RequestContext::getMain()->getLanguage();
 
 		return wfMessage(
 			$message,
-			$wgLang->timeanddate( $timestamp ),
+			$lang->timeanddate( $timestamp ),
 			$userLink,
 			$userText,
-			$wgLang->date( $timestamp ),
-			$wgLang->time( $timestamp )
+			$lang->date( $timestamp ),
+			$lang->time( $timestamp )
 		)->text();
 	}
 }
