@@ -229,10 +229,11 @@ class WFForum extends ContextSource {
 	 * @return string HTML, the link
 	 */
 	function showLink() {
-		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
-
-		$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder.png" title="' . $this->msg( 'wikiforum-forum-name', $this->getName() )->escaped() . '" /> ';
-		return $icon . $this->showPlainLink();
+		$icon = WikiForum::getIconHTML(
+			'wikiforum-forum-name',
+			$this->msg( 'wikiforum-forum-name', $this->getName() )
+		);
+		return $icon . ' ' . $this->showPlainLink();
 	}
 
 	/**
@@ -272,8 +273,6 @@ class WFForum extends ContextSource {
 	 * @return string HTML Links for privileged users, nothing for those w/o the wikiforum-admin user right
 	 */
 	function showAdminIcons( $sort ) {
-		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
-
 		$link = '';
 
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
@@ -282,17 +281,17 @@ class WFForum extends ContextSource {
 			// @see https://phabricator.wikimedia.org/T312733
 			$this->getOutput()->addModules( 'ext.wikiForum.admin-links' );
 
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_edit.png" title="' . $this->msg( 'wikiforum-edit-forum' )->escaped() . '" />';
+			$icon = WikiForum::getIconHTML( 'wikiforum-edit-forum' );
 			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editforum', 'forum' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_delete.png" title="' . $this->msg( 'wikiforum-delete-forum' )->escaped() . '" />';
+			$icon = WikiForum::getIconHTML( 'wikiforum-delete-forum' );
 			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deleteforum', 'forum' => $this->getId() ] ) ) . '" class="wikiforum-delete-forum-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
 
 			if ( $sort ) {
-				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . $this->msg( 'wikiforum-sort-up' )->escaped() . '" />';
+				$icon = WikiForum::getIconHTML( 'wikiforum-sort-up' );
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumup', 'forum' => $this->getId() ] ) ) . '"class="wikiforum-up-link wikiforum-forum-sort-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
 
-				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . $this->msg( 'wikiforum-sort-down' )->escaped() . '" />';
+				$icon = WikiForum::getIconHTML( 'wikiforum-sort-down' );
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumdown', 'forum' => $this->getId() ] ) ) . '" class="wikiforum-down-link wikiforum-forum-sort-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
 			}
 		}
@@ -403,7 +402,6 @@ class WFForum extends ContextSource {
 	 * @return string HTML the forum
 	 */
 	function show() {
-		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
 		$request = $this->getRequest();
 
 		$output = '';
@@ -411,15 +409,15 @@ class WFForum extends ContextSource {
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$up = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/bullet_arrow_up.png" alt="" />';
-		$down = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/bullet_arrow_down.png" alt="" />';
+		$up = WikiForum::getIconHTML( 'wikiforum-bullet-arrow-up', $this->msg( 'sort-ascending' ) );
+		$down = WikiForum::getIconHTML( 'wikiforum-bullet-arrow-down', $this->msg( 'sort-descending' ) );
 
 		// Non-moderators cannot post in an announcement-only forum
 		if ( $this->isAnnouncement() && !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
 			$write_thread = '';
 		} else {
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/note_add.png" title="' . $this->msg( 'wikiforum-write-thread' )->escaped() . '" /> ';
-			$write_thread = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'addthread', 'forum' => $this->getId() ] ) ) . '">' .
+			$icon = WikiForum::getIconHTML( 'wikiforum-note-add' );
+			$write_thread = $icon . ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'addthread', 'forum' => $this->getId() ] ) ) . '">' .
 				$this->msg( 'wikiforum-write-thread' )->escaped() . '</a>';
 		}
 

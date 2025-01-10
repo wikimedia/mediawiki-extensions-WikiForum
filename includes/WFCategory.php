@@ -143,9 +143,7 @@ class WFCategory extends ContextSource {
 	 * @return string HTML, the link
 	 */
 	function showAddForumLink() {
-		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
-
-		$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/folder_add.png" title="' . $this->msg( 'wikiforum-add-forum' )->escaped() . '" /> ';
+		$icon = WikiForum::getIconHTML( 'wikiforum-add-forum' ) . ' ';
 		return $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addforum', 'category' => $this->getId() ] ) ) . '">' .
 			$this->msg( 'wikiforum-add-forum' )->escaped() . '</a>';
 	}
@@ -157,8 +155,6 @@ class WFCategory extends ContextSource {
 	 * @return string HTML Links for privileged users, nothing for those w/o the wikiforum-admin user right
 	 */
 	function showAdminIcons( $sort ) {
-		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
-
 		$link = '';
 
 		if ( $this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
@@ -167,19 +163,17 @@ class WFCategory extends ContextSource {
 			// @see https://phabricator.wikimedia.org/T312733
 			$this->getOutput()->addModules( 'ext.wikiForum.admin-links' );
 
-			// For grep: wikiforum-edit-forum, wikiforum-edit-category,
-			// wikiforum-delete-forum, wikiforum-delete-category
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/database_edit.png" title="' . $this->msg( 'wikiforum-edit-category' )->escaped() . '" />';
+			$icon = WikiForum::getIconHTML( 'wikiforum-edit-category' );
 			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editcategory', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
 
-			$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/database_delete.png" title="' . $this->msg( 'wikiforum-delete-category' )->escaped() . '" />';
+			$icon = WikiForum::getIconHTML( 'wikiforum-delete-category' );
 			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletecategory', 'category' => $this->getId() ] ) ) . '" class="wikiforum-delete-category-link" data-wikiforum-category-id="' . $this->getId() . '">' . $icon . '</a>';
 
 			if ( $sort ) {
-				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_up.png" title="' . $this->msg( 'wikiforum-sort-up' )->escaped() . '" />';
+				$icon = WikiForum::getIconHTML( 'wikiforum-sort-up' );
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categoryup', 'category' => $this->getId() ] ) ) . '" class="wikiforum-up-link wikiforum-category-sort-link" data-wikiforum-category-id="' . $this->getId() . '">' . $icon . '</a>';
 
-				$icon = '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/arrow_down.png" title="' . $this->msg( 'wikiforum-sort-down' )->escaped() . '" />';
+				$icon = WikiForum::getIconHTML( 'wikiforum-sort-down' );
 				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categorydown', 'category' => $this->getId() ] ) ) . '" class="wikiforum-down-link wikiforum-category-sort-link" data-wikiforum-category-id="' . $this->getId() . '">' . $icon . '</a>';
 			}
 		}

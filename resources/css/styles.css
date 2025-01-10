@@ -203,7 +203,8 @@ td.mw-wikiforum-thread-sub {
 	background: #f6f6f6;
 }
 
-#mw-wikiforum-searchbox-picture {
+.mw-wikiforum-searchbox-icon {
+	background-image: url( ../images/zoom.png );
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -264,4 +265,124 @@ td.mw-wikiforum-thread-sub {
 	word-wrap: break-word;
 	word-break: break-all;
 	table-layout: fixed;
+}
+
+/* Icons */
+.mw-wikiforum-icon {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	display: inline-flex;
+	line-height: 1;
+	text-rendering: auto;
+	vertical-align: -0.125em;
+}
+
+.mw-wikiforum-error-icon {
+	background-image: url( ../images/exclamation.png );
+}
+
+.mw-wikiforum-add-forum-icon {
+	background-image: url( ../images/folder_add.png );
+}
+
+.mw-wikiforum-edit-category-icon {
+	background-image: url( ../images/database_edit.png );
+}
+
+.mw-wikiforum-delete-category-icon {
+	background-image: url( ../images/database_delete.png );
+}
+
+.mw-wikiforum-sort-up-icon {
+	background-image: url( ../images/arrow_up.png );
+}
+
+.mw-wikiforum-sort-down-icon {
+	background-image: url( ../images/arrow_down.png );
+}
+
+.mw-wikiforum-forum-name {
+	background-image: url( ../images/folder.png );
+}
+
+.mw-wikiforum-edit-forum-icon {
+	background-image: url( ../images/folder_edit.png );
+}
+
+.mw-wikiforum-delete-forum-icon {
+	background-image: url( ../images/folder_delete.png );
+}
+
+.mw-wikiforum-note-add-icon {
+	background-image: url( ../images/note_add.png );
+}
+
+.mw-wikiforum-quote-icon {
+	background-image: url( ../images/comments_add.png );
+}
+
+.mw-wikiforum-edit-reply-icon {
+	background-image: url( ../images/comment_edit.png );
+}
+
+.mw-wikiforum-delete-reply-icon {
+	background-image: url( ../images/comment_delete.png );
+}
+
+.mw-wikiforum-sticky-icon {
+	background-image: url( ../images/tag_blue.png );
+}
+
+.mw-wikiforum-thread-closed-icon,
+.mw-wikiforum-lock-icon {
+	background-image: url( ../images/lock.png );
+}
+
+.mw-wikiforum-new-thread-icon {
+	background-image: url( ../images/new.png );
+}
+
+.mw-wikiforum-thread-icon {
+	background-image: url( ../images/note.png );
+}
+
+.mw-wikiforum-remove-sticky-icon {
+	background-image: url( ../images/tag_blue_delete.png );
+}
+
+.mw-wikiforum-make-sticky-icon {
+	background-image: url( ../images/tag_blue_add.png );
+}
+
+.mw-wikiforum-write-reply-icon {
+	background-image: url( ../images/comment_add.png );
+}
+
+.mw-wikiforum-edit-thread-icon {
+	background-image: url( ../images/note_edit.png );
+}
+
+.mw-wikiforum-delete-thread-icon {
+	background-image: url( ../images/note_delete.png );
+}
+
+.mw-wikiforum-close-thread-icon {
+	background-image: url( ../images/lock_add.png );
+}
+
+.mw-wikiforum-reopen-thread-icon {
+	background-image: url( ../images/lock_open.png );
+}
+
+.mw-wikiforum-add-category-icon {
+	background-image: url( ../images/database_add.png );
+}
+
+.mw-wikiforum-bullet-arrow-up-icon {
+	background-image: url( ../images/bullet_arrow_up.png );
+}
+
+.mw-wikiforum-bullet-arrow-down-icon {
+	background-image: url( ../images/bullet_arrow_down.png );
 }
