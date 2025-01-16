@@ -1,14 +1,21 @@
 /* CSS styles for WikiForum extension */
-table.mw-wikiforum-frame {
+.mw-wikiforum-frame {
 	clear: both; /* @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=190 */
 	width: 100%;
 	background: #f6f6f6;
 	border: 1px dotted #ccc;
 	margin-bottom: 1.2em;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
-td.mw-wikiforum-innerframe {
+.mw-wikiforum-error-msg {
+	padding: 3px;
+}
+
+table.mw-wikiforum-thread-list {
 	border: 1px solid #ddd;
+	width: 100%;
 }
 
 table.mw-wikiforum-headerrow {
@@ -38,6 +45,7 @@ td.mw-wikiforum-rightside {
 
 table.mw-wikiforum-title {
 	width: 100%;
+	border: 1px solid #a3bfb1;
 	border-collapse: collapse;
 	background: transparent;
 }

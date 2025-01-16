@@ -13,24 +13,6 @@ use MediaWiki\User\UserIdentity;
  */
 class WikiForumGui {
 	/**
-	 * Show the header for thread and search pages
-	 *
-	 * @return string html
-	 */
-	static function showFrameHeader() {
-		return '<table class="mw-wikiforum-frame" cellspacing="10"><tr><td class="mw-wikiforum-innerframe">';
-	}
-
-	/**
-	 * Show the footer for thread and search pages
-	 *
-	 * @return string HTML
-	 */
-	static function showFrameFooter() {
-		return '</td></tr></table>';
-	}
-
-	/**
 	 * Show the search box
 	 *
 	 * @return string
@@ -125,7 +107,7 @@ class WikiForumGui {
 	 * @return string HTML
 	 */
 	static function showMainHeader( $title1, $title2, $title3, $title4, $title5 = '' ) {
-		return self::showFrameHeader() . '<table class="mw-wikiforum-title">' .
+		return '<div class="mw-wikiforum-frame">' . '<table class="mw-wikiforum-title">' .
 			self::showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 );
 	}
 
@@ -176,7 +158,7 @@ class WikiForumGui {
 	 * @return string HTML
 	 */
 	static function showMainFooter() {
-		return '</table>' . self::showFrameFooter();
+		return '</table></div>';
 	}
 
 	/**
@@ -195,7 +177,7 @@ class WikiForumGui {
 	 * @return string
 	 */
 	static function showSearchHeader( $title ) {
-		return self::showFrameHeader() . '
+		return '<div class="mw-wikiforum-frame">' . '
 			<table style="width:100%">
 				<tr>
 					<th class="mw-wikiforum-thread-top" colspan="2">' .

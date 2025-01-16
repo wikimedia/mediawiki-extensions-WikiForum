@@ -23,7 +23,7 @@ class WikiForum {
 		$errorMessage = wfMessage( $errorMessageMsg )->parse();
 
 		$icon = self::getIconHTML( 'wikiforum-' . $errorIcon, $errorTitle );
-		$output	= '<br /><table class="mw-wikiforum-frame"><tr><td>' . $icon . ' ' . $errorTitle->parse() . '<p class="mw-wikiforum-descr">' . $errorMessage . '</p></td></tr></table>';
+		$output	= '<br /><div class="mw-wikiforum-frame mw-wikiforum-error-msg">' . $icon . ' ' . $errorTitle->parse() . '<p class="mw-wikiforum-descr">' . $errorMessage . '</p></div>';
 
 		return $output;
 	}
@@ -126,7 +126,7 @@ class WikiForum {
 				$i++;
 			}
 
-			$output .= '</table>' . WikiForumGui::showFrameFooter();
+			$output .= '</table></div>';
 		} else {
 			return self::showErrorMessage( 'wikiforum-error-search', 'wikiforum-error-search-missing-query' );
 		}

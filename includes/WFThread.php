@@ -1009,8 +1009,8 @@ class WFThread extends ContextSource {
 			$posted .= '<br /><i>' . $this->showEditedInfo() . '</i>';
 		}
 
-		return WikiForumGui::showFrameHeader() . '
-				<table style="width:100%">
+		return '<div class="mw-wikiforum-frame">
+				<table class="mw-wikiforum-thread-list">
 					<tr>
 						<th class="mw-wikiforum-thread-top" style="text-align: right;">[#' . $this->getId() . ']</th>
 					</tr>
@@ -1038,7 +1038,7 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	function showFooter() {
-		return '</table>' . WikiForumGui::showFrameFooter();
+		return '</table></div>';
 	}
 
 	/**
