@@ -220,7 +220,7 @@ class WFForum extends ContextSource {
 	function getURL() {
 		$page = SpecialPage::getTitleFor( 'WikiForum' );
 
-		return htmlspecialchars( $page->getFullURL( [ 'forum' => $this->getId() ] ) );
+		return $page->getFullURL( [ 'forum' => $this->getId() ] );
 	}
 
 	/**
@@ -242,7 +242,11 @@ class WFForum extends ContextSource {
 	 * @return string Properly escaped HTML string
 	 */
 	function showPlainLink() {
-		return '<a href="' . $this->getURL() . '">' . htmlspecialchars( $this->getName(), ENT_QUOTES ) . '</a>';
+		return Html::element(
+			'a',
+			[ 'href' => $this->getURL() ],
+			$this->getName()
+		);
 	}
 
 	/**
@@ -257,12 +261,14 @@ class WFForum extends ContextSource {
 
 		$icons = $this->showAdminIcons( true );
 		if ( $icons ) {
-			$output .= '<td class="mw-wikiforum-admin">' . $icons . '</td>';
+			$output .= Html::rawElement( 'td', [ 'class' => 'mw-wikiforum-admin' ], $icons );
 		}
 
-		$output .= '<td class="mw-wikiforum-value">' . $this->getThreadCount() . '</td>
-					<td class="mw-wikiforum-value">' . $this->getReplyCount() . '</td>
-					<td class="mw-wikiforum-value">' . $this->showLastPostInfo() . '</td></tr>';
+		$output .=
+			Html::element( 'td', [ 'class' => 'mw-wikiforum-value' ], $this->getThreadCount() ) .
+			Html::element( 'td', [ 'class' => 'mw-wikiforum-value' ], $this->getReplyCount() ) .
+			Html::rawElement( 'td', [ 'class' => 'mw-wikiforum-value' ], $this->showLastPostInfo() );
+
 		return $output;
 	}
 
@@ -281,18 +287,42 @@ class WFForum extends ContextSource {
 			// @see https://phabricator.wikimedia.org/T312733
 			$this->getOutput()->addModules( 'ext.wikiForum.admin-links' );
 
-			$icon = WikiForum::getIconHTML( 'wikiforum-edit-forum' );
-			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editforum', 'forum' => $this->getId() ] ) ) . '">' . $icon . '</a>';
+			$link = Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'editforum', 'forum' => $this->getId() ] ) ],
+				WikiForum::getIconHTML( 'wikiforum-edit-forum' )
+			);
 
-			$icon = WikiForum::getIconHTML( 'wikiforum-delete-forum' );
-			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deleteforum', 'forum' => $this->getId() ] ) ) . '" class="wikiforum-delete-forum-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
+			$link .= ' ' . Html::rawElement(
+				'a',
+				[
+					'href' => $specialPage->getFullURL( [ 'wfaction' => 'deleteforum', 'forum' => $this->getId() ] ),
+					'class' => 'wikiforum-delete-forum-link',
+					'data-wikiforum-forum-id' => $this->getId()
+				],
+				WikiForum::getIconHTML( 'wikiforum-delete-forum' )
+			);
 
 			if ( $sort ) {
-				$icon = WikiForum::getIconHTML( 'wikiforum-sort-up' );
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumup', 'forum' => $this->getId() ] ) ) . '"class="wikiforum-up-link wikiforum-forum-sort-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
+				$link .= ' ' . Html::rawElement(
+					'a',
+					[
+						'href' => $specialPage->getFullURL( [ 'wfaction' => 'forumup', 'forum' => $this->getId() ] ),
+						'class' => 'wikiforum-up-link wikiforum-forum-sort-link',
+						'data-wikiforum-forum-id' => $this->getId()
+					],
+					WikiForum::getIconHTML( 'wikiforum-sort-up' )
+				);
 
-				$icon = WikiForum::getIconHTML( 'wikiforum-sort-down' );
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'forumdown', 'forum' => $this->getId() ] ) ) . '" class="wikiforum-down-link wikiforum-forum-sort-link" data-wikiforum-forum-id="' . $this->getId() . '">' . $icon . '</a>';
+				$link .= ' ' . Html::rawElement(
+					'a',
+					[
+						'href' => $specialPage->getFullURL( [ 'wfaction' => 'forumdown', 'forum' => $this->getId() ] ),
+						'class' => 'wikiforum-down-link wikiforum-forum-sort-link',
+						'data-wikiforum-forum-id' => $this->getId()
+					],
+					WikiForum::getIconHTML( 'wikiforum-sort-down' )
+				);
 			}
 		}
 
@@ -409,16 +439,20 @@ class WFForum extends ContextSource {
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$up = WikiForum::getIconHTML( 'wikiforum-bullet-arrow-up', $this->msg( 'sort-ascending' ) );
-		$down = WikiForum::getIconHTML( 'wikiforum-bullet-arrow-down', $this->msg( 'sort-descending' ) );
+		$upIcon = WikiForum::getIconHTML( 'wikiforum-bullet-arrow-up', $this->msg( 'sort-ascending' ) );
+		$downIcon = WikiForum::getIconHTML( 'wikiforum-bullet-arrow-down', $this->msg( 'sort-descending' ) );
 
 		// Non-moderators cannot post in an announcement-only forum
 		if ( $this->isAnnouncement() && !$this->getUser()->isAllowed( 'wikiforum-moderator' ) ) {
 			$write_thread = '';
 		} else {
-			$icon = WikiForum::getIconHTML( 'wikiforum-note-add' );
-			$write_thread = $icon . ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'addthread', 'forum' => $this->getId() ] ) ) . '">' .
-				$this->msg( 'wikiforum-write-thread' )->escaped() . '</a>';
+			$write_thread = WikiForum::getIconHTML( 'wikiforum-note-add' ) .
+				' ' .
+				Html::element(
+					'a',
+					[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'addthread', 'forum' => $this->getId() ] ) ],
+					$this->msg( 'wikiforum-write-thread' )->text()
+				);
 		}
 
 		$output .= WikiForumGui::showSearchbox();
@@ -429,22 +463,58 @@ class WFForum extends ContextSource {
 		// The <br />s are here to fix ShoutWiki bug #176
 		// @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=174
 		$output .= WikiForumGui::showMainHeader(
-			htmlspecialchars( $this->getName(), ENT_QUOTES ) . ' <a href="' .
-			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'thread', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up .
-			'</a><a href="' .
-			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'thread', 'sd' => 'down', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>',
-
-			$this->msg( 'wikiforum-replies' )->escaped() . ' <br /><a href="' .
-			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'answers', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up .
-			'</a><a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'answers', 'sd' => 'down', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>',
-
-			$this->msg( 'wikiforum-views' )->escaped() . ' <br /><a href="' .
-			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'calls', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up . '</a><a href="' .
-			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'calls', 'sd' => 'down', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>',
-
-			$this->msg( 'wikiforum-latest-reply' )->escaped() . ' <br /><a href="' .
-			htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $up .
-			'</a><a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ] ) ) . '">' . $down . '</a>'
+			// threads
+			htmlspecialchars( $this->getName(), ENT_QUOTES ) .
+			' ' .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'thread', 'sd' => 'up', 'forum' => $this->getId() ] ) ],
+				$upIcon
+			) .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'thread', 'sd' => 'down', 'forum' => $this->getId() ] ) ],
+				$downIcon
+			),
+			// replies
+			$this->msg( 'wikiforum-replies' )->escaped() .
+			' <br />' .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'answers', 'sd' => 'up', 'forum' => $this->getId() ] ) ],
+				$upIcon
+			) .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'answers', 'sd' => 'down', 'forum' => $this->getId() ] ) ],
+				$downIcon
+			),
+			// Views
+			$this->msg( 'wikiforum-views' )->escaped() .
+			' <br />' .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'calls', 'sd' => 'up', 'forum' => $this->getId() ] ) ],
+				$upIcon
+			) .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'calls', 'sd' => 'down', 'forum' => $this->getId() ] ) ],
+				$downIcon
+			),
+			// Latest
+			$this->msg( 'wikiforum-latest-reply' )->escaped() .
+			' <br />' .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'last', 'sd' => 'up', 'forum' => $this->getId() ] ) ],
+				$upIcon
+			) .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'st' => 'last', 'sd' => 'down', 'forum' => $this->getId() ] ) ],
+				$downIcon
+			)
 		);
 
 		// sorting

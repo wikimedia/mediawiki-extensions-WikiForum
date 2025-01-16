@@ -278,8 +278,15 @@ class WFReply extends ContextSource {
 
 		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
-		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
-			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser(), $this->showButtons() ) . '</td></tr>';
+		return Html::openElement( 'tr' ) . Html::rawElement(
+			'td',
+			[
+				'class' => 'mw-wikiforum-thread-sub',
+				'colspan' => '2',
+				'id' => 'reply_' . $this->getId(),
+			],
+			( $avatar . WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser(), $this->showButtons() ) )
+		) . Html::closeElement( 'tr' );
 	}
 
 	/**
@@ -292,8 +299,15 @@ class WFReply extends ContextSource {
 		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread', $this->getThread()->showLink( $this->getId() ) )->text();
 		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
-		return '<tr><td class="mw-wikiforum-thread-sub" colspan="2" id="reply_' . $this->getId() . '">' . $avatar .
-			WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser() ) . '</td></tr>';
+		return Html::openElement( 'tr' ) . Html::rawElement(
+			'td',
+			[
+				'class' => 'mw-wikiforum-thread-sub',
+				'colspan' => '2',
+				'id' => 'reply_' . $this->getId(),
+			],
+			( $avatar . WikiForum::parseIt( $this->getText() ) . WikiForumGui::showBottomLine( $posted, $this->getUser() ) )
+		) . Html::closeElement( 'tr' );
 	}
 
 	/**
@@ -306,8 +320,11 @@ class WFReply extends ContextSource {
 		$user = $this->getUser();
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-		$editButtons = '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $thread->getId(), 'quotereply' => $this->getId() ] ) ) . '#writereply">';
-		$editButtons .= WikiForum::getIconHTML( 'wikiforum-quote' );
+		$editButtons = Html::rawElement(
+			'a',
+			[ 'href' => $specialPage->getFullURL( [ 'thread' => $thread->getId(), 'quotereply' => $this->getId() ] ) . '#writereply' ],
+			WikiForum::getIconHTML( 'wikiforum-quote' )
+		);
 
 		if (
 			(
@@ -317,13 +334,19 @@ class WFReply extends ContextSource {
 			||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
-			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editreply', 'reply' => $this->getId() ] ) ) . '#writereply">';
-			$editButtons .= WikiForum::getIconHTML( 'wikiforum-edit-reply' );
-			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletereply', 'reply' => $this->getId() ] ) ) . '">';
-			$editButtons .= WikiForum::getIconHTML( 'wikiforum-delete-reply' );
+			$editButtons .= ' ' .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'editreply', 'reply' => $this->getId() ] ) . '#writereply' ],
+				WikiForum::getIconHTML( 'wikiforum-edit-reply' )
+			) .
+			' ' .
+			Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'deletereply', 'reply' => $this->getId() ] ) ],
+				WikiForum::getIconHTML( 'wikiforum-delete-reply' )
+			);
 		}
-
-		$editButtons .= '</a>';
 
 		return $editButtons;
 	}

@@ -62,8 +62,11 @@ class WikiForum {
 		// Forum admins are allowed to add new categories
 		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
 			$icon = self::getIconHTML( 'wikiforum-add-category' ) . ' ';
-			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ) . '">' .
-				wfMessage( 'wikiforum-add-category' )->escaped() . '</a>';
+			$menuLink = $icon . Html::element(
+				'a',
+				[ 'href' => SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ],
+				wfMessage( 'wikiforum-add-category' )->text()
+			);
 			$output .= WikiForumGui::showHeaderRow( '', $user, $menuLink );
 		}
 
