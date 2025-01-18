@@ -220,7 +220,7 @@ td.mw-wikiforum-thread-sub {
 }
 
 /* Quote styling */
-blockquote {
+.mw-wikiforum-bq {
 	padding: 10px;
 	border: 1px dotted #ccc;
 	background: #f9f9f9;
@@ -232,22 +232,18 @@ blockquote {
 	max-width: 80%;
 }
 
-blockquote p.posted {
+.mw-wikiforum-bq-posted {
 	color: #bbb;
 	font-family: 'Verdana', 'Arial', sans-serif;
 	font-size: 10px;
 	border-bottom: 1px dotted #999;
 	background: transparent;
 	margin-bottom: 6px;
-	/* text-align: right; */
-	/* Jack: removed on 2 Jan 2011 because it makes very little sense and also
-	because we don't want to have the avatars overlapping the "Posted by" line */
 }
 
-blockquote span {
+.mw-wikiforum-bq-marks {
 	color: #bbb;
-	/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-	font-family: 'Times New Roman';
+	font-family: 'Times New Roman', serif;
 	font-size: 30px;
 	background: transparent;
 	margin: 0 5px;
