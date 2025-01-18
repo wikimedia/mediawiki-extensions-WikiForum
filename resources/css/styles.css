@@ -199,26 +199,23 @@ td.mw-wikiforum-thread-sub {
 }
 
 /* Search box */
-#mw-wikiforum-searchbox {
+.mw-wikiforum-searchbox {
 	float: right;
 	margin-bottom: 8px;
-}
-
-#mw-wikiforum-searchbox-border {
 	border: 1px dotted #ccc;
-	width: 200px;
 	text-align: left;
 	background: #f6f6f6;
 }
 
 .mw-wikiforum-searchbox-icon {
 	background-image: url( ../images/zoom.png );
-	margin-left: 5px;
-	margin-right: 5px;
+	margin: 1px 3px -2px 5px;
 }
 
-#txtSearch {
+#mw-wikiforum-searchbox-text {
 	border: 0;
+	height: 20px;
+	width: 200px;
 	background: transparent;
 }
 
