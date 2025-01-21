@@ -518,7 +518,7 @@ class WFThread extends ContextSource {
 			strlen( $title ) == 1
 		) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-text-or-title' );
-			return $error . $this->showEditor();
+			return $error . $this->show();
 		}
 
 		if ( $this->getName() == $title && $this->getText() == $text ) {
