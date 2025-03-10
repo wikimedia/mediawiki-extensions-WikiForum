@@ -5,6 +5,20 @@
 			"Cabal"
 		]
 	},
+	"wikiforum-search-thread": "ਤੰਦੋਤਾਣੇਆਂ: $1",
+	"wikiforum-thread-deleted": "ਤੰਦੋਤਾਣੇਆਂ ਮਿਟਾਇਆਂ ਗਇਆ",
 	"wikiforum-replies": "ਜੁਆਬ",
-	"wikiforum-threads": "ਤੰਦੋਤਾਣਾ"
+	"wikiforum-thread": "ਤੰਦੋਤਾਣੇਆਂ",
+	"wikiforum-threads": "ਤੰਦੋਤਾਣਾ",
+	"wikiforum-latest-thread": "ਸਬ ਤੋਂ ਨਵੀਂਆ ਤੰਦੋਤਾਣੇਆਂ",
+	"wikiforum-thread-closed": "ਤੰਦੋਤਾਣੇਆਂ ਬੰਦ ਐ",
+	"wikiforum-sticky": "ਚੇਪਿਆ ਤੰਦੋਤਾਣੇਆਂ",
+	"wikiforum-new-thread": "ਨਵੀਂਆ ਤੰਦੋਤਾਣੇਆਂ",
+	"wikiforum-edit-thread": "ਤੰਦੋਤਾਣੇਆਂ ਸੋਧੋ",
+	"wikiforum-delete-thread": "ਤੰਦੋਤਾਣੇਆਂ ਮਿਟਾਓ",
+	"wikiforum-close-thread": "ਤੰਦੋਤਾਣੇਆਂ ਬੰਦ ਕਰੋ",
+	"wikiforum-reopen-thread": "ਤੰਦੋਤਾਣੇਆਂ ਮੁੜ ਖੋਲ੍ਹੋ",
+	"wikiforum-save-thread": "ਤੰਦੋਤਾਣੇਆਂ ਸਾਂਭੋ",
+	"wikiforum-error-thread": "ਤੰਦੋਤਾਣੇਆਂ ਦੀ ਗਲਤੀ",
+	"wikiforum-paste-thread": "ਤੰਦੋਤਾਣੇਆਂ ਚੇਪੋ"
 }
