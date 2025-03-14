@@ -521,6 +521,15 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
+		// Catch characters that would be invalid for the purposes of a page title and prevent people from
+		// using those in thread titles, just as you'd prevent them elsewhere in MW.
+		// @see https://phabricator.wikimedia.org/T384146
+		$titleObj = Title::newFromText( $title );
+		if ( $titleObj === null ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-bad-title' );
+			return $error . $this->show();
+		}
+
 		if ( $this->getName() == $title && $this->getText() == $text ) {
 			return $this->show(); // nothing to do
 		}
