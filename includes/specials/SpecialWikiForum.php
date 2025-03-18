@@ -35,10 +35,6 @@ class SpecialWikiForum extends SpecialPage {
 		if ( $user->getBlock() ) {
 			throw new UserBlockedError( $user->getBlock() );
 		}
-		// Also check for global blocks
-		if ( $user->isBlockedGlobally() ) {
-			throw new UserBlockedError( $user->getGlobalBlock() );
-		}
 
 		$this->setHeaders();
 
