@@ -46,11 +46,6 @@ class ApiWikiForumSort extends ApiBase {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
-		// Global blocks
-		if ( $user->isBlockedGlobally() ) {
-			$this->dieBlocked( $user->getGlobalBlock() );
-		}
-
 		$id = $params['id'];
 		$isCategory = (bool)$params['iscategory'];
 		$direction = $params['direction'];

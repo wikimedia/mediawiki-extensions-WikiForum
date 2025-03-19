@@ -45,11 +45,6 @@ class ApiWikiForumSetThreadStickiness extends ApiBase {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
-		// Global blocks
-		if ( $user->isBlockedGlobally() ) {
-			$this->dieBlocked( $user->getGlobalBlock() );
-		}
-
 		$id = $params['id'];
 		$stickiness = $params['stickiness'];
 
