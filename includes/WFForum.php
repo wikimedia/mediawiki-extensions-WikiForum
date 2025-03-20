@@ -462,7 +462,7 @@ class WFForum extends ContextSource {
 		// of view and this code is horrible...
 		// The <br />s are here to fix ShoutWiki bug #176
 		// @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=174
-		$output .= '<div class="mw-wikiforum-frame">' . '<table class="mw-wikiforum-title mw-wikiforum-forum-list">';
+		$output .= '<div class="mw-wikiforum-frame">' . '<table class="mw-wikiforum-forum-list">';
 		$output .= WikiForumGui::showMainHeaderRow(
 			// threads
 			htmlspecialchars( $this->getName(), ENT_QUOTES ) .

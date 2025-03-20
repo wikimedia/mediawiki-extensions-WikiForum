@@ -51,10 +51,19 @@ td.mw-wikiforum-rightside {
 	background: transparent;
 }
 
+.mw-wikiforum-category-list tr,
+.mw-wikiforum-forum-list tr {
+	border: 1px solid #a3bfb1;
+}
+
+.mw-wikiforum-mainpage tr {
+	border-top: 1px solid #a3bfb1;
+	border-bottom: 1px solid #a3bfb1;
+}
+
 table.mw-wikiforum-mainpage {
 	width: 100%;
 	border-collapse: collapse;
-	background: transparent;
 }
 
 .mw-wikiforum-mainpage .mw-wikiforum-header-row {
@@ -62,21 +71,8 @@ table.mw-wikiforum-mainpage {
 	height: 2.4em;
 }
 
-.mw-wikiforum-mainpage th.mw-wikiforum-lastpost {
-	border-right: 1px solid #a3bfb1;
-}
-
-.mw-wikiforum-mainpage th.mw-wikiforum-title {
-	border-left: 1px solid #a3bfb1;
-}
-
 .mw-wikiforum-mainpage td.mw-wikiforum-title {
-	background: transparent;
 	padding: 5px;
-}
-
-.mw-wikiforum-mainpage td.mw-wikiforum-value {
-	background: transparent;
 }
 
 .mw-wikiforum-header-row {
@@ -84,38 +80,31 @@ table.mw-wikiforum-mainpage {
 	height: 3em;
 }
 
-th.mw-wikiforum-title {
-	font-size: 120%;
+.mw-wikiforum-header-row th {
+	font-family: 'Verdana', 'Arial', sans-serif;
+	font-size: 10px;
+}
+
+.mw-wikiforum-header-row .mw-wikiforum-title {
+	font-family: inherit;
+	font-size: 17px;
 	font-weight: bold;
 	text-align: left;
 	padding-left: 10px;
-	border-bottom: 1px solid #a3bfb1;
-	border-top: 1px solid #a3bfb1;
 }
 
 th.mw-wikiforum-value {
 	width: 90px;
-	border-bottom: 1px solid #a3bfb1;
-	border-top: 1px solid #a3bfb1;
 	text-align: center;
 }
 
 th.mw-wikiforum-admin {
-	border-bottom: 1px solid #a3bfb1;
-	border-top: 1px solid #a3bfb1;
 	text-align: right;
 }
 
 th.mw-wikiforum-lastpost {
 	width: 180px;
-	border-bottom: 1px solid #a3bfb1;
-	border-top: 1px solid #a3bfb1;
 	text-align: center;
-}
-
-p.mw-wikiforum-valuetitle {
-	font-family: 'Verdana', 'Arial', sans-serif;
-	font-size: 10px;
 }
 
 tr.mw-wikiforum-normal {
@@ -129,18 +118,15 @@ tr.mw-wikiforum-sticky {
 td.mw-wikiforum-title {
 	text-align: left;
 	padding-left: 10px;
-	border-bottom: 1px solid #a3bfb1;
 }
 
 td.mw-wikiforum-value {
-	border-bottom: 1px solid #a3bfb1;
 	text-align: center;
 	font-family: 'Verdana', 'Arial', sans-serif;
 	font-size: 10px;
 }
 
 td.mw-wikiforum-admin {
-	border-bottom: 1px solid #a3bfb1;
 	text-align: right;
 	font-family: 'Verdana', 'Arial', sans-serif;
 	font-size: 10px;

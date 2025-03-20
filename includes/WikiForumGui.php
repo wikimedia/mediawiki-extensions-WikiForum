@@ -124,14 +124,16 @@ class WikiForumGui {
 	 * @return string HTML
 	 */
 	static function showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 = '' ) {
-		$output = '<tr class="mw-wikiforum-header-row"><th class="mw-wikiforum-title">' . $title1 . '</th>';
+		$output = Html::openElement( 'tr', [ 'class' => 'mw-wikiforum-header-row' ] )
+			. Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-title' ], $title1 );
 
 		if ( $title5 ) {
-			$output .= '<th class="mw-wikiforum-admin"><p class="mw-wikiforum-valuetitle">' . $title5 . '</p></th>';
+			$output .= Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-admin' ], $title5 );
 		}
-		$output .= '<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title2 . '</p></th>
-			<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title3 . '</p></th>
-			<th class="mw-wikiforum-lastpost"><p class="mw-wikiforum-valuetitle">' . $title4 . '</p></th></tr>';
+		$output .= Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-value' ], $title2 )
+			. Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-value' ], $title3 )
+			. Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-lastpost' ], $title4 )
+			. Html::closeElement( 'tr' );
 
 		return $output;
 	}
