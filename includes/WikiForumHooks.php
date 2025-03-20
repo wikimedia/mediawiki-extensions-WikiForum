@@ -49,7 +49,8 @@ class WikiForumHooks {
 			]
 		);
 
-		$output = WikiForumGui::showListTagHeader(
+		$output = Html::openElement( 'table', [ 'class' => 'mw-wikiforum-mainpage' ] );
+		$output .= WikiForumGui::showMainHeaderRow(
 			wfMessage( 'wikiforum-updates' )->escaped(),
 			wfMessage( 'wikiforum-replies' )->escaped(),
 			wfMessage( 'wikiforum-views' )->escaped(),
@@ -61,8 +62,7 @@ class WikiForumHooks {
 
 			$output .= $thread->showTagListItem();
 		}
-
-		$output .= WikiForumGui::showListTagFooter();
+		$output .= Html::closeElement( 'table' );
 
 		return $output;
 	}
