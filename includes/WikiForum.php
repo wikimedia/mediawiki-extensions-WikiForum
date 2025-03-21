@@ -84,52 +84,58 @@ class WikiForum {
 		$output = WikiForumGui::showSearchbox();
 		$output .= WikiForumGui::showHeaderRow( '', $user );
 
-		if ( strlen( $what ) > 1 ) {
-			$i = 0;
-
-			$title = wfMessage( 'wikiforum-search-hits', $i )->parse();
-			$output .= WikiForumGui::showSearchHeader( $title );
-
-			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
-			// buildLike() will escape the query properly, add the word LIKE and the "double quotes"
-			$likeString = $dbr->buildLike( $dbr->anyString(), $what, $dbr->anyString() );
-
-			$limit = intval( wfMessage( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
-
-			$threadData = $dbr->select(
-				'wikiforum_threads',
-				'*',
-				"(wft_thread_name $likeString OR wft_text $likeString)",
-				__METHOD__,
-				[ 'ORDER BY' => 'wft_posted_timestamp DESC', 'LIMIT' => $limit ]
-			);
-
-			foreach ( $threadData as $sql ) {
-				$thread = WFThread::newFromSQL( $sql );
-				$output .= $thread->showHeaderForSearch();
-
-				$i++;
-			}
-
-			$replyData = $dbr->select(
-				'wikiforum_replies',
-				'*',
-				"wfr_reply_text $likeString",
-				__METHOD__,
-				[ 'ORDER BY' => 'wfr_posted_timestamp DESC', 'LIMIT' => $limit ]
-			);
-
-			foreach ( $replyData as $sql ) {
-				$reply = WFReply::newFromSQL( $sql );
-				$output .= $reply->showForSearch();
-
-				$i++;
-			}
-
-			$output .= '</table></div>';
-		} else {
+		if ( strlen( $what ) <= 1 ) {
 			return self::showErrorMessage( 'wikiforum-error-search', 'wikiforum-error-search-missing-query' );
 		}
+
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+		// buildLike() will escape the query properly, add the word LIKE and the "double quotes"
+		$likeString = $dbr->buildLike( $dbr->anyString(), $what, $dbr->anyString() );
+
+		$limit = intval( wfMessage( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
+
+		$threadData = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'wikiforum_threads' )
+			->where( "wft_thread_name $likeString OR wft_text $likeString" )
+			->orderBy( 'wft_posted_timestamp DESC' )
+			->limit( $limit )
+			->caller( __METHOD__ )->fetchResultSet();
+
+		$replyData = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'wikiforum_replies' )
+			->where( "wfr_reply_text $likeString" )
+			->orderBy( 'wfr_posted_timestamp DESC' )
+			->limit( $limit )
+			->caller( __METHOD__ )->fetchResultSet();
+
+		$i = 0;
+
+		foreach ( $threadData as $sql ) {
+			$thread = WFThread::newFromSQL( $sql );
+			$outputRows .= $thread->showHeaderForSearch();
+			$i++;
+		}
+
+		foreach ( $replyData as $sql ) {
+			$reply = WFReply::newFromSQL( $sql );
+			$outputRows .= $reply->showForSearch();
+			$i++;
+		}
+
+		$output = Html::rawElement( 'div', [ 'class' => 'mw-wikiforum-frame' ],
+			Html::rawElement( 'table', [ 'style' => 'width:100%' ],
+				Html::rawElement( 'tr', [],
+					Html::element( 'th',
+						[ 'class' => 'mw-wikiforum-thread-top', 'colspan' => '2' ],
+						wfMessage( 'wikiforum-search-hits', $i )->text()
+					)
+				)
+				. $outputRows
+			)
+		);
+
 		return $output;
 	}
 

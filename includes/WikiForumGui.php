@@ -139,22 +139,6 @@ class WikiForumGui {
 	}
 
 	/**
-	 * Only for search results: show the header row
-	 *
-	 * @param string $title
-	 * @return string
-	 */
-	static function showSearchHeader( $title ) {
-		return '<div class="mw-wikiforum-frame">' . '
-			<table style="width:100%">
-				<tr>
-					<th class="mw-wikiforum-thread-top" colspan="2">' .
-						$title .
-					'</th>
-				</tr>';
-	}
-
-	/**
 	 * Show the bottom line of a thread or reply
 	 *
 	 * @param string $posted
