@@ -125,7 +125,7 @@ class WFCategory extends ContextSource {
 	 * @return string
 	 */
 	function getURL() {
-		return htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'category' => $this->getId() ] ) );
+		return SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'category' => $this->getId() ] );
 	}
 
 	/**
@@ -134,7 +134,11 @@ class WFCategory extends ContextSource {
 	 * @return string HTML the link
 	 */
 	function showLink() {
-		return '<a href="' . $this->getURL() . '">' . htmlspecialchars( $this->getName(), ENT_QUOTES ) . '</a>';
+		return Html::element(
+			'a',
+			[ 'href' => $this->getURL() ],
+			$this->getName()
+		);
 	}
 
 	/**
@@ -143,9 +147,12 @@ class WFCategory extends ContextSource {
 	 * @return string HTML, the link
 	 */
 	function showAddForumLink() {
-		$icon = WikiForum::getIconHTML( 'wikiforum-add-forum' ) . ' ';
-		return $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addforum', 'category' => $this->getId() ] ) ) . '">' .
-			$this->msg( 'wikiforum-add-forum' )->escaped() . '</a>';
+		return WikiForum::getIconHTML( 'wikiforum-add-forum' ) . ' ' .
+			 Html::element(
+				'a',
+				[ 'href' => SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addforum', 'category' => $this->getId() ] ) ],
+				$this->msg( 'wikiforum-add-forum' )->text()
+			);
 	}
 
 	/**
@@ -163,18 +170,42 @@ class WFCategory extends ContextSource {
 			// @see https://phabricator.wikimedia.org/T312733
 			$this->getOutput()->addModules( 'ext.wikiForum.admin-links' );
 
-			$icon = WikiForum::getIconHTML( 'wikiforum-edit-category' );
-			$link = ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editcategory', 'category' => $this->getId() ] ) ) . '">' . $icon . '</a>';
+			$link = Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'editcategory', 'category' => $this->getId() ] ) ],
+				WikiForum::getIconHTML( 'wikiforum-edit-category' )
+			) . ' ';
 
-			$icon = WikiForum::getIconHTML( 'wikiforum-delete-category' );
-			$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletecategory', 'category' => $this->getId() ] ) ) . '" class="wikiforum-delete-category-link" data-wikiforum-category-id="' . $this->getId() . '">' . $icon . '</a>';
+			$link .= Html::rawElement(
+				'a',
+				[
+					'href' => $specialPage->getFullURL( [ 'wfaction' => 'deletecategory', 'category' => $this->getId() ] ),
+					'class' => 'wikiforum-delete-category-link',
+					'data-wikiforum-category-id' => $this->getId(),
+				],
+				WikiForum::getIconHTML( 'wikiforum-delete-category' )
+			);
 
 			if ( $sort ) {
-				$icon = WikiForum::getIconHTML( 'wikiforum-sort-up' );
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categoryup', 'category' => $this->getId() ] ) ) . '" class="wikiforum-up-link wikiforum-category-sort-link" data-wikiforum-category-id="' . $this->getId() . '">' . $icon . '</a>';
+				$link .= ' ' . Html::rawElement(
+					'a',
+					[
+						'href' => $specialPage->getFullURL( [ 'wfaction' => 'categoryup', 'category' => $this->getId() ] ),
+						'class' => 'wikiforum-up-link wikiforum-category-sort-link',
+						'data-wikiforum-category-id' => $this->getId()
+					],
+					WikiForum::getIconHTML( 'wikiforum-sort-up' )
+				);
 
-				$icon = WikiForum::getIconHTML( 'wikiforum-sort-down' );
-				$link .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'categorydown', 'category' => $this->getId() ] ) ) . '" class="wikiforum-down-link wikiforum-category-sort-link" data-wikiforum-category-id="' . $this->getId() . '">' . $icon . '</a>';
+				$link .= ' ' . Html::rawElement(
+					'a',
+					[
+						'href' => $specialPage->getFullURL( [ 'wfaction' => 'categorydown', 'category' => $this->getId() ] ),
+						'class' => 'wikiforum-down-link wikiforum-category-sort-link',
+						'data-wikiforum-category-id' => $this->getId()
+					],
+					WikiForum::getIconHTML( 'wikiforum-sort-down' )
+				);
 			}
 		}
 

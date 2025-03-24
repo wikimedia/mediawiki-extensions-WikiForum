@@ -165,7 +165,11 @@ class WFThread extends ContextSource {
 	 * @return string HTML the link
 	 */
 	function showLink( $reply = false ) {
-		return '<a href="' . $this->getURL( $reply ) . '">' . htmlspecialchars( $this->getName(), ENT_QUOTES ) . '</a>';
+		return Html::element(
+			'a',
+			[ 'href' => $this->getURL( $reply ) ],
+			$this->getName()
+		);
 	}
 
 	/**
@@ -620,20 +624,47 @@ class WFThread extends ContextSource {
 			$out->addModules( 'ext.wikiForum.admin-sticky-links' );
 
 			if ( $this->isSticky() ) {
-				$icon = WikiForum::getIconHTML( 'wikiforum-remove-sticky' ) . ' ';
-				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ) ) . '" class="wikiforum-thread-remove-sticky" data-wikiforum-thread-id="' . $this->getId() . '">' .
-					$this->msg( 'wikiforum-remove-sticky' )->escaped() . '</a> ';
+				$menuLink =
+					WikiForum::getIconHTML( 'wikiforum-remove-sticky' ) .
+					' ' .
+					Html::element(
+						'a',
+						[
+							'href' => $specialPage->getFullURL( [ 'wfaction' => 'removesticky', 'thread' => $this->getId() ] ),
+							'class' => 'wikiforum-thread-remove-sticky',
+							'data-wikiforum-thread-id' => $this->getId(),
+						],
+						$this->msg( 'wikiforum-remove-sticky' )->text()
+					) .
+					' ';
 			} else {
-				$icon = WikiForum::getIconHTML( 'wikiforum-make-sticky' ) . ' ';
-				$menuLink = $icon . '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'makesticky', 'thread' => $this->getId() ] ) ) . '" class="wikiforum-thread-make-sticky" data-wikiforum-thread-id="' . $this->getId() . '">' .
-					$this->msg( 'wikiforum-make-sticky' )->escaped() . '</a> ';
+				$menuLink =
+					WikiForum::getIconHTML( 'wikiforum-make-sticky' ) .
+					' ' .
+					Html::element(
+						'a',
+						[
+							'href' => $specialPage->getFullURL( [ 'wfaction' => 'makesticky', 'thread' => $this->getId() ] ),
+							'class' => 'wikiforum-thread-make-sticky',
+							'data-wikiforum-thread-id' => $this->getId(),
+						],
+						$this->msg( 'wikiforum-make-sticky' )->text()
+					) .
+					' ';
 			}
 		}
 
 		$icon = WikiForum::getIconHTML( 'wikiforum-write-reply' ) . ' ';
 		// Replying is only possible to open threads
 		if ( !$this->isClosed() ) {
-			$menuLink .= $icon . '<a href="#writereply">' . $this->msg( 'wikiforum-write-reply' )->escaped() . '</a>';
+			$menuLink .=
+				WikiForum::getIconHTML( 'wikiforum-write-reply' ) .
+				' ' .
+				Html::element(
+					'a',
+					[ 'href' => '#writereply' ],
+					$this->msg( 'wikiforum-write-reply' )->text()
+				);
 		}
 
 		$output .= WikiForumGui::showSearchbox();
@@ -715,23 +746,45 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	private function showListItemMain( $class, $extraInfo = '' ) {
-		$output = '<tr class="mw-wikiforum-';
+		$desc = Html::rawElement(
+			'p',
+			[ 'class' => 'mw-wikiforum-thread' ],
+			(
+				$this->getIcon() . ' ' . $this->showLink() .
+				Html::rawElement(
+					'p',
+					[ 'class' => 'mw-wikiforum-descr' ],
+					$this->showPostedInfo() . $extraInfo
+				)
+			)
+		);
 
-		if ( $this->isSticky() ) {
-			$output .= 'sticky';
-		} else {
-			$output .= 'normal';
-		}
-
-		$desc = '<p class="mw-wikiforum-thread">' . $this->getIcon() . ' ' . $this->showLink() .
-			'<p class="mw-wikiforum-descr">' . $this->showPostedInfo() . $extraInfo . '</p></p>';
-
-		$output .= '">
-				<td class="mw-wikiforum-title">' . $desc . '</td>
-				<td class="mw-wikiforum-value">' . $this->getReplyCount() . '</td>
-				<td class="mw-wikiforum-value">' . $this->getViewCount() . '</td>
-				<td class="mw-wikiforum-value">' . $this->showLastPostInfo() . '</td>
-			</tr>';
+		$output =
+			Html::openElement(
+				'tr',
+				[ 'class' => ( $this->isSticky() ? 'mw-wikiforum-sticky' : 'mw-wikiforum-normal' ) ]
+			) .
+			Html::rawElement(
+				'td',
+				[ 'class' => 'mw-wikiforum-title' ],
+				$desc
+			) .
+			Html::element(
+				'td',
+				[ 'class' => 'mw-wikiforum-value' ],
+				$this->getReplyCount()
+			) .
+			Html::element(
+				'td',
+				[ 'class' => 'mw-wikiforum-value' ],
+				$this->getViewCount()
+			) .
+			Html::rawElement(
+				'td',
+				[ 'class' => 'mw-wikiforum-value' ],
+				$this->showLastPostInfo()
+			) .
+			Html::closeElement( 'tr' );
 
 		return $output;
 	}
@@ -777,9 +830,11 @@ class WFThread extends ContextSource {
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		$editButtons .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $this->getId(), 'quotethread' => $this->getId() ] ) ) . '#writereply">';
-		$editButtons .= WikiForum::getIconHTML( 'wikiforum-quote' );
-		$editButtons .= '</a>';
+		$editButtons .= Html::rawElement(
+			'a',
+			[ 'href' => $specialPage->getFullURL( [ 'thread' => $this->getId(), 'quotethread' => $this->getId() ] ) . '#writereply' ],
+			WikiForum::getIconHTML( 'wikiforum-quote' )
+		);
 
 		$forum = $this->getForum();
 
@@ -787,22 +842,31 @@ class WFThread extends ContextSource {
 			$user->getActorId() == $this->getPostedById() ||
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
-			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editthread', 'thread' => $this->getId() ] ) ) . '">';
-			$editButtons .= WikiForum::getIconHTML( 'wikiforum-edit-thread' );
-			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletethread', 'thread' => $this->getId() ] ) ) . '">';
-			$editButtons .= WikiForum::getIconHTML( 'wikiforum-delete-thread' );
-			$editButtons .= '</a> ';
+			$editButtons .= ' ' . Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'editthread', 'thread' => $this->getId() ] ) ],
+				WikiForum::getIconHTML( 'wikiforum-edit-thread' )
+			);
+			$editButtons .= ' ' . Html::rawElement(
+				'a',
+				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'deletethread', 'thread' => $this->getId() ] ) ],
+				WikiForum::getIconHTML( 'wikiforum-delete-thread' )
+			);
 
 			// Only moderators can lock and reopen threads
 			if ( $user->isAllowed( 'wikiforum-moderator' ) ) {
 				if ( !$this->isClosed() ) {
-					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'closethread', 'thread' => $this->getId() ] ) ) . '">';
-					$editButtons .= WikiForum::getIconHTML( 'wikiforum-close-thread' );
-					$editButtons .= '</a>';
+					$editButtons .= ' ' . Html::rawElement(
+						'a',
+						[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'closethread', 'thread' => $this->getId() ] ) ],
+						WikiForum::getIconHTML( 'wikiforum-close-thread' )
+					);
 				} else {
-					$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'reopenthread', 'thread' => $this->getId() ] ) ) . '">';
-					$editButtons .= WikiForum::getIconHTML( 'wikiforum-reopen-thread' );
-					$editButtons .= '</a>';
+					$editButtons .= ' ' . Html::rawElement(
+						'a',
+						[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'reopenthread', 'thread' => $this->getId() ] ) ],
+						WikiForum::getIconHTML( 'wikiforum-reopen-thread' )
+					);
 				}
 			}
 		}
@@ -1019,9 +1083,21 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params, User $user ) {
-		$titleValue = str_replace( '"', '&quot;', $titleValue );
-		$titlePlaceholder = str_replace( '"', '&quot;', $titlePlaceholder );
-		$input = '<tr><td><input type="text" name="name" style="width:100%" placeholder="' . $titlePlaceholder . '" value="' . $titleValue . '" /></td></tr>';
+		$input =
+			Html::openElement( 'tr' ) .
+			Html::openElement( 'td' ) .
+			Html::element(
+				'input',
+				[
+					'type' => 'text',
+					'name' => 'name',
+					'style' => 'width:100%',
+					'placeholder' => $titlePlaceholder,
+					'value' => $titleValue,
+				]
+			) .
+			Html::closeElement( 'td' ) .
+			Html::closeElement( 'tr' );
 
 		return WikiForumGui::showWriteForm( true, $params, $input, '25em', $textValue, wfMessage( 'wikiforum-save-thread' )->text(), $user );
 	}
