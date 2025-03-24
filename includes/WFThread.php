@@ -741,11 +741,11 @@ class WFThread extends ContextSource {
 	 * Show an item (row) for a list (table), for this thread. Used on forum pages and the <WikiForumList> tag
 	 * Do not use. Use showListItem() and showTagListItem() below.
 	 *
-	 * @param string $class
+	 * @param bool $ignoreSticky don't use CSS classes to highlight sticky threads
 	 * @param string $extraInfo any extra information to show after the posted info
 	 * @return string
 	 */
-	private function showListItemMain( $class, $extraInfo = '' ) {
+	private function showListItemMain( $ignoreSticky = false, $extraInfo = '' ) {
 		$desc = Html::rawElement(
 			'p',
 			[ 'class' => 'mw-wikiforum-thread' ],
@@ -759,10 +759,11 @@ class WFThread extends ContextSource {
 			)
 		);
 
+		$isSticky = !$ignoreSticky && $this->isSticky();
 		$output =
 			Html::openElement(
 				'tr',
-				[ 'class' => ( $this->isSticky() ? 'mw-wikiforum-sticky' : 'mw-wikiforum-normal' ) ]
+				[ 'class' => ( $isSticky ? 'mw-wikiforum-sticky' : 'mw-wikiforum-normal' ) ]
 			) .
 			Html::rawElement(
 				'td',
@@ -795,12 +796,7 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	function showListItem() {
-		if ( $this->isSticky() ) {
-			$class = 'sticky';
-		} else {
-			$class = 'normal';
-		}
-		return $this->showListItemMain( $class );
+		return $this->showListItemMain();
 	}
 
 	/**
@@ -814,7 +810,7 @@ class WFThread extends ContextSource {
 
 		$extraInfo = '<br />' . $this->msg( 'wikiforum-forum', $categoryLink, $forumLink )->text();
 
-		return $this->showListItemMain( 'normal', $extraInfo );
+		return $this->showListItemMain( true, $extraInfo );
 	}
 
 	/**
