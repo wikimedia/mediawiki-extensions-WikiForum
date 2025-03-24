@@ -18,16 +18,33 @@ class WikiForumGui {
 	 * @return string
 	 */
 	static function showSearchbox() {
-		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] ) );
+		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] );
 
-		$icon = WikiForum::getIconHTML( 'wikiforum-searchbox', wfMessage( 'search' ) );
-
-		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $url . '">' .
-			'<div id="mw-wikiforum-searchbox-border">' . $icon .
-			'<input type="text" value="" name="query" id="txtSearch" /></div>
-		</form></div>';
-
-		return $output;
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'mw-wikiforum-searchbox' ],
+			Html::rawElement(
+				'form',
+				[ 'method' => 'post', 'action' => $url ],
+				(
+					Html::rawElement(
+						'label',
+						[ 'for' => 'mw-wikiforum-searchbox-text' ],
+						WikiForum::getIconHTML( 'wikiforum-searchbox', wfMessage( 'search' ) )
+					) .
+					Html::element(
+						'input',
+						[
+							'type' => 'text',
+							'name' => 'query',
+							'value' => '',
+							'id' => 'mw-wikiforum-searchbox-text',
+							'placeholder' => wfMessage( 'search' )->text()
+						]
+					)
+				)
+			)
+		);
 	}
 
 	/**
