@@ -338,7 +338,7 @@ class WFCategory extends ContextSource {
 		}
 
 		$output = $breadCrumbs . Html::rawElement( 'div', [ 'class' => 'mw-wikiforum-frame' ],
-			Html::rawElement( 'table', [ 'class' => 'mw-wikiforum-title mw-wikiforum-category-list' ],
+			Html::rawElement( 'table', [ 'class' => 'mw-wikiforum-category-list' ],
 				$outputTable
 			)
 		);
