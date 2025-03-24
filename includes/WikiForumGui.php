@@ -167,7 +167,7 @@ class WikiForumGui {
 	 * @param string $input used to add extra input fields
 	 * @param string $height height of the textarea, i.e. '10em'
 	 * @param string $text_prev
-	 * @param string $saveButton save button text
+	 * @param string $saveButton "Save" button message key name
 	 * @param User $user
 	 * @return string HTML
 	 */
@@ -206,7 +206,7 @@ class WikiForumGui {
 			$output .= '<tr>
 					<td>
 						<input type="hidden" name="wpToken" value="' . $user->getEditToken() . '" />
-						<input type="submit" value="' . $saveButton . '" accesskey="s" title="' . $saveButton . ' [s]" />';
+						<input type="submit" value="' . wfMessage( $saveButton )->escaped() . '" accesskey="s" title="' . wfMessage( $saveButton )->escaped() . ' [s]" />';
 			if ( $showCancel ) {
 				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />';
 			}

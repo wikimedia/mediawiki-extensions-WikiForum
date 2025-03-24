@@ -1095,7 +1095,7 @@ class WFThread extends ContextSource {
 			Html::closeElement( 'td' ) .
 			Html::closeElement( 'tr' );
 
-		return WikiForumGui::showWriteForm( true, $params, $input, '25em', $textValue, wfMessage( 'wikiforum-save-thread' )->text(), $user );
+		return WikiForumGui::showWriteForm( true, $params, $input, '25em', $textValue, 'wikiforum-save-thread', $user );
 	}
 
 	/**

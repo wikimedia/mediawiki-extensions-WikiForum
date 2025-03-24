@@ -491,6 +491,6 @@ class WFReply extends ContextSource {
 	 * @return string
 	 */
 	static function showGeneralEditor( $params, User $user, $text_prev = '', $showCancel = false ) {
-		return WikiForumGui::showWriteForm( $showCancel, $params, '', '10em', $text_prev, wfMessage( 'wikiforum-save-reply' )->text(), $user );
+		return WikiForumGui::showWriteForm( $showCancel, $params, '', '10em', $text_prev, 'wikiforum-save-reply', $user );
 	}
 }
