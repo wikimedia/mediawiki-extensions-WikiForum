@@ -302,14 +302,12 @@ class WFReply extends ContextSource {
 	 * @return string HTML
 	 */
 	function showButtons() {
-		$extensionAssetsPath = $this->getConfig()->get( 'ExtensionAssetsPath' );
-
 		$thread = $this->getThread();
 		$user = $this->getUser();
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 		$editButtons = '<a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'thread' => $thread->getId(), 'quotereply' => $this->getId() ] ) ) . '#writereply">';
-		$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comments_add.png" title="' . $this->msg( 'wikiforum-quote' )->text() . '" />';
+		$editButtons .= WikiForum::getIconHTML( 'wikiforum-quote' );
 
 		if (
 			(
@@ -320,9 +318,9 @@ class WFReply extends ContextSource {
 			$user->isAllowed( 'wikiforum-moderator' )
 		) {
 			$editButtons .= ' <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'editreply', 'reply' => $this->getId() ] ) ) . '#writereply">';
-			$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comment_edit.png" title="' . $this->msg( 'wikiforum-edit-reply' )->text() . '" />';
+			$editButtons .= WikiForum::getIconHTML( 'wikiforum-edit-reply' );
 			$editButtons .= '</a> <a href="' . htmlspecialchars( $specialPage->getFullURL( [ 'wfaction' => 'deletereply', 'reply' => $this->getId() ] ) ) . '">';
-			$editButtons .= '<img src="' . $extensionAssetsPath . '/WikiForum/resources/images/comment_delete.png" title="' . $this->msg( 'wikiforum-delete-reply' )->text() . '" />';
+			$editButtons .= WikiForum::getIconHTML( 'wikiforum-delete-reply' );
 		}
 
 		$editButtons .= '</a>';

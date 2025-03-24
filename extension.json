@@ -77,20 +77,20 @@
 	},
 	"ResourceModules": {
 		"ext.wikiForum": {
-			"styles": "resources/css/styles.css"
+			"styles": "css/styles.css"
 		},
 		"ext.wikiForum.admin-links": {
-			"scripts": "resources/js/ext.wikiForum.admin-links.js",
+			"scripts": "js/ext.wikiForum.admin-links.js",
 			"dependencies": "mediawiki.api"
 		},
 		"ext.wikiForum.admin-sticky-links": {
-			"scripts": "resources/js/ext.wikiForum.admin-sticky-links.js",
+			"scripts": "js/ext.wikiForum.admin-sticky-links.js",
 			"dependencies": "mediawiki.api"
 		}
 	},
 	"ResourceFileModulePaths": {
-		"localBasePath": "",
-		"remoteExtPath": "WikiForum"
+		"localBasePath": "resources",
+		"remoteExtPath": "WikiForum/resources"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "WikiForumHooks::registerParserHooks",

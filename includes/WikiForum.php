@@ -15,18 +15,15 @@ class WikiForum {
 	 *
 	 * @param string $errorTitleMsg message key
 	 * @param string $errorMessageMsg message key
-	 * @param string $errorIcon icon filename (optional)
+	 * @param string $errorIcon icon CSS class fragment (optional)
 	 * @return string HTML
 	 */
-	static function showErrorMessage( $errorTitleMsg, $errorMessageMsg, $errorIcon = 'exclamation.png' ) {
-		global $wgExtensionAssetsPath;
-
-		$errorTitle = wfMessage( $errorTitleMsg )->parse();
+	static function showErrorMessage( $errorTitleMsg, $errorMessageMsg, $errorIcon = 'error' ) {
+		$errorTitle = wfMessage( $errorTitleMsg );
 		$errorMessage = wfMessage( $errorMessageMsg )->parse();
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/' . $errorIcon . '" /> ';
-
-		$output	= '<br /><table class="mw-wikiforum-frame"><tr><td>' . $icon . $errorTitle . '<p class="mw-wikiforum-descr">' . $errorMessage . '</p></td></tr></table>';
+		$icon = self::getIconHTML( 'wikiforum-' . $errorIcon, $errorTitle );
+		$output	= '<br /><table class="mw-wikiforum-frame"><tr><td>' . $icon . ' ' . $errorTitle->parse() . '<p class="mw-wikiforum-descr">' . $errorMessage . '</p></td></tr></table>';
 
 		return $output;
 	}
@@ -39,8 +36,6 @@ class WikiForum {
 	 * @return string HTML
 	 */
 	static function showOverview( User $user ) {
-		global $wgExtensionAssetsPath;
-
 		$output = '';
 
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
@@ -66,7 +61,7 @@ class WikiForum {
 
 		// Forum admins are allowed to add new categories
 		if ( $user->isAllowed( 'wikiforum-admin' ) ) {
-			$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/database_add.png" title="' . wfMessage( 'wikiforum-add-category' )->text() . '" /> ';
+			$icon = self::getIconHTML( 'wikiforum-add-category' ) . ' ';
 			$menuLink = $icon . '<a href="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] ) ) . '">' .
 				wfMessage( 'wikiforum-add-category' )->escaped() . '</a>';
 			$output .= WikiForumGui::showHeaderRow( '', $user, $menuLink );
@@ -313,5 +308,25 @@ class WikiForum {
 		$output .= $formInformation['html'];
 
 		return $output;
+	}
+
+	/**
+	 * Return the HTML to display a CSS icon/sprite
+	 *
+	 * @param string $key Name of the icon in the CSS (usually the same as the message key)
+	 * @param ?Message $titleMsg Message Title text, if not found with the same key as the icon
+	 */
+	public static function getIconHTML( string $key, ?Message $titleMsg = null ): string {
+		if ( !$titleMsg ) {
+			$titleMsg = wfMessage( $key );
+		}
+		return Html::element(
+			'span',
+			[
+				'class' => 'mw-wikiforum-icon mw-' . $key . '-icon',
+				'title' => $titleMsg->text()
+			],
+			''
+		);
 	}
 }
