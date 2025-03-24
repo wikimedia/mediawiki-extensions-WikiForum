@@ -256,17 +256,17 @@ class WikiForum {
 	static function parseQuotes( $text ) {
 		$text = preg_replace(
 			'/\[quote=(.*?)\]/',
-			'<blockquote><p class="posted">\1</p><span>&raquo;</span>',
+			'<blockquote class="mw-wikiforum-bq"><p class="mw-wikiforum-bq-posted">\1</p><span class="mw-wikiforum-bq-marks">&raquo;</span>',
 			$text
 		);
 		$text = str_replace(
 			'[quote]',
-			'<blockquote><span>&raquo;</span>',
+			'<blockquote class="mw-wikiforum-bq"><span class="mw-wikiforum-bq-marks">&raquo;</span>',
 			$text
 		);
 		$text = str_replace(
 			'[/quote]',
-			'<span>&laquo;</span></blockquote>',
+			'<span class="mw-wikiforum-bq-marks">&laquo;</span></blockquote>',
 			$text
 		);
 		return $text;
