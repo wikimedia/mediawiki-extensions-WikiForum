@@ -112,7 +112,7 @@ class WikiForumGui {
 	}
 
 	/**
-	 * Show the header for Forum and Category pages
+	 * Show the header row for Forum and Category pages, <WikiForumList> tag
 	 *
 	 * @note Caller(s) should escape the $titleN variables!
 	 *
@@ -123,41 +123,8 @@ class WikiForumGui {
 	 * @param string $title5 optional, admin icons if given
 	 * @return string HTML
 	 */
-	static function showMainHeader( $title1, $title2, $title3, $title4, $title5 = '' ) {
-		return '<div class="mw-wikiforum-frame">' . '<table class="mw-wikiforum-title">' .
-			self::showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 );
-	}
-
-	/**
-	 * Show the header for the <WikiForumList> tag
-	 *
-	 * @note Caller(s) should escape the $titleN variables!
-	 *
-	 * @param string $title1
-	 * @param string $title2
-	 * @param string $title3
-	 * @param string $title4
-	 * @return string HTML
-	 */
-	static function showListTagHeader( $title1, $title2, $title3, $title4 ) {
-		return '<table class="mw-wikiforum-mainpage" cellspacing="0">' .
-			self::showMainHeaderRow( $title1, $title2, $title3, $title4 );
-	}
-
-	/**
-	 * Show the header row. Only called from other GUI methods.
-	 *
-	 * @note Caller(s) should escape the $titleN variables!
-	 *
-	 * @param string $title1
-	 * @param string $title2
-	 * @param string $title3
-	 * @param string $title4
-	 * @param string $title5 optional, admin icons if given
-	 * @return string HTML
-	 */
-	private static function showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 = '' ) {
-		$output = '<tr class="mw-wikiforum-title"><th class="mw-wikiforum-title">' . $title1 . '</th>';
+	static function showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 = '' ) {
+		$output = '<tr class="mw-wikiforum-header-row"><th class="mw-wikiforum-title">' . $title1 . '</th>';
 
 		if ( $title5 ) {
 			$output .= '<th class="mw-wikiforum-admin"><p class="mw-wikiforum-valuetitle">' . $title5 . '</p></th>';
@@ -167,24 +134,6 @@ class WikiForumGui {
 			<th class="mw-wikiforum-lastpost"><p class="mw-wikiforum-valuetitle">' . $title4 . '</p></th></tr>';
 
 		return $output;
-	}
-
-	/**
-	 * Show the footer for Forum and Category pages
-	 *
-	 * @return string HTML
-	 */
-	static function showMainFooter() {
-		return '</table></div>';
-	}
-
-	/**
-	 * Show the footer for the <WikiForumList> tag
-	 *
-	 * @return string HTML
-	 */
-	static function showListTagFooter() {
-		return '</table>';
 	}
 
 	/**

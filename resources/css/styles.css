@@ -43,7 +43,8 @@ td.mw-wikiforum-rightside {
 	text-align: right;
 }
 
-table.mw-wikiforum-title {
+.mw-wikiforum-category-list,
+.mw-wikiforum-forum-list {
 	width: 100%;
 	border: 1px solid #a3bfb1;
 	border-collapse: collapse;
@@ -56,7 +57,7 @@ table.mw-wikiforum-mainpage {
 	background: transparent;
 }
 
-.mw-wikiforum-mainpage tr.mw-wikiforum-title {
+.mw-wikiforum-mainpage .mw-wikiforum-header-row {
 	background: #f2ddce;
 	height: 2.4em;
 }
@@ -78,7 +79,7 @@ table.mw-wikiforum-mainpage {
 	background: transparent;
 }
 
-tr.mw-wikiforum-title {
+.mw-wikiforum-header-row {
 	background: #cedff2;
 	height: 3em;
 }

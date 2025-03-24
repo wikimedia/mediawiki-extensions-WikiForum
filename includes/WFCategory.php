@@ -323,9 +323,9 @@ class WFCategory extends ContextSource {
 			$addLink = $this->showAddForumLink();
 		}
 
-		$output = WikiForumGui::showHeaderRow( $headerLinks, $user, $addLink );
+		$breadCrumbs = WikiForumGui::showHeaderRow( $headerLinks, $user, $addLink );
 
-		$output .= WikiForumGui::showMainHeader(
+		$outputTable = WikiForumGui::showMainHeaderRow(
 			htmlspecialchars( $this->getName(), ENT_QUOTES ),
 			$this->msg( 'wikiforum-threads' )->escaped(),
 			$this->msg( 'wikiforum-replies' )->escaped(),
@@ -334,10 +334,16 @@ class WFCategory extends ContextSource {
 		);
 
 		foreach ( $this->getForums() as $forum ) {
-			$output .= $forum->showListItem();
+			$outputTable .= $forum->showListItem();
 		}
 
-		return $output . WikiForumGui::showMainFooter();
+		$output = $breadCrumbs . Html::rawElement( 'div', [ 'class' => 'mw-wikiforum-frame' ],
+			Html::rawElement( 'table', [ 'class' => 'mw-wikiforum-title mw-wikiforum-category-list' ],
+				$outputTable
+			)
+		);
+
+		return $output;
 	}
 
 	/**

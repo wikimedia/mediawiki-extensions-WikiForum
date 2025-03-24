@@ -462,7 +462,8 @@ class WFForum extends ContextSource {
 		// of view and this code is horrible...
 		// The <br />s are here to fix ShoutWiki bug #176
 		// @see http://bugzilla.shoutwiki.com/show_bug.cgi?id=174
-		$output .= WikiForumGui::showMainHeader(
+		$output .= '<div class="mw-wikiforum-frame">' . '<table class="mw-wikiforum-title mw-wikiforum-forum-list">';
+		$output .= WikiForumGui::showMainHeaderRow(
 			// threads
 			htmlspecialchars( $this->getName(), ENT_QUOTES ) .
 			' ' .
@@ -559,7 +560,7 @@ class WFForum extends ContextSource {
 			$output .= '<tr class="sub"><td class="mw-wikiforum-title" colspan="4">' .
 				$this->msg( 'wikiforum-no-threads' )->escaped() . '</td></tr>';
 		}
-		$output .= WikiForumGui::showMainFooter();
+		$output .= '</table></div>';
 
 		if ( $maxPerPage > 0 ) {
 			$output .= $this->showFooterRow( $limit_page, $maxPerPage );
