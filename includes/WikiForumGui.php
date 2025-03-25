@@ -219,41 +219,6 @@ class WikiForumGui {
 	}
 
 	/**
-	 * Get the main form for forums and categories
-	 *
-	 * @param string $url url to send form to, with GET params
-	 * @param string $extraRow row to add in after title input, for forums but not categories
-	 * @param string $formTitle title for the form
-	 * @param string $titlePlaceholder placeholder value for the title input
-	 * @param string $titleValue value for the title input
-	 * @return string HTML the form
-	 */
-	static function showTopLevelForm( $url, $extraRow, $formTitle, $titlePlaceholder, $titleValue ) {
-		return '
-		<form name="frmMain" method="post" action="' . $url . '" id="form">
-			<table class="mw-wikiforum-frame" cellspacing="10">
-				<tr>
-					<th class="mw-wikiforum-title">' . $formTitle . '</th>
-				</tr>
-				<tr>
-					<td>
-						<p>' . wfMessage( 'wikiforum-name' )->escaped() . '</p>
-						<input type="text" name="name" style="width: 100%" value="' . $titleValue . '" placeholder="' . $titlePlaceholder . '" />
-					</td>
-				</tr>
-					' . $extraRow . '
-				<tr>
-					<td>
-						<input type="hidden" name="wpToken" value="' . RequestContext::getMain()->getUser()->getEditToken() . '" />
-						<input type="submit" value="' . wfMessage( 'wikiforum-save' )->escaped() . '" accesskey="s" title="' . wfMessage( 'wikiforum-save' )->escaped() . '" [s]" />
-						<input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />
-					</td>
-				</tr>
-			</table>
-		</form>';
-	}
-
-	/**
 	 * Show the user and timestamp of when something was first posted. (With link)
 	 *
 	 * @param string $timestamp

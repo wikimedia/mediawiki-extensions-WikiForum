@@ -362,7 +362,7 @@ class WFForum extends ContextSource {
 			return $error . $this->showEditForm();
 		}
 
-		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
 			return $error . $this->showEditForm();
 		}
@@ -666,7 +666,7 @@ class WFForum extends ContextSource {
 			return $error . $category->show();
 		}
 
-		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
 			return $error . $category->show();
 		}
@@ -729,56 +729,82 @@ class WFForum extends ContextSource {
 	}
 
 	/**
-	 * Get the form for adding/editing forums.
+	 * Show the form for editing this forum, or adding a new forum
 	 *
-	 * @param array $params URL parameters
-	 * @param string $titlePlaceholder placeholder attribute for the title input
-	 * @param string $titleValue value attribute for the title input
-	 * @param string $textValue
-	 * @param bool $announcement value for the announcement checkbox
-	 * @param string $formTitle title to label the form with
-	 * @param User $user
+	 * @param bool $new Add a new forum, default false
+	 * @param int|null $categoryId Category to add a new forum into
 	 * @return string HTML, the form
 	 */
-	static function showForm( $params, $titlePlaceholder, $titleValue, $textValue, $announcement, $formTitle, User $user ) {
-		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
+	function showEditForm( bool $new = false, $categoryId = null ) {
+		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-write', 'wikiforum-error-no-rights' );
 		}
 
-		$titlePlaceholder = str_replace( '"', '&quot;', $titlePlaceholder );
-		$titleValue = str_replace( '"', '&quot;', $titleValue );
-		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-		$url = htmlspecialchars( $specialPage->getFullURL( $params ) );
+		$formDescriptor = [
+			'wfaction' => [
+				'type' => 'hidden',
+				'name' => 'wfaction',
+				'default' => ( $new ? 'savenewforum' : 'saveforum' ),
+				'required' => true
+			],
+			'forum' => [
+				'type' => 'hidden',
+				'name' => 'forum',
+				'default' => ( $new ? '' : $this->getId() ),
+				'required' => true
+			],
+			'name' => [
+				'label-message' => 'wikiforum-name',
+				'type' => 'text',
+				'name' => 'name',
+				'default' => ( $new ? '' : $this->getName() ),
+				'required' => true,
+				'placeholder-message' => 'wikiforum-forum-preload'
+			],
+			'text' => [
+				'label-message' => 'wikiforum-description',
+				'name' => 'text',
+				'type' => 'textarea',
+				'rows' => 3,
+				'default' => ( $new ? '' : $this->getText() ),
+			],
+			'announcement' => [
+				'label-message' => 'wikiforum-announcement-only-description',
+				'name' => 'announcement',
+				'type' => 'check',
+				'default' => ( $new ? '' : $this->isAnnouncement() )
+			]
+		];
 
-		$check = '';
-		if ( $announcement ) {
-			$check = 'checked="checked"';
+		if ( $new ) {
+			$formDescriptor['category'] = [
+				'type' => 'hidden',
+				'name' => 'category',
+				'default' => $categoryId,
+				'required' => true
+			];
 		}
-		$extraRow = '<tr>
-			<td>
-				<p>' . wfMessage( 'wikiforum-description' )->escaped() . '</p>
-				<textarea name="text" style="height: 40px;">' . $textValue . '</textarea>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<p><input type="checkbox" name="announcement"' . $check . '/> ' .
-					wfMessage( 'wikiforum-announcement-only-description' )->escaped() .
-					'</p>
-			</td>
-		</tr>';
 
-		return WikiForumGui::showTopLevelForm( $url, $extraRow, $formTitle, $titlePlaceholder, $titleValue );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm->setFormIdentifier( 'edit-forum-form' )
+			->setWrapperLegendMsg( $new ? 'wikiforum-add-forum' : 'wikiforum-edit-forum' )
+			->setSubmitTextMsg( 'wikiforum-save' )
+			->prepareForm()
+			->displayForm( false );
+
+		return '';
 	}
 
 	/**
-	 * Show the form for editing this forum
+	 * Show the form for adding a new forum
 	 *
+	 * @param int $categoryId Category in which to create the forum
 	 * @return string HTML, the form
 	 */
-	function showEditForm() {
-		$params = [ 'wfaction' => 'saveforum', 'forum' => $this->getId() ];
-		return self::showForm( $params, '', $this->getName(), $this->getText(), $this->isAnnouncement(), $this->msg( 'wikiforum-edit-forum' )->escaped(), $this->getUser() );
+	static function showAddForumForm( $categoryId ) {
+		# Make a new object with dummy data to get access to class methods
+		$wfForum = new self( (object)[ 'id' => -1 ] );
+		return $wfForum->showEditForm( true, $categoryId );
 	}
 
 	/**
