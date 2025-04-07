@@ -79,36 +79,46 @@ class WikiForumGui {
 	 * @param array $params URL params to be passed, should have a thread or forum number
 	 * @return string HTML
 	 */
-	static function showFooterRow( $page, $maxissues, $limit, $params ) {
+	static function showFooterRow( int $page, int $maxissues, int $limit, array $params ) {
 		$output = '';
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
 
-		if ( $maxissues / $limit > 1 ) {
-			for ( $i = 1; $i < ( $maxissues / $limit ) + 1; $i++ ) {
-				$urlParams = array_merge( [ 'page' => $i ], $params );
-
-				if ( $i <= 9 ) {
-					$pageNumber = '0' . $i;
-				} else {
-					$pageNumber = $i;
-				}
-
-				$output = '<table class="mw-wikiforum-footerrow"><tr><td class="mw-wikiforum-leftside">' .
-					wfMessage( 'wikiforum-pages' )->numParams( $pageNumber )->parse() .
-					wfMessage( 'word-separator' )->parse();
-
-				if ( $i != $page + 1 ) {
-					$output .= '<a href="' . htmlspecialchars( $specialPage->getFullURL( $urlParams ) ) . '">' . $pageNumber . '</a>';
-				} else {
-					$output .= '[' . $pageNumber . ']';
-				}
-
-				$output .= wfMessage( 'word-separator' )->parse();
-			}
-			$output .= '</td><td class="mw-wikiforum-rightside">';
-			$output .= '</td></tr></table>';
+		if ( $maxissues <= $limit ) {
+			// not enough to paginate
+			return '';
 		}
-		return $output;
+
+		$maxPages = ceil( $maxissues / $limit );
+		$links = [];
+
+		for ( $i = 1; $i <= $maxPages; $i++ ) {
+			$urlParams = array_merge( [ 'page' => $i ], $params );
+
+			if ( $i === $page ) {
+				$links[] = Html::element( 'span',
+					[ 'class' => 'mw-wikiforum-page mw-wikiforum-current-page' ],
+					$i
+				);
+			} else {
+				$links[] = Html::element( 'a',
+					[
+						'class' => 'mw-wikiforum-page',
+						'href' => $specialPage->getFullURL( $urlParams )
+					 ],
+					$i
+				);
+			}
+		}
+
+		return Html::rawElement( 'div',
+			[ 'class' => 'mw-wikiforum-pagination' ],
+			Html::element( 'span',
+				[ 'class' => 'wikiforum-pagination-name' ],
+				wfMessage( 'wikiforum-pages' )->numParams( $pageNumber )->parse()
+			) .
+			wfMessage( 'word-separator' )->escaped() .
+			implode( wfMessage( 'word-separator' )->escaped(), $links )
+		);
 	}
 
 	/**
