@@ -206,6 +206,28 @@ td.mw-wikiforum-thread-sub {
 	background: transparent;
 }
 
+/* Replies */
+.mw-wikiforum-edit-reply > div {
+	margin: 10px 5px;
+	display: flex;
+}
+
+.mw-wikiforum-edit-reply input {
+	width: 100%;
+}
+
+.mw-wikiforum-edit-reply button {
+	margin-right: 15px;
+}
+
+.mw-wikiforum-edit-reply textarea {
+	height: 10em;
+}
+
+.mw-wikiforum-edit-thread.mw-wikiforum-edit-reply textarea {
+	height: 25em;
+}
+
 /* Quote styling */
 .mw-wikiforum-bq {
 	padding: 10px;

@@ -165,16 +165,18 @@ class WikiForumGui {
 	 * @param bool $showCancel show the cancel button?
 	 * @param array $params URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
 	 * @param string $input used to add extra input fields
-	 * @param string $height height of the textarea, i.e. '10em'
+	 * @param string $boxClass CSS class to assign to the outer div
 	 * @param string $text_prev
 	 * @param string $saveButton "Save" button message key name
 	 * @param User $user
 	 * @return string HTML
 	 */
-	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton, User $user ) {
+	static function showWriteForm( $showCancel, $params, $input, $boxClass, $text_prev, $saveButton, User $user ) {
 		global $wgWikiForumAllowAnonymous;
 
-		$output = '';
+		if ( !( $wgWikiForumAllowAnonymous || $user->isRegistered() ) ) {
+			return '';
+		}
 
 		$requestContext = RequestContext::getMain();
 		$out = $requestContext->getOutput();
@@ -189,32 +191,66 @@ class WikiForumGui {
 			$toolbar = EditPage::getEditToolbar();
 		}
 
-		if ( $wgWikiForumAllowAnonymous || $user->isRegistered() ) {
-			$out->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
-
-			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
-			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
-				<tr>
-					<td>' . $toolbar . '</td>
-				</tr>
-				<tr>
-					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
-				</tr>';
-			if ( WikiForum::useCaptcha( $user ) ) {
-				$output .= '<tr><td>' . WikiForum::getCaptcha( $out ) . '</td></tr>';
-			}
-			$output .= '<tr>
-					<td>
-						<input type="hidden" name="wpToken" value="' . $user->getEditToken() . '" />
-						<input type="submit" value="' . wfMessage( $saveButton )->escaped() . '" accesskey="s" title="' . wfMessage( $saveButton )->escaped() . ' [s]" />';
-			if ( $showCancel ) {
-				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />';
-			}
-			$output .= '</td>
-					</tr>
-				</table>
-			</form>' . "\n";
+		$captcha = '';
+		if ( WikiForum::useCaptcha( $user ) ) {
+			$captcha = Html::rawElement( 'div',
+				[ 'class' => 'mw-wikiforum-captcha' ],
+				WikiForum::getCaptcha( $out )
+			);
 		}
+
+		$out->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
+
+		$output = Html::openElement( 'form',
+				[
+					'name' => 'frmMain',
+					'method' => 'post',
+					'action' => SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ),
+					'id' => "writereply",
+				]
+			) .
+			Html::openElement( 'div', [ 'class' => 'mw-wikiforum-edit-reply mw-wikiforum-frame ' . $boxClass ] ) .
+			$input .
+			$toolbar .
+			Html::rawElement( 'div', [],
+				Html::Element( 'textarea',
+					[
+						'name' => 'text',
+						'id' => 'wpTextbox1',
+					],
+					$text_prev
+				)
+			) .
+			$captcha .
+			Html::rawElement( 'div',
+				[ 'class' => 'mw-wikiforum-replybuttons' ],
+				Html::element( 'input',
+					[
+						'type' => 'hidden',
+						'name' => 'wpToken',
+						'value' => $user->getEditToken(),
+					]
+				) .
+				Html::element( 'button',
+					[
+						'type' => 'submit',
+						'accesskey' => 's',
+						'title' => wfMessage( $saveButton )->text() . ' [s]',
+					],
+					 wfMessage( $saveButton )->text()
+				) .
+				( $showCancel ? Html::element( 'button',
+					[
+						'accesskey' => 'c',
+						'onclick' => 'javascript:history.back();',
+						'title' => wfMessage( 'cancel' )->text() . ' [c]',
+					],
+					wfMessage( 'cancel' )->text()
+				) : '' )
+			) .
+			Html::closeElement( 'div' ) .
+			Html::closeElement( 'form' );
+
 		return $output;
 	}
 
