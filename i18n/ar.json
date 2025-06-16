@@ -6,7 +6,8 @@
 			"ترجمان05",
 			"ديفيد",
 			"روخو",
-			"FShbib"
+			"FShbib",
+			"Mohammed Qays"
 		]
 	},
 	"wikiforum-desc": "ملحق [[Special:WikiForum|منتدى]] لميدياويكي",
@@ -36,7 +37,7 @@
 	"wikiforum-latest-thread": "آخر خيط",
 	"wikiforum-forum": "منتدى: $1 > $2",
 	"wikiforum-overview": "نظرة عامة",
-	"wikiforum-pages": "{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}}",
+	"wikiforum-pages": "{{PLURAL:$1|صفحة|صفحات}}:",
 	"wikiforum-thread-closed": "الخيط تم غلقه",
 	"wikiforum-sticky": "موضوع مثبت",
 	"wikiforum-new-thread": "خيط جديد",
