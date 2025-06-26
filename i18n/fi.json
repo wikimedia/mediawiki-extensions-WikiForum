@@ -7,7 +7,8 @@
 			"Nike",
 			"Pxos",
 			"Pyscowicz",
-			"Stryn"
+			"Stryn",
+			"Samoasambia"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Foorumilaajennus]] MediaWikille.",
@@ -66,7 +67,7 @@
 	"wikiforum-error-thread-close": "Virhe aihetta sulkiessa",
 	"wikiforum-error-general-title": "Kohdetta ei löytynyt tai puutteelliset käyttöoikeudet tämän toiminnon suorittamiseen",
 	"wikiforum-error-general": "Kohdetta ei löytynyt tai puutteelliset käyttöoikeudet tämän toiminnon suorittamiseen.",
-	"wikiforum-error-no-rights": "Sinulla ei ole oikeuksia suorittaa tätä toimintoa.",
+	"wikiforum-error-no-rights": "Sinulla ei ole oikeutta suorittaa tätä toimintoa.",
 	"wikiforum-error-not-found": "Kohdetta ei löytynyt.",
 	"wikiforum-error-no-text-or-title": "Otsikko tai teksti on virheellinen.",
 	"wikiforum-error-bad-title": "Annettu otsikko sisälsi kelpaamattomia merkkejä.",
