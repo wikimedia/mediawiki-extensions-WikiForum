@@ -539,17 +539,12 @@ class WFForum extends ContextSource {
 
 		// limiting
 		$maxPerPage = intval( $this->msg( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
-
-		if ( is_numeric( $request->getVal( 'page' ) ) ) {
-			$limit_page = $request->getVal( 'page' ) - 1;
-		} else {
-			$limit_page = 0;
-		}
+		$thisPage = $request->getInt( 'page', 1 );
 
 		$threads = $this->getThreads( $sort );
 
 		if ( $maxPerPage > 0 ) { // limiting
-			$threads = array_slice( $threads, $limit_page * $maxPerPage, $maxPerPage );
+			$threads = array_slice( $threads, ( $thisPage - 1 ) * $maxPerPage, $maxPerPage );
 		}
 
 		foreach ( $threads as $thread ) {
@@ -563,7 +558,7 @@ class WFForum extends ContextSource {
 		$output .= '</table></div>';
 
 		if ( $maxPerPage > 0 ) {
-			$output .= $this->showFooterRow( $limit_page, $maxPerPage );
+			$output .= $this->showFooterRow( $thisPage, $maxPerPage );
 		}
 
 		return $output;
