@@ -270,7 +270,7 @@ class WFCategory extends ContextSource {
 			return $error . $this->showEditForm();
 		}
 
-		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'sessionfailure' );
 			return $error . $this->showEditForm();
 		}
@@ -437,12 +437,12 @@ class WFCategory extends ContextSource {
 
 		if ( strlen( $categoryName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
-			return $error . self::showAddForm( $user );
+			return $error . self::showAddForm();
 		}
 
-		if ( !$user->matchEditToken( $wgRequest->getVal( 'wpToken' ) ) ) {
+		if ( !$user->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
-			return $error . self::showAddForm( $user );
+			return $error . self::showAddForm();
 		}
 
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
@@ -503,45 +503,56 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get the form for adding/editing categories and forums.
 	 *
-	 * @param array $params URL parameters (like array( 'foo' => 'bar' ) or so)
-	 * @param string $titlePlaceholder
-	 * @param string $titleValue
-	 * @param string $formTitle
-	 * @param User $user
+	 * @param bool $new Add a new forum, default false
 	 * @return string HTML
 	 */
-	static function showForm( $params, $titlePlaceholder, $titleValue, $formTitle, User $user ) {
-		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
+	function showEditForm( bool $new = false ) {
+		if ( !$this->getUser()->isAllowed( 'wikiforum-admin' ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-no-rights' );
 		}
 
-		$titlePlaceholder = str_replace( '"', '&quot;', $titlePlaceholder );
-		$titleValue = str_replace( '"', '&quot;', $titleValue );
-		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-		$url = htmlspecialchars( $specialPage->getFullURL( $params ) );
+		$formDescriptor = [
+			'wfaction' => [
+				'type' => 'hidden',
+				'name' => 'wfaction',
+				'default' => ( $new ? 'savenewcategory' : 'savecategory' ),
+				'required' => true
+			],
+			'category' => [
+				'type' => 'hidden',
+				'name' => 'category',
+				'default' => ( $new ? '' : $this->getId() ),
+				'required' => true
+			],
+			'name' => [
+				'label-message' => 'wikiforum-name',
+				'type' => 'text',
+				'name' => 'name',
+				'default' => ( $new ? '' : $this->getName() ),
+				'required' => true,
+				'placeholder-message' => 'wikiforum-category-preload'
+			],
+		];
 
-		return WikiForumGui::showTopLevelForm( $url, '', $formTitle, $titlePlaceholder, $titleValue );
-	}
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm->setFormIdentifier( 'edit-category-form' )
+			->setWrapperLegendMsg( $new ? 'wikiforum-add-category' : 'wikiforum-edit-category' )
+			->setSubmitTextMsg( 'wikiforum-save' )
+			->prepareForm()
+			->displayForm( false );
 
-	/**
-	 * Show the form for editing this category
-	 *
-	 * @return string HTML
-	 */
-	function showEditForm() {
-		$params = [ 'wfaction' => 'savecategory', 'category' => $this->getId() ];
-		return self::showForm( $params, '', $this->getName(), $this->msg( 'wikiforum-edit-category' )->text(), $this->getUser() );
+		return '';
 	}
 
 	/**
 	 * Show the form for adding a new category
 	 *
-	 * @param User $user
 	 * @return string HTML
 	 */
-	static function showAddForm( User $user ) {
-		$params = [ 'wfaction' => 'savenewcategory' ];
-		return self::showForm( $params, wfMessage( 'wikiforum-category-preload' )->text(), '', wfMessage( 'wikiforum-add-category' )->text(), $user );
+	static function showAddForm() {
+		// Make a new object with dummy data to get access to class methods
+		$wfCategory = new self( (object)[ 'id' => -1 ] );
+		return $wfCategory->showEditForm( true );
 	}
 
 	/**
@@ -550,7 +561,6 @@ class WFCategory extends ContextSource {
 	 * @return string HTML, the form
 	 */
 	function showAddForumForm() {
-		$params = [ 'wfaction' => 'savenewforum', 'category' => $this->getId() ];
-		return WFForum::showForm( $params, $this->msg( 'wikiforum-forum-preload' )->text(), '', '', false, $this->msg( 'wikiforum-add-forum' )->text(), $this->getUser() );
+		return WFForum::showAddForumForm( $this->getId() );
 	}
 }
