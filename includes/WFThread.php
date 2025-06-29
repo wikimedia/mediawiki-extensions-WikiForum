@@ -1080,22 +1080,20 @@ class WFThread extends ContextSource {
 	 */
 	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params, User $user ) {
 		$input =
-			Html::openElement( 'tr' ) .
-			Html::openElement( 'td' ) .
-			Html::element(
-				'input',
-				[
-					'type' => 'text',
-					'name' => 'name',
-					'style' => 'width:100%',
-					'placeholder' => $titlePlaceholder,
-					'value' => $titleValue,
-				]
-			) .
-			Html::closeElement( 'td' ) .
-			Html::closeElement( 'tr' );
+			Html::rawElement( 'div', [],
+				Html::element(
+					'input',
+					[
+						'type' => 'text',
+						'name' => 'name',
+						'class' => 'mw-wikiforum-title-input',
+						'placeholder' => $titlePlaceholder,
+						'value' => $titleValue,
+					]
+				)
+			);
 
-		return WikiForumGui::showWriteForm( true, $params, $input, '25em', $textValue, 'wikiforum-save-thread', $user );
+		return WikiForumGui::showWriteForm( true, $params, $input, 'mw-wikiforum-edit-thread', $textValue, 'wikiforum-save-thread', $user );
 	}
 
 	/**
