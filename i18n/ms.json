@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
+			"Hakimi97",
 			"Pizza1016",
 			"Tofeiku"
 		]
 	},
 	"wikiforum-desc": "Sambungan [[Special:WikiForum|forum]] untuk MediaWiki",
 	"wikiforum": "Papan perbincangan",
-	"wikiforum-anonymous": "Tanpa nama",
+	"wikiforum-anonymous": "Awanama",
 	"wikiforum-announcement-only-description": "Forum pengumuman (penyelia sahaja yang boleh membuka tred)",
 	"wikiforum-by": "Pada $4, $5<br />oleh {{GENDER:$3|$2}}",
 	"wikiforum-description": "Keterangan:",
