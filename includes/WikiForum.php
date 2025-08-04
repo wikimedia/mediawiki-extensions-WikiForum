@@ -164,7 +164,8 @@ class WikiForum {
 	 */
 	public static function showUserLink( User $user ) {
 		$username = $user->getName();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 
 		if ( $user->isAnon() ) { // Do no further processing for anons, since anons cannot have groups.
 			return $linkRenderer->makeLink(
@@ -178,27 +179,24 @@ class WikiForum {
 			$username
 		);
 
-		$groups = MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserEffectiveGroups( $user );
+		$groups = $services->getUserGroupManager()->getUserEffectiveGroups( $user );
 		$groupText = '';
 
 		if ( in_array( 'sysop', $groups ) ) {
-			$groupText .= wfMessage( 'word-separator' )->plain() .
+			$groupText .= wfMessage( 'word-separator' )->parse() .
 				wfMessage(
 					'parentheses',
 					UserGroupMembership::getLink( 'sysop', RequestContext::getMain(), 'html', $username )
 				)->text();
-
 		} elseif ( in_array( 'forumadmin', $groups ) ) {
-			$groupText .= wfMessage( 'word-separator' )->plain() .
+			$groupText .= wfMessage( 'word-separator' )->parse() .
 				wfMessage(
 					'parentheses',
 					UserGroupMembership::getLink( 'forumadmin', RequestContext::getMain(), 'html', $username )
 				)->text();
 		}
 
-		MediaWikiServices::getInstance()->getHookContainer()->run( 'WikiForumSig', [ &$groupText, $user ] );
+		$services->getHookContainer()->run( 'WikiForumSig', [ &$groupText, $user, $groups ] );
 
 		$retVal .= $groupText;
 
