@@ -4,6 +4,7 @@
 			"Hwangjy9",
 			"LFM",
 			"Priviet",
+			"YeBoy371",
 			"Ykhwong",
 			"아라"
 		]
@@ -35,7 +36,7 @@
 	"wikiforum-latest-thread": "최신 스레드",
 	"wikiforum-forum": "포럼: $1 > $2",
 	"wikiforum-overview": "개요",
-	"wikiforum-pages": "{{PLURAL:$1|페이지}}:",
+	"wikiforum-pages": "{{PLURAL:$1|문서}}:",
 	"wikiforum-thread-closed": "스레드 닫힘",
 	"wikiforum-new-thread": "새 스레드",
 	"wikiforum-edit-thread": "스레드 편집하기",
