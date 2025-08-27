@@ -5,7 +5,8 @@
 			"LFM",
 			"Priviet",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"YeBoy371"
 		]
 	},
 	"wikiforum-desc": "미디어위키를 위한 [[Special:WikiForum|포럼]] 확장 기능",
@@ -35,7 +36,7 @@
 	"wikiforum-latest-thread": "최신 스레드",
 	"wikiforum-forum": "포럼: $1 > $2",
 	"wikiforum-overview": "개요",
-	"wikiforum-pages": "{{PLURAL:$1|페이지}}:",
+	"wikiforum-pages": "{{PLURAL:$1|문서}}:",
 	"wikiforum-thread-closed": "스레드 닫힘",
 	"wikiforum-new-thread": "새 스레드",
 	"wikiforum-edit-thread": "스레드 편집하기",
