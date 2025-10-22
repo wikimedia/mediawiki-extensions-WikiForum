@@ -10,7 +10,8 @@
 			"Jeeputer",
 			"Mjbmr",
 			"Omidh",
-			"Reza1615"
+			"Reza1615",
+			"LordProfo"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|انجمن]]  برای مدیاویکی",
@@ -82,7 +83,7 @@
 	"wikiforum-error-delete": "خطا در حین حذف",
 	"wikiforum-error-sticky": "خطا هنگام تغییر ویژگی دشوار",
 	"wikiforum-error-move-thread": "خطا در حین انتقال موضوع",
-	"wikiforum-error-add": "خطا در حین اضافه کردن",
+	"wikiforum-error-add": "خطا در هنگام افزودن",
 	"wikiforum-error-edit": "خطا در حین ویرایش",
 	"wikiforum-error-write": "خطا هنگام نوشتن",
 	"wikiforum-error-category": "خطای رده",
