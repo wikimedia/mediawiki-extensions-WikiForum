@@ -6,5 +6,7 @@
 	},
 	"wikiforum-description": "Kuvvim:",
 	"wikiforum-name": "Nommâ:",
-	"wikiforum-save": "Vuorkkii"
+	"wikiforum-save": "Vuorkkii",
+	"wikiforum-add-category": "Lasseet luoka",
+	"wikiforum-delete-category": "Siho luoka"
 }
