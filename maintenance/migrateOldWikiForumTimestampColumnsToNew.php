@@ -29,7 +29,7 @@ class MigrateOldWikiForumTimestampColumnsToNew extends LoggedUpdateMaintenance {
 	 *
 	 * @return string
 	 */
-	protected function updateSkippedMessage() {
+	public function updateSkippedMessage() {
 		return 'WikiForum\'s database tables have already been migrated to use the new timestamp columns.';
 	}
 
