@@ -225,7 +225,7 @@ class WikiForumGui {
 			$input .
 			$toolbar .
 			Html::rawElement( 'div', [],
-				Html::Element( 'textarea',
+				Html::element( 'textarea',
 					[
 						'name' => 'text',
 						'id' => 'wpTextbox1',
