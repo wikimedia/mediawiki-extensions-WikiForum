@@ -73,7 +73,8 @@
 		"WFReply": "includes/WFReply.php",
 		"WFThread": "includes/WFThread.php",
 		"WFForum": "includes/WFForum.php",
-		"WFCategory": "includes/WFCategory.php"
+		"WFCategory": "includes/WFCategory.php",
+		"LockInactiveThreadJob": "includes/jobs/LockInactiveThreadJob.php"
 	},
 	"ResourceModules": {
 		"ext.wikiForum": {
@@ -99,9 +100,13 @@
 	"CaptchaTriggers": {
 		"wikiforum": true
 	},
+	"JobClasses": {
+		"lockInactiveThread": "LockInactiveThreadJob"
+	},
 	"config": {
 		"WikiForumAllowAnonymous": true,
-		"WikiForumLogInRC": true
+		"WikiForumLogInRC": true,
+		"WikiForumAutoLockInactiveHours": null
 	},
 	"manifest_version": 1
 }

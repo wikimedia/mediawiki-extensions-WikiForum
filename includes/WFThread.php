@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\ContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -10,6 +11,8 @@ class WFThread extends ContextSource {
 	public $forum;
 	private $replies;
 	public $preloadText;
+	/** @var bool|null True if should be auto-locked, false if not, null if not checked yet */
+	private $shouldAutoLock = null;
 
 	/**
 	 * @param stdClass $sql
@@ -92,7 +95,147 @@ class WFThread extends ContextSource {
 	 * @return bool
 	 */
 	function isClosed() {
-		return $this->data->wft_closed_timestamp > 0;
+		// Check if manually closed
+		if ( $this->data->wft_closed_timestamp > 0 ) {
+			return true;
+		}
+
+		// Check if should be auto-locked and create job if needed
+		// If handleAutoLock returns true, the thread should be considered closed
+		return $this->handleAutoLock();
+	}
+
+	/**
+	 * Check if this thread meets the conditions for auto-lock based on inactivity time (internal method).
+	 * This method performs the actual check and is called by handleAutoLock() and LockInactiveThreadJob.
+	 *
+	 * @internal This is an internal method. Use handleAutoLock() for checking with job creation.
+	 * @return bool True if the thread should be auto-locked, false otherwise
+	 */
+	function checkAutoLockConditions() {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$autoLockHours = $config->get( 'WikiForumAutoLockInactiveHours' );
+
+		// Check if auto-lock is enabled
+		if ( !$autoLockHours || $autoLockHours <= 0 ) {
+			return false;
+		}
+
+		// Thread is already manually locked
+		if ( $this->getClosedTimestamp() > 0 ) {
+			return false;
+		}
+
+		// Get all activity timestamps (creation, last post/reply, thread edit, replies edit)
+		$postedTimestamp = $this->getPostedTimestamp();
+		$lastPostTimestamp = $this->getLastPostTimestamp();
+		$lastEditTimestamp = $this->getEditedTimestamp();
+
+		// Get the latest edit timestamp from all replies in this thread
+		$lastReplyEditTimestamp = $this->getLastReplyEditTimestamp();
+
+		// Determine the most recent activity timestamp (max of all activity types)
+		$activityTimestamps = [];
+		if ( $postedTimestamp ) {
+			$activityTimestamps[] = $postedTimestamp;
+		}
+		if ( $lastPostTimestamp ) {
+			$activityTimestamps[] = $lastPostTimestamp;
+		}
+		if ( $lastEditTimestamp ) {
+			$activityTimestamps[] = $lastEditTimestamp;
+		}
+		if ( $lastReplyEditTimestamp ) {
+			$activityTimestamps[] = $lastReplyEditTimestamp;
+		}
+
+		// If no activity timestamp is available, cannot determine inactivity
+		if ( empty( $activityTimestamps ) ) {
+			return false;
+		}
+
+		// Use the most recent activity
+		$lastActivityTimestamp = max( $activityTimestamps );
+
+		// Calculate inactivity threshold
+		$thresholdTimestamp = wfTimestamp( TS_MW, time() - ( $autoLockHours * 3600 ) );
+
+		// Check if the thread is inactive (no activity since threshold)
+		if ( $lastActivityTimestamp >= $thresholdTimestamp ) {
+			// Thread is still active
+			return false;
+		}
+
+		// Thread should be locked
+		return true;
+	}
+
+	/**
+	 * Lock this thread (internal method).
+	 * Always checks that thread is not already locked to avoid race conditions.
+	 * This method performs the actual locking operation and is called by close() and LockInactiveThreadJob.
+	 *
+	 * @internal This is an internal method. Use close() for user-initiated locks.
+	 * @param int|null $actorId Actor ID of user locking the thread (0 or null for system lock)
+	 * @param string $userIp IP address of user locking the thread (empty string for system lock)
+	 * @return bool True on success, false on failure
+	 */
+	function doLock( $actorId = 0, $userIp = '' ) {
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$result = $dbw->update(
+			'wikiforum_threads',
+			[
+				'wft_closed_timestamp' => $dbw->timestamp( wfTimestampNow() ),
+				'wft_closed_actor' => $actorId ?? 0,
+				'wft_closed_user_ip' => $userIp
+			],
+			[
+				'wft_thread' => $this->getId(),
+				// Double-check that the thread is still not locked (race condition protection)
+				'wft_closed_timestamp' => ''
+			],
+			__METHOD__
+		);
+
+		if ( $result ) {
+			// Update object data to reflect the lock
+			$this->data->wft_closed_timestamp = wfTimestampNow();
+			$this->data->wft_closed_actor = $actorId ?? 0;
+			$this->data->wft_closed_user_ip = $userIp;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Handle auto-lock for this thread: check conditions and create a job if needed.
+	 *
+	 * @return bool True if job was created or should be created, false otherwise
+	 */
+	function handleAutoLock() {
+		// Return a cached result if already checked
+		if ( $this->shouldAutoLock !== null ) {
+			return $this->shouldAutoLock;
+		}
+
+		$this->shouldAutoLock = $this->checkAutoLockConditions();
+
+		if ( $this->shouldAutoLock ) {
+			// Thread should be locked, create job
+			try {
+				$jobSpec = new JobSpecification(
+					'lockInactiveThread',
+					[ 'threadId' => $this->getId() ],
+					[ 'removeDuplicates' => true ]
+				);
+				MediaWikiServices::getInstance()->getJobQueueGroup()->push( $jobSpec );
+			} catch ( Exception $e ) {
+				// Log error or just ignore - the job is a background task
+				wfDebug( __METHOD__ . ': Failed to push lockInactiveThread job: ' . $e->getMessage() );
+			}
+		}
+
+		return $this->shouldAutoLock;
 	}
 
 	/**
@@ -277,6 +420,49 @@ class WFThread extends ContextSource {
 	}
 
 	/**
+	 * Get the timestamp of when this thread was closed
+	 *
+	 * @return string
+	 */
+	function getClosedTimestamp() {
+		return $this->data->wft_closed_timestamp;
+	}
+
+	/**
+	 * Get the timestamp of the last post in this thread
+	 *
+	 * @return string
+	 */
+	function getLastPostTimestamp() {
+		return $this->data->wft_last_post_timestamp;
+	}
+
+	/**
+	 * Get the timestamp of the latest edit of any reply in this thread
+	 *
+	 * @return string Empty string if no replies were edited
+	 */
+	function getLastReplyEditTimestamp() {
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+
+		$result = $dbr->selectRow(
+			'wikiforum_replies',
+			[ 'MAX(wfr_edit_timestamp) AS max_edit_timestamp' ],
+			[
+				'wfr_thread' => $this->getId(),
+				'wfr_edit_timestamp > 0'
+			],
+			__METHOD__
+		);
+
+		if ( $result && $result->max_edit_timestamp ) {
+			return $result->max_edit_timestamp;
+		}
+
+		return '';
+	}
+
+	/**
 	 * Gets an array of this thread's replies
 	 *
 	 * @return WFReply[]
@@ -399,11 +585,14 @@ class WFThread extends ContextSource {
 		}
 
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$now = wfTimestampNow();
 		$result = $dbw->update(
 			'wikiforum_threads',
 			[
 				'wft_closed_timestamp' => '',
-				'wft_closed_actor' => 0
+				'wft_closed_actor' => 0,
+				// Update last post timestamp to current time so thread is considered active after reopening
+				'wft_last_post_timestamp' => $dbw->timestamp( $now )
 			],
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
@@ -411,6 +600,7 @@ class WFThread extends ContextSource {
 
 		$this->data->wft_closed_timestamp = 0;
 		$this->data->wft_closed_actor = 0;
+		$this->data->wft_last_post_timestamp = $now;
 
 		return $this->show();
 	}
@@ -434,21 +624,10 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
-		$result = $dbw->update(
-			'wikiforum_threads',
-			[
-				'wft_closed_timestamp' => $dbw->timestamp( wfTimestampNow() ),
-				'wft_closed_actor' => $user->getActorId(),
-				'wft_closed_user_ip' => $request->getIP()
-			],
-			[ 'wft_thread' => $this->getId() ],
-			__METHOD__
+		$this->doLock(
+			$user->getActorId(),
+			$request->getIP()
 		);
-
-		$this->data->wft_closed_timestamp = wfTimestampNow();
-		$this->data->wft_closed_actor = $user->getActorId();
-		$this->data->wft_closed_user_ip = $request->getIP();
 
 		return $this->show();
 	}
