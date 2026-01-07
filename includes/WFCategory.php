@@ -180,9 +180,11 @@ class WFCategory extends ContextSource {
 			$link .= Html::rawElement(
 				'a',
 				[
-					'href' => $specialPage->getFullURL( [ 'wfaction' => 'deletecategory', 'category' => $this->getId() ] ),
+					'href' => '#',
 					'class' => 'wikiforum-delete-category-link',
 					'data-wikiforum-category-id' => $this->getId(),
+					'role' => 'button',
+					'title' => $this->msg( 'wikiforum-delete-category' )->text()
 				],
 				WikiForum::getIconHTML( 'wikiforum-delete-category' )
 			);

@@ -52,6 +52,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		return [ $request, $context ];
 	}
@@ -111,6 +114,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Thread ' . wfRandomString( 10 );
 		$threadText = 'Thread text content';
@@ -147,6 +153,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Thread Name ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -177,6 +186,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Thread SQL ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -214,6 +226,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Thread Getters ' . wfRandomString( 10 );
 		$threadText = 'Thread text content';
@@ -260,6 +275,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Thread States ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -289,6 +307,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Add Thread ' . wfRandomString( 10 );
 		$threadText = 'Thread text content';
@@ -320,6 +341,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Edit Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Original text' );
@@ -364,6 +388,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Add Reply Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -400,6 +427,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Get Replies Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -460,6 +490,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $adminUser );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Sticky Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -506,6 +539,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $adminUser );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Close Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -577,6 +613,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test AutoLock Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );
@@ -586,6 +625,65 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 
 		// With auto-lock disabled, should return false
 		$this->assertFalse( $thread->checkAutoLockConditions() );
+	}
+
+	/**
+	 * Test deleting a thread
+	 */
+	public function testDelete() {
+		$user = $this->getTestUser()->getUser();
+		$forum = $this->createTestForum( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$forum->setContext( $context );
+
+		// Ensure Title is set in global context before addThread (which calls show())
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$globalContext = RequestContext::getMain();
+		$globalContext->setTitle( $title );
+		$globalContext->setUser( $user );
+		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
+
+		$threadTitle = 'Test Delete Thread ' . wfRandomString( 10 );
+		$forum->addThread( $threadTitle, 'Thread text' );
+
+		$thread = WFThread::newFromName( $threadTitle );
+		$this->assertNotFalse( $thread, 'Thread should be created' );
+		$threadId = $thread->getId();
+		$thread->setContext( $context );
+
+		// Set title in global context for methods that use OutputPage::parseAsContent
+		$globalContext = RequestContext::getMain();
+		$globalContext->setTitle( $title );
+		$globalContext->setUser( $user );
+		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
+
+		// Ensure token is set in request for delete
+		$token = $user->getEditToken( '', $request );
+		$request->setVal( 'wpToken', $token );
+
+		// Ensure thread has context with title set
+		$thread->setContext( $context );
+
+		$result = $thread->delete();
+		$this->assertIsString( $result );
+
+		// Verify thread was deleted - use DB_PRIMARY to read after delete in same test
+		$dbw = $this->getServiceContainer()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$threadData = $dbw->selectRow(
+			'wikiforum_threads',
+			'*',
+			[ 'wft_thread' => $threadId ],
+			__METHOD__
+		);
+		$this->assertFalse( $threadData, 'Thread should be deleted' );
 	}
 
 	/**
@@ -605,6 +703,9 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Show Thread ' . wfRandomString( 10 );
 		$forum->addThread( $threadTitle, 'Thread text' );

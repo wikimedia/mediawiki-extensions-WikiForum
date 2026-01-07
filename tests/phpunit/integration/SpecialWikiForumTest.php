@@ -126,6 +126,9 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $threadUser );
 		$globalContext->setRequest( $threadContext->getRequest() );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$forum->addThread( 'Test Thread', 'Thread text' );
 

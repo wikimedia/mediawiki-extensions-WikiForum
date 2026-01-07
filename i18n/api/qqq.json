@@ -19,5 +19,11 @@
 	"apihelp-wikiforum-sort-param-direction": "{{doc-apihelp-param|wikiforum-sort|direction}}",
 	"apihelp-wikiforum-sort-param-id": "{{doc-apihelp-param|wikiforum-sort|id}}",
 	"apihelp-wikiforum-sort-param-iscategory": "{{doc-apihelp-param|wikiforum-sort|iscategory}}",
-	"apihelp-wikiforum-sort-example-1": "{{doc-apihelp-example|wikiforum-sort}}"
+	"apihelp-wikiforum-sort-example-1": "{{doc-apihelp-example|wikiforum-sort}}",
+
+	"apihelp-wikiforum-delete-thread-summary": "{{doc-apihelp-summary|wikiforum-delete-thread}}",
+	"apihelp-wikiforum-delete-thread-param-id": "{{doc-apihelp-param|wikiforum-delete-thread|id}}",
+	"apihelp-wikiforum-delete-thread-param-isreply": "{{doc-apihelp-param|wikiforum-delete-thread|isreply}}",
+	"apihelp-wikiforum-delete-thread-example-1": "{{doc-apihelp-example|wikiforum-delete-thread}}",
+	"apihelp-wikiforum-delete-thread-example-2": "{{doc-apihelp-example|wikiforum-delete-thread}}"
 }

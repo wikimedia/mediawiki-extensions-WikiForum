@@ -25,6 +25,6 @@ php tests/phpunit/phpunit.php --filter testNewFromID extensions/WikiForum/tests/
 - Model classes: WFCategory, WFForum, WFThread, WFReply
 - Utilities: WikiForum
 - Hooks: WikiForumHooks
-- API modules: ApiWikiForumAdminDelete, ApiWikiForumSetThreadStickiness, ApiWikiForumSort
+- API modules: ApiWikiForumAdminDelete, ApiWikiForumSetThreadStickiness, ApiWikiForumSort, ApiWikiForumDeleteThread
 - Special pages: SpecialWikiForum
 - Jobs: LockInactiveThreadJob

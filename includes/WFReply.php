@@ -346,7 +346,13 @@ class WFReply extends ContextSource {
 			' ' .
 			Html::rawElement(
 				'a',
-				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'deletereply', 'reply' => $this->getId() ] ) ],
+				[
+					'href' => '#',
+					'class' => 'wikiforum-delete-reply-link',
+					'data-wikiforum-reply-id' => $this->getId(),
+					'role' => 'button',
+					'title' => $this->msg( 'wikiforum-delete-reply' )->text()
+				],
 				WikiForum::getIconHTML( 'wikiforum-delete-reply' )
 			);
 		}

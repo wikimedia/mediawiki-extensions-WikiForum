@@ -89,6 +89,9 @@ class WFReplyTest extends MediaWikiIntegrationTestCase {
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
 
 		$threadTitle = 'Test Thread ' . wfRandomString( 10 );
 		$result = $forum->addThread( $threadTitle, 'Thread text' );

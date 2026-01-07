@@ -8,7 +8,19 @@ $( () => {
 		// Don't follow the link
 		e.preventDefault();
 
-		const isCategory = $( this ).hasClass( 'wikiforum-delete-category-link' ) ? true : false;
+		const isCategory = $( this ).hasClass( 'wikiforum-delete-category-link' ) ?
+			true :
+			false;
+		const confirmMessage = isCategory ?
+			mw.message( 'wikiforum-confirm-delete-category' ).text() :
+			mw.message( 'wikiforum-confirm-delete-forum' ).text();
+
+		// Ask for confirmation
+		// eslint-disable-next-line no-alert
+		if ( !confirm( confirmMessage ) ) {
+			return;
+		}
+
 		// tableRow is the element we're deleting
 		let id, tableRow;
 
@@ -29,7 +41,7 @@ $( () => {
 			iscategory: isCategory,
 			id: id,
 			format: 'json'
-		} ).done( () => {
+		} ).then( () => {
 			// Currently the API response is 'OK' which is kinda meh.
 			// So is the HTML that would get returned by the non-API PHP classes...
 			tableRow.hide( 1000 );
@@ -41,8 +53,12 @@ $( () => {
 		// Don't follow the link
 		e.preventDefault();
 
-		const direction = $( this ).hasClass( 'wikiforum-down-link' ) ? 'down' : 'up';
-		const isCategory = $( this ).hasClass( 'wikiforum-category-sort-link' ) ? true : false;
+		const direction = $( this ).hasClass( 'wikiforum-down-link' ) ?
+			'down' :
+			'up';
+		const isCategory = $( this ).hasClass( 'wikiforum-category-sort-link' ) ?
+			true :
+			false;
 		let id;
 
 		if ( isCategory ) {
@@ -63,7 +79,7 @@ $( () => {
 			iscategory: isCategory,
 			id: id,
 			format: 'json'
-		} ).done( () => {
+		} ).then( () => {
 			// Currently the API response is 'OK' which is kinda meh.
 			// So is the HTML that would get returned by the non-API PHP classes...
 			// This one was tested on categories (but not yet on forums - TESTME!)

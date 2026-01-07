@@ -81,7 +81,7 @@ class SpecialWikiForum extends SpecialPage {
 
 			// Define actions for each entity type to determine routing priority
 			$forumActions = [ 'editforum', 'saveforum', 'deleteforum', 'forumup', 'forumdown', 'addthread', 'savenewthread' ];
-			$threadActions = [ 'editthread', 'savethread', 'deletethread', 'closethread', 'reopenthread' ];
+			$threadActions = [ 'editthread', 'savethread', 'closethread', 'reopenthread' ];
 			$categoryActions = [ 'editcategory', 'savecategory', 'addforum', 'savenewforum' ];
 
 			// Determine if action belongs to a specific entity type
@@ -211,9 +211,6 @@ class SpecialWikiForum extends SpecialPage {
 							case 'savethread':
 								$output .= $thread->edit( $title, $text );
 								break;
-							case 'deletethread':
-								$output .= $thread->delete();
-								break;
 							/* See above why these are commented out but tl,dr: T312733
 							case 'removesticky':
 								$output .= $thread->removeSticky();
@@ -253,9 +250,6 @@ class SpecialWikiForum extends SpecialPage {
 						$output .= $reply->getThread()->show();
 					} else {
 						switch ( $action ) {
-							case 'deletereply':
-								$output .= $reply->delete();
-								break;
 							case 'editreply':
 								$output .= $reply->showEditor();
 								break;

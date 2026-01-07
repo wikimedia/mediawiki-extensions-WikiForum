@@ -62,12 +62,14 @@
 	"APIModules": {
 		"wikiforum-admin-delete": "ApiWikiForumAdminDelete",
 		"wikiforum-set-thread-stickiness": "ApiWikiForumSetThreadStickiness",
-		"wikiforum-sort": "ApiWikiForumSort"
+		"wikiforum-sort": "ApiWikiForumSort",
+		"wikiforum-delete-thread": "ApiWikiForumDeleteThread"
 	},
 	"AutoloadClasses": {
 		"ApiWikiForumAdminDelete": "includes/api/ApiWikiForumAdminDelete.php",
 		"ApiWikiForumSetThreadStickiness": "includes/api/ApiWikiForumSetThreadStickiness.php",
 		"ApiWikiForumSort": "includes/api/ApiWikiForumSort.php",
+		"ApiWikiForumDeleteThread": "includes/api/ApiWikiForumDeleteThread.php",
 		"MigrateOldWikiForumTimestampColumnsToNew": "maintenance/migrateOldWikiForumTimestampColumnsToNew.php",
 		"MigrateOldWikiForumUserColumnsToActor": "maintenance/migrateOldWikiForumUserColumnsToActor.php",
 		"EchoMentionWikiForumCommentPresentationModel": "includes/notifications/EchoMentionWikiForumCommentPresentationModel.php",
@@ -87,11 +89,24 @@
 		},
 		"ext.wikiForum.admin-links": {
 			"scripts": "js/ext.wikiForum.admin-links.js",
-			"dependencies": "mediawiki.api"
+			"dependencies": "mediawiki.api",
+			"messages": [
+				"wikiforum-confirm-delete-category",
+				"wikiforum-confirm-delete-forum"
+			]
 		},
 		"ext.wikiForum.admin-sticky-links": {
 			"scripts": "js/ext.wikiForum.admin-sticky-links.js",
 			"dependencies": "mediawiki.api"
+		},
+		"ext.wikiForum.delete-links": {
+			"scripts": "js/ext.wikiForum.delete-links.js",
+			"dependencies": "mediawiki.api",
+			"messages": [
+				"wikiforum-confirm-delete-thread",
+				"wikiforum-confirm-delete-reply",
+				"wikiforum-error-delete"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {

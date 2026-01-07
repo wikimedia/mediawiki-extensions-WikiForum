@@ -547,14 +547,15 @@ class WFThread extends ContextSource {
 		);
 
 		// Update the forum table so that the data shown on Special:WikiForum is up to date
+		$lastPostTimestamp = $row->wft_last_post_timestamp ?? null;
 		$dbw->update(
 			'wikiforum_forums',
 			[
 				"wff_reply_count = wff_reply_count - $replyCount",
 				'wff_thread_count = wff_thread_count - 1',
 				'wff_last_post_actor' => $row->wft_last_post_actor ?? null,
-				'wff_last_post_user_ip' => $row->wft_last_post_user_ip ?? null,
-				'wff_last_post_timestamp' => $dbw->timestampOrNull( $row->wft_last_post_timestamp ?? null )
+				'wff_last_post_user_ip' => $row->wft_last_post_user_ip ?? '',
+				'wff_last_post_timestamp' => $lastPostTimestamp ? $dbw->timestamp( $lastPostTimestamp ) : ''
 			],
 			[ 'wff_forum' => $this->getForum()->getId() ],
 			__METHOD__
@@ -794,6 +795,7 @@ class WFThread extends ContextSource {
 				[ 'ORDER BY' => 'wft_last_post_timestamp DESC', 'LIMIT' => 1 ]
 			);
 
+			$oldForumLastPostTimestamp = $oldForumLastPost ? $oldForumLastPost->wft_last_post_timestamp : null;
 			$dbw->update(
 				'wikiforum_forums',
 				[
@@ -801,7 +803,7 @@ class WFThread extends ContextSource {
 					'wff_thread_count = wff_thread_count - 1',
 					'wff_last_post_actor' => $oldForumLastPost ? $oldForumLastPost->wft_last_post_actor : null,
 					'wff_last_post_user_ip' => $oldForumLastPost ? $oldForumLastPost->wft_last_post_user_ip : '',
-					'wff_last_post_timestamp' => $dbw->timestampOrNull( $oldForumLastPost ? $oldForumLastPost->wft_last_post_timestamp : null )
+					'wff_last_post_timestamp' => $oldForumLastPostTimestamp ? $dbw->timestamp( $oldForumLastPostTimestamp ) : ''
 				],
 				[ 'wff_forum' => $oldForumId ],
 				__METHOD__
@@ -820,6 +822,7 @@ class WFThread extends ContextSource {
 				[ 'ORDER BY' => 'wft_last_post_timestamp DESC', 'LIMIT' => 1 ]
 			);
 
+			$newForumLastPostTimestamp = $newForumLastPost ? $newForumLastPost->wft_last_post_timestamp : null;
 			$dbw->update(
 				'wikiforum_forums',
 				[
@@ -827,7 +830,7 @@ class WFThread extends ContextSource {
 					'wff_thread_count = wff_thread_count + 1',
 					'wff_last_post_actor' => $newForumLastPost ? $newForumLastPost->wft_last_post_actor : null,
 					'wff_last_post_user_ip' => $newForumLastPost ? $newForumLastPost->wft_last_post_user_ip : '',
-					'wff_last_post_timestamp' => $dbw->timestampOrNull( $newForumLastPost ? $newForumLastPost->wft_last_post_timestamp : null )
+					'wff_last_post_timestamp' => $newForumLastPostTimestamp ? $dbw->timestamp( $newForumLastPostTimestamp ) : ''
 				],
 				[ 'wff_forum' => $newForumId ],
 				__METHOD__
@@ -924,7 +927,9 @@ class WFThread extends ContextSource {
 			}
 		}
 
-		$icon = WikiForum::getIconHTML( 'wikiforum-write-reply' ) . ' ';
+		// Add delete links module for threads and replies
+		$out->addModules( 'ext.wikiForum.delete-links' );
+
 		// Replying is only possible to open threads
 		if ( !$this->isClosed() ) {
 			$menuLink .=
@@ -1115,7 +1120,13 @@ class WFThread extends ContextSource {
 			);
 			$editButtons .= ' ' . Html::rawElement(
 				'a',
-				[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'deletethread', 'thread' => $this->getId() ] ) ],
+				[
+					'href' => '#',
+					'class' => 'wikiforum-delete-thread-link',
+					'data-wikiforum-thread-id' => $this->getId(),
+					'role' => 'button',
+					'title' => $this->msg( 'wikiforum-delete-thread' )->text()
+				],
 				WikiForum::getIconHTML( 'wikiforum-delete-thread' )
 			);
 

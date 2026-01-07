@@ -19,5 +19,11 @@
 	"apihelp-wikiforum-sort-param-direction": "Direction to move the category or forum to, either <kbd>up</kbd> or <kbd>down</kbd>",
 	"apihelp-wikiforum-sort-param-id": "ID of the forum or category to sort",
 	"apihelp-wikiforum-sort-param-iscategory": "Is the thing about to be sorted a forum category?",
-	"apihelp-wikiforum-sort-example-1": "Move the forum category with the ID #32 up"
+	"apihelp-wikiforum-sort-example-1": "Move the forum category with the ID #32 up",
+
+	"apihelp-wikiforum-delete-thread-summary": "Delete a WikiForum thread or reply",
+	"apihelp-wikiforum-delete-thread-param-id": "ID of the thread or reply to delete",
+	"apihelp-wikiforum-delete-thread-param-isreply": "Whether the item to delete is a reply (true) or a thread (false)",
+	"apihelp-wikiforum-delete-thread-example-1": "Delete the thread with the ID #123",
+	"apihelp-wikiforum-delete-thread-example-2": "Delete the reply with the ID #456"
 }

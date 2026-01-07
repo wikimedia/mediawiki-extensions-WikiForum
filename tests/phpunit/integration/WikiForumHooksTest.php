@@ -150,15 +150,68 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$forum = WFForum::newFromName( 'Test Forum' );
 		$this->assertNotFalse( $forum, 'Forum should exist' );
 
-		$context = new \MediaWiki\Context\RequestContext();
 		$threadUser = $this->getTestUser()->getUser();
+		$title = \MediaWiki\Title\Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+
+		// Create POST request first (without token) - this creates a session
+		$request = new \MediaWiki\Request\FauxRequest( [], true );
+		$context = new \MediaWiki\Context\RequestContext();
 		$context->setUser( $threadUser );
-		$context->setRequest( new \MediaWiki\Request\FauxRequest( [
-			'wpToken' => $threadUser->getEditToken()
-		] ) );
+		$context->setTitle( $title );
+		$context->setRequest( $request );
+
+		// Get token using the same request - this ensures session matches
+		$token = $threadUser->getEditToken( '', $request );
+
+		// Set token in the request
+		$request->setVal( 'wpToken', $token );
 		$forum->setContext( $context );
-		$forum->addThread( 'Test Thread', 'Thread text' );
-		$thread = WFThread::newFromName( 'Test Thread' );
+
+		// Set title in global context for methods that use OutputPage::parseAsContent
+		$globalContext = \MediaWiki\Context\RequestContext::getMain();
+		$globalContext->setTitle( $title );
+		$globalContext->setUser( $threadUser );
+		$globalContext->setRequest( $request );
+		// Update global $wgOut
+		global $wgOut;
+		$wgOut = $globalContext->getOutput();
+
+		$result = $forum->addThread( 'Test Thread', 'Thread text' );
+		// addThread returns HTML string, not the thread object
+		$this->assertIsString( $result, 'addThread should return HTML string' );
+		// Check that result doesn't contain error messages (basic sanity check)
+		$this->assertStringNotContainsString( 'wikiforum-error', $result,
+			'addThread should not return error message' );
+
+		// Use primary DB to read immediately after write (same as WFThread::add does internally)
+		$dbw = \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$threadData = $dbw->selectRow(
+			'wikiforum_threads',
+			'*',
+			[ 'wft_thread_name' => 'Test Thread' ],
+			__METHOD__
+		);
+
+		// If thread not found, provide more diagnostic information
+		if ( !$threadData ) {
+			// Check if any threads exist in this forum
+			$allThreads = $dbw->select(
+				'wikiforum_threads',
+				[ 'wft_thread_id', 'wft_thread_name', 'wft_forum' ],
+				[ 'wft_forum' => $forum->getId() ],
+				__METHOD__
+			);
+			$threadNames = [];
+			foreach ( $allThreads as $row ) {
+				$threadNames[] = $row->wft_thread_name;
+			}
+			$this->fail( 'Thread not found after addThread. Forum ID: ' . $forum->getId() .
+				', Thread name searched: "Test Thread", Existing threads: ' .
+				( empty( $threadNames ) ? '(none)' : implode( ', ', $threadNames ) ) .
+				', addThread result length: ' . strlen( $result ) );
+		}
+
+		$thread = WFThread::newFromSQL( $threadData );
 		$this->assertNotFalse( $thread, 'Thread should exist' );
 
 		$parserFactory = $this->getServiceContainer()->getParserFactory();

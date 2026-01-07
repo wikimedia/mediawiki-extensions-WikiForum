@@ -16,7 +16,7 @@ $( () => {
 			stickiness: stickiness,
 			id: id,
 			format: 'json'
-		} ).done( () => {
+		} ).then( () => {
 			// Currently the API response is 'OK' which is kinda meh.
 			// So is the HTML that would get returned by the non-API PHP classes...
 			// eslint-disable-next-line no-alert

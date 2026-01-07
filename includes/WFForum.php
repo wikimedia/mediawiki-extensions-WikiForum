@@ -297,9 +297,11 @@ class WFForum extends ContextSource {
 			$link .= ' ' . Html::rawElement(
 				'a',
 				[
-					'href' => $specialPage->getFullURL( [ 'wfaction' => 'deleteforum', 'forum' => $this->getId() ] ),
+					'href' => '#',
 					'class' => 'wikiforum-delete-forum-link',
-					'data-wikiforum-forum-id' => $this->getId()
+					'data-wikiforum-forum-id' => $this->getId(),
+					'role' => 'button',
+					'title' => $this->msg( 'wikiforum-delete-forum' )->text()
 				],
 				WikiForum::getIconHTML( 'wikiforum-delete-forum' )
 			);
@@ -504,6 +506,9 @@ class WFForum extends ContextSource {
 					$this->msg( 'wikiforum-write-thread' )->text()
 				);
 		}
+
+		// Add delete links module for threads and replies
+		$this->getOutput()->addModules( 'ext.wikiForum.delete-links' );
 
 		$output .= WikiForumGui::showSearchbox();
 		$output .= WikiForumGui::showHeaderRow( $this->showHeaderLinks(), $this->getUser(), $write_thread );
