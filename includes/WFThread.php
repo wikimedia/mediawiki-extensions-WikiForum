@@ -190,9 +190,7 @@ class WFThread extends ContextSource {
 				'wft_closed_user_ip' => $userIp
 			],
 			[
-				'wft_thread' => $this->getId(),
-				// Double-check that the thread is still not locked (race condition protection)
-				'wft_closed_timestamp' => ''
+				'wft_thread' => $this->getId()
 			],
 			__METHOD__
 		);
@@ -715,7 +713,21 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
-		if ( $this->getName() == $title && $this->getText() == $text ) {
+		$oldForum = $this->getForum();
+		$oldForumId = $oldForum->getId();
+		$newForumId = $request->getInt( 'forum', $oldForumId );
+		$isMovingThread = ( $newForumId != $oldForumId );
+
+		// Validate new forum exists if moving
+		if ( $isMovingThread ) {
+			$newForum = WFForum::newFromID( $newForumId );
+			if ( !$newForum ) {
+				$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-forum-not-found' );
+				return $error . $this->show();
+			}
+		}
+
+		if ( $this->getName() == $title && $this->getText() == $text && !$isMovingThread ) {
 			return $this->show(); // nothing to do
 		}
 
@@ -730,24 +742,101 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
+		// Security check: only moderators can move threads
+		// (prevents manual parameter manipulation even if dropdown is hidden)
+		if ( $isMovingThread && !$user->isAllowed( 'wikiforum-moderator' ) ) {
+			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
+			return $error . $this->show();
+		}
+
 		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'sessionfailure' );
 			return $error . $this->show();
 		}
 
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+
+		// Update thread data
+		$updateData = [
+			'wft_thread_name' => $title,
+			'wft_text' => $text,
+			'wft_edit_timestamp' => $dbw->timestamp( wfTimestampNow() ),
+			'wft_edit_actor' => $user->getActorId(),
+			'wft_edit_user_ip' => $request->getIP(),
+		];
+
+		// If moving thread, update forum reference
+		if ( $isMovingThread ) {
+			$updateData['wft_forum'] = $newForumId;
+		}
+
 		$result = $dbw->update(
 			'wikiforum_threads',
-			[
-				'wft_thread_name' => $title,
-				'wft_text' => $text,
-				'wft_edit_timestamp' => $dbw->timestamp( wfTimestampNow() ),
-				'wft_edit_actor' => $user->getActorId(),
-				'wft_edit_user_ip' => $request->getIP(),
-			],
+			$updateData,
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
+
+		// Update forum counters if thread was moved
+		if ( $isMovingThread ) {
+			$replyCount = $this->getReplyCount();
+
+			// Decrease counters in old forum (exclude the thread being moved)
+			$oldForumLastPost = $dbw->selectRow(
+				'wikiforum_threads',
+				[
+					'wft_last_post_actor',
+					'wft_last_post_user_ip',
+					'wft_last_post_timestamp',
+				],
+				[ 'wft_forum' => $oldForumId, 'wft_thread <> ' . $dbw->addQuotes( $this->getId() ) ],
+				__METHOD__,
+				[ 'ORDER BY' => 'wft_last_post_timestamp DESC', 'LIMIT' => 1 ]
+			);
+
+			$dbw->update(
+				'wikiforum_forums',
+				[
+					"wff_reply_count = wff_reply_count - $replyCount",
+					'wff_thread_count = wff_thread_count - 1',
+					'wff_last_post_actor' => $oldForumLastPost ? $oldForumLastPost->wft_last_post_actor : null,
+					'wff_last_post_user_ip' => $oldForumLastPost ? $oldForumLastPost->wft_last_post_user_ip : '',
+					'wff_last_post_timestamp' => $dbw->timestampOrNull( $oldForumLastPost ? $oldForumLastPost->wft_last_post_timestamp : null )
+				],
+				[ 'wff_forum' => $oldForumId ],
+				__METHOD__
+			);
+
+			// Increase counters in new forum (thread is already moved at this point)
+			$newForumLastPost = $dbw->selectRow(
+				'wikiforum_threads',
+				[
+					'wft_last_post_actor',
+					'wft_last_post_user_ip',
+					'wft_last_post_timestamp',
+				],
+				[ 'wft_forum' => $newForumId ],
+				__METHOD__,
+				[ 'ORDER BY' => 'wft_last_post_timestamp DESC', 'LIMIT' => 1 ]
+			);
+
+			$dbw->update(
+				'wikiforum_forums',
+				[
+					"wff_reply_count = wff_reply_count + $replyCount",
+					'wff_thread_count = wff_thread_count + 1',
+					'wff_last_post_actor' => $newForumLastPost ? $newForumLastPost->wft_last_post_actor : null,
+					'wff_last_post_user_ip' => $newForumLastPost ? $newForumLastPost->wft_last_post_user_ip : '',
+					'wff_last_post_timestamp' => $dbw->timestampOrNull( $newForumLastPost ? $newForumLastPost->wft_last_post_timestamp : null )
+				],
+				[ 'wff_forum' => $newForumId ],
+				__METHOD__
+			);
+
+			// Update thread's forum reference in object
+			$this->data->wft_forum = $newForumId;
+			$this->forum = null; // Reset cached forum so it will be reloaded
+		}
 
 		$this->data->wft_thread_name = $title;
 		$this->data->wft_text = $text;
@@ -1237,6 +1326,7 @@ class WFThread extends ContextSource {
 	 * @return string
 	 */
 	function showEditForm() {
+		$currentForum = $this->getForum();
 		return self::showGeneralEditor(
 			$this->getName(),
 			'',
@@ -1245,7 +1335,8 @@ class WFThread extends ContextSource {
 				'wfaction' => 'savethread',
 				'thread' => $this->getId()
 			],
-			$this->getUser()
+			$this->getUser(),
+			$currentForum ? $currentForum->getId() : null
 		);
 	}
 
@@ -1257,9 +1348,10 @@ class WFThread extends ContextSource {
 	 * @param string $textValue value to preload the text field with
 	 * @param array $params array of URL params to pass to the form
 	 * @param User $user
+	 * @param int|null $currentForumId current forum ID for thread (null for new threads)
 	 * @return string
 	 */
-	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params, User $user ) {
+	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params, User $user, $currentForumId = null ) {
 		$input =
 			Html::rawElement( 'div', [],
 				Html::element(
@@ -1274,7 +1366,86 @@ class WFThread extends ContextSource {
 				)
 			);
 
+		// Add forum dropdown for moderators and administrators when editing existing thread
+		if ( $currentForumId !== null && ( $user->isAllowed( 'wikiforum-moderator' ) || $user->isAllowed( 'wikiforum-admin' ) ) ) {
+			$forumsGrouped = self::getAllForumsGrouped();
+			$optionElements = [];
+			foreach ( $forumsGrouped as $categoryId => $categoryData ) {
+				$categoryName = htmlspecialchars( $categoryData['name'] );
+				foreach ( $categoryData['forums'] as $forumId => $forumName ) {
+					$forumNameEscaped = htmlspecialchars( $forumName );
+					$displayName = $categoryName . ' > ' . $forumNameEscaped;
+					$optionAttrs = [ 'value' => $forumId ];
+					if ( $forumId == $currentForumId ) {
+						$optionAttrs['selected'] = 'selected';
+					}
+					$optionElements[] = Html::element( 'option', $optionAttrs, $displayName );
+				}
+			}
+
+			$forumSelect = Html::rawElement( 'div', [ 'class' => 'mw-wikiforum-forum-select' ],
+				Html::rawElement( 'label', [ 'for' => 'mw-wikiforum-forum-select' ],
+					wfMessage( 'wikiforum-move-thread' )->escaped() . ': '
+				) .
+				Html::rawElement( 'select',
+					[
+						'name' => 'forum',
+						'id' => 'mw-wikiforum-forum-select',
+						'class' => 'mw-wikiforum-forum-select'
+					],
+					implode( '', $optionElements )
+				)
+			);
+			$input .= $forumSelect;
+		}
+
 		return WikiForumGui::showWriteForm( true, $params, $input, 'mw-wikiforum-edit-thread', $textValue, 'wikiforum-save-thread', $user );
+	}
+
+	/**
+	 * Get all forums grouped by categories for dropdown selection
+	 *
+	 * @return array Array with structure: [category_id => ['name' => category_name, 'forums' => [forum_id => forum_name]]]
+	 */
+	static function getAllForumsGrouped() {
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+
+		// Get all categories
+		$sqlCategories = $dbr->select(
+			'wikiforum_category',
+			'*',
+			[],
+			__METHOD__,
+			[ 'ORDER BY' => 'wfc_sortkey ASC, wfc_category ASC' ]
+		);
+
+		$result = [];
+		foreach ( $sqlCategories as $catRow ) {
+			$category = WFCategory::newFromSQL( $catRow );
+			$result[$category->getId()] = [
+				'name' => $category->getName(),
+				'forums' => []
+			];
+		}
+
+		// Get all forums
+		$sqlForums = $dbr->select(
+			'wikiforum_forums',
+			'*',
+			[],
+			__METHOD__,
+			[ 'ORDER BY' => 'wff_sortkey ASC, wff_forum ASC' ]
+		);
+
+		foreach ( $sqlForums as $forumRow ) {
+			$forum = WFForum::newFromSQL( $forumRow );
+			$categoryId = $forum->getCategory()->getId();
+			if ( isset( $result[$categoryId] ) ) {
+				$result[$categoryId]['forums'][$forum->getId()] = $forum->getName();
+			}
+		}
+
+		return $result;
 	}
 
 	/**

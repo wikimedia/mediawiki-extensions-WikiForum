@@ -79,7 +79,67 @@ class SpecialWikiForum extends SpecialPage {
 			$text = $request->getText( 'text' );
 			$title = $request->getText( 'name' );
 
-			if ( $categoryID ) { // actions requiring a category
+			// Define actions for each entity type to determine routing priority
+			$forumActions = [ 'editforum', 'saveforum', 'deleteforum', 'forumup', 'forumdown', 'addthread', 'savenewthread' ];
+			$threadActions = [ 'editthread', 'savethread', 'deletethread', 'closethread', 'reopenthread' ];
+			$categoryActions = [ 'editcategory', 'savecategory', 'addforum', 'savenewforum' ];
+
+			// Determine if action belongs to a specific entity type
+			$isForumAction = in_array( $action, $forumActions );
+			$isThreadAction = in_array( $action, $threadActions );
+			$isCategoryAction = in_array( $action, $categoryActions );
+
+			// Route based on action priority: thread > forum > category
+			// If action is specific to an entity, prioritize that entity's block
+			// Otherwise, use ID-based routing (existing behavior)
+			if ( $forumID && ( $isForumAction || ( !$isCategoryAction && !$threadID ) ) ) {
+				// Forum actions block - moved here for priority
+				$forum = WFForum::newFromID( $forumID );
+
+				if ( !$forum ) { // show error message, forum not found
+					$output .= WikiForum::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
+					$output .= WikiForum::showOverview( $user );
+
+				} else {
+					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+						$output .= WikiForum::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
+						$output .= $forum->show();
+
+					} else {
+						switch ( $action ) {
+							case 'editforum':
+								$output .= $forum->showEditForm();
+								break;
+							case 'saveforum':
+								$output .= $forum->edit( $title, $text, $request->getVal( 'announcement' ) );
+								break;
+							/* Also disabled due to T312733
+							case 'deleteforum':
+								$output .= $forum->delete();
+								break;
+							case 'forumup':
+								$output .= $forum->sortUp();
+								break;
+							case 'forumdown':
+								$output .= $forum->sortDown();
+								break;
+							*/
+
+							case 'addthread':
+								$output .= $forum->showNewThreadForm( '', '' );
+								break;
+							case 'savenewthread':
+								$output .= $forum->addThread( $title, $text );
+								break;
+
+							default:
+								$out->addHTML( $forum->show() );
+								break;
+						}
+					}
+				}
+
+			} elseif ( $categoryID && ( $isCategoryAction || !$isForumAction ) ) { // actions requiring a category
 				$category = WFCategory::newFromID( $categoryID );
 
 				if ( !$category ) { // show error message, category not found
@@ -126,51 +186,6 @@ class SpecialWikiForum extends SpecialPage {
 
 							default:
 								$out->addHTML( $category->show() );
-								break;
-						}
-					}
-				}
-
-			} elseif ( $forumID ) { // actions requiring a forum
-				$forum = WFForum::newFromID( $forumID );
-
-				if ( !$forum ) { // show error message, forum not found
-					$output .= WikiForum::showErrorMessage( 'wikiforum-forum-not-found', 'wikiforum-forum-not-found-text' );
-					$output .= WikiForum::showOverview( $user );
-
-				} else {
-					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
-						$output .= WikiForum::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
-						$output .= $forum->show();
-
-					} else {
-						switch ( $action ) {
-							case 'editforum':
-								$output .= $forum->showEditForm();
-								break;
-							case 'saveforum':
-								$output .= $forum->edit( $title, $text, $request->getVal( 'announcement' ) );
-								break;
-							/* Also disabled due to T312733
-							case 'deleteforum':
-								$output .= $forum->delete();
-								break;
-							case 'forumup':
-								$output .= $forum->sortUp();
-								break;
-							case 'forumdown':
-								$output .= $forum->sortDown();
-								break;
-							*/
-							case 'addthread':
-								$output .= $forum->showNewThreadForm( '', '' );
-								break;
-							case 'savenewthread':
-								$output .= $forum->addThread( $title, $text );
-								break;
-
-							default:
-								$output .= $forum->show();
 								break;
 						}
 					}

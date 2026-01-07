@@ -368,35 +368,84 @@ class WFForum extends ContextSource {
 			return $error . $this->showEditForm();
 		}
 
+		$oldCategory = $this->getCategory();
+		$oldCategoryId = $oldCategory->getId();
+		// Get category from request - HTMLForm sends select values as strings
+		// Use getVal to get the raw value, then convert to int
+		$categoryParam = $request->getVal( 'category' );
+		if ( $categoryParam !== null && $categoryParam !== '' ) {
+			$newCategoryId = $categoryParam;
+		} else {
+			$newCategoryId = $oldCategoryId;
+		}
+		$isMovingForum = ( $newCategoryId !== $oldCategoryId && $newCategoryId > 0 );
+
+		// Validate new category exists if moving
+		if ( $isMovingForum ) {
+			$newCategory = WFCategory::newFromID( $newCategoryId );
+			if ( !$newCategory ) {
+				$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-cat-not-found' );
+				return $error . $this->showEditForm();
+			}
+		}
+
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
-		if (
+		// Check if anything has changed
+		$hasChanges = (
 			$this->getName() != $forumName ||
 			$this->getText() != $description ||
-			$this->isAnnouncement() != $announcement
-		) { // only update DB if anything has been changed
+			$this->isAnnouncement() != $announcement ||
+			$isMovingForum
+		);
+
+		if ( $hasChanges ) { // only update DB if anything has been changed
 			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+			$updateData = [
+				'wff_forum_name' => $forumName,
+				'wff_description' => $description,
+				'wff_edited_timestamp' => $dbw->timestamp( wfTimestampNow() ),
+				'wff_edited_actor' => $user->getActorId(),
+				'wff_edited_user_ip' => $request->getIP(),
+				'wff_announcement' => (bool)$announcement
+			];
+
+			// If moving forum, update category reference
+			if ( $isMovingForum ) {
+				$updateData['wff_category'] = $newCategoryId;
+			}
+
 			$dbw->update(
 				'wikiforum_forums',
-				[
-					'wff_forum_name' => $forumName,
-					'wff_description' => $description,
-					'wff_edited_timestamp' => $dbw->timestamp( wfTimestampNow() ),
-					'wff_edited_actor' => $user->getActorId(),
-					'wff_edited_user_ip' => $request->getIP(),
-					'wff_announcement' => (bool)$announcement
-				],
+				$updateData,
 				[ 'wff_forum' => $this->getId() ],
 				__METHOD__
 			);
+
+			// Update category reference in object
+			if ( $isMovingForum ) {
+				$this->data->wff_category = $newCategoryId;
+				$this->category = null; // Reset cached category so it will be reloaded
+			}
 		}
 
+		// Update object data (always update, even if DB wasn't changed)
 		$this->data->wff_forum_name = $forumName;
 		$this->data->wff_description = $description;
 		$this->data->wff_edited_timestamp = wfTimestampNow();
 		$this->data->wff_edited_actor = $user->getActorId();
 		$this->data->wff_edited_user_ip = $request->getIP();
 		$this->data->wff_announcement = $announcement;
+		// Ensure category is updated in object even if DB update didn't happen
+		if ( $isMovingForum ) {
+			$this->data->wff_category = $newCategoryId;
+			$this->category = null; // Reset cached category so it will be reloaded
+		}
+
+		// If forum was moved, show the new category to reflect the change
+		if ( $isMovingForum ) {
+			return $this->getCategory()->show();
+		}
 
 		return $this->show();
 	}
@@ -736,6 +785,8 @@ class WFForum extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-write', 'wikiforum-error-no-rights' );
 		}
 
+		$currentCategoryId = $new ? $categoryId : $this->getCategory()->getId();
+
 		$formDescriptor = [
 			'wfaction' => [
 				'type' => 'hidden',
@@ -772,14 +823,21 @@ class WFForum extends ContextSource {
 			]
 		];
 
-		if ( $new ) {
-			$formDescriptor['category'] = [
-				'type' => 'hidden',
-				'name' => 'category',
-				'default' => $categoryId,
-				'required' => true
-			];
+		// Add category dropdown for administrators (rights already checked above)
+		$categories = self::getAllCategories();
+		$categoryOptions = [];
+		foreach ( $categories as $catId => $catName ) {
+			$categoryOptions[htmlspecialchars( $catName )] = $catId;
 		}
+
+		$formDescriptor['category'] = [
+			'label-message' => 'wikiforum-category',
+			'type' => 'select',
+			'name' => 'category',
+			'options' => $categoryOptions,
+			'default' => $currentCategoryId,
+			'required' => true
+		];
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm->setFormIdentifier( 'edit-forum-form' )
@@ -789,6 +847,31 @@ class WFForum extends ContextSource {
 			->displayForm( false );
 
 		return '';
+	}
+
+	/**
+	 * Get all categories for dropdown selection
+	 *
+	 * @return array Array with structure: [category_id => category_name]
+	 */
+	static function getAllCategories() {
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+
+		$sqlCategories = $dbr->select(
+			'wikiforum_category',
+			'*',
+			[],
+			__METHOD__,
+			[ 'ORDER BY' => 'wfc_sortkey ASC, wfc_category ASC' ]
+		);
+
+		$result = [];
+		foreach ( $sqlCategories as $catRow ) {
+			$category = WFCategory::newFromSQL( $catRow );
+			$result[$category->getId()] = $category->getName();
+		}
+
+		return $result;
 	}
 
 	/**
