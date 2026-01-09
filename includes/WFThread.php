@@ -886,6 +886,9 @@ class WFThread extends ContextSource {
 		$out = $this->getOutput();
 		$user = $this->getUser();
 
+		// Load JavaScript for close/reopen links (CSRF-safe POST submission)
+		$out->addModules( 'ext.wikiForum.close-reopen-links' );
+
 		$output = '';
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
@@ -1135,13 +1138,25 @@ class WFThread extends ContextSource {
 				if ( !$this->isClosed() ) {
 					$editButtons .= ' ' . Html::rawElement(
 						'a',
-						[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'closethread', 'thread' => $this->getId() ] ) ],
+						[
+							'href' => $specialPage->getFullURL( [ 'wfaction' => 'closethread', 'thread' => $this->getId() ] ),
+							'class' => 'wikiforum-close-thread-link',
+							'data-wikiforum-thread-id' => $this->getId(),
+							'role' => 'button',
+							'title' => $this->msg( 'wikiforum-close-thread' )->text()
+						],
 						WikiForum::getIconHTML( 'wikiforum-close-thread' )
 					);
 				} else {
 					$editButtons .= ' ' . Html::rawElement(
 						'a',
-						[ 'href' => $specialPage->getFullURL( [ 'wfaction' => 'reopenthread', 'thread' => $this->getId() ] ) ],
+						[
+							'href' => $specialPage->getFullURL( [ 'wfaction' => 'reopenthread', 'thread' => $this->getId() ] ),
+							'class' => 'wikiforum-reopen-thread-link',
+							'data-wikiforum-thread-id' => $this->getId(),
+							'role' => 'button',
+							'title' => $this->msg( 'wikiforum-reopen-thread' )->text()
+						],
 						WikiForum::getIconHTML( 'wikiforum-reopen-thread' )
 					);
 				}

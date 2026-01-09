@@ -99,6 +99,10 @@
 			"scripts": "js/ext.wikiForum.admin-sticky-links.js",
 			"dependencies": "mediawiki.api"
 		},
+		"ext.wikiForum.close-reopen-links": {
+			"scripts": "js/ext.wikiForum.close-reopen-links.js",
+			"dependencies": "mediawiki.user"
+		},
 		"ext.wikiForum.delete-links": {
 			"scripts": "js/ext.wikiForum.delete-links.js",
 			"dependencies": "mediawiki.api",
