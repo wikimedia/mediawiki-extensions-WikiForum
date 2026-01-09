@@ -33,7 +33,7 @@ class ApiWikiForumAdminDelete extends ApiBase {
 		// Check whether the user has the appropriate permissions anyway
 		$permission = $user->isAllowed( 'wikiforum-admin' );
 
-		if ( $permission !== true ) {
+		if ( !$permission ) {
 			if ( !$user->isRegistered() ) {
 				$this->dieWithError( [ 'apierror-mustbeloggedin', $this->msg( 'action-wikiforum-admin' ) ] );
 			}
@@ -42,9 +42,7 @@ class ApiWikiForumAdminDelete extends ApiBase {
 		}
 
 		// Check blocks
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 		if ( $user->getBlock() ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 			$this->dieBlocked( $user->getBlock() );
 		}
 

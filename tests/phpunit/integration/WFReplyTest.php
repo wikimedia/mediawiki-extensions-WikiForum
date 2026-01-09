@@ -483,4 +483,44 @@ class WFReplyTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $showResult );
 		$this->assertStringContainsString( $replyText, $showResult );
 	}
+
+	/**
+	 * Test double escaping protection: title attributes should not be double-escaped
+	 */
+	public function testTitleAttributeNoDoubleEscaping() {
+		$user = $this->getTestUser()->getUser();
+		$thread = $this->createTestThread( $user );
+		$this->assertNotFalse( $thread, 'Thread should exist' );
+
+		$context = $thread->getContext();
+		$request = $context->getRequest();
+		$token = $user->getEditToken( '', $request );
+		$request->setVal( 'wpToken', $token );
+		$thread->setContext( $context );
+
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$globalContext = RequestContext::getMain();
+		$globalContext->setTitle( $title );
+		$globalContext->setUser( $user );
+		$globalContext->setRequest( $request );
+
+		$replyText = 'Test Reply ' . wfRandomString( 10 );
+		$thread->addReply( $replyText );
+
+		$replies = $thread->getReplies();
+		$this->assertCount( 1, $replies );
+		$reply = $replies[0];
+		$this->assertNotFalse( $reply, 'Reply should exist' );
+		$reply->setContext( $context );
+
+		$showResult = $reply->show();
+		$this->assertIsString( $showResult );
+
+		// Check that title attributes are not double-escaped
+		// Should not contain &amp;lt; (double-escaped <)
+		$this->assertStringNotContainsString( '&amp;lt;', $showResult );
+		$this->assertStringNotContainsString( '&amp;gt;', $showResult );
+		$this->assertStringNotContainsString( '&amp;amp;', $showResult );
+		$this->assertStringNotContainsString( '&amp;quot;', $showResult );
+	}
 }

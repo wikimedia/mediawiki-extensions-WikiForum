@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 
@@ -297,7 +298,7 @@ class WFReply extends ContextSource {
 	 */
 	function showForSearch() {
 		$posted = $this->showPostedInfo();
-		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread', $this->getThread()->showLink( $this->getId() ) )->text();
+		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread' )->rawParams( $this->getThread()->showLink( $this->getId() ) )->parse();
 		$avatar = WikiForum::showAvatar( $this->getPostedBy() );
 
 		return Html::openElement( 'tr' ) . Html::rawElement(
@@ -471,6 +472,7 @@ class WFReply extends ContextSource {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			global $wgEchoMentionOnChanges;
 			if ( !$wgEchoMentionOnChanges ) {
+				// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal
 				return null;
 			}
 
@@ -488,12 +490,13 @@ class WFReply extends ContextSource {
 			// further to accept an arbitrary string content or a Content object or something
 			// that we...*do* indeed have here?)
 			$getUserLinks = static function ( $content, $thread ) {
-				$output = WikiForumHooks::parseNonEditWikitext( $content, $thread );
-				$links = $output->getLinks();
-				if ( !isset( $links[NS_USER] ) || !is_array( $links[NS_USER] ) ) {
-					return false;
+				$parserOutput = WikiForumHooks::parseNonEditWikitext( $content, $thread );
+				$links = [];
+				foreach ( $parserOutput->getLinkList( ParserOutputLinkTypes::LOCAL, NS_USER ) as
+						[ 'link' => $link, 'pageid' => $pageid ] ) {
+					$links[$link->getDBkey()] = $pageid;
 				}
-				return $links[NS_USER];
+				return $links;
 			};
 
 			$userLinks = $getUserLinks( $text, $thread );

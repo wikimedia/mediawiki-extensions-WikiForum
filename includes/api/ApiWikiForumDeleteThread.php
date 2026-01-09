@@ -120,9 +120,7 @@ class ApiWikiForumDeleteThread extends ApiBase {
 		}
 
 		// Check blocks
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 		if ( $user->getBlock() ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 			$this->dieBlocked( $user->getBlock() );
 		}
 

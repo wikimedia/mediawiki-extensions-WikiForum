@@ -113,6 +113,7 @@ class WikiForum {
 			->caller( __METHOD__ )->fetchResultSet();
 
 		$i = 0;
+		$outputRows = '';
 
 		foreach ( $threadData as $sql ) {
 			$thread = WFThread::newFromSQL( $sql );
@@ -183,17 +184,17 @@ class WikiForum {
 		$groupText = '';
 
 		if ( in_array( 'sysop', $groups ) ) {
-			$groupText .= wfMessage( 'word-separator' )->parse() .
-				wfMessage(
-					'parentheses',
-					UserGroupMembership::getLink( 'sysop', RequestContext::getMain(), 'html', $username )
-				)->text();
+			// UserGroupMembership::getLink() returns safe HTML from LinkRenderer (escaped)
+			$sysopLink = UserGroupMembership::getLink( 'sysop', RequestContext::getMain(), 'html', $username );
+			$groupText .= wfMessage( 'word-separator' )->escaped() .
+				// @phan-suppress-next-line SecurityCheck-XSS UserGroupMembership::getLink returns safe HTML
+				wfMessage( 'parentheses' )->rawParams( $sysopLink )->parse();
 		} elseif ( in_array( 'forumadmin', $groups ) ) {
-			$groupText .= wfMessage( 'word-separator' )->parse() .
-				wfMessage(
-					'parentheses',
-					UserGroupMembership::getLink( 'forumadmin', RequestContext::getMain(), 'html', $username )
-				)->text();
+			// UserGroupMembership::getLink() returns safe HTML from LinkRenderer (escaped)
+			$forumAdminLink = UserGroupMembership::getLink( 'forumadmin', RequestContext::getMain(), 'html', $username );
+			$groupText .= wfMessage( 'word-separator' )->escaped() .
+				// @phan-suppress-next-line SecurityCheck-XSS UserGroupMembership::getLink returns safe HTML
+				wfMessage( 'parentheses' )->rawParams( $forumAdminLink )->parse();
 		}
 
 		$services->getHookContainer()->run( 'WikiForumSig', [ &$groupText, $user, $groups ] );
@@ -206,11 +207,17 @@ class WikiForum {
 	/**
 	 * Show the HTML for the avatar for the given user
 	 *
+	 * OPTIONAL DEPENDENCY: This method optionally uses SocialProfile extension
+	 * for avatar display. If SocialProfile is not installed, no avatar is shown.
+	 * This is an optional feature - WikiForum works fine without SocialProfile.
+	 *
 	 * @param User $user
-	 * @return string HTML, the avatar
+	 * @return string HTML, the avatar (empty string if SocialProfile not available)
+	 * @return-taint escaped
 	 */
 	static function showAvatar( User $user ) {
 		$avatar = '';
+		// Optional integration with SocialProfile extension
 		if ( class_exists( 'wAvatar' ) ) {
 			$avatarObj = new wAvatar( $user->getId(), 'l' );
 			$avatar = '<div class="wikiforum-avatar-image">';

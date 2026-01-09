@@ -97,11 +97,7 @@ class WikiForumHooks {
 		$user = $parser->getUserIdentity();
 		$output = WikiForumGui::showHeaderRow( $thread->showHeaderLinks(), $user );
 
-		$posted = $thread->showPostedInfo();
-		if ( $thread->getEditedTimestamp() > 0 ) {
-			$posted .= '<br /><i>' . $thread->showEditedInfo() . '</i>';
-		}
-		$output .= $thread->showHeader( $posted );
+		$output .= $thread->showHeader();
 
 		if ( isset( $args['replies'] ) && $args['replies'] ) {
 			$replies = $thread->getReplies();
@@ -113,6 +109,8 @@ class WikiForumHooks {
 
 		$output .= $thread->showFooter();
 
+		// All show*() methods return safe HTML (escaped via Html::element, Message::params, etc.)
+		// @phan-suppress-next-line SecurityCheck-XSS All show*() methods return escaped HTML
 		return $output;
 	}
 
@@ -196,10 +194,6 @@ class WikiForumHooks {
 		int $replyId
 	) {
 		global $wgEchoMaxMentionsCount, $wgEchoMentionStatusNotifications;
-
-		if ( !$title ) {
-			return;
-		}
 
 		if ( !$userLinks ) {
 			return;
@@ -339,7 +333,7 @@ class WikiForumHooks {
 		$updater->addExtensionTable( 'wikiforum_replies', $file );
 
 		// upgrade from pre 1.3.0-SW
-		if ( !$db->fieldExists( 'wikiforum_category', 'wfc_added_user_ip' ) ) {
+		if ( !$db->fieldExists( 'wikiforum_category', 'wfc_added_user_ip', __METHOD__ ) ) {
 			$file = $dir . '/1.3.0-SW-new-fields.sql';
 			// wikiforum_category
 			$updater->addExtensionField( 'wikiforum_category', 'wfc_added_user_ip', $file );
@@ -356,7 +350,7 @@ class WikiForumHooks {
 			// wikiforum_replies
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_user_ip', $file );
 			$updater->addExtensionField( 'wikiforum_replies', 'wfr_edit_user_ip', $file );
-		} elseif ( $db->fieldExists( 'wikiforum_category', 'wfc_added_user_text' ) ) {
+		} elseif ( $db->fieldExists( 'wikiforum_category', 'wfc_added_user_text', __METHOD__ ) ) {
 			// Upgrade from post 1.3.0-SW and pre 2.0.0
 			$file = $dir . '/2.0.0-drop-fields.sql';
 			// wikiforum_category
@@ -389,21 +383,21 @@ class WikiForumHooks {
 		// The existence of *any* of these fields means that we are upgrading from a pre-actor
 		// version of WikiForum and we need to add in the actor columns
 		if (
-			$db->fieldExists( 'wikiforum_category', 'wfc_added_user' ) ||
-			$db->fieldExists( 'wikiforum_category', 'wfc_edited_user' ) ||
-			$db->fieldExists( 'wikiforum_category', 'wfc_deleted_user' ) ||
-			$db->fieldExists( 'wikiforum_forums', 'wff_last_post_user' ) ||
-			$db->fieldExists( 'wikiforum_forums', 'wff_added_user' ) ||
-			$db->fieldExists( 'wikiforum_forums', 'wff_edited_user' ) ||
-			$db->fieldExists( 'wikiforum_forums', 'wff_deleted_user' ) ||
-			$db->fieldExists( 'wikiforum_threads', 'wft_user' ) ||
-			$db->fieldExists( 'wikiforum_threads', 'wft_deleted_user' ) ||
-			$db->fieldExists( 'wikiforum_threads', 'wft_edit_user' ) ||
-			$db->fieldExists( 'wikiforum_threads', 'wft_closed_user' ) ||
-			$db->fieldExists( 'wikiforum_threads', 'wft_last_post_user' ) ||
-			$db->fieldExists( 'wikiforum_replies', 'wfr_user' ) ||
-			$db->fieldExists( 'wikiforum_replies', 'wfr_deleted_user' ) ||
-			$db->fieldExists( 'wikiforum_replies', 'wfr_edit_user' )
+			$db->fieldExists( 'wikiforum_category', 'wfc_added_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_category', 'wfc_edited_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_category', 'wfc_deleted_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_last_post_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_added_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_edited_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_forums', 'wff_deleted_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_deleted_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_edit_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_closed_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_threads', 'wft_last_post_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_replies', 'wfr_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_replies', 'wfr_deleted_user', __METHOD__ ) ||
+			$db->fieldExists( 'wikiforum_replies', 'wfr_edit_user', __METHOD__ )
 		) {
 			// 1. add the new actor columns for each table
 

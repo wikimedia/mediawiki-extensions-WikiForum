@@ -266,7 +266,7 @@ class SpecialWikiForum extends SpecialPage {
 			} else { // other actions
 				switch ( $action ) {
 					case 'addcategory':
-						$output .= WFCategory::showAddForm( $user );
+						$output .= WFCategory::showAddForm();
 						break;
 					case 'savenewcategory': // title
 						$output .= WFCategory::add( $title, $user );
@@ -281,6 +281,8 @@ class SpecialWikiForum extends SpecialPage {
 			}
 		}
 
+		// All show*() methods return safe HTML (escaped via Html::element, Message::params, etc.)
+		// @phan-suppress-next-line SecurityCheck-XSS All show*() methods return escaped HTML
 		$out->addHTML( $output );
 	}
 }

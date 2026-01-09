@@ -217,7 +217,11 @@ class WFForum extends ContextSource {
 	/**
 	 * Get the URL to this forum
 	 *
-	 * @return string the URL (properly escaped and thus HTML-safe)
+	 * NOTE: This returns an unescaped URL. When using in HTML, pass it to Html helpers
+	 * which will automatically escape it (e.g., Html::element with 'href' attribute).
+	 * For direct string concatenation in HTML, use htmlspecialchars().
+	 *
+	 * @return string URL (not HTML-escaped)
 	 */
 	function getURL() {
 		$page = SpecialPage::getTitleFor( 'WikiForum' );
@@ -257,9 +261,10 @@ class WFForum extends ContextSource {
 	 * @return string HTML, the row.
 	 */
 	function showListItem() {
-		$output = '<tr class="mw-wikiforum-marked"> <td class="mw-wikiforum-title">
-				<p class="mw-wikiforum-issue">' . $this->showLink() . '</p><p class="mw-wikiforum-descr">' .
-				htmlspecialchars( $this->getText(), ENT_QUOTES ) . '</p></td>';
+		$output = '<tr class="mw-wikiforum-marked"> <td class="mw-wikiforum-title">' .
+			Html::rawElement( 'p', [ 'class' => 'mw-wikiforum-issue' ], $this->showLink() ) .
+			Html::element( 'p', [ 'class' => 'mw-wikiforum-descr' ], $this->getText() ) .
+			'</td>';
 
 		$icons = $this->showAdminIcons( true );
 		if ( $icons ) {
@@ -267,8 +272,8 @@ class WFForum extends ContextSource {
 		}
 
 		$output .=
-			Html::element( 'td', [ 'class' => 'mw-wikiforum-value' ], $this->getThreadCount() ) .
-			Html::element( 'td', [ 'class' => 'mw-wikiforum-value' ], $this->getReplyCount() ) .
+			Html::element( 'td', [ 'class' => 'mw-wikiforum-value' ], (string)$this->getThreadCount() ) .
+			Html::element( 'td', [ 'class' => 'mw-wikiforum-value' ], (string)$this->getReplyCount() ) .
 			Html::rawElement( 'td', [ 'class' => 'mw-wikiforum-value' ], $this->showLastPostInfo() );
 
 		return $output;
@@ -355,6 +360,8 @@ class WFForum extends ContextSource {
 	function edit( $forumName, $description, $announcement ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
+
+		$forumName = trim( $forumName );
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
@@ -717,6 +724,8 @@ class WFForum extends ContextSource {
 		$request = $category->getRequest();
 		$user = $category->getUser();
 
+		$forumName = trim( $forumName );
+
 		if ( strlen( $forumName ) == 0 ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . $category->showAddForumForm();
@@ -843,7 +852,8 @@ class WFForum extends ContextSource {
 		$categories = self::getAllCategories();
 		$categoryOptions = [];
 		foreach ( $categories as $catId => $catName ) {
-			$categoryOptions[htmlspecialchars( $catName )] = $catId;
+			// HTMLForm will escape option labels automatically, so don't escape here
+			$categoryOptions[$catName] = $catId;
 		}
 
 		$formDescriptor['category'] = [
@@ -912,7 +922,7 @@ class WFForum extends ContextSource {
 	function showNewThreadForm( $preloadTitle, $preloadText ) {
 		return WFThread::showGeneralEditor(
 			$preloadTitle,
-			$this->msg( 'wikiforum-thread-title' )->escaped(),
+			$this->msg( 'wikiforum-thread-title' )->text(),
 			$preloadText,
 			[
 				'wfaction' => 'savenewthread',

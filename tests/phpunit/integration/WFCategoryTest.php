@@ -511,4 +511,110 @@ class WFCategoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsString( $showLinkResult );
 		$this->assertStringContainsString( $categoryName, $showLinkResult );
 	}
+
+	/**
+	 * Test that category cannot be created with whitespace-only name (trim validation)
+	 */
+	public function testAddCategoryWithWhitespaceOnlyName() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+
+		// Try to create category with only spaces
+		$result = WFCategory::add( '   ', $adminUser );
+		$this->assertIsString( $result );
+		// Should contain error message (translated)
+		$this->assertStringContainsString( 'Title or text not correctly filled out', $result );
+		// Should not create the category
+		$category = WFCategory::newFromName( '   ' );
+		$this->assertFalse( $category );
+	}
+
+	/**
+	 * Test that category cannot be edited with whitespace-only name (trim validation)
+	 */
+	public function testEditCategoryWithWhitespaceOnlyName() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+		$categoryName = 'Test Category ' . wfRandomString( 10 );
+		WFCategory::add( $categoryName, $adminUser );
+		$category = WFCategory::newFromName( $categoryName );
+		$this->assertNotFalse( $category );
+		$originalName = $category->getName();
+
+		$context = new RequestContext();
+		$context->setUser( $adminUser );
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
+		$context->setRequest( new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+		$category->setContext( $context );
+
+		// Try to edit category with only spaces
+		$result = $category->edit( '   ' );
+		$this->assertIsString( $result );
+		// Should contain error message (translated)
+		$this->assertStringContainsString( 'Title or text not correctly filled out', $result );
+		// Category name should not be changed
+		$categoryAfter = WFCategory::newFromID( $category->getId() );
+		$this->assertEquals( $originalName, $categoryAfter->getName() );
+	}
+
+	/**
+	 * Test XSS protection: category names with HTML should be escaped when displayed
+	 */
+	public function testCategoryNameXssProtection() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		// Create category with special characters that could be used for XSS
+		// Note: <script> tags will be rejected by Title validation, so use other patterns
+		$categoryName = 'Category <img src=x> Test ' . wfRandomString( 10 );
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+
+		// Try to create - may be rejected, but if created, should be escaped in output
+		$result = WFCategory::add( $categoryName, $adminUser );
+		$category = WFCategory::newFromName( $categoryName );
+		if ( $category ) {
+			// If category was created, check that HTML is escaped in links
+			$linkResult = $category->showLink();
+			$this->assertIsString( $linkResult );
+			// Should escape < and >
+			$this->assertStringContainsString( '&lt;img', $linkResult );
+			$this->assertStringNotContainsString( '<img', $linkResult );
+		}
+	}
+
+	/**
+	 * Test double escaping protection: title attributes should not be double-escaped
+	 */
+	public function testTitleAttributeNoDoubleEscaping() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$categoryName = 'Test Category ' . wfRandomString( 10 );
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+
+		WFCategory::add( $categoryName, $adminUser );
+		$category = WFCategory::newFromName( $categoryName );
+		$this->assertNotFalse( $category );
+
+		$context = new RequestContext();
+		$context->setUser( $adminUser );
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
+		$category->setContext( $context );
+
+		$linkResult = $category->showLink();
+		$this->assertIsString( $linkResult );
+
+		// Check that title attributes are not double-escaped
+		// Should not contain &amp;lt; (double-escaped <)
+		$this->assertStringNotContainsString( '&amp;lt;', $linkResult );
+		$this->assertStringNotContainsString( '&amp;gt;', $linkResult );
+		$this->assertStringNotContainsString( '&amp;amp;', $linkResult );
+		$this->assertStringNotContainsString( '&amp;quot;', $linkResult );
+	}
 }

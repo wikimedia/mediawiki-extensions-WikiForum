@@ -149,7 +149,8 @@ class MigrateOldWikiForumUserColumnsToActor extends LoggedUpdateMaintenance {
 					],
 					[
 						'wff_edited_user' => (int)$row->wff_edited_user
-					]
+					],
+					__METHOD__
 				);
 			}
 		}

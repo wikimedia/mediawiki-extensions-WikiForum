@@ -10,6 +10,32 @@ use MediaWiki\User\UserIdentity;
  *
  * All class methods are static.
  *
+ * SECURITY NOTES:
+ * ===============
+ * This class handles user input and HTML generation. To prevent XSS vulnerabilities:
+ *
+ * 1. AUTOMATIC ESCAPING:
+ *    - Html::element() and Html::openElement() automatically escape ALL content and attributes
+ *    - Message::escaped() and Message::text() provide escaped text
+ *    - Always prefer Html::element() over Html::rawElement() when possible
+ *
+ * 2. RAW HTML (USE WITH CAUTION):
+ *    - Html::rawElement() does NOT escape content - use only with pre-escaped HTML
+ *    - Parameters marked with @param-taint exec_html MUST be pre-escaped
+ *    - When using string concatenation, ALWAYS escape with htmlspecialchars()
+ *
+ * 3. MESSAGE FORMATTING:
+ *    - Message::rawParams() passes parameters unescaped (for HTML links)
+ *    - Message::params() escapes parameters automatically (for user text)
+ *    - Use rawParams() ONLY for trusted HTML from Html::element() or similar
+ *
+ * 4. TAINT ANNOTATIONS:
+ *    - @param-taint escapes_html = parameter will be escaped automatically
+ *    - @param-taint exec_html = parameter MUST be pre-escaped HTML
+ *    - @return-taint escaped = return value is safe for output
+ *
+ * See https://www.mediawiki.org/wiki/Phan-taint-check-plugin for details on taint checking.
+ *
  * @file
  * @ingroup Extensions
  */
@@ -40,14 +66,16 @@ class WikiForumGui {
 	static function showSearchbox() {
 		global $wgExtensionAssetsPath;
 
-		$url = htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] ) );
+		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] );
 
 		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->escaped() . '" />';
 
-		$output = '<div id="mw-wikiforum-searchbox"><form method="post" action="' . $url . '">' .
+		$output = '<div id="mw-wikiforum-searchbox">' .
+			Html::openElement( 'form', [ 'method' => 'post', 'action' => $url ] ) .
 			'<div id="mw-wikiforum-searchbox-border">' . $icon .
-			'<input type="text" value="" name="query" id="txtSearch" /></div>
-		</form></div>';
+			'<input type="text" value="" name="query" id="txtSearch" /></div>' .
+			Html::closeElement( 'form' ) .
+			'</div>';
 
 		return $output;
 	}
@@ -113,7 +141,7 @@ class WikiForumGui {
 					$pageNumber
 				);
 			} else {
-				$output .= '[' . htmlspecialchars( $pageNumber ) . ']';
+				$output .= Html::element( 'span', [], '[' . $pageNumber . ']' );
 			}
 
 			$output .= wfMessage( 'word-separator' )->escaped();
@@ -242,14 +270,22 @@ class WikiForumGui {
 	/**
 	 * Get the editor form for writing a new thread, a reply, etc.
 	 *
-	 * @param bool $showCancel show the cancel button?
+	 * SECURITY: This method uses raw HTML concatenation. The $input parameter must be safe HTML.
+	 * All user-provided text should be escaped before passing to this method.
+	 *
+	 * @param bool $showCancel Show the cancel button?
 	 * @param array $params URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
-	 * @param string $input used to add extra input fields
-	 * @param string $height height of the textarea, i.e. '10em'
-	 * @param string $text_prev
-	 * @param string $saveButton save button text
+	 * @param string $input Pre-escaped HTML for extra input fields (e.g., from Html::rawElement())
+	 * @param-taint $input exec_html
+	 * @param string $height Height of the textarea, i.e. '10em' (will be escaped by Html::textarea())
+	 * @param-taint $height escapes_html
+	 * @param string $text_prev Previous text content (will be escaped by Html::textarea())
+	 * @param-taint $text_prev escapes_html
+	 * @param string $saveButton Save button text or message key (will be escaped)
+	 * @param-taint $saveButton escapes_html
 	 * @param User $user
-	 * @return string HTML
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton, User $user ) {
 		global $wgWikiForumAllowAnonymous;
@@ -272,13 +308,21 @@ class WikiForumGui {
 		if ( $wgWikiForumAllowAnonymous || $user->isRegistered() ) {
 			$out->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
-			$output = '<form name="frmMain" method="post" action="' . htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ) ) . '" id="writereply">
+			$output = Html::openElement( 'form', [
+				'name' => 'frmMain',
+				'method' => 'post',
+				'action' => SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ),
+				'id' => 'writereply'
+			] ) . '
 			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
 				<tr>
 					<td>' . $toolbar . '</td>
 				</tr>
 				<tr>
-					<td><textarea name="text" id="wpTextbox1" style="height: ' . $height . ';">' . $text_prev . '</textarea></td>
+					<td>' . Html::textarea( 'text', $text_prev, [
+						'id' => 'wpTextbox1',
+						'style' => 'height: ' . $height
+					] ) . '</td>
 				</tr>';
 			if ( WikiForum::useCaptcha( $user ) ) {
 				$output .= '<tr><td>' . WikiForum::getCaptcha( $out ) . '</td></tr>';
@@ -294,8 +338,8 @@ class WikiForumGui {
 			}
 			$output .= '</td>
 					</tr>
-				</table>
-			</form>' . "\n";
+				</table>' . "\n" .
+			Html::closeElement( 'form' ) . "\n";
 		}
 		return $output;
 	}
@@ -303,36 +347,73 @@ class WikiForumGui {
 	/**
 	 * Get the main form for forums and categories
 	 *
-	 * @param string $url url to send form to, with GET params
-	 * @param string $extraRow row to add in after title input, for forums but not categories
-	 * @param string $formTitle title for the form
-	 * @param string $titlePlaceholder placeholder value for the title input
-	 * @param string $titleValue value for the title input
-	 * @return string HTML the form
+	 * SECURITY: This method uses Html helpers for escaping.
+	 * All parameters except $extraRow are automatically escaped.
+	 * The $extraRow should be pre-escaped HTML (e.g., from Html::rawElement()).
+	 *
+	 * @param string $url URL to send form to, with GET params (will be escaped by Html::openElement)
+	 * @param-taint $url escapes_html
+	 * @param string $extraRow Pre-escaped HTML row to add after title input (empty string for categories)
+	 * @param-taint $extraRow exec_html
+	 * @param string $formTitle Title for the form (will be escaped by Html::element)
+	 * @param-taint $formTitle escapes_html
+	 * @param string $titlePlaceholder Placeholder value for the title input (will be escaped by Html::input)
+	 * @param-taint $titlePlaceholder escapes_html
+	 * @param string $titleValue Value for the title input (will be escaped by Html::input)
+	 * @param-taint $titleValue escapes_html
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	static function showTopLevelForm( $url, $extraRow, $formTitle, $titlePlaceholder, $titleValue ) {
-		return '
-		<form name="frmMain" method="post" action="' . $url . '" id="form">
-			<table class="mw-wikiforum-frame" cellspacing="10">
-				<tr>
-					<th class="mw-wikiforum-title">' . $formTitle . '</th>
-				</tr>
-				<tr>
-					<td>
-						<p>' . wfMessage( 'wikiforum-name' )->escaped() . '</p>
-						<input type="text" name="name" style="width: 100%" value="' . $titleValue . '" placeholder="' . $titlePlaceholder . '" />
-					</td>
-				</tr>
-					' . $extraRow . '
-				<tr>
-					<td>
-						<input type="hidden" name="wpToken" value="' . RequestContext::getMain()->getUser()->getEditToken() . '" />
-						<input type="submit" value="' . wfMessage( 'wikiforum-save' )->escaped() . '" accesskey="s" title="' . wfMessage( 'wikiforum-save' )->escaped() . '" [s]" />
-						<input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />
-					</td>
-				</tr>
-			</table>
-		</form>';
+		$output = Html::openElement( 'form', [
+			'name' => 'frmMain',
+			'method' => 'post',
+			'action' => $url,
+			'id' => 'form'
+		] ) . "\n";
+
+		$output .= '<table class="mw-wikiforum-frame" cellspacing="10">' . "\n";
+
+		// Title row
+		$output .= '<tr>' . "\n";
+		$output .= Html::element( 'th', [ 'class' => 'mw-wikiforum-title' ], $formTitle ) . "\n";
+		$output .= '</tr>' . "\n";
+
+		// Name input row
+		$output .= '<tr><td>' . "\n";
+		$output .= Html::element( 'p', [], wfMessage( 'wikiforum-name' )->text() ) . "\n";
+		$output .= Html::input( 'name', $titleValue, 'text', [
+			'style' => 'width: 100%',
+			'placeholder' => $titlePlaceholder
+		] ) . "\n";
+		$output .= '</td></tr>' . "\n";
+
+		// Extra row (pre-escaped HTML)
+		$output .= $extraRow;
+
+		// Buttons row
+		$output .= '<tr><td>' . "\n";
+		$output .= Html::hidden( 'wpToken', RequestContext::getMain()->getUser()->getEditToken() ) . "\n";
+		$output .= Html::submitButton(
+			wfMessage( 'wikiforum-save' )->text(),
+			[
+				'accesskey' => 's',
+				'title' => wfMessage( 'wikiforum-save' )->text() . ' [s]'
+			]
+		) . "\n";
+		$output .= Html::rawElement( 'input', [
+			'type' => 'button',
+			'value' => wfMessage( 'cancel' )->text(),
+			'accesskey' => 'c',
+			'onclick' => 'javascript:history.back();',
+			'title' => wfMessage( 'cancel' )->text() . ' [c]'
+		] ) . "\n";
+		$output .= '</td></tr>' . "\n";
+
+		$output .= '</table>' . "\n";
+		$output .= Html::closeElement( 'form' );
+
+		return $output;
 	}
 
 	/**
@@ -352,10 +433,14 @@ class WikiForumGui {
 	 *
 	 * @param string $timestamp
 	 * @param User $user
-	 * @return string
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	static function showPlainPostedInfo( $timestamp, User $user ) {
-		return self::showInfo( 'wikiforum-posted', $timestamp, $user->getName(), $user->getName() );
+		// Note: htmlspecialchars() is needed for the first parameter (userLink) because it's passed
+		// via rawParams() in showInfo() and will be used as HTML. The second parameter (userText)
+		// is passed via params() which automatically escapes it, and is needed unescaped for GENDER.
+		return self::showInfo( 'wikiforum-posted', $timestamp, htmlspecialchars( $user->getName() ), $user->getName() );
 	}
 
 	/**
@@ -363,7 +448,8 @@ class WikiForumGui {
 	 *
 	 * @param string $timestamp
 	 * @param User $user
-	 * @return string
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	static function showEditedInfo( $timestamp, User $user ) {
 		$userLink = WikiForum::showUserLink( $user );
@@ -375,7 +461,8 @@ class WikiForumGui {
 	 *
 	 * @param string $timestamp
 	 * @param User $user
-	 * @return string
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	static function showByInfo( $timestamp, User $user ) {
 		$userLink = WikiForum::showUserLink( $user );
@@ -385,22 +472,30 @@ class WikiForumGui {
 	/**
 	 * Show an 'info' link, with user and timestamp of an action. Do not use, use show*Info() methods above.
 	 *
-	 * @param string $message
-	 * @param string $timestamp
-	 * @param string $userLink
-	 * @param string $userText
-	 * @return string
+	 * SECURITY: This method uses rawParams() for $userLink and params() for other parameters.
+	 * - $userLink MUST be pre-escaped HTML (e.g., from WikiForum::showUserLink() or htmlspecialchars())
+	 * - $userText should be plain text (will be escaped automatically by params())
+	 * - Other parameters will be escaped automatically by params()
+	 *
+	 * @param string $message Message key
+	 * @param string $timestamp Timestamp string
+	 * @param string $userLink Pre-escaped HTML for user link (e.g., from WikiForum::showUserLink())
+	 * @param-taint $userLink exec_html
+	 * @param string $userText Plain text username for GENDER support (will be escaped automatically)
+	 * @param-taint $userText escapes_html
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	private static function showInfo( $message, $timestamp, $userLink, $userText ) {
 		$lang = RequestContext::getMain()->getLanguage();
 
-		return wfMessage(
-			$message,
-			$lang->timeanddate( $timestamp ),
-			$userLink,
-			$userText,
-			$lang->date( $timestamp ),
-			$lang->time( $timestamp )
-		)->text();
+		return wfMessage( $message, $lang->timeanddate( $timestamp ) )
+			->rawParams( $userLink )
+			->params(
+				$userText,
+				$lang->date( $timestamp ),
+				$lang->time( $timestamp )
+			)
+			->parse();
 	}
 }

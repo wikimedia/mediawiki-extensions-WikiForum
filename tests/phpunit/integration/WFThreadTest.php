@@ -722,4 +722,180 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsString( $showLinkResult );
 		$this->assertStringContainsString( $threadTitle, $showLinkResult );
 	}
+
+	/**
+	 * Test that thread cannot be created with whitespace-only title (trim validation)
+	 */
+	public function testAddThreadWithWhitespaceOnlyTitle() {
+		$user = $this->getTestUser()->getUser();
+		$forum = $this->createTestForum( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$forum->setContext( $context );
+
+		// Try to create thread with only spaces
+		$result = $forum->addThread( '   ', 'Thread text' );
+		$this->assertIsString( $result );
+		// Should contain error message (translated)
+		$this->assertStringContainsString( 'Title or text not correctly filled out', $result );
+		// Should not create the thread
+		$thread = WFThread::newFromName( '   ' );
+		$this->assertFalse( $thread );
+	}
+
+	/**
+	 * Test that thread cannot be edited with whitespace-only title (trim validation)
+	 */
+	public function testEditThreadWithWhitespaceOnlyTitle() {
+		$user = $this->getTestUser()->getUser();
+		$forum = $this->createTestForum( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
+		$forum->setContext( $context );
+
+		$threadTitle = 'Test Thread ' . wfRandomString( 10 );
+		$forum->addThread( $threadTitle, 'Thread text' );
+		$thread = WFThread::newFromName( $threadTitle );
+		$this->assertNotFalse( $thread );
+		$thread->setContext( $context );
+		$originalName = $thread->getName();
+
+		// Try to edit thread with only spaces
+		// After trim, empty title will fail Title::newFromText() validation
+		$result = $thread->edit( '   ', 'New text' );
+		$this->assertIsString( $result );
+		// Should contain error message (either "no-text-or-title" or "bad-title")
+		$this->assertTrue(
+			strpos( $result, 'Title or text not correctly filled out' ) !== false ||
+			strpos( $result, 'invalid characters' ) !== false,
+			'Result should contain error message: ' . substr( $result, 0, 200 )
+		);
+		// Thread name should not be changed
+		$threadAfter = WFThread::newFromID( $thread->getId() );
+		$this->assertEquals( $originalName, $threadAfter->getName() );
+	}
+
+	/**
+	 * Test that messages with HTML parameters use rawParams()->parse() correctly
+	 * This tests the fix for escaping issues in showTagListItem and showHeaderForSearch
+	 */
+	public function testThreadMessagesWithHtmlParameters() {
+		$user = $this->getTestUser()->getUser();
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$category = $this->createTestCategory( $adminUser );
+		$forum = $this->createTestForum( $adminUser );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$forum->setContext( $context );
+
+		$threadTitle = 'Test Thread ' . wfRandomString( 10 );
+		$forum->addThread( $threadTitle, 'Thread text' );
+		$thread = WFThread::newFromName( $threadTitle );
+		$this->assertNotFalse( $thread );
+		$thread->setContext( $context );
+
+		// Test showTagListItem which uses rawParams()->parse()
+		$tagListItem = $thread->showTagListItem();
+		$this->assertIsString( $tagListItem );
+		// Should contain HTML links (not escaped)
+		$this->assertStringContainsString( '<a href', $tagListItem );
+		// Should not contain double-escaped HTML entities
+		$this->assertStringNotContainsString( '&lt;a href', $tagListItem );
+	}
+
+	/**
+	 * Test XSS protection: thread titles with HTML should be escaped
+	 */
+	public function testThreadTitleXssProtection() {
+		$user = $this->getTestUser()->getUser();
+		$forum = $this->createTestForum( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$forum->setContext( $context );
+
+		// Try to create thread with XSS payload in title
+		// Title validation should reject it, but if it somehow gets through, test escaping
+		$xssTitle = '<script>alert("XSS")</script>';
+		$result = $forum->addThread( $xssTitle, 'Thread text' );
+		$this->assertIsString( $result );
+		// Should contain error message (invalid characters)
+		$this->assertStringContainsString( 'invalid characters', $result );
+		// Thread should not be created
+		$thread = WFThread::newFromName( $xssTitle );
+		$this->assertFalse( $thread );
+	}
+
+	/**
+	 * Test XSS protection: HTML in thread text should be properly escaped when displayed
+	 */
+	public function testThreadTextXssProtection() {
+		$user = $this->getTestUser()->getUser();
+		$forum = $this->createTestForum( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$forum->setContext( $context );
+
+		$threadTitle = 'Test Thread ' . wfRandomString( 10 );
+		$xssText = '<script>alert("XSS")</script><img src=x onerror=alert("XSS")>';
+		$forum->addThread( $threadTitle, $xssText );
+		$thread = WFThread::newFromName( $threadTitle );
+		$this->assertNotFalse( $thread );
+		$thread->setContext( $context );
+
+		// When thread is displayed, XSS should be escaped or sanitized by parser
+		$showResult = $thread->show();
+		$this->assertIsString( $showResult );
+		// Script tags should not be executable (either escaped or removed by parser)
+		// MediaWiki parser may convert <script> to escaped form or remove it
+		$this->assertStringNotContainsString( '<script>alert', $showResult );
+		// Should not contain executable JavaScript
+		$this->assertStringNotContainsString( 'javascript:alert', $showResult );
+		// Event handlers should not be present in executable form
+		// Note: parser may escape them, so check for escaped version or absence
+		$hasOnError = strpos( $showResult, 'onerror=' ) !== false;
+		if ( $hasOnError ) {
+			// If present, should be escaped
+			$this->assertStringContainsString( '&lt;', $showResult );
+		}
+	}
+
+	/**
+	 * Test double escaping protection: title attributes should not be double-escaped
+	 */
+	public function testTitleAttributeNoDoubleEscaping() {
+		$user = $this->getTestUser()->getUser();
+		$forum = $this->createTestForum( $this->getTestUser( [ 'sysop' ] )->getUser() );
+		$this->assertNotFalse( $forum, 'Forum should exist' );
+
+		[ $request, $context ] = $this->createRequestWithToken( $user );
+		$forum->setContext( $context );
+
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$globalContext = RequestContext::getMain();
+		$globalContext->setTitle( $title );
+		$globalContext->setUser( $user );
+		$globalContext->setRequest( $request );
+
+		$threadTitle = 'Test Thread ' . wfRandomString( 10 );
+		$forum->addThread( $threadTitle, 'Thread text' );
+		$thread = WFThread::newFromName( $threadTitle );
+		$this->assertNotFalse( $thread );
+		$thread->setContext( $context );
+
+		$showResult = $thread->show();
+		$this->assertIsString( $showResult );
+
+		// Check that title attributes are not double-escaped
+		// Should not contain &amp;lt; (double-escaped <)
+		$this->assertStringNotContainsString( '&amp;lt;', $showResult );
+		$this->assertStringNotContainsString( '&amp;gt;', $showResult );
+		$this->assertStringNotContainsString( '&amp;amp;', $showResult );
+		$this->assertStringNotContainsString( '&amp;quot;', $showResult );
+	}
 }

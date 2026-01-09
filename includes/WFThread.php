@@ -150,7 +150,7 @@ class WFThread extends ContextSource {
 		}
 
 		// If no activity timestamp is available, cannot determine inactivity
-		if ( empty( $activityTimestamps ) ) {
+		if ( !$activityTimestamps ) {
 			return false;
 		}
 
@@ -288,8 +288,12 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the URL to this thread
 	 *
+	 * NOTE: This returns an unescaped URL. When using in HTML, pass it to Html helpers
+	 * which will automatically escape it (e.g., Html::element with 'href' attribute).
+	 * For direct string concatenation in HTML, use htmlspecialchars().
+	 *
 	 * @param int $reply auto scroll to reply, optional
-	 * @return string
+	 * @return string URL (not HTML-escaped)
 	 */
 	function getURL( $reply = false ) {
 		$fragment = '';
@@ -298,16 +302,18 @@ class WFThread extends ContextSource {
 			$fragment = 'reply_' . $reply;
 		}
 
-		return htmlspecialchars( SpecialPage::getTitleFor( 'WikiForum', $this->getName(), $fragment )->getFullURL() );
+		return SpecialPage::getTitleFor( 'WikiForum', $this->getName(), $fragment )->getFullURL();
 	}
 
 	/**
 	 * Get the HTML for a link to this thread
 	 *
 	 * @param int|bool $reply Optional: Reply to scroll to (through url #fragment)
-	 * @return string HTML the link
+	 * @return string HTML the link (safe for output)
+	 * @return-taint escaped
 	 */
 	function showLink( $reply = false ) {
+		// getName() and getURL() return plain text, Html::element() will escape them
 		return Html::element(
 			'a',
 			[ 'href' => $this->getURL( $reply ) ],
@@ -363,7 +369,8 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the name/title of this thread
 	 *
-	 * @return string
+	 * @return string Plain text (not HTML-escaped)
+	 * @return-taint tainted
 	 */
 	function getName() {
 		return $this->data->wft_thread_name;
@@ -372,7 +379,8 @@ class WFThread extends ContextSource {
 	/**
 	 * Get the actual text of this thread
 	 *
-	 * @return string
+	 * @return string Plain text (not HTML-escaped)
+	 * @return-taint tainted
 	 */
 	function getText() {
 		return $this->data->wft_text;
@@ -448,7 +456,7 @@ class WFThread extends ContextSource {
 			[ 'MAX(wfr_edit_timestamp) AS max_edit_timestamp' ],
 			[
 				'wfr_thread' => $this->getId(),
-				'wfr_edit_timestamp > 0'
+				'wfr_edit_timestamp > 0',
 			],
 			__METHOD__
 		);
@@ -575,10 +583,11 @@ class WFThread extends ContextSource {
 
 		// Update the forum table so that the data shown on Special:WikiForum is up to date
 		$lastPostTimestamp = $row->wft_last_post_timestamp ?? null;
+		// Use set() with numeric keys for SQL expressions (safe because $replyCount is int)
 		$dbw->update(
 			'wikiforum_forums',
 			[
-				"wff_reply_count = wff_reply_count - $replyCount",
+				"wff_reply_count = wff_reply_count - " . (int)$replyCount,
 				'wff_thread_count = wff_thread_count - 1',
 				'wff_last_post_actor' => $row->wft_last_post_actor ?? null,
 				'wff_last_post_user_ip' => $row->wft_last_post_user_ip ?? '',
@@ -724,6 +733,8 @@ class WFThread extends ContextSource {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
+		$title = trim( $title );
+
 		if (
 			( $text && $title && strlen( $text ) == 1 ) ||
 			strlen( $title ) == 1
@@ -734,6 +745,7 @@ class WFThread extends ContextSource {
 
 		// Catch characters that would be invalid for the purposes of a page title and prevent people from
 		// using those in thread titles, just as you'd prevent them elsewhere in MW.
+		// Thread titles are used in URLs via SpecialPage::getTitleFor(), so they must be valid page titles
 		// @see https://phabricator.wikimedia.org/T384146
 		$titleObj = Title::newFromText( $title );
 		if ( $titleObj === null ) {
@@ -823,10 +835,11 @@ class WFThread extends ContextSource {
 			);
 
 			$oldForumLastPostTimestamp = $oldForumLastPost ? $oldForumLastPost->wft_last_post_timestamp : null;
+			// Use set() with numeric keys for SQL expressions (safe because $replyCount is int)
 			$dbw->update(
 				'wikiforum_forums',
 				[
-					"wff_reply_count = wff_reply_count - $replyCount",
+					"wff_reply_count = wff_reply_count - " . (int)$replyCount,
 					'wff_thread_count = wff_thread_count - 1',
 					'wff_last_post_actor' => $oldForumLastPost ? $oldForumLastPost->wft_last_post_actor : null,
 					'wff_last_post_user_ip' => $oldForumLastPost ? $oldForumLastPost->wft_last_post_user_ip : '',
@@ -850,10 +863,11 @@ class WFThread extends ContextSource {
 			);
 
 			$newForumLastPostTimestamp = $newForumLastPost ? $newForumLastPost->wft_last_post_timestamp : null;
+			// Use set() with numeric keys for SQL expressions (safe because $replyCount is int)
 			$dbw->update(
 				'wikiforum_forums',
 				[
-					"wff_reply_count = wff_reply_count + $replyCount",
+					"wff_reply_count = wff_reply_count + " . (int)$replyCount,
 					'wff_thread_count = wff_thread_count + 1',
 					'wff_last_post_actor' => $newForumLastPost ? $newForumLastPost->wft_last_post_actor : null,
 					'wff_last_post_user_ip' => $newForumLastPost ? $newForumLastPost->wft_last_post_user_ip : '',
@@ -1068,12 +1082,12 @@ class WFThread extends ContextSource {
 			Html::element(
 				'td',
 				[ 'class' => 'mw-wikiforum-value' ],
-				$this->getReplyCount()
+				(string)$this->getReplyCount()
 			) .
 			Html::element(
 				'td',
 				[ 'class' => 'mw-wikiforum-value' ],
-				$this->getViewCount()
+				(string)$this->getViewCount()
 			) .
 			Html::rawElement(
 				'td',
@@ -1103,7 +1117,7 @@ class WFThread extends ContextSource {
 		$categoryLink = $this->getForum()->getCategory()->showLink();
 		$forumLink = $this->getForum()->showPlainLink();
 
-		$extraInfo = '<br />' . $this->msg( 'wikiforum-forum', $categoryLink, $forumLink )->text();
+		$extraInfo = '<br />' . $this->msg( 'wikiforum-forum' )->rawParams( $categoryLink, $forumLink )->parse();
 
 		return $this->showListItemMain( true, $extraInfo );
 	}
@@ -1211,6 +1225,8 @@ class WFThread extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );
 		}
 
+		$title = trim( $title );
+
 		if ( strlen( $text ) == 0 || strlen( $title ) == 0 ) { // show form again, return it
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-text-or-title' );
 			return $error . $forum->showNewThreadForm( $title, $text );
@@ -1220,8 +1236,8 @@ class WFThread extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-title-already-exists' );
 		}
 
-		$title = trim( $title );
-
+		// Thread titles are used in URLs via SpecialPage::getTitleFor(), so they must be valid page titles
+		// @see https://phabricator.wikimedia.org/T384146
 		if ( preg_replace( '/[' . Title::legalChars() . ']/', '', $title ) ) { // removes all legal chars, then sees if string has length
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-bad-title' );
 		}
@@ -1242,7 +1258,8 @@ class WFThread extends ContextSource {
 					[
 						'wfaction' => 'savenewthread',
 						'forum' => $forum->getId()
-					]
+					],
+					$user
 				);
 				return $output;
 			}
@@ -1345,7 +1362,7 @@ class WFThread extends ContextSource {
 
 	function showHeaderForSearch() {
 		$posted = $this->showPostedInfo();
-		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread', $this->showLink() )->text();
+		$posted .= '<br />' . $this->msg( 'wikiforum-search-thread' )->rawParams( $this->showLink() )->parse();
 
 		return '<tr>
 					<td class="mw-wikiforum-thread-main" colspan="2">' . WikiForum::showAvatar( $this->getPostedBy() ) .
@@ -1386,13 +1403,18 @@ class WFThread extends ContextSource {
 	/**
 	 * Show the editor for adding a thread/editing one
 	 *
-	 * @param string $titleValue value to preload the title input with
-	 * @param string $titlePlaceholder the placeholder element of the title input
-	 * @param string $textValue value to preload the text field with
-	 * @param array $params array of URL params to pass to the form
+	 * @param string $titleValue Value to preload the title input with. Will be escaped by Html::element().
+	 * @param-taint $titleValue escapes_html
+	 * @param string $titlePlaceholder The placeholder text for the title input. Will be escaped by Html::element().
+	 *                                  Should be plain text from a message, not pre-escaped HTML.
+	 * @param-taint $titlePlaceholder escapes_html
+	 * @param string $textValue Value to preload the text field with. Will be escaped by Html::element().
+	 * @param-taint $textValue escapes_html
+	 * @param array $params Array of URL params to pass to the form
 	 * @param User $user
-	 * @param int|null $currentForumId current forum ID for thread (null for new threads)
-	 * @return string
+	 * @param int|null $currentForumId Current forum ID for thread (null for new threads)
+	 * @return string HTML content (safe for output)
+	 * @return-taint escaped
 	 */
 	static function showGeneralEditor( $titleValue, $titlePlaceholder, $textValue, $params, User $user, $currentForumId = null ) {
 		$input =
@@ -1414,10 +1436,10 @@ class WFThread extends ContextSource {
 			$forumsGrouped = self::getAllForumsGrouped();
 			$optionElements = [];
 			foreach ( $forumsGrouped as $categoryId => $categoryData ) {
-				$categoryName = htmlspecialchars( $categoryData['name'] );
+				// Html::element() will escape the content automatically, so don't escape here
+				$categoryName = $categoryData['name'];
 				foreach ( $categoryData['forums'] as $forumId => $forumName ) {
-					$forumNameEscaped = htmlspecialchars( $forumName );
-					$displayName = $categoryName . ' > ' . $forumNameEscaped;
+					$displayName = $categoryName . ' > ' . $forumName;
 					$optionAttrs = [ 'value' => $forumId ];
 					if ( $forumId == $currentForumId ) {
 						$optionAttrs['selected'] = 'selected';
@@ -1505,15 +1527,21 @@ class WFThread extends ContextSource {
 			$reply = WFReply::newFromID( $quoteReply );
 			if ( $reply ) {
 				$posted = $reply->showPlainPostedInfo();
+				// $textValue contains HTML from showPlainPostedInfo() and plain text from getText()
+				// showWriteForm will escape $text_prev parameter, so this is safe
 				$textValue = '[quote=' . $posted . ']' . $reply->getText() . '[/quote]';
 			}
 		} elseif ( $quoteThread ) {
 			$posted = $this->showPlainPostedInfo();
+			// $textValue contains HTML from showPlainPostedInfo() and plain text from getText()
+			// showWriteForm will escape $text_prev parameter, so this is safe
 			$textValue = '[quote=' . $posted . ']' . $this->getText() . '[/quote]';
 		} elseif ( $this->preloadText ) {
 			$textValue = $this->preloadText;
 		}
 
+		// showWriteForm escapes $text_prev parameter, so mixed HTML/text in $textValue is safe
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped showWriteForm escapes $text_prev
 		return WFReply::showGeneralEditor(
 			[
 				'wfaction' => 'savenewreply',

@@ -92,7 +92,7 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get an array of this category's child forums
 	 *
-	 * @return multitype:WFForum array of WFForum forums
+	 * @return WFForum[] array of WFForum forums
 	 */
 	function getForums() {
 		if ( !$this->forums ) {
@@ -123,7 +123,11 @@ class WFCategory extends ContextSource {
 	/**
 	 * Get the URL to this category
 	 *
-	 * @return string
+	 * NOTE: This returns an unescaped URL. When using in HTML, pass it to Html helpers
+	 * which will automatically escape it (e.g., Html::element with 'href' attribute).
+	 * For direct string concatenation in HTML, use htmlspecialchars().
+	 *
+	 * @return string URL (not HTML-escaped)
 	 */
 	function getURL() {
 		return SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'category' => $this->getId() ] );
@@ -262,6 +266,8 @@ class WFCategory extends ContextSource {
 	function edit( $categoryName ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
+
+		$categoryName = trim( $categoryName );
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
@@ -432,6 +438,8 @@ class WFCategory extends ContextSource {
 	 */
 	static function add( $categoryName, User $user ) {
 		global $wgWikiForumLogInRC, $wgRequest;
+
+		$categoryName = trim( $categoryName );
 
 		if ( !$user->isAllowed( 'wikiforum-admin' ) ) {
 			$error = WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-no-rights' );

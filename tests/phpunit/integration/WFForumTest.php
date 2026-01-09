@@ -376,4 +376,170 @@ class WFForumTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsString( $showLinkResult );
 		$this->assertStringContainsString( $forumName, $showLinkResult );
 	}
+
+	/**
+	 * Test that forum cannot be created with whitespace-only name (trim validation)
+	 */
+	public function testAddForumWithWhitespaceOnlyName() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$category = $this->createTestCategory( $adminUser );
+		$this->assertNotFalse( $category, 'Category should exist' );
+
+		$context = new RequestContext();
+		$context->setUser( $adminUser );
+		$context->setRequest( new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+		$category->setContext( $context );
+
+		// Try to create forum with only spaces
+		$result = $category->addForum( '   ', 'Description', false );
+		$this->assertIsString( $result );
+		// Should contain error message (translated)
+		$this->assertStringContainsString( 'Title or text not correctly filled out', $result );
+		// Should not create the forum
+		$forum = WFForum::newFromName( '   ' );
+		$this->assertFalse( $forum );
+	}
+
+	/**
+	 * Test that category dropdown shows special characters correctly (no double escaping)
+	 * This tests that getAllCategories() returns category names without double escaping
+	 */
+	public function testCategoryDropdownShowsSpecialCharacters() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$categoryName = 'Category >>> Test ' . wfRandomString( 10 );
+
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+
+		WFCategory::add( $categoryName, $adminUser );
+		$category = WFCategory::newFromName( $categoryName );
+		$this->assertNotFalse( $category );
+
+		// Test getAllCategories() which is used in the dropdown
+		$categories = WFForum::getAllCategories();
+		$this->assertIsArray( $categories );
+		$this->assertArrayHasKey( $category->getId(), $categories );
+		// Category name should be in the array without double escaping
+		$this->assertEquals( $categoryName, $categories[$category->getId()] );
+		// Should not contain HTML entities
+		$this->assertStringNotContainsString( '&gt;', $categories[$category->getId()] );
+	}
+
+	/**
+	 * Test that forum cannot be edited with whitespace-only name (trim validation)
+	 */
+	public function testEditForumWithWhitespaceOnlyName() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$category = $this->createTestCategory( $adminUser );
+		$this->assertNotFalse( $category, 'Category should exist' );
+
+		$context = new RequestContext();
+		$context->setUser( $adminUser );
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
+		$context->setRequest( new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+		$category->setContext( $context );
+
+		$forumName = 'Test Forum ' . wfRandomString( 10 );
+		$category->addForum( $forumName, 'Description', false );
+		$forum = WFForum::newFromName( $forumName );
+		$this->assertNotFalse( $forum );
+		$forum->setContext( $context );
+		$originalName = $forum->getName();
+
+		// Try to edit forum with only spaces
+		$result = $forum->edit( '   ', 'New description', false );
+		$this->assertIsString( $result );
+		// Should contain error message (translated)
+		$this->assertStringContainsString( 'Title or text not correctly filled out', $result );
+		// Forum name should not be changed
+		$forumAfter = WFForum::newFromID( $forum->getId() );
+		$this->assertEquals( $originalName, $forumAfter->getName() );
+	}
+
+	/**
+	 * Test XSS protection: category names with HTML should be escaped when displayed
+	 * Note: getAllCategories() returns raw names (HTMLForm will escape them),
+	 * but when displayed via show(), they should be escaped
+	 */
+	public function testCategoryDropdownXssProtection() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		// Create category with XSS payload
+		// Note: Categories don't use Title validation, so it may be created
+		$xssCategoryName = '<script>alert("XSS")</script>';
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+
+		$result = WFCategory::add( $xssCategoryName, $adminUser );
+		$this->assertIsString( $result );
+		$category = WFCategory::newFromName( $xssCategoryName );
+
+		// If category was created, verify it's escaped when displayed
+		if ( $category ) {
+			$context = new RequestContext();
+			$context->setUser( $adminUser );
+			$context->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
+			$category->setContext( $context );
+			$showResult = $category->show();
+			// Should contain escaped HTML (may be &lt;script&gt; or &lt;script>)
+			$this->assertStringContainsString( '&lt;script', $showResult );
+			$this->assertStringNotContainsString( '<script>alert', $showResult );
+
+			// Test that showLink() also escapes
+			$linkResult = $category->showLink();
+			// Should contain escaped HTML
+			$this->assertStringContainsString( '&lt;script', $linkResult );
+			$this->assertStringNotContainsString( '<script>alert', $linkResult );
+		}
+	}
+
+	/**
+	 * Test double escaping protection: title attributes should not be double-escaped
+	 */
+	public function testTitleAttributeNoDoubleEscaping() {
+		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$category = $this->createTestCategory( $adminUser );
+		$this->assertNotFalse( $category, 'Category should exist' );
+
+		$context = new RequestContext();
+		$context->setUser( $adminUser );
+		$context->setRequest( new FauxRequest( [
+			'wpEditToken' => $adminUser->getEditToken()
+		] ) );
+		$category->setContext( $context );
+
+		$forumName = 'Test Forum ' . wfRandomString( 10 );
+		$category->addForum( $forumName, 'Description', false );
+
+		$forum = WFForum::newFromName( $forumName );
+		$this->assertNotFalse( $forum );
+
+		$context = new RequestContext();
+		$context->setUser( $adminUser );
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$context->setTitle( $title );
+		$forum->setContext( $context );
+
+		// Set title in global context for methods that use OutputPage::parseAsContent
+		$globalContext = RequestContext::getMain();
+		$globalContext->setTitle( $title );
+		$globalContext->setUser( $adminUser );
+
+		// Use show() method which contains edit buttons with title attributes
+		$showResult = $forum->show();
+		$this->assertIsString( $showResult );
+		$this->assertNotEmpty( $showResult );
+
+		// Check that title attributes are not double-escaped
+		// Should not contain &amp;lt; (double-escaped <)
+		$this->assertStringNotContainsString( '&amp;lt;', $showResult );
+		$this->assertStringNotContainsString( '&amp;gt;', $showResult );
+		$this->assertStringNotContainsString( '&amp;amp;', $showResult );
+		$this->assertStringNotContainsString( '&amp;quot;', $showResult );
+	}
 }
