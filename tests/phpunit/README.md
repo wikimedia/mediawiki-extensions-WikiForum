@@ -24,6 +24,7 @@ php tests/phpunit/phpunit.php --filter testNewFromID extensions/WikiForum/tests/
 
 - Model classes: WFCategory, WFForum, WFThread, WFReply
 - Utilities: WikiForum
+- GUI: WikiForumGui (unit and integration tests)
 - Hooks: WikiForumHooks
 - API modules: ApiWikiForumAdminDelete, ApiWikiForumSetThreadStickiness, ApiWikiForumSort, ApiWikiForumDeleteThread
 - Special pages: SpecialWikiForum
