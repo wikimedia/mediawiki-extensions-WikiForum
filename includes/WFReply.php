@@ -234,16 +234,14 @@ class WFReply extends ContextSource {
 			return true; // nothing to edit
 		}
 
-		if (
-			$user->isAnon() ||
+		// Check if user can edit: moderators can always edit, or user is author of reply and thread is not closed
+		$canEdit = $user->isAllowed( 'wikiforum-moderator' ) ||
 			(
-				(
-					$user->getActorId() != $this->getPostedById() &&
-					$this->getThread()->isClosed()
-				) ||
-				!$user->isAllowed( 'wikiforum-moderator' )
-			)
-		) {
+				$user->getActorId() == $this->getPostedById() &&
+				!$this->getThread()->isClosed()
+			);
+
+		if ( $user->isAnon() || !$canEdit ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'wikiforum-error-no-rights' );
 		}
 
@@ -331,8 +329,8 @@ class WFReply extends ContextSource {
 
 		if (
 			(
-				( $user->getActorId() == $thread->getPostedById() || $user->getActorId() == $this->getPostedById() )
-				&& !$thread->isClosed()
+				$user->getActorId() == $this->getPostedById() &&
+				!$thread->isClosed()
 			)
 			||
 			$user->isAllowed( 'wikiforum-moderator' )
