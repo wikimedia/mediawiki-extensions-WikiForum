@@ -463,9 +463,36 @@ class WFThread extends ContextSource {
 	/**
 	 * Gets an array of this thread's replies
 	 *
+	 * @param int|null $limit optional LIMIT (when set, result is not cached)
+	 * @param int|null $offset optional OFFSET (used only when $limit is set)
 	 * @return WFReply[]
 	 */
-	function getReplies() {
+	function getReplies( $limit = null, $offset = null ) {
+		$options = [ 'ORDER BY' => 'wfr_posted_timestamp ASC' ];
+		if ( $limit !== null ) {
+			$options['LIMIT'] = max( 1, (int)$limit );
+			$options['OFFSET'] = max( 0, (int)( $offset ?? 0 ) );
+		}
+
+		if ( $limit !== null ) {
+			// Paginated request: do not use cache, run fresh query
+			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+			$sqlReplies = $dbr->select(
+				'wikiforum_replies',
+				'*',
+				[ 'wfr_thread' => $this->getId() ],
+				__METHOD__,
+				$options
+			);
+			$replies = [];
+			foreach ( $sqlReplies as $sql ) {
+				$reply = WFReply::newFromSQL( $sql );
+				$reply->thread = $this;
+				$replies[] = $reply;
+			}
+			return $replies;
+		}
+
 		if ( !$this->replies ) {
 			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
@@ -474,7 +501,7 @@ class WFThread extends ContextSource {
 				'*',
 				[ 'wfr_thread' => $this->getId() ],
 				__METHOD__,
-				[ 'ORDER BY' => 'wfr_posted_timestamp ASC' ]
+				$options
 			);
 
 			$replies = [];
@@ -961,17 +988,13 @@ class WFThread extends ContextSource {
 
 		// limiting
 		$maxPerPage = intval( $this->msg( 'wikiforum-max-replies-per-page' )->inContentLanguage()->plain() );
-
-		if ( is_numeric( $request->getVal( 'page' ) ) ) {
-			$limit_page = $request->getInt( 'page' ) - 1;
-		} else {
-			$limit_page = 0;
-		}
-
-		$replies = $this->getReplies();
+		$currentPage = max( 1, $request->getInt( 'page', 1 ) );
 
 		if ( $maxPerPage > 0 ) {
-			$replies = array_slice( $replies, $limit_page * $maxPerPage, $maxPerPage );
+			$offset = ( $currentPage - 1 ) * $maxPerPage;
+			$replies = $this->getReplies( $maxPerPage, $offset );
+		} else {
+			$replies = $this->getReplies();
 		}
 
 		foreach ( $replies as $reply ) {
@@ -981,16 +1004,10 @@ class WFThread extends ContextSource {
 		$output .= $this->showFooter();
 
 		if ( $maxPerPage > 0 ) {
-			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
-			$countReplies = $dbr->selectRow(
-				'wikiforum_replies',
-				'COUNT(*) AS count',
-				[ 'wfr_thread' => $this->getId() ],
-				__METHOD__
-			);
+			$replyCount = (int)$this->getReplyCount();
 			$output .= WikiForumGui::showFooterRow(
-				$limit_page,
-				$countReplies->count,
+				$currentPage,
+				$replyCount,
 				$maxPerPage,
 				[ 'thread' => $this->getId() ]
 			);

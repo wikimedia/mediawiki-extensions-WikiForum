@@ -78,9 +78,9 @@ class WikiForumGui {
 	/**
 	 * Gets the footer row, in other words: pagination links.
 	 *
-	 * @param int $page number of the current page
-	 * @param int $maxIssues amount of replies, fetched from the DB
-	 * @param int $limit limit; this is also used for the SQL query
+	 * @param int $page current page number (1-based)
+	 * @param int $maxIssues total number of items (threads or replies)
+	 * @param int $limit items per page
 	 * @param array $params URL params to be passed, should have a thread or forum number
 	 * @return string HTML
 	 */
@@ -89,6 +89,8 @@ class WikiForumGui {
 			return '';
 		}
 
+		$page = max( 1, (int)$page );
+		$maxIssues = max( 0, (int)$maxIssues );
 		$totalPages = (int)ceil( $maxIssues / $limit );
 
 		if ( $totalPages <= 1 ) {
@@ -104,7 +106,7 @@ class WikiForumGui {
 			$urlParams = array_merge( [ 'page' => $i ], $params );
 			$pageNumber = str_pad( (string)$i, 2, '0', STR_PAD_LEFT );
 
-			if ( $i !== $page + 1 ) {
+			if ( $i !== $page ) {
 				$output .= Html::element(
 					'a',
 					[ 'href' => $specialPage->getFullURL( $urlParams ) ],

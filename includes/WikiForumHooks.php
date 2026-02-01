@@ -49,7 +49,7 @@ class WikiForumHooks {
 			__METHOD__,
 			[
 				'ORDER BY' => 'wft_last_post_timestamp DESC',
-				'LIMIT' => intval( $args['num'] )
+				'LIMIT' => max( 1, intval( $args['num'] ) )
 			]
 		);
 

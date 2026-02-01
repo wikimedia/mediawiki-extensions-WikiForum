@@ -7,7 +7,6 @@ class WFForum extends ContextSource {
 
 	public $category;
 	private $data;
-	private $threads;
 
 	/**
 	 * @param stdClass $sql
@@ -168,33 +167,35 @@ class WFForum extends ContextSource {
 	/**
 	 * Get an array of this forum's children threads
 	 *
-	 * @param array $orderBy SQL fragment for ordering by
-	 * @return multitype:WFThread array of threads
+	 * @param string $orderBy SQL fragment for ordering by
+	 * @param int|null $limit optional LIMIT
+	 * @param int|null $offset optional OFFSET (used only when $limit is set)
+	 * @return WFThread[] array of threads
 	 */
-	function getThreads( $orderBy = '' ) {
-		if ( !$this->threads ) {
-			$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
-
-			$sqlThreads = $dbr->select(
-				'wikiforum_threads',
-				'*',
-				[ 'wft_forum' => $this->getId() ],
-				__METHOD__,
-				[ 'ORDER BY' => [ 'wft_sticky DESC', $orderBy ] ]
-			);
-
-			$threads = [];
-
-			foreach ( $sqlThreads as $sql ) {
-				$thread = WFThread::newFromSQL( $sql );
-				$thread->forum = $this; // saves thread making DB query to find this
-				$threads[] = $thread;
-			}
-
-			$this->threads = $threads;
+	function getThreads( $orderBy = '', $limit = null, $offset = null ) {
+		$options = [ 'ORDER BY' => [ 'wft_sticky DESC', $orderBy ] ];
+		if ( $limit !== null ) {
+			$options['LIMIT'] = max( 1, (int)$limit );
+			$options['OFFSET'] = max( 0, (int)( $offset ?? 0 ) );
 		}
 
-		return $this->threads;
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+		$sqlThreads = $dbr->select(
+			'wikiforum_threads',
+			'*',
+			[ 'wft_forum' => $this->getId() ],
+			__METHOD__,
+			$options
+		);
+
+		$threads = [];
+		foreach ( $sqlThreads as $sql ) {
+			$thread = WFThread::newFromSQL( $sql );
+			$thread->forum = $this;
+			$threads[] = $thread;
+		}
+
+		return $threads;
 	}
 
 	/**
@@ -594,12 +595,13 @@ class WFForum extends ContextSource {
 
 		// limiting
 		$maxPerPage = intval( $this->msg( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
-		$thisPage = $request->getInt( 'page', 1 );
+		$thisPage = max( 1, $request->getInt( 'page', 1 ) );
 
-		$threads = $this->getThreads( $sort );
-
-		if ( $maxPerPage > 0 ) { // limiting
-			$threads = array_slice( $threads, ( $thisPage - 1 ) * $maxPerPage, $maxPerPage );
+		if ( $maxPerPage > 0 ) {
+			$offset = ( $thisPage - 1 ) * $maxPerPage;
+			$threads = $this->getThreads( $sort, $maxPerPage, $offset );
+		} else {
+			$threads = $this->getThreads( $sort );
 		}
 
 		foreach ( $threads as $thread ) {
@@ -613,7 +615,16 @@ class WFForum extends ContextSource {
 		$output .= '</table></div>';
 
 		if ( $maxPerPage > 0 ) {
-			$output .= $this->showFooterRow( $thisPage, $maxPerPage );
+			$footerParams = [];
+			$st = $request->getVal( 'st' );
+			$sd = $request->getVal( 'sd' );
+			if ( $st !== null && $st !== '' ) {
+				$footerParams['st'] = $st;
+			}
+			if ( $sd !== null && $sd !== '' ) {
+				$footerParams['sd'] = $sd;
+			}
+			$output .= $this->showFooterRow( $thisPage, $maxPerPage, $footerParams );
 		}
 
 		return $output;
@@ -914,9 +925,11 @@ class WFForum extends ContextSource {
 	/**
 	 * @param int $page
 	 * @param int $limit
+	 * @param array $extraParams optional URL params to preserve (e.g. sort st/sd)
 	 * @return string HTML
 	 */
-	function showFooterRow( $page, $limit ) {
-		return WikiForumGui::showFooterRow( $page, $this->getThreadCount(), $limit, [ 'forum' => $this->getId() ] );
+	function showFooterRow( $page, $limit, $extraParams = [] ) {
+		$params = array_merge( [ 'forum' => $this->getId() ], $extraParams );
+		return WikiForumGui::showFooterRow( $page, $this->getThreadCount(), $limit, $params );
 	}
 }

@@ -94,7 +94,7 @@ class WikiForum {
 		// buildLike() will escape the query properly, add the word LIKE and the "double quotes"
 		$likeString = $dbr->buildLike( $dbr->anyString(), $what, $dbr->anyString() );
 
-		$limit = intval( wfMessage( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() );
+		$limit = max( 1, intval( wfMessage( 'wikiforum-max-threads-per-page' )->inContentLanguage()->plain() ) );
 
 		$threadData = $dbr->newSelectQueryBuilder()
 			->select( '*' )

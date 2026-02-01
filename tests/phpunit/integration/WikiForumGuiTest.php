@@ -93,7 +93,7 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 	 * Test showFooterRow with pagination
 	 */
 	public function testShowFooterRowWithPagination() {
-		$page = 0; // First page (0-indexed)
+		$page = 1; // First page (1-based)
 		$maxIssues = 25;
 		$limit = 10;
 		$params = [ 'forum' => 1 ];
@@ -111,7 +111,7 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 	 * Test showFooterRow with single page (no pagination)
 	 */
 	public function testShowFooterRowSinglePage() {
-		$page = 0;
+		$page = 1;
 		$maxIssues = 5;
 		$limit = 10;
 		$params = [ 'forum' => 1 ];
@@ -124,7 +124,7 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 	 * Test showFooterRow with zero limit
 	 */
 	public function testShowFooterRowZeroLimit() {
-		$page = 0;
+		$page = 1;
 		$maxIssues = 25;
 		$limit = 0;
 		$params = [ 'forum' => 1 ];
@@ -137,14 +137,14 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 	 * Test showFooterRow current page highlighting
 	 */
 	public function testShowFooterRowCurrentPage() {
-		$page = 1; // Second page (0-indexed, so page 2)
+		$page = 2; // Second page (1-based)
 		$maxIssues = 25;
 		$limit = 10;
 		$params = [ 'forum' => 1 ];
 
 		$result = WikiForumGui::showFooterRow( $page, $maxIssues, $limit, $params );
 		$this->assertIsString( $result );
-		// Current page should be in brackets (page + 1 = 2, so [02])
+		// Current page should be in brackets ([02])
 		$this->assertStringContainsString( '[02]', $result );
 	}
 
