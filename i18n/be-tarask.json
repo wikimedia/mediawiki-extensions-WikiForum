@@ -5,6 +5,7 @@
 			"Jim-by",
 			"Red Winged Duck",
 			"Renessaince",
+			"Ucukor",
 			"Wizardist"
 		]
 	},
@@ -61,7 +62,7 @@
 	"wikiforum-error-thread-close": "Памылка падчас спробы закрыць галіну",
 	"wikiforum-error-general": "Ня знойдзены аб’ект, або няма правоў для выкананьня дзеяньня.",
 	"wikiforum-error-not-found": "Аб’ект ня знойдзены.",
-	"wikiforum-error-search-missing-query": "Неабходна падаць выраз для пошуку!",
+	"wikiforum-error-search-missing-query": "Патрэбна падаць выраз для пошуку!",
 	"wikiforum-error-search": "Памылка пошуку",
 	"wikiforum-add-category": "Дадаць катэгорыю",
 	"wikiforum-edit-category": "Рэдагаваць катэгорыю",
