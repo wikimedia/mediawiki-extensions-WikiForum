@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Aca"
 		]
 	},
 	"wikiforum-desc": "[[Special:WikiForum|Forumsko]] proširenje za MediaWiki",
@@ -9,7 +10,7 @@
 	"wikiforum-anonymous": "Anonim",
 	"wikiforum-announcement-only-description": "Forum za najave (temi mogu dodavati samo moderatori)",
 	"wikiforum-description": "Opis:",
-	"wikiforum-forum-is-empty": "Ovaj forum je trenutno prazan.\nMolimo tražite administratora kako bi dodao kategorije.",
+	"wikiforum-forum-is-empty": "Ovaj forum trenutno je prazan.\nObratite se administratorima za dodavanje kategorija i foruma.",
 	"wikiforum-forum-name": "Forum $1",
 	"wikiforum-name": "Naziv:",
 	"wikiforum-button-preview": "Pregled",
