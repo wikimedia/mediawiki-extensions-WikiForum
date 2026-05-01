@@ -6,7 +6,8 @@
 			"Priviet",
 			"YeBoy371",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"Tensama0415"
 		]
 	},
 	"wikiforum-desc": "미디어위키를 위한 [[Special:WikiForum|포럼]] 확장 기능",
@@ -38,6 +39,7 @@
 	"wikiforum-overview": "개요",
 	"wikiforum-pages": "{{PLURAL:$1|문서}}:",
 	"wikiforum-thread-closed": "스레드 닫힘",
+	"wikiforum-sticky": "고정 스레드",
 	"wikiforum-new-thread": "새 스레드",
 	"wikiforum-edit-thread": "스레드 편집하기",
 	"wikiforum-delete-thread": "스레드 삭제하기",
@@ -58,8 +60,11 @@
 	"wikiforum-forum-not-found-text": "포럼이 존재하지 않습니다.",
 	"wikiforum-thread-not-found": "스레드를 찾을 수 없습니다",
 	"wikiforum-thread-not-found-text": "스레드가 존재하지 않거나 삭제되었습니다.",
+	"wikiforum-reply-not-found": "답변을 찾을 수 없습니다",
+	"wikiforum-reply-not-found-text": "답변이 존재하지 않습니다.",
 	"wikiforum-error-thread-reopen": "스레드를 다시 여는 동안 오류가 발생했습니다",
 	"wikiforum-error-thread-close": "스레드를 닫는 동안 오류가 발생했습니다",
+	"wikiforum-error-general-title": "개체를 찾을 수 없거나 이 작업을 수행할 권한이 없습니다",
 	"wikiforum-error-general": "개체를 찾을 수 없거나 이 작업을 수행할 권한이 없습니다.",
 	"wikiforum-error-no-rights": "이 작업을 수행할 권한이 없습니다.",
 	"wikiforum-error-not-found": "개체를 찾을 수 없습니다.",
@@ -69,6 +74,7 @@
 	"wikiforum-error-double-post": "이 답장을 이미 올렸습니다!",
 	"wikiforum-error-thread-closed": "스레드가 현재 닫혔습니다. 여기에 새 답글을 추가할 수 없습니다.",
 	"wikiforum-error-title-already-exists": "지정된 제목의 스레드가 이미 존재합니다. 다른 제목을 선택해 주십시오.",
+	"wikiforum-error-readonly": "데이터베이스가 읽기 전용으로 설정되었습니다. 현재 쓰기 작업을 수행할 수 없습니다.",
 	"wikiforum-error-search-missing-query": "검색어를 지정해야 합니다!",
 	"wikiforum-error-search": "검색 오류",
 	"wikiforum-error-delete": "삭제하는 동안 오류가 발생했습니다",
@@ -76,6 +82,7 @@
 	"wikiforum-error-move-thread": "스레드를 이동하는 동안 오류가 발생했습니다",
 	"wikiforum-error-add": "추가하는 동안 오류가 발생했습니다",
 	"wikiforum-error-edit": "편집하는 동안 오류가 발생했습니다",
+	"wikiforum-error-write": "쓰는 동안 오류가 발생했습니다",
 	"wikiforum-error-category": "분류 오류",
 	"wikiforum-error-forum": "포럼 오류",
 	"wikiforum-error-thread": "스레드 오류",
@@ -92,7 +99,9 @@
 	"wikiforum-move-thread": "스레드 이동",
 	"wikiforum-paste-thread": "스레드 붙여넣기",
 	"wikiforum-quote": "인용",
+	"action-wikiforum-admin": "[[Special:WikiForum|토론 게시판]]의 분류와 포럼을 추가, 편집 및 삭제할",
 	"right-wikiforum-admin": "[[Special:WikiForum|토론 게시판]]의 분류와 포럼을 추가, 편집 및 삭제",
+	"action-wikiforum-moderator": "[[Special:WikiForum|토론 게시판]]의 스레드와 답글을 편집 및 삭제할",
 	"right-wikiforum-moderator": "[[Special:WikiForum|토론 게시판]]의 스레드와 답글을 편집 및 삭제",
 	"group-forumadmin": "포럼 관리자",
 	"group-forumadmin-member": "{{GENDER:$1|포럼 관리자}}",
@@ -104,5 +113,10 @@
 	"logentry-forum-add-category": "$1님이 새 분류인, [$4 $5]을(를) {{GENDER:$2|만들었습니다}}",
 	"logentry-forum-add-forum": "$1 사용자 새 포럼, [$4 $5] 문서를 {{GENDER:$2|만들었습니다}}",
 	"logentry-forum-add-thread": "$1님이 새 스레드인, [[Special:WikiForum/$4|$4]]을(를) {{GENDER:$2|만들었습니다}}",
-	"logentry-forum-add-reply": "$1님이 [[Special:WikiForum/$4|$4]] 스레드에 {{GENDER:$2|답변을 남겼습니다}}"
+	"logentry-forum-add-reply": "$1님이 [[Special:WikiForum/$4|$4]] 스레드에 {{GENDER:$2|답변을 남겼습니다}}",
+	"wikiforum-forum-preload": "포럼의 제목",
+	"wikiforum-category-preload": "분류의 제목",
+	"wikiforum-must-supply-thread": "스레드 ID가 주어져야 합니다.",
+	"wikiforum-captcha": "자동화된 스팸으로부터 위키를 보호하기 위해, 아래의 간단한 문제를 해결한 다음 상자에 정답을 입력해 주세요 ([[Special:Captcha/help|자세한 정보]]):",
+	"wikiforum-error-captcha": "오류 - CAPTCHA가 잘못되었거나 누락되었습니다"
 }
