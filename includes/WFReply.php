@@ -2,6 +2,8 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class WFReply extends ContextSource {
 
@@ -425,6 +427,8 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'wikiforum-error-general' );
 		}
 
+		$replyId = $dbw->insertId();
+
 		$dbw->update(
 			'wikiforum_threads',
 			[
@@ -446,7 +450,8 @@ class WFReply extends ContextSource {
 
 		$logEntry = new ManualLogEntry( 'forum', 'add-reply' );
 		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( SpeciaLPage::getTitleFor( 'WikiForum' ) );
+		$title = SpecialPage::getTitleFor( 'WikiForum' );
+		$logEntry->setTarget( $title );
 		$shortText = $thread->getLanguage()->truncateForDatabase( $text, 50 );
 		$logEntry->setComment( $shortText );
 		$logEntry->setParameters( [
@@ -455,6 +460,44 @@ class WFReply extends ContextSource {
 		$logid = $logEntry->insert();
 		if ( $wgWikiForumLogInRC ) {
 			$logEntry->publish( $logid );
+		}
+
+		// The following if block was originally copied from Comments
+		// @todo FIXME: could probably live elsewhere, eh
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			global $wgEchoMentionOnChanges;
+			if ( !$wgEchoMentionOnChanges ) {
+				return null;
+			}
+
+			// Modified copypasta of EchoDiscussionParser#generateEventsForRevision with less Revision-ism!
+			// (Awful pun is awful, sorry about that.)
+			// EchoDiscussionParser#getChangeInterpretationForRevision is *way*, way too Revision-ist for
+			// our tastes. DO NOT WANT!
+
+			// <s>EchoDiscussionParser#getUserLinks is private, because of course it is.</s>
+			// It no longer is since Echo repo 758e06aba16bea80f6ecf39821fddf987cb4829d,
+			// but we need this largely-duplicated lil' chunk of code anyway, as
+			// this calls our custom parseNonEditWikitext() method (Echo's expects the 2nd
+			// parameter to be an Article or an Article subclass; WFThread is neither but
+			// it's all we have and all we can use :-/ Maybe Echo could be refactored even
+			// further to accept an arbitrary string content or a Content object or something
+			// that we...*do* indeed have here?)
+			$getUserLinks = static function ( $content, $thread ) {
+				$output = WikiForumHooks::parseNonEditWikitext( $content, $thread );
+				$links = $output->getLinks();
+				if ( !isset( $links[NS_USER] ) || !is_array( $links[NS_USER] ) ) {
+					return false;
+				}
+				return $links[NS_USER];
+			};
+
+			$userLinks = $getUserLinks( $text, $thread );
+			$threadTitle = SpecialPage::getTitleFor( 'WikiForum', $thread->getName() );
+			WikiForumHooks::generateMentionEvents(
+				/* $header =*/$text, $userLinks, $text,
+				$threadTitle, $user, $thread, $replyId
+			);
 		}
 
 		return $thread->show();

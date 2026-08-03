@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Title\Title;
 
 /**
  * Static class containing all the hooked functions used by WikiForum.
@@ -111,6 +114,204 @@ class WikiForumHooks {
 		$output .= $thread->showFooter();
 
 		return $output;
+	}
+
+	/**
+	 * For the Echo extension: register our new presentation model with Echo so
+	 * Echo knows how it should display our notifications in it.
+	 *
+	 * @param array &$notifications Echo notifications
+	 * @param array &$notificationCategories Echo notification categories
+	 * @param array &$icons Icon details
+	 */
+	public static function onBeforeCreateEchoEvent( &$notifications, &$notificationCategories, &$icons ) {
+		$notificationCategories['wikiforum-comment'] = [
+			'tooltip' => 'echo-pref-tooltip-wikiforum-comment',
+		];
+		$notifications['wikiforum-comment'] = [
+			'category' => 'wikiforum-comment',
+			'group' => 'interactive',
+			'section' => 'alert',
+			'presentation-model' => EchoMentionWikiForumCommentPresentationModel::class,
+			EchoAttributeManager::ATTR_LOCATORS => [
+				[ 'EchoUserLocator::locateFromEventExtra', [ 'mentioned-users' ] ]
+			],
+			'icon' => 'mention',
+		];
+	}
+
+	/**
+	 * It's like Article::prepareTextForEdit,
+	 *  but not for editing (old wikitext usually)
+	 * Stolen from AbuseFilterVariableHolder
+	 *
+	 * Used inline in WFReply.php; stolen from Comments as of 17 February 2022,
+	 * made public and adapted because we can't use an Article here directly :(
+	 *
+	 * @param string $wikitext
+	 * @param WFThread $thread
+	 *
+	 * @return ParserOutput
+	 */
+	public static function parseNonEditWikitext( $wikitext, WFThread $thread ) {
+		static $cache = [];
+		$cacheKey = md5( $wikitext ) . ':' . $thread->getName();
+		if ( isset( $cache[$cacheKey] ) ) {
+			return $cache[$cacheKey];
+		}
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$options = new ParserOptions( RequestContext::getMain()->getUser() );
+		// @todo FIXME: Using Title::newFromText() like this may not be that safe
+		// because a wiki page and a forum thread CAN have the same title, and
+		// in that case I expect this code to behave in unusual and unexpected ways...
+		$output = $parser->parse( $wikitext, Title::newFromText( $thread->getName() ), $options );
+		$cache[$cacheKey] = $output;
+		return $output;
+	}
+
+	/**
+	 * For an action taken on a talk page, notify users whose user pages are linked.
+	 *
+	 * @note Literally stolen from Echo's EchoDiscussionParser (@REL1_33) and
+	 * modified to be less Revision-centric.
+	 *
+	 * Used inline in WFReply.php; stolen from Comments as of 17 February 2022
+	 * and adapted a bit: mainly changed the last two parameters to one ($thread).
+	 *
+	 * @param string $header The subject line for the discussion.
+	 * @param int[] $userLinks
+	 * @param string $content The content of the post, as a wikitext string.
+	 * @param Title $title
+	 * @param User $agent The user who made the comment.
+	 * @param WFThread $thread The forum thread where a reply was written to
+	 * @param int $replyId Internal identifier of the reply
+	 */
+	public static function generateMentionEvents(
+		$header,
+		$userLinks,
+		$content,
+		Title $title,
+		User $agent,
+		WFThread $thread,
+		int $replyId
+	) {
+		global $wgEchoMaxMentionsCount, $wgEchoMentionStatusNotifications;
+
+		if ( !$title ) {
+			return;
+		}
+
+		if ( !$userLinks ) {
+			return;
+		}
+
+		$userMentions = EchoDiscussionParser::getUserMentions( $title, $agent->getId(), $userLinks );
+		// @todo If this EchoDiscussionParser method is ever made public, we can just use it here instead
+		// of inlining its functionality:
+		// $overallMentionsCount = EchoDiscussionParser::getOverallUserMentionsCount( $userMentions );
+		$overallMentionsCount = count( $userMentions, COUNT_RECURSIVE ) - count( $userMentions );
+		if ( $overallMentionsCount === 0 ) {
+			return;
+		}
+
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+
+		$threadId = $thread->getId(); // added
+		$threadName = $thread->getName(); // added
+
+		if ( $overallMentionsCount > $wgEchoMaxMentionsCount ) {
+			if ( $wgEchoMentionStatusNotifications ) {
+				EchoEvent::create( [
+					'type' => 'mention-failure-too-many',
+					'title' => $title,
+					'extra' => [
+						'max-mentions' => $wgEchoMaxMentionsCount,
+						'section-title' => $header,
+						'thread-name' => $threadName, // added
+						'thread-id' => $threadId, // added
+						'reply-id' => $replyId, // added
+						'notifyAgent' => true
+					],
+					'agent' => $agent,
+				] );
+				$stats->increment( 'echo.event.mention.notification.failure-too-many' );
+			}
+			return;
+		}
+
+		if ( $userMentions['validMentions'] ) {
+			EchoEvent::create( [
+				'type' => 'wikiforum-comment',
+				'title' => $title,
+				'extra' => [
+					'content' => $content,
+					'section-title' => $header,
+					'thread-name' => $threadName, // added
+					'thread-id' => $threadId, // added
+					'reply-id' => $replyId, // added
+					'mentioned-users' => $userMentions['validMentions'],
+				],
+				'agent' => $agent,
+			] );
+		}
+
+		if ( $wgEchoMentionStatusNotifications ) {
+			// TODO batch?
+			foreach ( $userMentions['validMentions'] as $mentionedUserId ) {
+				EchoEvent::create( [
+					'type' => 'mention-success',
+					'title' => $title,
+					'extra' => [
+						'subject-name' => User::newFromId( $mentionedUserId )->getName(),
+						'section-title' => $header,
+						'thread-name' => $threadName, // added
+						'thread-id' => $threadId, // added
+						'reply-id' => $replyId, // added
+						'notifyAgent' => true
+					],
+					'agent' => $agent,
+				] );
+				$stats->increment( 'echo.event.mention.notification.success' );
+			}
+
+			// TODO batch?
+			foreach ( $userMentions['anonymousUsers'] as $anonymousUser ) {
+				EchoEvent::create( [
+					'type' => 'mention-failure',
+					'title' => $title,
+					'extra' => [
+						'failure-type' => 'user-anonymous',
+						'subject-name' => $anonymousUser,
+						'section-title' => $header,
+						'thread-name' => $threadName, // added
+						'thread-id' => $threadId, // added
+						'reply-id' => $replyId, // added
+						'notifyAgent' => true
+					],
+					'agent' => $agent,
+				] );
+				$stats->increment( 'echo.event.mention.notification.failure-user-anonymous' );
+			}
+
+			// TODO batch?
+			foreach ( $userMentions['unknownUsers'] as $unknownUser ) {
+				EchoEvent::create( [
+					'type' => 'mention-failure',
+					'title' => $title,
+					'extra' => [
+						'failure-type' => 'user-unknown',
+						'subject-name' => $unknownUser,
+						'section-title' => $header,
+						'thread-name' => $threadName, // added
+						'thread-id' => $threadId, // added
+						'reply-id' => $replyId, // added
+						'notifyAgent' => true
+					],
+					'agent' => $agent,
+				] );
+				$stats->increment( 'echo.event.mention.notification.failure-user-unknown' );
+			}
+		}
 	}
 
 	/**

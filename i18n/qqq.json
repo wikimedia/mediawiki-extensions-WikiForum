@@ -121,5 +121,8 @@
 	"wikiforum-category-preload": "Used as placeholder for title.\n\nSee also:\n* {{msg-mw|Wikiforum-forum-preload}}",
 	"wikiforum-must-supply-thread": "Used as warning message when no thread ID was set for a WikiForum",
 	"wikiforum-captcha": "Label for the CAPTCHA",
-	"wikiforum-error-captcha": "Error message shown when the CAPTCHA is failed."
+	"wikiforum-error-captcha": "Error message shown when the CAPTCHA is failed.",
+	"echo-category-title-wikiforum-comment": "{{doc-echo-category-title|tooltip=Echo-pref-tooltip-wikiforum-comment}}",
+	"echo-pref-tooltip-wikiforum-comment": "{{doc-echo-pref-tooltip|title=Echo-category-title-wikiforum-comment}}",
+	"notification-header-wikiforum-comment": "Header text for a notification when you are mentioned by another user in a WikiForum thread.\n* $1 - user's name (not suitable for GENDER).\n* $2 - user's name for use in GENDER.\n* $3 - name of the user viewing the notification, can be used for GENDER\n* $4 - link to Special:WikiForum/<the thread in which you were mentioned>.\n* $5 - thread name without the ''Special:WikiForum/'' part\n* $6 - numeric reply ID, used to build the URL fragment to link to the reply."
 }

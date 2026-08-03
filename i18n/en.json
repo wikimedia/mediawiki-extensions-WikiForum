@@ -117,5 +117,8 @@
 	"wikiforum-category-preload": "Title of your category",
 	"wikiforum-must-supply-thread": "You must supply a thread ID.",
 	"wikiforum-captcha": "To protect the wiki against automated spamming, we kindly ask you to solve the simple question below and enter the answer in the box ([[Special:Captcha/help|more info]]):",
-	"wikiforum-error-captcha": "Error - incorrect or missing CAPTCHA"
+	"wikiforum-error-captcha": "Error - incorrect or missing CAPTCHA",
+	"echo-category-title-wikiforum-comment": "WikiForum",
+	"echo-pref-tooltip-wikiforum-comment": "Notify me when someone comments on a thread and mentions me.",
+	"notification-header-wikiforum-comment": "[[User:$1|$1]] {{GENDER:$2|mentioned}} {{GENDER:$3|you}} on [[$4#reply_$6|a reply]] on <strong>$5</strong>."
 }
