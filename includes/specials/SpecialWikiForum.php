@@ -36,7 +36,12 @@ class SpecialWikiForum extends SpecialPage {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 
-		$this->setHeaders();
+		// Can't do this anymore if and when we want to override the robots policy ourselves (as we do, below):
+		// $this->setHeaders();
+		// Instead, we gotta copy most of setHeaders() here *without* the robots policy stuff, like so:
+		$out->setArticleRelated( false );
+		// $out->setRobotPolicy( $this->getRobotPolicy() );
+		$out->setPageTitleMsg( $this->getDescription() );
 
 		// Add CSS
 		$out->addModuleStyles( 'ext.wikiForum' );
@@ -69,6 +74,9 @@ class SpecialWikiForum extends SpecialPage {
 				}
 			}
 		} else {
+			// Don't let search spiders crawl "ugly" URLs.
+			$out->setRobotPolicy( 'noindex,nofollow' );
+
 			$action = $request->getVal( 'wfaction' );
 
 			$threadID = $request->getInt( 'thread' );
