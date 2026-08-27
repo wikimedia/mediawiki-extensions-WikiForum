@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Anterdc99",
+			"GuoPC",
 			"Hudafu",
 			"Hzy980512",
 			"Linxue9786",
@@ -44,11 +45,13 @@
 	"wikiforum-new-thread": "新帖子",
 	"wikiforum-edit-thread": "编辑帖子",
 	"wikiforum-delete-thread": "删除帖子",
+	"wikiforum-confirm-delete-thread": "您确定要删除此帖子吗？此操作无法恢复。",
 	"wikiforum-close-thread": "关闭帖子",
 	"wikiforum-reopen-thread": "重开帖子",
 	"wikiforum-write-reply": "写回复",
 	"wikiforum-edit-reply": "编辑回复",
 	"wikiforum-delete-reply": "删除回复",
+	"wikiforum-confirm-delete-reply": "您确定要删除此回复吗？此操作无法恢复。",
 	"wikiforum-save-thread": "保存帖子",
 	"wikiforum-save-reply": "保存回复",
 	"wikiforum-thread-title": "您帖子的标题",
@@ -90,9 +93,11 @@
 	"wikiforum-add-category": "添加分类",
 	"wikiforum-edit-category": "编辑分类",
 	"wikiforum-delete-category": "删除分类",
+	"wikiforum-confirm-delete-category": "您确定要删除此分类吗？在此分类下的所有版块和帖子也会被删除。此操作无法恢复。",
 	"wikiforum-add-forum": "添加版块",
 	"wikiforum-edit-forum": "编辑版块",
 	"wikiforum-delete-forum": "删除版块",
+	"wikiforum-confirm-delete-forum": "您确定要删除此版块吗？此版块下的所有帖子和回复也会被删除。此操作无法恢复。",
 	"wikiforum-sort-up": "升序",
 	"wikiforum-sort-down": "降序",
 	"wikiforum-remove-sticky": "取消置顶",
@@ -117,7 +122,11 @@
 	"logentry-forum-add-reply": "$1{{GENDER:$2|已回复}}在线程上[[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "您的论坛标题",
 	"wikiforum-category-preload": "您的分类标题",
+	"wikiforum-category": "分类：",
 	"wikiforum-must-supply-thread": "您必须提供一个帖子ID",
 	"wikiforum-captcha": "为保护本wiki免受自动垃圾程序的破坏，我们恳请您解决下面的简单问题，并将答案输入到框中（[[Special:Captcha/help|更多信息]]）：",
-	"wikiforum-error-captcha": "错误——不正确的或丢失验证码"
+	"wikiforum-error-captcha": "错误——不正确的或丢失验证码",
+	"echo-category-title-wikiforum-comment": "WikiForum",
+	"echo-pref-tooltip-wikiforum-comment": "当有人在帖子留言并提及我时通知我。",
+	"notification-header-wikiforum-comment": "[[User:$1|$1]]在<strong>$5</strong>的[[$4#reply_$6|回复]]中{{GENDER:$2|提及了}}{{GENDER:$3|您}}。"
 }
