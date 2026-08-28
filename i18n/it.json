@@ -112,6 +112,7 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|ha risposto}} nella discussione [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "Titolo del tuo forum",
 	"wikiforum-category-preload": "Titolo della tua categoria",
+	"wikiforum-category": "Categoria:",
 	"wikiforum-must-supply-thread": "Devi fornire un ID della discussione.",
 	"wikiforum-captcha": "Per proteggere il wiki contro lo spam automatico, vi chiediamo gentilmente di risolvere la semplice domanda sottostante e digitare la risposta nella casella ([[Special:Captcha/help|Come Funziona?]]):",
 	"wikiforum-error-captcha": "Errore - CAPTCHA mancante o errato"
