@@ -47,6 +47,7 @@
 	"wikiforum-new-thread": "موضوع جدید",
 	"wikiforum-edit-thread": "ویرایش موضوع",
 	"wikiforum-delete-thread": "حذف موضوع",
+	"wikiforum-confirm-delete-thread": "آیا از حذف این ریسه مطمئن هستید؟ این عمل قابل بازگشت نیست.",
 	"wikiforum-close-thread": "بستن موضوع",
 	"wikiforum-reopen-thread": "بازگشایی موضوع",
 	"wikiforum-write-reply": "نوشتن یک پاسخ",
@@ -116,7 +117,10 @@
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|پاسخ داده}} در موضوع [[Special:WikiForum/$4|$4]]",
 	"wikiforum-forum-preload": "عنوان انجمن‌تان",
 	"wikiforum-category-preload": "عنوان رده‌تان",
+	"wikiforum-category": "رده:",
 	"wikiforum-must-supply-thread": "شما باید یک شناسهٔ موضوع تهیه کنید.",
 	"wikiforum-captcha": "برای کمک به حفاظت ویکی در برابر هرزنامه‌های خودکار، از شما می‌خواهیم پرسش سادهٔ زیر را حل و جواب را در جعبه وارد کنید ([[Special:Captcha/help|اطلاعات بیشتر]]):",
-	"wikiforum-error-captcha": "خطا - کپچا نادرست یا وارد نشده است"
+	"wikiforum-error-captcha": "خطا - کپچا نادرست یا وارد نشده است",
+	"echo-pref-tooltip-wikiforum-comment": "هرگاه کسی در یک ریسه پیامی قرار داد و به من اشاره کرد، مرا آگاه کن.",
+	"notification-header-wikiforum-comment": "[[User:$1|$1]] در [[$4#reply_$6|یک پاسخ]] در <strong>$5</strong> به {{GENDER:$3|شما}} {{GENDER:$2|اشاره کرد}}."
 }
