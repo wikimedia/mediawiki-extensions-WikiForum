@@ -192,31 +192,6 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test showTopLevelForm
-	 */
-	public function testShowTopLevelForm() {
-		$user = $this->getTestUser()->getUser();
-		$context = new RequestContext();
-		$context->setUser( $user );
-		RequestContext::getMain()->setUser( $user );
-
-		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] );
-		$extraRow = '<tr><td>Extra</td></tr>';
-		$formTitle = 'Test Form';
-		$titlePlaceholder = 'Enter name';
-		$titleValue = '';
-
-		$result = WikiForumGui::showTopLevelForm( $url, $extraRow, $formTitle, $titlePlaceholder, $titleValue );
-		$this->assertIsString( $result );
-		$this->assertStringContainsString( '<form', $result );
-		$this->assertStringContainsString( 'Test Form', $result );
-		$this->assertStringContainsString( 'Enter name', $result );
-		$this->assertStringContainsString( 'Extra', $result );
-		// Form should contain name input field
-		$this->assertStringContainsString( 'name="name"', $result );
-	}
-
-	/**
 	 * Test showPostedInfo
 	 */
 	public function testShowPostedInfo() {
@@ -499,59 +474,6 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( '<script>', $result );
 		// Should not contain unescaped alert
 		$this->assertStringNotContainsString( 'alert("XSS")', $result );
-	}
-
-	/**
-	 * Test XSS protection: showTopLevelForm should escape title parameters
-	 */
-	public function testShowTopLevelFormXssProtection() {
-		$xssTitle = '<script>alert("XSS")</script>';
-		$xssPlaceholder = '<img src=x onerror=alert("XSS")>';
-		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] );
-
-		$result = WikiForumGui::showTopLevelForm( $url, '', 'Test Form', $xssPlaceholder, $xssTitle );
-		$this->assertIsString( $result );
-
-		// XSS payloads should be escaped
-		$this->assertStringContainsString( '&lt;script&gt;', $result );
-		$this->assertStringNotContainsString( '<script>alert', $result );
-		$this->assertStringContainsString( '&lt;img', $result );
-		// Check that unescaped HTML tags are not present (even if escaped versions are)
-		$this->assertStringNotContainsString( '<img src=x onerror', $result );
-	}
-
-	/**
-	 * Test double escaping protection: showTopLevelForm should not double-escape HTML
-	 */
-	public function testShowTopLevelFormNoDoubleEscaping() {
-		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addcategory' ] );
-		$title = 'Test & Title';
-		$placeholder = 'Enter & Name';
-
-		$result = WikiForumGui::showTopLevelForm( $url, '', 'Test Form', $placeholder, $title );
-		$this->assertIsString( $result );
-
-		// Check that & is escaped but not double-escaped
-		$this->assertStringContainsString( '&amp;', $result );
-		$this->assertStringNotContainsString( '&amp;amp;', $result );
-		$this->assertStringNotContainsString( '&amp;lt;', $result );
-		$this->assertStringNotContainsString( '&amp;gt;', $result );
-	}
-
-	/**
-	 * Test XSS protection: showTopLevelForm $extraRow parameter must be pre-escaped
-	 */
-	public function testShowTopLevelFormExtraRowRequiresPreEscaping() {
-		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'addforum' ] );
-
-		// extraRow should be pre-escaped HTML - test that raw HTML is passed through
-		$extraRow = '<tr><td class="test-class">Extra Content</td></tr>';
-		$result = WikiForumGui::showTopLevelForm( $url, $extraRow, 'Test Form', 'Placeholder', 'Value' );
-
-		$this->assertIsString( $result );
-		// Raw HTML should be passed through (not escaped)
-		$this->assertStringContainsString( '<tr><td class="test-class">Extra Content</td></tr>', $result );
-		$this->assertStringNotContainsString( '&lt;tr&gt;', $result );
 	}
 
 	/**

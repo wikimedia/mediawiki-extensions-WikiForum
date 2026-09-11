@@ -41,43 +41,38 @@ use MediaWiki\User\UserIdentity;
  */
 class WikiForumGui {
 	/**
-	 * Show the header for thread and search pages
-	 *
-	 * @return string html
-	 */
-	static function showFrameHeader() {
-		return '<table class="mw-wikiforum-frame" cellspacing="10"><tr><td class="mw-wikiforum-innerframe">';
-	}
-
-	/**
-	 * Show the footer for thread and search pages
-	 *
-	 * @return string HTML
-	 */
-	static function showFrameFooter() {
-		return '</td></tr></table>';
-	}
-
-	/**
 	 * Show the search box
 	 *
 	 * @return string
 	 */
 	static function showSearchbox() {
-		global $wgExtensionAssetsPath;
-
 		$url = SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( [ 'wfaction' => 'search' ] );
 
-		$icon = '<img src="' . $wgExtensionAssetsPath . '/WikiForum/resources/images/zoom.png" id="mw-wikiforum-searchbox-picture" title="' . wfMessage( 'search' )->escaped() . '" />';
-
-		$output = '<div id="mw-wikiforum-searchbox">' .
-			Html::openElement( 'form', [ 'method' => 'post', 'action' => $url ] ) .
-			'<div id="mw-wikiforum-searchbox-border">' . $icon .
-			'<input type="text" value="" name="query" id="txtSearch" /></div>' .
-			Html::closeElement( 'form' ) .
-			'</div>';
-
-		return $output;
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'mw-wikiforum-searchbox' ],
+			Html::rawElement(
+				'form',
+				[ 'method' => 'post', 'action' => $url ],
+				(
+					Html::rawElement(
+						'label',
+						[ 'for' => 'mw-wikiforum-searchbox-text' ],
+						WikiForum::getIconHTML( 'wikiforum-searchbox', wfMessage( 'search' ) )
+					) .
+					Html::element(
+						'input',
+						[
+							'type' => 'text',
+							'name' => 'query',
+							'value' => '',
+							'id' => 'mw-wikiforum-searchbox-text',
+							'placeholder' => wfMessage( 'search' )->text()
+						]
+					)
+				)
+			)
+		);
 	}
 
 	/**
@@ -112,13 +107,13 @@ class WikiForumGui {
 	 * @param array $params URL params to be passed, should have a thread or forum number
 	 * @return string HTML
 	 */
-	static function showFooterRow( $page, $maxIssues, $limit, $params ) {
+	static function showFooterRow( int $page, int $maxIssues, int $limit, array $params ) {
 		if ( $limit <= 0 ) {
 			return '';
 		}
 
-		$page = max( 1, (int)$page );
-		$maxIssues = max( 0, (int)$maxIssues );
+		$page = max( 1, $page );
+		$maxIssues = max( 0, $maxIssues );
 		$totalPages = (int)ceil( $maxIssues / $limit );
 
 		if ( $totalPages <= 1 ) {
@@ -126,69 +121,42 @@ class WikiForumGui {
 		}
 
 		$specialPage = SpecialPage::getTitleFor( 'WikiForum' );
-		$output = '<table class="mw-wikiforum-footerrow"><tr>';
-		$output .= '<td class="mw-wikiforum-leftside">';
-		$output .= wfMessage( 'wikiforum-pages' )->escaped();
+
+		$links = [];
 
 		for ( $i = 1; $i <= $totalPages; $i++ ) {
 			$urlParams = array_merge( [ 'page' => $i ], $params );
 			$pageNumber = str_pad( (string)$i, 2, '0', STR_PAD_LEFT );
 
-			if ( $i !== $page ) {
-				$output .= Html::element(
-					'a',
-					[ 'href' => $specialPage->getFullURL( $urlParams ) ],
+			if ( $i === $page ) {
+				$links[] = Html::element( 'span',
+					[ 'class' => 'mw-wikiforum-page mw-wikiforum-current-page' ],
 					$pageNumber
 				);
 			} else {
-				$output .= Html::element( 'span', [], '[' . $pageNumber . ']' );
+				$links[] = Html::element( 'a',
+					[
+						'class' => 'mw-wikiforum-page',
+						'href' => $specialPage->getFullURL( $urlParams )
+					 ],
+					$pageNumber
+				);
 			}
-
-			$output .= wfMessage( 'word-separator' )->escaped();
 		}
 
-		$output .= '</td>';
-		$output .= '<td class="mw-wikiforum-rightside"></td>';
-		$output .= '</tr></table>';
-
-		return $output;
+		return Html::rawElement( 'div',
+			[ 'class' => 'mw-wikiforum-pagination' ],
+			Html::element( 'span',
+				[ 'class' => 'wikiforum-pagination-name' ],
+				wfMessage( 'wikiforum-pages' )->numParams( $pageNumber )->text()
+			) .
+			wfMessage( 'word-separator' )->escaped() .
+			implode( wfMessage( 'word-separator' )->escaped(), $links )
+		);
 	}
 
 	/**
-	 * Show the header for Forum and Category pages
-	 *
-	 * @note Caller(s) should escape the $titleN variables!
-	 *
-	 * @param string $title1
-	 * @param string $title2
-	 * @param string $title3
-	 * @param string $title4
-	 * @param string $title5 optional, admin icons if given
-	 * @return string HTML
-	 */
-	static function showMainHeader( $title1, $title2, $title3, $title4, $title5 = '' ) {
-		return self::showFrameHeader() . '<table class="mw-wikiforum-title">' .
-			self::showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 );
-	}
-
-	/**
-	 * Show the header for the <WikiForumList> tag
-	 *
-	 * @note Caller(s) should escape the $titleN variables!
-	 *
-	 * @param string $title1
-	 * @param string $title2
-	 * @param string $title3
-	 * @param string $title4
-	 * @return string HTML
-	 */
-	static function showListTagHeader( $title1, $title2, $title3, $title4 ) {
-		return '<table class="mw-wikiforum-mainpage" cellspacing="0">' .
-			self::showMainHeaderRow( $title1, $title2, $title3, $title4 );
-	}
-
-	/**
-	 * Show the header row. Only called from other GUI methods.
+	 * Show the header row for Forum and Category pages, <WikiForumList> tag
 	 *
 	 * @note Caller(s) should escape the $titleN variables!
 	 *
@@ -200,50 +168,18 @@ class WikiForumGui {
 	 * @return string HTML
 	 */
 	public static function showMainHeaderRow( $title1, $title2, $title3, $title4, $title5 = '' ) {
-		$output = '<tr class="mw-wikiforum-title"><th class="mw-wikiforum-title">' . $title1 . '</th>';
+		$output = Html::openElement( 'tr', [ 'class' => 'mw-wikiforum-header-row' ] )
+			. Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-title' ], $title1 );
 
 		if ( $title5 ) {
-			$output .= '<th class="mw-wikiforum-admin"><p class="mw-wikiforum-valuetitle">' . $title5 . '</p></th>';
+			$output .= Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-admin' ], $title5 );
 		}
-		$output .= '<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title2 . '</p></th>
-			<th class="mw-wikiforum-value"><p class="mw-wikiforum-valuetitle">' . $title3 . '</p></th>
-			<th class="mw-wikiforum-lastpost"><p class="mw-wikiforum-valuetitle">' . $title4 . '</p></th></tr>';
 
+		$output .= Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-value' ], $title2 )
+			. Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-value' ], $title3 )
+			. Html::rawElement( 'th', [ 'class' => 'mw-wikiforum-lastpost' ], $title4 )
+			. Html::closeElement( 'tr' );
 		return $output;
-	}
-
-	/**
-	 * Show the footer for Forum and Category pages
-	 *
-	 * @return string HTML
-	 */
-	static function showMainFooter() {
-		return '</table>' . self::showFrameFooter();
-	}
-
-	/**
-	 * Show the footer for the <WikiForumList> tag
-	 *
-	 * @return string HTML
-	 */
-	static function showListTagFooter() {
-		return '</table>';
-	}
-
-	/**
-	 * Only for search results: show the header row
-	 *
-	 * @param string $title
-	 * @return string
-	 */
-	static function showSearchHeader( $title ) {
-		return self::showFrameHeader() . '
-			<table style="width:100%">
-				<tr>
-					<th class="mw-wikiforum-thread-top" colspan="2">' .
-			$title .
-			'</th>
-				</tr>';
 	}
 
 	/**
@@ -277,8 +213,8 @@ class WikiForumGui {
 	 * @param array $params URL parameter(s) to be passed to the form (i.e. array( 'thread' => $threadId ))
 	 * @param string $input Pre-escaped HTML for extra input fields (e.g., from Html::rawElement())
 	 * @param-taint $input exec_html
-	 * @param string $height Height of the textarea, i.e. '10em' (will be escaped by Html::textarea())
-	 * @param-taint $height escapes_html
+	 * @param string $boxClass CSS class to assign to the outer div (will be escaped by Html::textarea())
+	 * @param-taint $boxClass escapes_html
 	 * @param string $text_prev Previous text content (will be escaped by Html::textarea())
 	 * @param-taint $text_prev escapes_html
 	 * @param string $saveButton Save button text or message key (will be escaped)
@@ -287,10 +223,12 @@ class WikiForumGui {
 	 * @return string HTML content (safe for output)
 	 * @return-taint escaped
 	 */
-	static function showWriteForm( $showCancel, $params, $input, $height, $text_prev, $saveButton, User $user ) {
+	static function showWriteForm( $showCancel, $params, $input, $boxClass, $text_prev, $saveButton, User $user ) {
 		global $wgWikiForumAllowAnonymous;
 
-		$output = '';
+		if ( !( $wgWikiForumAllowAnonymous || $user->isRegistered() ) ) {
+			return '';
+		}
 
 		$requestContext = RequestContext::getMain();
 		$out = $requestContext->getOutput();
@@ -299,119 +237,70 @@ class WikiForumGui {
 				$out->addModuleStyles( 'ext.wikiEditor.styles' );
 				$out->addModules( 'ext.wikiEditor' );
 			}
-
 			$toolbar = '';
 		} else {
 			$toolbar = EditPage::getEditToolbar();
 		}
 
-		if ( $wgWikiForumAllowAnonymous || $user->isRegistered() ) {
-			$out->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
-
-			$output = Html::openElement( 'form', [
-				'name' => 'frmMain',
-				'method' => 'post',
-				'action' => SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ),
-				'id' => 'writereply'
-			] ) . '
-			<table class="mw-wikiforum-frame" cellspacing="10">' . $input . '
-				<tr>
-					<td>' . $toolbar . '</td>
-				</tr>
-				<tr>
-					<td>' . Html::textarea( 'text', $text_prev, [
-						'id' => 'wpTextbox1',
-						'style' => 'height: ' . $height
-					] ) . '</td>
-				</tr>';
-			if ( WikiForum::useCaptcha( $user ) ) {
-				$output .= '<tr><td>' . WikiForum::getCaptcha( $out ) . '</td></tr>';
-			}
-			// Translate message key (all keys should be in i18n/en.json)
-			$saveButtonEscaped = wfMessage( $saveButton )->escaped();
-			$output .= '<tr>
-					<td>
-						<input type="hidden" name="wpToken" value="' . $user->getEditToken() . '" />
-						<input type="submit" value="' . $saveButtonEscaped . '" accesskey="s" title="' . $saveButtonEscaped . ' [s]" />';
-			if ( $showCancel ) {
-				$output .= ' <input type="button" value="' . wfMessage( 'cancel' )->escaped() . '" accesskey="c" onclick="javascript:history.back();" title="' . wfMessage( 'cancel' )->escaped() . ' [c]" />';
-			}
-			$output .= '</td>
-					</tr>
-				</table>' . "\n" .
-			Html::closeElement( 'form' ) . "\n";
+		$captcha = '';
+		if ( WikiForum::useCaptcha( $user ) ) {
+			$captcha = Html::rawElement( 'div',
+				[ 'class' => 'mw-wikiforum-captcha' ],
+				WikiForum::getCaptcha( $out )
+			);
 		}
-		return $output;
-	}
 
-	/**
-	 * Get the main form for forums and categories
-	 *
-	 * SECURITY: This method uses Html helpers for escaping.
-	 * All parameters except $extraRow are automatically escaped.
-	 * The $extraRow should be pre-escaped HTML (e.g., from Html::rawElement()).
-	 *
-	 * @param string $url URL to send form to, with GET params (will be escaped by Html::openElement)
-	 * @param-taint $url escapes_html
-	 * @param string $extraRow Pre-escaped HTML row to add after title input (empty string for categories)
-	 * @param-taint $extraRow exec_html
-	 * @param string $formTitle Title for the form (will be escaped by Html::element)
-	 * @param-taint $formTitle escapes_html
-	 * @param string $titlePlaceholder Placeholder value for the title input (will be escaped by Html::input)
-	 * @param-taint $titlePlaceholder escapes_html
-	 * @param string $titleValue Value for the title input (will be escaped by Html::input)
-	 * @param-taint $titleValue escapes_html
-	 * @return string HTML content (safe for output)
-	 * @return-taint escaped
-	 */
-	static function showTopLevelForm( $url, $extraRow, $formTitle, $titlePlaceholder, $titleValue ) {
-		$output = Html::openElement( 'form', [
-			'name' => 'frmMain',
-			'method' => 'post',
-			'action' => $url,
-			'id' => 'form'
-		] ) . "\n";
+		$out->addModules( 'mediawiki.action.edit' ); // Required for the edit buttons to display
 
-		$output .= '<table class="mw-wikiforum-frame" cellspacing="10">' . "\n";
-
-		// Title row
-		$output .= '<tr>' . "\n";
-		$output .= Html::element( 'th', [ 'class' => 'mw-wikiforum-title' ], $formTitle ) . "\n";
-		$output .= '</tr>' . "\n";
-
-		// Name input row
-		$output .= '<tr><td>' . "\n";
-		$output .= Html::element( 'p', [], wfMessage( 'wikiforum-name' )->text() ) . "\n";
-		$output .= Html::input( 'name', $titleValue, 'text', [
-			'style' => 'width: 100%',
-			'placeholder' => $titlePlaceholder
-		] ) . "\n";
-		$output .= '</td></tr>' . "\n";
-
-		// Extra row (pre-escaped HTML)
-		$output .= $extraRow;
-
-		// Buttons row
-		$output .= '<tr><td>' . "\n";
-		$output .= Html::hidden( 'wpToken', RequestContext::getMain()->getUser()->getEditToken() ) . "\n";
-		$output .= Html::submitButton(
-			wfMessage( 'wikiforum-save' )->text(),
-			[
-				'accesskey' => 's',
-				'title' => wfMessage( 'wikiforum-save' )->text() . ' [s]'
-			]
-		) . "\n";
-		$output .= Html::rawElement( 'input', [
-			'type' => 'button',
-			'value' => wfMessage( 'cancel' )->text(),
-			'accesskey' => 'c',
-			'onclick' => 'javascript:history.back();',
-			'title' => wfMessage( 'cancel' )->text() . ' [c]'
-		] ) . "\n";
-		$output .= '</td></tr>' . "\n";
-
-		$output .= '</table>' . "\n";
-		$output .= Html::closeElement( 'form' );
+		$output = Html::openElement( 'form',
+				[
+					'name' => 'frmMain',
+					'method' => 'post',
+					'action' => SpecialPage::getTitleFor( 'WikiForum' )->getFullURL( $params ),
+					'id' => "writereply",
+				]
+			) .
+			Html::openElement( 'div', [ 'class' => 'mw-wikiforum-edit-reply mw-wikiforum-frame ' . $boxClass ] ) .
+			$input .
+			$toolbar .
+			Html::rawElement( 'div', [],
+				Html::element( 'textarea',
+					[
+						'name' => 'text',
+						'id' => 'wpTextbox1',
+					],
+					$text_prev
+				)
+			) .
+			$captcha .
+			Html::rawElement( 'div',
+				[ 'class' => 'mw-wikiforum-replybuttons' ],
+				Html::element( 'input',
+					[
+						'type' => 'hidden',
+						'name' => 'wpToken',
+						'value' => $user->getEditToken(),
+					]
+				) .
+				Html::element( 'button',
+					[
+						'type' => 'submit',
+						'accesskey' => 's',
+						'title' => wfMessage( $saveButton )->text() . ' [s]',
+					],
+					 wfMessage( $saveButton )->text()
+				) .
+				( $showCancel ? Html::element( 'button',
+					[
+						'accesskey' => 'c',
+						'onclick' => 'javascript:history.back();',
+						'title' => wfMessage( 'cancel' )->text() . ' [c]',
+					],
+					wfMessage( 'cancel' )->text()
+				) : '' )
+			) .
+			Html::closeElement( 'div' ) .
+			Html::closeElement( 'form' );
 
 		return $output;
 	}
