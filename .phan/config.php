@@ -31,7 +31,9 @@ $cfg['directory_list'] = array_merge(
 
 // Optional dependency: SocialProfile extension (for avatar support)
 // Only included if SocialProfile is installed - phan will skip if not found
-$socialProfilePath = __DIR__ . '/../../extensions/SocialProfile';
+// NOTE: __DIR__ is the .phan/ directory, so the sibling extensions directory is
+// two levels up; the paths added to Phan's lists are relative to the extension root.
+$socialProfilePath = dirname( __DIR__, 2 ) . '/SocialProfile';
 if ( is_dir( $socialProfilePath ) ) {
 	$cfg['directory_list'][] = '../../extensions/SocialProfile';
 	$cfg['exclude_analysis_directory_list'] = array_merge(
@@ -48,7 +50,7 @@ $cfg['directory_list'][] = '../../extensions/Echo';
 $cfg['exclude_analysis_directory_list'] = array_merge(
 	$cfg['exclude_analysis_directory_list'] ?? [],
 	[
-		// Don't analyze SocialProfile code, just use it for type information
+		// Don't analyze Echo code, just use it for type information
 		'../../extensions/Echo',
 	]
 );

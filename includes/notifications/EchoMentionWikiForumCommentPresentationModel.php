@@ -10,25 +10,9 @@
 
 use MediaWiki\Extension\Notifications\DiscussionParser;
 use MediaWiki\Extension\Notifications\Formatters\EchoMentionPresentationModel;
-use MediaWiki\Extension\Notifications\Formatters\EchoPresentationModelSection;
-use MediaWiki\Extension\Notifications\Model\Event as EchoEvent;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\User\User;
 
 class EchoMentionWikiForumCommentPresentationModel extends EchoMentionPresentationModel {
-
-	/**
-	 * @var EchoPresentationModelSection
-	 */
-	protected $section;
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function __construct( EchoEvent $event, Language $language, User $user, $distributionType ) {
-		parent::__construct( $event, $language, $user, $distributionType );
-		$this->section = new EchoPresentationModelSection( $event, $user, $language );
-	}
 
 	/**
 	 * @return string The symbolic icon name as defined in $wgEchoNotificationIcons

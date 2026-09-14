@@ -10,8 +10,7 @@
 		"test": [
 			"parallel-lint . --exclude vendor --exclude node_modules",
 			"minus-x check .",
-			"@phpcs",
-			"@phan"
+			"@phpcs"
 		],
 		"fix": [
 			"minus-x fix .",

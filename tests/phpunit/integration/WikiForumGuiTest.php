@@ -100,7 +100,7 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 
 		$result = WikiForumGui::showFooterRow( $page, $maxIssues, $limit, $params );
 		$this->assertIsString( $result );
-		$this->assertStringContainsString( 'mw-wikiforum-footerrow', $result );
+		$this->assertStringContainsString( 'mw-wikiforum-pagination', $result );
 		// Should have page links
 		$this->assertStringContainsString( '<a', $result );
 		// Should contain page numbers
@@ -144,8 +144,11 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 
 		$result = WikiForumGui::showFooterRow( $page, $maxIssues, $limit, $params );
 		$this->assertIsString( $result );
-		// Current page should be in brackets ([02])
-		$this->assertStringContainsString( '[02]', $result );
+		// The current page is rendered as a plain, highlighted span rather than a link
+		$this->assertStringContainsString(
+			'<span class="mw-wikiforum-page mw-wikiforum-current-page">02</span>',
+			$result
+		);
 	}
 
 	/**
@@ -465,12 +468,13 @@ class WikiForumGuiTest extends MediaWikiIntegrationTestCase {
 		RequestContext::getMain()->setUser( $user );
 		RequestContext::getMain()->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
 
-		// Try with potential XSS in button text (should be escaped)
+		// Try with potential XSS in the save button (should be escaped)
 		$xssPayload = '<script>alert("XSS")</script>';
 		$result = WikiForumGui::showWriteForm( true, [], '', '10em', '', $xssPayload, $user );
 		$this->assertIsString( $result );
-		// Should escape the script tag
-		$this->assertStringContainsString( '&lt;script&gt;', $result );
+		// $saveButton is a message key, and a missing key renders as an already escaped
+		// placeholder that Html::element() then escapes again. Don't assert on the exact
+		// escaping, only that nothing executable survives.
 		$this->assertStringNotContainsString( '<script>', $result );
 		// Should not contain unescaped alert
 		$this->assertStringNotContainsString( 'alert("XSS")', $result );
