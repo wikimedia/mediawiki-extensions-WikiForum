@@ -214,6 +214,20 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-delete', 'wikiforum-error-general' );
 		}
 
+		// Log the deletion to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'delete-reply' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::reply-id' => $this->getId(),
+			'5::thread-name' => $this->getThread()->getName(),
+			'6::reply-author' => $this->getPostedBy()->getName()
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
+
 		return $this->getThread()->show();
 	}
 
@@ -262,6 +276,20 @@ class WFReply extends ContextSource {
 			[ 'wfr_reply_id' => $this->getId() ],
 			__METHOD__
 		);
+
+		// Log the modification to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'edit-reply' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::reply-id' => $this->getId(),
+			'5::thread-name' => $this->getThread()->getName(),
+			'6::reply-author' => $this->getPostedBy()->getName()
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
 
 		return $this->getThread()->show();
 	}

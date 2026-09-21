@@ -473,6 +473,8 @@ class WFForum extends ContextSource {
 			return $error . $this->show();
 		}
 
+		$forumName = $this->getName();
+
 		// @todo FIXME: anti-CSRF feature would go here but since the request is currently a GET
 		// request...
 
@@ -482,6 +484,19 @@ class WFForum extends ContextSource {
 			[ 'wff_forum' => $this->getId() ],
 			__METHOD__
 		);
+
+		// Log the deletion to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'delete-forum' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::forum-name' => $forumName,
+			'5::category-name' => $this->getCategory()->getName()
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
 
 		return $this->show();
 	}

@@ -247,12 +247,26 @@ class WFCategory extends ContextSource {
 		// @todo FIXME: anti-CSRF feature would go here but since the request is currently a GET
 		// request...
 
+		$categoryName = $this->getName();
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$res = $dbw->delete(
 			'wikiforum_category',
 			[ 'wfc_category' => $this->getId() ],
 			__METHOD__
 		);
+
+		// Log the deletion to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'delete-category' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::category-name' => $categoryName
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
 
 		return WikiForum::showOverview( $user );
 	}
@@ -284,13 +298,16 @@ class WFCategory extends ContextSource {
 			return $error . $this->showEditForm();
 		}
 
-		if ( $this->getName() != $categoryName ) {
+		$oldName = $this->getName();
+		$newName = $categoryName;
+
+		if ( $oldName !== $newName ) {
 			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 			$dbw->update(
 				'wikiforum_category',
 				[
-					'wfc_category_name' => $categoryName,
-					'wfc_edited_timestamp' => wfTimestampNow(),
+					'wfc_category_name' => $newName,
+					'wfc_edited_timestamp' => $dbw->timestamp( wfTimestampNow() ),
 					'wfc_edited_user_ip' => $request->getIP()
 				],
 				[ 'wfc_category' => $this->getId() ],
@@ -298,7 +315,20 @@ class WFCategory extends ContextSource {
 			);
 		}
 
-		$this->data->wfc_category_name = $categoryName;
+		// Log the modification to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'edit-category' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::old-name' => $oldName,
+			'5::new-name' => $newName
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
+
+		$this->data->wfc_category_name = $newName;
 		$this->data->wfc_edited_timestamp = wfTimestampNow();
 		$this->data->wfc_edited_user_ip = $request->getIP();
 

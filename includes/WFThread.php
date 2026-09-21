@@ -557,6 +557,8 @@ class WFThread extends ContextSource {
 			return $error . $this->show();
 		}
 
+		$threadName = $this->getName();
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->delete(
 			'wikiforum_threads',
@@ -597,6 +599,19 @@ class WFThread extends ContextSource {
 			__METHOD__
 		);
 
+		// Log the deletion to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'delete-thread' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::forum-name' => $this->getForum()->getName(),
+			'5::thread-name' => $threadName
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
+
 		return $this->getForum()->show();
 	}
 
@@ -633,6 +648,20 @@ class WFThread extends ContextSource {
 			__METHOD__
 		);
 
+		// Log the reopening to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'reopen-thread' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::forum-name' => $this->getForum()->getName(),
+			'5::thread-name' => $this->getName(),
+			'6::thread-id' => $this->getId()
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
+
 		$this->data->wft_closed_timestamp = 0;
 		$this->data->wft_closed_actor = 0;
 		$this->data->wft_last_post_timestamp = $now;
@@ -663,6 +692,20 @@ class WFThread extends ContextSource {
 			$user->getActorId(),
 			$request->getIP()
 		);
+
+		// Log the closure to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', 'close-thread' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::forum-name' => $this->getForum()->getName(),
+			'5::thread-name' => $this->getName(),
+			'6::thread-id' => $this->getId()
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
 
 		return $this->show();
 	}
@@ -716,6 +759,19 @@ class WFThread extends ContextSource {
 			[ 'wft_thread' => $this->getId() ],
 			__METHOD__
 		);
+
+		// Log the pinning to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', ( $value ? 'pin-thread' : 'unpin-thread' ) );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		$logEntry->setParameters( [
+			'4::thread-name' => $this->getName(),
+			'5::forum-name' => $this->getForum()->getName()
+		] );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
+		}
 
 		$this->data->wft_sticky = $value;
 
@@ -880,6 +936,28 @@ class WFThread extends ContextSource {
 			// Update thread's forum reference in object
 			$this->data->wft_forum = $newForumId;
 			$this->forum = null; // Reset cached forum so it will be reloaded
+		}
+
+		// Log the modification to Special:Log/forum (T145987)
+		$logEntry = new ManualLogEntry( 'forum', ( $isMovingThread ? 'move-thread' : 'edit-thread' ) );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( SpecialPage::getTitleFor( 'WikiForum' ) );
+		if ( $isMovingThread ) {
+			$logParams = [
+				'4::thread-name' => $this->getName(),
+				'5::old-forum-name' => $oldForum->getName(),
+				'6::new-forum-name' => $newForum->getName()
+			];
+		} else {
+			$logParams = [
+				'4::thread-name' => $this->getName(),
+				'5::forum-name' => $this->getForum()->getName()
+			];
+		}
+		$logEntry->setParameters( $logParams );
+		$logId = $logEntry->insert();
+		if ( $this->getConfig()->get( 'WikiForumLogInRC' ) ) {
+			$logEntry->publish( $logId );
 		}
 
 		$this->data->wft_thread_name = $title;
