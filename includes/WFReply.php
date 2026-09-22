@@ -451,7 +451,8 @@ class WFReply extends ContextSource {
 				'wfr_reply_text' => $text,
 				'wfr_posted_timestamp' => $timestamp,
 				'wfr_actor' => $user->getActorId(),
-				'wfr_thread' => $thread->getId()
+				'wfr_thread' => $thread->getId(),
+				'wfr_user_ip' => $request->getIP(),
 			],
 			__METHOD__
 		);
