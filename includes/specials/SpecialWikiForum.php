@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Special:WikiForum -- an overview of all available boards on the forum
@@ -13,7 +13,9 @@ class SpecialWikiForum extends SpecialPage {
 	/**
 	 * Constructor -- set up the new special page
 	 */
-	public function __construct() {
+	public function __construct(
+		private readonly ReadOnlyMode $readOnlyMode,
+	) {
 		parent::__construct( 'WikiForum' );
 	}
 
@@ -109,7 +111,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+					if ( $this->readOnlyMode->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-forum', 'wikiforum-error-readonly' );
 						$output .= $forum->show();
 
@@ -155,7 +157,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+					if ( $this->readOnlyMode->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-category', 'wikiforum-error-readonly' );
 						$output .= $category->show();
 
@@ -207,7 +209,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+					if ( $this->readOnlyMode->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
 						$output .= $thread->show();
 
@@ -253,7 +255,7 @@ class SpecialWikiForum extends SpecialPage {
 					$output .= WikiForum::showOverview( $user );
 
 				} else {
-					if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+					if ( $this->readOnlyMode->isReadOnly() ) {
 						$output .= WikiForum::showErrorMessage( 'wikiforum-error-thread', 'wikiforum-error-readonly' );
 						$output .= $reply->getThread()->show();
 					} else {

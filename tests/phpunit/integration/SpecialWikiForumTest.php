@@ -21,6 +21,12 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'wikiforum_threads';
 	}
 
+	private function newSpecialWikiForum() {
+		return new SpecialWikiForum(
+			$this->getServiceContainer()->getReadOnlyMode()
+		);
+	}
+
 	/**
 	 * Helper to create a test category
 	 * @param \MediaWiki\User\User $user
@@ -41,7 +47,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 	 * Test executing special page with no parameters
 	 */
 	public function testExecuteNoParams() {
-		$specialPage = new SpecialWikiForum();
+		$specialPage = $this->newSpecialWikiForum();
 		$context = new RequestContext();
 		$user = $this->getTestUser()->getUser();
 		$context->setUser( $user );
@@ -77,7 +83,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 		$forum = WFForum::newFromName( 'Test Forum' );
 		$this->assertNotFalse( $forum, 'Forum should exist' );
 
-		$specialPage = new SpecialWikiForum();
+		$specialPage = $this->newSpecialWikiForum();
 		$context = new RequestContext();
 		$context->setUser( $this->getTestUser()->getUser() );
 		$context->setRequest( new FauxRequest() );
@@ -132,7 +138,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 
 		$forum->addThread( 'Test Thread', 'Thread text' );
 
-		$specialPage = new SpecialWikiForum();
+		$specialPage = $this->newSpecialWikiForum();
 		$specialPage->setContext( $threadContext );
 
 		ob_start();
@@ -150,7 +156,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 	 * Test doesWrites
 	 */
 	public function testDoesWrites() {
-		$specialPage = new SpecialWikiForum();
+		$specialPage = $this->newSpecialWikiForum();
 		$this->assertTrue( $specialPage->doesWrites() );
 	}
 
@@ -185,7 +191,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 		}
 		$blockStore->insertBlock( $block );
 
-		$specialPage = new SpecialWikiForum();
+		$specialPage = $this->newSpecialWikiForum();
 		$context = new RequestContext();
 		$context->setUser( $user );
 		$context->setRequest( new FauxRequest() );

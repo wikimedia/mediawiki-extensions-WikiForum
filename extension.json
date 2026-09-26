@@ -42,7 +42,12 @@
 		"echo-subscriptions-email-wikiforum-comment": true
 	},
 	"SpecialPages": {
-		"WikiForum": "SpecialWikiForum"
+		"WikiForum": {
+			"class": "SpecialWikiForum",
+			"services": [
+				"ReadOnlyMode"
+			]
+		}
 	},
 	"LogTypes": [
 		"forum"
