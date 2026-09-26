@@ -184,7 +184,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 			'addThread should not return error message' );
 
 		// Use primary DB to read immediately after write (same as WFThread::add does internally)
-		$dbw = \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$dbw = $this->getServiceContainer()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$threadData = $dbw->selectRow(
 			'wikiforum_threads',
 			'*',
