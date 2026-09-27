@@ -34,8 +34,8 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$parser->expects( $this->exactly( 2 ) )
 			->method( 'setHook' )
 			->withConsecutive(
-				[ 'WikiForumList', $this->isType( 'array' ) ],
-				[ 'WikiForumThread', $this->isType( 'array' ) ]
+				[ 'WikiForumList', $this->isType( 'callable' ) ],
+				[ 'WikiForumThread', $this->isType( 'callable' ) ]
 			);
 
 		$result = $this->newHooks()->onParserFirstCallInit( $parser );

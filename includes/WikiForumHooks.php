@@ -46,8 +46,8 @@ class WikiForumHooks implements
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( 'WikiForumList', [ __CLASS__, 'renderWikiForumList' ] );
-		$parser->setHook( 'WikiForumThread', [ __CLASS__, 'renderWikiForumThread' ] );
+		$parser->setHook( 'WikiForumList', self::renderWikiForumList( ... ) );
+		$parser->setHook( 'WikiForumThread', self::renderWikiForumThread( ... ) );
 		return true;
 	}
 
