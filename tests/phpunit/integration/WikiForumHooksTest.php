@@ -1,6 +1,11 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\PPFrame;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \WikiForumHooks
@@ -39,8 +44,8 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 	public function testRenderWikiForumList() {
 		$parserFactory = $this->getServiceContainer()->getParserFactory();
 		$parser = $parserFactory->create();
-		$title = \MediaWiki\Title\Title::makeTitle( NS_MAIN, 'Test' );
-		$options = \MediaWiki\Parser\ParserOptions::newFromAnon();
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+		$options = ParserOptions::newFromAnon();
 		// Initialize parser by parsing empty text
 		$parser->parse( '', $title, $options );
 
@@ -49,7 +54,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'Preprocessor not available' );
 			return;
 		}
-		$frame = $this->createMock( \MediaWiki\Parser\PPFrame::class );
+		$frame = $this->createMock( PPFrame::class );
 
 		$input = '';
 		$args = [ 'num' => '5' ];
@@ -66,12 +71,12 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 	public function testRenderWikiForumListDefaultNum() {
 		$parserFactory = $this->getServiceContainer()->getParserFactory();
 		$parser = $parserFactory->create();
-		$title = \MediaWiki\Title\Title::makeTitle( NS_MAIN, 'Test' );
-		$options = \MediaWiki\Parser\ParserOptions::newFromAnon();
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+		$options = ParserOptions::newFromAnon();
 		// Initialize parser by parsing empty text
 		$parser->parse( '', $title, $options );
 
-		$frame = $this->createMock( \MediaWiki\Parser\PPFrame::class );
+		$frame = $this->createMock( PPFrame::class );
 
 		$input = '';
 		$args = []; // No num specified
@@ -87,12 +92,12 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 	public function testRenderWikiForumThreadNoId() {
 		$parserFactory = $this->getServiceContainer()->getParserFactory();
 		$parser = $parserFactory->create();
-		$title = \MediaWiki\Title\Title::makeTitle( NS_MAIN, 'Test' );
-		$options = \MediaWiki\Parser\ParserOptions::newFromAnon();
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+		$options = ParserOptions::newFromAnon();
 		// Initialize parser by parsing empty text
 		$parser->parse( '', $title, $options );
 
-		$frame = $this->createMock( \MediaWiki\Parser\PPFrame::class );
+		$frame = $this->createMock( PPFrame::class );
 
 		$input = '';
 		$args = []; // No id specified
@@ -109,12 +114,12 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 	public function testRenderWikiForumThreadInvalidId() {
 		$parserFactory = $this->getServiceContainer()->getParserFactory();
 		$parser = $parserFactory->create();
-		$title = \MediaWiki\Title\Title::makeTitle( NS_MAIN, 'Test' );
-		$options = \MediaWiki\Parser\ParserOptions::newFromAnon();
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+		$options = ParserOptions::newFromAnon();
 		// Initialize parser by parsing empty text
 		$parser->parse( '', $title, $options );
 
-		$frame = $this->createMock( \MediaWiki\Parser\PPFrame::class );
+		$frame = $this->createMock( PPFrame::class );
 
 		$input = '';
 		$args = [ 'id' => '999999' ]; // Non-existent ID
@@ -131,7 +136,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 	public function testRenderWikiForumThreadValidId() {
 		// Create a test thread first
 		$adminUser = $this->getTestUser( [ 'sysop' ] )->getUser();
-		$this->setMwGlobals( 'wgRequest', new \MediaWiki\Request\FauxRequest( [
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
 			'wpEditToken' => $adminUser->getEditToken()
 		] ) );
 
@@ -140,9 +145,9 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$category = WFCategory::newFromName( $categoryName );
 		$this->assertNotFalse( $category, 'Category should exist' );
 
-		$categoryContext = new \MediaWiki\Context\RequestContext();
+		$categoryContext = new RequestContext();
 		$categoryContext->setUser( $adminUser );
-		$categoryContext->setRequest( new \MediaWiki\Request\FauxRequest( [
+		$categoryContext->setRequest( new FauxRequest( [
 			'wpEditToken' => $adminUser->getEditToken()
 		] ) );
 		$category->setContext( $categoryContext );
@@ -151,11 +156,11 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotFalse( $forum, 'Forum should exist' );
 
 		$threadUser = $this->getTestUser()->getUser();
-		$title = \MediaWiki\Title\Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
 
 		// Create POST request first (without token) - this creates a session
-		$request = new \MediaWiki\Request\FauxRequest( [], true );
-		$context = new \MediaWiki\Context\RequestContext();
+		$request = new FauxRequest( [], true );
+		$context = new RequestContext();
 		$context->setUser( $threadUser );
 		$context->setTitle( $title );
 		$context->setRequest( $request );
@@ -168,7 +173,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$forum->setContext( $context );
 
 		// Set title in global context for methods that use OutputPage::parseAsContent
-		$globalContext = \MediaWiki\Context\RequestContext::getMain();
+		$globalContext = RequestContext::getMain();
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $threadUser );
 		$globalContext->setRequest( $request );
@@ -216,12 +221,12 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 
 		$parserFactory = $this->getServiceContainer()->getParserFactory();
 		$parser = $parserFactory->create();
-		$title = \MediaWiki\Title\Title::makeTitle( NS_MAIN, 'Test' );
-		$options = \MediaWiki\Parser\ParserOptions::newFromAnon();
+		$title = Title::makeTitle( NS_MAIN, 'Test' );
+		$options = ParserOptions::newFromAnon();
 		// Initialize parser by parsing empty text
 		$parser->parse( '', $title, $options );
 
-		$frame = $this->createMock( \MediaWiki\Parser\PPFrame::class );
+		$frame = $this->createMock( PPFrame::class );
 
 		$input = '';
 		$args = [ 'id' => (string)$thread->getId() ];

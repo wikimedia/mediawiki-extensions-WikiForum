@@ -3,7 +3,9 @@
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 class WFThread extends ContextSource {
 

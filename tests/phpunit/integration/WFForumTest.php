@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \WFForum
@@ -23,7 +24,7 @@ class WFForumTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {

@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \WFThread
@@ -25,8 +26,8 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Helper to create a FauxRequest with proper token setup
 	 * This ensures the token is generated from the same request session
-	 * @param \MediaWiki\User\User $user
-	 * @param \MediaWiki\Title\Title|null $title
+	 * @param User $user
+	 * @param Title|null $title
 	 * @return array
 	 */
 	private function createRequestWithToken( $user, $title = null ) {
@@ -61,7 +62,7 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
@@ -77,7 +78,7 @@ class WFThreadTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFForum
 	 */
 	private function createTestForum( $user ) {

@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \SpecialWikiForum
@@ -29,7 +31,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
@@ -174,7 +176,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 			// Suppress deprecation warnings for MediaWiki 1.45+
 			$this->filterDeprecated( '/The address parameter to AbstractBlock::__construct is deprecated/' );
 			$this->filterDeprecated( '/Passing UserIdentity\|string to AbstractBlock::setTarget is deprecated/' );
-			$block = new \MediaWiki\Block\DatabaseBlock( [
+			$block = new DatabaseBlock( [
 				'by' => $this->getTestSysop()->getUser(),
 				'reason' => 'Test block',
 				'expiry' => 'infinity',
@@ -182,7 +184,7 @@ class SpecialWikiForumTest extends MediaWikiIntegrationTestCase {
 			$block->setTarget( $user );
 		} else {
 			// For MediaWiki < 1.45, use address parameter
-			$block = new \MediaWiki\Block\DatabaseBlock( [
+			$block = new DatabaseBlock( [
 				'address' => $user,
 				'by' => $this->getTestSysop()->getUser(),
 				'reason' => 'Test block',

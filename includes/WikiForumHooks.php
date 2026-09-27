@@ -2,9 +2,13 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\PPFrame;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * Static class containing all the hooked functions used by WikiForum.

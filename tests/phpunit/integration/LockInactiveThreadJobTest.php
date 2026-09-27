@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \LockInactiveThreadJob
@@ -24,7 +25,7 @@ class LockInactiveThreadJobTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
@@ -40,7 +41,7 @@ class LockInactiveThreadJobTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFForum
 	 */
 	private function createTestForum( $user ) {
@@ -61,7 +62,7 @@ class LockInactiveThreadJobTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Helper to create a test thread
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFThread
 	 */
 	private function createTestThread( $user ) {

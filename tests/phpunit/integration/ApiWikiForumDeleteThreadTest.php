@@ -1,6 +1,11 @@
 <?php
 
+use MediaWiki\Api\ApiUsageException;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \ApiWikiForumDeleteThread
@@ -22,11 +27,11 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user Must have wikiforum-admin right
+	 * @param User $user Must have wikiforum-admin right
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
-		$this->setMwGlobals( 'wgRequest', new \MediaWiki\Request\FauxRequest( [
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
 			'wpEditToken' => $user->getEditToken()
 		], true ) );
 		$categoryName = 'Test Category ' . wfRandomString( 10 );
@@ -39,15 +44,15 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFForum
 	 */
 	private function createTestForum( $user ) {
 		$category = $this->createTestCategory( $user );
-		$context = new \MediaWiki\Context\RequestContext();
+		$context = new RequestContext();
 		$context->setUser( $user );
-		$context->setTitle( \MediaWiki\Title\Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
-		$context->setRequest( new \MediaWiki\Request\FauxRequest( [
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'WikiForum' ) );
+		$context->setRequest( new FauxRequest( [
 			'wpEditToken' => $user->getEditToken()
 		], true ) );
 		$category->setContext( $context );
@@ -61,14 +66,14 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 	/**
 	 * Helper to create a test thread for a given forum
 	 * @param WFForum $forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFThread
 	 */
 	private function createTestThreadForForum( $forum, $user ) {
-		$title = \MediaWiki\Title\Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
 		// Create POST request first (without token) - this creates a session
-		$request = new \MediaWiki\Request\FauxRequest( [], true );
-		$context = new \MediaWiki\Context\RequestContext();
+		$request = new FauxRequest( [], true );
+		$context = new RequestContext();
 		$context->setUser( $user );
 		$context->setTitle( $title );
 		$context->setRequest( $request );
@@ -81,7 +86,7 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 		$forum->setContext( $context );
 
 		// Set title in global context for methods that use OutputPage::parseAsContent
-		$globalContext = \MediaWiki\Context\RequestContext::getMain();
+		$globalContext = RequestContext::getMain();
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
@@ -112,7 +117,7 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test thread (creates forum first)
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFThread
 	 */
 	private function createTestThread( $user ) {
@@ -169,8 +174,8 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 		$request->setVal( 'wpToken', $token );
 
 		// Set title in global context for methods that use OutputPage::parseAsContent
-		$title = \MediaWiki\Title\Title::makeTitle( NS_SPECIAL, 'WikiForum' );
-		$globalContext = \MediaWiki\Context\RequestContext::getMain();
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$globalContext = RequestContext::getMain();
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $user );
 		$globalContext->setRequest( $request );
@@ -219,7 +224,7 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 				'isreply' => false
 			], null, $otherUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}
@@ -237,8 +242,8 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 		$token = $threadOwner->getEditToken( '', $request );
 		$request->setVal( 'wpToken', $token );
 
-		$title = \MediaWiki\Title\Title::makeTitle( NS_SPECIAL, 'WikiForum' );
-		$globalContext = \MediaWiki\Context\RequestContext::getMain();
+		$title = Title::makeTitle( NS_SPECIAL, 'WikiForum' );
+		$globalContext = RequestContext::getMain();
 		$globalContext->setTitle( $title );
 		$globalContext->setUser( $threadOwner );
 		$globalContext->setRequest( $request );
@@ -258,7 +263,7 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 				'isreply' => true
 			], null, $otherUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}
@@ -276,7 +281,7 @@ class ApiWikiForumDeleteThreadTest extends ApiTestCase {
 				'isreply' => false
 			], null, $user );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}

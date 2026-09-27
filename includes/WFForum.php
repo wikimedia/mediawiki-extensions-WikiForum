@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Context\ContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\User;
 
 class WFForum extends ContextSource {
 

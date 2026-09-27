@@ -6,10 +6,13 @@
  * @ingroup Extensions
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\ConfirmEdit\Hooks as ConfirmEditHooks;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupMembership;
 
 class WikiForum {

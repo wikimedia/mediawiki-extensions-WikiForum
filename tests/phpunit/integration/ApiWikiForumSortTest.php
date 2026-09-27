@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\User\User;
 
 /**
  * @covers \ApiWikiForumSort
@@ -22,7 +24,7 @@ class ApiWikiForumSortTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
@@ -38,7 +40,7 @@ class ApiWikiForumSortTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @param WFCategory|null $category
 	 * @return WFForum
 	 */
@@ -169,7 +171,7 @@ class ApiWikiForumSortTest extends ApiTestCase {
 				'direction' => 'up'
 			], null, $regularUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}
@@ -188,7 +190,7 @@ class ApiWikiForumSortTest extends ApiTestCase {
 				'direction' => 'up'
 			], null, $adminUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}

@@ -4,6 +4,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\User\User;
+
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';

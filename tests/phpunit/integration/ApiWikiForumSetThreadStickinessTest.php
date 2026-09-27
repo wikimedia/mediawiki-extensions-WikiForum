@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \ApiWikiForumSetThreadStickiness
@@ -24,7 +26,7 @@ class ApiWikiForumSetThreadStickinessTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
@@ -40,7 +42,7 @@ class ApiWikiForumSetThreadStickinessTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFForum
 	 */
 	private function createTestForum( $user ) {
@@ -60,7 +62,7 @@ class ApiWikiForumSetThreadStickinessTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test thread
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFThread
 	 */
 	private function createTestThread( $user ) {
@@ -170,7 +172,7 @@ class ApiWikiForumSetThreadStickinessTest extends ApiTestCase {
 				'stickiness' => 'set'
 			], null, $regularUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}
@@ -188,7 +190,7 @@ class ApiWikiForumSetThreadStickinessTest extends ApiTestCase {
 				'stickiness' => 'set'
 			], null, $adminUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}

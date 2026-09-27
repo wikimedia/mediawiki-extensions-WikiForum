@@ -10,6 +10,9 @@
  * @see https://phabricator.wikimedia.org/T312733
  */
 
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

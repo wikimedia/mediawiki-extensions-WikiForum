@@ -1,6 +1,10 @@
 <?php
 
+use MediaWiki\Api\ApiUsageException;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\User\User;
 
 /**
  * @covers \ApiWikiForumAdminDelete
@@ -20,11 +24,11 @@ class ApiWikiForumAdminDeleteTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test category
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFCategory
 	 */
 	private function createTestCategory( $user ) {
-		$this->setMwGlobals( 'wgRequest', new \MediaWiki\Request\FauxRequest( [
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( [
 			'wpEditToken' => $user->getEditToken()
 		] ) );
 		$categoryName = 'Test Category ' . wfRandomString( 10 );
@@ -36,14 +40,14 @@ class ApiWikiForumAdminDeleteTest extends ApiTestCase {
 
 	/**
 	 * Helper to create a test forum
-	 * @param \MediaWiki\User\User $user
+	 * @param User $user
 	 * @return WFForum
 	 */
 	private function createTestForum( $user ) {
 		$category = $this->createTestCategory( $user );
-		$context = new \MediaWiki\Context\RequestContext();
+		$context = new RequestContext();
 		$context->setUser( $user );
-		$context->setRequest( new \MediaWiki\Request\FauxRequest( [
+		$context->setRequest( new FauxRequest( [
 			'wpEditToken' => $user->getEditToken()
 		] ) );
 		$category->setContext( $context );
@@ -130,7 +134,7 @@ class ApiWikiForumAdminDeleteTest extends ApiTestCase {
 				'iscategory' => true
 			], null, $regularUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}
@@ -148,7 +152,7 @@ class ApiWikiForumAdminDeleteTest extends ApiTestCase {
 				'iscategory' => true
 			], null, $adminUser );
 			$this->fail( 'Expected ApiUsageException' );
-		} catch ( \MediaWiki\Api\ApiUsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( true ); // Expected exception
 		}
 	}
