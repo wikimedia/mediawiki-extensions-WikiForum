@@ -68,7 +68,12 @@
 		"wikiforum-admin-delete": "ApiWikiForumAdminDelete",
 		"wikiforum-set-thread-stickiness": "ApiWikiForumSetThreadStickiness",
 		"wikiforum-sort": "ApiWikiForumSort",
-		"wikiforum-delete-thread": "ApiWikiForumDeleteThread"
+		"wikiforum-delete-thread": {
+			"class": "ApiWikiForumDeleteThread",
+			"services": [
+				"ConnectionProvider"
+			]
+		}
 	},
 	"AutoloadClasses": {
 		"ApiWikiForumAdminDelete": "includes/api/ApiWikiForumAdminDelete.php",

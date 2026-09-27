@@ -11,20 +11,20 @@
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @ingroup API
  */
 class ApiWikiForumDeleteThread extends ApiBase {
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 */
-	public function __construct( ApiMain $mainModule, $moduleName ) {
+	public function __construct(
+		ApiMain $mainModule,
+		string $moduleName,
+		private readonly IConnectionProvider $dbProvider,
+	) {
 		parent::__construct( $mainModule, $moduleName );
 	}
 
@@ -38,7 +38,7 @@ class ApiWikiForumDeleteThread extends ApiBase {
 
 		// Use DB_PRIMARY to ensure we see data written in the same transaction (important for tests)
 		// In production, this also ensures we see the latest data
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$db = $this->dbProvider->getPrimaryDatabase();
 
 		if ( $isReply ) {
 			$data = $db->selectRow(
