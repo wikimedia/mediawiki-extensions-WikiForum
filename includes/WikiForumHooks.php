@@ -15,7 +15,10 @@ use MediaWiki\User\User;
  *
  * @file
  */
-class WikiForumHooks {
+class WikiForumHooks implements
+	\MediaWiki\Hook\ParserFirstCallInitHook,
+	\MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook
+{
 
 	public static function registerExtension() {
 		global $wgAbuseFilterValidGroups, $wgAbuseFilterEmergencyDisableThreshold, $wgAbuseFilterEmergencyDisableCount, $wgAbuseFilterEmergencyDisableAge;
@@ -40,9 +43,9 @@ class WikiForumHooks {
 	 * Set up the two new parser hooks: <WikiForumList> and <WikiForumThread>
 	 *
 	 * @param Parser $parser
-	 * @return bool true
+	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public static function registerParserHooks( $parser ) {
+	public function onParserFirstCallInit( $parser ) {
 		$parser->setHook( 'WikiForumList', [ __CLASS__, 'renderWikiForumList' ] );
 		$parser->setHook( 'WikiForumThread', [ __CLASS__, 'renderWikiForumThread' ] );
 		return true;
@@ -135,30 +138,6 @@ class WikiForumHooks {
 		// All show*() methods return safe HTML (escaped via Html::element, Message::params, etc.)
 		// @phan-suppress-next-line SecurityCheck-XSS All show*() methods return escaped HTML
 		return $output;
-	}
-
-	/**
-	 * For the Echo extension: register our new presentation model with Echo so
-	 * Echo knows how it should display our notifications in it.
-	 *
-	 * @param array &$notifications Echo notifications
-	 * @param array &$notificationCategories Echo notification categories
-	 * @param array &$icons Icon details
-	 */
-	public static function onBeforeCreateEchoEvent( &$notifications, &$notificationCategories, &$icons ) {
-		$notificationCategories['wikiforum-comment'] = [
-			'tooltip' => 'echo-pref-tooltip-wikiforum-comment',
-		];
-		$notifications['wikiforum-comment'] = [
-			'category' => 'wikiforum-comment',
-			'group' => 'interactive',
-			'section' => 'alert',
-			'presentation-model' => EchoMentionWikiForumCommentPresentationModel::class,
-			EchoAttributeManager::ATTR_LOCATORS => [
-				[ 'EchoUserLocator::locateFromEventExtra', [ 'mentioned-users' ] ]
-			],
-			'icon' => 'mention',
-		];
 	}
 
 	/**
@@ -342,7 +321,7 @@ class WikiForumHooks {
 	 *
 	 * @param DatabaseUpdater $updater
 	 */
-	public static function onLoadExtensionSchemaUpdates( $updater ) {
+	public function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__ . '/../sql';
 
 		$db = $updater->getDB();

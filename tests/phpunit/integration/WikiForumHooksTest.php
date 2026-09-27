@@ -22,6 +22,10 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'wikiforum_threads';
 	}
 
+	private function newHooks(): WikiForumHooks {
+		return new WikiForumHooks();
+	}
+
 	/**
 	 * Test registerParserHooks
 	 */
@@ -34,7 +38,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 				[ 'WikiForumThread', $this->isType( 'array' ) ]
 			);
 
-		$result = WikiForumHooks::registerParserHooks( $parser );
+		$result = $this->newHooks()->onParserFirstCallInit( $parser );
 		$this->assertTrue( $result );
 	}
 
@@ -59,7 +63,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$input = '';
 		$args = [ 'num' => '5' ];
 
-		$result = WikiForumHooks::renderWikiForumList( $input, $args, $parser, $frame );
+		$result = $this->newHooks()->renderWikiForumList( $input, $args, $parser, $frame );
 		$this->assertIsString( $result );
 		$this->assertNotEmpty( $result );
 		$this->assertStringContainsString( 'table', $result );
@@ -81,7 +85,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$input = '';
 		$args = []; // No num specified
 
-		$result = WikiForumHooks::renderWikiForumList( $input, $args, $parser, $frame );
+		$result = $this->newHooks()->renderWikiForumList( $input, $args, $parser, $frame );
 		$this->assertIsString( $result );
 		$this->assertNotEmpty( $result );
 	}
@@ -102,7 +106,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$input = '';
 		$args = []; // No id specified
 
-		$result = WikiForumHooks::renderWikiForumThread( $input, $args, $parser, $frame );
+		$result = $this->newHooks()->renderWikiForumThread( $input, $args, $parser, $frame );
 		$this->assertIsString( $result );
 		// Should return error message
 		$this->assertNotEmpty( $result );
@@ -124,7 +128,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$input = '';
 		$args = [ 'id' => '999999' ]; // Non-existent ID
 
-		$result = WikiForumHooks::renderWikiForumThread( $input, $args, $parser, $frame );
+		$result = $this->newHooks()->renderWikiForumThread( $input, $args, $parser, $frame );
 		$this->assertIsString( $result );
 		// Should return error message
 		$this->assertNotEmpty( $result );
@@ -231,7 +235,7 @@ class WikiForumHooksTest extends MediaWikiIntegrationTestCase {
 		$input = '';
 		$args = [ 'id' => (string)$thread->getId() ];
 
-		$result = WikiForumHooks::renderWikiForumThread( $input, $args, $parser, $frame );
+		$result = $this->newHooks()->renderWikiForumThread( $input, $args, $parser, $frame );
 		$this->assertIsString( $result );
 		$this->assertNotEmpty( $result );
 	}

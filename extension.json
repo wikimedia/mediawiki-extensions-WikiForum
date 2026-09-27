@@ -84,6 +84,7 @@
 		"MigrateOldWikiForumTimestampColumnsToNew": "maintenance/migrateOldWikiForumTimestampColumnsToNew.php",
 		"MigrateOldWikiForumUserColumnsToActor": "maintenance/migrateOldWikiForumUserColumnsToActor.php",
 		"EchoMentionWikiForumCommentPresentationModel": "includes/notifications/EchoMentionWikiForumCommentPresentationModel.php",
+		"EchoHooks": "includes/EchoHooks.php",
 		"WikiForumHooks": "includes/WikiForumHooks.php",
 		"WikiForumGui": "includes/WikiForumGui.php",
 		"WikiForum": "includes/WikiForum.php",
@@ -128,10 +129,18 @@
 		"localBasePath": "resources",
 		"remoteExtPath": "WikiForum/resources"
 	},
+	"HookHandlers": {
+		"main": {
+			"class": "WikiForumHooks"
+		},
+		"echo": {
+			"class": "EchoHooks"
+		}
+	},
 	"Hooks": {
-		"BeforeCreateEchoEvent": "WikiForumHooks::onBeforeCreateEchoEvent",
-		"ParserFirstCallInit": "WikiForumHooks::registerParserHooks",
-		"LoadExtensionSchemaUpdates": "WikiForumHooks::onLoadExtensionSchemaUpdates"
+		"BeforeCreateEchoEvent": "main",
+		"ParserFirstCallInit": "main",
+		"LoadExtensionSchemaUpdates": "main"
 	},
 	"JobClasses": {
 		"lockInactiveThread": "LockInactiveThreadJob"
