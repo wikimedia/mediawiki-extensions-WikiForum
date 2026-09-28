@@ -110,6 +110,7 @@
 	"logentry-forum-add-forum": "$1 {{GENDER:$2|ha creato}} un nuovo forum, [$4 $5]",
 	"logentry-forum-add-thread": "$1 {{GENDER:$2|ha creato}} una nuova discussione, [[Special:WikiForum/$4|$4]]",
 	"logentry-forum-add-reply": "$1 {{GENDER:$2|ha risposto}} nella discussione [[Special:WikiForum/$4|$4]]",
+	"logentry-forum-delete-category": "$1 {{GENDER:$2|ha cancellato}} la categoria \"$4\"",
 	"wikiforum-forum-preload": "Titolo del tuo forum",
 	"wikiforum-category-preload": "Titolo della tua categoria",
 	"wikiforum-category": "Categoria:",
