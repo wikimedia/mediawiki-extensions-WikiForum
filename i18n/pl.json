@@ -124,7 +124,7 @@
 	"logentry-forum-reopen-thread": "$1 {{GENDER:$2|otworzył|otworzyła|otworzył(a)}} ponownie wątek „[[Special:WikiForum/$5|$5]]” na forum „$4”",
 	"logentry-forum-pin-thread": "$1 {{GENDER:$2|przypiął|przypięła|przypiął(-ęła)}} wątek „[[Special:WikiForum/$5|$5]]” na forum „$4”",
 	"logentry-forum-unpin-thread": "$1 {{GENDER:$2|odpiął|odpięła|odpiął(-ęła)}} wątek „[[Special:WikiForum/$5|$5]]” na forum „$4”",
-	"logentry-forum-move-thread": "$1 {{GENDER:$2|przeniósł|przeniosła|przeniósł(-osła)}} wątek „[[Special:WikiForum/$5|$5]]” na forum „$4”",
+	"logentry-forum-move-thread": "$1 {{GENDER:$2|przeniósł|przeniosła|przeniósł(-osła)}} wątek „[[Special:WikiForum/$4|$4]]” z forum „$5” na forum „$6”",
 	"logentry-forum-edit-thread": "$1 {{GENDER:$2|edytował|edytowała|edytował(a)}} wątek „[[Special:WikiForum/$4|$4]]” na forum „$5”",
 	"logentry-forum-delete-forum": "$1 {{GENDER:$2|usunął|usunęła|usunął(-ęła)}} forum „$4” w kategorii „$5”",
 	"logentry-forum-delete-reply": "$1 {{GENDER:$2|usunął|usunęła|usunął(-ęła)}} odpowiedź nr $4 w wątku „[[Special:WikiForum/$5|$5]]” opublikowaną przez [[User:$6|$6]]",
