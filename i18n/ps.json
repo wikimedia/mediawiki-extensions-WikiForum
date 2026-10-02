@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"باران"
 		]
 	},
 	"wikiforum-desc": "د مېډياويکي لپاره [[Special:WikiForum|فورم]] شاتاړی",
@@ -12,7 +13,7 @@
 	"wikiforum-by": "د {{GENDER:$3|$2}} له خوا <br /> په $4 نېټه $5 بجې",
 	"wikiforum-description": "څرگنداوی:",
 	"wikiforum-forum-is-empty": "دا فورم وسمهال تش دی.\nمهرباني وکړئ د فورم پازوال سره اړيکه ونيسئ؛ ترڅو ځينې وېشنيزې او فورمونه ورگد کړي.",
-	"wikiforum-forum-name": "$1 فورم",
+	"wikiforum-forum-name": "$1 ټولنځی",
 	"wikiforum-name": "نوم:",
 	"wikiforum-button-preview": "مخليدنه",
 	"wikiforum-preview": "مخليدنه",
@@ -21,7 +22,7 @@
 	"wikiforum-search-hits": "{{PLURAL:$1|يو پايله وموندل شوه|$1پايلې وموندل شوې}}",
 	"wikiforum-search-thread": "شننلړ: $1",
 	"wikiforum-thread-deleted": "شننلړ ړنگ شو",
-	"wikiforum-topic-name": "فورم - $1",
+	"wikiforum-topic-name": "ټولنځی - $1",
 	"wikiforum-updates": "نوې هم‌مهاله شوې فورمونه",
 	"wikiforum-write-thread": "نوی سرليک",
 	"wikiforum-replies": "ځوابونه",
