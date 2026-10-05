@@ -17,6 +17,25 @@ use MediaWiki\User\User;
  */
 class WikiForumHooks {
 
+	public static function registerExtension() {
+		global $wgAbuseFilterValidGroups, $wgAbuseFilterEmergencyDisableThreshold, $wgAbuseFilterEmergencyDisableCount, $wgAbuseFilterEmergencyDisableAge;
+		global $wgAbuseFilterActions;
+		global $wgWikiForumAbuseFilterGroup;
+
+		// Note, it's too early to use ExtensionRegistry->isLoaded()
+		if ( $wgAbuseFilterActions !== null ) {
+			if ( $wgWikiForumAbuseFilterGroup != 'default' ) {
+				// Add a custom filter group for AbuseFilter
+				$wgAbuseFilterValidGroups[] = $wgWikiForumAbuseFilterGroup;
+
+				// set AbuseFilter emergency disable values for WikiForum
+				$wgAbuseFilterEmergencyDisableThreshold[$wgWikiForumAbuseFilterGroup] = 0.10;
+				$wgAbuseFilterEmergencyDisableCount[$wgWikiForumAbuseFilterGroup] = 50;
+				$wgAbuseFilterEmergencyDisableAge[$wgWikiForumAbuseFilterGroup] = 86400; // One day.
+			}
+		}
+	}
+
 	/**
 	 * Set up the two new parser hooks: <WikiForumList> and <WikiForumThread>
 	 *

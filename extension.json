@@ -1,6 +1,6 @@
 {
 	"name": "WikiForum",
-	"version": "2.8.0",
+	"version": "2.9.0",
 	"author": [
 		"Michael Chlebek",
 		"Jack Phoenix",
@@ -13,6 +13,7 @@
 	"requires": {
 		"MediaWiki": ">= 1.43.0"
 	},
+	"callback": "WikiForumHooks::registerExtension",
 	"GroupPermissions": {
 		"forumadmin": {
 			"wikiforum-admin": true,
@@ -139,9 +140,22 @@
 		"lockInactiveThread": "LockInactiveThreadJob"
 	},
 	"config": {
-		"WikiForumAllowAnonymous": true,
-		"WikiForumLogInRC": true,
-		"WikiForumAutoLockInactiveHours": null
+		"WikiForumAbuseFilterGroup": {
+			"description": "Custom group name for AbuseFilter, for when that extension is installed. It ensures that AbuseFilter only pulls the filters related to WikiForum. If you would like AbuseFilter to pull all of the filters, enter 'default' here.",
+			"value": "wikiforum"
+		},
+		"WikiForumAllowAnonymous": {
+			"description": "Allow anonymous users to post on the forum?",
+			"value": true
+		},
+		"WikiForumLogInRC": {
+			"description": "Show forum-related log actions in recent changes?",
+			"value": true
+		},
+		"WikiForumAutoLockInactiveHours": {
+			"description": "If set to a numeric value, threads are automatically closed by a background job after this many hours. When set to null (which is the default), threads are not automatically closed by the software.",
+			"value": null
+		}
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }

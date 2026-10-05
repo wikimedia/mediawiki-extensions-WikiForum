@@ -7,9 +7,13 @@
  */
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Extension\ConfirmEdit\Hooks as ConfirmEditHooks;
+use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -29,6 +33,7 @@ class WikiForum {
 		$errorTitle = wfMessage( $errorTitleMsg );
 		$errorMessage = wfMessage( $errorMessageMsg )->parse();
 
+		// For grep: wikiforum-error
 		$icon = self::getIconHTML( 'wikiforum-' . $errorIcon, $errorTitle );
 		$output	= '<br /><div class="mw-wikiforum-frame mw-wikiforum-error-msg">' . $icon . ' ' . $errorTitle->parse() . '<p class="mw-wikiforum-descr">' . $errorMessage . '</p></div>';
 
@@ -329,6 +334,120 @@ class WikiForum {
 		$output .= $formInformation['html'];
 
 		return $output;
+	}
+
+	/**
+	 * Run comment through SpamRegex, both the $wg* global configuration variable
+	 * and if installed, the anti-spam extension of the same name as well
+	 *
+	 * @param string $value
+	 * @return bool Will return boolean false if valid or true if flagged
+	 */
+	public static function validateSpamRegex( $value ) {
+		// Respect $wgSpamRegex
+		global $wgSpamRegex;
+
+		// Apparently this has to use the name SpamRegex specifies in its extension.json
+		// rather than the shorter directory name...
+		$spamRegexExtIsInstalled = ExtensionRegistry::getInstance()->isLoaded( 'Regular Expression Spam Block' );
+
+		// If and only if the config var is neither an array nor a string nor
+		// do we have the extension installed, bail out then and *only* then.
+		// It's entirely possible to have the extension installed without
+		// the config var being explicitly changed from the default value.
+		if (
+			!(
+				( is_array( $wgSpamRegex ) && count( $wgSpamRegex ) > 0 ) ||
+				( is_string( $wgSpamRegex ) && strlen( $wgSpamRegex ) > 0 )
+			) &&
+			!$spamRegexExtIsInstalled
+		) {
+			return false;
+		}
+
+		// In older versions, $wgSpamRegex may be a single string rather than
+		// an array of regexes, so make it compatible.
+		$regexes = (array)$wgSpamRegex;
+
+		// Support [[mw:Extension:SpamRegex]] if it's installed
+		if ( $spamRegexExtIsInstalled ) {
+			$phrases = SpamRegex::fetchRegexData( SpamRegex::TYPE_TEXTBOX );
+			if ( $phrases && is_array( $phrases ) ) {
+				$regexes = array_merge( $regexes, $phrases );
+			}
+		}
+
+		foreach ( $regexes as $regex ) {
+			if ( preg_match( $regex, $value ) ) {
+				// $value contains spam
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Run comment through SpamBlacklist
+	 *
+	 * @param string $value
+	 * @param User $user
+	 * @return bool Will return boolean false if valid or true if flagged
+	 */
+	public static function validateSpamBlacklist( $value, User $user ) {
+		// Check SpamBlacklist, if installed
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'SpamBlacklist' ) ) {
+			$spam = BaseBlacklist::getSpamBlacklist();
+			$title = Title::newFromText( 'WikiForum_' . rand() . '_' . rand() );
+
+			$options = new ParserOptions( $user );
+			$output = MediaWikiServices::getInstance()->getParser()->parse( $value, $title, $options );
+			$links = array_keys( $output->getExternalLinks() );
+
+			$ret = $spam->filter( $links, $title, $user );
+			if ( $ret !== false ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Run comment through AbuseFilter extension
+	 *
+	 * @param string $value Text to validate
+	 * @param MediaWiki\User\User $user
+	 * @param string $action Action string for the AF 'action' variable, e.g. 'wikiforum-thread-add', 'wikiforum-reply-edit'
+	 * @return array[]|false Will return boolean false if valid or error message array if flagged
+	 */
+	public static function validateAbuseFilter( $value, $user, $action ) {
+		// Check AbuseFilter, if installed
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Abuse Filter' ) ) {
+			global $wgWikiForumAbuseFilterGroup;
+
+			// Set up variables
+			$title = SpecialPage::getTitleFor( 'WikiForum' );
+
+			$vars = AbuseFilterServices::getVariableGeneratorFactory()
+				->newGenerator()
+				->addUserVars( $user )
+				->addTitleVars( $title, 'page' )
+				->addGenericVars()
+				->getVariableHolder();
+			$vars->setVar( 'summary', 'WikiForum' );
+			$vars->setVar( 'action', $action );
+			$vars->setVar( 'new_wikitext', $value );
+			$vars->setLazyLoadVar( 'new_size', 'length', [ 'length-var' => 'new_wikitext' ] );
+
+			$runnerFactory = AbuseFilterServices::getFilterRunnerFactory();
+			$runner = $runnerFactory->newRunner( $user, $title, $vars, $wgWikiForumAbuseFilterGroup );
+			$status = $runner->run();
+
+			return $status->isOK() ? false : $status->getErrorsArray();
+		}
+
+		return false;
 	}
 
 	/**

@@ -266,6 +266,32 @@ class WFReply extends ContextSource {
 			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'sessionfailure' );
 		}
 
+		/**
+		 * Check for abusive text in the following sequence (cheapest
+		 * processing to most expensive, returning if we get a hit):
+		 * 1) Check SpamRegex
+		 * 2) Check SpamBlacklist
+		 * 3) Check AbuseFilter
+		 */
+		if ( WikiForum::validateSpamRegex( $text ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'spamprotectiontext' );
+		} elseif ( WikiForum::validateSpamBlacklist( $text, $user ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-edit', 'spamprotectiontext' );
+		} else {
+			$error = WikiForum::validateAbuseFilter( $text, $user, 'wikiforum-reply-edit' );
+
+			if ( $error !== false ) {
+				$errMsg = '';
+				// $messages = [];
+				foreach ( $error as $message ) {
+					$errMsg = $message[1];
+					// $messages[] = $message[1];
+				}
+
+				return WikiForum::showErrorMessage( 'wikiforum-error-edit', $errMsg );
+			}
+		}
+
 		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$result = $dbw->update(
 			'wikiforum_replies',
@@ -428,6 +454,32 @@ class WFReply extends ContextSource {
 
 		if ( !$user->matchEditToken( $request->getVal( 'wpToken' ) ) ) {
 			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'sessionfailure' );
+		}
+
+		/**
+		 * Check for abusive text in the following sequence (cheapest
+		 * processing to most expensive, returning if we get a hit):
+		 * 1) Check SpamRegex
+		 * 2) Check SpamBlacklist
+		 * 3) Check AbuseFilter
+		 */
+		if ( WikiForum::validateSpamRegex( $text ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'spamprotectionmatch' );
+		} elseif ( WikiForum::validateSpamBlacklist( $text, $user ) ) {
+			return WikiForum::showErrorMessage( 'wikiforum-error-add', 'spamprotectionmatch' );
+		} else {
+			$error = WikiForum::validateAbuseFilter( $text, $user, 'wikiforum-reply-add' );
+
+			if ( $error !== false ) {
+				$errMsg = '';
+				// $messages = [];
+				foreach ( $error as $message ) {
+					$errMsg = $message[1];
+					// $messages[] = $message[1];
+				}
+
+				return WikiForum::showErrorMessage( 'wikiforum-error-add', $errMsg );
+			}
 		}
 
 		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
