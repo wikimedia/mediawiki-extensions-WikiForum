@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ChrisPtDe"
+			"ChrisPtDe",
+			"Jack Phoenix"
 		]
 	},
 	"wikiforum": "Barjacâjo",
@@ -45,11 +46,11 @@
 	"wikiforum-posted": "Mandâ a $1 per {{GENDER:$3|$2}}",
 	"wikiforum-edited": "Changiê a $1 per $2",
 	"wikiforum-cat-not-found": "Catègorie entrovâbla",
-	"wikiforum-cat-not-found-text": "La catègorie ègziste pas - tornar a $1",
+	"wikiforum-cat-not-found-text": "La catègorie ègziste pas.",
 	"wikiforum-forum-not-found": "Barjacâjo entrovâblo",
-	"wikiforum-forum-not-found-text": "Lo barjacâjo ègziste pas - tornar a $1",
+	"wikiforum-forum-not-found-text": "Lo barjacâjo ègziste pas.",
 	"wikiforum-thread-not-found": "Fil de discussion entrovâblo",
-	"wikiforum-thread-not-found-text": "Lo fil de discussion ègziste pas ou ben at ja étâ suprimâ - tornar a $1.",
+	"wikiforum-thread-not-found-text": "Lo fil de discussion ègziste pas ou ben at ja étâ suprimâ.",
 	"wikiforum-error-thread-reopen": "Èrror pendent la rèuvèrtura du fil de discussion",
 	"wikiforum-error-thread-close": "Èrror pendent la cllotura du fil de discussion",
 	"wikiforum-error-not-found": "Chousa pas trovâ.",

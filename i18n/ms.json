@@ -4,7 +4,8 @@
 			"Anakmalaysia",
 			"Pizza1016",
 			"Tofeiku",
-			"Hakimi97"
+			"Hakimi97",
+			"Jack Phoenix"
 		]
 	},
 	"wikiforum-desc": "Sambungan [[Special:WikiForum|forum]] untuk MediaWiki",
@@ -53,9 +54,9 @@
 	"wikiforum-cat-not-found": "Kategori tidak dijumpai",
 	"wikiforum-cat-not-found-text": "Kategori tidak wujud.",
 	"wikiforum-forum-not-found": "Forum tidak dijumpai",
-	"wikiforum-forum-not-found-text": "Forum tidak wujud - kembali ke $1",
+	"wikiforum-forum-not-found-text": "Forum tidak wujud.",
 	"wikiforum-thread-not-found": "Tred tidak dijumpai",
-	"wikiforum-thread-not-found-text": "Tred tidak wujud atau sudah dihapuskan - kembali ke $1.",
+	"wikiforum-thread-not-found-text": "Tred tidak wujud atau sudah dihapuskan.",
 	"wikiforum-error-thread-reopen": "Ralat ketika membuka semula tred",
 	"wikiforum-error-thread-close": "Ralat ketika menutup tred",
 	"wikiforum-error-general": "Objek tidak dijumpai, atau tiada hak untuk melakukan tindakan ini.",
