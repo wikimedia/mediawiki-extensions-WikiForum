@@ -133,9 +133,6 @@
 		"ParserFirstCallInit": "WikiForumHooks::registerParserHooks",
 		"LoadExtensionSchemaUpdates": "WikiForumHooks::onLoadExtensionSchemaUpdates"
 	},
-	"CaptchaTriggers": {
-		"wikiforum": true
-	},
 	"JobClasses": {
 		"lockInactiveThread": "LockInactiveThreadJob"
 	},
