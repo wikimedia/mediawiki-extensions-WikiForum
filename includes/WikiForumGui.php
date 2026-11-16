@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\EditPage\EditPage;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -241,9 +240,6 @@ class WikiForumGui {
 				$out->addModuleStyles( 'ext.wikiEditor.styles' );
 				$out->addModules( 'ext.wikiEditor' );
 			}
-			$toolbar = '';
-		} else {
-			$toolbar = EditPage::getEditToolbar();
 		}
 
 		$captcha = '';
@@ -266,7 +262,6 @@ class WikiForumGui {
 			) .
 			Html::openElement( 'div', [ 'class' => 'mw-wikiforum-edit-reply mw-wikiforum-frame ' . $boxClass ] ) .
 			$input .
-			$toolbar .
 			Html::rawElement( 'div', [],
 				Html::element( 'textarea',
 					[
