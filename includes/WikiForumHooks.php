@@ -231,7 +231,9 @@ class WikiForumHooks {
 			return;
 		}
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$mentionCounter = MediaWikiServices::getInstance()->getStatsFactory()
+			->withComponent( 'WikiForum' )
+			->getCounter( 'mention_notifications_total' );
 
 		$threadId = $thread->getId(); // added
 		$threadName = $thread->getName(); // added
@@ -251,7 +253,7 @@ class WikiForumHooks {
 					],
 					'agent' => $agent,
 				] );
-				$stats->increment( 'echo.event.mention.notification.failure-too-many' );
+				$mentionCounter->setLabel( 'status', 'failure_too_many' )->increment();
 			}
 			return;
 		}
@@ -288,7 +290,7 @@ class WikiForumHooks {
 					],
 					'agent' => $agent,
 				] );
-				$stats->increment( 'echo.event.mention.notification.success' );
+				$mentionCounter->setLabel( 'status', 'success' )->increment();
 			}
 
 			// TODO batch?
@@ -307,7 +309,7 @@ class WikiForumHooks {
 					],
 					'agent' => $agent,
 				] );
-				$stats->increment( 'echo.event.mention.notification.failure-user-anonymous' );
+				$mentionCounter->setLabel( 'status', 'failure_user_anonymous' )->increment();
 			}
 
 			// TODO batch?
@@ -326,7 +328,7 @@ class WikiForumHooks {
 					],
 					'agent' => $agent,
 				] );
-				$stats->increment( 'echo.event.mention.notification.failure-user-unknown' );
+				$mentionCounter->setLabel( 'status', 'failure_user_unknown' )->increment();
 			}
 		}
 	}
