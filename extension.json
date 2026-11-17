@@ -138,7 +138,7 @@
 		}
 	},
 	"Hooks": {
-		"BeforeCreateEchoEvent": "main",
+		"BeforeCreateEchoEvent": "echo",
 		"ParserFirstCallInit": "main",
 		"LoadExtensionSchemaUpdates": "main"
 	},
